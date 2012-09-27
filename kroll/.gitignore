@@ -1,0 +1,8 @@
+.sconsign.dblite
+*.o
+*.os
+docs
+*.pyc
+thirdparty-*
+*.swp
+*.swo

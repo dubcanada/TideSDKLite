@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+from os import path
+Import('build env module')
+
+env.Append(CPPDEFINES=('KROLL_PYTHON_API_EXPORT', 1))
+
+build.add_thirdparty(env, 'poco')
+if build.is_osx():
+	env.Append(CPPPATH=['/System/Library/Frameworks/Python.framework/Versions/Current/Headers',build.kroll_include_dir])
+	env.Append(FRAMEWORKS=['Python'])
+
+elif build.is_linux():
+	env.Append(CPPPATH=[
+		'${PYTHON_INCLUDE}',
+		#'/usr/lib/python/2.5/i386-linux',
+		#'/usr/include/python2.5',
+		build.kroll_include_dir])
+	env.Append(LIBS=['python${PYTHON_VERSION}'])
+
+elif build.is_win32():
+	env.Append(CPPPATH=[build.tp('python', 'include')])
+	env.Append(LIBPATH=[build.tp('python', 'libs')])
+	env.Append(LIBS=['python25'])
+	env.Append(CCFLAGS = ['/MD'])
+
+build.mark_build_target(env.SharedLibrary(
+	path.join(module.dir, 'pythonmodule'), Glob('*.cpp')))
+if build.is_win32():
+	build.utils.LightWeightCopy(build.tp('python'), module.dir)

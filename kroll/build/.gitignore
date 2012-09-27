@@ -1,0 +1,5 @@
+include
+osx
+linux
+win32
+*.pyc
