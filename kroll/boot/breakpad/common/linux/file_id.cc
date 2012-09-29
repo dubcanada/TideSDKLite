@@ -41,6 +41,10 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include "common/linux/file_id.h"
 #include "common/md5.h"
 
