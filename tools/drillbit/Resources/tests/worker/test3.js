@@ -1,1 +1,1 @@
-importScripts("script.js","test2.js");
+importScripts("script.js", "test2.js");

@@ -1,175 +1,198 @@
-describe("Network.HTTPServer",
-{
-	get_request_as_async: function(callback)
-	{
-		value_of(Titanium.Network.createHTTPServer).should_be_function();
-		
-		var server = Titanium.Network.createHTTPServer();
-		value_of(server).should_be_object();
-		value_of(server.bind).should_be_function();
-		
-		server.bind(8082,function(request,response)
-		{
-			try
-			{
-				value_of(request.getMethod()).should_be('GET');
-				value_of(request.getURI()).should_be('/foo');
-				value_of(request.hasHeader('Foo')).should_be_false();
-				value_of(request.getHeader('Foo')).should_be_null();
-				value_of(request.getContentType()).should_be('');
-				value_of(request.getContentLength()).should_be(-1);
-				value_of(request.read()).should_be_null();
-				value_of(server.isClosed()).should_be_false();
-				server.close();
-				value_of(server.isClosed()).should_be_true();
-				callback.passed();
-			}
-			catch(e)
-			{
-				server.close();
-				callback.failed(e);
-			}
-		});
-		
-		var xhr = Titanium.Network.createHTTPClient();
-		xhr.open("GET", "http://127.0.0.1:8082/foo");
-		xhr.send(null);
-		
-	},
-	post_request_with_body_as_async: function(callback)
-	{
-		var server = Titanium.Network.createHTTPServer();
-		
-		server.bind(8082,function(request,response)
-		{
-			try
-			{
-				value_of(request.getMethod()).should_be('POST');
-				value_of(request.getURI()).should_be('/foo');
-				value_of(request.getContentType()).should_be('application/x-www-form-urlencoded');
-				value_of(request.hasHeader('Foo')).should_be_true();
-				value_of(request.getHeader('Foo')).should_be('Bar');
-				value_of(request.getContentLength()).should_be(3);
-				var blob = request.read();
-				value_of(blob).should_be_object();
-				value_of(blob.length).should_be(3);
-				value_of(blob).should_be("a=b");
-				server.close();
-				callback.passed();
-			}
-			catch(e)
-			{
-				server.close();
-				callback.failed(e);
-			}
-		});
-		
-		var xhr = Titanium.Network.createHTTPClient();
-		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		xhr.setRequestHeader('Foo','Bar');
-		xhr.open("POST","http://127.0.0.1:8082/foo");
-		xhr.send("a=b");
-	},
-	get_request_simple_response_as_async: function(callback)
-	{
-		var server = Titanium.Network.createHTTPServer();
-		
-		server.bind(8082,function(request,response)
-		{
-			try
-			{
-				value_of(request.getMethod()).should_be('GET');
-				value_of(request.getURI()).should_be('/foo');
-				value_of(request.getHeaders()).should_be_object();
-				value_of(request.getHeaders()['Host']).should_not_be_undefined();
-				response.setContentType('text/plain');
-				response.setContentLength(3);
-				response.setStatusAndReason('200','OK');
-				response.write('123');
-			}
-			catch(e)
-			{
-				callback.failed(e);
-			}
-		});
-		
-		var xhr = Titanium.Network.createHTTPClient();
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4)
-			{
-				try
-				{
-					value_of(this.status).should_be(200);
-					value_of(this.statusText).should_be('OK');
-					value_of(this.responseText).should_be('123');
-					value_of(this.getResponseHeader('Content-Type')).should_be('text/plain');
-					server.close();
-					callback.passed();
-				}
-				catch(e)
-				{
-					server.close();
-					callback.failed(e);
-				}
-			}
-		};
-		xhr.open("GET","http://127.0.0.1:8082/foo");
-		xhr.send(null);
-	},
-	get_request_blob_response_as_async: function(callback)
-	{
-		var blob = Titanium.Filesystem.getFile(
-			Titanium.API.application.resourcesPath, "test.bin").read();
+/**
+* (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
-		var server = Titanium.Network.createHTTPServer();
-		server.bind(8082,function(request,response)
-		{
-			try
-			{
-				value_of(request.getMethod()).should_be('GET');
-				value_of(request.getURI()).should_be('/foo');
-				value_of(request.getHeaders()).should_be_object();
-				value_of(request.getHeaders()['Host']).should_not_be_undefined();
-				response.setContentType('text/plain');
-				response.setContentLength(blob.length);
-				response.setStatusAndReason('200','OK');
-				response.write(blob);
-			}
-			catch(e)
-			{
-				callback.failed(e);
-			}
-		});
-		
-		var xhr = Titanium.Network.createHTTPClient();
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4)
-			{
-				try
-				{
-					value_of(this.status).should_be(200);
-					value_of(this.statusText).should_be('OK');
-					var response = this.responseData;
-					value_of(this.getResponseHeader('Content-Type')).should_be('text/plain');
-					value_of(response.length).should_be(blob.length);
+describe("Network.HTTPServer", {
+  get_request_as_async: function (callback) {
+    value_of(Titanium.Network.createHTTPServer)
+      .should_be_function();
 
-					for (var i = 0; i < response.length; i++)
-					{
-						value_of(response.byteAt(i)).should_be(blob.byteAt(i));
-					}
-					server.close();
-					callback.passed();
-				}
-				catch(e)
-				{
-					server.close();
-					callback.failed(e);
-				}
-			}
-		};
-		xhr.open("GET","http://127.0.0.1:8082/foo");
-		xhr.send(null);
-	}
+    var server = Titanium.Network.createHTTPServer();
+    value_of(server)
+      .should_be_object();
+    value_of(server.bind)
+      .should_be_function();
+
+    server.bind(8082, function (request, response) {
+      try {
+        value_of(request.getMethod())
+          .should_be('GET');
+        value_of(request.getURI())
+          .should_be('/foo');
+        value_of(request.hasHeader('Foo'))
+          .should_be_false();
+        value_of(request.getHeader('Foo'))
+          .should_be_null();
+        value_of(request.getContentType())
+          .should_be('');
+        value_of(request.getContentLength())
+          .should_be(-1);
+        value_of(request.read())
+          .should_be_null();
+        value_of(server.isClosed())
+          .should_be_false();
+        server.close();
+        value_of(server.isClosed())
+          .should_be_true();
+        callback.passed();
+      } catch (e) {
+        server.close();
+        callback.failed(e);
+      }
+    });
+
+    var xhr = Titanium.Network.createHTTPClient();
+    xhr.open("GET", "http://127.0.0.1:8082/foo");
+    xhr.send(null);
+
+  },
+  post_request_with_body_as_async: function (callback) {
+    var server = Titanium.Network.createHTTPServer();
+
+    server.bind(8082, function (request, response) {
+      try {
+        value_of(request.getMethod())
+          .should_be('POST');
+        value_of(request.getURI())
+          .should_be('/foo');
+        value_of(request.getContentType())
+          .should_be('application/x-www-form-urlencoded');
+        value_of(request.hasHeader('Foo'))
+          .should_be_true();
+        value_of(request.getHeader('Foo'))
+          .should_be('Bar');
+        value_of(request.getContentLength())
+          .should_be(3);
+        var blob = request.read();
+        value_of(blob)
+          .should_be_object();
+        value_of(blob.length)
+          .should_be(3);
+        value_of(blob)
+          .should_be("a=b");
+        server.close();
+        callback.passed();
+      } catch (e) {
+        server.close();
+        callback.failed(e);
+      }
+    });
+
+    var xhr = Titanium.Network.createHTTPClient();
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Foo', 'Bar');
+    xhr.open("POST", "http://127.0.0.1:8082/foo");
+    xhr.send("a=b");
+  },
+  get_request_simple_response_as_async: function (callback) {
+    var server = Titanium.Network.createHTTPServer();
+
+    server.bind(8082, function (request, response) {
+      try {
+        value_of(request.getMethod())
+          .should_be('GET');
+        value_of(request.getURI())
+          .should_be('/foo');
+        value_of(request.getHeaders())
+          .should_be_object();
+        value_of(request.getHeaders()['Host'])
+          .should_not_be_undefined();
+        response.setContentType('text/plain');
+        response.setContentLength(3);
+        response.setStatusAndReason('200', 'OK');
+        response.write('123');
+      } catch (e) {
+        callback.failed(e);
+      }
+    });
+
+    var xhr = Titanium.Network.createHTTPClient();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        try {
+          value_of(this.status)
+            .should_be(200);
+          value_of(this.statusText)
+            .should_be('OK');
+          value_of(this.responseText)
+            .should_be('123');
+          value_of(this.getResponseHeader('Content-Type'))
+            .should_be('text/plain');
+          server.close();
+          callback.passed();
+        } catch (e) {
+          server.close();
+          callback.failed(e);
+        }
+      }
+    };
+    xhr.open("GET", "http://127.0.0.1:8082/foo");
+    xhr.send(null);
+  },
+  get_request_blob_response_as_async: function (callback) {
+    var blob = Titanium.Filesystem.getFile(
+    Titanium.API.application.resourcesPath, "test.bin")
+      .read();
+
+    var server = Titanium.Network.createHTTPServer();
+    server.bind(8082, function (request, response) {
+      try {
+        value_of(request.getMethod())
+          .should_be('GET');
+        value_of(request.getURI())
+          .should_be('/foo');
+        value_of(request.getHeaders())
+          .should_be_object();
+        value_of(request.getHeaders()['Host'])
+          .should_not_be_undefined();
+        response.setContentType('text/plain');
+        response.setContentLength(blob.length);
+        response.setStatusAndReason('200', 'OK');
+        response.write(blob);
+      } catch (e) {
+        callback.failed(e);
+      }
+    });
+
+    var xhr = Titanium.Network.createHTTPClient();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        try {
+          value_of(this.status)
+            .should_be(200);
+          value_of(this.statusText)
+            .should_be('OK');
+          var response = this.responseData;
+          value_of(this.getResponseHeader('Content-Type'))
+            .should_be('text/plain');
+          value_of(response.length)
+            .should_be(blob.length);
+
+          for (var i = 0; i < response.length; i++) {
+            value_of(response.byteAt(i))
+              .should_be(blob.byteAt(i));
+          }
+          server.close();
+          callback.passed();
+        } catch (e) {
+          server.close();
+          callback.failed(e);
+        }
+      }
+    };
+    xhr.open("GET", "http://127.0.0.1:8082/foo");
+    xhr.send(null);
+  }
 });

@@ -1,5 +1,3 @@
-
-onmessage = function(event)
-{
-	postMessage([typeof(event.message), event.message[1]]);
+onmessage = function (event) {
+  postMessage([typeof (event.message), event.message[1]]);
 }

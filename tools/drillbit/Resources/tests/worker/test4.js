@@ -1,5 +1,3 @@
-
-onmessage = function(msg)
-{
-	postMessage(Titanium.version);
+onmessage = function (msg) {
+  postMessage(Titanium.version);
 }

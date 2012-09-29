@@ -1,10 +1,6 @@
-try
-{
-	sleep(2000);
-	postMessage(0);
+try {
+  sleep(2000);
+  postMessage(0);
+} catch (e) {
+  postMessage(true);
 }
-catch(e)
-{
-	postMessage(true);
-}
-

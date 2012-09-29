@@ -44,33 +44,28 @@ failed : called to indicate that the test failed. the arg is the exception or me
 
 Async Example:
 
-describe("test",{
-
-	"test_as_async":function(callback)
-	{
-		setTimeout(function()
-		{
-			callback.passed();
-		},1000);
-	}
+describe("test", {
+  "test_as_async": function (callback) {
+    setTimeout(function () {
+      callback.passed();
+    }, 1000);
+  }
 });
 
 Sync Example:
 
-describe("test",{
+describe("test", {
 
-	"before":function()
-	{
-		this.abc = '123';
-	},
-	"after":function()
-	{
-		this.abc = null;
-	},
-	"test":function()
-	{
-		value_of(this.abc).should_be('123');
-	}
+  "before": function () {
+    this.abc = '123';
+  },
+  "after": function () {
+    this.abc = null;
+  },
+  "test": function () {
+    value_of(this.abc)
+      .should_be('123');
+  }
 });
 
 To make test assertions, wrap your values in a 'value_of' method and then
@@ -110,18 +105,15 @@ If you run async, you must catch exceptions inside code that isn't
 part of the test execution path.  For example, if you're inside a 
 method such as:
 
-setTimeout(function()
-{
-	try
-	{
-		value_of('a').should_be('b');
-		callback.passed();
-	}
-	catch(e)
-	{
-		callback.failed(e);
-	}
-},100);
+setTimeout(function () {
+  try {
+    value_of('a')
+      .should_be('b');
+    callback.passed();
+  } catch (e) {
+    callback.failed(e);
+  }
+}, 100);
 
 You'll need to surround any value_of tests around a try/catch and
 call the appropriate passed/failed yourself.  

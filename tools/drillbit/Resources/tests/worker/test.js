@@ -1,5 +1,3 @@
-
-onmessage = function(msg)
-{
-	postMessage("you said: "+msg.message);
+onmessage = function (msg) {
+  postMessage("you said: " + msg.message);
 }
