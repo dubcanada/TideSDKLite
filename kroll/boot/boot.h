@@ -62,13 +62,5 @@ namespace KrollBoot
 	vector<SharedDependency> FilterForSDKInstall(
 		vector<SharedDependency> dependencies);
 	string GetApplicationName();
-
-#ifdef USE_BREAKPAD
-	void InitCrashDetection();
-	string GetCrashDetectionTitle();
-	string GetCrashDetectionHeader();
-	string GetCrashDetectionMessage();
-	map<string, string> GetCrashReportParameters();
-#endif
 }
 #endif
