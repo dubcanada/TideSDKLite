@@ -12,7 +12,6 @@
 namespace ti
 {
 	class NetworkBinding;
-	class NetworkStatus;
 	class HostBinding;
 }
 
@@ -24,23 +23,12 @@ namespace ti
 		NetworkBinding(Host*);
 		virtual ~NetworkBinding();
 
-		bool HasNetworkStatusListeners();
-		void NetworkStatusChange(bool online);
 		Host* GetHost();
-		void Shutdown();
 		static const std::string& GetFirstIPAddress();
 
 	private:
 		Host* host;
 		KObjectRef global;
-
-		struct Listener
-		{
-			KMethodRef callback;
-			long id;
-		};
-		std::vector<Listener> listeners;
-		NetworkStatus* netStatus;
 
 		AutoPtr<HostBinding> GetHostBinding(std::string host);
 
@@ -58,8 +46,6 @@ namespace ti
 		void _DecodeURIComponent(const ValueList &args, KValueRef result);
 		void _GetHostByName(const ValueList& args, KValueRef result);
 		void _GetHostByAddress(const ValueList& args, KValueRef result);
-		void _AddConnectivityListener(const ValueList& args, KValueRef result);
-		void _RemoveConnectivityListener(const ValueList& args, KValueRef result);
 		void _SetHTTPProxy(const ValueList& args, KValueRef result);
 		void _SetHTTPSProxy(const ValueList& args, KValueRef result);
 		void _GetHTTPProxy(const ValueList& args, KValueRef result);

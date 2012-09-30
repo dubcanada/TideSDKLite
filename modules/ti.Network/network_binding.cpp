@@ -6,7 +6,6 @@
 #include <kroll/kroll.h>
 #include <sstream>
 
-#include "network_status.h"
 #include "network_binding.h"
 #include "protocols/tcp/tcp_socket.h"
 #include "protocols/tcp/tcp_server_socket_binding.h"
@@ -50,14 +49,6 @@ namespace ti
 		global(host->GetGlobalObject())
 	{
 		GetInterfaceList();
-		KValueRef online = Value::NewBool(true);
-
-		/**
-		 * @tiapi(property=True,name=Network.online,since=0.2)
-		 * @tiapi Whether or not the system is connected to the internet
-		 * @tiresult[Boolean] True if the system is connected to the internet, false if otherwise
-		 */
-		this->Set("online", online);
 
 		// methods that are available on Titanium.Network
 		/**
@@ -125,21 +116,6 @@ namespace ti
 		this->SetMethod("decodeURIComponent",&NetworkBinding::_DecodeURIComponent);
 
 		/**
-		 * @tiapi(method=True,name=Network.addConnectivityListener,since=0.2)
-		 * @tiapi Adds a connectivity change listener that fires when the system
-		 * @tiapi connects or disconnects from the internet
-		 * @tiarg(for=Network.addConnectivityListener,type=Function,name=listener) 
-		 * @tiarg A callback method to be fired when the system connects or disconnects from the internet
-		 * @tiresult(for=Network.addConnectivityListener,type=Number) a callback id for the event
-		 */
-		this->SetMethod("addConnectivityListener",&NetworkBinding::_AddConnectivityListener);
-		/**
-		 * @tiapi(method=True,name=Network.removeConnectivityListener,since=0.2) Removes a connectivity change listener
-		 * @tiarg(for=Network.removeConnectivityListener,type=Number,name=id) the callback id of the method
-		 */
-		this->SetMethod("removeConnectivityListener",&NetworkBinding::_RemoveConnectivityListener);
-
-		/**
 		 * @tiapi(method=True,name=Network.setHTTPProxy,since=0.7)
 		 * @tiapi Override application proxy autodetection with a proxy URL.
 		 * @tiarg[String, hostname] The full proxy hostname.
@@ -191,19 +167,10 @@ namespace ti
 		 */
 		this->SetMethod("getFirstMACAddress", &NetworkBinding::_GetFirstMACAddress);
 		this->SetMethod("getMACAddress", &NetworkBinding::_GetFirstMACAddress);
-
-		this->netStatus = new NetworkStatus(this);
-		this->netStatus->Start();
 	}
 
 	NetworkBinding::~NetworkBinding()
 	{
-		delete this->netStatus;
-	}
-
-	void NetworkBinding::Shutdown()
-	{
-		listeners.clear();
 	}
 
 	AutoPtr<HostBinding> NetworkBinding::GetHostBinding(std::string hostname)
@@ -301,68 +268,6 @@ namespace ti
 	void NetworkBinding::_CreateHTTPCookie(const ValueList& args, KValueRef result)
 	{
 		result->SetObject(new HTTPCookie());
-	}
-
-	void NetworkBinding::_AddConnectivityListener(const ValueList& args, KValueRef result)
-	{
-		args.VerifyException("addConnectivityListener", "m");
-		KMethodRef target = args.at(0)->ToMethod();
-
-		static long nextListenerId = 0;
-		Listener listener = Listener();
-		listener.id = nextListenerId++;
-		listener.callback = target;
-		this->listeners.push_back(listener);
-		result->SetInt(listener.id);
-	}
-
-	void NetworkBinding::_RemoveConnectivityListener(
-		const ValueList& args, KValueRef result)
-	{
-		args.VerifyException("removeConnectivityListener", "n");
-		int id = args.at(0)->ToInt();
-
-		std::vector<Listener>::iterator it = this->listeners.begin();
-		while (it != this->listeners.end())
-		{
-			if ((*it).id == id)
-			{
-				this->listeners.erase(it);
-				result->SetBool(true);
-				return;
-			}
-			it++;
-		}
-		result->SetBool(false);
-	}
-
-	bool NetworkBinding::HasNetworkStatusListeners()
-	{
-		return this->listeners.size() > 0;
-	}
-
-	void NetworkBinding::NetworkStatusChange(bool online)
-	{
-		static Logger* log = Logger::Get("NetworkStatus");
-		log->Debug("ti.Network: Online status changed ==> %i", online);
-		this->Set("online", Value::NewBool(online));
-
-		ValueList args = ValueList();
-		args.push_back(Value::NewBool(online));
-		std::vector<Listener>::iterator it = this->listeners.begin();
-		while (it != this->listeners.end())
-		{
-			KMethodRef callback = (*it++).callback;
-			try
-			{
-				RunOnMainThread(callback, args, false);
-			}
-			catch(ValueException& e)
-			{
-				SharedString ss = e.GetValue()->DisplayString();
-				log->Error("Network.NetworkStatus callback failed: %s", ss->c_str());
-			}
-		}
 	}
 
 	void NetworkBinding::_EncodeURIComponent(const ValueList &args, KValueRef result)

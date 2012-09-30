@@ -64,7 +64,6 @@ namespace ti
 
 	void NetworkModule::Stop()
 	{
-		networkBinding->Shutdown();
 		analyticsBinding->Shutdown();
 	}
 
