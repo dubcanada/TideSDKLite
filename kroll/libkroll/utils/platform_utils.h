@@ -28,8 +28,7 @@ namespace UTILS_NS
 		KROLL_API void GetFirstMACAddressImpl(MACAddress&);
 
 		/**
-		 * Get the machine ID of this machine from the .PRODUCT_NAME file
-		 * or create it if it doesn't exist.
+		 * Generate an ID for this machine based on it's MAC Address.
 		 */
 		KROLL_API std::string GetMachineId();
 
