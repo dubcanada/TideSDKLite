@@ -892,6 +892,8 @@ namespace ti
 			if (!responseData.empty())
 				this->SetObject("responseData", Bytes::Concat(this->responseData));
 
+			CleanupCurl(curlHeaders);
+
 			this->ChangeState(4); // Done
 		}
 		catch (ValueException& e)
@@ -903,8 +905,6 @@ namespace ti
 			if (!async)
 				throw e;
 		}
-
-		CleanupCurl(curlHeaders);
 	}
 }
 
