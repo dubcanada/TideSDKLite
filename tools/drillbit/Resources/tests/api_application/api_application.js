@@ -137,7 +137,6 @@ describe("API.Application Tests", {
     // first we verify that we have a list of components.
     for (i = 0; i < installedComponents.length; i++) {
       var item = installedComponents[i];
-      // do we have a component?
       value_of(item)
         .should_be_object();
       value_of(item.getName)
@@ -864,7 +863,7 @@ describe("API.Application Tests", {
 
     // this is the version for the test harness app, not drillbit.
     value_of(ver)
-      .should_be("0.5.0");
+      .should_be("0.6.0");
   },
 
   test_api_app_GUID: function () {
