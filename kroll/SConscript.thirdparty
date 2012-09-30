@@ -13,7 +13,7 @@ Import('build')
 revisions = {
 	"linux-i386": 37,
 	"linux-x86_64": 27,
-	"osx-universal": 28,
+	"osx-i386": 1,
 	"win32-i386": 43
 }
 
@@ -71,4 +71,3 @@ elif build.is_osx():
 	libdir = path.join(build.third_party, "poco", "lib");
 	targets.append(build.utils.CopyTree(libdir, rtdir, exclude=excludes))
 	build.mark_build_target(targets)
-
