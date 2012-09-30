@@ -26,9 +26,7 @@ namespace UTILS_NS
 	std::string FileUtils::GetSystemRuntimeHomeDirectory()
 	{
 		NSString* nsPath = [NSSearchPathForDirectoriesInDomains(
-			NSApplicationSupportDirectory, NSLocalDomainMask, NO) objectAtIndex: 0];
-		nsPath = [nsPath stringByAppendingPathComponent:
-			[NSString stringWithUTF8String:PRODUCT_NAME]];
+			NSLibraryDirectory, NSUserDomainMask, NO) objectAtIndex: 0];
 		return [[nsPath stringByExpandingTildeInPath] UTF8String];
 	}
 
