@@ -57,8 +57,7 @@ namespace kroll
 	{
 		// Don't release this GIL state because by the time we're 
 		// done here, the interpreter will have bitten the dust
-		PyGILState_STATE gstate;
-		gstate = PyGILState_Ensure();
+	        PyGILState_Ensure();
 
 		KObjectRef global = this->host->GetGlobalObject();
 		global->Set("Python", Value::Undefined);
