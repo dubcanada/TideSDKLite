@@ -25,8 +25,6 @@ describe("Network Tests", {
       .should_be_function();
     value_of(Titanium.Network.setProxy)
       .should_be_function();
-    value_of(Titanium.Network.addConnectivityListener)
-      .should_be_function();
     value_of(Titanium.Network.createHTTPClient)
       .should_be_function();
     value_of(Titanium.Network.createHTTPServer)
@@ -45,13 +43,6 @@ describe("Network Tests", {
       .should_be_function();
     value_of(Titanium.Network.getHostByName)
       .should_be_function();
-    value_of(Titanium.Network.online)
-      .should_not_be_null();
-    value_of(Titanium.Network.removeConnectivityListener)
-      .should_be_function();
-
-    value_of(Titanium.Network.online)
-      .should_be_true();
   },
 
   test_network_URIComponents: function () {
@@ -151,7 +142,7 @@ describe("Network Tests", {
 
     Titanium.Network.setHTTPProxy("http://joe:blow@foo.com:80");
     vproxy = Titanium.Network.getHTTPProxy();
-    value_of(proxy)
+    value_of(vproxy)
       .should_be("http://joe:blow@foo.com:80");
 
     Titanium.Network.setHTTPProxy("");
