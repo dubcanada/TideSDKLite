@@ -62,10 +62,6 @@ namespace ti
 			// native menu will have to use the title of the item it is attached to.
 			[submenu setTitle:nstitle];
 		}
-		if ([item menu] != nil)
-		{
-			[[item menu] sizeToFit];
-		}
 	}
 
 	/*static*/
@@ -86,10 +82,6 @@ namespace ti
 			[item setImage:image];
 		} else {
 			[item setImage:nil];
-		}
-
-		if ([item menu] != nil) {
-			[[item menu] sizeToFit];
 		}
 
 		if (needsRelease) {

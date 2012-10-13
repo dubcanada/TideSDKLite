@@ -184,7 +184,6 @@ namespace ti
 			int index = [nativeMenu numberOfItems] - rearOffset;
 			[nativeMenu insertItem:nativeItem atIndex:index];
 		}
-		[nativeMenu sizeToFit];
 	}
 
 	void OSXMenu::AddChildrenToNSArray(NSMutableArray* array)
