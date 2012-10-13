@@ -51,8 +51,7 @@ bool Notification::ShowImpl()
 	this->notification = notify_notification_new(
 		this->title.c_str(),
 		this->message.c_str(),
-		iconPath.c_str(),
-		NULL);
+		iconPath.c_str());
 
 	int timeout = (this->timeout > 0) ? this->timeout * 1000 : this->timeout;
 	notify_notification_set_timeout(this->notification, timeout);
