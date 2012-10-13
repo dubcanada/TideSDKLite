@@ -30,8 +30,9 @@ namespace ti
 #endif
 		host->GetGlobalObject()->SetObject("UI", this->uiBinding);
 		host->GetGlobalObject()->SetObject("Notification", this->uiBinding);
-
+#ifndef TIDE_LITE
 		ScriptEvaluator::Initialize();
+#endif
 		AppConfig* config = AppConfig::Instance();
 		if (!config)
 		{

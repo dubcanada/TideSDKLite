@@ -6,16 +6,14 @@
 #ifndef TI_APP_H
 #define TI_APP_H
 #import "../ui_module.h"
-@interface TiApplicationDelegate : NSObject
+@interface TitaniumApplicationDelegate : NSObject <NSApplicationDelegate>
 {
 	ti::OSXUIBinding *binding;
 }
 
 -(id)initWithBinding:(ti::OSXUIBinding*)binding;
--(BOOL)application:(NSApplication*)theApplication
-	openFile:(NSString*)filename;
--(BOOL)application:(NSApplication*)theApplication
-	openFiles:(NSArray*)filenames;
+-(BOOL)application:(NSApplication*)theApplication openFile:(NSString*)filename;
+-(BOOL)application:(NSApplication*)theApplication openFiles:(NSArray*)filenames;
 -(NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)sender;
 @end
 

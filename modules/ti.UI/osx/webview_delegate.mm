@@ -6,8 +6,11 @@
 #include <kroll/kroll.h>
 #include "../ui_module.h"
 #include "osx_menu_item.h"
+
+#ifndef TIDE_LITE
 #include <WebKit/WebFramePrivate.h>
 #include <WebKit/WebPreferenceKeysPrivate.h>
+#endif
 
 @interface NSApplication (DeclarationStolenFromAppKit)
 - (void)_cycleWindowsReversed:(BOOL)reversed;
@@ -27,26 +30,31 @@
 	// significantly.
 	[webPrefs setCacheModel:WebCacheModelDocumentBrowser];
 
+#ifndef TIDE_LITE
 	[webPrefs setDeveloperExtrasEnabled:host->DebugModeEnabled()];
-	[webPrefs setPlugInsEnabled:YES];
-	[webPrefs setJavaEnabled:YES];
-	[webPrefs setJavaScriptEnabled:YES];
-	[webPrefs setJavaScriptCanOpenWindowsAutomatically:YES];
 	[webPrefs setAllowUniversalAccessFromFileURLs:YES];
 	[webPrefs setDatabasesEnabled:YES];
 	[webPrefs setLocalStorageEnabled:YES];
 	[webPrefs setDOMPasteAllowed:YES];
+#endif
+	[webPrefs setPlugInsEnabled:YES];
+	[webPrefs setJavaEnabled:YES];
+	[webPrefs setJavaScriptEnabled:YES];
+	[webPrefs setJavaScriptCanOpenWindowsAutomatically:YES];
 	[webPrefs setUserStyleSheetEnabled:NO];
 	[webPrefs setShouldPrintBackgrounds:YES];
 
+#ifndef TIDE_LITE
 	// Setup the DB to store it's DB under our data directory for the app
 	NSString* datadir = [NSString stringWithUTF8String:
 		Host::GetInstance()->GetApplication()->GetDataPath().c_str()];
 	[webPrefs _setLocalStorageDatabasePath:[NSString stringWithUTF8String:
 		Host::GetInstance()->GetApplication()->GetDataPath().c_str()]];
+#endif		
 	[[window webView] setPreferences:webPrefs];
 	[webPrefs release];
 
+#ifndef TIDE_LITE
 	NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
 	[standardUserDefaults
 		setObject:[NSNumber numberWithInt:1]
@@ -55,6 +63,15 @@
 		setObject:datadir
 		forKey:@"WebDatabaseDirectory"];
 	[standardUserDefaults synchronize];
+#else
+	NSString* datadir = [NSString stringWithUTF8String:
+		Host::GetInstance()->GetApplication()->GetDataPath().c_str()];
+	NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
+	[standardUserDefaults
+		setObject:datadir
+		forKey:@"WebDatabaseDirectory"];
+	[standardUserDefaults synchronize];
+#endif
 }
 
 -(id)initWithWindow:(NativeWindow*)inWindow
@@ -77,7 +94,11 @@
 	else
 		[[[webView mainFrame] frameView] setAllowsScrolling:NO];
 
+// XXX isolate temporarily	
+#ifndef TIDE_LITE
 	[webView setBackgroundColor:[NSColor clearColor]];
+#endif
+	
 	[webView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
 	[webView setShouldCloseWithWindow:NO];
 
@@ -576,6 +597,7 @@
 	if (!menu.isNull())
 		menu->AddChildrenToNSArray(menuItems);
 
+#ifndef TIDE_LITE
 	if (Host::GetInstance()->DebugModeEnabled())
 	{
 		[menuItems addObject:[NSMenuItem separatorItem]];
@@ -585,6 +607,7 @@
 		[menuItems addObject:newItem];
 		[newItem release];
 	}
+#endif
 
 	return menuItems;
 }

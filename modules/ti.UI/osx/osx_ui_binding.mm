@@ -35,7 +35,7 @@ namespace ti
 		nativeDockMenu(nil),
 		activeWindow(0)
 	{
-		application = [[TiApplicationDelegate alloc] initWithBinding:this];
+		TitaniumApplicationDelegate* application = [[TitaniumApplicationDelegate alloc] initWithBinding:this];
 		[application retain];
 
 		NSApplication* nsapp = [NSApplication sharedApplication];

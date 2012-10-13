@@ -34,7 +34,11 @@ namespace ti {
 #include "menu_item.h"
 #include "tray_item.h"
 #include "ui_binding.h"
-#include "script_evaluator.h"
+
+#ifndef TIDE_LITE
+#include "lang_binding/script_evaluator.h"
+#endif
+
 #include "clipboard.h"
 
 #ifdef OS_LINUX

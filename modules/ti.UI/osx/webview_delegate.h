@@ -6,6 +6,8 @@
 #import "../ui_module.h"
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+
+#ifndef TIDE_LITE
 #import <WebKit/WebViewPrivate.h>
 #import <WebKit/WebInspector.h>
 #import <WebKit/WebScriptDebugDelegate.h>
@@ -30,3 +32,26 @@
 -(KObjectRef)globalObjectForFrame:(WebFrame*) frame;
 -(void)deregisterGlobalObjectForFrame:(WebFrame *)frame;
 @end
+#endif
+
+#ifdef TIDE_LITE
+#import <WebKit/WebScriptObject.h>
+
+@class NativeWindow;
+@interface WebViewDelegate : NSObject
+{
+	NativeWindow* window;
+	Host* host;
+	BOOL initialDisplay;
+	std::map<WebFrame*, KObjectRef>* frameToGlobalObject;
+	Logger* logger;
+}
+-(id)initWithWindow:(NativeWindow*)window;
+-(void)setupPreferences;
+-(void)registerGlobalObject:(KObjectRef) globalObject forFrame:(WebFrame *)frame;
+-(KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
+-(BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame;
+-(KObjectRef)globalObjectForFrame:(WebFrame*) frame;
+-(void)deregisterGlobalObjectForFrame:(WebFrame *)frame;
+@end
+#endif

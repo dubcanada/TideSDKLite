@@ -8,13 +8,17 @@
 
 #import "../ui_module.h"
 #import <Cocoa/Cocoa.h>
+
+#ifndef TIDE_LITE
 #import <WebKit/WebInspector.h>
+#endif
 
 @class WebViewDelegate;
 
 using namespace ti;
 
-@interface NativeWindow : NSWindow
+#ifndef TIDE_LITE
+@interface NativeWindow : NSWindow <NSWindowDelegate>
 {
 	BOOL canReceiveFocus;
 	WebView* webView;
@@ -38,5 +42,29 @@ using namespace ti;
 - (OSXUserWindow*)userWindow;
 - (void)showInspector:(BOOL)console;
 @end
+#else
+@interface NativeWindow : NSWindow <NSWindowDelegate>
+{
+	BOOL canReceiveFocus;
+	WebView* webView;
+	WebViewDelegate* delegate;
+	BOOL requiresDisplay;
+	AutoPtr<OSXUserWindow>* userWindow;
+	BOOL fullscreen;
+	BOOL focused;
+	NSRect savedFrame;
+}
+- (void)setUserWindow:(AutoPtr<OSXUserWindow>*)inUserWindow;
+- (void)setupDecorations:(AutoPtr<WindowConfig>)config;
+- (void)setTransparency:(double)transparency;
+- (void)setFullscreen:(BOOL)yn;
+- (void)close;
+- (void)finishClose;
+- (void)open;
+- (void)frameLoaded;
+- (WebView*)webView;
+- (OSXUserWindow*)userWindow;
+@end
+#endif
 
 #endif

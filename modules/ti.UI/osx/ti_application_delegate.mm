@@ -9,7 +9,7 @@
 #import "osx_ui_binding.h"
 #import "osx_menu_item.h"
 
-@implementation TiApplicationDelegate
+@implementation TitaniumApplicationDelegate
 
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 {

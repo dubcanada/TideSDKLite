@@ -1,3 +1,19 @@
+#!/usr/bin/env python
+
+# (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import SCons.Variables
 import SCons.Environment
 from SCons.Script import *
@@ -22,7 +38,8 @@ class BuildConfig(object):
     def __init__(self, **kwargs):
         self.debug = False
         self.os = None
-        self.modules = [] 
+        self.modules = []
+        self.tidelite = False
         if not hasattr(os, 'uname') or self.matches('CYGWIN'):
             self.os = 'win32'
             self.arch = 'i386'
@@ -83,6 +100,10 @@ class BuildConfig(object):
 
         self.env.Append(LIBPATH=[self.dir])
 
+        if ARGUMENTS.get('lite'):
+            self.tidelite = True
+            self.env.Append(CPPDEFINES='TIDE_LITE')
+        
         self.init_os_arch()
         self.build_targets = []  # targets needed before packaging & distribution can occur
         self.staging_targets = []  # staging the module and sdk directories
@@ -125,28 +146,20 @@ class BuildConfig(object):
             self.env.Append(LINKFLAGS=['-m64'])
             self.env.Append(CPPDEFINES = ('OS_64', 1))
         elif self.is_linux() or self.is_osx():
-            self.env.Append(CPPFLAGS=['-m32', '-Wall', '-Werror', '-fno-common', '-fvisibility=hidden', '-fno-strict-aliasing'])
-            if self.is_linux():
-                self.env.Append(LINKFLAGS=['-m32', '-lgcrypt', '-lgnutls'])
-            if self.is_osx():
-                self.env.Append(LINKFLAGS=['-m32'])
+            self.env.Append(CPPFLAGS=['-m32', '-Wall', '-fno-common', '-fvisibility=hidden', '-fno-strict-aliasing'])
+            self.env.Append(LINKFLAGS=['-m32'])
             self.env.Append(CPPDEFINES = ('OS_32', 1))
         else:
             self.env.Append(CPPDEFINES = ('OS_32', 1))
 
         if self.is_osx():
-            if ARGUMENTS.get('osx_10_4', 0):
-                sdk_dir = '/Developer/SDKs/MacOSX10.4u.sdk'
-                sdk_minversion = '-mmacosx-version-min=10.4'
-                self.env['GCC_VERSION'] = '4.0'
-                self.env['MACOSX_DEPLOYMENT_TARGET'] = '10.4'
-            else:
-                sdk_dir = '/Developer/SDKs/MacOSX10.5.sdk'
-                sdk_minversion = '-mmacosx-version-min=10.5'
-                self.env['MACOSX_DEPLOYMENT_TARGET'] = '10.5'
+            sdk_version = '10.6'
+            sdk_dir = '/Developer/SDKs/MacOSX%s.sdk' % sdk_version
+            sdk_minversion = '-mmacosx-version-min=%s' % sdk_version
+            self.env['MACOSX_DEPLOYMENT_TARGET'] = '%s' % sdk_version
 
             self.env['CC'] = ['gcc', '-arch', 'i386']
-            self.env['CXX'] = ['gcc', '-arch', 'i386']
+            self.env['CXX'] = ['g++', '-arch', 'i386']
             self.env.Append(FRAMEWORKS=['Foundation', 'IOKit'])
             self.env.Append(CXXFLAGS=['-isysroot', sdk_dir, sdk_minversion, '-x', 'objective-c++'])
             self.env.Append(LINKFLAGS=['-isysroot', sdk_dir, '-syslibroot,' + sdk_dir, '-lstdc++', sdk_minversion])
@@ -209,7 +222,8 @@ class BuildConfig(object):
                 libs = ['webkittitanium-1.0']
 
             if self.is_osx():
-                env.Append(FRAMEWORKPATH=[self.tp('webkit')])
+                if self.tidelite is False:
+                    env.Append(FRAMEWORKPATH=[self.tp('webkit')])
                 env.Append(FRAMEWORKS=['WebKit', 'JavaScriptCore'])
 
         if cpppath: env.Append(CPPPATH=cpppath)

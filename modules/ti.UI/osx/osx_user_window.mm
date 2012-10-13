@@ -816,11 +816,15 @@ namespace ti
 		callback->Call(ValueList(Value::NewList(results)));
 		this->Show();
 	}
-	
+
+
 	void OSXUserWindow::ShowInspector(bool console)
 	{
+#ifndef TIDE_LITE	
 		[nativeWindow showInspector:console];
+#endif		
 	}
+
 
 	void OSXUserWindow::SetContentsImpl(const std::string& content, const std::string& baseURL)
 	{

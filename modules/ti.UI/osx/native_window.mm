@@ -92,7 +92,10 @@
 	[delegate release];
 	delegate = nil;
 
+#ifndef TIDE_LITE
 	[inspector release];
+#endif
+
 	[webView release];
 	webView = nil;
 	[super dealloc];
@@ -102,6 +105,8 @@
 {
 	return userWindow->get();
 }
+
+#ifndef TIDE_LITE
 - (void)showInspector:(BOOL)console
 {
 	if (inspector == nil)
@@ -119,15 +124,18 @@
 		[inspector show:webView];
 	}
 }
+#endif
 
 - (void)windowWillClose:(NSNotification *)notification
 {
+#ifndef TIDE_LITE
 	if (inspector)
 	{
 		[inspector close:self];
 		[inspector release];
 		inspector = nil;
 	}
+#endif
 }
 
 - (NSSize)windowWillResize:(NSWindow *) window toSize:(NSSize)newSize
