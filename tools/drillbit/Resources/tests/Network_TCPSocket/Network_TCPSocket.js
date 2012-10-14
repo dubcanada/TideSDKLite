@@ -16,18 +16,27 @@
 
 describe("Network.TCPSocket Tests", {
   // ti.network.HTTP objects are covered in the http_server unit test.
-
   before_all: function () {
     // Launch testing server on port 8080
-    /*this.testServer = Titanium.Process.createProcess(
-		{
-			args: [
-				'python', Titanium.API.application.resourcesPath + "/testserver.py"
-			],
-		});
-		this.testServer.launch();*/
+    this.testServer = Titanium.Process.createProcess({
+      args: [
+        'python', Titanium.API.application.resourcesPath + "/testserver.py"
+      ],
+    });
+    this.testServer.launch();
+    //@hack WTF is this about? 
+    //Well, till python spins up the server, there's a delay. So, we end up with failing tests. 
+    //This forces before_all to wait X milliseconds, which gives testserver a chance
+    //to spin up and respond.
+    var sleep = function(millis) {
+        var date = new Date();
+        var curDate = null;
+        do { curDate = new Date(); }
+        while(curDate-date < millis);
+    };
+    sleep(5000);
   },
-
+  
   after_all: function () {
     //this.testServer.kill();
   },
