@@ -1115,6 +1115,7 @@ describe("UI Tests", {
       w.close();
     }, 1500);
   },
+  /* Disable test - api endpoint no longer exists
   test_yahoo_white_black_window_as_async: function (callback) {
     // this is a small variation (for automation purposes) of the yahoo white/black test case for controlling
     // multiple titanium windows cross-domain and being able to inject variables/functions into
@@ -1187,6 +1188,7 @@ describe("UI Tests", {
     openPage("black_page", runTest);
     openPage("white_page", runTest);
   },
+  */
   issue32_unicode_in_title: function () {
     var win = Titanium.UI.getCurrentWindow()
       .createWindow('http://en.wikipedia.org/wiki/The_Evil_Dead');
