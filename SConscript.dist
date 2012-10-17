@@ -1,3 +1,17 @@
+# (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 Import('build')
 import os.path as path
 import effess
@@ -10,92 +24,92 @@ from StringIO import StringIO
 
 sdk_dir = path.join(build.dir, 'sdk')
 excludes = ['.pdb', '.exp', '.ilk', '.db', '.gitignore','.psd', '.xib'
-	'.cpp', '.obj', '.pyc', 'SConscript', '.xib']
+    '.cpp', '.obj', '.pyc', 'SConscript', '.xib']
 
 # Copy the SDK files to the SDK build directory.
 # This prepares the SDK directory for packaging.
 if not(path.exists(sdk_dir)):
-	os.makedirs(sdk_dir)
+    os.makedirs(sdk_dir)
 effess.lightweight_copy_tree(path.join(build.titanium_sdk_dir, build.os),
-	sdk_dir, exclude=excludes)
+    sdk_dir, exclude=excludes)
 effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "*.py")),
-	sdk_dir, exclude=excludes)
+    sdk_dir, exclude=excludes)
 effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "PyRTF")),
-	sdk_dir, exclude=excludes)
+    sdk_dir, exclude=excludes)
 effess.copy_to_dir(glob(path.join(build.kroll_source_dir, 'tools', "effess.py")),
-	sdk_dir, exclude=excludes)
+    sdk_dir, exclude=excludes)
 
 if build.is_osx():
-	os.system('ibtool --errors --warnings --notices ' + \
-		'--output-format human-readable-text --compile %s %s' % \
-		(path.join(sdk_dir, 'MainMenu.nib'),
-		path.join(build.titanium_sdk_dir, 'osx', 'MainMenu.xib')))
+    os.system('ibtool --errors --warnings --notices ' + \
+        '--output-format human-readable-text --compile %s %s' % \
+        (path.join(sdk_dir, 'MainMenu.nib'),
+        path.join(build.titanium_sdk_dir, 'osx', 'MainMenu.xib')))
 
 if build.is_win32():
-	effess.copy_to_dir(build.tp('microsoft', 'Microsoft_VC80_CRT_x86.msm'),
-		path.join(sdk_dir, 'installer'))
+    effess.copy_to_dir(build.tp('microsoft', 'Microsoft_VC80_CRT_x86.msm'),
+        path.join(sdk_dir, 'installer'))
 
 # Network installable zip files for distribution. We must
 # encase this in a builder because the files necessary for zipping
 # don't exist when this file is processed.
 def build_dist_zips(target, source, env):
-	f = path.join(build.dist_dir, 'runtime-%s.zip' % build.version)
-	if not(path.isdir(build.dist_dir)):
-		os.makedirs(build.dist_dir)
+    f = path.join(build.dist_dir, 'runtime-%s.zip' % build.version)
+    if not(path.isdir(build.dist_dir)):
+        os.makedirs(build.dist_dir)
 
-	print "Packing %s" % f
-	effess.make_zip(build.runtime_build_dir, f, exclude=excludes)
-	
-	for m in build.modules:
-		f = path.join(build.dist_dir, 'module-%s-%s.zip' % (m.name, m.version))
-		print "Packing %s" % f
-		effess.make_zip(m.dir, f, exclude=excludes)
+    print "Packing %s" % f
+    effess.make_zip(build.runtime_build_dir, f, exclude=excludes)
+    
+    for m in build.modules:
+        f = path.join(build.dist_dir, 'module-%s-%s.zip' % (m.name, m.version))
+        print "Packing %s" % f
+        effess.make_zip(m.dir, f, exclude=excludes)
 
 def add_files_to_archive(archive, add_to_archive):
-	def addFile(file):
-		add_to_archive(archive, file,
-			'/'.join([current_archive_prefix, file.replace(current_prefix, '')]))
+    def addFile(file):
+        add_to_archive(archive, file,
+            '/'.join([current_archive_prefix, file.replace(current_prefix, '')]))
 
-	current_prefix = build.runtime_build_dir
-	current_archive_prefix = '/'.join(['runtime', build.os, build.version])
-	effess.walk_dir(build.runtime_build_dir, addFile, exclude=excludes, dirs=True)
+    current_prefix = build.runtime_build_dir
+    current_archive_prefix = '/'.join(['runtime', build.os, build.version])
+    effess.walk_dir(build.runtime_build_dir, addFile, exclude=excludes, dirs=True)
 
-	for m in build.modules:
-		current_prefix = m.dir
-		current_archive_prefix = '/'.join(['modules', build.os, m.name, build.version])
-		effess.walk_dir(m.dir, addFile, exclude=excludes, dirs=True)
+    for m in build.modules:
+        current_prefix = m.dir
+        current_archive_prefix = '/'.join(['modules', build.os, m.name, build.version])
+        effess.walk_dir(m.dir, addFile, exclude=excludes, dirs=True)
 
-	current_prefix = sdk_dir
-	current_archive_prefix = '/'.join(['sdk', build.os, build.version])
-	effess.walk_dir(sdk_dir, addFile, exclude=excludes, dirs=True)
+    current_prefix = sdk_dir
+    current_archive_prefix = '/'.join(['sdk', build.os, build.version])
+    effess.walk_dir(sdk_dir, addFile, exclude=excludes, dirs=True)
 
 def build_sdk(target, source, env):
-	zip_file_path = path.join(build.dist_dir, 'sdk-%s.zip' % build.version)
-	print "Packing SDK (%s) " % zip_file_path
-	zip_file = zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED)
-	add_files_to_archive(zip_file, effess.add_to_zip)
-	zip_file.close()
+    zip_file_path = path.join(build.dist_dir, 'sdk-%s.zip' % build.version)
+    print "Packing SDK (%s) " % zip_file_path
+    zip_file = zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED)
+    add_files_to_archive(zip_file, effess.add_to_zip)
+    zip_file.close()
 
 def build_packaging_tools(target, source, env):
-	tgz_file_path = path.join(build.dist_dir, 'packaging_tools-%s.tgz' % build.version)
-	print "Packing packaging tools (%s) " % tgz_file_path
-	tgz_file = tarfile.open(tgz_file_path, 'w:gz')
-	add_files_to_archive(tgz_file, effess.add_to_tgz)
-	tgz_file.addfile(tarfile.TarInfo(
-		'/'.join(['sdk', build.os, build.version, '.packager'])),
-		StringIO('#'))
-	tgz_file.close()
+    tgz_file_path = path.join(build.dist_dir, 'packaging_tools-%s.tgz' % build.version)
+    print "Packing packaging tools (%s) " % tgz_file_path
+    tgz_file = tarfile.open(tgz_file_path, 'w:gz')
+    add_files_to_archive(tgz_file, effess.add_to_tgz)
+    tgz_file.addfile(tarfile.TarInfo(
+        '/'.join(['sdk', build.os, build.version, '.packager'])),
+        StringIO('#'))
+    tgz_file.close()
 
 # Builder for all module and runtime component zip files
 build.env.Append(BUILDERS = 
-	{'BuildDistZips' : Builder(action=build_dist_zips)})
+    {'BuildDistZips' : Builder(action=build_dist_zips)})
 zips = build.env.BuildDistZips('#dummy-dist-zips', [])
 build.mark_dist_target(zips)
 AlwaysBuild(zips)
 
 # Builder for SDK component zip file
 build.env.Append(BUILDERS = 
-	{'BuildSDK' : Builder(action=build_sdk)})
+    {'BuildSDK' : Builder(action=build_sdk)})
 sdk_target = build.env.BuildSDK('build-sdk', [])
 build.env.Depends(sdk_target, zips)
 build.mark_dist_target(sdk_target)
@@ -103,7 +117,7 @@ AlwaysBuild(sdk_target)
 
 # Builder for packaging tools tgz file
 build.env.Append(BUILDERS = 
-	{'BuildPackagingTools' : Builder(action=build_packaging_tools)})
+    {'BuildPackagingTools' : Builder(action=build_packaging_tools)})
 packaging_tools_target = build.env.BuildPackagingTools('build-pkg-tools', [])
 build.env.Depends(packaging_tools_target, zips)
 build.mark_dist_target(packaging_tools_target)

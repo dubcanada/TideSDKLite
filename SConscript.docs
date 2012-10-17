@@ -1,5 +1,20 @@
 #!/usr/bin/env python
 
+# (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
 Import('build')
 import os.path as path, apicoverage, textmate, sys
 import SCons.Variables
@@ -7,16 +22,16 @@ import SCons.Environment
 from SCons.Script import *
 
 def apicoverage_builder(target, source, env):
-	print 'Building API coverage report...',
-	sys.stdout.flush()
-	f = open(str(target[0]), 'w')
-	apicoverage.generate_api_coverage(['kroll', 'modules'], f)
-	print 'done'
+    print 'Building API coverage report...',
+    sys.stdout.flush()
+    f = open(str(target[0]), 'w')
+    apicoverage.generate_api_coverage(['kroll', 'modules'], f)
+    print 'done'
 
 build.env.Append(BUILDERS = {'APICoverage' : Builder(
-	action=apicoverage_builder,
-	target_factory=SCons.Node.FS.default_fs.Entry,
-	multi=0)})
+    action=apicoverage_builder,
+    target_factory=SCons.Node.FS.default_fs.Entry,
+    multi=0)})
 
 api_out = path.join(build.dir, 'apicoverage.json')
 apicoveraget = build.env.APICoverage(api_out, [])
@@ -24,21 +39,21 @@ Alias('apicoverage', apicoveraget)
 AlwaysBuild(apicoveraget)
 
 def textmate_builder(target, source, env):
-	print 'Building Textmate bundle...',
-	sys.stdout.flush()
-	f = open(str(source[0]),'w')
-	outdir = str(target[0])
-	if not os.path.exists(outdir):
-		os.makedirs(outdir)
-	textmate.generate_textmate_bundle(f, outdir)
-	f.close()
-	print 'done'
+    print 'Building Textmate bundle...',
+    sys.stdout.flush()
+    f = open(str(source[0]),'w')
+    outdir = str(target[0])
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+    textmate.generate_textmate_bundle(f, outdir)
+    f.close()
+    print 'done'
 
 build.env.Append(BUILDERS = {'Textmate' : Builder(
-	action=textmate_builder,
-	source_factory=SCons.Node.FS.default_fs.Entry,
-	target_factory=SCons.Node.FS.default_fs.Dir,
-	multi=0)})
+    action=textmate_builder,
+    source_factory=SCons.Node.FS.default_fs.Entry,
+    target_factory=SCons.Node.FS.default_fs.Dir,
+    multi=0)})
 
 tm_out = path.join(build.dir, 'Titanium.tmbundle')
 textmatet = build.env.Textmate(tm_out, [api_out])

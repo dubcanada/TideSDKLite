@@ -1,3 +1,17 @@
+# (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import uuid
 import simplejson as json
 import os
@@ -141,9 +155,9 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 
 
 def make_template(module,fn,tab,out):
-	id = uuid.uuid4().hex
-	out.write(template % (module,fn,tab,id))
-	return id
+    id = uuid.uuid4().hex
+    out.write(template % (module,fn,tab,id))
+    return id
 
 #make_template('Titanium.Filesystem','Filesystem')
 
@@ -154,100 +168,98 @@ sub_methods = {}
 
 def generate_textmate_bundle(json_file,outdir):
 
-	for dir in ['Commands','Preferences','Snippets','Syntaxes']:
-		if not os.path.exists(os.path.join(outdir,dir)):
-			os.makedirs(os.path.join(outdir,dir))
+    for dir in ['Commands','Preferences','Snippets','Syntaxes']:
+        if not os.path.exists(os.path.join(outdir,dir)):
+            os.makedirs(os.path.join(outdir,dir))
 
-	pref_dir = os.path.join(outdir,'Preferences')
-	snip_dir = os.path.join(outdir,'Snippets')
-	syntax_dir = os.path.join(outdir,'Syntaxes')
-	
-	data = json.loads(json_file.read())
-	
-	completions=[]
-	completion_menus = {}
+    pref_dir = os.path.join(outdir,'Preferences')
+    snip_dir = os.path.join(outdir,'Snippets')
+    syntax_dir = os.path.join(outdir,'Syntaxes')
+    
+    data = json.loads(json_file.read())
+    
+    completions=[]
+    completion_menus = {}
 
-	for namespace in data:
-		sf = open(os.path.join(snip_dir,namespace+'.tmSnippet'),'w+')
-		theid = make_template('Titanium.'+namespace,namespace,'Titanium',sf)
-		sf.close()
-		completions.append("Titanum.%s" % namespace)
-		completion_menus[namespace] = theid
+    for namespace in data:
+        sf = open(os.path.join(snip_dir,namespace+'.tmSnippet'),'w+')
+        theid = make_template('Titanium.'+namespace,namespace,'Titanium',sf)
+        sf.close()
+        completions.append("Titanum.%s" % namespace)
+        completion_menus[namespace] = theid
 
-		methods = data[namespace]
-		for method in data[namespace]:
-			entry = data[namespace][method]
-			method_name = namespace+'.'+method
-			try:
-				all_methods.index(method_name)
-			except:
-				all_methods.append(method_name)
+        methods = data[namespace]
+        for method in data[namespace]:
+            entry = data[namespace][method]
+            method_name = namespace+'.'+method
+            try:
+                all_methods.index(method_name)
+            except:
+                all_methods.append(method_name)
 
-			
-	for method in sorted(all_methods):
-		path = ''
-		tokens = method.split('.')
-		cur = ''
-		for i in range(0,len(tokens)):
-			if i > 0:
-				cur = path
-			path+=tokens[i]
-			try:
-				top_level.index(path)
-			except:
-				top_level.append(path)
-				if i+1 == len(tokens):
-					method_name = path.replace(cur,'')
-					package_name = cur[0:-1]
-					name = path.replace('.','_')
-					sf = open(os.path.join(snip_dir,name+'.tmSnippet'),'w+')
-					theid = make_template('Titanium.'+path,method_name,'Titanium.'+package_name,sf)
-					sf.close()
-					completions.append("Titanium.%s" % path)
-					sub_methods["Titanium.%s" % path]=theid
-			if i+1 < len(tokens):
-				path+='.'
-	
-	completions = sorted(completions)
-	cstr = ''
-	for i in completions:
-		cstr+="<string>%s</string>\n" % i
+            
+    for method in sorted(all_methods):
+        path = ''
+        tokens = method.split('.')
+        cur = ''
+        for i in range(0,len(tokens)):
+            if i > 0:
+                cur = path
+            path+=tokens[i]
+            try:
+                top_level.index(path)
+            except:
+                top_level.append(path)
+                if i+1 == len(tokens):
+                    method_name = path.replace(cur,'')
+                    package_name = cur[0:-1]
+                    name = path.replace('.','_')
+                    sf = open(os.path.join(snip_dir,name+'.tmSnippet'),'w+')
+                    theid = make_template('Titanium.'+path,method_name,'Titanium.'+package_name,sf)
+                    sf.close()
+                    completions.append("Titanium.%s" % path)
+                    sub_methods["Titanium.%s" % path]=theid
+            if i+1 < len(tokens):
+                path+='.'
+    
+    completions = sorted(completions)
+    cstr = ''
+    for i in completions:
+        cstr+="<string>%s</string>\n" % i
 
-	cf = open(os.path.join(pref_dir,'Completions.tmPreferences'),'w+')
-	cf.write(completions_template % cstr)
-	cf.close()
-	
-	cf = open(os.path.join(syntax_dir,'Titanium.tmLanguage'),'w+')
-	cf.write(syntaxes)
-	cf.close()
-	
-	plist = ''
-	dicts = []
-	for key in sorted(completion_menus):
-		value = completion_menus[key]
-		plist+="<string>%s</string>\n" % value
-	#	dicts.append("<key>%s</key>\n<dict>\n<key>items</key>\n")
+    cf = open(os.path.join(pref_dir,'Completions.tmPreferences'),'w+')
+    cf.write(completions_template % cstr)
+    cf.close()
+    
+    cf = open(os.path.join(syntax_dir,'Titanium.tmLanguage'),'w+')
+    cf.write(syntaxes)
+    cf.close()
+    
+    plist = ''
+    dicts = []
+    for key in sorted(completion_menus):
+        value = completion_menus[key]
+        plist+="<string>%s</string>\n" % value
+    #    dicts.append("<key>%s</key>\n<dict>\n<key>items</key>\n")
 
 
-		# <key>submenus</key>
-		# <dict>
-		# 	<key>0E442AAB-1430-4A69-B895-737F7B4391CF</key>
-		# 	<dict>
-		# 		<key>items</key>
-		# 		<array>
-		# 			<string>5D82DAB0-F208-427F-95F3-C3BB75C0E548</string>
-		# 			<string>AD0CBFB3-D060-4765-A1EA-DBDB88D80171</string>
-		# 			<string>B3109B1B-C7F2-4CFC-A49A-FB5BD7D79CFF</string>
-		# 			<string>E3AAED4C-3799-4B93-AA8F-E3326CC7F91C</string>
-		# 			<string>47EC0402-E273-472C-BA6A-20C02AB6313D</string>
-		# 			<string>9C6361E2-2948-4EE7-8088-054A690FF382</string>
-		# 		</array>
-		# 		<key>name</key>
-		# 		<string>AJAX</string>
-		# 	</dict>
-	
-	f = open(os.path.join(outdir,'info.plist'),'w+')
-	f.write((info_plist % plist))
-	f.close()
-
-	
+        # <key>submenus</key>
+        # <dict>
+        #     <key>0E442AAB-1430-4A69-B895-737F7B4391CF</key>
+        #     <dict>
+        #         <key>items</key>
+        #         <array>
+        #             <string>5D82DAB0-F208-427F-95F3-C3BB75C0E548</string>
+        #             <string>AD0CBFB3-D060-4765-A1EA-DBDB88D80171</string>
+        #             <string>B3109B1B-C7F2-4CFC-A49A-FB5BD7D79CFF</string>
+        #             <string>E3AAED4C-3799-4B93-AA8F-E3326CC7F91C</string>
+        #             <string>47EC0402-E273-472C-BA6A-20C02AB6313D</string>
+        #             <string>9C6361E2-2948-4EE7-8088-054A690FF382</string>
+        #         </array>
+        #         <key>name</key>
+        #         <string>AJAX</string>
+        #     </dict>
+    
+    f = open(os.path.join(outdir,'info.plist'),'w+')
+    f.write((info_plist % plist))
+    f.close()	

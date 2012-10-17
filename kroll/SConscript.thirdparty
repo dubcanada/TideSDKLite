@@ -1,4 +1,19 @@
 #!/usr/bin/env python
+
+# (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import effess
 import os
 import sys
@@ -11,10 +26,10 @@ from progressbar import ProgressBar
 Import('build')
 
 revisions = {
-	"linux-i386": 37,
-	"linux-x86_64": 28,
-	"osx-i386": 1,
-	"win32-i386": 43
+    "linux-i386": 37,
+    "linux-x86_64": 28,
+    "osx-i386": 1,
+    "win32-i386": 43
 }
 
 thirdparty_name = 'thirdparty-%s-%s-r%s' % (build.os, build.arch, revisions[build.os+'-'+build.arch])
@@ -24,52 +39,52 @@ build.third_party = path.join(build.cwd(), thirdparty_name)
 rtdir = build.runtime_build_dir
 
 def exists():
-	return path.isdir(build.third_party)
+    return path.isdir(build.third_party)
 
 def fetch():
-	print "You don't seem to have the appropriate thirdparty files. I'll fetch them."
-	print "Downloading %s" % url
+    print "You don't seem to have the appropriate thirdparty files. I'll fetch them."
+    print "Downloading %s" % url
 
-	pbar = ProgressBar().start()
-	try:
-		def progress_callback(count, block_size, total_size):
-			if (total_size < 0):
-				raise Exception("Could not fetch archive! Does it exist on the server?")
-			percent = int(count * block_size * 100/total_size)
-			pbar.update(percent)
+    pbar = ProgressBar().start()
+    try:
+        def progress_callback(count, block_size, total_size):
+            if (total_size < 0):
+                raise Exception("Could not fetch archive! Does it exist on the server?")
+            percent = int(count * block_size * 100/total_size)
+            pbar.update(percent)
 
-		fname, msg = urllib.urlretrieve(url, reporthook=progress_callback)
+        fname, msg = urllib.urlretrieve(url, reporthook=progress_callback)
 
-		print "Fetched it (%s). I'm going to unpack it now..." % (fname)
-		os.makedirs(build.third_party)
-		tfile = tarfile.open(fname, mode="r:gz")
-		tfile.extractall(path=build.third_party)
-	finally:
-		urllib.urlcleanup()
-		pbar.finish()
+        print "Fetched it (%s). I'm going to unpack it now..." % (fname)
+        os.makedirs(build.third_party)
+        tfile = tarfile.open(fname, mode="r:gz")
+        tfile.extractall(path=build.third_party)
+    finally:
+        urllib.urlcleanup()
+        pbar.finish()
 
 if not exists(): fetch()
 
 if build.is_linux():
-	effess.copy_tree(path.join(build.third_party, 'webkit', 'lib'), rtdir)
-	effess.copy_tree(path.join(build.third_party, 'poco', 'lib'), rtdir)
+    effess.copy_tree(path.join(build.third_party, 'webkit', 'lib'), rtdir)
+    effess.copy_tree(path.join(build.third_party, 'poco', 'lib'), rtdir)
 
 elif build.is_win32():
-	effess.copy_tree(path.join(build.third_party, 'poco', 'bin'), rtdir)
-	effess.copy_tree(path.join(build.third_party, 'webkit', 'bin'), rtdir)
-	effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
+    effess.copy_tree(path.join(build.third_party, 'poco', 'bin'), rtdir)
+    effess.copy_tree(path.join(build.third_party, 'webkit', 'bin'), rtdir)
+    effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
 
 elif build.is_osx():
-	excludes = ['.h', '.defs', 'JavaScriptGlue.framework']
-	if build.tidelite:
-	    excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])
-	targets = []
-	for framework in Glob(path.join(build.third_party, '*/*.framework')):
-		t = build.utils.CopyToDir(framework, rtdir, exclude=excludes)
-		targets.append(t)
+    excludes = ['.h', '.defs', 'JavaScriptGlue.framework']
+    if build.tidelite:
+        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])
+    targets = []
+    for framework in Glob(path.join(build.third_party, '*/*.framework')):
+        t = build.utils.CopyToDir(framework, rtdir, exclude=excludes)
+        targets.append(t)
 
-	# PHP dependencies don't aren't distributed with the runtime, only Poco's.
-	# for libdir in Glob(path.join(build.third_party, '*/lib')):
-	libdir = path.join(build.third_party, "poco", "lib");
-	targets.append(build.utils.CopyTree(libdir, rtdir, exclude=excludes))
-	build.mark_build_target(targets)
+    # PHP dependencies don't aren't distributed with the runtime, only Poco's.
+    # for libdir in Glob(path.join(build.third_party, '*/lib')):
+    libdir = path.join(build.third_party, "poco", "lib");
+    targets.append(build.utils.CopyTree(libdir, rtdir, exclude=excludes))
+    build.mark_build_target(targets)
