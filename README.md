@@ -14,7 +14,7 @@ If you like or use TideSDK in your development or your business, your financial 
 ## Tide MicroKernel
 
 TideSDK has a compact microkernel written in C++ for running pluggable
-modules. The microKernel supports a cross-language, cross-platform 'binding' and invocation framework. Simply put, the provides developers with the capability to can pass objects between languages. For example to pass a JavaScript object to a Python function and so on.
+modules. The microKernel supports a cross-language, cross-platform 'binding' and invocation framework. Simply put, the provides developers with the capability to pass objects between languages (ie. pass a JavaScript object to a Python function and so on).
 
 Tide currently supports the following languages:
 
@@ -62,7 +62,7 @@ Building TideSDK (Developers)
 NOTE: If you are a user, will will only need to download and install TideSDK to use it.
 
 SDK Developers: Please refer to https://github.com/TideSDK/TideSDK/wiki/Building-tidesdk
-for up to date build instructions.
+for up-to-date build instructions.
 
 Support
 -------
