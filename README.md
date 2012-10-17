@@ -3,9 +3,9 @@ TideSDK
 
 Create multi-platform desktop apps with HTML5, CSS3 and JavaScript. TideSDK is an amazing project, formally called Titanium Desktop, that we are continuing under a community based, open source initiative.
 
-TideSDK also supports the use Python, PHP and Ruby extend its capabilities beyond the realm of any competitive framework. Our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop and beyond as we move forward.
+TideSDK also supports the use of Python, PHP and Ruby extend its capabilities beyond the realm of any competitive framework. Our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop and beyond as we move forward.
 
-TideSDK is a significant and substantial software project. It has also became an 'Affiliate Project' of software in the Public Interest' in September 2012. As an 'Affiliate Project' TideSDK in the company of other important open source projects such as Postgres, Debian, ArchLinux, Drupal, and Jenkins CI that are also non profit. Beyond recogition and credibility, our affiliation also allows us to raise funds through donations for the viability and long term future of the project.
+TideSDK is a significant and substantial software project and became an 'Affiliate Project' of SPI ([Software in the Public Interest](http://spi-inc.org/projects)) as of September 2012. As an 'Affiliate Project' TideSDK in the company of other important open source projects such as Postgres, Debian, ArchLinux, Drupal, and Jenkins CI that are also non profit. Beyond recogition and credibility, our affiliation also allows us to raise funds through donations for the viability and long term future of the project.
 
 We currently have a strong core team of talented individuals dedicated to this solution. As an open solution, we welcome code and documention contributions. Other displays of support for the project (such tweeting or blogging about TideSDK) is also greatly appreciated.
 
