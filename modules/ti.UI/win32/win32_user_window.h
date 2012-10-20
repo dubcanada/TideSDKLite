@@ -54,6 +54,7 @@ namespace ti
 		void SetMaxHeight(double height);
 		double GetMinHeight();
 		void SetMinHeight(double height);
+		void SetSize(double width, double height);
 		Bounds GetBoundsImpl();
 		void SetBoundsImpl(Bounds bounds);
 		void SetTitleImpl(const std::string& title);

@@ -767,6 +767,12 @@ void Win32UserWindow::SetMinHeight(double height)
 	this->SetupFrame();
 }
 
+void Win32UserWindow::SetSize(double width, double height)
+{
+	this->SetupFrame();
+}
+
+
 Bounds Win32UserWindow::GetBoundsImpl()
 {
 	// We need to use window rectangle to get the position, since we

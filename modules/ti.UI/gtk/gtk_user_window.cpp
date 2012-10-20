@@ -999,6 +999,12 @@ namespace ti
 		this->SetupSizeLimits();
 	}
 
+	void GtkUserWindow::SetSize(double width, double height)
+	{
+		this->SetupSize();
+	}
+
+
 	Bounds GtkUserWindow::GetBoundsImpl()
 	{
 		Bounds b = {targetX, targetY, targetWidth, targetHeight };

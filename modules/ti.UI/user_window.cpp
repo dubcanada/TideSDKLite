@@ -49,6 +49,7 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow parent) :
 	this->SetMethod("getY", &UserWindow::_GetY);
 	this->SetMethod("setY", &UserWindow::_SetY);
 	this->SetMethod("moveTo", &UserWindow::_MoveTo);
+	this->SetMethod("setSize", &UserWindow::_SetSize);
 	this->SetMethod("getWidth", &UserWindow::_GetWidth);
 	this->SetMethod("setWidth", &UserWindow::_SetWidth);
 	this->SetMethod("getMaxWidth", &UserWindow::_GetMaxWidth);
@@ -561,6 +562,19 @@ void UserWindow::_MoveTo(const kroll::ValueList& args, kroll::KValueRef result)
 		this->MoveTo(x, y);
 	}
 }
+
+void UserWindow::_SetSize(const kroll::ValueList& args, kroll::KValueRef result)
+{
+	args.VerifyException("setSize", "nn");
+
+	double width = Constrain(args.GetDouble(0), config->GetMinWidth(), config->GetMaxWidth());
+	double height = Constrain(args.GetDouble(1), config->GetMinHeight(), config->GetMaxHeight());
+
+	config->SetWidth(width);
+	config->SetHeight(height);
+	SetSize(width, height);
+}
+
 
 void UserWindow::_GetWidth(const kroll::ValueList& args, kroll::KValueRef result)
 {
