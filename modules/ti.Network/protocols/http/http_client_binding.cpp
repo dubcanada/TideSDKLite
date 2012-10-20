@@ -695,11 +695,12 @@ namespace ti
 	int CurlProgressCallback(HTTPClientBinding* client, double dltotal, double dlnow, double ultotal, double ulnow)
 	{
 		if (client->IsAborted())
+		{
 			return CURLE_ABORTED_BY_CALLBACK;
-		else
-			return 0;
+		}
 
 		client->RequestDataSent((size_t)ulnow, (size_t)ultotal);
+		return CURLE_OK;
 	}
 
 	void HTTPClientBinding::SetupCurlMethodType()
