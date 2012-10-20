@@ -266,20 +266,11 @@ namespace ti
 
 	void File::Resolve(const ValueList& args, KValueRef result)
 	{
-		try
-		{
-			std::string pathToResolve = args.at(0)->ToString();
-
-			Poco::Path path(this->filename);
-			path.resolve(pathToResolve);
-
-			ti::File* file = new ti::File(path.toString());
-			result->SetObject(file);
-		}
-		catch (Poco::Exception& exc)
-		{
-			throw ValueException::FromString(exc.displayText());
-		}
+		args.VerifyException("resolve", "s");
+		
+		const char* subPath = args.at(0)->ToString();
+		std::string resolvedPath = FileUtils::Join(this->filename.c_str(), subPath, NULL);
+		result->SetObject(new File(resolvedPath));
 	}
 
 	void File::Copy(const ValueList& args, KValueRef result)
