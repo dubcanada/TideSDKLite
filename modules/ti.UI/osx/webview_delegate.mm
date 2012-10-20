@@ -55,22 +55,20 @@
 	[webPrefs release];
 
 #ifndef TIDE_LITE
-	NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
-	[standardUserDefaults
-		setObject:[NSNumber numberWithInt:1]
-		forKey:WebKitEnableFullDocumentTeardownPreferenceKey];
-	[standardUserDefaults
-		setObject:datadir
-		forKey:@"WebDatabaseDirectory"];
-	[standardUserDefaults synchronize];
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:[NSNumber numberWithInt:1] forKey:WebKitEnableFullDocumentTeardownPreferenceKey];
+		[defaults setObject:datadir forKey:@"WebDatabaseDirectory"];
+		[defaults setObject:datadir forKey:@"WebKitLocalStorageDatabasePathPreferenceKey"];
+		[defaults setObject:datadir forKey:@"WebKitLocalCache"];
+		[defaults synchronize];
 #else
 	NSString* datadir = [NSString stringWithUTF8String:
 		Host::GetInstance()->GetApplication()->GetDataPath().c_str()];
-	NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
-	[standardUserDefaults
-		setObject:datadir
-		forKey:@"WebDatabaseDirectory"];
-	[standardUserDefaults synchronize];
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:datadir forKey:@"WebDatabaseDirectory"];
+		[defaults setObject:datadir forKey:@"WebKitLocalStorageDatabasePathPreferenceKey"];
+		[defaults setObject:datadir forKey:@"WebKitLocalCache"];
+		[defaults synchronize];
 #endif
 }
 
