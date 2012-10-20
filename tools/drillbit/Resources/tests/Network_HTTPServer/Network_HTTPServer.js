@@ -120,7 +120,7 @@ describe("Network.HTTPServer", {
 
     var xhr = Titanium.Network.createHTTPClient();
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4) {
+      if (this.readyState === 4) {
         try {
           value_of(this.status)
             .should_be(200);
@@ -168,7 +168,7 @@ describe("Network.HTTPServer", {
 
     var xhr = Titanium.Network.createHTTPClient();
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4) {
+      if (this.readyState === 4) {
         try {
           value_of(this.status)
             .should_be(200);
