@@ -1,6 +1,7 @@
 /**
 * This file has been modified from its orginal sources.
 *
+* (c) 2012 Software in the Public Interest Inc (SPI)
 * (c) 2012 David Pratt
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
