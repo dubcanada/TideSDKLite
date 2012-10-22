@@ -101,7 +101,7 @@ static int totalJobs = 0;
 	if (temporaryDirectory)
 	{
 		[[NSFileManager defaultManager] 
-			removeFileAtPath:temporaryDirectory handler:nil];
+			removeItemAtPath:temporaryDirectory error:nil];
 		[temporaryDirectory release];
 	}
 
@@ -662,7 +662,7 @@ static int totalJobs = 0;
 		// Remove the update file as soon as possible, so that if the installation
 		// fails the application will still start. We can always fetch the update
 		// later.
-		[[NSFileManager defaultManager] removeFileAtPath:updateFile handler:nil];
+		[[NSFileManager defaultManager] removeItemAtPath:updateFile error:nil];
 	}
 
 	std::string tempDir = FileUtils::GetTempDirectory();

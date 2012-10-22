@@ -153,8 +153,8 @@ class BuildConfig(object):
             self.env.Append(CPPDEFINES = ('OS_32', 1))
 
         if self.is_osx():
-            sdk_version = '10.6'
-            sdk_dir = '/Developer/SDKs/MacOSX%s.sdk' % sdk_version
+            sdk_version = '10.7'
+            sdk_dir = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX%s.sdk' % sdk_version
             sdk_minversion = '-mmacosx-version-min=%s' % sdk_version
             self.env['MACOSX_DEPLOYMENT_TARGET'] = '%s' % sdk_version
 

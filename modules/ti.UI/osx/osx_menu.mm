@@ -134,7 +134,7 @@ namespace ti
 	{
 		// This title should be set by the callee - see OSXMenuItem::NSMenuSetSubmenu
 		NSMenu* menu = [[NSMenu alloc] initWithTitle:@"TopLevelMenu"];
-		OSXMenuDelegate* delegate = [[OSXMenuDelegate alloc] 
+		OSXMenuDelegate<NSMenuDelegate>* delegate = [[OSXMenuDelegate alloc] 
 			initWithMenu:this
 			willRegister: registerNative ? YES : NO];
 

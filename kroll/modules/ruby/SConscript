@@ -22,6 +22,8 @@ build.add_thirdparty(env, 'poco')
 
 if build.is_osx():
     env.Append(CPPPATH=[
+        '/usr/lib/ruby/1.8/universal-darwin12.0',
+        '/usr/lib/ruby/1.8/universal-darwin11.0',
         '/usr/lib/ruby/1.8/universal-darwin10.0',
         '/usr/lib/ruby/1.8/universal-darwin9.0',
         '/usr/lib/ruby/1.8/universal-darwin8.0',
