@@ -1,8 +1,8 @@
 /**
 * This file has been modified from its orginal sources.
 *
-* (c) 2012 Software in the Public Interest Inc (SPI)
-* (c) 2012 David Pratt
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 * limitations under the License.
 *
 ***
-* (c) 2008-2012 Appcelerator Inc.
+* Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
