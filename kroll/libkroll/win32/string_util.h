@@ -1,7 +1,37 @@
-// Copyright (c) 2006-2008 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-//
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 // This file defines utility functions for working with strings.
 
 #ifndef BASE_STRING_UTIL_H_
@@ -48,19 +78,19 @@ int vswprintf(wchar_t* buffer, size_t size,
 // Some of these implementations need to be inlined.
 
 inline int snprintf(char* buffer, size_t size, const char* format, ...) {
-  va_list arguments;
-  va_start(arguments, format);
-  int result = vsnprintf(buffer, size, format, arguments);
-  va_end(arguments);
-  return result;
+    va_list arguments;
+    va_start(arguments, format);
+    int result = vsnprintf(buffer, size, format, arguments);
+    va_end(arguments);
+    return result;
 }
 
 inline int swprintf(wchar_t* buffer, size_t size, const wchar_t* format, ...) {
-  va_list arguments;
-  va_start(arguments, format);
-  int result = vswprintf(buffer, size, format, arguments);
-  va_end(arguments);
-  return result;
+    va_list arguments;
+    va_start(arguments, format);
+    int result = vswprintf(buffer, size, format, arguments);
+    va_end(arguments);
+    return result;
 }
 
 // BSD-style safe and consistent string copy functions.
@@ -133,10 +163,10 @@ bool TrimString(const std::string& input,
 // version instead).
 // NOTE: Safe to use the same variable for both input and output.
 enum TrimPositions {
-  TRIM_NONE     = 0,
-  TRIM_LEADING  = 1 << 0,
-  TRIM_TRAILING = 1 << 1,
-  TRIM_ALL      = TRIM_LEADING | TRIM_TRAILING,
+    TRIM_NONE     = 0,
+    TRIM_LEADING  = 1 << 0,
+    TRIM_TRAILING = 1 << 1,
+    TRIM_ALL      = TRIM_LEADING | TRIM_TRAILING,
 };
 TrimPositions TrimWhitespace(const std::wstring& input,
                              TrimPositions positions,
@@ -183,18 +213,18 @@ std::string KROLL_API UTF16ToUTF8(const string16& utf16);
 
 // Defines the error handling modes of WideToCodepage and CodepageToWide.
 class OnStringUtilConversionError {
- public:
-  enum Type {
-    // The function will return failure. The output buffer will be empty.
-    FAIL,
+   public:
+     enum Type {
+        // The function will return failure. The output buffer will be empty.
+        FAIL,
 
-    // The offending characters are skipped and the conversion will proceed as
-    // if they did not exist.
-    SKIP,
-  };
+        // The offending characters are skipped and the conversion will proceed as
+        // if they did not exist.
+        SKIP,
+    };
 
- private:
-  OnStringUtilConversionError();
+   private:
+     OnStringUtilConversionError();
 };
 
 // Converts between wide strings and the encoding specified.  If the
@@ -226,21 +256,21 @@ bool IsStringASCII(const std::string& str);
 // ASCII-specific tolower.  The standard library's tolower is locale sensitive,
 // so we don't want to use it here.
 template <class Char> inline Char ToLowerASCII(Char c) {
-  return (c >= 'A' && c <= 'Z') ? (c + ('a' - 'A')) : c;
+    return (c >= 'A' && c <= 'Z') ? (c + ('a' - 'A')) : c;
 }
 
 // Converts the elements of the given string.  This version uses a pointer to
 // clearly differentiate it from the non-pointer variant.
 template <class str> inline void StringToLowerASCII(str* s) {
-  for (typename str::iterator i = s->begin(); i != s->end(); ++i)
-    *i = ToLowerASCII(*i);
+    for (typename str::iterator i = s->begin(); i != s->end(); ++i)
+        *i = ToLowerASCII(*i);
 }
 
 template <class str> inline str StringToLowerASCII(const str& s) {
-  // for std::string and std::wstring
-  str output(s);
-  StringToLowerASCII(&output);
-  return output;
+    // for std::string and std::wstring
+    str output(s);
+    StringToLowerASCII(&output);
+    return output;
 }
 
 // Compare the lower-case form of the given string against the given ASCII
@@ -276,29 +306,29 @@ bool StartsWith(const std::wstring& str,
 // library versions will change based on locale).
 template <typename Char>
 inline bool IsAsciiWhitespace(Char c) {
-  return c == ' ' || c == '\r' || c == '\n' || c == '\t';
+    return c == ' ' || c == '\r' || c == '\n' || c == '\t';
 }
 template <typename Char>
 inline bool IsAsciiAlpha(Char c) {
-  return ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z'));
+    return ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z'));
 }
 template <typename Char>
 inline bool IsAsciiDigit(Char c) {
-  return c >= '0' && c <= '9';
+    return c >= '0' && c <= '9';
 }
 
 // Returns true if it's a whitespace character.
 inline bool IsWhitespace(wchar_t c) {
-  return wcschr(kWhitespaceWide, c) != NULL;
+    return wcschr(kWhitespaceWide, c) != NULL;
 }
 
 // TODO(mpcomplete): Decide if we should change these names to KIBI, etc,
 // or if we should actually use metric units, or leave as is.
 enum DataUnits {
-  DATA_UNITS_BYTE = 0,
-  DATA_UNITS_KILOBYTE,
-  DATA_UNITS_MEGABYTE,
-  DATA_UNITS_GIGABYTE,
+    DATA_UNITS_BYTE = 0,
+    DATA_UNITS_KILOBYTE,
+    DATA_UNITS_MEGABYTE,
+    DATA_UNITS_GIGABYTE,
 };
 
 // Return the unit type that is appropriate for displaying the amount of bytes
@@ -423,17 +453,17 @@ void StringAppendV(std::wstring* dst, const wchar_t* format, va_list ap);
 template <class char_type>
 inline char_type* WriteInto(
     std::basic_string<char_type, std::char_traits<char_type>,
-                      std::allocator<char_type> >* str,
+    std::allocator<char_type> >* str,
     size_t length_including_null) {
-  str->reserve(length_including_null);
-  str->resize(length_including_null - 1);
-  return &((*str)[0]);
+    str->reserve(length_including_null);
+    str->resize(length_including_null - 1);
+    return &((*str)[0]);
 }
 
 inline char16* WriteInto(string16* str, size_t length_including_null) {
-  str->reserve(length_including_null);
-  str->resize(length_including_null - 1);
-  return &((*str)[0]);
+    str->reserve(length_including_null);
+    str->resize(length_including_null - 1);
+    return &((*str)[0]);
 }
 
 //-----------------------------------------------------------------------------
@@ -441,17 +471,17 @@ inline char16* WriteInto(string16* str, size_t length_including_null) {
 // Function objects to aid in comparing/searching strings.
 
 template<typename Char> struct CaseInsensitiveCompare {
- public:
-  bool operator()(Char x, Char y) const {
-    return tolower(x) == tolower(y);
-  }
+    public:
+    bool operator()(Char x, Char y) const {
+        return tolower(x) == tolower(y);
+    }
 };
 
 template<typename Char> struct CaseInsensitiveCompareASCII {
- public:
-  bool operator()(Char x, Char y) const {
-    return ToLowerASCII(x) == ToLowerASCII(y);
-  }
+    public:
+    bool operator()(Char x, Char y) const {
+        return ToLowerASCII(x) == ToLowerASCII(y);
+    }
 };
 
 //-----------------------------------------------------------------------------
@@ -529,4 +559,3 @@ bool MatchPattern(const std::wstring& string, const std::wstring& pattern);
 bool MatchPattern(const std::string& string, const std::string& pattern);
 
 #endif  // BASE_STRING_UTIL_H_
-

@@ -1,4 +1,38 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
+/**
  * Useful OSX specific code borrowed from the Google Mac Toolkit
  * (see LICENSE below) with minor renames/removal/compiler fixes
  * re-licensed under the same license by Appcelerator
@@ -8,34 +42,30 @@
 
 #import <Foundation/Foundation.h>
 
-// 
 // GTMDefines.h
 //
-//  Copyright 2008 Google Inc.
+// Copyright 2008 Google Inc.
 //
-//  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-//  use this file except in compliance with the License.  You may obtain a copy
-//  of the License at
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not
+// use this file except in compliance with the License.    You may obtain a copy
+// of the License at
 // 
-//  http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-//  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-//  License for the specific language governing permissions and limitations under
-//  the License.
-//
- 
-// ============================================================================
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the
+// License for the specific language governing permissions and limitations under
+// the License.
 
 #include <AvailabilityMacros.h>
 
 // Not all MAC_OS_X_VERSION_10_X macros defined in past SDKs
 #ifndef MAC_OS_X_VERSION_10_5
-  #define MAC_OS_X_VERSION_10_5 1050
+    #define MAC_OS_X_VERSION_10_5 1050
 #endif
 #ifndef MAC_OS_X_VERSION_10_6
-  #define MAC_OS_X_VERSION_10_6 1060
+    #define MAC_OS_X_VERSION_10_6 1060
 #endif
 
 // ----------------------------------------------------------------------------
@@ -43,29 +73,26 @@
 // is compiled.
 // ----------------------------------------------------------------------------
 
-// Give ourselves a consistent way to do inlines.  Apple's macros even use
+// Give ourselves a consistent way to do inlines.    Apple's macros even use
 // a few different actual definitions, so we're based off of the foundation
 // one.
 #if !defined(GTM_INLINE)
-  #if defined (__GNUC__) && (__GNUC__ == 4)
-    #define GTM_INLINE static __inline__ __attribute__((always_inline))
-  #else
-    #define GTM_INLINE static __inline__
-  #endif
+    #if defined (__GNUC__) && (__GNUC__ == 4)
+        #define GTM_INLINE static __inline__ __attribute__((always_inline))
+    #else
+        #define GTM_INLINE static __inline__
+    #endif
 #endif
 
 // Give ourselves a consistent way of doing externs that links up nicely
 // when mixing objc and objc++
 #if !defined (GTM_EXTERN)
-  #if defined __cplusplus
-    #define GTM_EXTERN extern "C"
-  #else
-    #define GTM_EXTERN extern
-  #endif
+    #if defined __cplusplus
+        #define GTM_EXTERN extern "C"
+    #else
+        #define GTM_EXTERN extern
+    #endif
 #endif
-
-
-// ============================================================================
 
 // ----------------------------------------------------------------------------
 // CPP symbols defined based on the project settings so the GTM code has
@@ -77,37 +104,36 @@
 // defines for non Leopard SDKs
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
  // NSInteger/NSUInteger and Max/Mins
-  #ifndef NSINTEGER_DEFINED
-    #if __LP64__ || NS_BUILD_32_LIKE_64
-      typedef long NSInteger;
-      typedef unsigned long NSUInteger;
-    #else
-      typedef int NSInteger;
-      typedef unsigned int NSUInteger;
-    #endif
-    #define NSIntegerMax    LONG_MAX
-    #define NSIntegerMin    LONG_MIN
-    #define NSUIntegerMax   ULONG_MAX
-    #define NSINTEGER_DEFINED 1
-  #endif  // NSINTEGER_DEFINED
-  // CGFloat
-  #ifndef CGFLOAT_DEFINED
-    #if defined(__LP64__) && __LP64__
-      // This really is an untested path (64bit on Tiger?)
-      typedef double CGFloat;
-      #define CGFLOAT_MIN DBL_MIN
-      #define CGFLOAT_MAX DBL_MAX
-      #define CGFLOAT_IS_DOUBLE 1
-    #else /* !defined(__LP64__) || !__LP64__ */
-      typedef float CGFloat;
-      #define CGFLOAT_MIN FLT_MIN
-      #define CGFLOAT_MAX FLT_MAX
-      #define CGFLOAT_IS_DOUBLE 0
-    #endif /* !defined(__LP64__) || !__LP64__ */
-    #define CGFLOAT_DEFINED 1
-  #endif // CGFLOAT_DEFINED
-#endif  // MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-
+    #ifndef NSINTEGER_DEFINED
+        #if __LP64__ || NS_BUILD_32_LIKE_64
+            typedef long NSInteger;
+            typedef unsigned long NSUInteger;
+        #else
+            typedef int NSInteger;
+            typedef unsigned int NSUInteger;
+        #endif
+        #define NSIntegerMax        LONG_MAX
+        #define NSIntegerMin        LONG_MIN
+        #define NSUIntegerMax     ULONG_MAX
+        #define NSINTEGER_DEFINED 1
+    #endif    // NSINTEGER_DEFINED
+    // CGFloat
+    #ifndef CGFLOAT_DEFINED
+        #if defined(__LP64__) && __LP64__
+            // This really is an untested path (64bit on Tiger?)
+            typedef double CGFloat;
+            #define CGFLOAT_MIN DBL_MIN
+            #define CGFLOAT_MAX DBL_MAX
+            #define CGFLOAT_IS_DOUBLE 1
+        #else /* !defined(__LP64__) || !__LP64__ */
+            typedef float CGFloat;
+            #define CGFLOAT_MIN FLT_MIN
+            #define CGFLOAT_MAX FLT_MAX
+            #define CGFLOAT_IS_DOUBLE 0
+        #endif /* !defined(__LP64__) || !__LP64__ */
+        #define CGFLOAT_DEFINED 1
+    #endif // CGFLOAT_DEFINED
+#endif // MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
 
 // Returns a string containing a nicely formatted stack trace.
 // 
@@ -120,13 +146,13 @@
 //
 // Here is a sample stack trace returned from this function:
 //
-// #0  0x00002d92 D ()  [/Users/me/./StackLog]
-// #1  0x00002e45 C ()  [/Users/me/./StackLog]
-// #2  0x00002e53 B ()  [/Users/me/./StackLog]
-// #3  0x00002e61 A ()  [/Users/me/./StackLog]
-// #4  0x00002e6f main ()  [/Users/me/./StackLog]
-// #5  0x00002692 tart ()  [/Users/me/./StackLog]
-// #6  0x000025b9 tart ()  [/Users/me/./StackLog]
+// #0    0x00002d92 D ()    [/Users/me/./StackLog]
+// #1    0x00002e45 C ()    [/Users/me/./StackLog]
+// #2    0x00002e53 B ()    [/Users/me/./StackLog]
+// #3    0x00002e61 A ()    [/Users/me/./StackLog]
+// #4    0x00002e6f main ()    [/Users/me/./StackLog]
+// #5    0x00002692 tart ()    [/Users/me/./StackLog]
+// #6    0x000025b9 tart ()    [/Users/me/./StackLog]
 //
 
 KROLL_API NSString *KrollStackTrace(void);
@@ -137,23 +163,21 @@ KROLL_API void KrollDumpStackTraceFromException(NSException* e);
 
 #ifdef OSX_CPP_COMPILE
 
+// GTMObjC2Runtime.h
 //
-//  GTMObjC2Runtime.h
+// Copyright 2007-2008 Google Inc.
 //
-//  Copyright 2007-2008 Google Inc.
-//
-//  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-//  use this file except in compliance with the License.  You may obtain a copy
-//  of the License at
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not
+// use this file except in compliance with the License.    You may obtain a copy
+// of the License at
 // 
-//  http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-//  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-//  License for the specific language governing permissions and limitations under
-//  the License.
-//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the
+// License for the specific language governing permissions and limitations under
+// the License.
 
 #import <objc/objc-api.h>
 
@@ -165,7 +189,7 @@ KROLL_API void KrollDumpStackTraceFromException(NSException* e);
 // These functions are not documented because they conform to the documentation
 // for the ObjC2 Runtime.
 
-#if OBJC_API_VERSION >= 2  // Only have optional and req'd keywords in ObjC2.
+#if OBJC_API_VERSION >= 2    // Only have optional and req'd keywords in ObjC2.
 #define AT_OPTIONAL @optional
 #define AT_REQUIRED @required
 #else
@@ -176,7 +200,7 @@ KROLL_API void KrollDumpStackTraceFromException(NSException* e);
 // The file objc-runtime.h was moved to runtime.h and in Leopard, objc-runtime.h 
 // was just a wrapper around runtime.h. For the iPhone SDK, this objc-runtime.h
 // is removed in the iPhoneOS2.0 SDK.
-//
+
 // The |Object| class was removed in the iPhone2.0 SDK too.
 #if GTM_IPHONE_SDK
 #import <objc/runtime.h>
@@ -199,9 +223,9 @@ OBJC_EXPORT void method_exchangeImplementations(Method m1, Method m2);
 OBJC_EXPORT IMP method_getImplementation(Method method);
 OBJC_EXPORT IMP method_setImplementation(Method method, IMP imp);
 OBJC_EXPORT struct objc_method_description protocol_getMethodDescription(Protocol *p,
-                                                                         SEL aSel,
-                                                                         BOOL isRequiredMethod,
-                                                                         BOOL isInstanceMethod);
+    SEL aSel,
+    BOOL isRequiredMethod,
+    BOOL isInstanceMethod);
 
 // If building for 10.4 but using the 10.5 SDK, don't include these.
 #if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_5
@@ -211,55 +235,48 @@ OBJC_EXPORT struct objc_method_description protocol_getMethodDescription(Protoco
 // come up with a case personally where you wouldn't want to use the
 // barrier versions.
 GTM_INLINE bool OSAtomicCompareAndSwapPtrBarrier(void *predicate,
-                                                 void *replacement,
-                                                 volatile void *theValue) {
+    void *replacement,
+    volatile void *theValue) {
 #if defined(__LP64__) && __LP64__
-  return OSAtomicCompareAndSwap64Barrier((int64_t)predicate,
-                                         (int64_t)replacement,
-                                         (int64_t *)theValue);
+    return OSAtomicCompareAndSwap64Barrier((int64_t)predicate,
+        (int64_t)replacement,
+        (int64_t *)theValue);
 #else  // defined(__LP64__) && __LP64__
-  return OSAtomicCompareAndSwap32Barrier((int32_t)predicate,
-                                         (int32_t)replacement,
-                                         (int32_t *)theValue);
-#endif  // defined(__LP64__) && __LP64__
+    return OSAtomicCompareAndSwap32Barrier((int32_t)predicate,
+        (int32_t)replacement,
+        (int32_t *)theValue);
+#endif // defined(__LP64__) && __LP64__
 }
-  
+    
 GTM_INLINE BOOL objc_atomicCompareAndSwapGlobalBarrier(id predicate, 
-                                                       id replacement, 
-                                                       volatile id *objectLocation) {
-  return OSAtomicCompareAndSwapPtrBarrier(predicate, 
-                                          replacement, 
-                                          objectLocation);
+    id replacement, 
+    volatile id *objectLocation) {
+    return OSAtomicCompareAndSwapPtrBarrier(predicate, replacement, objectLocation);
 }
 GTM_INLINE BOOL objc_atomicCompareAndSwapInstanceVariableBarrier(id predicate, 
-                                                                 id replacement, 
-                                                                 volatile id *objectLocation) {
-  return OSAtomicCompareAndSwapPtrBarrier(predicate, 
-                                          replacement, 
-                                          objectLocation);
+    id replacement, 
+    volatile id *objectLocation) {
+    return OSAtomicCompareAndSwapPtrBarrier(predicate, replacement, objectLocation);
 }
 #endif
 
-#endif  // OBJC2_UNAVAILABLE
+#endif // OBJC2_UNAVAILABLE
 
-
+// GTMStackTrace.h
 //
-//  GTMStackTrace.h
+// Copyright 2007-2008 Google Inc.
 //
-//  Copyright 2007-2008 Google Inc.
-//
-//  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-//  use this file except in compliance with the License.  You may obtain a copy
-//  of the License at
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not
+// use this file except in compliance with the License.    You may obtain a copy
+// of the License at
 // 
-//  http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-//  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-//  License for the specific language governing permissions and limitations under
-//  the License.
-//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the
+// License for the specific language governing permissions and limitations under
+// the License.
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -268,13 +285,12 @@ extern "C" {
 #endif
 
 struct GTMAddressDescriptor {
-  const void *address;  // address
-  const char *symbol;  // nearest symbol to address
-  const char *class_name;  // if it is an obj-c method, the method's class
-  BOOL is_class_method;  // if it is an obj-c method, type of method
-  const char *filename;  // file that the method came from.
+    const void *address;  // address
+    const char *symbol;  // nearest symbol to address
+    const char *class_name;  // if it is an obj-c method, the method's class
+    BOOL is_class_method;  // if it is an obj-c method, type of method
+    const char *filename;  // file that the method came from.
 };
-
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
 // Returns an array of program counters from the current thread's stack.
@@ -287,7 +303,7 @@ struct GTMAddressDescriptor {
 //
 // Args:
 //   outPcs - an array of "void *" pointers to the program counters found on the
-//            current thread's stack.
+//                        current thread's stack.
 //   count - the number of entries in the outPcs array
 //
 // Returns:
@@ -306,14 +322,14 @@ NSUInteger GTMGetStackProgramCounters(void *outPcs[], NSUInteger count);
 //
 // Args:
 //   outDescs - an array of "struct GTMAddressDescriptor" pointers corresponding
-//              to the program counters found on the current thread's stack.
+//                            to the program counters found on the current thread's stack.
 //   count - the number of entries in the outDescs array
 //
 // Returns:
 //   The number of program counters actually added to outPcs.
 //
 NSUInteger GTMGetStackAddressDescriptors(struct GTMAddressDescriptor outDescs[], 
-                                         NSUInteger count);
+    NSUInteger count);
 
 #ifdef __cplusplus
 }
@@ -321,5 +337,3 @@ NSUInteger GTMGetStackAddressDescriptors(struct GTMAddressDescriptor outDescs[],
 #endif
 
 #endif
-
-

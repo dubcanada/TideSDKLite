@@ -1,6 +1,36 @@
-// Copyright (c) 2006-2008 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 #ifndef BASE_BASICTYPES_H_
 #define BASE_BASICTYPES_H_
@@ -79,8 +109,8 @@ const DomainId kIllegalDomainId = static_cast<DomainId>(0);
 // A macro to disallow the copy constructor and operator= functions
 // This should be used in the private: declarations for a class
 #define DISALLOW_COPY_AND_ASSIGN(TypeName) \
-  TypeName(const TypeName&);               \
-  void operator=(const TypeName&)
+    TypeName(const TypeName&);               \
+    void operator=(const TypeName&)
 
 // An older, deprecated, politically incorrect name for the above.
 #define DISALLOW_EVIL_CONSTRUCTORS2(TypeName) DISALLOW_COPY_AND_ASSIGN(TypeName)
@@ -92,8 +122,8 @@ const DomainId kIllegalDomainId = static_cast<DomainId>(0);
 // that wants to prevent anyone from instantiating it. This is
 // especially useful for classes containing only static methods.
 #define DISALLOW_IMPLICIT_CONSTRUCTORS(TypeName) \
-  TypeName();                                    \
-  DISALLOW_COPY_AND_ASSIGN(TypeName)
+    TypeName();                                    \
+    DISALLOW_COPY_AND_ASSIGN(TypeName)
 
 // The arraysize(arr) macro returns the # of elements in an array arr.
 // The expression is a compile-time constant, and therefore can be
@@ -160,8 +190,8 @@ char (&ArraySizeHelper(const T (&array)[N]))[N];
 // size is 3 or greater than 4 will be (righteously) rejected.
 
 #define ARRAYSIZE_UNSAFE(a) \
-  ((sizeof(a) / sizeof(*(a))) / \
-   static_cast<size_t>(!(sizeof(a) % sizeof(*(a)))))
+    ((sizeof(a) / sizeof(*(a))) / \
+     static_cast<size_t>(!(sizeof(a) % sizeof(*(a)))))
 
 
 // Use implicit_cast as a safe version of static_cast or const_cast
@@ -183,9 +213,8 @@ char (&ArraySizeHelper(const T (&array)[N]))[N];
 // its way into the language in the future.
 template<typename To, typename From>
 inline To implicit_cast(From const &f) {
-  return f;
+    return f;
 }
-
 
 // When you upcast (that is, cast a pointer from type Foo to type
 // SuperclassOfFoo), it's fine to use implicit_cast<>, since upcasts
@@ -207,16 +236,16 @@ inline To implicit_cast(From const &f) {
 
 template<typename To, typename From>     // use like this: down_cast<T*>(foo);
 inline To down_cast(From* f) {                   // so we only accept pointers
-  // Ensures that To is a sub-type of From *.  This test is here only
-  // for compile-time type checking, and has no overhead in an
-  // optimized build at run-time, as it will be optimized away
-  // completely.
-  if (false) {
-    implicit_cast<From*, To>(0);
-  }
+    // Ensures that To is a sub-type of From *.  This test is here only
+    // for compile-time type checking, and has no overhead in an
+    // optimized build at run-time, as it will be optimized away
+    // completely.
+    if (false) {
+        implicit_cast<From*, To>(0);
+    }
 
-  assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
-  return static_cast<To>(f);
+    assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
+    return static_cast<To>(f);
 }
 
 // The COMPILE_ASSERT macro can be used to verify that a compile time
@@ -240,7 +269,7 @@ struct CompileAssert {
 
 #undef COMPILE_ASSERT
 #define COMPILE_ASSERT(expr, msg) \
-  typedef CompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
+    typedef CompileAssert<(bool(expr))> msg[bool(expr) ? 1 : -1]
 
 // Implementation details of COMPILE_ASSERT:
 //
@@ -292,8 +321,8 @@ typedef uint32 MetatagId;
 // of a passed in argument.  If TAKE_OWNERSHIP is passed, the called
 // object takes ownership of the argument.  Otherwise it does not.
 enum Ownership {
-  DO_NOT_TAKE_OWNERSHIP,
-  TAKE_OWNERSHIP
+    DO_NOT_TAKE_OWNERSHIP,
+    TAKE_OWNERSHIP
 };
 
 // Use these as the mlock_bytes parameter to MLock and MLockGeneral
@@ -306,8 +335,8 @@ enum { MLOCK_ALL = -1, MLOCK_NONE = 0 };
 //
 // PointerRangeSize(a,b) returns the size of the range [a,b-1]
 inline size_t PointerRangeSize(const char* start, const char* end) {
-  assert(start <= end);
-  return end - start;
+    assert(start <= end);
+    return end - start;
 }
 
 // bit_cast<Dest,Source> is a template function that implements the
@@ -366,13 +395,13 @@ inline size_t PointerRangeSize(const char* start, const char* end) {
 
 template <class Dest, class Source>
 inline Dest bit_cast(const Source& source) {
-  // Compile time assertion: sizeof(Dest) == sizeof(Source)
-  // A compile error here means your Dest and Source have different sizes.
-  typedef char VerifySizesAreEqual [sizeof(Dest) == sizeof(Source) ? 1 : -1];
+    // Compile time assertion: sizeof(Dest) == sizeof(Source)
+    // A compile error here means your Dest and Source have different sizes.
+    typedef char VerifySizesAreEqual [sizeof(Dest) == sizeof(Source) ? 1 : -1];
 
-  Dest dest;
-  memcpy(&dest, &source, sizeof(dest));
-  return dest;
+    Dest dest;
+    memcpy(&dest, &source, sizeof(dest));
+    return dest;
 }
 
 // The following enum should be used only as a constructor argument to indicate
@@ -392,6 +421,4 @@ namespace base {
 enum LinkerInitialized { LINKER_INITIALIZED };
 }  // base
 
-
 #endif  // BASE_BASICTYPES_H_
-

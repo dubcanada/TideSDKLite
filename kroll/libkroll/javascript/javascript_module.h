@@ -1,8 +1,37 @@
 /**
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
- */
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 #ifndef _JAVASCRIPT_MODULE_H
 #define _JAVASCRIPT_MODULE_H
 
@@ -16,11 +45,11 @@
 /* KJS <-> Kroll bindings */
 namespace kroll 
 {
-	class KKJSObject;
-	class KKJSMethod;
-	class KKJSList;
-	class JavaScriptModule;
-	class JavaScriptModuleInstance;
+    class KKJSObject;
+    class KKJSMethod;
+    class KKJSList;
+    class JavaScriptModule;
+    class JavaScriptModuleInstance;
 }
 
 #include "k_kjs_object.h"
@@ -32,38 +61,39 @@ namespace kroll
 
 namespace kroll
 {
-	class KROLL_API JavaScriptModule : public Module, public ModuleProvider
-	{
-	public:
-		JavaScriptModule(Host* host, const char* path) :
-			Module(host, path, STRING(MODULE_NAME), STRING(MODULE_VERSION))
-		{
+    class KROLL_API JavaScriptModule : public Module, public ModuleProvider
+    {
+    public:
+        JavaScriptModule(Host* host, const char* path) :
+            Module(host, path, STRING(MODULE_NAME), STRING(MODULE_VERSION))
+        {
 
-		}
+        }
 
-		~JavaScriptModule()
-		{
+        ~JavaScriptModule()
+        {
 
-		}
+        }
 
-		void Initialize();
-		void Stop();
-		virtual bool IsModule(std::string& path);
-		virtual Module* CreateModule(std::string& path);
+        void Initialize();
+        void Stop();
+        virtual bool IsModule(std::string& path);
+        virtual Module* CreateModule(std::string& path);
 
-		Host* GetHost()
-		{
-			return host;
-		}
+        Host* GetHost()
+        {
+            return host;
+        }
 
-		static JavaScriptModule* Instance()
-		{
-			return instance;
-		}
+        static JavaScriptModule* Instance()
+        {
+            return instance;
+        }
 
 
-	private:
-		static JavaScriptModule *instance;
-	};
+    private:
+        static JavaScriptModule *instance;
+    };
 }
+
 #endif

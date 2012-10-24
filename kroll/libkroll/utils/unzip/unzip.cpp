@@ -1,3 +1,37 @@
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -71,9 +105,7 @@
 #define ZIP_FILENAME 2
 #define ZIP_MEMORY   3
 
-
 #define zmalloc(len) malloc(len)
-
 #define zfree(p) free(p)
 
 /*
@@ -107,7 +139,6 @@ void zfree(void *buf)
 }
 */
 
-
 typedef struct tm_unz_s
 { unsigned int tm_sec;            // seconds after the minute - [0,59]
   unsigned int tm_min;            // minutes after the hour - [0,59]
@@ -116,7 +147,6 @@ typedef struct tm_unz_s
   unsigned int tm_mon;            // months since January - [0,11]
   unsigned int tm_year;           // years - [1980..2044]
 } tm_unz;
-
 
 // unz_global_info structure contain global data about the ZIPfile
 typedef struct unz_global_info_s
@@ -154,14 +184,7 @@ typedef struct unz_file_info_s
 #define UNZ_CRCERROR            (-105)
 #define UNZ_PASSWORD            (-106)
 
-
-
-
-
-
-
 #define ZLIB_VERSION "1.1.3"
-
 
 // Allowed flush values; see deflate() for details
 #define Z_NO_FLUSH      0
@@ -196,7 +219,6 @@ typedef struct unz_file_info_s
 #define CASE_SENSITIVE 1
 #define CASE_INSENSITIVE 2
 
-
 // Return codes for the compression/decompression functions. Negative
 // values are errors, positive values are used for special but normal events.
 #define Z_OK            0
@@ -209,8 +231,6 @@ typedef struct unz_file_info_s
 #define Z_BUF_ERROR    (-5)
 #define Z_VERSION_ERROR (-6)
 
-
-
 // Basic data types
 typedef unsigned char  Byte;  // 8 bits
 typedef unsigned int   uInt;  // 16 bits or more
@@ -218,17 +238,6 @@ typedef unsigned long  uLong; // 32 bits or more
 typedef void *voidpf;
 typedef void     *voidp;
 typedef long z_off_t;
-
-
-
-
-
-
-
-
-
-
-
 
 typedef voidpf (*alloc_func) (voidpf opaque, uInt items, uInt size);
 typedef void   (*free_func)  (voidpf opaque, voidpf address);
@@ -258,7 +267,6 @@ typedef struct z_stream_s {
 
 typedef z_stream *z_streamp;
 
-
 //   The application must update next_in and avail_in when avail_in has
 //   dropped to zero. It must update next_out and avail_out when avail_out
 //   has dropped to zero. The application must initialize zalloc, zfree and
@@ -281,7 +289,6 @@ typedef z_stream *z_streamp;
 //   a single step).
 //
 
-
 // basic functions
 
 const char *zlibVersion ();
@@ -289,11 +296,6 @@ const char *zlibVersion ();
 // If the first character differs, the library code actually used is
 // not compatible with the zlib.h header file used by the application.
 // This check is automatically made by inflateInit.
-
-
-
-
-
 
 int inflate (z_streamp strm, int flush);
 //
@@ -363,7 +365,6 @@ int inflate (z_streamp strm, int flush);
 //  compression block.
 //
 
-
 int inflateEnd (z_streamp strm);
 //
 //     All dynamically allocated data structures for this stream are freed.
@@ -374,13 +375,9 @@ int inflateEnd (z_streamp strm);
 //   was inconsistent. In the error case, msg may be set but then points to a
 //   static string (which must not be deallocated).
 
-                        // Advanced functions 
+// Advanced functions 
 
 //  The following functions are needed only in some special applications.
-
-
-
-
 
 int inflateSetDictionary (z_streamp strm,
                                              const Byte *dictionary,
@@ -4158,5 +4155,3 @@ bool IsZipHandleU(HZIP hz)
   TUnzipHandleData *han = (TUnzipHandleData*)hz;
   return (han->flag==1);
 }
-
-

@@ -1,8 +1,36 @@
 /**
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
- */
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 #include "../kroll.h"
 
@@ -15,170 +43,170 @@
 
 namespace kroll
 {
-	static void RedirectIOToConsole();
-	static UINT tickleRequestMessage =
-		::RegisterWindowMessageA(PRODUCT_NAME"TickleRequest");
-	static DWORD mainThreadId;
-	EventWindow* eventWindow;
+    static void RedirectIOToConsole();
+    static UINT tickleRequestMessage =
+        ::RegisterWindowMessageA(PRODUCT_NAME"TickleRequest");
+    static DWORD mainThreadId;
+    EventWindow* eventWindow;
 
-	HWND Host::GetEventWindow()
-	{
-		return eventWindow->GetHandle();
-	}
+    HWND Host::GetEventWindow()
+    {
+        return eventWindow->GetHandle();
+    }
 
-	bool static MainThreadJobsTickleHandler(HWND hWnd, UINT message,
-		WPARAM wParam, LPARAM lParam)
-	{
-		if (message != tickleRequestMessage)
-			return false;
+    bool static MainThreadJobsTickleHandler(HWND hWnd, UINT message,
+        WPARAM wParam, LPARAM lParam)
+    {
+        if (message != tickleRequestMessage)
+            return false;
 
-		Host::GetInstance()->RunMainThreadJobs();
-		return true;
-	}
+        Host::GetInstance()->RunMainThreadJobs();
+        return true;
+    }
 
-	void Host::Initialize(int argc, const char** argv)
-	{
-		eventWindow = new EventWindow();
-		mainThreadId = GetCurrentThreadId();
-		OleInitialize(0);
-		this->AddMessageHandler(&MainThreadJobsTickleHandler);
+    void Host::Initialize(int argc, const char** argv)
+    {
+        eventWindow = new EventWindow();
+        mainThreadId = GetCurrentThreadId();
+        OleInitialize(0);
+        this->AddMessageHandler(&MainThreadJobsTickleHandler);
 
 #ifndef DEBUG
-		// only create a debug console when not compiled in debug mode 
-		// otherwise, it should be autocreated
-		if (this->DebugModeEnabled())
-		{
-			RedirectIOToConsole();
-		}
+        // only create a debug console when not compiled in debug mode 
+        // otherwise, it should be autocreated
+        if (this->DebugModeEnabled())
+        {
+            RedirectIOToConsole();
+        }
 #endif
-	}
+    }
 
-	Host::~Host()
-	{
-		delete eventWindow;
-		OleUninitialize();
-	}
+    Host::~Host()
+    {
+        delete eventWindow;
+        OleUninitialize();
+    }
 
-	void Host::WaitForDebugger()
-	{
-		DebugBreak();
-	}
+    void Host::WaitForDebugger()
+    {
+        DebugBreak();
+    }
 
-	bool Host::RunLoop()
-	{
-		static bool postedQuitMessage = false;
+    bool Host::RunLoop()
+    {
+        static bool postedQuitMessage = false;
 
-		// Just process one message at a time
-		MSG message;
-		if (GetMessage(&message, NULL, 0, 0))
-		{
-			// Always translate/dispatch this message, in case
-			// we are polluting the message namespace
-			// .. i'm looking at you flash!
-			TranslateMessage(&message);
-			DispatchMessage(&message);
+        // Just process one message at a time
+        MSG message;
+        if (GetMessage(&message, NULL, 0, 0))
+        {
+            // Always translate/dispatch this message, in case
+            // we are polluting the message namespace
+            // .. i'm looking at you flash!
+            TranslateMessage(&message);
+            DispatchMessage(&message);
 
-			// Yo, just got word that it's time to exit. Post a quit
-			// message that this  loop will soon see as a WM_QUIT.
-			// Only quit after processing that message.
-			if (this->exiting && !postedQuitMessage)
-			{
-				PostQuitMessage(this->exitCode);
-				postedQuitMessage = true;
-			}
+            // Yo, just got word that it's time to exit. Post a quit
+            // message that this  loop will soon see as a WM_QUIT.
+            // Only quit after processing that message.
+            if (this->exiting && !postedQuitMessage)
+            {
+                PostQuitMessage(this->exitCode);
+                postedQuitMessage = true;
+            }
 
-			return true;
-		}
-		else
-		{
-			return false; // Got the WM_QUIT message.
-		}
-	}
+            return true;
+        }
+        else
+        {
+            return false; // Got the WM_QUIT message.
+        }
+    }
 
-	void Host::ExitImpl(int exitCode)
-	{
-	}
+    void Host::ExitImpl(int exitCode)
+    {
+    }
 
-	Module* Host::CreateModule(std::string& path)
-	{
-		std::wstring widePath(UTF8ToWide(path));
-		HMODULE module = LoadLibraryExW(widePath.c_str(),
-			NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+    Module* Host::CreateModule(std::string& path)
+    {
+        std::wstring widePath(UTF8ToWide(path));
+        HMODULE module = LoadLibraryExW(widePath.c_str(),
+            NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 
-		if (!module)
-		{
-			throw ValueException::FromFormat("Error loading module (%d): %s: %s\n",
-				GetLastError(), path.c_str(),
-				Win32Utils::QuickFormatMessage(GetLastError()).c_str());
-		}
+        if (!module)
+        {
+            throw ValueException::FromFormat("Error loading module (%d): %s: %s\n",
+                GetLastError(), path.c_str(),
+                Win32Utils::QuickFormatMessage(GetLastError()).c_str());
+        }
 
-		// get the module factory
-		ModuleCreator* create = (ModuleCreator*)GetProcAddress(module, "CreateModule");
-		if (!create)
-		{
-			throw ValueException::FromFormat(
-				"Couldn't find ModuleCreator entry point for %s\n", path.c_str());
-		}
+        // get the module factory
+        ModuleCreator* create = (ModuleCreator*)GetProcAddress(module, "CreateModule");
+        if (!create)
+        {
+            throw ValueException::FromFormat(
+                "Couldn't find ModuleCreator entry point for %s\n", path.c_str());
+        }
 
-		return create(this, FileUtils::GetDirectory(path).c_str());
-	}
+        return create(this, FileUtils::GetDirectory(path).c_str());
+    }
 
-	bool Host::IsMainThread()
-	{
-		return mainThreadId == GetCurrentThreadId();
-	}
+    bool Host::IsMainThread()
+    {
+        return mainThreadId == GetCurrentThreadId();
+    }
 
-	void Host::SignalNewMainThreadJob()
-	{
-		PostMessage(eventWindow->GetHandle(), tickleRequestMessage, 0, 0);
-	}
+    void Host::SignalNewMainThreadJob()
+    {
+        PostMessage(eventWindow->GetHandle(), tickleRequestMessage, 0, 0);
+    }
 
-	HWND Host::AddMessageHandler(MessageHandler handler)
-	{
-		return eventWindow->AddMessageHandler(handler);
-	}
+    HWND Host::AddMessageHandler(MessageHandler handler)
+    {
+        return eventWindow->AddMessageHandler(handler);
+    }
 
-	static void RedirectIOToConsole()
-	{
-		int hConHandle;
-		long lStdHandle;
-		CONSOLE_SCREEN_BUFFER_INFO coninfo;
-		FILE *fp;
+    static void RedirectIOToConsole()
+    {
+        int hConHandle;
+        long lStdHandle;
+        CONSOLE_SCREEN_BUFFER_INFO coninfo;
+        FILE *fp;
 
-		// allocate a console for this app
-		AllocConsole();
+        // allocate a console for this app
+        AllocConsole();
 
-		// set the screen buffer to be big enough to let us scroll text
-		GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
-		coninfo.dwSize.Y = MAX_CONSOLE_LINES;
+        // set the screen buffer to be big enough to let us scroll text
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
+        coninfo.dwSize.Y = MAX_CONSOLE_LINES;
 
-		SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
+        SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
 
-		// redirect unbuffered STDOUT to the console
-		lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-		fp = _fdopen(hConHandle, "w");
+        // redirect unbuffered STDOUT to the console
+        lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        fp = _fdopen(hConHandle, "w");
 
-		*stdout = *fp;
-		setvbuf(stdout, NULL, _IONBF, 0);
+        *stdout = *fp;
+        setvbuf(stdout, NULL, _IONBF, 0);
 
-		// redirect unbuffered STDIN to the console
-		lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        // redirect unbuffered STDIN to the console
+        lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
 
-		fp = _fdopen(hConHandle, "r");
-		*stdin = *fp;
-		setvbuf(stdin, NULL, _IONBF, 0);
+        fp = _fdopen(hConHandle, "r");
+        *stdin = *fp;
+        setvbuf(stdin, NULL, _IONBF, 0);
 
-		// redirect unbuffered STDERR to the console
-		lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-		fp = _fdopen(hConHandle, "w");
-		*stderr = *fp;
-		setvbuf(stderr, NULL, _IONBF, 0);
+        // redirect unbuffered STDERR to the console
+        lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        fp = _fdopen(hConHandle, "w");
+        *stderr = *fp;
+        setvbuf(stderr, NULL, _IONBF, 0);
 
-		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
-		// point to console as well
-		std::ios::sync_with_stdio();
-	}
+        // make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
+        // point to console as well
+        std::ios::sync_with_stdio();
+    }
 }

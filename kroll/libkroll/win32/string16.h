@@ -1,3 +1,37 @@
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 // Copyright (c) 2006-2008 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
@@ -54,72 +88,72 @@ char16* c16memcpy(char16* s1, const char16* s2, size_t n);
 char16* c16memset(char16* s, char16 c, size_t n);
 
 struct string16_char_traits {
-  typedef char16 char_type;
-  typedef int int_type;
+    typedef char16 char_type;
+    typedef int int_type;
 
-  // int_type needs to be able to hold each possible value of char_type, and in
-  // addition, the distinct value of eof().
-  COMPILE_ASSERT(sizeof(int_type) > sizeof(char_type), unexpected_type_width);
+    // int_type needs to be able to hold each possible value of char_type, and in
+    // addition, the distinct value of eof().
+    COMPILE_ASSERT(sizeof(int_type) > sizeof(char_type), unexpected_type_width);
 
-  typedef std::streamoff off_type;
-  typedef mbstate_t state_type;
-  typedef std::fpos<state_type> pos_type;
+    typedef std::streamoff off_type;
+    typedef mbstate_t state_type;
+    typedef std::fpos<state_type> pos_type;
 
-  static void assign(char_type& c1, const char_type& c2) {
-    c1 = c2;
-  }
+    static void assign(char_type& c1, const char_type& c2) {
+        c1 = c2;
+    }
 
-  static bool eq(const char_type& c1, const char_type& c2) {
-    return c1 == c2;
-  }
-  static bool lt(const char_type& c1, const char_type& c2) {
-    return c1 < c2;
-  }
+    static bool eq(const char_type& c1, const char_type& c2) {
+        return c1 == c2;
+    }
+    static bool lt(const char_type& c1, const char_type& c2) {
+        return c1 < c2;
+    }
 
-  static int compare(const char_type* s1, const char_type* s2, size_t n) {
-    return c16memcmp(s1, s2, n);
-  }
+    static int compare(const char_type* s1, const char_type* s2, size_t n) {
+        return c16memcmp(s1, s2, n);
+    }
 
-  static size_t length(const char_type* s) {
-    return c16len(s);
-  }
+    static size_t length(const char_type* s) {
+        return c16len(s);
+    }
 
-  static const char_type* find(const char_type* s, size_t n,
-                               const char_type& a) {
-    return c16memchr(s, a, n);
-  }
+    static const char_type* find(const char_type* s, size_t n,
+                                                             const char_type& a) {
+        return c16memchr(s, a, n);
+    }
 
-  static char_type* move(char_type* s1, const char_type* s2, int_type n) {
-    return c16memmove(s1, s2, n);
-  }
+    static char_type* move(char_type* s1, const char_type* s2, int_type n) {
+        return c16memmove(s1, s2, n);
+    }
 
-  static char_type* copy(char_type* s1, const char_type* s2, size_t n) {
-    return c16memcpy(s1, s2, n);
-  }
+    static char_type* copy(char_type* s1, const char_type* s2, size_t n) {
+        return c16memcpy(s1, s2, n);
+    }
 
-  static char_type* assign(char_type* s, size_t n, char_type a) {
-    return c16memset(s, a, n);
-  }
+    static char_type* assign(char_type* s, size_t n, char_type a) {
+        return c16memset(s, a, n);
+    }
 
-  static int_type not_eof(const int_type& c) {
-    return eq_int_type(c, eof()) ? 0 : c;
-  }
+    static int_type not_eof(const int_type& c) {
+        return eq_int_type(c, eof()) ? 0 : c;
+    }
 
-  static char_type to_char_type(const int_type& c) {
-    return char_type(c);
-  }
+    static char_type to_char_type(const int_type& c) {
+        return char_type(c);
+    }
 
-  static int_type to_int_type(const char_type& c) {
-    return int_type(c);
-  }
+    static int_type to_int_type(const char_type& c) {
+        return int_type(c);
+    }
 
-  static bool eq_int_type(const int_type& c1, const int_type& c2) {
-    return c1 == c2;
-  }
+    static bool eq_int_type(const int_type& c1, const int_type& c2) {
+        return c1 == c2;
+    }
 
-  static int_type eof() {
-    return static_cast<int_type>(EOF);
-  }
+    static int_type eof() {
+        return static_cast<int_type>(EOF);
+    }
 };
 
 }  // namespace base

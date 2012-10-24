@@ -1,9 +1,37 @@
 /**
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
- */
-//
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 // DigestEngine.h
 //
 // $Id: //poco/1.3/Foundation/include/Poco/DigestEngine.h#1 $
@@ -38,8 +66,6 @@
 // FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-//
-
 
 #ifndef KPOCO_Foundation_DigestEngine_INCLUDED
 #define KPOCO_Foundation_DigestEngine_INCLUDED
@@ -49,78 +75,69 @@
 
 namespace KPoco {
 class KROLL_API DigestEngine
-	/// This class is an abstract base class
-	/// for all classes implementing a message
-	/// digest algorithm, like MD5Engine
-	/// and SHA1Engine.
-	/// Call update() repeatedly with data to
-	/// compute the digest from. When done,
-	/// call digest() to obtain the message
-	/// digest.
+    /// This class is an abstract base class
+    /// for all classes implementing a message
+    /// digest algorithm, like MD5Engine
+    /// and SHA1Engine.
+    /// Call update() repeatedly with data to
+    /// compute the digest from. When done,
+    /// call digest() to obtain the message
+    /// digest.
 {
 public:
-	typedef std::vector<unsigned char> Digest;
+    typedef std::vector<unsigned char> Digest;
 
-	DigestEngine();
-	virtual ~DigestEngine();
-		
-	void update(const void* data, unsigned length);
-	void update(char data);
-	void update(const std::string& data);
-		/// Updates the digest with the given data.
-		
-	virtual unsigned digestLength() const = 0;
-		/// Returns the length of the digest in bytes.
+    DigestEngine();
+    virtual ~DigestEngine();
+        
+    void update(const void* data, unsigned length);
+    void update(char data);
+    void update(const std::string& data);
+        /// Updates the digest with the given data.
+        
+    virtual unsigned digestLength() const = 0;
+        /// Returns the length of the digest in bytes.
 
-	virtual void reset() = 0;
-		/// Resets the engine so that a new
-		/// digest can be computed.
-		
-	virtual const Digest& digest() = 0;
-		/// Finishes the computation of the digest and
-		/// returns the message digest. Resets the engine
-		/// and can thus only be called once for every digest.
-		/// The returned reference is valid until the next
-		/// time digest() is called, or the engine object is destroyed.
+    virtual void reset() = 0;
+        /// Resets the engine so that a new
+        /// digest can be computed.
+        
+    virtual const Digest& digest() = 0;
+        /// Finishes the computation of the digest and
+        /// returns the message digest. Resets the engine
+        /// and can thus only be called once for every digest.
+        /// The returned reference is valid until the next
+        /// time digest() is called, or the engine object is destroyed.
 
-	static std::string digestToHex(const Digest& bytes);
-		/// Converts a message digest into a string of hexadecimal numbers.
+    static std::string digestToHex(const Digest& bytes);
+        /// Converts a message digest into a string of hexadecimal numbers.
 
 protected:
-	virtual void updateImpl(const void* data, unsigned length) = 0;
-		/// Updates the digest with the given data. Must be implemented
-		/// by subclasses.
-		
+    virtual void updateImpl(const void* data, unsigned length) = 0;
+        /// Updates the digest with the given data. Must be implemented
+        /// by subclasses.
+        
 private:
-	DigestEngine(const DigestEngine&);
-	DigestEngine& operator = (const DigestEngine&);
+    DigestEngine(const DigestEngine&);
+    DigestEngine& operator = (const DigestEngine&);
 };
 
-
-//
 // inlines
-//
-
 
 inline void DigestEngine::update(const void* data, unsigned length)
 {
-	updateImpl(data, length);
+    updateImpl(data, length);
 }
-
 
 inline void DigestEngine::update(char data)
 {
-	updateImpl(&data, 1);
+    updateImpl(&data, 1);
 }
-
 
 inline void DigestEngine::update(const std::string& data)
 {
-	updateImpl(data.data(), (unsigned) data.size());	
+    updateImpl(data.data(), (unsigned) data.size());    
 }
-
-
 } // namespace KPoco
-
 
 #endif // Foundation_DigestEngine_INCLUDED

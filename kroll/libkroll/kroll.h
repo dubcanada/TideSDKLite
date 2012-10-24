@@ -1,8 +1,37 @@
-/*
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
- */
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+ 
 /**
  * This file is the easiest way to gain access to the full Kroll API
  * To use it, just do the following:
@@ -23,57 +52,57 @@ using Poco::SharedPtr;
 using Poco::AutoPtr;
 
 #ifndef OS_WIN32
-	// this is important which essentially marks all of
-	// these classes below and the typedef/templates to be
-	// visible outside of the library.  if you don't do this
-	// you won't be able to catch exceptions of KValueRef for
-	// example
-	#pragma GCC visibility push(default)
+    // this is important which essentially marks all of
+    // these classes below and the typedef/templates to be
+    // visible outside of the library.  if you don't do this
+    // you won't be able to catch exceptions of KValueRef for
+    // example
+    #pragma GCC visibility push(default)
 #endif
 
 namespace kroll
 {
-	class Value;
-	class KObject;
-	class KMethod;
-	class KList;
+    class Value;
+    class KObject;
+    class KMethod;
+    class KList;
 
-	class StaticBoundObject;
-	class StaticBoundMethod;
-	class StaticBoundList;
+    class StaticBoundObject;
+    class StaticBoundMethod;
+    class StaticBoundList;
 
-	class GlobalObject;
-	class ScopeMethodDelegate;
-	class Bytes;
-	class VoidPtr;
-	class ValueReleasePolicy;
-	class Logger;
-	class ArgList;
+    class GlobalObject;
+    class ScopeMethodDelegate;
+    class Bytes;
+    class VoidPtr;
+    class ValueReleasePolicy;
+    class Logger;
+    class ArgList;
 
-	typedef AutoPtr<Value> KValueRef;
-	typedef AutoPtr<KObject> KObjectRef;
-	typedef AutoPtr<KMethod> KMethodRef;
-	typedef AutoPtr<KList> KListRef;
-	typedef AutoPtr<Bytes> BytesRef;
+    typedef AutoPtr<Value> KValueRef;
+    typedef AutoPtr<KObject> KObjectRef;
+    typedef AutoPtr<KMethod> KMethodRef;
+    typedef AutoPtr<KList> KListRef;
+    typedef AutoPtr<Bytes> BytesRef;
 
-	typedef SharedPtr<std::string> SharedString;
-	typedef std::vector<SharedString> StringList;
-	typedef SharedPtr<StringList> SharedStringList;
+    typedef SharedPtr<std::string> SharedString;
+    typedef std::vector<SharedString> StringList;
+    typedef SharedPtr<StringList> SharedStringList;
 
-	typedef ArgList ValueList;
+    typedef ArgList ValueList;
 
-	class Module;
-	class Application;
-	class KComponent;
-	class Dependency;
+    class Module;
+    class Application;
+    class KComponent;
+    class Dependency;
 
-	typedef SharedPtr<KComponent> SharedComponent;
-	typedef SharedPtr<Application> SharedApplication;
-	typedef SharedPtr<Dependency> SharedDependency;
+    typedef SharedPtr<KComponent> SharedComponent;
+    typedef SharedPtr<Application> SharedApplication;
+    typedef SharedPtr<Dependency> SharedDependency;
 }
 
 #ifndef OS_WIN32
-	#pragma GCC visibility pop
+    #pragma GCC visibility pop
 #endif
 
 #include "utils/utils.h"

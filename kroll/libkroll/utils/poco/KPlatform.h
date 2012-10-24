@@ -1,9 +1,37 @@
 /**
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
- */
-//
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 // Platform.h
 //
 // $Id: //poco/1.3/Foundation/include/Poco/Platform.h#4 $
@@ -47,10 +75,8 @@
 #ifndef KPOCO_Foundation_Platform_INCLUDED
 #define KPOCO_Foundation_Platform_INCLUDED
 
-
-//
 // Platform Identification
-//
+
 #define POCO_OS_FREE_BSD      0x0001
 #define POCO_OS_AIX           0x0002
 #define POCO_OS_HPUX          0x0003
@@ -71,63 +97,61 @@
 
 
 #if defined(__FreeBSD__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS_FAMILY_BSD 1
-	#define POCO_OS POCO_OS_FREE_BSD
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS_FAMILY_BSD 1
+    #define POCO_OS POCO_OS_FREE_BSD
 #elif defined(_AIX) || defined(__TOS_AIX__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_AIX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_AIX
 #elif defined(hpux) || defined(_hpux)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_HPUX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_HPUX
 #elif defined(__digital__) || defined(__osf__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_TRU64
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_TRU64
 #elif defined(linux) || defined(__linux) || defined(__linux__) || defined(__TOS_LINUX__) || defined (OS_LINUX)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_LINUX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_LINUX
 #elif defined(__APPLE__) || defined(__TOS_MACOS__) || defined (OS_OSX)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS_FAMILY_BSD 1
-	#define POCO_OS POCO_OS_MAC_OS_X
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS_FAMILY_BSD 1
+    #define POCO_OS POCO_OS_MAC_OS_X
 #elif defined(__NetBSD__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS_FAMILY_BSD 1
-	#define POCO_OS POCO_OS_NET_BSD
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS_FAMILY_BSD 1
+    #define POCO_OS POCO_OS_NET_BSD
 #elif defined(__OpenBSD__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS_FAMILY_BSD 1
-	#define POCO_OS POCO_OS_OPEN_BSD
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS_FAMILY_BSD 1
+    #define POCO_OS POCO_OS_OPEN_BSD
 #elif defined(sgi) || defined(__sgi)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_IRIX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_IRIX
 #elif defined(sun) || defined(__sun)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_SOLARIS
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_SOLARIS
 #elif defined(__QNX__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_QNX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_QNX
 #elif defined(unix) || defined(__unix) || defined(__unix__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_UNKNOWN_UNIX
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_UNKNOWN_UNIX
 #elif defined(_WIN32_WCE) 
-	#define POCO_OS_FAMILY_WINDOWS 1
-	#define POCO_OS POCO_OS_WINDOWS_CE
+    #define POCO_OS_FAMILY_WINDOWS 1
+    #define POCO_OS POCO_OS_WINDOWS_CE
 #elif defined(_WIN32) || defined(_WIN64) || defined (OS_WIN32)
-	#define POCO_OS_FAMILY_WINDOWS 1
-	#define POCO_OS POCO_OS_WINDOWS_NT
+    #define POCO_OS_FAMILY_WINDOWS 1
+    #define POCO_OS POCO_OS_WINDOWS_NT
 #elif defined(__CYGWIN__)
-	#define POCO_OS_FAMILY_UNIX 1
-	#define POCO_OS POCO_OS_CYGWIN
+    #define POCO_OS_FAMILY_UNIX 1
+    #define POCO_OS POCO_OS_CYGWIN
 #elif defined(__VMS)
-	#define POCO_OS_FAMILY_VMS 1
-	#define POCO_OS POCO_OS_VMS
+    #define POCO_OS_FAMILY_VMS 1
+    #define POCO_OS POCO_OS_VMS
 #endif
 
-
-//
 // Hardware Architecture and Byte Order
-//
+
 #define POCO_ARCH_ALPHA   0x01
 #define POCO_ARCH_IA32    0x02
 #define POCO_ARCH_IA64    0x03
@@ -143,45 +167,45 @@
 
 
 #if defined(__ALPHA) || defined(__alpha) || defined(__alpha__) || defined(_M_ALPHA)
-	#define POCO_ARCH POCO_ARCH_ALPHA
-	#define POCO_ARCH_LITTLE_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_ALPHA
+    #define POCO_ARCH_LITTLE_ENDIAN 1
 #elif defined(i386) || defined(__i386) || defined(__i386__) || defined(_M_IX86)
-	#define POCO_ARCH POCO_ARCH_IA32
-	#define POCO_ARCH_LITTLE_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_IA32
+    #define POCO_ARCH_LITTLE_ENDIAN 1
 #elif defined(_IA64) || defined(__IA64__) || defined(__ia64__) || defined(__ia64) || defined(_M_IA64)
-	#define POCO_ARCH POCO_ARCH_IA64
-	#if defined(hpux) || defined(_hpux)
-		#define POCO_ARCH_BIG_ENDIAN 1
-	#else
-		#define POCO_ARCH_LITTLE_ENDIAN 1
-	#endif
+    #define POCO_ARCH POCO_ARCH_IA64
+    #if defined(hpux) || defined(_hpux)
+        #define POCO_ARCH_BIG_ENDIAN 1
+    #else
+        #define POCO_ARCH_LITTLE_ENDIAN 1
+    #endif
 #elif defined(__x86_64__) || defined(_M_X64)
-	#define POCO_ARCH POCO_ARCH_AMD64
-	#define POCO_ARCH_LITTLE_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_AMD64
+    #define POCO_ARCH_LITTLE_ENDIAN 1
 #elif defined(__mips__) || defined(__mips) || defined(__MIPS__) || defined(_M_MRX000)
-	#define POCO_ARCH POCO_ARCH_MIPS
-	#define POCO_ARCH_BIG_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_MIPS
+    #define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__hppa) || defined(__hppa__)
-	#define POCO_ARCH POCO_ARCH_HPPA
-	#define POCO_ARCH_BIG_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_HPPA
+    #define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__PPC) || defined(__POWERPC__) || defined(__powerpc) || defined(__PPC__) || \
       defined(__powerpc__) || defined(__ppc__) || defined(_ARCH_PPC) || defined(_M_PPC)
-	#define POCO_ARCH POCO_ARCH_PPC
-	#define POCO_ARCH_BIG_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_PPC
+    #define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(_POWER) || defined(_ARCH_PWR) || defined(_ARCH_PWR2) || defined(_ARCH_PWR3) || \
       defined(_ARCH_PWR4) || defined(__THW_RS6000)
-	#define POCO_ARCH POCO_ARCH_POWER
-	#define POCO_ARCH_BIG_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_POWER
+    #define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__sparc__) || defined(__sparc) || defined(sparc)
-	#define POCO_ARCH POCO_ARCH_SPARC
-	#define POCO_ARCH_BIG_ENDIAN 1
+    #define POCO_ARCH POCO_ARCH_SPARC
+    #define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__arm__) || defined(__arm) || defined(ARM) || defined(_ARM_) || defined(__ARM__) || defined(_M_ARM)
-	#define POCO_ARCH POCO_ARCH_ARM
-	#if defined(__ARMEB__)
-		#define POCO_ARCH_BIG_ENDIAN 1
-	#else
-		#define POCO_ARCH_LITTLE_ENDIAN 1
-	#endif
+    #define POCO_ARCH POCO_ARCH_ARM
+    #if defined(__ARMEB__)
+        #define POCO_ARCH_BIG_ENDIAN 1
+    #else
+        #define POCO_ARCH_LITTLE_ENDIAN 1
+    #endif
 #elif defined(__m68k__)
     #define POCO_ARCH POCO_ARCH_M68K
     #define POCO_ARCH_BIG_ENDIAN 1
@@ -189,6 +213,5 @@
     #define POCO_ARCH POCO_ARCH_S390
     #define POCO_ARCH_BIG_ENDIAN 1
 #endif
-
 
 #endif // Foundation_Platform_INCLUDED

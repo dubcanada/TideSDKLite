@@ -1,8 +1,37 @@
 /**
- * Appcelerator Kroll - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
- */
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 #ifndef _KR_BOOT_UTILS_H_
 #define _KR_BOOT_UTILS_H_
 
@@ -20,111 +49,112 @@
 
 namespace UTILS_NS
 {
-	using std::string;
-	using std::vector;
-	using std::pair;
+    using std::string;
+    using std::vector;
+    using std::pair;
 
-	enum KComponentType
-	{
-		MODULE,
-		RUNTIME,
-		SDK,
-		MOBILESDK,
-		APP_UPDATE,
-		UNKNOWN
-	};
+    enum KComponentType
+    {
+        MODULE,
+        RUNTIME,
+        SDK,
+        MOBILESDK,
+        APP_UPDATE,
+        UNKNOWN
+    };
 
-	/**
-	 * Represents a single component dependency -- 
-	 * one line in the application manifest
-	 */
-	class KROLL_API Dependency
-	{
-		public:
-		enum Requirement
-		{
-			EQ,
-			GT,
-			LT,
-			GTE,
-			LTE,
-		};
-		KComponentType type;
-		std::string name;
-		std::string version;
-		Requirement requirement;
+    /**
+     * Represents a single component dependency -- 
+     * one line in the application manifest
+     */
+    class KROLL_API Dependency
+    {
+        public:
+        enum Requirement
+        {
+            EQ,
+            GT,
+            LT,
+            GTE,
+            LTE,
+        };
+        KComponentType type;
+        std::string name;
+        std::string version;
+        Requirement requirement;
 
-		/**
-		 * Generate a dependency from a key/value pair found in a manifest
-		 */
-		static SharedDependency NewDependencyFromManifestLine(
-			std::string key, std::string value);
+        /**
+         * Generate a dependency from a key/value pair found in a manifest
+         */
+        static SharedDependency NewDependencyFromManifestLine(
+            std::string key, std::string value);
 
-		/**
-		 * Generate a dependency from a set of values
-		 */
-		static SharedDependency NewDependencyFromValues(
-			KComponentType type, std::string name, std::string version);
-	};
+        /**
+         * Generate a dependency from a set of values
+         */
+        static SharedDependency NewDependencyFromValues(
+            KComponentType type, std::string name, std::string version);
+    };
 
-	/**
-	 * Represents a concrete Kroll components -- a runtime or module found on disk
-	 */
-	class KROLL_API KComponent
-	{
-		public:
-		KComponentType type;
-		std::string name;
-		std::string version;
-		std::string path;
-		bool bundled;
+    /**
+     * Represents a concrete Kroll components -- a runtime or module found on disk
+     */
+    class KROLL_API KComponent
+    {
+        public:
+        KComponentType type;
+        std::string name;
+        std::string version;
+        std::string path;
+        bool bundled;
 
-		static SharedComponent NewComponent(KComponentType type,
-			std::string name, std::string version,
-			std::string path, bool bundled=false);
-	};
+        static SharedComponent NewComponent(KComponentType type,
+            std::string name, std::string version,
+            std::string path, bool bundled=false);
+    };
 
-	namespace BootUtils
-	{
-		/**
-		 * Compare two version strings in a piecewise way.
-		 * @returns 1 if the first is larger, 0 if they are equal,
-		 *     -1 if the second is larger
-		 */
-		KROLL_API int CompareVersions(std::string, std::string);
+    namespace BootUtils
+    {
+        /**
+         * Compare two version strings in a piecewise way.
+         * @returns 1 if the first is larger, 0 if they are equal,
+         *     -1 if the second is larger
+         */
+        KROLL_API int CompareVersions(std::string, std::string);
 
-		/**
-		 * Compare two version strings in a piecewise way, weakly
-		 * @returns true if the first is larger or false otherwise
-		 */
-		KROLL_API bool WeakCompareComponents(SharedComponent, SharedComponent);
+        /**
+         * Compare two version strings in a piecewise way, weakly
+         * @returns true if the first is larger or false otherwise
+         */
+        KROLL_API bool WeakCompareComponents(SharedComponent, SharedComponent);
 
-		/**
-		 * Read a manifest file. 
-		 * @returns a vector of key-value pairs which represent the 
-		 *    manifest's contents or an empty vector if it cannot be read.
-		 */
-		KROLL_API vector<pair<string, string> > ReadManifestFile(std::string);
+        /**
+         * Read a manifest file. 
+         * @returns a vector of key-value pairs which represent the 
+         *    manifest's contents or an empty vector if it cannot be read.
+         */
+        KROLL_API vector<pair<string, string> > ReadManifestFile(std::string);
 
-		/**
-		 * Launch the intaller to install a list of dependencies. 
-		 * @returns false only if the installer cannot be found
-		 */
-		KROLL_API bool RunInstaller(
-			vector<SharedDependency> missing,
-			SharedApplication application,
-			std::string updatefile = "",
-			std::string installerPath = "",
-			bool quiet=false,
-			bool forceInstaller=false);
+        /**
+         * Launch the intaller to install a list of dependencies. 
+         * @returns false only if the installer cannot be found
+         */
+        KROLL_API bool RunInstaller(
+            vector<SharedDependency> missing,
+            SharedApplication application,
+            std::string updatefile = "",
+            std::string installerPath = "",
+            bool quiet=false,
+            bool forceInstaller=false);
 
-		KROLL_API std::vector<std::string>& GetComponentSearchPaths();
+        KROLL_API std::vector<std::string>& GetComponentSearchPaths();
 
-		KROLL_API std::vector<SharedComponent>& GetInstalledComponents(
-			bool force=false);
-		
-		KROLL_API SharedComponent ResolveDependency(SharedDependency dep, std::vector<SharedComponent>&);
+        KROLL_API std::vector<SharedComponent>& GetInstalledComponents(
+            bool force=false);
+        
+        KROLL_API SharedComponent ResolveDependency(SharedDependency dep, std::vector<SharedComponent>&);
 
-	};
+    };
 }
+
 #endif
