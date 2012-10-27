@@ -16,7 +16,7 @@
 
 describe("Notification Tests", {
   test_notification_object: function () {
-    var wnd = Titanium.Notification.createNotification(parent.window);
+    var wnd = Titanium.UI.createNotification(parent.window);
 
     value_of(wnd.hide)
       .should_be_function();
@@ -37,12 +37,12 @@ describe("Notification Tests", {
   },
 
   test_it_with_large_icon_as_async: function (callback) {
-    value_of(Titanium.Notification.createNotification)
+    value_of(Titanium.UI.createNotification)
       .should_be_function();
 
     // create a notification object
     var parent = Titanium.UI.getCurrentWindow();
-    var wnd = Titanium.Notification.createNotification(parent.window);
+    var wnd = Titanium.UI.createNotification(parent.window);
     wnd.setTitle("title");
     wnd.setMessage("this is a message with a big icon");
     wnd.setIcon("app://logo_large.png");
@@ -70,12 +70,12 @@ describe("Notification Tests", {
   },
 
   test_it_with_small_icon_as_async: function (callback) {
-    value_of(Titanium.Notification.createNotification)
+    value_of(Titanium.UI.createNotification)
       .should_be_function();
 
     // create a notification object
     var parent = Titanium.UI.getCurrentWindow();
-    var wnd = Titanium.Notification.createNotification(parent.window);
+    var wnd = Titanium.UI.createNotification(parent.window);
     wnd.setTitle("title");
     wnd.setMessage("this is a message with a small icon");
     wnd.setIcon("app://logo_small.png");
