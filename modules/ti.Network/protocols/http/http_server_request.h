@@ -14,17 +14,13 @@
 
 namespace ti
 {
-	class HttpServerRequest : public Poco::Net::HTTPRequestHandler, public StaticBoundObject
+	class HttpServerRequest : public StaticBoundObject
 	{
 	public:
-		HttpServerRequest(Host *host, KMethodRef callback, Poco::Net::HTTPServerRequest& request);
+		HttpServerRequest(Poco::Net::HTTPServerRequest& request);
 		virtual ~HttpServerRequest();
 
-		void handleRequest(Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse& response);
-
 	private:
-		Host *host;
-		KMethodRef callback;
 		Poco::Net::HTTPServerRequest& request;
 
 		void GetMethod(const ValueList& args, KValueRef result);

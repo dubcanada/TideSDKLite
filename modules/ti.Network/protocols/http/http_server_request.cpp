@@ -10,11 +10,8 @@
 
 namespace ti
 {
-	HttpServerRequest::HttpServerRequest(Host *host, KMethodRef callback, 
-		Poco::Net::HTTPServerRequest& request) :
+	HttpServerRequest::HttpServerRequest(Poco::Net::HTTPServerRequest& request) :
 			StaticBoundObject("Network.HttpServerRequest"),
-			host(host),
-			callback(callback),
 			request(request)
 	{
 		/**
@@ -78,20 +75,6 @@ namespace ti
 
 	HttpServerRequest::~HttpServerRequest()
 	{
-	}
-
-	void HttpServerRequest::handleRequest(Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response)
-	{
-		ValueList args;
-
-		// We MUST duplicate 'this' before casting it into an
-		// AutoPtr or else we will free this memory at the wrong time.
-		this->duplicate();
-		AutoPtr<HttpServerRequest> autoThis = this;
-
-		args.push_back(Value::NewObject(autoThis));
-		args.push_back(Value::NewObject(new HttpServerResponse(response)));
-		RunOnMainThread(callback, args);
 	}
 
 	void HttpServerRequest::GetMethod(const ValueList& args, KValueRef result)
