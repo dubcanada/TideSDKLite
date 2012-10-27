@@ -1,8 +1,37 @@
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
- * see LICENSE in the root folder for details on the license.
- * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
- */
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 #ifndef TI_DATABASES_H
 #define TI_DATABASES_H
 
@@ -11,40 +40,40 @@
 
 namespace ti
 {
-	/**
-	 * Databases is a convenience class for handling WebKit compatible databases
-	 */
-	class WebKitDatabases
-	{
-	public:
-		WebKitDatabases();
-		virtual ~WebKitDatabases();
+    /**
+     * Databases is a convenience class for handling WebKit compatible databases
+     */
+    class WebKitDatabases
+    {
+    public:
+        WebKitDatabases();
+        virtual ~WebKitDatabases();
 
-		/**
-		 * returns true if database for origin exists, false if not found
-		 */
-		bool Exists(std::string name);
+        /**
+         * returns true if database for origin exists, false if not found
+         */
+        bool Exists(std::string name);
 
-		/**
-		 * return the path to an existing database with origin and name
-		 */
-		std::string Path(std::string name);
+        /**
+         * return the path to an existing database with origin and name
+         */
+        std::string Path(std::string name);
 
-		/**
-		 * create a new database with name for origin
-		 */
-		std::string Create(std::string name);
+        /**
+         * create a new database with name for origin
+         */
+        std::string Create(std::string name);
 
-		/**
-		 * delete an existing database for name and origin
-		 */
-		void Delete(std::string name);
+        /**
+         * delete an existing database for name and origin
+         */
+        void Delete(std::string name);
 
-	private:
-		std::string origin;
-		std::string originPath;
-		Poco::Data::Session* session;
-	};
+    private:
+        std::string origin;
+        std::string originPath;
+        Poco::Data::Session* session;
+    };
 }
 
 #endif
