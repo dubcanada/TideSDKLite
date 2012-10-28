@@ -111,7 +111,7 @@ SConscript('src/tide/libtide/SConscript', variant_dir=path.join(build.dir,'objs'
 build.env.Append(LIBS=['tihost'])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
 
-SConscript('src/tide/modules/SConscript')
+SConscript('src/lang/SConscript')
 
 SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')
