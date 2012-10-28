@@ -40,14 +40,14 @@ build = BuildConfig(
     GLOBAL_NS_VARNAME = 'Titanium',
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
-    THIRD_PARTY_DIR = path.join(path.abspath('kroll'), 'thirdparty'),
+    THIRD_PARTY_DIR = path.join(path.abspath('tide'), 'thirdparty'),
     DISTRIBUTION_URL = 'api.appcelerator.net',
     CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report'
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_tide_source_dir(path.abspath('src/kroll'))
+build.set_tide_source_dir(path.abspath('src/tide'))
 
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
@@ -102,7 +102,7 @@ SConscript('installer/SConscript')
 # After Kroll builds, the environment will  link 
 # against libtide, so anything that should not be
 # linked against libtide should be above this point.
-SConscript('src/kroll/SConscript', exports='debug')
+SConscript('src/tide/SConscript', exports='debug')
 SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')
 SConscript('SConscript.docs')

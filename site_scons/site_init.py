@@ -31,7 +31,7 @@
 
 import sys
 import os.path as path
-sys.path.append(path.join(path.abspath('.'), 'src', 'kroll', 'site_scons'))
-sys.path.append(path.join(path.abspath('.'), 'src', 'kroll', 'tools'))
+sys.path.append(path.join(path.abspath('.'), 'src', 'tide', 'site_scons'))
+sys.path.append(path.join(path.abspath('.'), 'src', 'tide', 'tools'))
 sys.path.append(path.join(path.abspath('.'), 'src', 'build', 'sdk'))
 import tide
