@@ -32,7 +32,7 @@
 import os.path as path
 import sdk
 import distutils.dir_util as dir_util
-from kroll import BuildConfig
+from tide import BuildConfig
 
 build = BuildConfig(
     PRODUCT_VERSION = sdk.get_titanium_version(),
@@ -53,7 +53,7 @@ build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
 
 # This should only be used for accessing various
-# scripts in the kroll build directory. All resources
+# scripts in the tide build directory. All resources
 # should instead be built to build.dir
 build.tide_build_dir = path.join(build.tide_source_dir, 'build')
 
