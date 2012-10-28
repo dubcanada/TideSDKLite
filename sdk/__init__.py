@@ -30,4 +30,4 @@
 # limitations under the License.
 
 def get_titanium_version():
-    return '1.2.2'
+    return '1.3.0-beta'
