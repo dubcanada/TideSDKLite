@@ -103,7 +103,7 @@ SConscript('installer/SConscript')
 # against libkroll, so anything that should not be
 # linked against libkroll should be above this point.
 SConscript('kroll/SConscript', exports='debug')
-SConscript('modules/SConscript')
+SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')
 SConscript('SConscript.docs')
 SConscript('SConscript.test')
