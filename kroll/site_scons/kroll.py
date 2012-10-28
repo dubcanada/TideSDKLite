@@ -59,19 +59,19 @@ class BuildConfig(object):
         self.tidelite = False
         if not hasattr(os, 'uname') or self.matches('CYGWIN'):
             self.os = 'win32'
-            self.arch = 'i386'
+            self.arch = 'x86'
             os.environ['PROCESSOR_ARCHITECTURE'] = 'x86'
 
         elif self.matches('Darwin'):
             self.os = 'osx'
-            self.arch = 'i386'
+            self.arch = 'x86'
 
         elif self.matches('Linux'):
             self.os = 'linux'
             if (os.uname()[4] == 'x86_64'):
                 self.arch = os.uname()[4]
             else:
-                self.arch = 'i386'
+                self.arch = 'x86'
 
         vars = SCons.Variables.Variables(args = ARGUMENTS)
         vars.Add('PRODUCT_VERSION', 'The underlying product version for Kroll', kwargs['PRODUCT_VERSION'])
