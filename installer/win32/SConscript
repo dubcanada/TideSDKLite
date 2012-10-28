@@ -50,8 +50,8 @@ env.Append(LIBS=[
 ])
 
 # Common sources for both the MSI DLL and the update installer.
-env.Append(CPPPATH=[build.kroll_utils_dir])
-sources = ["common.cpp"] + build.get_kroll_utils(
+env.Append(CPPPATH=[build.tide_utils_dir])
+sources = ["common.cpp"] + build.get_tide_utils(
     path.join(build.dir, 'objs', 'netinstaller'))
 
 build.mark_build_target(env.Program(

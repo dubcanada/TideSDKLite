@@ -47,7 +47,7 @@ build = BuildConfig(
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_kroll_source_dir(path.abspath('src/kroll'))
+build.set_tide_source_dir(path.abspath('src/kroll'))
 
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
@@ -55,12 +55,12 @@ build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
 # This should only be used for accessing various
 # scripts in the kroll build directory. All resources
 # should instead be built to build.dir
-build.kroll_build_dir = path.join(build.kroll_source_dir, 'build')
+build.tide_build_dir = path.join(build.tide_source_dir, 'build')
 
 build.env.Append(CPPPATH=[
     build.titanium_source_dir,
-    build.kroll_source_dir,
-    build.kroll_include_dir
+    build.tide_source_dir,
+    build.tide_include_dir
 ])
 
 # debug build flags

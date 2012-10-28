@@ -40,11 +40,11 @@ Env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'NO_UNZIP=1'])
 
 # We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
-Env.Append(CPPPATH=[path.join(build.kroll_source_dir, 'libtide')])
+Env.Append(CPPPATH=[path.join(build.tide_source_dir, 'libtide')])
 
 # Add the utils
-Env.Append(CPPPATH=[build.kroll_utils_dir])
-sources += build.get_kroll_utils(path.join(build.dir, 'objs', 'boot'), unzip=False)
+Env.Append(CPPPATH=[build.tide_utils_dir])
+sources += build.get_tide_utils(path.join(build.dir, 'objs', 'boot'), unzip=False)
 
 if build.is_osx():
     sources += Glob('*_osx.mm')

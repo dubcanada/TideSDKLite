@@ -53,15 +53,15 @@ build = BuildConfig(
     DISTRIBUTION_URL = 'api.appcelerator.net',
     CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report',
 )
-build.set_kroll_source_dir(path.abspath('.'))
+build.set_tide_source_dir(path.abspath('.'))
 
 # This should only be used for accessing various
 # scripts in the kroll build directory. All resources
 # should instead be built to build.dir
-build.kroll_build_dir = path.join(build.kroll_source_dir, 'build')
+build.tide_build_dir = path.join(build.tide_source_dir, 'build')
 build.env.Append(CPPPATH=[
-    build.kroll_source_dir, 
-    build.kroll_include_dir])
+    build.tide_source_dir, 
+    build.tide_include_dir])
 
 # debug build flags
 debug = ARGUMENTS.get('debug', 0)

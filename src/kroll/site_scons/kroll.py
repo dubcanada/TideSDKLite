@@ -137,15 +137,15 @@ class BuildConfig(object):
             self.env.Prepend(LIBPATH=['${MSPSDK}\\lib'])
             self.env.Prepend(CPPPATH=['${MSVS}\\VC\\atlmfc\\include'])
 
-    def set_kroll_source_dir(self, dir):
-        self.kroll_source_dir = path.abspath(dir)
-        self.kroll_include_dir = path.join(self.dir, 'sdk', 'include')
-        self.kroll_utils_dir = path.join(self.kroll_source_dir, 'libtide', 'utils');
+    def set_tide_source_dir(self, dir):
+        self.tide_source_dir = path.abspath(dir)
+        self.tide_include_dir = path.join(self.dir, 'sdk', 'include')
+        self.tide_utils_dir = path.join(self.tide_source_dir, 'libtide', 'utils');
 
     # Get a separate copy of the Kroll Utils for a particular build piece
     # Give: A unique directory for that build piece where the utils should be copied
-    def get_kroll_utils(self, dir, unzip=True):
-        effess.copy_to_dir(self.kroll_utils_dir, dir)
+    def get_tide_utils(self, dir, unzip=True):
+        effess.copy_to_dir(self.tide_utils_dir, dir)
         sources = Glob('%s/utils/*.cpp' % dir) + \
             Glob('%s/utils/poco/*.cpp' % dir) + \
             Glob('%s/utils/%s/*.cpp' % (dir, self.os))

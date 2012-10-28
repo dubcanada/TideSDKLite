@@ -44,7 +44,7 @@ if build.is_osx():
         '/usr/lib/ruby/1.8/universal-darwin10.0',
         '/usr/lib/ruby/1.8/universal-darwin9.0',
         '/usr/lib/ruby/1.8/universal-darwin8.0',
-        build.kroll_include_dir])
+        build.tide_include_dir])
     env.Append(LIBS=['libruby'])
 
 
@@ -55,7 +55,7 @@ elif build.is_linux():
         '/usr/lib/ruby/1.8/i686-linux',
         '/usr/lib/ruby/1.8/x86_64-linux',
         '/usr/lib/ruby/1.8/powerpc-linux',
-        build.kroll_include_dir])
+        build.tide_include_dir])
 
     if path.exists('/usr/lib/libruby1.8.so'):
         env.Append(LIBS=['ruby1.8'])

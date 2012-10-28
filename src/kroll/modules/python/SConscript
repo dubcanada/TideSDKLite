@@ -38,7 +38,7 @@ env.Append(CPPDEFINES=('KROLL_PYTHON_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 if build.is_osx():
-    env.Append(CPPPATH=['/System/Library/Frameworks/Python.framework/Versions/Current/Headers',build.kroll_include_dir])
+    env.Append(CPPPATH=['/System/Library/Frameworks/Python.framework/Versions/Current/Headers',build.tide_include_dir])
     env.Append(FRAMEWORKS=['Python'])
 
 elif build.is_linux():
@@ -46,7 +46,7 @@ elif build.is_linux():
         '${PYTHON_INCLUDE}',
         '/usr/lib/python/2.7/i386-linux',
         '/usr/include/python2.7',
-        build.kroll_include_dir])
+        build.tide_include_dir])
     env.Append(LIBS=['python${PYTHON_VERSION}'])
     env.Append(CXXFLAGS = ['-Wno-unused-but-set-variable'])
 
