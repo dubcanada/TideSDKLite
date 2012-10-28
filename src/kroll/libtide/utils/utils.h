@@ -37,7 +37,7 @@
 #include "../base.h"
 
 // If this is a version of the utils which doesn't
-// include libkroll, we should use our simple version
+// include libtide, we should use our simple version
 // of SharedPtr -- if not use Poco's which is thread-safe.
 #if defined(KROLL_API_EXPORT) || defined(_KROLL_H_)
     #ifdef OS_WIN32

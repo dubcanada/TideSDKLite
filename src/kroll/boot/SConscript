@@ -38,9 +38,9 @@ Env = build.env.Clone()
 sources = ['boot.cpp']
 Env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'NO_UNZIP=1'])
 
-# We add libkroll to the CPPPATH, so that we can use things
+# We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
-Env.Append(CPPPATH=[path.join(build.kroll_source_dir, 'libkroll')])
+Env.Append(CPPPATH=[path.join(build.kroll_source_dir, 'libtide')])
 
 # Add the utils
 Env.Append(CPPPATH=[build.kroll_utils_dir])

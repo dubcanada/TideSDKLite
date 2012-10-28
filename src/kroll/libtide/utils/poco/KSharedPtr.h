@@ -6,7 +6,7 @@
 
 // A simplified version of the Poco SharedPtr class which is not
 // thread-safe. This is to be used by code in utils which requires
-// a shared pointer implementation, but cannot use libkroll and Poco.
+// a shared pointer implementation, but cannot use libtide and Poco.
 
 // Most of this code was taken frome:
 // SharedPtr.h
@@ -46,7 +46,7 @@
 //
 
 #ifdef _KROLL_H_
-#error You are using the simple shared pointer implementation while using libkroll.
+#error You are using the simple shared pointer implementation while using libtide.
 #endif
 
 #ifndef KPOCO_Foundation_SharedPtr_INCLUDED

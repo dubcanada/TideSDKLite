@@ -41,11 +41,11 @@ Import('build')
 Import('debug')
 
 SConscript('boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
-SConscript('libkroll/SConscript', variant_dir=path.join(build.dir,'objs','libkroll'), duplicate=0)
+SConscript('libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
 
-# Now that libkroll is built add it as a default for
+# Now that libtide is built add it as a default for
 # all the following build steps. This means that things
-# that should not depend on libkroll should be built
+# that should not depend on libtide should be built
 # before here.
 build.env.Append(LIBS=['khost'])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
