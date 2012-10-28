@@ -134,18 +134,18 @@ namespace KrollBoot
         if (!runtimePath)
             return __LINE__;
 
-        std::string khost = FileUtils::Join(runtimePath, "libkhost.dylib", 0);
-        if (!FileUtils::IsFile(khost))
+        std::string tihost = FileUtils::Join(runtimePath, "libtihost.dylib", 0);
+        if (!FileUtils::IsFile(tihost))
         {
-            string msg = string("Couldn't find required file:") + khost;
+            string msg = string("Couldn't find required file:") + tihost;
             ShowError(msg);
             return __LINE__;
         }
     
-        void* lib = dlopen(khost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+        void* lib = dlopen(tihost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
         if (!lib)
         {
-            string msg = string("Couldn't load file:") + khost + ", error: " + dlerror();
+            string msg = string("Couldn't load file:") + tihost + ", error: " + dlerror();
             ShowError(msg);
             return __LINE__;
         }
@@ -153,7 +153,7 @@ namespace KrollBoot
         Executor *executor = (Executor*)dlsym(lib, "Execute");
         if (!executor)
         {
-            string msg = string("Invalid entry point for") + khost;
+            string msg = string("Invalid entry point for") + tihost;
             ShowError(msg);
             return __LINE__;
         }

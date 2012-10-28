@@ -47,7 +47,7 @@ SConscript('libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide
 # all the following build steps. This means that things
 # that should not depend on libtide should be built
 # before here.
-build.env.Append(LIBS=['khost'])
+build.env.Append(LIBS=['tihost'])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
 
 SConscript('modules/SConscript')

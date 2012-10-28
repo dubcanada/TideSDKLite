@@ -100,8 +100,8 @@ SConscript('SConscript.thirdparty')
 SConscript('installer/SConscript')
 
 # After Kroll builds, the environment will  link 
-# against libkroll, so anything that should not be
-# linked against libkroll should be above this point.
+# against libtide, so anything that should not be
+# linked against libtide should be above this point.
 SConscript('src/kroll/SConscript', exports='debug')
 SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')

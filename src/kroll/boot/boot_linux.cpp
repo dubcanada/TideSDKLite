@@ -117,18 +117,18 @@ namespace KrollBoot
             return __LINE__;
 
         // now we need to load the host and get 'er booted
-        string khost = FileUtils::Join(runtimePath, "libkhost.so", 0);
-        if (!FileUtils::IsFile(khost))
+        string tihost = FileUtils::Join(runtimePath, "libtihost.so", 0);
+        if (!FileUtils::IsFile(tihost))
         {
-            string msg = string("Couldn't find required file:") + khost;
+            string msg = string("Couldn't find required file:") + tihost;
             ShowError(msg);
             return __LINE__;
         }
 
-        void* lib = dlopen(khost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+        void* lib = dlopen(tihost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
         if (!lib)
         {
-            string msg = string("Couldn't load file:") + khost + ", error: " + dlerror();
+            string msg = string("Couldn't load file:") + tihost + ", error: " + dlerror();
             ShowError(msg);
             return __LINE__;
         }
@@ -136,7 +136,7 @@ namespace KrollBoot
         Executor* executor = (Executor*) dlsym(lib, "Execute");
         if (!executor)
         {
-            string msg = string("Invalid entry point for") + khost;
+            string msg = string("Invalid entry point for") + tihost;
             ShowError(msg);
             return __LINE__;
         }

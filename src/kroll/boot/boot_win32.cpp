@@ -137,15 +137,15 @@ namespace KrollBoot
     int StartHost()
     {
         string runtimePath(EnvironmentUtils::Get("KR_RUNTIME"));
-        string dll(FileUtils::Join(runtimePath.c_str(), "khost.dll", 0));
-        HMODULE khost = SafeLoadRuntimeDLL(dll);
-        if (!khost)
+        string dll(FileUtils::Join(runtimePath.c_str(), "tihost.dll", 0));
+        HMODULE tihost = SafeLoadRuntimeDLL(dll);
+        if (!tihost)
             return __LINE__;
 
-        Executor *executor = (Executor*) GetProcAddress(khost, "Execute");
+        Executor *executor = (Executor*) GetProcAddress(tihost, "Execute");
         if (!executor)
         {
-            ShowError(string("Invalid entry point 'Execute' in khost.dll"));
+            ShowError(string("Invalid entry point 'Execute' in tihost.dll"));
             return __LINE__;
         }
 
