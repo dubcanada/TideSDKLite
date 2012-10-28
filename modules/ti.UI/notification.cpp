@@ -17,7 +17,6 @@ Notification::Notification() : KAccessorObject("Notification"),
 	SetMethod("setIcon", &Notification::_SetIcon);
 	SetMethod("setTimeout", &Notification::_SetTimeout);
 	SetMethod("setDelay", &Notification::_SetTimeout);
-	SetMethod("setCallback", &Notification::_SetCallback);
 	SetMethod("show", &Notification::_Show);
 	SetMethod("hide", &Notification::_Hide);
 
@@ -54,12 +53,6 @@ void Notification::_SetTimeout(const ValueList& args, KValueRef result)
 	this->timeout = args.GetInt(0);
 }
 
-void Notification::_SetCallback(const ValueList& args, KValueRef result)
-{
-	args.VerifyException("setCallback", "m");
-	this->clickedCallback = args.GetMethod(0);
-}
-
 void Notification::_Show(const ValueList& args, KValueRef result)
 {
 	result->SetBool(this->ShowImpl());
@@ -76,7 +69,6 @@ void Notification::Configure(KObjectRef properties)
 	this->message = properties->GetString("message");
 	this->iconURL = properties->GetString("icon");
 	this->timeout = properties->GetInt("timeout", -1);
-	this->clickedCallback = properties->GetMethod("callback");
 }
 
 }
