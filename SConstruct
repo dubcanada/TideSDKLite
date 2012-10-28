@@ -99,10 +99,20 @@ if ARGUMENTS.get('test_crash', 0):
 SConscript('SConscript.thirdparty')
 SConscript('installer/SConscript')
 
-# After Kroll builds, the environment will  link 
-# against libtide, so anything that should not be
+# After libtide builds, the environment will  link 
+# against libtide, so anything that should be
 # linked against libtide should be above this point.
-SConscript('src/tide/SConscript', exports='debug')
+
+SConscript('src/tide/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
+SConscript('src/tide/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
+
+# Now that libtide is built add it as a default for
+# all the following build steps.
+build.env.Append(LIBS=['tihost'])
+build.env.Append(LIBPATH=[build.runtime_build_dir])
+
+SConscript('src/tide/modules/SConscript')
+
 SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')
 SConscript('SConscript.docs')
