@@ -91,6 +91,7 @@ if build.is_win32():
     ])
     env.Append(CCFLAGS=['/DUNICODE', '/D_UNICODE'])
     env.Append(LINKFLAGS=['/LTCG', '/INCREMENTAL:NO'])
+    build.add_thirdparty(env, 'libproxy')
 
 elif build.is_osx():
     env.Append(LINKFLAGS='-install_name lib' + libtide_name + '.dylib')

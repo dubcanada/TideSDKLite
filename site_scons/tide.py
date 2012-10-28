@@ -220,6 +220,11 @@ class BuildConfig(object):
             libpath = [self.tp('webkit', 'lib')]
             libs = ['cairo']
 
+        elif name is 'libproxy' and self.is_win32():
+            cpppath = [self.tp('libproxy', 'include')]
+            libpath = [self.tp('libproxy', 'lib')]
+            libs = ['libproxy']
+
         if name is 'webkit':
             if self.is_win32() or self.is_linux():
                 cpppath = [self.tp('webkit', 'include')]
