@@ -28,7 +28,7 @@
 * Unless required by applicable law or agreed to in writing, software
 **/
 
-#include "../kroll.h"
+#include "../tide.h"
 
 namespace kroll
 {

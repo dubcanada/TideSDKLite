@@ -7,7 +7,7 @@
 #ifndef _PIPE_H_
 #define _PIPE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <queue>
 #include <Poco/Thread.h>
 #include <Poco/ThreadTarget.h>

@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #ifdef OS_WIN32
 #undef CreateWindow

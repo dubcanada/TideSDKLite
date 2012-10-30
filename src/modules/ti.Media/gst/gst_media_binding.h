@@ -35,7 +35,7 @@
 #ifndef _GST_MEDIA_BINDING_H_
 #define _GST_MEDIA_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <gst/gst.h>
 #include "../sound.h"
 #include "../media_binding.h"

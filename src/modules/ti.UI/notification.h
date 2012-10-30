@@ -7,7 +7,7 @@
 #ifndef _NOTIFICATION_H_
 #define _NOTIFICATION_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #ifdef OS_LINUX
 typedef struct _NotifyNotification NotifyNotification;

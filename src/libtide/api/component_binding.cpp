@@ -32,7 +32,6 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
 #include "api_binding.h"
 #include "component_binding.h"
 

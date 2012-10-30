@@ -46,7 +46,7 @@
 #include <Poco/Mutex.h>
 #include <Poco/Event.h>
 
-#include "kroll.h"
+#include "tide.h"
 
 namespace kroll
 {

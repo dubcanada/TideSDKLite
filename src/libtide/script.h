@@ -35,7 +35,7 @@
 #ifndef _KR_SCRIPT_H_
 #define _KR_SCRIPT_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace kroll
 {

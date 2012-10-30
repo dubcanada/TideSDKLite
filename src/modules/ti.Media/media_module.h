@@ -35,7 +35,7 @@
 #ifndef TI_MEDIA_MODULE_H_
 #define TI_MEDIA_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))

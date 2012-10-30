@@ -35,7 +35,7 @@
 #ifndef _MEDIA_OSX_SOUND_H_
 #define _MEDIA_OSX_SOUND_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 #include "../sound.h"
 #import <Cocoa/Cocoa.h>

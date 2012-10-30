@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include "../kroll.h"
+#include "../tide.h"
 #include <cstring>
 
 namespace kroll

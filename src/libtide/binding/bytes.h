@@ -35,7 +35,7 @@
 #ifndef _KR_BYTES_OBJECT_H_
 #define _KR_BYTES_OBJECT_H_
 
-#include "../kroll.h"
+#include "../tide.h"
 #include <vector>
 #include <string>
 #include <map>

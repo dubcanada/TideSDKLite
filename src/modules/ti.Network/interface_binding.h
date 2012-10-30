@@ -7,7 +7,7 @@
 #ifndef _INTERFACE_BINDING_H_
 #define _INTERFACE_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Net/NetworkInterface.h>
 #undef interface
 

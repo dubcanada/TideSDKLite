@@ -47,7 +47,7 @@
 /* 
  * Ground rules for editing include order here:
  * 1. Windows requires that STL includes be before PHP ones.
- * 2. OS X requires that kroll/kroll.h happen after PHP includes. This is because
+ * 2. OS X requires that tide/tide.h happen after PHP includes. This is because
  *    PHP redefines NO and YES, which must happen before all Objective-C NO/YES
  *    #defines.
  * 3. Linux requires that you keep breathing.
@@ -58,7 +58,7 @@
 #include <sstream>
 
 #if defined(OS_WIN32)
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #define _INC_MATH
 #include <zend_config.w32.h>
 #include <sapi/embed/php_embed.h>
@@ -77,7 +77,7 @@
 #include <Zend/zend_hash.h>
 
 #ifndef OS_WIN32
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #endif
 
 namespace kroll 

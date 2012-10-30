@@ -35,7 +35,7 @@
 #ifndef _OSX_MEDIA_BINDING_H_
 #define _OSX_MEDIA_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #import <Cocoa/Cocoa.h>
 #include "../sound.h"
 #include "../media_binding.h"

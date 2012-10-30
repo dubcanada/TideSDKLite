@@ -5,7 +5,7 @@
 */
 #ifndef _MENU_ITEM_H_
 #define _MENU_ITEM_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 namespace ti
 {
 	class MenuItem : public KEventObject

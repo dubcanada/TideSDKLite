@@ -45,7 +45,7 @@
         #include <windows.h>
     #endif
 
-    #include "../kroll.h"
+    #include "../tide.h"
     using Poco::SharedPtr;
     #define UTILS_NS kroll
 #else

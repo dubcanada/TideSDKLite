@@ -34,7 +34,7 @@
 
 #ifndef _MONKEY_BINDING_H_
 #define _MONKEY_BINDING_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 
 namespace ti

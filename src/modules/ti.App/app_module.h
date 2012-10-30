@@ -7,7 +7,7 @@
 #ifndef TI_APP_MODULE_H_
 #define TI_APP_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace ti
 {

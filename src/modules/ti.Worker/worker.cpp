@@ -5,7 +5,7 @@
  */	
 #include "worker.h"
 #include "worker_context.h"
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 
 namespace ti
 {

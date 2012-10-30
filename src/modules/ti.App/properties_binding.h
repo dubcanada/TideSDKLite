@@ -7,7 +7,7 @@
 #ifndef PROPERTIES_BINDING_H_
 #define PROPERTIES_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/AutoPtr.h>
 #include "TitaniumPropertyFileConfiguration.h"
 

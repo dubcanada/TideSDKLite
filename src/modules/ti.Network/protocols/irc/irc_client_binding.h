@@ -7,7 +7,7 @@
 #ifndef _IRC_CLIENT_BINDING_H_
 #define _IRC_CLIENT_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #ifdef OS_LINUX
 #include <unistd.h>

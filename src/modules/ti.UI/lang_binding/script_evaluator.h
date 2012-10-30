@@ -7,7 +7,7 @@
 #ifndef _SCRIPT_EVALUATOR_H_
 #define _SCRIPT_EVALUATOR_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #if defined(OS_OSX)
 #	import <WebKit/WebKit.h>
 #	import <WebKit/WebViewPrivate.h>

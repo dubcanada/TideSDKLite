@@ -35,7 +35,7 @@
 #ifndef _KR_VOID_PTR_OBJECT_H_
 #define _KR_VOID_PTR_OBJECT_H_
 
-#include "../kroll.h"
+#include "../tide.h"
 
 namespace kroll
 {

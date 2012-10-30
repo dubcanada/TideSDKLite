@@ -7,7 +7,7 @@
 #ifndef _HTTP_CLIENT_BINDING_H_
 #define _HTTP_CLIENT_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #include <Poco/Net/NameValueCollection.h>
 #include <Poco/URI.h>

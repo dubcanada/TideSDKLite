@@ -4,7 +4,7 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 #include "ui_module.h"
-#include <kroll/javascript/javascript_module_instance.h>
+#include <tide/javascript/javascript_module_instance.h>
 
 namespace ti
 {

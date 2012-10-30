@@ -35,7 +35,7 @@
 #ifndef _SCRIPT_BINDING_H
 #define _SCRIPT_BINDING_H
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace kroll
 {

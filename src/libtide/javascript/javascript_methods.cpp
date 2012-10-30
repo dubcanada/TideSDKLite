@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "javascript_methods.h"
 #include <Poco/Timer.h>
 

@@ -7,7 +7,7 @@
 #ifndef TI_NETWORK_MODULE_H_
 #define TI_NETWORK_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <curl/curl.h>
 #include "network_binding.h"
 #include "analytics_binding.h"

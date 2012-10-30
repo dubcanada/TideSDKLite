@@ -3,7 +3,7 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2010 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "interface_binding.h"
 #include "ipaddress_binding.h"
 using Poco::Net::NetworkInterface;

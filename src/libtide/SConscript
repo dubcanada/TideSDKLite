@@ -103,5 +103,5 @@ build.mark_build_target(
 build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), path.join(build.dir, 'runtime'))
 
 # copy the includes for building the SDK
-kroll_include = path.join(build.tide_include_dir, 'kroll')
-effess.copy_tree(build.cwd(), kroll_include, include=['.h'])
+tide_include = path.join(build.tide_include_dir, 'tide')
+effess.copy_tree(build.cwd(), tide_include, include=['.h'])

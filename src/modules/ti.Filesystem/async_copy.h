@@ -35,7 +35,7 @@
 #ifndef _TI_ASYNC_COPY_H
 #define _TI_ASYNC_COPY_H
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #ifdef OS_WIN32
 #include <windows.h>

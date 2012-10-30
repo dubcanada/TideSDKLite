@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "monkey_module.h"
 #include "monkey_binding.h"
 

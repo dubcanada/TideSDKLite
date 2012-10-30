@@ -59,7 +59,7 @@
 #  endif
 #endif
 
-#include <kroll/base.h>
+#include <tide/base.h>
 #include <string>
 #include <vector>
 #include <ruby.h>
@@ -72,7 +72,7 @@
 #undef close
 #undef shutdown
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "k_ruby_object.h"
 #include "k_ruby_hash.h"
 #include "k_ruby_method.h"

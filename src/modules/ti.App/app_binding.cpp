@@ -3,7 +3,7 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Environment.h>
 #include "app_binding.h"
 #include "app_config.h"

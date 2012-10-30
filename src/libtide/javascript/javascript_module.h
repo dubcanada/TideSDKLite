@@ -40,7 +40,7 @@
 #include <JavaScriptCore/JSContextRef.h>
 #include <cstring>
 #include <map>
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 /* KJS <-> Kroll bindings */
 namespace kroll 

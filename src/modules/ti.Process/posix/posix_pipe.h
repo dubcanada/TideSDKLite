@@ -7,7 +7,7 @@
 #ifndef _POSIX_PIPE_H_
 #define _POSIX_PIPE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "../native_pipe.h"
 
 namespace ti

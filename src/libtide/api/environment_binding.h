@@ -35,7 +35,7 @@
 #ifndef _ENVIRONMENT_BINDING_H_
 #define _ENVIRONMENT_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace kroll
 {

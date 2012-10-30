@@ -7,7 +7,7 @@
 #ifndef _UI_MODULE_GTK_H_
 #define _UI_MODULE_GTK_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 using kroll::Value;
 using kroll::KObject;

@@ -7,7 +7,7 @@
 #ifndef _ANALYTICS_BINDING_H_
 #define _ANALYTICS_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/Runnable.h>
 #include <Poco/Mutex.h>

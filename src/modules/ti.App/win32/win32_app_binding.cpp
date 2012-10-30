@@ -4,7 +4,7 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "../app_binding.h"
 #include <windows.h>
 

@@ -4,7 +4,7 @@
  * Copyright (c) 2009-2010 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Environment.h>
 #include <Poco/UUIDGenerator.h>
 #include <Poco/Net/NetworkInterface.h>

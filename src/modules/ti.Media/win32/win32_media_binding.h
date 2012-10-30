@@ -35,7 +35,7 @@
 #ifndef _MEDIA_WIN32_H_
 #define _MEDIA_WIN32_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <windows.h>
 #include "../sound.h"
 #include "../media_binding.h"

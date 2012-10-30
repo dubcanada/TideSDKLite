@@ -39,7 +39,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include "kroll.h"
+#include "tide.h"
 #include "thread_manager.h"
 #include <Poco/DirectoryIterator.h>
 #include <Poco/File.h>
@@ -75,8 +75,8 @@ using Poco::Environment;
 #define MODULE_SUFFIX "so"
 #endif
 
-#include <kroll/javascript/javascript_module.h>
-#include <kroll/api/api_module.h>
+#include <tide/javascript/javascript_module.h>
+#include <tide/api/api_module.h>
 
 extern "C"
 {

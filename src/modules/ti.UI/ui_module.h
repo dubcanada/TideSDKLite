@@ -6,7 +6,7 @@
 #ifndef _UI_MODULE_H_
 #define _UI_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace ti {
 	class UIBinding;
@@ -27,7 +27,7 @@ namespace ti {
 #include <JavaScriptCore/JSContextRef.h>
 
 #include <iostream>
-#include <kroll/javascript/javascript_module.h>
+#include <tide/javascript/javascript_module.h>
 #include "window_config.h"
 #include "user_window.h"
 #include "menu.h"

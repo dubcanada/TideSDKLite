@@ -8,7 +8,7 @@
 #define _NATIVE_PIPE_H_
 
 #include "pipe.h"
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 

@@ -5,7 +5,7 @@
  */
 #ifndef _OSX_UI_BINDING_H_
 #define _OSX_UI_BINDING_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "../ui_module.h"
 namespace ti
 {

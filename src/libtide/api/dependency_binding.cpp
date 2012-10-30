@@ -32,7 +32,6 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
 #include "dependency_binding.h"
 
 namespace kroll

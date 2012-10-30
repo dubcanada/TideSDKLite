@@ -33,7 +33,7 @@
 **/
 
 #include <Poco/Semaphore.h>
-#include "kroll.h"
+#include "tide.h"
 
 namespace kroll
 {

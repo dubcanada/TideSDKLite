@@ -7,7 +7,7 @@
 #ifndef _HTTP_SERVER_REQUEST_H_
 #define _HTTP_SERVER_REQUEST_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>

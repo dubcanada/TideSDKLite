@@ -38,7 +38,7 @@
 #include "dependency_binding.h"
 #include "environment_binding.h"
 #include "script_binding.h"
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 #include <algorithm>
 
 using std::string;

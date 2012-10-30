@@ -36,7 +36,7 @@
  * This file is the easiest way to gain access to the full Kroll API
  * To use it, just do the following:
  * \code
- * #include <kroll/kroll.h>
+ * #include <tide/tide.h>
  * \endcode
  */
 

@@ -42,7 +42,7 @@
  * http://developer.apple.com/mac/library/samplecode/CFProxySupportTool/
  */
 
-#include "../kroll.h"
+#include "../tide.h"
 #include "net.h"
 
 #include <Poco/Thread.h>
