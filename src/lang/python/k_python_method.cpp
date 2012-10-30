@@ -34,7 +34,7 @@
 
 #include "k_python_method.h"
 
-namespace kroll
+namespace tide
 {
     KPythonMethod::KPythonMethod(PyObject *method) :
         KMethod("Python.KMethod"),

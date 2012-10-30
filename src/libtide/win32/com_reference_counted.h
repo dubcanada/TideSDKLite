@@ -38,7 +38,7 @@
 /*
  * This is a COM-specific wrapper of ReferenceCounted. 
  */
-namespace kroll
+namespace tide
 {
     class KROLL_API COMReferenceCounted : public ReferenceCounted, public IUnknown
     {

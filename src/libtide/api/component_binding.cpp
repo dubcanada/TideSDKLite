@@ -35,7 +35,7 @@
 #include "api_binding.h"
 #include "component_binding.h"
 
-namespace kroll
+namespace tide
 {
     ComponentBinding::ComponentBinding(SharedComponent component) :
         KAccessorObject("API.Component"),

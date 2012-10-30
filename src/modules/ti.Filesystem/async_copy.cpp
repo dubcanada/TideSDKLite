@@ -100,7 +100,7 @@ namespace ti
                 err.append(linkPath);
                 err.append(" : ");
                 err.append(strerror(errno));
-                throw kroll::ValueException::FromString(err);
+                throw tide::ValueException::FromString(err);
             }
         }
 #endif
@@ -117,8 +117,8 @@ namespace ti
             while(i!=files.end())
             {
                 std::string fn = (*i++);
-                Poco::Path sp(kroll::FileUtils::Join(src.toString().c_str(),fn.c_str(),NULL));
-                Poco::Path dp(kroll::FileUtils::Join(dest.toString().c_str(),fn.c_str(),NULL));
+                Poco::Path sp(tide::FileUtils::Join(src.toString().c_str(),fn.c_str(),NULL));
+                Poco::Path dp(tide::FileUtils::Join(dest.toString().c_str(),fn.c_str(),NULL));
                 this->Copy(sp,dp);
             }
         }

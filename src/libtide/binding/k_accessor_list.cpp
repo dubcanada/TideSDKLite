@@ -36,7 +36,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
     KAccessorList::KAccessorList(const char* type)
         : StaticBoundList(type)

@@ -78,7 +78,7 @@ namespace KrollBoot
         while (i != dependencies.end())
         {
             SharedDependency d = *i++;
-            if (d->type == KrollUtils::SDK || d->type == KrollUtils::MOBILESDK)
+            if (d->type == TideUtils::SDK || d->type == TideUtils::MOBILESDK)
             {
                 justSDKs.push_back(d);
             }

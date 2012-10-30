@@ -57,7 +57,7 @@ namespace ti
     class AsyncCopy : public StaticBoundObject
     {
     public:
-        AsyncCopy(FilesystemBinding* parent,kroll::Host *host,std::vector<std::string> files, std::string destination, KMethodRef callback);
+        AsyncCopy(FilesystemBinding* parent,tide::Host *host,std::vector<std::string> files, std::string destination, KMethodRef callback);
         virtual ~AsyncCopy();
 
     private:

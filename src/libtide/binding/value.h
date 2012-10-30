@@ -38,7 +38,7 @@
 /**
  * The toplevel kroll namespace.
  */
-namespace kroll
+namespace tide
 {
     /**
      * A container for various types. Value instances contain a primitive or

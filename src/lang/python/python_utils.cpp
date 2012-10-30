@@ -34,7 +34,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
     static void PyKObject_dealloc(PyObject* );
     static PyObject* PyKObject_getattr(PyObject*, char*);

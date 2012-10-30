@@ -55,7 +55,7 @@ using std::vector;
 using Poco::URI;
 using Poco::StringTokenizer;
 
-namespace kroll
+namespace tide
 {
 namespace ProxyConfig
 {
@@ -125,7 +125,7 @@ SharedProxy GetProxyServerFromDictionary(string scheme,
     }
 
     // This should work equally well for hostnames without a port.
-    string host(kroll::CFStringToUTF8(hostRef));
+    string host(tide::CFStringToUTF8(hostRef));
     SharedProxy proxy(ParseProxyEntry(host, scheme, scheme));
 
     CFNumberRef portRef = (CFNumberRef) GetValueFromDictionary(
@@ -160,7 +160,7 @@ static void InitializeOSXProxyConfig()
 
         if (pacURLRef)
         {
-            autoConfigURL = kroll::CFStringToUTF8(pacURLRef);
+            autoConfigURL = tide::CFStringToUTF8(pacURLRef);
             GetLogger()->Debug("Using PAC URL: %s", autoConfigURL.c_str());
         }
     }
@@ -223,7 +223,7 @@ static void InitializeOSXProxyConfig()
             }
             else
             {
-                string entry(kroll::CFStringToUTF8(bypassItemRef));
+                string entry(tide::CFStringToUTF8(bypassItemRef));
                 GetLogger()->Debug("Proxy bypass entry: %s", entry.c_str());
                 bypassList.push_back(ParseBypassEntry(entry));
             }

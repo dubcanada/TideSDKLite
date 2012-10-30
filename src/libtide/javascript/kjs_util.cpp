@@ -37,7 +37,7 @@
 #include <Poco/FileStream.h>
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
 namespace KJSUtil
 {
@@ -139,11 +139,11 @@ namespace KJSUtil
         }
         else if (JSValueIsNull(jsContext, value))
         {
-            krollValue = kroll::Value::Null;
+            krollValue = tide::Value::Null;
         }
         else
         {
-            krollValue = kroll::Value::Undefined;
+            krollValue = tide::Value::Undefined;
         }
         if (!krollValue.isNull() && exception == NULL)
         {

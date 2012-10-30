@@ -34,7 +34,7 @@
 
 #ifndef _KR_PROXY_CONFIG_H_
 #define _KR_PROXY_CONFIG_H_
-namespace kroll
+namespace tide
 {
     class KROLL_API BypassEntry
     {

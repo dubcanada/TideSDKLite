@@ -35,7 +35,7 @@
 #ifndef _K_RUBY_METHOD_H_
 #define _K_RUBY_METHOD_H_
 
-namespace kroll {
+namespace tide {
 
 class KRubyMethod : public KMethod
 {

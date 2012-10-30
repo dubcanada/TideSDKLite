@@ -50,7 +50,7 @@ namespace ti
         static bool Matches(const char* pattern, const char* target);
     };
 
-    class MonkeyBinding : public kroll::StaticBoundObject
+    class MonkeyBinding : public tide::StaticBoundObject
     {
         public:
         MonkeyBinding(Host*, KObjectRef);

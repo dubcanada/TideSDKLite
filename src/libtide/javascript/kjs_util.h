@@ -34,7 +34,7 @@
 #ifndef _KJS_UTIL_H_
 #define _KJS_UTIL_H_
 
-namespace kroll
+namespace tide
 {
 namespace KJSUtil
 {

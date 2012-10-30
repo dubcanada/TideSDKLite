@@ -558,7 +558,7 @@ namespace ti
 	{
 		if (nativeWindow != nil)
 		{
-			std::string nurl = kroll::URLUtils::NormalizeURL(url);
+			std::string nurl = tide::URLUtils::NormalizeURL(url);
 			NSURL* nsurl = [NSURL URLWithString: [NSString stringWithUTF8String:nurl.c_str()]];
 			[[[nativeWindow webView] mainFrame] loadRequest:[NSURLRequest requestWithURL:nsurl]];
 		}

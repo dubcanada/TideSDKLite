@@ -47,13 +47,13 @@
 
     #include "../tide.h"
     using Poco::SharedPtr;
-    #define UTILS_NS kroll
+    #define UTILS_NS tide
 #else
-    #define UTILS_NS KrollUtils
+    #define UTILS_NS TideUtils
     #include "poco/KSharedPtr.h"
     using KPoco::SharedPtr;
     
-    namespace KrollUtils
+    namespace TideUtils
     {
         class KComponent;
         class Application;

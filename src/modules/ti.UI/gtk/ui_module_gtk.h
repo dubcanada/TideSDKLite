@@ -9,13 +9,13 @@
 
 #include <tide/tide.h>
 
-using kroll::Value;
-using kroll::KObject;
-using kroll::StaticBoundObject;
-using kroll::KMethod;
-using kroll::StaticBoundMethod;
-using kroll::KList;
-using kroll::StaticBoundList;
+using tide::Value;
+using tide::KObject;
+using tide::StaticBoundObject;
+using tide::KMethod;
+using tide::StaticBoundMethod;
+using tide::KList;
+using tide::StaticBoundList;
 
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>

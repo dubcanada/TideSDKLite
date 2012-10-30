@@ -35,7 +35,7 @@
 #ifndef _KR_ACCESSOR_BOUND_LIST_H_
 #define _KR_ACCESSOR_BOUND_LIST_H_
 
-namespace kroll
+namespace tide
 {
     /**
      * The KAccessorList allows you to expose getters and setters as property access.

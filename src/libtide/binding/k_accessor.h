@@ -35,7 +35,7 @@
 #ifndef _KR_K_ACCESSOR_H_
 #define _KR_K_ACCESSOR_H_
 
-namespace kroll
+namespace tide
 {
     typedef std::map<std::string, KMethodRef> AccessorMap;
 

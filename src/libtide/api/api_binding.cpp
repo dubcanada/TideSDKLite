@@ -46,7 +46,7 @@ using std::vector;
 using std::pair;
 using std::map;
 
-namespace kroll
+namespace tide
 {
     APIBinding::APIBinding(Host* host) :
         KAccessorObject("API"),

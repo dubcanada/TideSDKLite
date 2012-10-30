@@ -35,7 +35,7 @@
 #include "../tide.h"
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
     StaticBoundObject::StaticBoundObject(const char* type)
         : KObject(type)

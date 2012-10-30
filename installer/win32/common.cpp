@@ -39,10 +39,10 @@
 #include <sstream>
 #include <string>
 
-using namespace KrollUtils;
-using KrollUtils::Application;
-using KrollUtils::SharedApplication;
-using KrollUtils::KComponentType;
+using namespace TideUtils;
+using TideUtils::Application;
+using TideUtils::SharedApplication;
+using TideUtils::KComponentType;
 using std::wstring;
 using std::string;
 

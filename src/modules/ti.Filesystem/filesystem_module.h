@@ -51,7 +51,7 @@
 
 namespace ti 
 {
-    class TITANIUM_FILESYSTEM_API FilesystemModule : public kroll::Module
+    class TITANIUM_FILESYSTEM_API FilesystemModule : public tide::Module
     {
         KROLL_MODULE_CLASS(FilesystemModule)
         

@@ -48,7 +48,7 @@
 
 #include "tide.h"
 
-namespace kroll
+namespace tide
 {
     typedef Poco::SharedPtr<Poco::Runnable> SharedRunnable;
     typedef std::queue<SharedRunnable> PoolJobQueue;

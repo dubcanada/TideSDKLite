@@ -35,7 +35,7 @@
 #ifndef _KR_PROFILED_BOUND_METHOD_H_
 #define _KR_PROFILED_BOUND_METHOD_H_
 
-namespace kroll
+namespace tide
 {
     /**
      * The ProfiledBoundMethod is a wrapped KMethod that does profiling

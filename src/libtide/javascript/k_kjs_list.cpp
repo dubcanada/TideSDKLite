@@ -34,7 +34,7 @@
 
 #include "javascript_module.h"
 
-namespace kroll
+namespace tide
 {
     KKJSList::KKJSList(JSContextRef context, JSObjectRef jsobject) :
         KList("JavaScript.KKJSList"),

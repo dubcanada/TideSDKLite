@@ -35,7 +35,7 @@
 #ifndef _KR_STATIC_BOUND_METHOD_H_
 #define _KR_STATIC_BOUND_METHOD_H_
 
-namespace kroll
+namespace tide
 {
 
     class KROLL_API StaticBoundMethod : public KMethod

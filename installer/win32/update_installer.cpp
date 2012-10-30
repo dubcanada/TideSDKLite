@@ -33,10 +33,10 @@
 **/
 
 #include <kroll/utils/utils.h>
-using namespace KrollUtils;
-using KrollUtils::Application;
-using KrollUtils::SharedApplication;
-using KrollUtils::KComponentType;
+using namespace TideUtils;
+using TideUtils::Application;
+using TideUtils::SharedApplication;
+using TideUtils::KComponentType;
 using std::wstring;
 using std::string;
 
@@ -232,7 +232,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ExitWithError("The installer could not initialize COM.", __LINE__);
 
     dialog = new ProgressDialog();
-    dialog->SetTitle(KrollUtils::UTF8ToWide(app->name));
+    dialog->SetTitle(TideUtils::UTF8ToWide(app->name));
     dialog->SetCancelMessage(L"Aborting installation...");
     dialog->SetLineText(1, L"Installing components", false);
     dialog->Show();

@@ -36,7 +36,7 @@
 #include <sstream>
 #include <cmath>
 
-namespace kroll
+namespace tide
 {
 
     SharedString KMethod::DisplayString(int levels)

@@ -37,7 +37,7 @@
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
-namespace kroll
+namespace tide
 {
     class KROLL_API AsyncJob : public StaticBoundObject
     {

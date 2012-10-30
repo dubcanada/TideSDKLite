@@ -34,7 +34,7 @@
 
 #include "../tide.h"
 
-namespace kroll
+namespace tide
 {
     NSLogChannel::NSLogChannel()
         : formatter("[%s] [%p] %t")

@@ -6,7 +6,7 @@
 #include "network_module.h"
 #include <Poco/Mutex.h>
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 namespace ti
 {

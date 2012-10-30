@@ -36,7 +36,7 @@
 #include "monkey_module.h"
 #include "monkey_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

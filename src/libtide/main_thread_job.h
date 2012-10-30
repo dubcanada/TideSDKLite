@@ -37,7 +37,7 @@
 
 #include <Poco/Semaphore.h>
 
-namespace kroll
+namespace tide
 {
     class KROLL_API MainThreadJob
     {

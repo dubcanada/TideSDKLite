@@ -35,7 +35,7 @@
 #include "../tide.h"
 #include <sstream>
 
-namespace kroll
+namespace tide
 {
 
     bool KObject::Equals(KObjectRef other)

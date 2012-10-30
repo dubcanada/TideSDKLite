@@ -40,7 +40,7 @@
 
 typedef bool (*MessageHandler)(HWND hwnd, unsigned int message, WPARAM wParam, LPARAM lParam);
 
-namespace kroll
+namespace tide
 {
     class Logger;
     class EventWindow

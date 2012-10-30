@@ -91,7 +91,7 @@ extern "C"
     }
 }
 
-namespace kroll
+namespace tide
 {
     JavaScriptModule* javascriptModule;
     APIModule* apiModule;
@@ -396,7 +396,7 @@ namespace kroll
             this->application->UsingModule(module->GetName(), module->GetVersion(), path);
             return module;
         }
-        catch (kroll::ValueException& e)
+        catch (tide::ValueException& e)
         {
             SharedString s = e.GetValue()->DisplayString();
             logger->Error("Could not load module (%s): %s", path.c_str(), s->c_str());
@@ -661,7 +661,7 @@ namespace kroll
         {
                 while (this->RunLoop()) {}
         }
-        catch (kroll::ValueException& e)
+        catch (tide::ValueException& e)
         {
             logger->Error("Caught exception in main loop: %s",
                 e.ToString().c_str());

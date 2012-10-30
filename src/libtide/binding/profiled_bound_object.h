@@ -37,7 +37,7 @@
 #include <Poco/FileStream.h>
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
     /**
      * The ProfiledBoundObject is a wrapped KObject that does profiling on a 

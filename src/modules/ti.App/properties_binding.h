@@ -13,7 +13,7 @@
 
 namespace ti
 {
-	class PropertiesBinding : public kroll::StaticBoundObject
+	class PropertiesBinding : public tide::StaticBoundObject
 	{
 	public:
 		typedef enum { Bool, Double, Int, String, List } Type;

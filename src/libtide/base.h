@@ -159,7 +159,7 @@
 
 #ifdef DEBUG
 #include <sstream>
-#define PRINTD(x) { std::ostringstream ostr; ostr << x; kroll::Logger* logger = kroll::Logger::GetRootLogger(); logger->Debug(ostr.str()); };
+#define PRINTD(x) { std::ostringstream ostr; ostr << x; tide::Logger* logger = tide::Logger::GetRootLogger(); logger->Debug(ostr.str()); };
 #else
 #define PRINTD(x)
 #endif

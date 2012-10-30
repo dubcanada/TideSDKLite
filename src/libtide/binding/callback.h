@@ -40,7 +40,7 @@
 #ifndef _KR_CALLBACK_H_
 #define _KR_CALLBACK_H_
 
-namespace kroll
+namespace tide
 {
     template <class P>
     struct TupleTraits {

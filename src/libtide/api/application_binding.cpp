@@ -47,7 +47,7 @@
 #define GETPID  getpid
 #endif
 
-namespace kroll
+namespace tide
 {
     ApplicationBinding::ApplicationBinding(SharedApplication application, bool current) :
         KAccessorObject("API.Application"),

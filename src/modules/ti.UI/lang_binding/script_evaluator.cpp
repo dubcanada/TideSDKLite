@@ -35,7 +35,7 @@ namespace ti
 
 -(BOOL) matchesMimeType:(NSString*)mimeType
 {
-	return kroll::Script::GetInstance()->CanEvaluate([mimeType UTF8String]);
+	return tide::Script::GetInstance()->CanEvaluate([mimeType UTF8String]);
 }
 
 -(void) evaluate:(NSString *)mimeType sourceCode:(NSString*)sourceCode context:(void *)context
@@ -43,7 +43,7 @@ namespace ti
 	// TODO get source name from webkit
 	try
 	{
-		kroll::Script::GetInstance()->Evaluate([mimeType UTF8String], "<script>",
+		tide::Script::GetInstance()->Evaluate([mimeType UTF8String], "<script>",
 			[sourceCode UTF8String], JSContextToKrollContext(context));
 	}
 	catch (ValueException& exception)

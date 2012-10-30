@@ -36,7 +36,7 @@
 #include "codec_module.h"
 #include "codec_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

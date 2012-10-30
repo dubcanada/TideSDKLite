@@ -23,12 +23,12 @@
 
 namespace ti 
 {
-	class TITANIUM_WORKER_API WorkerModule : public kroll::Module
+	class TITANIUM_WORKER_API WorkerModule : public tide::Module
 	{
 		KROLL_MODULE_CLASS(WorkerModule)
 		
 	private:
-		kroll::KObjectRef binding;
+		tide::KObjectRef binding;
 	};
 
 }

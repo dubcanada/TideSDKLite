@@ -33,7 +33,7 @@
 **/
 
 #include "../tide.h"
-namespace kroll
+namespace tide
 {
     AutoPtr<GlobalObject> GlobalObject::instance;
 

@@ -34,7 +34,7 @@
 
 #include "script_binding.h"
 
-namespace kroll
+namespace tide
 {
     ScriptBinding::ScriptBinding()
         : StaticBoundObject("API.Script")

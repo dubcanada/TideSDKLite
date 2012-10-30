@@ -36,7 +36,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
     KAccessorObject::KAccessorObject(const char* name)
         : StaticBoundObject(name)

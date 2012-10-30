@@ -81,7 +81,7 @@
 #include "ruby_evaluator.h"
 #include "ruby_module_instance.h"
 
-namespace kroll
+namespace tide
 {
     class KROLL_RUBY_API RubyModule : public Module, public ModuleProvider
     {

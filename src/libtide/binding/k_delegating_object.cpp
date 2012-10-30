@@ -35,7 +35,7 @@
 #include "../tide.h"
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
     KDelegatingObject::KDelegatingObject(KObjectRef global) :
         global(global),

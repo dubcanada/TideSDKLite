@@ -38,7 +38,7 @@
 #include <Poco/StringTokenizer.h>
 #include <Poco/Data/BLOB.h>
 
-namespace kroll
+namespace tide
 {
     Bytes::Bytes() :
         StaticBoundObject("Bytes"),

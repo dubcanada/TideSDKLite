@@ -40,7 +40,7 @@
 #include "../sound.h"
 #import <Cocoa/Cocoa.h>
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

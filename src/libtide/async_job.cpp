@@ -36,7 +36,7 @@
 #include "thread_manager.h"
 #include <Poco/Bugcheck.h>
 
-namespace kroll
+namespace tide
 {
     AsyncJob::AsyncJob(KMethodRef job) :
         StaticBoundObject(),

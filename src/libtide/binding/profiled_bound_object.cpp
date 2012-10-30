@@ -40,7 +40,7 @@
 #include <Poco/Stopwatch.h>
 #include <Poco/ScopedLock.h>
 
-namespace kroll
+namespace tide
 {
     Poco::FileOutputStream* ProfiledBoundObject::stream = 0;
     Poco::Mutex ProfiledBoundObject::logMutex;

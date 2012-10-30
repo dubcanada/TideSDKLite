@@ -37,7 +37,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
 	class KPythonList : public KList
 	{

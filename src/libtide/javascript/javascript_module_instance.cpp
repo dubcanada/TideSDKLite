@@ -37,7 +37,7 @@
 #include <fstream>
 #include <string>
 
-namespace kroll
+namespace tide
 {
     static std::vector<JSGlobalContextRef> instanceContexts;
 

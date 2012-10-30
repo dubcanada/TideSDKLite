@@ -34,7 +34,7 @@
 
 #include "environment_binding.h"
 
-namespace kroll
+namespace tide
 {
     KValueRef EnvironmentBinding::Get(const char *name)
     {

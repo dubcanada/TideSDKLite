@@ -57,7 +57,7 @@
 }
 @end
 
-namespace kroll
+namespace tide
 {
     static NSThread* mainThread;
     static Poco::Mutex* cryptoMutexes = 0;

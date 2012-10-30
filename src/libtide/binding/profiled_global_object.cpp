@@ -40,7 +40,7 @@
 #include <Poco/Stopwatch.h>
 #include <Poco/ScopedLock.h>
 
-namespace kroll
+namespace tide
 {
     ProfiledGlobalObject::ProfiledGlobalObject(KObjectRef global) :
         profiledObject(new ProfiledBoundObject(global))

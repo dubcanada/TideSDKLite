@@ -41,7 +41,7 @@
 #include "../media_binding.h"
 #include "win32_sound.h"
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

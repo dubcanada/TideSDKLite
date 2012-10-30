@@ -7,7 +7,7 @@
 #include "worker_module.h"
 #include "worker_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 KROLL_MODULE(WorkerModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));

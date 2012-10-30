@@ -109,12 +109,12 @@ mh.puts <<-END
 
 namespace ti 
 {
-	class TITANIUM_#{header_define}_API #{module_name}Module : public kroll::Module
+	class TITANIUM_#{header_define}_API #{module_name}Module : public tide::Module
 	{
 		KROLL_MODULE_CLASS(#{module_name}Module)
 		
 	private:
-		kroll::KObjectRef binding;
+		tide::KObjectRef binding;
 	};
 
 }
@@ -133,7 +133,7 @@ mc.puts <<-END
 #include "#{name}_module.h"
 #include "#{name}_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

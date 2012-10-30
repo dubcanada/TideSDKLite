@@ -34,7 +34,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
     PythonEvaluator::PythonEvaluator() :
         StaticBoundObject("Python.Evaluator")

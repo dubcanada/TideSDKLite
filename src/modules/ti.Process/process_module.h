@@ -23,13 +23,13 @@
 
 namespace ti 
 {
-	class TITANIUM_PROCESS_API ProcessModule : public kroll::Module
+	class TITANIUM_PROCESS_API ProcessModule : public tide::Module
 	{
 		KROLL_MODULE_CLASS(ProcessModule)
 		
 
 	private:
-		kroll::KObjectRef binding;
+		tide::KObjectRef binding;
 	};
 
 }

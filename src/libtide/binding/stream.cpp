@@ -34,7 +34,7 @@
 
 #include "../tide.h"
 
-namespace kroll {
+namespace tide {
 
 Stream::Stream(const char* type) : StaticBoundObject(type)
 {
@@ -64,4 +64,4 @@ bool Stream::IsReadable() const
     return false;
 }
 
-} // namespace kroll
+} // namespace tide

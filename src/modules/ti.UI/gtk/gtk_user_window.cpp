@@ -1345,7 +1345,7 @@ namespace ti
 		job->typesDescription = typesDescription;
 		job->mode = SELECT_FILE;
 
-		KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+		KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
 		ValueList args(Value::NewObject(new VoidPtr(job)));
 		RunOnMainThread(work, args, false);
 	}
@@ -1368,7 +1368,7 @@ namespace ti
 		job->typesDescription = typesDescription;
 		job->mode = SELECT_FOLDER;
 
-		KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+		KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
 		ValueList args(Value::NewObject(new VoidPtr(job)));
 		RunOnMainThread(work, args, false);
 	}
@@ -1388,7 +1388,7 @@ namespace ti
 		job->typesDescription = typesDescription;
 		job->mode = SAVE_FILE;
 
-		KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+		KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
 		ValueList args(Value::NewObject(new VoidPtr(job)));
 		RunOnMainThread(work, args, false);
 	}

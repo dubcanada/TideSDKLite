@@ -39,7 +39,7 @@
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Data/SQLite/SQLiteException.h>
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

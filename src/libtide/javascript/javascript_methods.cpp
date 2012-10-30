@@ -36,7 +36,7 @@
 #include "javascript_methods.h"
 #include <Poco/Timer.h>
 
-namespace kroll
+namespace tide
 {
     // Common javascript functions that are re-implemented
     //  in the global scope so they are available without a window

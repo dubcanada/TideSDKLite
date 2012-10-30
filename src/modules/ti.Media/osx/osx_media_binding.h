@@ -41,7 +41,7 @@
 #include "../media_binding.h"
 #include "osx_sound.h"
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

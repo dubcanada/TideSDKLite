@@ -41,7 +41,7 @@
 #include <string>
 #include <map>
 
-namespace kroll
+namespace tide
 {
     class KROLL_API KKJSMethod : public KMethod
     {

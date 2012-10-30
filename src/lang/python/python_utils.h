@@ -38,7 +38,7 @@
 #include <typeinfo>
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
     class PythonUtils
     {

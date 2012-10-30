@@ -49,7 +49,7 @@ extern "C" {
 using std::string;
 using std::map;
 
-namespace kroll
+namespace tide
 {
     static map<string, string> currentCaseMap;
     zend_class_entry *PHPKObjectClassEntry = NULL;

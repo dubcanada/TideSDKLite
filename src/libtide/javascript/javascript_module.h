@@ -43,7 +43,7 @@
 #include <tide/tide.h>
 
 /* KJS <-> Kroll bindings */
-namespace kroll 
+namespace tide 
 {
     class KKJSObject;
     class KKJSMethod;
@@ -59,7 +59,7 @@ namespace kroll
 #include "javascript_module_instance.h"
 #include "javascript_methods.h"
 
-namespace kroll
+namespace tide
 {
     class KROLL_API JavaScriptModule : public Module, public ModuleProvider
     {

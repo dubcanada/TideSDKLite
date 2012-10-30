@@ -51,13 +51,13 @@
 
 namespace ti 
 {
-    class TITANIUM_MONKEY_API MonkeyModule : public kroll::Module
+    class TITANIUM_MONKEY_API MonkeyModule : public tide::Module
     {
         KROLL_MODULE_CLASS(MonkeyModule)
         
 
     private:
-        kroll::KObjectRef binding;
+        tide::KObjectRef binding;
     };
 
 }

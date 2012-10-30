@@ -37,7 +37,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace kroll
+namespace tide
 {
     RubyEvaluator::RubyEvaluator() :
         StaticBoundObject("Ruby.Evaluator")

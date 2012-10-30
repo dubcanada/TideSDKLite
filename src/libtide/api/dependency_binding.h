@@ -40,7 +40,7 @@
 #include <vector>
 #include <string>
 
-namespace kroll
+namespace tide
 {
     class DependencyBinding : public KAccessorObject
     {

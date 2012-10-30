@@ -41,7 +41,7 @@ extern "C" EXPORT PythonModule* CreateModule(Host *host, const char* path)
     return new PythonModule(host, path);
 }
 
-namespace kroll
+namespace tide
 {
     PythonModule* PythonModule::instance_ = NULL;
 

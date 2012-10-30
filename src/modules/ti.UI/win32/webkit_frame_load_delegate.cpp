@@ -7,7 +7,7 @@
 #include <comutil.h>
 
 using namespace ti;
-using namespace kroll;
+using namespace tide;
 
 Win32WebKitFrameLoadDelegate::Win32WebKitFrameLoadDelegate(Win32UserWindow *window) :
 	window(window),

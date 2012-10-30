@@ -41,7 +41,7 @@ using std::vector;
 using Poco::URI;
 using Poco::StringTokenizer;
 
-namespace kroll
+namespace tide
 {
     static pxProxyFactory* GetProxyFactory()
     {

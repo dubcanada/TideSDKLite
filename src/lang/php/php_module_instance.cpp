@@ -34,7 +34,7 @@
 
 #include "php_module_instance.h"
 
-namespace kroll
+namespace tide
 {
     PHPModuleInstance::PHPModuleInstance(Host* host, std::string path, std::string dir, std::string name) :
         Module(host, dir.c_str(), name.c_str(), "0.1"),

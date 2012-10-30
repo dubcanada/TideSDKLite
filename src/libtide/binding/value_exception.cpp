@@ -35,7 +35,7 @@
 #include "../tide.h"
 #include <cstdarg>
 
-namespace kroll
+namespace tide
 {
     ValueException::ValueException(KValueRef v) : std::exception(), value(v)
     {

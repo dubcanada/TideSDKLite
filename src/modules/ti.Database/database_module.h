@@ -61,12 +61,12 @@ namespace ti
      * Inspector.
      *
      */
-    class TITANIUM_DATABASE_API DatabaseModule : public kroll::Module, public StaticBoundObject
+    class TITANIUM_DATABASE_API DatabaseModule : public tide::Module, public StaticBoundObject
     {
         KROLL_MODULE_CLASS(DatabaseModule)
 
     private:
-        kroll::KObjectRef binding;
+        tide::KObjectRef binding;
         void Open(const ValueList& args, KValueRef result);
         void OpenFile(const ValueList& args, KValueRef result);
     };

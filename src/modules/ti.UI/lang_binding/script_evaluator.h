@@ -65,14 +65,14 @@ namespace ti
 		}
 		virtual HRESULT STDMETHODCALLTYPE matchesMimeType(BSTR mimeType, BOOL *result)
 		{
-			*result = kroll::Script::GetInstance()->CanEvaluate((const char *)_bstr_t(mimeType));
+			*result = tide::Script::GetInstance()->CanEvaluate((const char *)_bstr_t(mimeType));
 			return S_OK;
 		}
 		virtual HRESULT STDMETHODCALLTYPE evaluate(BSTR mimeType, BSTR sourceCode, int* context)
 		{
 			try
 			{
-				kroll::Script::GetInstance()->Evaluate(
+				tide::Script::GetInstance()->Evaluate(
 					(const char *)_bstr_t(mimeType), "<script>",
 					(const char *)_bstr_t(sourceCode),
 					JSContextToKrollContext(context));
@@ -88,13 +88,13 @@ namespace ti
 #elif defined(OS_LINUX)
 		virtual bool matchesMimeType(const gchar *mimeType)
 		{
-			return kroll::Script::GetInstance()->CanEvaluate(mimeType);
+			return tide::Script::GetInstance()->CanEvaluate(mimeType);
 		}
 		virtual void evaluate(const gchar *mimeType, const gchar *sourceCode, void* context)
 		{
 			try
 			{
-				kroll::Script::GetInstance()->Evaluate(mimeType, "<script>",
+				tide::Script::GetInstance()->Evaluate(mimeType, "<script>",
 					sourceCode, JSContextToKrollContext(context));
 			}
 			catch (ValueException& exception)

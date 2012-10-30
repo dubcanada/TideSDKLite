@@ -35,7 +35,7 @@
 #ifndef _KR_ACCESSOR_BOUND_METHOD_H_
 #define _KR_ACCESSOR_BOUND_METHOD_H_
 
-namespace kroll
+namespace tide
 {
     /**
      * The KAccessorMethod allows you to expose getters and setters as property access.

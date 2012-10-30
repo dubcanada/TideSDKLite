@@ -37,7 +37,7 @@
 
 #include "module_provider.h"
 
-namespace kroll
+namespace tide
 {
     class Host;
 
@@ -48,7 +48,7 @@ namespace kroll
      * Example MyModule.h:
      * \code
      * #include <tide/tide.h>
-     * class MyModule : public kroll::Module
+     * class MyModule : public tide::Module
      * {
      *   KROLL_MODULE_CLASS(MyModule)
      * }
@@ -145,7 +145,7 @@ namespace kroll
 }
 
 // MACROS that are used to make it much easier to define and implement a module
-using namespace kroll;
+using namespace tide;
 typedef void* ModuleMethod;
 
 /**
@@ -154,8 +154,8 @@ typedef void* ModuleMethod;
  * \description Defines the default constructor, destructor, library implementations for the module "klass"
  */
 #define KROLL_MODULE(ClassName, Name, Version) \
-ClassName::ClassName(kroll::Host *host, const char* path, const char* name, const char* version) : \
-    kroll::Module(host, path, name, version) \
+ClassName::ClassName(tide::Host *host, const char* path, const char* name, const char* version) : \
+    tide::Module(host, path, name, version) \
 { \
 } \
   \
@@ -163,7 +163,7 @@ ClassName::~ClassName() \
 { \
 } \
   \
-extern "C" EXPORT ClassName* CreateModule(kroll::Host *host, const char* path) \
+extern "C" EXPORT ClassName* CreateModule(tide::Host *host, const char* path) \
 { \
     return new ClassName(host, path, Name, Version); \
 }  \
@@ -175,7 +175,7 @@ extern "C" EXPORT ClassName* CreateModule(kroll::Host *host, const char* path) \
  */
 #define KROLL_MODULE_CLASS(ClassName) \
 public: \
-    ClassName(kroll::Host *host, const char* path, const char* name, const char* version); \
+    ClassName(tide::Host *host, const char* path, const char* name, const char* version); \
     virtual ~ClassName(); \
     void Initialize(); \
     void Stop();

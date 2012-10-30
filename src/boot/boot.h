@@ -53,13 +53,13 @@
 #include <sstream>
 #include <utils.h>
 
-using namespace KrollUtils;
-using KrollUtils::Application;
-using KrollUtils::Dependency;
-using KrollUtils::KComponent;
-using KrollUtils::SharedApplication;
-using KrollUtils::SharedDependency;
-using KrollUtils::SharedComponent;
+using namespace TideUtils;
+using TideUtils::Application;
+using TideUtils::Dependency;
+using TideUtils::KComponent;
+using TideUtils::SharedApplication;
+using TideUtils::SharedDependency;
+using TideUtils::SharedComponent;
 using std::string;
 using std::vector;
 using std::map;

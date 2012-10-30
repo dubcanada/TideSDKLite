@@ -40,7 +40,7 @@
 #include <dshow.h>
 #include "../sound.h"
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

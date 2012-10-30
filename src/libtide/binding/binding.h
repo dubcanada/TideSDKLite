@@ -37,7 +37,7 @@
 
 #include "../tide.h"
 
-namespace kroll
+namespace tide
 {
     class Event;
     class EventListener;

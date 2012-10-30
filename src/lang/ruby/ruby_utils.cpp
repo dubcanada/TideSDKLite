@@ -39,7 +39,7 @@
 #include <algorithm>
 #include <cctype>
 
-namespace kroll
+namespace tide
 {
     VALUE RubyUtils::KObjectClass = Qnil;
     VALUE RubyUtils::KMethodClass = Qnil;

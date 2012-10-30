@@ -36,7 +36,7 @@
 #include <Poco/File.h>
 #include <Poco/TemporaryFile.h>
 
-namespace kroll
+namespace tide
 {
     /*static*/
     SharedPtr<Script> Script::instance = 0;

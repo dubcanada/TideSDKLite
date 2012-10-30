@@ -37,7 +37,7 @@
 
 #include <tide/tide.h>
 
-namespace kroll
+namespace tide
 {
     class KROLL_API ScriptBinding : public StaticBoundObject
     {

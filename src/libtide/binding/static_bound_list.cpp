@@ -37,7 +37,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
     StaticBoundList::StaticBoundList(const char *type) :
         KList(type),

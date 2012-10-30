@@ -35,7 +35,7 @@
 #ifndef _KR_READ_EVENT_H_
 #define _KR_READ_EVENT_H_
 
-namespace kroll
+namespace tide
 {
     class KROLL_API ReadEvent : public Event
     {

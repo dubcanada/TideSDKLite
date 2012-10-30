@@ -35,7 +35,7 @@
 #ifndef _JAVASCRIPT_METHODS_H_
 #define _JAVASCRIPT_METHODS_H_
 
-namespace kroll
+namespace tide
 {
 namespace JavaScriptMethods
 {

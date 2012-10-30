@@ -37,7 +37,7 @@
 
 #include "javascript_module.h"
 
-namespace kroll
+namespace tide
 {
     class KROLL_API KKJSList : public KList
     {

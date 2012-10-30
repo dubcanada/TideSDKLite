@@ -51,7 +51,7 @@
 
 namespace ti 
 {
-    class TITANIUM_API MediaModule : public kroll::Module
+    class TITANIUM_API MediaModule : public tide::Module
     {
         KROLL_MODULE_CLASS(MediaModule)
 

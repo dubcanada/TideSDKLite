@@ -34,7 +34,7 @@
 
 #include "php_module.h"
 
-namespace kroll {
+namespace tide {
 
     KPHPMethod::KPHPMethod(zval* object, const char* methodName) :
         KMethod("PHP.KPHPMethod"),

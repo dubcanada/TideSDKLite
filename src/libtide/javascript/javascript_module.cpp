@@ -37,7 +37,7 @@
 #include "javascript_module.h"
 #include <Poco/Path.h>
 
-namespace kroll
+namespace tide
 {
     JavaScriptModule* JavaScriptModule::instance = NULL;
     void JavaScriptModule::Initialize()

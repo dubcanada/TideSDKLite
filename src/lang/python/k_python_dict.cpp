@@ -34,7 +34,7 @@
 
 #include "k_python_dict.h"
 
-namespace kroll
+namespace tide
 {
     KPythonDict::KPythonDict(PyObject *obj) :
         KObject("Python,KPythonDict"),

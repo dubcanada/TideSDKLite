@@ -37,7 +37,7 @@
 #include <cmath>
 #include <climits>
 
-namespace kroll
+namespace tide
 {
 
     void KList::ResizeTo(unsigned int size)

@@ -34,7 +34,7 @@
 
 #include "javascript_module.h"
 
-namespace kroll
+namespace tide
 {
     KKJSMethod::KKJSMethod(JSContextRef context, JSObjectRef jsobject, JSObjectRef thisObject) :
         KMethod("JavaScript.KKJSMethod"),

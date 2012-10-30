@@ -10,7 +10,7 @@
 #include <tide/tide.h>
 #include <vector>
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

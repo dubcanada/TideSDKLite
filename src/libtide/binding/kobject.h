@@ -40,7 +40,7 @@
 #include <map>
 #include "callback.h"
 
-namespace kroll
+namespace tide
 {
     /**
      * An abstract object.

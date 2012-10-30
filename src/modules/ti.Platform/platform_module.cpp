@@ -7,7 +7,7 @@
 #include "platform_module.h"
 #include "platform_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

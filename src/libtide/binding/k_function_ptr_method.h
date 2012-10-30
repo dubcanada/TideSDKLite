@@ -35,7 +35,7 @@
 #ifndef _KR_FUNCTION_PTR_METHOD_H_
 #define _KR_FUNCTION_PTR_METHOD_H_
 
-namespace kroll
+namespace tide
 {
     typedef KValueRef (*KFunctionPtrCallback) (const ValueList& args);
     class KROLL_API KFunctionPtrMethod : public KMethod

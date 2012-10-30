@@ -50,7 +50,7 @@ extern "C"
 void ***tsrm_ls;
 #endif
 
-namespace kroll
+namespace tide
 {
     static Logger* logger = Logger::Get("PHPModule");
     const static std::string phpSuffix("module.php");

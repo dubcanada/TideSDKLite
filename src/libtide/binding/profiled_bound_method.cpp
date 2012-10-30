@@ -37,7 +37,7 @@
 #include <cstring>
 #include <Poco/Stopwatch.h>
 
-namespace kroll
+namespace tide
 {
     ProfiledBoundMethod::ProfiledBoundMethod(KMethodRef delegate, std::string& type) :
         ProfiledBoundObject(delegate),

@@ -36,7 +36,7 @@
 #define _KR_MODULE_PROVIDER_H_
 #include <string>
 
-namespace kroll
+namespace tide
 {
     class Module;
     class Host;

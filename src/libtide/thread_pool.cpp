@@ -6,7 +6,7 @@
 
 #include "thread_pool.h"
 
-namespace kroll
+namespace tide
 {
     /**
         ThreadPool

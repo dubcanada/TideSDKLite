@@ -37,7 +37,7 @@
 #include <Poco/StringTokenizer.h>
 #include <Poco/Net/IPAddress.h>
 #include <Poco/URI.h>
-namespace kroll
+namespace tide
 {
     class Proxy;
     typedef SharedPtr<Proxy> SharedProxy;

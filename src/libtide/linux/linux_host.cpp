@@ -45,7 +45,7 @@ GCRY_THREAD_OPTION_PTHREAD_IMPL;
 using Poco::ScopedLock;
 using Poco::Mutex;
 
-namespace kroll
+namespace tide
 {
     static pthread_t mainThread = 0;
 

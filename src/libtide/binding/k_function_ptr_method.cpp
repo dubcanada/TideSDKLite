@@ -30,7 +30,7 @@
 
 #include "../tide.h"
 
-namespace kroll
+namespace tide
 {
     KFunctionPtrMethod::KFunctionPtrMethod(KFunctionPtrCallback callback) :
         callback(callback)

@@ -53,8 +53,8 @@ namespace KrollBoot
     inline void ShowError(string msg, bool fatal)
     {
         wstring wideMsg(L"Error: ");
-        wideMsg.append(KrollUtils::UTF8ToWide(msg));
-        wstring wideAppName = KrollUtils::UTF8ToWide(GetApplicationName());
+        wideMsg.append(TideUtils::UTF8ToWide(msg));
+        wstring wideAppName = TideUtils::UTF8ToWide(GetApplicationName());
 
         MessageBoxW(0, wideMsg.c_str(), wideAppName.c_str(), MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
         if (fatal)
@@ -68,7 +68,7 @@ namespace KrollBoot
         if (size > 0)
         {
             widePath[size] = '\0';
-            string path = KrollUtils::WideToUTF8(widePath);
+            string path = TideUtils::WideToUTF8(widePath);
             return FileUtils::Dirname(path);
         }
         else
@@ -93,7 +93,7 @@ namespace KrollBoot
         EnvironmentUtils::Set("KR_ORIG_PATH", currentPath);
 
         // make sure the runtime folder is used before system DLL directories
-        SetDllDirectoryW(KrollUtils::UTF8ToWide(app->runtime->path).c_str());
+        SetDllDirectoryW(TideUtils::UTF8ToWide(app->runtime->path).c_str());
         
         if (!currentPath.empty())
             path = path + ";" + currentPath;
@@ -118,7 +118,7 @@ namespace KrollBoot
             return false;
         }
 
-        wstring widePath(KrollUtils::UTF8ToWide(path));
+        wstring widePath(TideUtils::UTF8ToWide(path));
         HMODULE module = LoadLibraryExW(widePath.c_str(),
             0, LOAD_WITH_ALTERED_SEARCH_PATH);
         if (!module)
@@ -126,7 +126,7 @@ namespace KrollBoot
             string msg("Couldn't load file (");
             msg.append(path);
             msg.append("): ");
-            msg.append(KrollUtils::Win32Utils::QuickFormatMessage(GetLastError()));
+            msg.append(TideUtils::Win32Utils::QuickFormatMessage(GetLastError()));
             ShowError(msg);
         }
 

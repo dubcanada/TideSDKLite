@@ -27,7 +27,7 @@
 
 namespace ti 
 {
-	class TITANIUM_NETWORK_API NetworkModule : public kroll::Module
+	class TITANIUM_NETWORK_API NetworkModule : public tide::Module
 	{
 		KROLL_MODULE_CLASS(NetworkModule)
 

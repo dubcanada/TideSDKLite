@@ -92,7 +92,7 @@ Job::Job(std::string url, int type) :
     type(type),
     index(++Job::total),
     progress(0.0),
-    componentType(KrollUtils::UNKNOWN),
+    componentType(TideUtils::UNKNOWN),
     name("unknown"),
     version("unknown"),
     download(true)
@@ -127,22 +127,22 @@ void Job::ParseFile(std::string url)
     std::string partOne = file.substr(0, end);
     if (partOne == "runtime")
     {
-        this->componentType = KrollUtils::RUNTIME;
+        this->componentType = TideUtils::RUNTIME;
         this->name = "runtime";
     }
     else if (partOne == "sdk")
     {
-        this->componentType = KrollUtils::SDK;
+        this->componentType = TideUtils::SDK;
         this->name = "sdk";
     }
     else if (partOne == "mobilesdk")
     {
-        this->componentType = KrollUtils::MOBILESDK;
+        this->componentType = TideUtils::MOBILESDK;
         this->name = "mobilesdk";
     }
     else if (partOne == "module")
     {
-        this->componentType = KrollUtils::MODULE;
+        this->componentType = TideUtils::MODULE;
         start = end + 1;
         end = file.find("-", start);
         this->name = file.substr(start, end - start);
@@ -176,19 +176,19 @@ void Job::ParseURL(std::string url)
 
     if (this->name == std::string("runtime"))
     {
-        this->componentType = KrollUtils::RUNTIME;
+        this->componentType = TideUtils::RUNTIME;
     }
     else if (this->name == std::string("sdk"))
     {
-        this->componentType = KrollUtils::SDK;
+        this->componentType = TideUtils::SDK;
     }
     else if (this->name == std::string("mobilesdk"))
     {
-        this->componentType = KrollUtils::MOBILESDK;
+        this->componentType = TideUtils::MOBILESDK;
     }
     else
     {
-        this->componentType = KrollUtils::MODULE;
+        this->componentType = TideUtils::MODULE;
     }
 }
 
@@ -266,13 +266,13 @@ void Job::UnzipComponent()
 
     // SDK installation installs to the top-level directory.
     // Other component types neeed to be in a subdirectory.
-    if (this->componentType == KrollUtils::RUNTIME)
+    if (this->componentType == TideUtils::RUNTIME)
     {
         outdir = FileUtils::Join(
             outdir.c_str(), "runtime",
             "linux", this->version.c_str(), NULL);
     }
-    else if (this->componentType == KrollUtils::MODULE)
+    else if (this->componentType == TideUtils::MODULE)
     {
         outdir = FileUtils::Join(
             outdir.c_str(), "modules", "linux",

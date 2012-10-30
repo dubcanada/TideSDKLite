@@ -35,7 +35,7 @@
 #include <Poco/Semaphore.h>
 #include "tide.h"
 
-namespace kroll
+namespace tide
 {
 
     MainThreadJob::MainThreadJob(KMethodRef method, KObjectRef thisObject,

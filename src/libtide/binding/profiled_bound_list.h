@@ -35,7 +35,7 @@
 #ifndef _KR_PROFILED_BOUND_LIST_H_
 #define _KR_PROFILED_BOUND_LIST_H_
 
-namespace kroll
+namespace tide
 {
     /**
      * The ProfiledBoundList is a wrapped KList that does profiling

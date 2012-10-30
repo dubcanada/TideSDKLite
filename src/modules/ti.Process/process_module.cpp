@@ -7,7 +7,7 @@
 #include "process_module.h"
 #include "process_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

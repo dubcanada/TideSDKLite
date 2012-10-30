@@ -35,7 +35,7 @@
 #ifndef Stream_h
 #define Stream_h
 
-namespace kroll {
+namespace tide {
 
 class KROLL_API Stream : public StaticBoundObject {
 public:
@@ -48,6 +48,6 @@ public:
     virtual bool IsReadable() const;
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

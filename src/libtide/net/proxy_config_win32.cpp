@@ -39,7 +39,7 @@ using Poco::StringTokenizer;
 
 #include <libproxy/proxy.h>
 
-namespace kroll
+namespace tide
 {
   static pxProxyFactory* GetProxyFactory()
   {
@@ -80,5 +80,5 @@ namespace ProxyConfig
     }
 
 } // namespace ProxyConfig
-} // namespace kroll
+} // namespace tide
 

@@ -38,7 +38,7 @@
 #include <Poco/Timestamp.h>
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
     class Module;
     typedef std::vector<SharedPtr<Module> > ModuleList;

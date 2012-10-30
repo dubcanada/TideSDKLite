@@ -34,7 +34,7 @@
 
 #include "k_python_list.h"
 
-namespace kroll
+namespace tide
 {
     KPythonList::KPythonList(PyObject *list) :
         KList("Python.KPythonList"),

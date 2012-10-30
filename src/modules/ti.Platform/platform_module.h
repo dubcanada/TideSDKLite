@@ -23,7 +23,7 @@
 
 namespace ti 
 {
-	class TITANIUM_PLATFORM_API PlatformModule : public kroll::Module
+	class TITANIUM_PLATFORM_API PlatformModule : public tide::Module
 	{
 	public:
 		KROLL_MODULE_CLASS(PlatformModule)

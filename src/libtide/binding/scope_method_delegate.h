@@ -35,7 +35,7 @@
 #ifndef _KR_SCOPE_METHOD_DELEGATE_H_
 #define _KR_BOUND_METHOD_DELEGATE_H_
 
-namespace kroll {
+namespace tide {
 
     enum MethodDelegateType
     {
