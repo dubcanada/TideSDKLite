@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/utils/utils.h>
+#include <tide/utils/utils.h>
 using namespace TideUtils;
 using TideUtils::Application;
 using TideUtils::SharedApplication;

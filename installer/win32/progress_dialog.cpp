@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/utils/utils.h>
+#include <tide/utils/utils.h>
 #include "progress_dialog.h"
 
 using std::string;
