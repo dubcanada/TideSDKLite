@@ -35,7 +35,7 @@
 #ifndef _TI_FILE_H_
 #define _TI_FILE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "file_stream.h"
 
 #ifdef OS_WIN32

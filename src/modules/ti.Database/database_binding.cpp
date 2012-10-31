@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "database_binding.h"
 #include "resultset_binding.h"
 #include "webkit_databases.h"

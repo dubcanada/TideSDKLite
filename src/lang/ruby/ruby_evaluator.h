@@ -35,7 +35,7 @@
 #ifndef _RUBY_EVALUATOR_H_
 #define _RUBY_EVALUATOR_H_
 
-namespace kroll
+namespace tide
 {
     class RubyEvaluator : public StaticBoundObject
     {

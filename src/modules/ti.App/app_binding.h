@@ -7,7 +7,7 @@
 #ifndef _APP_BINDING_H_
 #define _APP_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 
 namespace ti

@@ -36,7 +36,7 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "http_server_binding.h"
 #include "http_server_request_factory.h"
 #include <cstring>

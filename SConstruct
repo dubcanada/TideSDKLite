@@ -40,14 +40,14 @@ build = BuildConfig(
     GLOBAL_NS_VARNAME = 'Titanium',
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
-    THIRD_PARTY_DIR = path.join(path.abspath('tide'), 'thirdparty'),
+    THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
     DISTRIBUTION_URL = 'api.appcelerator.net',
     CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report'
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_tide_source_dir(path.abspath('src/tide'))
+build.set_tide_source_dir(path.abspath('src'))
 
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
@@ -103,8 +103,8 @@ SConscript('installer/SConscript')
 # against libtide, so anything that should be
 # linked against libtide should be above this point.
 
-SConscript('src/tide/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
-SConscript('src/tide/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
+SConscript('src/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
+SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
 
 # Now that libtide is built add it as a default for
 # all the following build steps.

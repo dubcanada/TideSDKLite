@@ -34,7 +34,7 @@
 
 #include "python_module_instance.h"
 
-namespace kroll
+namespace tide
 {
     // TODO: Implement real method metadata and lifecycle events for
     // scripting language-based modules

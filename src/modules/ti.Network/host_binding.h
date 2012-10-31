@@ -7,7 +7,7 @@
 #ifndef _HOST_BINDING_H_
 #define _HOST_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "Poco/Net/DNS.h"
 #include "Poco/Net/HostEntry.h"
 #include "Poco/Net/NetException.h"

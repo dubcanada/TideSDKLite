@@ -5,7 +5,7 @@
  */
 #include <Cocoa/Cocoa.h>
 #include <CoreFoundation/CoreFoundation.h>
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Environment.h>
 #include <Foundation/Foundation.h>
 #include "platform_binding.h"

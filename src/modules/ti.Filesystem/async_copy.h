@@ -35,7 +35,7 @@
 #ifndef _TI_ASYNC_COPY_H
 #define _TI_ASYNC_COPY_H
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #ifdef OS_WIN32
 #include <windows.h>
@@ -57,7 +57,7 @@ namespace ti
     class AsyncCopy : public StaticBoundObject
     {
     public:
-        AsyncCopy(FilesystemBinding* parent,kroll::Host *host,std::vector<std::string> files, std::string destination, KMethodRef callback);
+        AsyncCopy(FilesystemBinding* parent,tide::Host *host,std::vector<std::string> files, std::string destination, KMethodRef callback);
         virtual ~AsyncCopy();
 
     private:

@@ -35,12 +35,12 @@
 #ifndef _MEDIA_WIN32_SOUND_H_
 #define _MEDIA_WIN32_SOUND_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 #include <dshow.h>
 #include "../sound.h"
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

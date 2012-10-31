@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
-#include <kroll/thread_manager.h>
+#include <tide/tide.h>
+#include <tide/thread_manager.h>
 #include "filesystem_binding.h"
 #include "file.h"
 #include "file_stream.h"

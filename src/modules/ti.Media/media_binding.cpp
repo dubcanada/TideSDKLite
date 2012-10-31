@@ -33,7 +33,7 @@
 **/
 
 #include "media_binding.h"
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <cstring>
 #include <Poco/URI.h>
 

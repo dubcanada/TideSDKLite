@@ -35,7 +35,7 @@
 #ifndef _HTTP_COOKIE_H_
 #define _HTTP_COOKIE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Net/HTTPCookie.h>
 
 namespace ti

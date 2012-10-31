@@ -40,7 +40,7 @@
 using std::string;
 using std::map;
 
-namespace kroll
+namespace tide
 {
     PHPEvaluator::PHPEvaluator()
         : StaticBoundObject("PHP.PHPEvaluator")

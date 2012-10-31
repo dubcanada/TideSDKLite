@@ -36,7 +36,7 @@
 #define _PYTHON_MODULE_H
 
 #include <Python.h>
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -64,7 +64,7 @@ Py_XDECREF(_pvalue); \
 Py_XDECREF(_trace); \
 throw _ex;
 
-namespace kroll
+namespace tide
 {
     class KROLL_PYTHON_API PythonModule : public Module, public ModuleProvider
     {

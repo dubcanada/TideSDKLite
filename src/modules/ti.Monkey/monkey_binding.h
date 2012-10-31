@@ -34,7 +34,7 @@
 
 #ifndef _MONKEY_BINDING_H_
 #define _MONKEY_BINDING_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 
 namespace ti
@@ -50,7 +50,7 @@ namespace ti
         static bool Matches(const char* pattern, const char* target);
     };
 
-    class MonkeyBinding : public kroll::StaticBoundObject
+    class MonkeyBinding : public tide::StaticBoundObject
     {
         public:
         MonkeyBinding(Host*, KObjectRef);

@@ -35,7 +35,7 @@
 #ifndef _DATABASE_RESULTSET_BINDING_H_
 #define _DATABASE_RESULTSET_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Data/RecordSet.h>
 
 namespace ti

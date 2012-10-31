@@ -7,7 +7,7 @@
 #ifndef _PROCESS_H_
 #define _PROCESS_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <sstream>
 #include "pipe.h"
 #include "native_pipe.h"

@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 #include <Poco/Environment.h>
 #include <Poco/Timezone.h>
 #include <Poco/NumberFormatter.h>

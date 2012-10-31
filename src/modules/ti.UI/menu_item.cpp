@@ -4,7 +4,7 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "ui_module.h"
 namespace ti
 {

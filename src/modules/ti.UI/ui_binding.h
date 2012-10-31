@@ -7,7 +7,7 @@
 #ifndef _UI_BINDING_H_
 #define _UI_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "menu_item.h"
 #include "notification.h"
 

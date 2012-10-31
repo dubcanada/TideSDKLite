@@ -43,7 +43,7 @@
 #include "osx/osx_media_binding.h"
 #endif
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

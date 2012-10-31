@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
-#include <kroll/thread_manager.h>
+#include <tide/tide.h>
+#include <tide/thread_manager.h>
 #include "irc_client_binding.h"
 #include <cstring>
 

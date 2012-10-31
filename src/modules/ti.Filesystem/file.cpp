@@ -460,7 +460,7 @@ namespace ti
                 {
                     std::string entry = files.at(i);
                     // store it as the fullpath
-                    std::string filename = kroll::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
+                    std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                     ti::File* file = new ti::File(filename);
                     KValueRef value = Value::NewObject((KObjectRef) file);
                     fileList->Append(value);
@@ -781,7 +781,7 @@ namespace ti
             {
                 throw ValueException::FromString("destination must be a directory");
             }
-            kroll::FileUtils::Unzip(from_s,to_s);
+            tide::FileUtils::Unzip(from_s,to_s);
             result->SetBool(true);
         }
         catch (Poco::FileNotFoundException&)

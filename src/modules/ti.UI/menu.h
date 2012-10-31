@@ -5,7 +5,7 @@
  */
 #ifndef _MENU_H_
 #define _MENU_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 namespace ti
 {
 	class Menu : public KAccessorObject

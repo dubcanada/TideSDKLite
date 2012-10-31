@@ -35,7 +35,7 @@
 #include "php_module.h"
 #include <typeinfo>
 
-namespace kroll
+namespace tide
 {
     namespace PHPUtils
     {

@@ -35,7 +35,7 @@
 #ifndef _HTTP_SERVER_BINDING_H_
 #define _HTTP_SERVER_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Net/HTTPServer.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>

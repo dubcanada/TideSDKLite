@@ -35,7 +35,7 @@
 #ifndef _K_RUBY_HASH_H_
 #define _K_RUBY_HASH_H_
 
-namespace kroll {
+namespace tide {
 
 class KRubyHash : public KObject {
 public:

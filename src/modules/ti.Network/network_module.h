@@ -7,7 +7,7 @@
 #ifndef TI_NETWORK_MODULE_H_
 #define TI_NETWORK_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <curl/curl.h>
 #include "network_binding.h"
 #include "analytics_binding.h"
@@ -27,7 +27,7 @@
 
 namespace ti 
 {
-	class TITANIUM_NETWORK_API NetworkModule : public kroll::Module
+	class TITANIUM_NETWORK_API NetworkModule : public tide::Module
 	{
 		KROLL_MODULE_CLASS(NetworkModule)
 

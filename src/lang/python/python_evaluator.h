@@ -37,7 +37,7 @@
 
 #include <Poco/StringTokenizer.h>
 
-namespace kroll
+namespace tide
 {
     class PythonEvaluator : public StaticBoundObject
     {

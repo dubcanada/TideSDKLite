@@ -3,11 +3,11 @@
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "process_module.h"
 #include "process_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

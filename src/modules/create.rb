@@ -40,7 +40,7 @@ bh.puts <<-END
 #ifndef _#{header_define}_BINDING_H_
 #define _#{header_define}_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace ti
 {
@@ -67,7 +67,7 @@ bc.puts <<-END
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */	
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "#{name}_binding.h"
 
 namespace ti
@@ -93,7 +93,7 @@ mh.puts <<-END
 #ifndef TI_#{header_define}_MODULE_H_
 #define TI_#{header_define}_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
@@ -109,12 +109,12 @@ mh.puts <<-END
 
 namespace ti 
 {
-	class TITANIUM_#{header_define}_API #{module_name}Module : public kroll::Module
+	class TITANIUM_#{header_define}_API #{module_name}Module : public tide::Module
 	{
 		KROLL_MODULE_CLASS(#{module_name}Module)
 		
 	private:
-		kroll::KObjectRef binding;
+		tide::KObjectRef binding;
 	};
 
 }
@@ -129,11 +129,11 @@ mc.puts <<-END
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "#{name}_module.h"
 #include "#{name}_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

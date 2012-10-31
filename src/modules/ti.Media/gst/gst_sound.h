@@ -35,10 +35,10 @@
 #ifndef _TI_MEDIA_GST_SOUND_H_
 #define _TI_MEDIA_GST_SOUND_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

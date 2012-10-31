@@ -25,7 +25,7 @@ namespace ti
 	}
 	void TCPServerSocketConnector::onAccept(Poco::Net::ReadableNotification *n)
 	{
-		kroll::Logger *logger = kroll::Logger::Get("Network.TCPServerSocketConnector");
+		tide::Logger *logger = tide::Logger::Get("Network.TCPServerSocketConnector");
 
 		n->release();
 		Poco::Net::StreamSocket sock = socket.acceptConnection();

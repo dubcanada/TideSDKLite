@@ -32,11 +32,11 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "monkey_module.h"
 #include "monkey_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 namespace ti

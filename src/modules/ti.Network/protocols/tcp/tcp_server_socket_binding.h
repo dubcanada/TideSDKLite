@@ -7,7 +7,7 @@
 #ifndef _TCP_SERVER_SOCKET_BINDING_H_
 #define _TCP_SERVER_SOCKET_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/Net/StreamSocket.h>
 #include <Poco/Net/SocketReactor.h>

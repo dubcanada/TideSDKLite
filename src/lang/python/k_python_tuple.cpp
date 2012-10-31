@@ -34,7 +34,7 @@
 
 #include "k_python_list.h"
 
-namespace kroll
+namespace tide
 {
     KPythonTuple::KPythonTuple(PyObject *tuple) :
         KList("Python.KPythonTuple"),

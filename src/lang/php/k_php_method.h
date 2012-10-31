@@ -35,7 +35,7 @@
 #ifndef _K_PHP_METHOD_H_
 #define _K_PHP_METHOD_H_
 
-namespace kroll
+namespace tide
 {
     class KPHPMethod : public KMethod
     {

@@ -41,7 +41,7 @@ extern "C" EXPORT RubyModule* CreateModule(Host *host, const char* path)
     return new RubyModule(host, path);
 }
 
-namespace kroll
+namespace tide
 {
     RubyModule* RubyModule::instance_ = NULL;
 

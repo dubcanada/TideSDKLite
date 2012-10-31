@@ -35,7 +35,7 @@
 #ifndef _MEDIA_BINDING_H_
 #define _MEDIA_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <map>
 #include <vector>
 #include <string>

@@ -52,7 +52,7 @@ namespace ti
 			std::string fn = p.getFileName();
 			found = fn.find(".app");
 			fn = fn.substr(0,found);
-			fn = kroll::FileUtils::Join(cmd.c_str(),"Contents","MacOS",fn.c_str(),NULL);
+			fn = tide::FileUtils::Join(cmd.c_str(),"Contents","MacOS",fn.c_str(),NULL);
 			if (FileUtils::IsFile(fn))
 			{
 				cmd = fn;

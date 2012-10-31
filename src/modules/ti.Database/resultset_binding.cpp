@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "resultset_binding.h"
 #include <Poco/Data/MetaColumn.h>
 #include <Poco/DynamicAny.h>

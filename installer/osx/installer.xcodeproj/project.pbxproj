@@ -39,7 +39,7 @@
     5B40F3970F98FAF300CAEFD3 /* dialog-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog-warning.png"; sourceTree = "<group>"; };
     8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
     8D1107320486CEB800E47090 /* Installer App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Installer App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-    B4B0605E0F77431A00B2AB8B /* file_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = file_utils.cpp; path = ../../../kroll/api/file_utils.cpp; sourceTree = SOURCE_ROOT; };
+    B4B0605E0F77431A00B2AB8B /* file_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = file_utils.cpp; path = ../../../tide/api/file_utils.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +301,7 @@
         );
         OTHER_LDFLAGS = "";
         SDKROOT = macosx;
-        USER_HEADER_SEARCH_PATHS = "../../../kroll/api ../../../kroll/";
+        USER_HEADER_SEARCH_PATHS = "../../../tide/api ../../../tide/";
       };
       name = Debug;
     };
@@ -332,7 +332,7 @@
         );
         OTHER_LDFLAGS = "";
         SDKROOT = macosx;
-        USER_HEADER_SEARCH_PATHS = "../../../kroll/api ../../../kroll/";
+        USER_HEADER_SEARCH_PATHS = "../../../tide/api ../../../tide/";
       };
       name = Release;
     };

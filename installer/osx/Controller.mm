@@ -197,13 +197,13 @@ static int totalJobs = 0;
 {
     NSString* name = @"unknown";
     NSString* version = @"unknown";
-    KComponentType type = KrollUtils::UNKNOWN;
+    KComponentType type = TideUtils::UNKNOWN;
 
     NSString* path = [job path];
     NSURL* url = [job url];
     if ([job isUpdate])
     {
-        type = KrollUtils::APP_UPDATE;
+        type = TideUtils::APP_UPDATE;
         name = @"update";
         version = [NSString stringWithUTF8String:app->version.c_str()];
     }
@@ -221,25 +221,25 @@ static int totalJobs = 0;
         if ([typeString isEqualToString:@"module"] && (int) [parts count] >= 3)
         {
             // part 0 should be "module"
-            type = KrollUtils::MODULE;
+            type = TideUtils::MODULE;
             name = [parts objectAtIndex:1];
             version = [parts objectAtIndex:2];
         }
         else if ([typeString isEqualToString:@"runtime"])
         {
-            type = KrollUtils::RUNTIME;
+            type = TideUtils::RUNTIME;
             name = [parts objectAtIndex:0];
             version = [parts objectAtIndex:1];
         }
         else if ([typeString isEqualToString:@"sdk"])
         {
-            type = KrollUtils::SDK;;
+            type = TideUtils::SDK;;
             name = [parts objectAtIndex:0];
             version = [parts objectAtIndex:1];
         }
         else if ([typeString isEqualToString:@"mobilesdk"])
         {
-            type = KrollUtils::MOBILESDK;;
+            type = TideUtils::MOBILESDK;;
             name = [parts objectAtIndex:0];
             version = [parts objectAtIndex:1];
         }
@@ -259,19 +259,19 @@ static int totalJobs = 0;
         {
             if ([thisPart isEqualToString:RUNTIME_UUID_FRAGMENT])
             {
-                type = KrollUtils::RUNTIME;
+                type = TideUtils::RUNTIME;
             }
             else if ([thisPart isEqualToString:MODULE_UUID_FRAGMENT])
             {
-                type = KrollUtils::MODULE;
+                type = TideUtils::MODULE;
             }
             else if ([thisPart isEqualToString:SDK_UUID_FRAGMENT])
             {
-                type = KrollUtils::SDK;
+                type = TideUtils::SDK;
             }
             else if ([thisPart isEqualToString:MOBILESDK_UUID_FRAGMENT])
             {
-                type = KrollUtils::MOBILESDK;
+                type = TideUtils::MOBILESDK;
             }
             else if ([thisPart hasPrefix:@"name="])
             {
@@ -285,19 +285,19 @@ static int totalJobs = 0;
     }
 
     NSString* destDir;
-    if (type == KrollUtils::MODULE) 
+    if (type == TideUtils::MODULE) 
     {
         destDir = [NSString stringWithFormat:@"%@/modules/osx/%@/%@", installDirectory, name, version];
     }
-    else if (type == KrollUtils::RUNTIME) 
+    else if (type == TideUtils::RUNTIME) 
     {
         destDir = [NSString stringWithFormat:@"%@/runtime/osx/%@", installDirectory, version];
     }
-    else if (type == KrollUtils::SDK || type == KrollUtils::MOBILESDK)
+    else if (type == TideUtils::SDK || type == TideUtils::MOBILESDK)
     {
         destDir = installDirectory;
     }
-    else if (type == KrollUtils::APP_UPDATE)
+    else if (type == TideUtils::APP_UPDATE)
     {
         destDir = [NSString stringWithUTF8String:app->path.c_str()];
     }

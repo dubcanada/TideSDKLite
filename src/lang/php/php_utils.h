@@ -37,7 +37,7 @@
 
 #include "php_module.h"
 
-namespace kroll
+namespace tide
 {
     typedef struct
     {

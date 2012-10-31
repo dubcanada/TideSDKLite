@@ -35,7 +35,7 @@
 #ifndef _DATABASE_BINDING_H_
 #define _DATABASE_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "webkit_databases.h"
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>

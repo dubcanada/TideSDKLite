@@ -7,7 +7,7 @@
 #ifndef _WORKER_BINDING_H_
 #define _WORKER_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 namespace ti
 {

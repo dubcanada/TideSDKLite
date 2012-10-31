@@ -34,7 +34,7 @@
 
 #include "k_python_object.h"
 
-namespace kroll
+namespace tide
 {
     KPythonObject::KPythonObject(PyObject *obj) :
         KObject("Python.KPythonObject"),

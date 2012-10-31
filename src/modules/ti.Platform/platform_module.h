@@ -7,7 +7,7 @@
 #ifndef TI_PLATFORM_MODULE_H_
 #define TI_PLATFORM_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
@@ -23,7 +23,7 @@
 
 namespace ti 
 {
-	class TITANIUM_PLATFORM_API PlatformModule : public kroll::Module
+	class TITANIUM_PLATFORM_API PlatformModule : public tide::Module
 	{
 	public:
 		KROLL_MODULE_CLASS(PlatformModule)

@@ -34,7 +34,7 @@
 
 #include "../../network_module.h"
 #include "http_client_binding.h"
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 #include "../../common.h"
 #include <sstream>
 

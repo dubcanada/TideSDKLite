@@ -35,7 +35,7 @@
 #ifndef _PHP_EVALUATOR_H_
 #define _PHP_EVALUATOR_H_
 
-namespace kroll
+namespace tide
 {
 	class PHPEvaluator : public StaticBoundObject
 	{

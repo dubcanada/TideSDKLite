@@ -35,7 +35,7 @@
 #ifndef _K_PHP_OBJECT_H_
 #define _K_PHP_OBJECT_H_
 
-namespace kroll
+namespace tide
 {
     class KPHPObject : public KObject
     {

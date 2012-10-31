@@ -35,7 +35,7 @@
 #ifndef TI_MONKEY_MODULE_H_
 #define TI_MONKEY_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
@@ -51,13 +51,13 @@
 
 namespace ti 
 {
-    class TITANIUM_MONKEY_API MonkeyModule : public kroll::Module
+    class TITANIUM_MONKEY_API MonkeyModule : public tide::Module
     {
         KROLL_MODULE_CLASS(MonkeyModule)
         
 
     private:
-        kroll::KObjectRef binding;
+        tide::KObjectRef binding;
     };
 
 }

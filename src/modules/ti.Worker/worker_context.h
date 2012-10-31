@@ -7,7 +7,7 @@
 #ifndef _WORKER_CONTEXT_H_
 #define _WORKER_CONTEXT_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Event.h>

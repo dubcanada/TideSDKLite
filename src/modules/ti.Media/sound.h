@@ -34,9 +34,9 @@
 
 #ifndef _MEDIA_SOUND_H_
 #define _MEDIA_SOUND_H_
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti
 {

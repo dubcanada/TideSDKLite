@@ -35,7 +35,7 @@
 #ifndef _CODEC_BINDING_H_
 #define _CODEC_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #include <Poco/Zip/Zip.h>
 #include <Poco/Zip/Compress.h>

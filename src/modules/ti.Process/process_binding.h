@@ -6,7 +6,7 @@
 #ifndef _PROCESS_BINDING_H_
 #define _PROCESS_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <vector>
 #include "process.h"
 #include "pipe.h"

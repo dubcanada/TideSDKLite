@@ -7,13 +7,13 @@
 #ifndef PROPERTIES_BINDING_H_
 #define PROPERTIES_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/AutoPtr.h>
 #include "TitaniumPropertyFileConfiguration.h"
 
 namespace ti
 {
-	class PropertiesBinding : public kroll::StaticBoundObject
+	class PropertiesBinding : public tide::StaticBoundObject
 	{
 	public:
 		typedef enum { Bool, Double, Int, String, List } Type;

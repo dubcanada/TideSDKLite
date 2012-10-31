@@ -7,7 +7,7 @@
 #ifndef _IPADDRESS_BINDING_H_
 #define _IPADDRESS_BINDING_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include <Poco/Net/IPAddress.h>
 #include "Poco/Net/NetException.h"
 

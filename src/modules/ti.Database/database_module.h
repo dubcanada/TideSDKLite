@@ -35,7 +35,7 @@
 #ifndef TI_DATABASE_MODULE_H_
 #define TI_DATABASE_MODULE_H_
 
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
@@ -61,12 +61,12 @@ namespace ti
      * Inspector.
      *
      */
-    class TITANIUM_DATABASE_API DatabaseModule : public kroll::Module, public StaticBoundObject
+    class TITANIUM_DATABASE_API DatabaseModule : public tide::Module, public StaticBoundObject
     {
         KROLL_MODULE_CLASS(DatabaseModule)
 
     private:
-        kroll::KObjectRef binding;
+        tide::KObjectRef binding;
         void Open(const ValueList& args, KValueRef result);
         void OpenFile(const ValueList& args, KValueRef result);
     };

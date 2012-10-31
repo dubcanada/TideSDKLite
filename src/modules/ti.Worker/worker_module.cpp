@@ -3,11 +3,11 @@
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#include <kroll/kroll.h>
+#include <tide/tide.h>
 #include "worker_module.h"
 #include "worker_binding.h"
 
-using namespace kroll;
+using namespace tide;
 using namespace ti;
 
 KROLL_MODULE(WorkerModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));

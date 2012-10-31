@@ -32,17 +32,17 @@
 * limitations under the License.
 **/
 
-#include <kroll/utils/utils.h>
+#include <tide/utils/utils.h>
 #include <windows.h>
 #include <Wininet.h>
 #include <cmath>
 #include <sstream>
 #include <string>
 
-using namespace KrollUtils;
-using KrollUtils::Application;
-using KrollUtils::SharedApplication;
-using KrollUtils::KComponentType;
+using namespace TideUtils;
+using TideUtils::Application;
+using TideUtils::SharedApplication;
+using TideUtils::KComponentType;
 using std::wstring;
 using std::string;
 

@@ -92,7 +92,7 @@ class PackagingEnvironment(object):
         # relative to this file's location.
         build_subpath = p.join('build', self.target_os)
         self.components_dir = None
-        if (p.exists(p.join(script_dir, '..', 'src', 'tide')) and
+        if (p.exists(p.join(script_dir, '..', 'src')) and
             p.exists(p.join(script_dir, '..', 'build', self.target_os, 'runtime')) and
             p.exists(p.join(script_dir, '..', 'build', self.target_os, 'sdk'))):
             self.components_dir = p.join(script_dir, '..', 'build', self.target_os)
