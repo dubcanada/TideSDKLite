@@ -117,7 +117,7 @@ namespace KrollBoot
             return __LINE__;
 
         // now we need to load the host and get 'er booted
-        string tihost = FileUtils::Join(runtimePath, "libtihost.so", 0);
+        string tihost = FileUtils::Join(runtimePath, "libtide.so", 0);
         if (!FileUtils::IsFile(tihost))
         {
             string msg = string("Couldn't find required file:") + tihost;

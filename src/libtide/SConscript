@@ -42,9 +42,7 @@ Import('build')
 libtide_sources = []
 libtide_env = build.env.Clone()
 
-# libtide is called tihost for now, until we can gaurantee
-# that application updates also update the kboot.exe DLL.
-libtide_name = 'tihost'
+libtide_name = 'tide'
 
 sources = libtide_sources + \
     Glob('*.cpp') + \

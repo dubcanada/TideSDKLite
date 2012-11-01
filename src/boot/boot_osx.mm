@@ -134,7 +134,7 @@ namespace KrollBoot
         if (!runtimePath)
             return __LINE__;
 
-        std::string tihost = FileUtils::Join(runtimePath, "libtihost.dylib", 0);
+        std::string tihost = FileUtils::Join(runtimePath, "libtide.dylib", 0);
         if (!FileUtils::IsFile(tihost))
         {
             string msg = string("Couldn't find required file:") + tihost;

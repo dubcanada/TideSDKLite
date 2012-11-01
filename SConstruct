@@ -108,7 +108,7 @@ SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','lib
 
 # Now that libtide is built add it as a default for
 # all the following build steps.
-build.env.Append(LIBS=['tihost'])
+build.env.Append(LIBS=['tide'])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
 
 SConscript('src/lang/SConscript')

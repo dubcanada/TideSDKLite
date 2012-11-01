@@ -137,7 +137,7 @@ namespace KrollBoot
     int StartHost()
     {
         string runtimePath(EnvironmentUtils::Get("KR_RUNTIME"));
-        string dll(FileUtils::Join(runtimePath.c_str(), "tihost.dll", 0));
+        string dll(FileUtils::Join(runtimePath.c_str(), "tide.dll", 0));
         HMODULE tihost = SafeLoadRuntimeDLL(dll);
         if (!tihost)
             return __LINE__;
