@@ -48,8 +48,8 @@ namespace BootUtils
             if (EnvironmentUtils::Has("KR_SEARCH_PATH"))
                 componentSearchPaths.push_back(EnvironmentUtils::Get("KR_SEARCH_PATH"));
 
-            // Kroll runtime and modules will located by searching the following paths in order:
-            // 1. ~/.PRODUCT_NAME (eg. ~/.titanium)
+            // runtime and modules will located by searching the following paths in order:
+            // 1. ~/.PRODUCT_NAME (eg. ~/.tidesdk)
             // 2. /opt/PRODUCT_NAME (default runtime base path for system-wide installation)
             // 3. /usr/local/lib/PRODUCT_NAME
             // 4. /usr/lib/PRODUCT_NAME

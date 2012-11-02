@@ -41,7 +41,7 @@ namespace tide
         KEventObject(PRODUCT_NAME)
     {
         // @tiapi(method=True,type=String,name=getVersion,since=0.8)
-        // @tiapi Return the Titanium runtime version.
+        // @tiapi Return the TideSDK runtime version.
         // @tiresult[String] The runtime version.
         this->SetMethod("getVersion", &GlobalObject::GetVersion);
 
