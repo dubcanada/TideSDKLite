@@ -138,14 +138,14 @@ namespace KrollBoot
     {
         string runtimePath(EnvironmentUtils::Get("KR_RUNTIME"));
         string dll(FileUtils::Join(runtimePath.c_str(), "tide.dll", 0));
-        HMODULE tihost = SafeLoadRuntimeDLL(dll);
-        if (!tihost)
+        HMODULE tide = SafeLoadRuntimeDLL(dll);
+        if (!tide)
             return __LINE__;
 
-        Executor *executor = (Executor*) GetProcAddress(tihost, "Execute");
+        Executor *executor = (Executor*) GetProcAddress(tide, "Execute");
         if (!executor)
         {
-            ShowError(string("Invalid entry point 'Execute' in tihost.dll"));
+            ShowError(string("Invalid entry point 'Execute' in tide.dll"));
             return __LINE__;
         }
 
