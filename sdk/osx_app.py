@@ -47,9 +47,9 @@ class OSXApp(App):
 
         App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
 
-        self.env.log(u'Copying kboot to %s' % self.contents)
+        self.env.log(u'Copying tiboot to %s' % self.contents)
         self.executable_path = p.join(self.contents, 'MacOS', self.name)
-        effess.copy(p.join(self.sdk_dir, 'kboot'), self.executable_path)
+        effess.copy(p.join(self.sdk_dir, 'tiboot'), self.executable_path)
 
         self.env.log(u'Copying Mac resources to %s' % self.contents)
         # Copy Info.plist to Contents

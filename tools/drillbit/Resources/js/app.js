@@ -30,9 +30,9 @@ Ti.AppCreator = {
     var lproj = Ti.Filesystem.getFile(resources, 'English.lproj');
     lproj.createDirectory(true);
 
-    var fromMacos = Ti.Filesystem.getFile(assetsDir, 'kboot');
+    var fromMacos = Ti.Filesystem.getFile(assetsDir, 'tiboot');
     fromMacos.copy(macos);
-    var boot = Ti.Filesystem.getFile(macos, 'kboot');
+    var boot = Ti.Filesystem.getFile(macos, 'tiboot');
     boot.rename(name);
     boot.setExecutable(true);
 
@@ -94,9 +94,9 @@ Ti.AppCreator = {
     var resources = Ti.Filesystem.getFile(appDir, 'Resources');
     resources.createDirectory(true);
 
-    var kboot = Ti.Filesystem.getFile(assetsDir, 'kboot');
+    var tiboot = Ti.Filesystem.getFile(assetsDir, 'tiboot');
     var appExecutable = Ti.Filesystem.getFile(appDir, name);
-    kboot.copy(appExecutable);
+    tiboot.copy(appExecutable);
 
     // set our marker file
     var marker = Ti.Filesystem.getFile(appDir, '.installed');
@@ -119,9 +119,9 @@ Ti.AppCreator = {
     var resources = Ti.Filesystem.getFile(appDir, 'Resources');
     resources.createDirectory(true);
 
-    var kboot = Ti.Filesystem.getFile(assetsDir, 'kboot.exe');
+    var tiboot = Ti.Filesystem.getFile(assetsDir, 'tiboot.exe');
     var appExecutable = Ti.Filesystem.getFile(appDir, name + '.exe');
-    kboot.copy(appExecutable);
+    tiboot.copy(appExecutable);
 
     // set our marker file
     var marker = Ti.Filesystem.getFile(appDir, '.installed');

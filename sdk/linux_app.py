@@ -39,9 +39,9 @@ class LinuxApp(App):
         App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
 
         contents = self.get_contents_dir()
-        self.env.log(u'Copying kboot to %s' % contents)
+        self.env.log(u'Copying tiboot to %s' % contents)
         self.executable_path = p.join(self.contents, self.name)
-        effess.copy(p.join(self.sdk_dir, 'kboot'), self.executable_path)
+        effess.copy(p.join(self.sdk_dir, 'tiboot'), self.executable_path)
 
     def package(self, package_dir, bundle=False):
         longname = self.name + "-" + self.version
