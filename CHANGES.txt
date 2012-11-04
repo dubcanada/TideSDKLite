@@ -1,0 +1,16 @@
+Changelog
+---------
+
+x.y (release unknown - yyyy-mm-dd)
+~~~~~~~~~~~~~~~~~~~~~
+
+ - No changes yet.
+
+1.3.0-beta (released yyyy-mm-dd)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - Project renamed to TideSDK
+ - window.Titanium renamed to window.Ti
+ - Titanium.Include() method removed
+ - Titanium.Network.online removed (was deprecated in 1.2.0-RC4)
+
