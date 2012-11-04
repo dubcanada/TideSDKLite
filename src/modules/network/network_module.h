@@ -42,12 +42,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define TITANIUM_NETWORK_API EXPORT
+#define TIDESDK_NETWORK_API EXPORT
 #elif defined(OS_WIN32)
-#ifdef TITANIUM_NETWORK_API_EXPORT
-#define TITANIUM_NETWORK_API __declspec(dllexport)
+#ifdef TIDESDK_NETWORK_API_EXPORT
+#define TIDESDK_NETWORK_API __declspec(dllexport)
 #else
-#define TITANIUM_NETWORK_API __declspec(dllimport)
+#define TIDESDK_NETWORK_API __declspec(dllimport)
 #endif
 #define EXPORT __declspec(dllexport)
 #endif
@@ -55,7 +55,7 @@
 
 namespace ti 
 {
-    class TITANIUM_NETWORK_API NetworkModule : public tide::Module
+    class TIDESDK_NETWORK_API NetworkModule : public tide::Module
     {
         KROLL_MODULE_CLASS(NetworkModule)
 

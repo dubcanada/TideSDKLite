@@ -13,7 +13,7 @@
 
 namespace ti
 {
-class TITANIUM_APP_API AppConfig
+class TIDESDK_APP_API AppConfig
 {
 public:
 	~AppConfig() {}

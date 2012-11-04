@@ -3,7 +3,7 @@ from os import path
 import os
 Import('build env module')
 
-env.Append(CPPDEFINES = ('TITANIUM_APP_API_EXPORT', 1))
+env.Append(CPPDEFINES = ('TIDESDK_APP_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 if build.is_osx():

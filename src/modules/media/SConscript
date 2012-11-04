@@ -34,7 +34,7 @@
 from os import path
 Import('build env module')
 
-env.Append(CPPDEFINES = ('TITANIUM_API_EXPORT', 1))
+env.Append(CPPDEFINES = ('TIDESDK_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 sources = Glob('*.cpp')

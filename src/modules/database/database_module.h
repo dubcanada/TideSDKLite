@@ -39,12 +39,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define TITANIUM_DATABASE_API EXPORT
+#define TIDESDK_DATABASE_API EXPORT
 #elif defined(OS_WIN32)
-#ifdef TITANIUM_DATABASE_API_EXPORT
-#define TITANIUM_DATABASE_API __declspec(dllexport)
+#ifdef TIDESDK_DATABASE_API_EXPORT
+#define TIDESDK_DATABASE_API __declspec(dllexport)
 #else
-#define TITANIUM_DATABASE_API __declspec(dllimport)
+#define TIDESDK_DATABASE_API __declspec(dllimport)
 #endif
 #define EXPORT __declspec(dllexport)
 #endif
@@ -61,7 +61,7 @@ namespace ti
      * Inspector.
      *
      */
-    class TITANIUM_DATABASE_API DatabaseModule : public tide::Module, public StaticBoundObject
+    class TIDESDK_DATABASE_API DatabaseModule : public tide::Module, public StaticBoundObject
     {
         KROLL_MODULE_CLASS(DatabaseModule)
 

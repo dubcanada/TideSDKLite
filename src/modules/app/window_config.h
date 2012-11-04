@@ -14,7 +14,7 @@ typedef xmlNode* xmlNodePtr;
 namespace ti
 {
 
-class TITANIUM_APP_API WindowConfig : public ReferenceCounted
+class TIDESDK_APP_API WindowConfig : public ReferenceCounted
 {
 public:
 	static AutoPtr<WindowConfig> FromXMLNode(xmlNodePtr);

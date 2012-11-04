@@ -39,19 +39,19 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define TITANIUM_API EXPORT
+#define TIDESDK_API EXPORT
 #elif defined(OS_WIN32)
-#ifdef TITANIUM_API_EXPORT
-#define TITANIUM_API __declspec(dllexport)
+#ifdef TIDESDK_API_EXPORT
+#define TIDESDK_API __declspec(dllexport)
 #else
-#define TITANIUM_API __declspec(dllimport)
+#define TIDESDK_API __declspec(dllimport)
 #endif
 #define EXPORT __declspec(dllexport)
 #endif
 
 namespace ti 
 {
-    class TITANIUM_API MediaModule : public tide::Module
+    class TIDESDK_API MediaModule : public tide::Module
     {
         KROLL_MODULE_CLASS(MediaModule)
 

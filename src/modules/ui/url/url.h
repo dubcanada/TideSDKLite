@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef TITANIUM_URL_H_
-#define TITANIUM_URL_H_
+#ifndef _URL_H_
+#define _URL_H_
 
 #ifndef KEYVALUESTRUCT
 typedef struct {
