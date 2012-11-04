@@ -41,5 +41,5 @@ if build.is_win32():
 
 build.add_thirdparty(env, 'poco')
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'tidatabasemodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tidedatabase'), Glob('*.cpp')))
 

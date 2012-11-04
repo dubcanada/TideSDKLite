@@ -358,11 +358,21 @@ namespace tide
 
     bool Host::IsModule(std::string& filename)
     {
-        static std::string suffix("module."MODULE_SUFFIX);
-        bool isModule = (filename.length() > suffix.length() && filename.substr(
-            filename.length() - suffix.length()) == suffix);
+        static const std::string prefix("tide");
+        static const std::string suffix("."MODULE_SUFFIX);
+        bool isModule = (filename.length() > suffix.length()
+            && filename.substr(filename.length() - suffix.length()) == suffix);
 
-        return isModule;
+        if (!isModule)
+        {
+            return false;
+        }
+
+        if (filename.find(prefix) != std::string::npos)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**

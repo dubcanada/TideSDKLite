@@ -76,7 +76,7 @@ elif build.is_win32():
     env.Append(LIBS=['php5embed', 'php5ts'])
 
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'phpmodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tidephp'), Glob('*.cpp')))
 
 if build.is_win32():
     build.utils.LightWeightCopy(build.tp('php', 'bin'), module.dir)

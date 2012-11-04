@@ -38,4 +38,4 @@ env.Append(CPPDEFINES=('KROLL_API_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'apimodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tideapi'), Glob('*.cpp')))

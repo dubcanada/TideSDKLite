@@ -60,7 +60,7 @@
     //
     var link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', 'ti://tiui/default.css');
+    link.setAttribute('href', 'ti://ui/default.css');
     link.setAttribute('type', 'text/css');
 
 
@@ -276,7 +276,7 @@
         };
 
         mywindow.callback = notificationClicked;
-        mywindow.setURL('ti://tiui/tinotification.html?' + 'title=' + encodeURIComponent(properties.title) + '&message=' + encodeURIComponent(properties.message) + '&icon=' + encodeURIComponent(properties.icon));
+        mywindow.setURL('ti://ui/tinotification.html?' + 'title=' + encodeURIComponent(properties.title) + '&message=' + encodeURIComponent(properties.message) + '&icon=' + encodeURIComponent(properties.icon));
 
         mywindow.show();
         if (autohide) {

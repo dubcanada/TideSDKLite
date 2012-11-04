@@ -33,5 +33,5 @@ elif build.is_osx():
 	sources += Glob('osx/*.mm')
 
 build.mark_build_target(env.SharedLibrary(
-	path.join(module.dir, 'tiappmodule'), sources))
+	path.join(module.dir, 'tideapp'), sources))
 build.mark_build_target(build.utils.CopyTree(Glob('*.js'), module.dir))

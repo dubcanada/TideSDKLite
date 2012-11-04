@@ -27,4 +27,4 @@ if build.is_win32():
 
 build.mark_build_target(build.utils.CopyTree(Glob('*.js'), module.dir))
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'tiworkermodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tideworker'), Glob('*.cpp')))

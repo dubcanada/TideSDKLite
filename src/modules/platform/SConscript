@@ -56,4 +56,4 @@ else:
     sources.append(File('platform_binding_%s.cpp' % build.os))
 
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'tiplatformmodule'), sources))
+    path.join(module.dir, 'tideplatform'), sources))

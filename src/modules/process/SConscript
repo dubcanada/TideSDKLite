@@ -49,4 +49,4 @@ if build.is_win32():
 
 build.mark_build_target(build.utils.CopyTree(Glob('*.js'), module.dir))
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'tiprocessmodule'), sources))
+    path.join(module.dir, 'tideprocess'), sources))

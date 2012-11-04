@@ -39,7 +39,7 @@ env.Append(CPPPATH = ['%s/src/modules/app' % build.titanium_source_dir])
 
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
-env.Append(LIBS=['tiappmodule'])
+env.Append(LIBS=['tideapp'])
 
 sources = Glob('*.cpp') + ['url/url.cpp']
 
@@ -72,4 +72,4 @@ elif build.is_osx():
 # Copy the support files the module build directory
 build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), module.dir)
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir,'tiuimodule'), sources))
+    path.join(module.dir,'tideui'), sources))

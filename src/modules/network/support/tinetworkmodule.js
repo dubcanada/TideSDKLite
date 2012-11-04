@@ -382,7 +382,7 @@
 
     // ok, we'll handle it then...
     Titanium.UI.showDialog({
-      'url': 'ti://tinetwork/update.html',
+      'url': 'ti://network/update.html',
       'width': width,
       'height': height,
       'resizable': false,

@@ -120,7 +120,7 @@ namespace tide
         SharedPtr<Module> GetModuleByPath(std::string& path);
 
         /**
-         * Get a module give by the module name (such as tiui)
+         * Get a module give by the module name (such as tideui)
          * @param name of the module
          * @return A reference to the module
          */
