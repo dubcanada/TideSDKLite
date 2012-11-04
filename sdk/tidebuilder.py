@@ -107,7 +107,7 @@ if __name__ == '__main__':
         parser.print_help()
         print 
         print "To stage an application in ~/tmp/myproject in the current directory and then run it:"
-        print "\t> tibuild.py -d . -r ~/tmp/myproject"
+        print "\t> tidebuilder.py -d . -r ~/tmp/myproject"
         print
         sys.exit(1)
 
