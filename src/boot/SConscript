@@ -33,14 +33,16 @@
 
 import os, os.path as path
 Import('build')
+Import('LIBTIDE_NAME')
 
+libtide_name = 'lib' + LIBTIDE_NAME
 Env = build.env.Clone()
 sources = ['boot.cpp']
 Env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'NO_UNZIP=1'])
 
 # We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
-Env.Append(CPPPATH=[path.join(build.tide_source_dir, 'libtide')])
+Env.Append(CPPPATH=[path.join(build.tide_source_dir, libtide_name)])
 
 # Add the utils
 Env.Append(CPPPATH=[build.tide_utils_dir])

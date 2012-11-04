@@ -80,7 +80,9 @@ if build.is_win32():
     build.env.Append(CCFLAGS=['/EHsc', '/GR', '/MD'])
     build.env.Append(LINKFLAGS=['/DEBUG', '/PDB:${TARGET}.pdb'])
 
-Export('build', 'debug')
+LIBTIDE_NAME = 'tide'
+
+Export('build', 'debug', 'LIBTIDE_NAME')
 targets = COMMAND_LINE_TARGETS
 clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
@@ -108,7 +110,7 @@ SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','lib
 
 # Now that libtide is built add it as a default for
 # all the following build steps.
-build.env.Append(LIBS=['tide'])
+build.env.Append(LIBS=[LIBTIDE_NAME])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
 
 SConscript('src/lang/SConscript')

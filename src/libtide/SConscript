@@ -35,6 +35,7 @@ import os
 import os.path as path
 import effess
 Import('build')
+Import('LIBTIDE_NAME')
 #Import('libtide_sources')
 #Import('libtide_env')
 #Import('libtide_name')
@@ -42,7 +43,7 @@ Import('build')
 libtide_sources = []
 libtide_env = build.env.Clone()
 
-libtide_name = 'tide'
+libtide_name = LIBTIDE_NAME
 
 sources = libtide_sources + \
     Glob('*.cpp') + \
@@ -101,5 +102,5 @@ build.mark_build_target(
 build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), path.join(build.dir, 'runtime'))
 
 # copy the includes for building the SDK
-tide_include = path.join(build.tide_include_dir, 'tide')
+tide_include = path.join(build.tide_include_dir, LIBTIDE_NAME)
 effess.copy_tree(build.cwd(), tide_include, include=['.h'])
