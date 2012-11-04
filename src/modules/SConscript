@@ -37,16 +37,16 @@ Import('build build_module_from_directory')
 # These each have their own line because we can comment
 # them out easily if we need temporarily disable one.
 for dir in [
-    'ti.App', 
-    'ti.UI',
-    'ti.Network',
-    'ti.Filesystem',
-    'ti.Media',
-    'ti.Platform',
-    'ti.Process',
-    'ti.Monkey',
-    'ti.Database',
-    'ti.Worker',
-    'ti.Codec'
+    'app', 
+    'ui',
+    'network',
+    'filesystem',
+    'media',
+    'platform',
+    'process',
+    'monkey',
+    'database',
+    'worker',
+    'codec'
 ]:
     build_module_from_directory(dir)
