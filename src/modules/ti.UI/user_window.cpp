@@ -48,7 +48,7 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow parent) :
     active(false),
     initialized(false)
 {
-    // This method is on Titanium.UI, but will be delegated to this class.
+    // This method is on Ti.UI, but will be delegated to this class.
     this->SetMethod("getCurrentWindow", &UserWindow::_GetCurrentWindow);
 
     this->SetMethod("insertAPI", &UserWindow::_InsertAPI);
@@ -1276,7 +1276,7 @@ void UserWindow::ReadChooserDialogObject(
 
 {
     // Pass in a set of properties for chooser dialogs like this:
-    // var selected = Titanium.UI.OpenFileChooserDialog(callback,
+    // var selected = Ti.UI.OpenFileChooserDialog(callback,
     // {
     //    multiple:true,
     //    title: "Select file to delete...",
@@ -1479,7 +1479,7 @@ void UserWindow::RemoveChild(AutoUserWindow child)
 static bool ShouldHaveTitaniumObject(JSGlobalContextRef ctx, JSObjectRef global)
 {
     // We really only want URLs that are loaded via the
-    // app, ti or file protocol to have the Titanium object.
+    // app, ti or file protocol to have the Ti object.
     // Other URLs won't have access for security considerations.
     JSStringRef docPropName = JSStringCreateWithUTF8CString("document");
     JSValueRef docValue = JSObjectGetProperty(ctx, global, docPropName, NULL);
@@ -1543,7 +1543,7 @@ static bool IsMainFrame(JSGlobalContextRef ctx, JSObjectRef global)
 
 void UserWindow::InsertAPI(KObjectRef frameGlobal)
 {
-    // Produce a delegating object to represent the top-level Titanium object.
+    // Produce a delegating object to represent the top-level Ti object.
     // When a property isn't found in this object it will look for it globally.
     KObjectRef windowTiObject(new KAccessorObject());
     KObjectRef windowUIObject(new KAccessorObject());
@@ -1566,7 +1566,7 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     KObject* delegateUIAPI = new KDelegatingObject(binding, windowUIObject);
     windowTiObject->Set("UI", Value::NewObject(delegateUIAPI));
 
-    // Place the Titanium object into the window's global object
+    // Place the Ti object into the window's global object
     KObjectRef delegateGlobalObject = new KDelegatingObject(
         host->GetGlobalObject(), windowTiObject);
     frameGlobal->SetObject(GLOBAL_NAMESPACE, delegateGlobalObject);
@@ -1592,7 +1592,7 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     if (IsMainFrame(context, globalObject))
         this->domWindow = frameGlobal->GetObject("window", 0);
 
-    // Only certain pages should get the Titanium object. This is to prevent
+    // Only certain pages should get the Ti object. This is to prevent
     // malicious sites from always getting access to the user's system. This
     // can be overridden by any other API that calls InsertAPI on this DOM window.
     bool hasTitaniumObject = ShouldHaveTitaniumObject(context, globalObject);
