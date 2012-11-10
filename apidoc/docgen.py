@@ -56,7 +56,7 @@ try:
     import yaml
 except:
     print "Crap, you don't have yaml!\n"
-    print "Easy install that bitch:\n"
+    print "Installing mako:\n"
     print ">  easy_install PyYaml"
     sys.exit(1)
 
