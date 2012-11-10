@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Installer App</string>
 	<key>CFBundleIconFile</key>
-	<string>titanium.icns</string>
+	<string>tidesdk.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.titaniumapp.installer.app</string>
 	<key>CFBundleInfoDictionaryVersion</key>

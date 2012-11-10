@@ -380,7 +380,7 @@ describe("API Tests", {
       }
 
       if (!bFound) {
-        // don't fail the test if we don't find a value.  this is really just for titanium development.
+        // don't fail the test if we don't find a value.  this is really just for development.
         Ti.API.warn("failed to match mobile SDK object to list of loaded components");
         // this is not a real bug.  this is only meant for developer environments.
       }
