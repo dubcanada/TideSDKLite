@@ -69,7 +69,7 @@ describe("DOM Window Tests", {
   test_open_no_url_as_async: function (callback) {
     var w = window.open();
     setTimeout(function () {
-      if (typeof (w) != "object" || typeof (w.Titanium) != 'object') callback.failed("Could not find Titanium object in window");
+      if (typeof (w) != "object" || typeof (w.Ti) != 'object') callback.failed("Could not find Ti object in window");
       else callback.passed();
       w.close();
     }, 200);
@@ -78,7 +78,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
     }, ["a.html"]);
   },
@@ -86,7 +86,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -101,7 +101,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -116,7 +116,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -136,7 +136,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -151,7 +151,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -166,7 +166,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -193,7 +193,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -205,7 +205,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -265,7 +265,7 @@ describe("DOM Window Tests", {
   //	this.async_window_open(test, function(w)
   //	{
   //		value_of(w).should_be_object();
-  //		value_of(w.Titanium).should_be_object();
+  //		value_of(w.Ti).should_be_object();
   //		value_of(w.document.title).should_be("Hello");
   //		value_of(w.result).should_be('Hello');
   //	}, ["data:text/html;charset=utf-8,"+html]);
@@ -278,7 +278,7 @@ describe("DOM Window Tests", {
   //	this.async_window_open(test, function(w)
   //	{
   //		value_of(w).should_be_object();
-  //		value_of(w.Titanium).should_be_object();
+  //		value_of(w.Ti).should_be_object();
   //		value_of(w.document.title).should_be("Hello");
   //		value_of(w.result).should_be('Hello');
   //	}, ["data:text/html;charset=utf-8;base64,"+Ti.Codec.encodeBase64(html)]);
