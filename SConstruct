@@ -99,7 +99,7 @@ if ARGUMENTS.get('test_crash', 0):
 
 ## Kroll *must not be required* for installation
 SConscript('SConscript.thirdparty')
-SConscript('installer/SConscript')
+SConscript('src/installer/SConscript')
 
 # After libtide builds, the environment will  link 
 # against libtide, so anything that should be

@@ -65,7 +65,7 @@ class Installer
     void CreateProgressView();
     void CreateInfoBox(GtkWidget*);
     GdkPixbuf* GetApplicationPixbuf(int maxDimension);
-    GtkWidget* GetTitaniumIcon();
+    GtkWidget* GetIcon();
     GtkWidget* GetApplicationIcon();
 
     void StartInstallProcess();

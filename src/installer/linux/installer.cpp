@@ -33,7 +33,7 @@
 **/
 
 #include "installer.h"
-#include "titanium_icon.h"
+#include "tide_icon.h"
 
 #include <cstring>
 #include <iostream>
@@ -135,8 +135,8 @@ Installer::Installer(vector<Job*> jobs, int installType) :
     }
     if (!applicationIcon)
     {
-        GdkPixbuf* titanium_icon = gdk_pixbuf_new_from_xpm_data(titanium_xpm);
-        gtk_window_set_icon(GTK_WINDOW(this->window), titanium_icon);
+        GdkPixbuf* icon = gdk_pixbuf_new_from_xpm_data(tide_xpm);
+        gtk_window_set_icon(GTK_WINDOW(this->window), icon);
     }
 
     string title = this->app->name + " Installer";
@@ -446,7 +446,7 @@ void Installer::CreateProgressView()
     gtk_widget_show_all(this->window);
 }
 
-GtkWidget* Installer::GetTitaniumIcon()
+GtkWidget* Installer::GetIcon()
 {
     GdkColormap* colormap = gtk_widget_get_colormap(this->window);
     GdkBitmap *mask = NULL;
@@ -455,7 +455,7 @@ GtkWidget* Installer::GetTitaniumIcon()
         colormap,
         &mask,
         NULL,
-        (gchar**) titanium_xpm);
+        (gchar**) tide_xpm);
     return gtk_image_new_from_pixmap(pixmap, mask);
 
 }
@@ -500,9 +500,9 @@ GtkWidget* Installer::GetApplicationIcon()
     {
         return gtk_image_new_from_pixbuf(appPixbuf);
     }
-    else // Use default Titanium icon
+    else // Use default Icon
     {
-        return this->GetTitaniumIcon();
+        return this->GetIcon();
     }
 }
 
@@ -790,7 +790,7 @@ int do_install_sudo()
     // settings still work.
     args.push_back("-k"); 
     args.push_back("--description");
-    args.push_back("Titanium Network Installer");
+    args.push_back("TideSDK Network Installer");
 
     args.push_back("--");
     args.push_back(originalArgs.at(0));
@@ -825,7 +825,7 @@ int do_install_sudo()
         args.erase(args.begin());
         args.erase(args.begin());
         cmd = std::string("kdesudo");
-        args.insert(args.begin(), "The Titanium installer needs adminstrator privileges to run. Please enter your password.");
+        args.insert(args.begin(), "The TideSDK installer needs adminstrator privileges to run. Please enter your password.");
         args.insert(args.begin(), "--comment");
         args.insert(args.begin(), "-d");
         r = FileUtils::RunAndWait(cmd, args);

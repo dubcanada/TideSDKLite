@@ -33,7 +33,7 @@
 **/
 
 /* XPM */
-const gchar * titanium_xpm[] = {
+const gchar * tide_xpm[] = {
 "49 49 602 2",
 "  	c None",
 ". 	c #A2B3CD",
