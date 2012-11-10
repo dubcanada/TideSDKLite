@@ -2,8 +2,8 @@
 namespace: Ti
 type: module
 description: |
-    This is the top-level Ti module, containing all TideSDK APIs.
-    TideSDK API objects generally follow the setProperty()/getProperty()
+    This is the top-level Ti module, containing all Tide APIs.
+    Tide API objects generally follow the setProperty()/getProperty()
     pattern, but you may also use accessors for most operations For example:
 
     <pre><code>

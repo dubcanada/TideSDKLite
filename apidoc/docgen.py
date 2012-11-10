@@ -31,7 +31,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# parse out TideSDK API documentation templates into a 
+# parse out Tide API documentation templates into a 
 # format that can be used by other documentation generators
 # such as PDF, etc.
 
@@ -220,7 +220,7 @@ def spit_json(options):
 
     # Create the JSON search index.
     search_json = []
-    top_level_modules = ['TideSDK']
+    top_level_modules = ['Ti']
     for api_name in API.apis:
         api = API.apis[api_name]
         if options.verbose == 1:

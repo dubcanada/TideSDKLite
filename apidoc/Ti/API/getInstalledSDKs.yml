@@ -2,7 +2,7 @@
 namespace: Ti.API.getInstalledSDKs
 type: function
 description: |
-    Get a list of the currently installed TideSDK SDK components.
+    Get a list of the currently installed Tide SDK components.
     An installed component is one that has been found on the list of paths
     returned by Ti.API.getComponentSearchPaths. This list does not
     include bundled components.

@@ -2,7 +2,7 @@
 namespace: Ti.API.getLogLevel
 type: function
 description: |
-    Get the log level threshold of the TideSDK logger. The logger
+    Get the log level threshold of the Tide logger. The logger
     will log statements with this severity or one that is more severe.
     The severity levels in order from least severe to most severe are:
     <ol>

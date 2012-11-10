@@ -3,7 +3,7 @@ namespace: Ti.API.EQ
 type: property
 description: |
     A constant representing an equality dependency.
-    This is used to specify resolutions to TideSDK application dependencies.
+    This is used to specify resolutions to Tide application dependencies.
 since: 0.4.0
 platforms: ['osx', 'linux', 'win32']
 returns: Number
