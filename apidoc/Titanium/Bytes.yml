@@ -1,5 +1,0 @@
----
-namespace: Titanium.Bytes
-type: object
-description: An object for holding arrays of bytes.
-since: 0.7.0

@@ -1,5 +1,0 @@
----
-namespace: Titanium.Media.Sound
-type: object
-description: An object allowing for loading simple sounds and simple types of playback.
-since: 0.2.0

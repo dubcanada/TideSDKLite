@@ -1,0 +1,5 @@
+---
+namespace: Ti.UI.Dialog
+type: object
+description: An object representing a Dialog window.
+since: 0.4.0

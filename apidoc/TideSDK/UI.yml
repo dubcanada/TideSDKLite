@@ -1,0 +1,5 @@
+---
+namespace: Ti.UI
+type: module
+description: A module for controlling the user interface.
+since: 0.2.0

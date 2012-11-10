@@ -1,5 +1,0 @@
----
-namespace: Titanium.UI.Menu
-type: object
-description: An object representing a menu.
-since: 0.6.0

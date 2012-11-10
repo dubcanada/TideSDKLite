@@ -1,7 +1,0 @@
----
-namespace: Titanium.HTTP_DATA_SENT
-type: property
-description: The HTTP data sent event constant.
-since: 0.7.0
-platforms: ['osx', 'linux', 'win32']
-returns: String

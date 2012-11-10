@@ -1,9 +1,0 @@
----
-namespace: Titanium.Platform.openURL
-type: function
-description: Open the given URL in the system's default browser.
-since: 0.2.0
-platforms: ['osx', 'linux', 'win32']
-returns: String
-parameters: 
-    - [String, url, the URL to open.]

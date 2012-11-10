@@ -1,8 +1,0 @@
----
-namespace: Titanium.Network.HTTPCookie.getValue
-type: method
-description: Get the cookie value
-since: 0.7.0
-platforms: [osx, linux, win32]
-returns: String
-parameters: []

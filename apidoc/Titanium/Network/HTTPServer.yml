@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.HTTPServer
-type: object
-description: An implementation of an HTTPServer.
-since: 0.3.0

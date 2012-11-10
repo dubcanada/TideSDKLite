@@ -1,9 +1,0 @@
----
-namespace: Titanium.UI.Tray.setHint
-type: method
-description: "Sets a TrayItem's tooltip"
-since: 0.2.0
-platforms: [osx, linux, win32]
-returns: String
-parameters: 
-    - [String, hint, (optional) tooltip value or null to unset]

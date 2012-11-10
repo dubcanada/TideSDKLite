@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.IPAddress
-type: object
-description: An object representing an IP address.
-since: 0.2.0

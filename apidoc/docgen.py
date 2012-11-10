@@ -48,7 +48,7 @@ try:
     from mako import exceptions
 except:
     print "Crap, you don't have mako!\n"
-    print "Easy install that bitch:\n"
+    print "Intalling mako:\n"
     print ">  easy_install Mako"
     sys.exit(1)
 
@@ -220,7 +220,7 @@ def spit_json(options):
 
     # Create the JSON search index.
     search_json = []
-    top_level_modules = ['Titanium']
+    top_level_modules = ['TideSDK']
     for api_name in API.apis:
         api = API.apis[api_name]
         if options.verbose == 1:

@@ -1,7 +1,0 @@
----
-namespace: Titanium.API.RUNTIME
-type: property
-description: A constant representing a runtime component type.
-since: 0.4.0
-platforms: ['osx', 'linux', 'win32']
-returns: Number

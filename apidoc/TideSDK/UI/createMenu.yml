@@ -1,0 +1,18 @@
+---
+namespace: Ti.UI.createMenu
+type: function
+description: Create a new menu
+since: 0.6.0
+platforms: ['osx', 'linux', 'win32']
+returns: UI.Menu
+parameters: []
+examples:
+    - description: Using Database.createMenu
+      code: |
+            <pre><code>
+                var menu = Ti.UI.createMenu();
+                var file = Ti.UI.createMenuItem("File");
+                file.addItem("Quit");
+                menu.appendItem(file);
+                Ti.UI.setMenu(menu);
+            </pre></codee>

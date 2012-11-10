@@ -1,0 +1,8 @@
+---
+namespace: Ti.Process.Process.cloneEnvironment
+type: method
+description: Return a clone of this process' environment.
+since: 0.5.0
+platforms: [osx, linux, win32]
+returns: Object, environment
+parameters: []

@@ -1,9 +1,0 @@
----
-namespace: Titanium.UI.setBadgeImage
-type: function
-description: "Set the application icon's badge image."
-since: 0.2.0
-platforms: ['osx']
-returns: String
-parameters: 
-    - [String, imageURL, URL to the new badge image.]
