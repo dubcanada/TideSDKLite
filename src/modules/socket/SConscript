@@ -29,4 +29,4 @@ if build.is_win32():
 # Copy the support files the module build directory
 build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), module.dir)
 build.mark_build_target(env.SharedLibrary(
-	path.join(module.dir, 'tisocketmodule'), sources))
+	path.join(module.dir, 'tidesocket'), sources))
