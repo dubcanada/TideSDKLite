@@ -54,8 +54,7 @@ sources = libtide_sources + \
     Glob('net/proxy_config.cpp') + \
     Glob('javascript/*.cpp') + \
     Glob('api/*.cpp') + \
-    Glob('utils/%s/*.cpp' % build.os) + \
-    Glob('net/*_%s.cpp' % build.os)
+    Glob('utils/%s/*.cpp' % build.os)
 
 if build.is_linux():
     sources += Glob('linux/*.cpp') + Glob('utils/posix/*.cpp') 

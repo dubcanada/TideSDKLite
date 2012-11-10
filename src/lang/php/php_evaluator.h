@@ -35,6 +35,8 @@
 #ifndef _PHP_EVALUATOR_H_
 #define _PHP_EVALUATOR_H_
 
+#include <Poco/URI.h>
+
 namespace tide
 {
 	class PHPEvaluator : public StaticBoundObject

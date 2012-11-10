@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_BYTES_OBJECT_H_
-#define _KR_BYTES_OBJECT_H_
+#ifndef _BYTES_H_
+#define _BYTES_H_
 
 #include "../tide.h"
 #include <vector>

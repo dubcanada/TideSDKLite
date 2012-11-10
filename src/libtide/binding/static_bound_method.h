@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_STATIC_BOUND_METHOD_H_
-#define _KR_STATIC_BOUND_METHOD_H_
+#ifndef _STATIC_BOUND_METHOD_H_
+#define _STATIC_BOUND_METHOD_H_
 
 namespace tide
 {

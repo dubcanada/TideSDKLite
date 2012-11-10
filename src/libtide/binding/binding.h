@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_BINDING_H_
-#define _KR_BINDING_H_
+#ifndef _BINDING_H_
+#define _BINDING_H_
 
 #include "../tide.h"
 

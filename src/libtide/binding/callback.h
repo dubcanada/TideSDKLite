@@ -37,8 +37,8 @@
 * found in the LICENSE file.
 **/
 
-#ifndef _KR_CALLBACK_H_
-#define _KR_CALLBACK_H_
+#ifndef _CALLBACK_H_
+#define _CALLBACK_H_
 
 namespace tide
 {

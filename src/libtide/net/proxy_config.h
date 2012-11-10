@@ -32,8 +32,11 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PROXY_CONFIG_H_
-#define _KR_PROXY_CONFIG_H_
+#ifndef _PROXY_CONFIG_H_
+#define _PROXY_CONFIG_H_
+
+#include <Poco/URI.h>
+
 namespace tide
 {
     class TIDE_API BypassEntry
@@ -57,6 +60,7 @@ namespace tide
         std::string ToString();
         static ProxyType SchemeToProxyType(std::string);
     };
+    typedef SharedPtr<Proxy> SharedProxy;
 
     namespace ProxyConfig
     {

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_SCOPE_METHOD_DELEGATE_H_
-#define _KR_BOUND_METHOD_DELEGATE_H_
+#ifndef _SCOPE_METHOD_DELEGATE_H_
+#define _SCOPE_METHOD_DELEGATE_H_
 
 namespace tide {
 

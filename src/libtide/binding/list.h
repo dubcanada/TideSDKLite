@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_BOUND_LIST_H_
-#define _KR_BOUND_LIST_H_
+#ifndef _BOUND_LIST_H_
+#define _BOUND_LIST_H_
 
 #include <string>
 #include <cctype>

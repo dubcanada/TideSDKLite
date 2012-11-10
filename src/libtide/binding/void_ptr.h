@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_VOID_PTR_OBJECT_H_
-#define _KR_VOID_PTR_OBJECT_H_
+#ifndef _VOID_PTR_H_
+#define _VOID_PTR_H_
 
 #include "../tide.h"
 

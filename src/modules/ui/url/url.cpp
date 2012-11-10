@@ -33,6 +33,7 @@
 **/
 
 #include "../ui_module.h"
+#include <tide/net/proxy_config.h>
 #include <Poco/Environment.h>
 #include <Poco/URI.h>
 using Poco::URI;

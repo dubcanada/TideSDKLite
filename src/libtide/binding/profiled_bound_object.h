@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PROFILED_BOUND_OBJECT_H_
-#define _KR_PROFILED_BOUND_OBJECT_H_
+#ifndef _PROFILED_BOUND_OBJECT_H_
+#define _PROFILED_BOUND_OBJECT_H_
 #include <Poco/FileStream.h>
 #include <Poco/Mutex.h>
 

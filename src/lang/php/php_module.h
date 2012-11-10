@@ -96,6 +96,8 @@ namespace tide
 #include "php_evaluator.h"
 #include "php_module_instance.h"
 
+#include <Poco/URI.h>
+
 namespace tide
 {
     class KROLL_PHP_API PHPModule : public Module, public ModuleProvider

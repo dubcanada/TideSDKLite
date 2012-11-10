@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_FUNCTION_PTR_METHOD_H_
-#define _KR_FUNCTION_PTR_METHOD_H_
+#ifndef _FUNCTION_PTR_METHOD_H_
+#define _FUNCTION_PTR_METHOD_H_
 
 namespace tide
 {

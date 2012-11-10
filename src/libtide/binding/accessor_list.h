@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ACCESSOR_BOUND_LIST_H_
-#define _KR_ACCESSOR_BOUND_LIST_H_
+#ifndef _ACCESSOR_LIST_H_
+#define _ACCESSOR_LIST_H_
 
 namespace tide
 {

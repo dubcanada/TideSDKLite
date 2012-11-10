@@ -32,12 +32,9 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_VALUE_H_
-#define _KR_VALUE_H_
+#ifndef _VALUE_H_
+#define _VALUE_H_
 
-/**
- * The toplevel kroll namespace.
- */
 namespace tide
 {
     /**

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_READ_EVENT_H_
-#define _KR_READ_EVENT_H_
+#ifndef _READ_EVENT_H_
+#define _READ_EVENT_H_
 
 namespace tide
 {

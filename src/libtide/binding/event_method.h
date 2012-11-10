@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_EVENT_METHOD_H_
-#define _KR_EVENT_METHOD_H_
+#ifndef _EVENT_METHOD_H_
+#define _EVENT_METHOD_H_
 
 namespace tide
 {

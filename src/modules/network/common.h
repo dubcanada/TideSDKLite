@@ -35,6 +35,8 @@
 #ifndef _CURL_COMMON_Hj
 #define _CURL_COMMON_Hj
 
+#include <tide/net/proxy_config.h>
+
 #define SET_CURL_OPTION(handle, option, value) \
     {\
         CURLcode result = curl_easy_setopt(handle, option, value); \

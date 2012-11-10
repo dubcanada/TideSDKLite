@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_EVENT_OBJECT_H_
-#define _KR_EVENT_OBJECT_H_
+#ifndef _EVENT_OBJECT_H_
+#define _EVENT_OBJECT_H_
 
 #include <list>
 #include <Poco/Mutex.h>

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef Stream_h
-#define Stream_h
+#ifndef STREAM_H_
+#define STREAM_H_
 
 namespace tide {
 

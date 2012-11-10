@@ -43,7 +43,7 @@
  */
 
 #include "../tide.h"
-#include "net.h"
+#include "proxy_config.h"
 
 #include <Poco/Thread.h>
 #include <CoreFoundation/CoreFoundation.h>

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _K_OBJECT_H_
-#define _K_OBJECT_H_
+#ifndef _OBJECT_H_
+#define _OBJECT_H_
 
 #include <vector>
 #include <string>
