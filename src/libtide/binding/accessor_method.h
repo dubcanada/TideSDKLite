@@ -32,21 +32,25 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ACCESSOR_BOUND_OBJECT_H_
-#define _KR_ACCESSOR_BOUND_OBJECT_H_
+#ifndef _KR_ACCESSOR_BOUND_METHOD_H_
+#define _KR_ACCESSOR_BOUND_METHOD_H_
 
 namespace tide
 {
-    class KROLL_API KAccessorObject : public StaticBoundObject, public KAccessor
+    /**
+     * The KAccessorMethod allows you to expose getters and setters as property access.
+     * @see KAccessorObject
+     */
+    class TIDE_API KAccessorMethod : public StaticBoundMethod, public KAccessor
     {
     public:
-        KAccessorObject(const char* name = "KAccessorObject");
+        KAccessorMethod(MethodCallback* callback, const char* type = "KAccessorMethod");
         virtual void Set(const char* name, KValueRef value);
         virtual KValueRef Get(const char* name);
         virtual bool HasProperty(const char* name);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessorObject);
+        DISALLOW_EVIL_CONSTRUCTORS(KAccessorMethod);
     };
 }
 

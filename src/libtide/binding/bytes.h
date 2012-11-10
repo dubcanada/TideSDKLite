@@ -47,7 +47,7 @@ namespace tide
     /**
      * An object that represents an arbitrary amount of binary data§
      */
-    class KROLL_API Bytes : public StaticBoundObject
+    class TIDE_API Bytes : public StaticBoundObject
     {
     public:
         // Create empty bytes object with no size

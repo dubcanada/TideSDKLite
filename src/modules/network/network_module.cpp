@@ -39,7 +39,7 @@ using namespace tide;
 using namespace ti;
 namespace ti
 {
-    KROLL_MODULE(NetworkModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+    TIDE_MODULE(NetworkModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
     static std::string modulePath;
     static CURLSH* curlShareHandle = 0;
 

@@ -50,14 +50,14 @@ namespace tide
      * #include <tide/tide.h>
      * class MyModule : public tide::Module
      * {
-     *   KROLL_MODULE_CLASS(MyModule)
+     *   TIDE_MODULE_CLASS(MyModule)
      * }
      * \endcode
      *
      * Example MyModule.cpp:
      * \code
      * #include "MyModule.h"
-     * KROLL_MODULE(MyModule);
+     * TIDE_MODULE(MyModule);
      *
      * void MyModule::Initialize() {
      *  // init code here..
@@ -68,7 +68,7 @@ namespace tide
      * }
      * \endcode
      */
-    class KROLL_API Module
+    class TIDE_API Module
     {
     public:
         Module(Host *host, const char* inpath, const char* inname, const char* inversion) :
@@ -149,11 +149,11 @@ using namespace tide;
 typedef void* ModuleMethod;
 
 /**
- * \def KROLL_MODULE(klass)
+ * \def TIDE_MODULE(klass)
  * \brief A convenience macro for the module's implementation file.
  * \description Defines the default constructor, destructor, library implementations for the module "klass"
  */
-#define KROLL_MODULE(ClassName, Name, Version) \
+#define TIDE_MODULE(ClassName, Name, Version) \
 ClassName::ClassName(tide::Host *host, const char* path, const char* name, const char* version) : \
     tide::Module(host, path, name, version) \
 { \
@@ -169,11 +169,11 @@ extern "C" EXPORT ClassName* CreateModule(tide::Host *host, const char* path) \
 }  \
 
 /**
- * \def KROLL_MODULE_CLASS(klass)
+ * \def TIDE_MODULE_CLASS(klass)
  * \brief A convenience macro for the module's header file.
  * \description Defines the default constructor, destructor, and lifecycle methods for the module "klass"
  */
-#define KROLL_MODULE_CLASS(ClassName) \
+#define TIDE_MODULE_CLASS(ClassName) \
 public: \
     ClassName(tide::Host *host, const char* path, const char* name, const char* version); \
     virtual ~ClassName(); \

@@ -32,38 +32,45 @@
 * limitations under the License.
 **/
 
-#ifndef _KJS_KOBJECT_H_
-#define _KJS_KOBJECT_H_
-
-#include "javascript_module.h"
-
-#include <vector>
-#include <string>
-#include <map>
+#ifndef _KR_FUNCTION_PTR_METHOD_H_
+#define _KR_FUNCTION_PTR_METHOD_H_
 
 namespace tide
 {
-    class KROLL_API KKJSObject : public KObject
+    typedef KValueRef (*KFunctionPtrCallback) (const ValueList& args);
+    class TIDE_API KFunctionPtrMethod : public KMethod
     {
         public:
-        KKJSObject(JSContextRef context, JSObjectRef js_object);
-        ~KKJSObject();
+        KFunctionPtrMethod(KFunctionPtrCallback);
+        virtual ~KFunctionPtrMethod();
 
+        /**
+         * @see KMethod::Call
+         */
+        virtual KValueRef Call(const ValueList& args);
+
+        /**
+         * @see KObject::Set
+         */
         virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual SharedStringList GetPropertyNames();
-        virtual bool HasProperty(const char* name);
-        virtual bool Equals(KObjectRef);
 
-        bool SameContextGroup(JSContextRef c);
-        JSObjectRef GetJSObject();
+        /**
+         * @see KObject::Get
+         */
+        virtual KValueRef Get(const char *name);
+
+        /**
+         * @see KObject::GetPropertyNames
+         */
+        virtual SharedStringList GetPropertyNames();
+        
 
         protected:
-        JSGlobalContextRef context;
-        JSObjectRef jsobject;
+        KFunctionPtrCallback callback;
+        KObjectRef object;
 
         private:
-        DISALLOW_EVIL_CONSTRUCTORS(KKJSObject);
+        DISALLOW_EVIL_CONSTRUCTORS(KFunctionPtrMethod);
     };
 }
 

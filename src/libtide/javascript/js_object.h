@@ -32,25 +32,38 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ACCESSOR_BOUND_METHOD_H_
-#define _KR_ACCESSOR_BOUND_METHOD_H_
+#ifndef _KJS_KOBJECT_H_
+#define _KJS_KOBJECT_H_
+
+#include "javascript_module.h"
+
+#include <vector>
+#include <string>
+#include <map>
 
 namespace tide
 {
-    /**
-     * The KAccessorMethod allows you to expose getters and setters as property access.
-     * @see KAccessorObject
-     */
-    class KROLL_API KAccessorMethod : public StaticBoundMethod, public KAccessor
+    class TIDE_API KKJSObject : public KObject
     {
-    public:
-        KAccessorMethod(MethodCallback* callback, const char* type = "KAccessorMethod");
-        virtual void Set(const char* name, KValueRef value);
-        virtual KValueRef Get(const char* name);
-        virtual bool HasProperty(const char* name);
+        public:
+        KKJSObject(JSContextRef context, JSObjectRef js_object);
+        ~KKJSObject();
 
-    private:
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessorMethod);
+        virtual void Set(const char *name, KValueRef value);
+        virtual KValueRef Get(const char *name);
+        virtual SharedStringList GetPropertyNames();
+        virtual bool HasProperty(const char* name);
+        virtual bool Equals(KObjectRef);
+
+        bool SameContextGroup(JSContextRef c);
+        JSObjectRef GetJSObject();
+
+        protected:
+        JSGlobalContextRef context;
+        JSObjectRef jsobject;
+
+        private:
+        DISALLOW_EVIL_CONSTRUCTORS(KKJSObject);
     };
 }
 

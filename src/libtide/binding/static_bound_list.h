@@ -38,7 +38,7 @@
 namespace tide
 {
 
-    class KROLL_API StaticBoundList : public KList
+    class TIDE_API StaticBoundList : public KList
     {
     public:
 

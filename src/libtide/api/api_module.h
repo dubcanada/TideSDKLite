@@ -40,7 +40,7 @@
 
 namespace tide
 {
-    class KROLL_API APIModule : public Module
+    class TIDE_API APIModule : public Module
     {
     public:
         APIModule(Host* host, const char* path) :

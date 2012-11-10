@@ -43,7 +43,7 @@ namespace tide
      * The ProfiledBoundObject is a wrapped KObject that does profiling on a 
      * wrapped KObject
      */
-    class KROLL_API ProfiledBoundObject : public KObject
+    class TIDE_API ProfiledBoundObject : public KObject
     {
         public:
         ProfiledBoundObject(KObjectRef delegate);

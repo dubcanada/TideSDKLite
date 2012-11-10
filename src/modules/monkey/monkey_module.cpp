@@ -41,7 +41,7 @@ using namespace ti;
 
 namespace ti
 {
-    KROLL_MODULE(MonkeyModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+    TIDE_MODULE(MonkeyModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
     
     void MonkeyModule::Initialize()
     {

@@ -38,7 +38,7 @@
 namespace tide
 {
 
-    class KROLL_API StaticBoundMethod : public KMethod
+    class TIDE_API StaticBoundMethod : public KMethod
     {
     public:
 

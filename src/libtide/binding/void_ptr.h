@@ -42,7 +42,7 @@ namespace tide
     /**
      * An object that represents an arbitrary amount of binary data§
      */
-    class KROLL_API VoidPtr : public StaticBoundObject
+    class TIDE_API VoidPtr : public StaticBoundObject
     {
     public:
         VoidPtr(void* pointer) :

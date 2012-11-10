@@ -43,7 +43,7 @@ namespace tide
     /**
      * An abstract representation of a method
      */
-    class KROLL_API KMethod : public KObject
+    class TIDE_API KMethod : public KObject
     {
 
     public:

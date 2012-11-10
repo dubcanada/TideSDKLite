@@ -106,7 +106,7 @@ namespace ti
 {
 	class TIDESDK_#{header_define}_API #{module_name}Module : public tide::Module
 	{
-		KROLL_MODULE_CLASS(#{module_name}Module)
+		TIDE_MODULE_CLASS(#{module_name}Module)
 		
 	private:
 		tide::KObjectRef binding;
@@ -133,7 +133,7 @@ using namespace ti;
 
 namespace ti
 {
-	KROLL_MODULE(#{module_name}Module,STRING(MODULE_NAME), STRING(MODULE_VERSION));
+	TIDE_MODULE(#{module_name}Module,STRING(MODULE_NAME), STRING(MODULE_VERSION));
 	
 	void #{module_name}Module::Initialize()
 	{

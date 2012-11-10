@@ -48,7 +48,7 @@ namespace tide
      * This class is only used for argument lists. For a list implementation to be
      *  used as a value in the binding layer, take a look at KList and StaticBoundList.
      */
-    class KROLL_API ArgList
+    class TIDE_API ArgList
     {
         public:
         ArgList();

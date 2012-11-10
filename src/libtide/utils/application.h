@@ -44,7 +44,7 @@ namespace UTILS_NS
     /**
      * Represents a concrete Kroll application -- found on disk
      */
-    class KROLL_API Application
+    class TIDE_API Application
     {
         private:
         Application(string appPath, string manifestPath);

@@ -39,7 +39,7 @@ namespace tide
 {
     typedef std::map<std::string, KMethodRef> AccessorMap;
 
-    class KROLL_API KAccessor
+    class TIDE_API KAccessor
     {
     protected:
         KAccessor() {}

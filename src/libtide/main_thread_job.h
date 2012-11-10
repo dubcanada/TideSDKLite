@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KROLL_API MainThreadJob
+    class TIDE_API MainThreadJob
     {
     public:
         MainThreadJob(KMethodRef method, KObjectRef thisObject,

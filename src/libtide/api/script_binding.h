@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KROLL_API ScriptBinding : public StaticBoundObject
+    class TIDE_API ScriptBinding : public StaticBoundObject
     {
     public:
         ScriptBinding();

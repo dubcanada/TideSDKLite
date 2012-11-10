@@ -46,7 +46,7 @@ namespace tide
     #pragma GCC visibility push(default)
 #endif
 
-    class KROLL_API ValueException : public std::exception
+    class TIDE_API ValueException : public std::exception
     {
         public:
         ValueException(KValueRef v);

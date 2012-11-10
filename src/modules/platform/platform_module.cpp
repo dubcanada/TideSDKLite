@@ -41,7 +41,7 @@ using namespace ti;
 
 namespace ti
 {
-    KROLL_MODULE(PlatformModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+    TIDE_MODULE(PlatformModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
     void PlatformModule::Initialize()
     {

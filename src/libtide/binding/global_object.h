@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KROLL_API GlobalObject : public KEventObject
+    class TIDE_API GlobalObject : public KEventObject
     {
     public:
         GlobalObject();

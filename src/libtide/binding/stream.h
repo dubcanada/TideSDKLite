@@ -37,7 +37,7 @@
 
 namespace tide {
 
-class KROLL_API Stream : public StaticBoundObject {
+class TIDE_API Stream : public StaticBoundObject {
 public:
     Stream(const char* type = "Stream");
     virtual ~Stream();

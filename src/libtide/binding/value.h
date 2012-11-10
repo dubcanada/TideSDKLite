@@ -44,7 +44,7 @@ namespace tide
      * A container for various types. Value instances contain a primitive or
      * object value which can be boxed/unboxed based on the type.
      */
-    class KROLL_API Value : public ReferenceCounted
+    class TIDE_API Value : public ReferenceCounted
     {
     public:
 
@@ -335,7 +335,7 @@ namespace tide
         Value(const Value& value);
     };
 
-    class KROLL_API ValueReleasePolicy : public Poco::ReleasePolicy<Value> {
+    class TIDE_API ValueReleasePolicy : public Poco::ReleasePolicy<Value> {
     public:
         static void release(Value* pObj)
         {

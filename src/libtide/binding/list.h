@@ -43,7 +43,7 @@ namespace tide
     /**
      * A binding that represents a list§
      */
-    class KROLL_API KList : public KObject
+    class TIDE_API KList : public KObject
     {
     public:
         KList(const char *type = "KList") : KObject(type) {}

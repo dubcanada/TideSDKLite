@@ -39,14 +39,14 @@
 
 namespace tide
 {
-    class KROLL_API PreprocessData : public ReferenceCounted
+    class TIDE_API PreprocessData : public ReferenceCounted
     {
     public:
         BytesRef data;
         std::string mimeType;
     };
     
-    class KROLL_API Script
+    class TIDE_API Script
     {
     public:
         static SharedPtr<Script> GetInstance();

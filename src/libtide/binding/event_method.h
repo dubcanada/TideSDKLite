@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KROLL_API KEventMethod : public KEventObject, public KMethod
+    class TIDE_API KEventMethod : public KEventObject, public KMethod
     {
         public:
         KEventMethod(const char* name = "") :

@@ -53,7 +53,7 @@ namespace ti
 {
     class TIDESDK_API MediaModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(MediaModule)
+        TIDE_MODULE_CLASS(MediaModule)
 
     private:
         KObjectRef binding;

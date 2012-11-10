@@ -53,7 +53,7 @@ namespace tide
      *   This implementation uses an internal map to bind property names
      *   to \link Value Values\endlink (objects, methods, etc).
      */
-    class KROLL_API KObject : public ReferenceCounted
+    class TIDE_API KObject : public ReferenceCounted
     {
     public:
         KObject(std::string type = "KObject") : type(type) {}

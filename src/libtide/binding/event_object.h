@@ -43,7 +43,7 @@ namespace tide
     class EventListener;
     typedef std::list<EventListener*> EventListenerList;
 
-    class KROLL_API KEventObject : public KAccessorObject
+    class TIDE_API KEventObject : public KAccessorObject
     {
     public:
         KEventObject(const char* name = "KEventObject");

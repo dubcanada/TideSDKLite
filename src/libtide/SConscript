@@ -64,7 +64,7 @@ if build.is_win32():
     sources += Glob('utils/unzip/*.cpp') + Glob('win32/*.cpp')
 
 env = libtide_env
-env.Append(CPPDEFINES=[('KROLL_API_EXPORT', 1)])
+env.Append(CPPDEFINES=[('TIDE_API_EXPORT', 1)])
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
 if build.is_osx():

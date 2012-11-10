@@ -56,7 +56,7 @@ namespace tide
     class PooledThread;
     typedef std::list<PooledThread*> PooledThreadList;
 
-    class KROLL_API ThreadPool
+    class TIDE_API ThreadPool
     {
         friend class PooledThread;
 
@@ -96,7 +96,7 @@ namespace tide
         Poco::Mutex jobsMutex;
     };
 
-    class KROLL_API PooledThread : public Poco::Thread, public Poco::Runnable
+    class TIDE_API PooledThread : public Poco::Thread, public Poco::Runnable
     {
     public:
         PooledThread(ThreadPool* pool);

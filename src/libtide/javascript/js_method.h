@@ -32,25 +32,43 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ACCESSOR_BOUND_LIST_H_
-#define _KR_ACCESSOR_BOUND_LIST_H_
+#ifndef _KJS_KMETHOD_H_
+#define _KJS_KMETHOD_H_
+
+#include "javascript_module.h"
+
+#include <vector>
+#include <string>
+#include <map>
 
 namespace tide
 {
-    /**
-     * The KAccessorList allows you to expose getters and setters as property access.
-     * @see KAccessorObject
-     */
-    class KROLL_API KAccessorList : public StaticBoundList, public KAccessor
+    class TIDE_API KKJSMethod : public KMethod
     {
-    public:
-        KAccessorList(const char* type = "KAccessorList");
-        virtual void Set(const char* name, KValueRef value);
-        virtual KValueRef Get(const char* name);
-        virtual bool HasProperty(const char* name);
+        public:
+        KKJSMethod(JSContextRef, JSObjectRef, JSObjectRef);
+        ~KKJSMethod();
 
-    private:
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessorList);
+        virtual void Set(const char *name, KValueRef value);
+        virtual KValueRef Get(const char *name);
+        KValueRef Call(JSObjectRef thisObject, const ValueList& args);
+        virtual KValueRef Call(const ValueList& args);
+        virtual KValueRef Call(KObjectRef thisObject, const ValueList& args);
+        virtual SharedStringList GetPropertyNames();
+        virtual bool HasProperty(const char* name);
+        virtual bool Equals(KObjectRef);
+
+        virtual bool SameContextGroup(JSContextRef c);
+        JSObjectRef GetJSObject();
+
+        protected:
+        JSGlobalContextRef context;
+        JSObjectRef jsobject;
+        JSObjectRef thisObject;
+        AutoPtr<KKJSObject> kobject;
+
+        private:
+        DISALLOW_EVIL_CONSTRUCTORS(KKJSMethod);
     };
 }
 

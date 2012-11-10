@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KROLL_API ProfiledGlobalObject : public GlobalObject
+    class TIDE_API ProfiledGlobalObject : public GlobalObject
     {
     public:
         ProfiledGlobalObject(KObjectRef delegate);

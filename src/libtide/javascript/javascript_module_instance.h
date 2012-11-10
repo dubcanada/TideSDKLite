@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KROLL_API JavaScriptModuleInstance : public Module
+    class TIDE_API JavaScriptModuleInstance : public Module
     {
     public:
         JavaScriptModuleInstance(Host *host, std::string path, 

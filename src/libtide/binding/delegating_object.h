@@ -52,7 +52,7 @@ namespace tide
      * is most useful if the local properties are assigned to the local object
      * in an initial setup phase.
      */
-    class KROLL_API KDelegatingObject : public KObject
+    class TIDE_API KDelegatingObject : public KObject
     {
         public:
         KDelegatingObject(KObjectRef global);

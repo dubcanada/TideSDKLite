@@ -74,7 +74,7 @@
 #include <vector>
 
 namespace KPoco {
-class KROLL_API DigestEngine
+class TIDE_API DigestEngine
     /// This class is an abstract base class
     /// for all classes implementing a message
     /// digest algorithm, like MD5Engine
