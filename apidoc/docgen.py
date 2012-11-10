@@ -48,7 +48,7 @@ try:
     from mako import exceptions
 except:
     print "You don't have mako!\n"
-    print "Intalling mako:\n"
+    print "Installing mako:\n"
     print ">  easy_install Mako"
     sys.exit(1)
 
