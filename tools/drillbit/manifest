@@ -22,4 +22,5 @@ process:
 database:
 worker:
 codec:
+socket:
 drillbit:0.1.0

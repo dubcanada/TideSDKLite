@@ -225,15 +225,26 @@ class BuildConfig(object):
             libpath = [self.tp('libproxy', 'lib')]
             libs = ['libproxy']
 
-        elif name is 'boost' and self.is_osx():
+        elif name is 'boost':
             cpppath = [self.tp('boost', 'include')]
+            libpath = [self.tp('boost', 'lib')]
+
+        elif name is 'openssl':
+            if self.is_win32():
+                cpppath = [self.tp('openssl', 'include')]
+                libpath = [self.tp('openssl', 'lib')]
+                libs = ['libeay32', 'ssleay32']
+            if self.is_osx():
+                libs = ['ssl', 'crypto']
 
         if name is 'webkit':
-            if self.is_win32() or self.is_linux():
+            if self.is_win32():
                 cpppath = [self.tp('webkit', 'include')]
                 libpath = [self.tp('webkit', 'lib')]
 
             if self.is_linux():
+                cpppath = [self.tp('webkit', 'include')]
+                libpath = [self.tp('webkit', 'lib')]
                 cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
 
             if self.is_win32():

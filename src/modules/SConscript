@@ -48,6 +48,6 @@ for dir in [
     'database',
     'worker',
     'codec',
-    'socket'
+    'socket',
 ]:
     build_module_from_directory(dir)

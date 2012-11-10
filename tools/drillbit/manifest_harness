@@ -20,3 +20,4 @@ process:1.3.0-beta
 database:1.3.0-beta
 worker:1.3.0-beta
 codec:1.3.0-beta
+socket:1.3.0-beta
