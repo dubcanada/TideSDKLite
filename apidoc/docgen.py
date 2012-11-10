@@ -47,7 +47,7 @@ try:
     from mako.template import Template
     from mako import exceptions
 except:
-    print "Crap, you don't have mako!\n"
+    print "You don't have mako!\n"
     print "Intalling mako:\n"
     print ">  easy_install Mako"
     sys.exit(1)
@@ -55,7 +55,7 @@ except:
 try:
     import yaml
 except:
-    print "Crap, you don't have yaml!\n"
+    print "You don't have yaml!\n"
     print "Installing mako:\n"
     print ">  easy_install PyYaml"
     sys.exit(1)
