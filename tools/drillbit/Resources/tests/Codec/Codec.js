@@ -17,86 +17,86 @@
 describe("Codec Tests", {
 
   test_base64_encode: function () {
-    value_of(Titanium.Codec)
+    value_of(Ti.Codec)
       .should_be_object();
-    value_of(Titanium.Codec.encodeBase64("abc"))
+    value_of(Ti.Codec.encodeBase64("abc"))
       .should_be("YWJj");
   },
 
   test_base64_decode: function () {
-    value_of(Titanium.Codec.decodeBase64("YWJj"))
+    value_of(Ti.Codec.decodeBase64("YWJj"))
       .should_be("abc");
   },
 
   test_md2: function () {
-    value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD2, "abc"))
+    value_of(Ti.Codec.digestToHex(Ti.Codec.MD2, "abc"))
       .should_be("da853b0d3f88d99b30283a69e6ded6bb");
   },
 
   test_md4: function () {
-    value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD4, "abc"))
+    value_of(Ti.Codec.digestToHex(Ti.Codec.MD4, "abc"))
       .should_be("a448017aaf21d8525fc10ae87aa6729d");
   },
 
   test_md5: function () {
-    value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD5, "abc"))
+    value_of(Ti.Codec.digestToHex(Ti.Codec.MD5, "abc"))
       .should_be("900150983cd24fb0d6963f7d28e17f72");
   },
 
   test_sha1: function () {
-    value_of(Titanium.Codec.digestToHex(Titanium.Codec.SHA1, "abc"))
+    value_of(Ti.Codec.digestToHex(Ti.Codec.SHA1, "abc"))
       .should_be("a9993e364706816aba3e25717850c26c9cd0d89d");
   },
 
   test_hmac_md5: function () {
-    value_of(Titanium.Codec.digestHMACToHex(Titanium.Codec.MD5, "abc", "123"))
+    value_of(Ti.Codec.digestHMACToHex(Ti.Codec.MD5, "abc", "123"))
       .should_be("ffb7c0fc166f7ca075dfa04d59aed232");
   },
 
   test_hmac_sha1: function () {
-    value_of(Titanium.Codec.digestHMACToHex(Titanium.Codec.SHA1, "abc", "123"))
+    value_of(Ti.Codec.digestHMACToHex(Ti.Codec.SHA1, "abc", "123"))
       .should_be("540b0c53d4925837bd92b3f71abe7a9d70b676c4");
   },
 
   test_encode_hex_binary: function () {
-    value_of(Titanium.Codec.encodeHexBinary("ABCDEF"))
+    value_of(Ti.Codec.encodeHexBinary("ABCDEF"))
       .should_be("414243444546");
   },
 
   test_decode_hex_binary: function () {
-    value_of(Titanium.Codec.decodeHexBinary("414243444546"))
+    value_of(Ti.Codec.decodeHexBinary("414243444546"))
       .should_be("ABCDEF");
   },
 
   test_checksum_crc32: function () {
-    value_of(Titanium.Codec.checksum("abc"))
+    value_of(Ti.Codec.checksum("abc"))
       .should_be(891568578);
-    value_of(Titanium.Codec.checksum("abc", Titanium.Codec.CRC32))
+    value_of(Ti.Codec.checksum("abc", Ti.Codec.CRC32))
       .should_be(891568578);
-    var blob = Titanium.API.createBytes("abc");
-    value_of(Titanium.Codec.checksum(blob, Titanium.Codec.CRC32))
+    var blob = Ti.API.createBytes("abc");
+    value_of(Ti.Codec.checksum(blob, Ti.Codec.CRC32))
       .should_be(891568578);
   },
 
   test_checksum_adler32: function () {
-    value_of(Titanium.Codec.checksum("abc", Titanium.Codec.ADLER32))
+    value_of(Ti.Codec.checksum("abc", Ti.Codec.ADLER32))
       .should_be(38600999);
 
-    var blob = Titanium.API.createBytes("abc");
-    value_of(Titanium.Codec.checksum(blob, Titanium.Codec.ADLER32))
+    var blob = Ti.API.createBytes("abc");
+    value_of(Ti.Codec.checksum(blob, Ti.Codec.ADLER32))
       .should_be(38600999);
   },
 
   test_createZip_as_async: function (callback) {
-    var fs = Titanium.Filesystem;
+    var fs = Ti.Filesystem;
 
     function appFile(url) {
-      return fs.getFile(Titanium.App.appURLToPath(url));
+      return fs.getFile(Ti.App.appURLToPath(url));
     }
 
     function getFileSHA1(file) {
       var blob = file.read();
-      return Titanium.Codec.digestToHex(Titanium.Codec.SHA1, blob);
+      return Ti.Codec.digestToHex(Ti.Codec.SHA1, blob);
     }
 
     var dir = appFile("app://zipdir");
@@ -106,12 +106,12 @@ describe("Codec Tests", {
     var file1 = appFile("app://zipdir/file1.txt");
     var file2 = appFile("app://zipdir/file2.txt");
 
-    Titanium.API.debug("zipfile=" + zipFile);
+    Ti.API.debug("zipfile=" + zipFile);
     value_of(dir.isDirectory())
       .should_be_true();
 
     var timer = 0;
-    Titanium.Codec.createZip(dir, zipFile, function (destFile) {
+    Ti.Codec.createZip(dir, zipFile, function (destFile) {
       try {
         clearTimeout(timer);
         value_of(destFile)
@@ -164,29 +164,29 @@ describe("Codec Tests", {
 
   test_extractZip_as_async: function (callback) {
     function appFile(url) {
-      return Titanium.Filesystem.getFile(Titanium.App.appURLToPath(url));
+      return Ti.Filesystem.getFile(Ti.App.appURLToPath(url));
     }
 
     function getFileSHA1(file) {
       var blob = file.read();
-      return Titanium.Codec.digestToHex(Titanium.Codec.SHA1, blob);
+      return Ti.Codec.digestToHex(Ti.Codec.SHA1, blob);
     }
 
-    var zipFile = Titanium.App.appURLToPath("app://stuff.zip");
-    var destDir = Titanium.Filesystem.createTempDirectory();
+    var zipFile = Ti.App.appURLToPath("app://stuff.zip");
+    var destDir = Ti.Filesystem.createTempDirectory();
     var png = appFile("app://zipdir/default_app_logo.png");
     var file1 = appFile("app://zipdir/file1.txt");
     var file2 = appFile("app://zipdir/file2.txt");
 
     var timer = 0;
-    Titanium.Codec.extractZip(zipFile, destDir, function (dest) {
+    Ti.Codec.extractZip(zipFile, destDir, function (dest) {
       clearTimeout(timer);
 
       // Verify extracted directory contents
       try {
-        var zipPNG = Titanium.Filesystem.getFile(destDir, "default_app_logo.png");
-        var zipFile1 = Titanium.Filesystem.getFile(destDir, "file1.txt");
-        var zipFile2 = Titanium.Filesystem.getFile(destDir, "file2.txt");
+        var zipPNG = Ti.Filesystem.getFile(destDir, "default_app_logo.png");
+        var zipFile1 = Ti.Filesystem.getFile(destDir, "file1.txt");
+        var zipFile2 = Ti.Filesystem.getFile(destDir, "file2.txt");
 
         value_of(zipPNG.isFile())
           .should_be_true();

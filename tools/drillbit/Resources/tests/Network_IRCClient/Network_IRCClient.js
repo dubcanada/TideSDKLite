@@ -18,14 +18,14 @@ describe("Network.IRCClient", {
   // ti.network.HTTP objects are covered in the http_server unit test.
 
   before_all: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.createIRCClient)
+    value_of(Ti.Network.createIRCClient)
       .should_be_function();
-    value_of(Titanium.Network.IRCClient)
+    value_of(Ti.Network.IRCClient)
       .should_not_be_null();
 
-    this.client = Titanium.Network.createIRCClient();
+    this.client = Ti.Network.createIRCClient();
     value_of(this.client)
       .should_be_object();
 
@@ -67,7 +67,7 @@ describe("Network.IRCClient", {
     test.passed();
     /*
     var connectCount = this.connectCount;
-    var client = Titanium.Network.createIRCClient()
+    var client = Ti.Network.createIRCClient()
      value_of(client)
       .should_be_object();
     var connTimer = null;
@@ -108,7 +108,7 @@ describe("Network.IRCClient", {
 
      /*
      var connectCount = this.connectCount;
-     var client = Titanium.Network.createIRCClient()
+     var client = Ti.Network.createIRCClient()
       value_of(client)
        .should_be_object();
 
@@ -119,17 +119,17 @@ describe("Network.IRCClient", {
          connectCount++;
          clearTimeout(connTimer);
 
-         Titanium.API.debug("Connected to IRC server " + connectCount);
+         Ti.API.debug("Connected to IRC server " + connectCount);
          if (client.connected) {
            var nicTimer = setTimeout(function () {
              try {
-               Titanium.API.debug("checking the default nickname");
+               Ti.API.debug("checking the default nickname");
                value_of(client.getNick())
                  .should_be("drillbit_tester_app");
                value_of(client.getNick())
                  .should_not_be("drillbitNickName");
 
-               Titanium.API.debug("setup a new nickname");
+               Ti.API.debug("setup a new nickname");
                var newUser = "nickname" + String(new Date()
                  .getTime());
                var newUser = "drillbitNickName";
@@ -153,7 +153,7 @@ describe("Network.IRCClient", {
              }
            }, 10000);
          } else {
-           Titanium.API.debug("potentially kicked off IRC, don't know what to do");
+           Ti.API.debug("potentially kicked off IRC, don't know what to do");
            test.passed();
          }
        });

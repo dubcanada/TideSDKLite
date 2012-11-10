@@ -16,10 +16,10 @@
 
 describe("Network.HTTPServer", {
   get_request_as_async: function (callback) {
-    value_of(Titanium.Network.createHTTPServer)
+    value_of(Ti.Network.createHTTPServer)
       .should_be_function();
 
-    var server = Titanium.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
     value_of(server)
       .should_be_object();
     value_of(server.bind)
@@ -53,13 +53,13 @@ describe("Network.HTTPServer", {
       }
     });
 
-    var xhr = Titanium.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.open("GET", "http://127.0.0.1:8082/foo");
     xhr.send(null);
 
   },
   post_request_with_body_as_async: function (callback) {
-    var server = Titanium.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
 
     server.bind(8082, function (request, response) {
       try {
@@ -90,14 +90,14 @@ describe("Network.HTTPServer", {
       }
     });
 
-    var xhr = Titanium.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Foo', 'Bar');
     xhr.open("POST", "http://127.0.0.1:8082/foo");
     xhr.send("a=b");
   },
   get_request_simple_response_as_async: function (callback) {
-    var server = Titanium.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
 
     server.bind(8082, function (request, response) {
       try {
@@ -118,7 +118,7 @@ describe("Network.HTTPServer", {
       }
     });
 
-    var xhr = Titanium.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
         try {
@@ -142,11 +142,11 @@ describe("Network.HTTPServer", {
     xhr.send(null);
   },
   get_request_blob_response_as_async: function (callback) {
-    var blob = Titanium.Filesystem.getFile(
-    Titanium.API.application.resourcesPath, "test.bin")
+    var blob = Ti.Filesystem.getFile(
+    Ti.API.application.resourcesPath, "test.bin")
       .read();
 
-    var server = Titanium.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
     server.bind(8082, function (request, response) {
       try {
         value_of(request.getMethod())
@@ -166,7 +166,7 @@ describe("Network.HTTPServer", {
       }
     });
 
-    var xhr = Titanium.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
         try {

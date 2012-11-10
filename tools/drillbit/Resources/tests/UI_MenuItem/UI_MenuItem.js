@@ -16,7 +16,7 @@
 
 describe("UI.MenuItem Tests", {
   test_basic_methods: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_function();
     value_of(tui.createCheckMenuItem).should_be_function();
     value_of(tui.createSeparatorMenuItem).should_be_function();
@@ -94,7 +94,7 @@ describe("UI.MenuItem Tests", {
     check_all(sep_item3, sep_type);
   },
   test_setlabel: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_;
     var menu = tui.createMenu();
     var item = tui.createMenuItem("blah1");
@@ -124,7 +124,7 @@ describe("UI.MenuItem Tests", {
     value_of(check_item3.getLabel()).should_be("booboo3");
   },
   test_enable_disable: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_;
     var menu = tui.createMenu();
     var item = tui.createMenuItem("blah1");
@@ -154,7 +154,7 @@ describe("UI.MenuItem Tests", {
     test_it(check_item3);
   },
   test_set_submenu: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     var mitem = tui.createMenuItem("blah1");
 
@@ -188,7 +188,7 @@ describe("UI.MenuItem Tests", {
     test_it(check_item3);
   },
   test_set_recursive_menu: function () {
-    var menu = Titanium.UI.createMenu();
+    var menu = Ti.UI.createMenu();
     menu.addItem("blah1");
     menu.addItem("blah2");
     menu.addItem("blah3");
@@ -212,7 +212,7 @@ describe("UI.MenuItem Tests", {
     } catch (e) {}
     value_of(exc).should_be(true);
 
-    var itemz = Titanium.UI.createMenuItem();
+    var itemz = Ti.UI.createMenuItem();
     itemz.setSubmenu(menu);
     try {
       item2.getSubmenu().appendItem(itemz);

@@ -17,7 +17,7 @@
 describe("UI Stress Tests", {
   test_user_window_title: function () {
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('http://www.google.com');
 
     var title = "blahahahahahahahahahahahahaha";
@@ -61,7 +61,7 @@ describe("UI Stress Tests", {
 
   test_user_window_url: function () {
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('http://www.google.com');
 
     var url = "http://www.google.com/";
@@ -105,50 +105,50 @@ describe("UI Stress Tests", {
     // If these tests fail, perhaps the constant has changed. If that's
     // the case, just update the tests below and be sure that nothing
     // else in the system breaks! Hopefully apps do not rely on magic strings.
-    value_of(Titanium.FOCUSED)
+    value_of(Ti.FOCUSED)
       .should_be("focused");
-    value_of(Titanium.UNFOCUSED)
+    value_of(Ti.UNFOCUSED)
       .should_be("unfocused");
-    value_of(Titanium.OPEN)
+    value_of(Ti.OPEN)
       .should_be("open");
-    value_of(Titanium.OPENED)
+    value_of(Ti.OPENED)
       .should_be("opened");
-    value_of(Titanium.CLOSE)
+    value_of(Ti.CLOSE)
       .should_be("close");
-    value_of(Titanium.CLOSED)
+    value_of(Ti.CLOSED)
       .should_be("closed");
-    value_of(Titanium.HIDDEN)
+    value_of(Ti.HIDDEN)
       .should_be("hidden");
-    value_of(Titanium.SHOWN)
+    value_of(Ti.SHOWN)
       .should_be("shown");
-    value_of(Titanium.FULLSCREENED)
+    value_of(Ti.FULLSCREENED)
       .should_be("fullscreened");
-    value_of(Titanium.UNFULLSCREENED)
+    value_of(Ti.UNFULLSCREENED)
       .should_be("unfullscreened");
-    value_of(Titanium.MAXIMIZED)
+    value_of(Ti.MAXIMIZED)
       .should_be("maximized");
-    value_of(Titanium.MINIMIZED)
+    value_of(Ti.MINIMIZED)
       .should_be("minimized");
-    value_of(Titanium.RESIZED)
+    value_of(Ti.RESIZED)
       .should_be("resized");
-    value_of(Titanium.MOVED)
+    value_of(Ti.MOVED)
       .should_be("moved");
-    value_of(Titanium.PAGE_INITIALIZED)
+    value_of(Ti.PAGE_INITIALIZED)
       .should_be("page.init");
-    value_of(Titanium.PAGE_LOADED)
+    value_of(Ti.PAGE_LOADED)
       .should_be("page.load");
   },
   test_window_listener_as_async: function (callback) {
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
 
     var messageLog = {};
-    messageLog[Titanium.CLOSE] = false;
-    messageLog[Titanium.CLOSED] = false;
-    messageLog[Titanium.OPEN] = false;
-    messageLog[Titanium.OPENED] = false;
-    messageLog[Titanium.HIDDEN] = false;
+    messageLog[Ti.CLOSE] = false;
+    messageLog[Ti.CLOSED] = false;
+    messageLog[Ti.OPEN] = false;
+    messageLog[Ti.OPENED] = false;
+    messageLog[Ti.HIDDEN] = false;
 
     w.addEventListener(function (event) {
       messageLog[event.type] = true;
@@ -157,9 +157,9 @@ describe("UI Stress Tests", {
     w.open();
     setTimeout(function () {
       w.close();
-      if (messageLog[Titanium.OPEN] !== true) {
+      if (messageLog[Ti.OPEN] !== true) {
         callback.failed("Did not detect open message");
-      } else if (messageLog[Titanium.OPENED] !== true) {
+      } else if (messageLog[Ti.OPENED] !== true) {
         callback.failed("Did not detect opened message");
       } else {
         callback.passed();
@@ -168,7 +168,7 @@ describe("UI Stress Tests", {
   },
   test_window_maximize_fires_resize_as_async: function (callback) {
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.open();
 
@@ -203,41 +203,41 @@ describe("UI Stress Tests", {
   },
 
   test_constants: function () {
-    value_of(Titanium.UI.CENTERED)
+    value_of(Ti.UI.CENTERED)
       .should_be_number();
-    value_of(Titanium.FOCUSED)
+    value_of(Ti.FOCUSED)
       .should_be_string();
-    value_of(Titanium.UNFOCUSED)
+    value_of(Ti.UNFOCUSED)
       .should_be_string();
-    value_of(Titanium.OPEN)
+    value_of(Ti.OPEN)
       .should_be_string();
-    value_of(Titanium.OPENED)
+    value_of(Ti.OPENED)
       .should_be_string();
-    value_of(Titanium.CLOSE)
+    value_of(Ti.CLOSE)
       .should_be_string();
-    value_of(Titanium.CLOSED)
+    value_of(Ti.CLOSED)
       .should_be_string();
-    value_of(Titanium.HIDDEN)
+    value_of(Ti.HIDDEN)
       .should_be_string();
-    value_of(Titanium.SHOWN)
+    value_of(Ti.SHOWN)
       .should_be_string();
-    value_of(Titanium.FULLSCREENED)
+    value_of(Ti.FULLSCREENED)
       .should_be_string();
-    value_of(Titanium.UNFULLSCREENED)
+    value_of(Ti.UNFULLSCREENED)
       .should_be_string();
-    value_of(Titanium.MAXIMIZED)
+    value_of(Ti.MAXIMIZED)
       .should_be_string();
-    value_of(Titanium.MINIMIZED)
+    value_of(Ti.MINIMIZED)
       .should_be_string();
-    value_of(Titanium.RESIZED)
+    value_of(Ti.RESIZED)
       .should_be_string();
-    value_of(Titanium.MOVED)
+    value_of(Ti.MOVED)
       .should_be_string();
-    value_of(Titanium.PAGE_INITIALIZED)
+    value_of(Ti.PAGE_INITIALIZED)
       .should_be_string();
-    value_of(Titanium.PAGE_LOADED)
+    value_of(Ti.PAGE_LOADED)
       .should_be_string();
-    value_of(Titanium.CREATED)
+    value_of(Ti.CREATED)
       .should_be_string();
   },
   test_window_events_as_async: function (callback) {
@@ -255,7 +255,7 @@ describe("UI Stress Tests", {
       observedEvents[event.getType()] = "Yakko";
     };
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://test.html');
     var listener = w.addEventListener(eventListener);
     value_of(listener)
@@ -263,46 +263,46 @@ describe("UI Stress Tests", {
 
     addEventTest(function () {
       w.open();
-    }, [Titanium.OPEN, Titanium.OPENED, Titanium.PAGE_LOADED], 2000);
+    }, [Ti.OPEN, Ti.OPENED, Ti.PAGE_LOADED], 2000);
     addEventTest(function () {
       w.setVisible(false);
-    }, [Titanium.HIDDEN]);
+    }, [Ti.HIDDEN]);
     addEventTest(function () {
       w.setVisible(true);
-    }, [Titanium.SHOWN]);
+    }, [Ti.SHOWN]);
     addEventTest(function () {
       w.setFullscreen(true);
-    }, [Titanium.FULLSCREENED]);
+    }, [Ti.FULLSCREENED]);
     addEventTest(function () {
       w.setFullscreen(false);
-    }, [Titanium.UNFULLSCREENED]);
+    }, [Ti.UNFULLSCREENED]);
     addEventTest(function () {
       w.maximize();
-    }, [Titanium.MAXIMIZED]);
+    }, [Ti.MAXIMIZED]);
     addEventTest(function () {
       w.unmaximize();
       w.minimize();
-    }, [Titanium.MINIMIZED]);
+    }, [Ti.MINIMIZED]);
     addEventTest(function () {
       w.unminimize();
       var b = w.getBounds();
       w.setX(b.x + 1);
-    }, [Titanium.MOVED]);
+    }, [Ti.MOVED]);
     addEventTest(function () {
       var b = w.getBounds();
       w.setY(b.y + 1);
-    }, [Titanium.MOVED]);
+    }, [Ti.MOVED]);
     addEventTest(function () {
       var b = w.getBounds();
       w.setWidth(b.width * 2);
-    }, [Titanium.RESIZED]);
+    }, [Ti.RESIZED]);
     addEventTest(function () {
       var b = w.getBounds();
       w.setHeight(b.height + 1);
-    }, [Titanium.RESIZED]);
+    }, [Ti.RESIZED]);
     addEventTest(function () {
       w.close();
-    }, [Titanium.CLOSE, Titanium.CLOSED]);
+    }, [Ti.CLOSE, Ti.CLOSED]);
 
     var runNextTest = function () {
       if (eventTests.length <= 0) {
@@ -326,7 +326,7 @@ describe("UI Stress Tests", {
     runNextTest();
   },
   test_set_x_sanity_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
@@ -351,7 +351,7 @@ describe("UI Stress Tests", {
     }, 250);
   },
   test_set_y_sanity_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
@@ -376,7 +376,7 @@ describe("UI Stress Tests", {
     }, 250);
   },
   test_set_width_sanity_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
@@ -402,7 +402,7 @@ describe("UI Stress Tests", {
     }, 250);
   },
   test_set_height_sanity_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
@@ -428,14 +428,14 @@ describe("UI Stress Tests", {
     }, 250);
   },
   test_cancel_close_with_stop_propagation_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
     });
     var cancel = true;
     var sawEvent = false;
-    w.addEventListener(Titanium.CLOSE, function (event) {
+    w.addEventListener(Ti.CLOSE, function (event) {
       sawEvent = true;
       if (cancel) {
         event.stopPropagation();
@@ -447,17 +447,17 @@ describe("UI Stress Tests", {
     setTimeout(function () {
       w.close();
       setTimeout(function () {
-        Titanium.API.debug("here1");
+        Ti.API.debug("here1");
         if (!sawEvent) {
           callback.failed("Did not see CLOSE event.");
         }
 
-        Titanium.API.debug("did see the event");
+        Ti.API.debug("did see the event");
         if (w.isActive()) {
-          Titanium.API.debug("window is active");
+          Ti.API.debug("window is active");
           callback.passed();
         } else {
-          Titanium.API.debug("window is not active");
+          Ti.API.debug("window is not active");
           callback.failed("Window close event was not cancelled.");
         }
         cancel = false;
@@ -466,14 +466,14 @@ describe("UI Stress Tests", {
     }, 150);
   },
   test_cancel_close_with_prevent_default_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       width: 500,
       height: 300
     });
     var cancel = true;
     var sawEvent = false;
-    w.addEventListener(Titanium.CLOSE, function (event) {
+    w.addEventListener(Ti.CLOSE, function (event) {
       sawEvent = true;
       if (cancel) {
         event.preventDefault();

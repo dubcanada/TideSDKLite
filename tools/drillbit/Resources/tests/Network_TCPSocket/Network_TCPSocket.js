@@ -18,9 +18,9 @@ describe("Network.TCPSocket Tests", {
   // ti.network.HTTP objects are covered in the http_server unit test.
   before_all: function () {
     // Launch testing server on port 8080
-    this.testServer = Titanium.Process.createProcess({
+    this.testServer = Ti.Process.createProcess({
       args: [
-        'python', Titanium.API.application.resourcesPath + "/testserver.py"
+        'python', Ti.API.application.resourcesPath + "/testserver.py"
       ],
     });
     this.testServer.launch();
@@ -43,7 +43,7 @@ describe("Network.TCPSocket Tests", {
 
   before: function () {
     // Create a test socket client
-    this.socket = Titanium.Network.createTCPSocket("127.0.0.1", 8080);
+    this.socket = Ti.Network.createTCPSocket("127.0.0.1", 8080);
   },
 
   // test the network object and properties.

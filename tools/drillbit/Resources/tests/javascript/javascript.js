@@ -16,31 +16,31 @@
 
 describe("JavaScript Tests", {
   test_javascript_functions_no_window: function () {
-    value_of(Titanium.setTimeout)
+    value_of(Ti.setTimeout)
       .should_be_function();
-    value_of(Titanium.setInterval)
+    value_of(Ti.setInterval)
       .should_be_function();
-    value_of(Titanium.clearTimeout)
+    value_of(Ti.clearTimeout)
       .should_be_function();
-    value_of(Titanium.clearInterval)
+    value_of(Ti.clearInterval)
       .should_be_function();
 
-    value_of(Titanium.setTimeout)
+    value_of(Ti.setTimeout)
       .should_not_be(setTimeout);
-    value_of(Titanium.setInterval)
+    value_of(Ti.setInterval)
       .should_not_be(setInterval);
-    value_of(Titanium.clearTimeout)
+    value_of(Ti.clearTimeout)
       .should_not_be(clearTimeout);
-    value_of(Titanium.clearInterval)
+    value_of(Ti.clearInterval)
       .should_not_be(clearInterval);
   },
 
   test_setTimeout_as_async: function (callback) {
     var timer = 0;
-    Titanium.setTimeout(function () {
+    Ti.setTimeout(function () {
       try {
         value_of(clearTimeout)
-          .should_not_be(Titanium.clearTimeout);
+          .should_not_be(Ti.clearTimeout);
       } catch (e) {
         callback.failed(e);
       }
@@ -57,7 +57,7 @@ describe("JavaScript Tests", {
   test_setInterval_as_async: function (callback) {
     var times = 0;
     var timer = 0;
-    Titanium.setInterval(function () {
+    Ti.setInterval(function () {
       times++;
       if (times == 5) {
         clearTimeout(timer);
@@ -71,28 +71,28 @@ describe("JavaScript Tests", {
   },
 
   test_clearTimeout_as_async: function (callback) {
-    var timer = Titanium.setTimeout(function () {
+    var timer = Ti.setTimeout(function () {
       callback.failed("timer wasn't cleared correctly");
     }, 500);
 
-    Titanium.clearTimeout(timer);
-    var timer2 = Titanium.setTimeout(function () {
+    Ti.clearTimeout(timer);
+    var timer2 = Ti.setTimeout(function () {
       callback.passed();
     }, 1500);
   },
 
   test_clearInterval_as_async: function (callback) {
     var times = 0;
-    var timer = Titanium.setInterval(function () {
+    var timer = Ti.setInterval(function () {
       times++;
       if (times == 5) {
-        Titanium.clearInterval(timer);
+        Ti.clearInterval(timer);
       } else if (times > 5) {
         callback.failed("interval wasn't cleared correctly");
       }
     }, 500);
 
-    var timer2 = Titanium.setTimeout(function () {
+    var timer2 = Ti.setTimeout(function () {
       callback.passed();
     }, 4000);
   }

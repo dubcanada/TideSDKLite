@@ -32,11 +32,11 @@
  * limitations under the License.
  **/
 (function () {
+  var Ti = Titanium;
+  var CreateProcess = Ti.Process.createProcess;
 
-  var ti_createProcess = Titanium.Process.createProcess;
-
-  Titanium.Process.createProcess = function () {
-    var process = ti_createProcess.apply(Titanium.Process, arguments);
+  Ti.Process.createProcess = function () {
+    var process = CreateProcess.apply(Ti.Process, arguments);
 
     /**
      * @tiapi(method=True,name=Process.Process.setOnReadLine,since=0.5)
@@ -80,13 +80,13 @@
    * @tiarg[String, command] The command to launch
    * @tiarg[Array<String>, arguments] A list of arguments to the command
    */
-  Titanium.Process.launch = function (cmd, args) {
-    Titanium.API.warn("Titanium.Process.launch is deprecated, please use Titanium.Process.createProcess instead");
+  Ti.Process.launch = function (cmd, args) {
+    Ti.API.warn("Ti.Process.launch is deprecated, please use Ti.Process.createProcess instead");
 
     if (!args) args = [];
     args.unshift(cmd);
 
-    var process = ti_createProcess.call(Titanium.Process, args);
+    var process = CreateProcess.call(Ti.Process, args);
     var buffer = '';
     var onRead = null;
     var onExit = null;

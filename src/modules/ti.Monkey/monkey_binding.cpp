@@ -182,7 +182,7 @@ namespace ti
         }
 
         KObjectRef target = event->GetObject("target");
-        if (!windowObject->Get(GLOBAL_NS_VARNAME)->IsObject() &&
+        if (!windowObject->Get(GLOBAL_NAMESPACE)->IsObject() &&
             !target.isNull() && target->Get("insertAPI")->IsMethod())
         {
             logger->Info("Forcing Titanium API into: %s\n", url.c_str());

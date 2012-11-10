@@ -16,9 +16,9 @@
 
 describe("Analytics Tests", {
   test_analytics_properties: function () {
-    value_of(Titanium.Analytics)
+    value_of(Ti.Analytics)
       .should_be_object();
-    value_of(Titanium.Analytics.addEvent)
+    value_of(Ti.Analytics.addEvent)
       .should_be_function();
   }
 });

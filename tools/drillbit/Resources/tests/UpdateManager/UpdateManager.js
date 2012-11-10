@@ -16,19 +16,19 @@
 
 describe("Update Manaager Tests", {
   test_object: function () {
-    value_of(Titanium.UpdateManager)
+    value_of(Ti.UpdateManager)
       .should_not_be_null();
-    value_of(Titanium.UpdateManager.cancelMonitor)
+    value_of(Ti.UpdateManager.cancelMonitor)
       .should_be_function();
-    value_of(Titanium.UpdateManager.installAppUpdate)
+    value_of(Ti.UpdateManager.installAppUpdate)
       .should_be_function();
-    value_of(Titanium.UpdateManager.onupdate)
+    value_of(Ti.UpdateManager.onupdate)
       .should_be_null();
-    value_of(Titanium.UpdateManager.startMonitor)
+    value_of(Ti.UpdateManager.startMonitor)
       .should_be_function();
   },
   test_version_comparison: function () {
-    var compare = Titanium.UpdateManager.compareVersions;
+    var compare = Ti.UpdateManager.compareVersions;
     value_of(compare("0.8.0", "0.8.0"))
       .should_be(0);
     value_of(compare("0.8.0", "0.8.1"))

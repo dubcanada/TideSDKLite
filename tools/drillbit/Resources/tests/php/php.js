@@ -170,9 +170,9 @@ describe("PHP tests", {
       .should_be(7);
   },
   test_preprocess_as_async: function (callback) {
-    var w = Titanium.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
+    var w = Ti.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
     var timer = 0;
-    w.addEventListener(Titanium.PAGE_LOADED, function (event) {
+    w.addEventListener(Ti.PAGE_LOADED, function (event) {
       clearTimeout(timer);
       try {
         function domValue(id) {
@@ -218,10 +218,10 @@ describe("PHP tests", {
       .should_be("ninja food");
   },
   test_deep_global_variable_isolation_as_async: function (callback) {
-    Titanium.page_two_loaded = function () {
+    Ti.page_two_loaded = function () {
       // Modify the main page version of '$substance'
       modify_substance();
-      var result = Titanium.get_page_two_substance();
+      var result = Ti.get_page_two_substance();
       if (result == "page two") {
         callback.passed();
       } else {
@@ -229,7 +229,7 @@ describe("PHP tests", {
       }
     };
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://another.html');
     w.open();
 
@@ -265,7 +265,7 @@ describe("PHP tests", {
     // Test that files in the Resources directory
     //  are on the include path.
     var include_path = get_include_path();
-    var res_dir = Titanium.API.getApplication()
+    var res_dir = Ti.API.getApplication()
       .getResourcesPath();
     value_of(include_path.indexOf(res_dir) != -1)
       .should_be_true();

@@ -16,13 +16,13 @@
 
 describe("UI.Menu Active Tests", {
   test_basic_menu_append_and_getitemat_as_async: function (cb) {
-    var w1 = Titanium.UI.getCurrentWindow();
-    var w2 = Titanium.UI.createWindow({
+    var w1 = Ti.UI.getCurrentWindow();
+    var w2 = Ti.UI.createWindow({
       url: 'blah.html'
     });
     w2.open();
 
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     w1.setMenu(menu);
     w2.setMenu(menu);
@@ -63,13 +63,13 @@ describe("UI.Menu Active Tests", {
     }, 200);
   },
   test_active_removeitem_at_as_async: function (cb) {
-    var w1 = Titanium.UI.getCurrentWindow();
-    var w2 = Titanium.UI.createWindow({
+    var w1 = Ti.UI.getCurrentWindow();
+    var w2 = Ti.UI.createWindow({
       url: 'blah.html'
     });
     w2.open();
 
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     w1.setMenu(menu);
     w2.setMenu(menu);

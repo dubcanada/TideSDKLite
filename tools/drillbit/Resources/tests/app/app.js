@@ -16,68 +16,68 @@
 
 describe("App Tests", {
   validate_app: function () {
-    value_of(Titanium.platform)
+    value_of(Ti.platform)
       .should_be_one_of(['win32', 'osx', 'linux']);
-    value_of(Titanium.version)
+    value_of(Ti.version)
       .should_be_string();
 
-    value_of(Titanium.App.getID())
+    value_of(Ti.App.getID())
       .should_be('com.titaniumapp.unittest');
-    value_of(Titanium.App.getName())
+    value_of(Ti.App.getName())
       .should_be('foobar');
-    value_of(Titanium.App.getVersion())
+    value_of(Ti.App.getVersion())
       .should_be('1.2');
-    value_of(Titanium.App.getPublisher())
+    value_of(Ti.App.getPublisher())
       .should_be('yoy');
-    value_of(Titanium.App.getURL())
+    value_of(Ti.App.getURL())
       .should_be('blah.com');
-    value_of(Titanium.App.getCopyright())
+    value_of(Ti.App.getCopyright())
       .should_be('2010');
-    value_of(Titanium.App.getDescription())
+    value_of(Ti.App.getDescription())
       .should_be('cool like dat');
-    value_of(Titanium.App.getGUID())
+    value_of(Ti.App.getGUID())
       .should_be('CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4');
 
     // No default icon set for the application.
-    var icon = Titanium.App.getIcon();
+    var icon = Ti.App.getIcon();
     value_of(icon)
       .should_be_null();
 
-    value_of(Titanium.App.exit)
+    value_of(Ti.App.exit)
       .should_be_function();
-    value_of(Titanium.App.loadProperties)
+    value_of(Ti.App.loadProperties)
       .should_be_function();
-    value_of(Titanium.App.path)
+    value_of(Ti.App.path)
       .should_not_be_null();
-    value_of(Titanium.App.arguments)
+    value_of(Ti.App.arguments)
       .should_not_be_null();
-    value_of(Titanium.App.Properties)
+    value_of(Ti.App.Properties)
       .should_be_object();
 
-    value_of(Titanium.App.home)
+    value_of(Ti.App.home)
       .should_not_be_null();
-    value_of(Titanium.App.stdout)
+    value_of(Ti.App.stdout)
       .should_be_function();
-    value_of(Titanium.App.stderr)
+    value_of(Ti.App.stderr)
       .should_be_function();
 
     // this should be the default stream if not specified in the manifest
-    value_of(Titanium.App.getStreamURL())
+    value_of(Ti.App.getStreamURL())
       .should_be('https://api.appcelerator.net/p/v1');
     // test passing arg
-    value_of(Titanium.App.getStreamURL('foo'))
+    value_of(Ti.App.getStreamURL('foo'))
       .should_be('https://api.appcelerator.net/p/v1/foo');
     // test passing multiple args
-    value_of(Titanium.App.getStreamURL('foo', 'bar'))
+    value_of(Ti.App.getStreamURL('foo', 'bar'))
       .should_be('https://api.appcelerator.net/p/v1/foo/bar');
   },
 
   //comment out for now, this test function causes the app test to timeout in win32,
   test_system_properties: function () {
     // test type conversion and parsing of system properties embedded in tiapp.xml
-    value_of(Titanium.App.getSystemProperties())
+    value_of(Ti.App.getSystemProperties())
       .should_be_object();
-    var sysProps = Titanium.App.getSystemProperties();
+    var sysProps = Ti.App.getSystemProperties();
 
     value_of(sysProps.getString("teststring"))
       .should_be("stringvalue");
@@ -94,7 +94,7 @@ describe("App Tests", {
   },
 
   test_create_properties_object: function () {
-    var props = Titanium.App.createProperties();
+    var props = Ti.App.createProperties();
     value_of(props)
       .should_be_object();
 
@@ -127,7 +127,7 @@ describe("App Tests", {
   },
 
   test_create_properties: function () {
-    var props2 = Titanium.App.createProperties({
+    var props2 = Ti.App.createProperties({
       "val1": true,
       "val2": 1.1,
       "val3": ['a', 'b', 'c'],
@@ -155,7 +155,7 @@ describe("App Tests", {
     value_of(props2.getString("val4"))
       .should_be("123");
 
-    var TFS = Titanium.Filesystem;
+    var TFS = Ti.Filesystem;
     var sep = TFS.getSeparator();
     var appdir = TFS.getApplicationDataDirectory();
     var path = appdir + sep + "_testing.properties";
@@ -167,7 +167,7 @@ describe("App Tests", {
   },
 
   test_remove_properties: function () {
-    var props = Titanium.App.createProperties({
+    var props = Ti.App.createProperties({
       "val1": true,
       "val2": 1.1,
       "val3": ['a', 'b', 'c'],
@@ -188,12 +188,12 @@ describe("App Tests", {
 
   test_app_URLToPath: function () {
     // get the fully qualified absolute path to the properties.
-    var path = Titanium.App.appURLToPath("app://app.properties");
+    var path = Ti.App.appURLToPath("app://app.properties");
     value_of(path)
       .should_be_string();
 
     // get the application object
-    var app = Titanium.API.getApplication();
+    var app = Ti.API.getApplication();
     value_of(app)
       .should_not_be_null();
 
@@ -209,15 +209,15 @@ describe("App Tests", {
       .should_not_be(-1);
 
     // Lighthouse issue #90: Make sure app URLs with the appid in the host are stripped
-    var url = Titanium.UI.currentWindow.getURL();
+    var url = Ti.UI.currentWindow.getURL();
     var urlNoHost = "app://index.html";
-    var urlPath = Titanium.App.appURLToPath(url);
+    var urlPath = Ti.App.appURLToPath(url);
     value_of(urlPath)
-      .should_be(Titanium.App.appURLToPath(urlNoHost));
+      .should_be(Ti.App.appURLToPath(urlNoHost));
   },
 
   test_app_loadproperties: function () {
-    var props = Titanium.App.loadProperties(Titanium.App.appURLToPath("app://app.properties"));
+    var props = Ti.App.loadProperties(Ti.App.appURLToPath("app://app.properties"));
     value_of(props)
       .should_be_object();
     value_of(props.getBool("trueval"))
@@ -235,16 +235,16 @@ describe("App Tests", {
   },
 
   test_app_arguments: function () {
-    value_of(Titanium.App.arguments)
+    value_of(Ti.App.arguments)
       .should_be_array();
     // this is specific to the test harness args
-    value_of(Titanium.App.arguments.length)
+    value_of(Ti.App.arguments.length)
       .should_be(6);
 
-    Titanium.API.debug("arguments[0] " + Titanium.App.arguments[0]);
+    Ti.API.debug("arguments[0] " + Ti.App.arguments[0]);
 
     // get the application object
-    var app = Titanium.API.getApplication();
+    var app = Ti.API.getApplication();
     value_of(app)
       .should_not_be_null();
 
@@ -258,19 +258,19 @@ describe("App Tests", {
     var subPath = argv[0].substr(0, argv[0].search(app.getName()));
 
     // argv[0] is the fully qualified name and path to the exe
-    var index = Titanium.App.arguments[0].indexOf(subPath);
+    var index = Ti.App.arguments[0].indexOf(subPath);
     value_of(index)
       .should_not_be(-1);
   },
 
   test_app_home_property: function () {
-    value_of(Titanium.App.home)
+    value_of(Ti.App.home)
       .should_not_be_null();
-    Titanium.API.debug("home is " + Titanium.App.home);
-    Titanium.API.debug("Titanium.App.arguments[0] is " + Titanium.App.arguments[0]);
+    Ti.API.debug("home is " + Ti.App.home);
+    Ti.API.debug("Ti.App.arguments[0] is " + Ti.App.arguments[0]);
 
     // get the application object
-    var app = Titanium.API.getApplication();
+    var app = Ti.API.getApplication();
     value_of(app)
       .should_not_be_null();
 
@@ -284,17 +284,17 @@ describe("App Tests", {
     var subPath = argv[0].substr(0, argv[0].search(app.getName()));
 
     // argv[0] is the fully qualified name and path to the exe
-    var index = Titanium.App.home.indexOf(subPath);
+    var index = Ti.App.home.indexOf(subPath);
     value_of(index)
       .should_not_be(-1);
   },
 
   test_app_path_property: function () {
-    value_of(Titanium.App.path)
+    value_of(Ti.App.path)
       .should_not_be_null();
-    Titanium.API.debug("path is " + Titanium.App.path);
+    Ti.API.debug("path is " + Ti.App.path);
 
-    var index = Titanium.App.path.indexOf(Titanium.App.home);
+    var index = Ti.App.path.indexOf(Ti.App.home);
     value_of(index)
       .should_not_be(-1);
   }

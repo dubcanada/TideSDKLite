@@ -19,36 +19,36 @@ describe("Network Tests", {
 
   // test the network object and properties.
   test_network_object: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.getProxy)
+    value_of(Ti.Network.getProxy)
       .should_be_function();
-    value_of(Titanium.Network.setProxy)
+    value_of(Ti.Network.setProxy)
       .should_be_function();
-    value_of(Titanium.Network.createHTTPClient)
+    value_of(Ti.Network.createHTTPClient)
       .should_be_function();
-    value_of(Titanium.Network.createHTTPServer)
+    value_of(Ti.Network.createHTTPServer)
       .should_be_function();
-    value_of(Titanium.Network.createIPAddress)
+    value_of(Ti.Network.createIPAddress)
       .should_be_function();
-    value_of(Titanium.Network.createIRCClient)
+    value_of(Ti.Network.createIRCClient)
       .should_be_function();
-    value_of(Titanium.Network.createTCPSocket)
+    value_of(Ti.Network.createTCPSocket)
       .should_be_function();
-    value_of(Titanium.Network.decodeURIComponent)
+    value_of(Ti.Network.decodeURIComponent)
       .should_be_function();
-    value_of(Titanium.Network.encodeURIComponent)
+    value_of(Ti.Network.encodeURIComponent)
       .should_be_function();
-    value_of(Titanium.Network.getHostByAddress)
+    value_of(Ti.Network.getHostByAddress)
       .should_be_function();
-    value_of(Titanium.Network.getHostByName)
+    value_of(Ti.Network.getHostByName)
       .should_be_function();
   },
 
   test_network_URIComponents: function () {
     var str = "the test string";
 
-    var encoded = Titanium.Network.encodeURIComponent(str);
+    var encoded = Ti.Network.encodeURIComponent(str);
 
     // is the string encoded?
     value_of(str == encoded)
@@ -56,7 +56,7 @@ describe("Network Tests", {
     value_of(encoded.indexOf("%20"))
       .should_not_be(-1);
 
-    var decoded = Titanium.Network.decodeURIComponent(encoded);
+    var decoded = Ti.Network.decodeURIComponent(encoded);
 
     // is the string decoded?
     value_of(str == decoded)
@@ -65,128 +65,128 @@ describe("Network Tests", {
       .should_be(-1);
   },
   test_network_proxy_functions: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.getProxy)
+    value_of(Ti.Network.getProxy)
       .should_be_function();
-    value_of(Titanium.Network.setProxy)
+    value_of(Ti.Network.setProxy)
       .should_be_function();
-    value_of(Titanium.Network.getHTTPProxy)
+    value_of(Ti.Network.getHTTPProxy)
       .should_be_function();
-    value_of(Titanium.Network.setHTTPProxy)
+    value_of(Ti.Network.setHTTPProxy)
       .should_be_function();
-    value_of(Titanium.Network.getHTTPSProxy)
+    value_of(Ti.Network.getHTTPSProxy)
       .should_be_function();
-    value_of(Titanium.Network.setHTTPSProxy)
+    value_of(Ti.Network.setHTTPSProxy)
       .should_be_function();
   },
   test_proxy: function () {
-    var proxy = Titanium.Network.getProxy();
+    var proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setProxy("http://www.google.com:81");
-    proxy = Titanium.Network.getProxy();
+    Ti.Network.setProxy("http://www.google.com:81");
+    proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be("http://www.google.com:81");
 
-    Titanium.Network.setProxy(null);
-    proxy = Titanium.Network.getProxy();
+    Ti.Network.setProxy(null);
+    proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setProxy("http://www.google.com:81");
-    proxy = Titanium.Network.getProxy();
+    Ti.Network.setProxy("http://www.google.com:81");
+    proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be("http://www.google.com:81");
 
-    Titanium.Network.setProxy("www.yahoo.com:81");
-    proxy = Titanium.Network.getProxy();
+    Ti.Network.setProxy("www.yahoo.com:81");
+    proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be("http://www.yahoo.com:81");
 
-    Titanium.Network.setProxy("");
-    proxy = Titanium.Network.getProxy();
+    Ti.Network.setProxy("");
+    proxy = Ti.Network.getProxy();
     value_of(proxy)
       .should_be(null);
   },
   test_http_proxy: function () {
-    var proxy = Titanium.Network.getHTTPProxy();
+    var proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setHTTPProxy("http://www.google.com:81");
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("http://www.google.com:81");
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be("http://www.google.com:81");
 
-    Titanium.Network.setHTTPProxy(null);
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy(null);
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setHTTPProxy("http://www.google.com:81");
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("http://www.google.com:81");
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be("http://www.google.com:81");
 
-    Titanium.Network.setHTTPProxy("www.yahoo.com:81");
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("www.yahoo.com:81");
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be("http://www.yahoo.com:81");
 
-    Titanium.Network.setHTTPProxy("direct://");
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("direct://");
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be_null();
 
-    Titanium.Network.setHTTPProxy("http://joe:blow@foo.com:80");
-    vproxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("http://joe:blow@foo.com:80");
+    vproxy = Ti.Network.getHTTPProxy();
     value_of(vproxy)
       .should_be("http://joe:blow@foo.com:80");
 
-    Titanium.Network.setHTTPProxy("");
-    proxy = Titanium.Network.getHTTPProxy();
+    Ti.Network.setHTTPProxy("");
+    proxy = Ti.Network.getHTTPProxy();
     value_of(proxy)
       .should_be(null);
   },
   test_https_proxy: function () {
-    var proxy = Titanium.Network.getHTTPSProxy();
+    var proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setHTTPSProxy("https://www.google.com:81");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("https://www.google.com:81");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be("https://www.google.com:81");
 
-    Titanium.Network.setHTTPSProxy(null);
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy(null);
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be(null);
 
-    Titanium.Network.setHTTPSProxy("https://www.google.com:81");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("https://www.google.com:81");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be("https://www.google.com:81");
 
-    Titanium.Network.setHTTPSProxy("www.yahoo.com:81");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("www.yahoo.com:81");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be("https://www.yahoo.com:81");
 
-    Titanium.Network.setHTTPSProxy("direct://");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("direct://");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be_null();
 
-    Titanium.Network.setHTTPSProxy("http://joe:blow@foo.com:80");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("http://joe:blow@foo.com:80");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be("http://joe:blow@foo.com:80");
 
-    Titanium.Network.setHTTPSProxy("");
-    proxy = Titanium.Network.getHTTPSProxy();
+    Ti.Network.setHTTPSProxy("");
+    proxy = Ti.Network.getHTTPSProxy();
     value_of(proxy)
       .should_be(null);
   }

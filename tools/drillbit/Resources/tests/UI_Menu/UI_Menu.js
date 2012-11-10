@@ -16,7 +16,7 @@
 
 describe("UI.Menu", {
   test_basic_methods: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenu)
       .should_be_function();
     value_of(tui.createMenuItem)
@@ -29,19 +29,19 @@ describe("UI.Menu", {
       .should_be_function();
     value_of(tui.setContextMenu)
       .should_be_function();
-    if (Titanium.platform == "osx") {
+    if (Ti.platform == "osx") {
       value_of(tui.setDockMenu)
         .should_be_function();
     }
 
-    var w = Titanium.UI.getCurrentWindow();
+    var w = Ti.UI.getCurrentWindow();
     value_of(w.setMenu)
       .should_be_function();
     value_of(w.setContextMenu)
       .should_be_function();
   },
   test_basic_menu_methods: function () {
-    var menu = Titanium.UI.createMenu();
+    var menu = Ti.UI.createMenu();
     value_of(menu.getLength)
       .should_be_function();
     value_of(menu.getItemAt)
@@ -60,7 +60,7 @@ describe("UI.Menu", {
       .should_be_function();
   },
   test_basic_menu_item: function () {
-    var menuItem = Titanium.UI.createMenuItem("Blahblah");
+    var menuItem = Ti.UI.createMenuItem("Blahblah");
     value_of(menuItem.getLabel)
       .should_be_function();
     value_of(menuItem.setLabel)
@@ -79,7 +79,7 @@ describe("UI.Menu", {
       .should_be("Blahblah");
   },
   test_basic_menu_append_and_getitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -130,7 +130,7 @@ describe("UI.Menu", {
       .should_be(true);
   },
   test_menu_removeitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -190,7 +190,7 @@ describe("UI.Menu", {
       .should_be_true();
   },
   test_invalid_removeitem_at: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -269,7 +269,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_menu_insertitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -329,7 +329,7 @@ describe("UI.Menu", {
       .should_be_true();
   },
   test_invalid_insertitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -373,7 +373,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_basic_menu_add_separator: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -402,7 +402,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_basic_menu_add_item: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -438,7 +438,7 @@ describe("UI.Menu", {
       .should_be("app://blah.png");
   },
   test_basic_menu_add_check: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);

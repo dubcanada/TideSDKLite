@@ -352,7 +352,7 @@
       var runner_js = Ti.Filesystem.getFile(user_scripts_dir, entry.name + '_driver.js');
       var data = {
         entry: entry,
-        Titanium: Titanium,
+        Titanium: Ti,
         excludes: excludes
       };
       var user_script = null;

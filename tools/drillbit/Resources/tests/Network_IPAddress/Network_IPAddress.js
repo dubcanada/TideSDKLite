@@ -18,14 +18,14 @@ describe("Network.IPAddress Tests", {
   // ti.network.HTTP objects are covered in the http_server unit test.
 
   before: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.createIPAddress)
+    value_of(Ti.Network.createIPAddress)
       .should_be_function();
-    value_of(Titanium.Network.IPAddress)
+    value_of(Ti.Network.IPAddress)
       .should_not_be_null();
 
-    this.ipAddr = Titanium.Network.createIPAddress("127.0.0.1");
+    this.ipAddr = Ti.Network.createIPAddress("127.0.0.1");
 
     value_of(this.ipAddr)
       .should_not_be_null();
@@ -76,39 +76,39 @@ describe("Network.IPAddress Tests", {
     value_of(this.ipAddr.toString)
       .should_be_function();
 
-    Titanium.API.debug("ipAddr.isBroadcast = " + this.ipAddr.isBroadcast()
+    Ti.API.debug("ipAddr.isBroadcast = " + this.ipAddr.isBroadcast()
       .toString());
-    Titanium.API.debug("ipAddr.isGlobalMC = " + this.ipAddr.isGlobalMC()
+    Ti.API.debug("ipAddr.isGlobalMC = " + this.ipAddr.isGlobalMC()
       .toString());
-    Titanium.API.debug("ipAddr.isIPV4 = " + this.ipAddr.isIPV4()
+    Ti.API.debug("ipAddr.isIPV4 = " + this.ipAddr.isIPV4()
       .toString());
-    Titanium.API.debug("ipAddr.isIPV6 = " + this.ipAddr.isIPV6()
+    Ti.API.debug("ipAddr.isIPV6 = " + this.ipAddr.isIPV6()
       .toString());
-    Titanium.API.debug("ipAddr.isInvalid = " + this.ipAddr.isInvalid()
+    Ti.API.debug("ipAddr.isInvalid = " + this.ipAddr.isInvalid()
       .toString());
-    Titanium.API.debug("ipAddr.isLinkLocal = " + this.ipAddr.isLinkLocal()
+    Ti.API.debug("ipAddr.isLinkLocal = " + this.ipAddr.isLinkLocal()
       .toString());
-    Titanium.API.debug("ipAddr.isLinkLocalMC = " + this.ipAddr.isLinkLocalMC()
+    Ti.API.debug("ipAddr.isLinkLocalMC = " + this.ipAddr.isLinkLocalMC()
       .toString());
-    Titanium.API.debug("ipAddr.isLoopback = " + this.ipAddr.isLoopback()
+    Ti.API.debug("ipAddr.isLoopback = " + this.ipAddr.isLoopback()
       .toString());
-    Titanium.API.debug("ipAddr.isMulticast = " + this.ipAddr.isMulticast()
+    Ti.API.debug("ipAddr.isMulticast = " + this.ipAddr.isMulticast()
       .toString());
-    Titanium.API.debug("ipAddr.isNodeLocalMC = " + this.ipAddr.isNodeLocalMC()
+    Ti.API.debug("ipAddr.isNodeLocalMC = " + this.ipAddr.isNodeLocalMC()
       .toString());
-    Titanium.API.debug("ipAddr.isOrgLocalMC = " + this.ipAddr.isOrgLocalMC()
+    Ti.API.debug("ipAddr.isOrgLocalMC = " + this.ipAddr.isOrgLocalMC()
       .toString());
-    Titanium.API.debug("ipAddr.isSiteLocal = " + this.ipAddr.isSiteLocal()
+    Ti.API.debug("ipAddr.isSiteLocal = " + this.ipAddr.isSiteLocal()
       .toString());
-    Titanium.API.debug("ipAddr.isSiteLocalMC = " + this.ipAddr.isSiteLocalMC()
+    Ti.API.debug("ipAddr.isSiteLocalMC = " + this.ipAddr.isSiteLocalMC()
       .toString());
-    Titanium.API.debug("ipAddr.isUnicast = " + this.ipAddr.isUnicast()
+    Ti.API.debug("ipAddr.isUnicast = " + this.ipAddr.isUnicast()
       .toString());
-    Titanium.API.debug("ipAddr.isWellKnownMC = " + this.ipAddr.isWellKnownMC()
+    Ti.API.debug("ipAddr.isWellKnownMC = " + this.ipAddr.isWellKnownMC()
       .toString());
-    Titanium.API.debug("ipAddr.isWildcard = " + this.ipAddr.isWildcard()
+    Ti.API.debug("ipAddr.isWildcard = " + this.ipAddr.isWildcard()
       .toString());
-    Titanium.API.debug("ipAddr.toString = " + this.ipAddr.toString()
+    Ti.API.debug("ipAddr.toString = " + this.ipAddr.toString()
       .toString());
 
   },

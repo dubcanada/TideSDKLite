@@ -16,13 +16,13 @@
 
 describe("API Types Tests", {
   test_core_types_harness: function () {
-    value_of(Titanium.API.createKObject)
+    value_of(Ti.API.createKObject)
       .should_be_function();
-    value_of(Titanium.API.createKMethod)
+    value_of(Ti.API.createKMethod)
       .should_be_function();
-    value_of(Titanium.API.createKList)
+    value_of(Ti.API.createKList)
       .should_be_function();
-    value_of(Titanium.API.createBytes)
+    value_of(Ti.API.createBytes)
       .should_be_function();
   },
   test_empty_kobject: function () {
@@ -33,7 +33,7 @@ describe("API Types Tests", {
       }
       return n;
     };
-    var o = Titanium.API.createKObject();
+    var o = Ti.API.createKObject();
     // There should be no properties showing for a blank KObject
     value_of(count_properties(o))
       .should_be(0);
@@ -50,7 +50,7 @@ describe("API Types Tests", {
     var other = Object();
     value_of(o.equals(other))
       .should_be_false();
-    other = Titanium.API.createKObject();
+    other = Ti.API.createKObject();
     value_of(o.equals(other))
       .should_be_false();
     value_of(o.toString())
@@ -88,7 +88,7 @@ describe("API Types Tests", {
     };
     var o = Object();
     o.property_one = "blahblah";
-    var ko = Titanium.API.createKObject(o);
+    var ko = Ti.API.createKObject(o);
 
     value_of(count_properties(ko))
       .should_be(1);
@@ -110,7 +110,7 @@ describe("API Types Tests", {
       .should_be("oh noes");
   },
   test_empty_klist: function () {
-    var l = Titanium.API.createKList();
+    var l = Ti.API.createKList();
     value_of(l.length)
       .should_be_number();
     value_of(l.equals)
@@ -142,7 +142,7 @@ describe("API Types Tests", {
       .should_be_function();
   },
   test_modifying_klist: function () {
-    var l = Titanium.API.createKList();
+    var l = Ti.API.createKList();
     value_of(l.length)
       .should_be(0);
     l.push(123);
@@ -205,7 +205,7 @@ describe("API Types Tests", {
   },
   test_wrapped_klist: function () {
     var mylist = [1, 2, 3];
-    var l = Titanium.API.createKList(mylist);
+    var l = Ti.API.createKList(mylist);
     value_of(l.length)
       .should_be_number();
     value_of(l.equals)
@@ -330,7 +330,7 @@ describe("API Types Tests", {
     };
     
     variable = "dos";
-    var f = Titanium.API.createKMethod(myfunction);
+    var f = Ti.API.createKMethod(myfunction);
     var result = f();
     value_of(result)
       .should_be("dos");
@@ -350,7 +350,7 @@ describe("API Types Tests", {
 
     setTimeout(function () {
       variable = "dos";
-      var f = Titanium.API.createKMethod(myfunction2());
+      var f = Ti.API.createKMethod(myfunction2());
       var result = f();
 
       if (result !== "dos") {
@@ -363,7 +363,7 @@ describe("API Types Tests", {
     }, 50);
   },
   test_basic_empty_blob: function () {
-    var b1 = Titanium.API.createBytes();
+    var b1 = Ti.API.createBytes();
     value_of(b1)
       .should_be_object();
     value_of(b1.length)
@@ -394,7 +394,7 @@ describe("API Types Tests", {
       .should_be("");
   },
   test_basic_blob: function () {
-    var b1 = Titanium.API.createBytes("abcdefgA");
+    var b1 = Ti.API.createBytes("abcdefgA");
     value_of(b1)
       .should_be_object();
     value_of(b1.length)
@@ -427,7 +427,7 @@ describe("API Types Tests", {
   test_blob_indexof: function () {
     // must conform to behavior:
     // https://developer.mozilla.org/en/core_javascript_1.5_reference/global_objects/string/chara://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/indexOf
-    var b1 = Titanium.API.createBytes("abcdefgA");
+    var b1 = Ti.API.createBytes("abcdefgA");
     value_of(b1.indexOf)
       .should_be_function();
     value_of(b1.indexOf("a"))
@@ -487,7 +487,7 @@ describe("API Types Tests", {
     value_of(b1.indexOf("defe", 1))
       .should_be(-1);
 
-    var b2 = Titanium.API.createBytes("");
+    var b2 = Ti.API.createBytes("");
     value_of(b2.indexOf)
       .should_be_function();
     value_of(b2.indexOf("a"))
@@ -550,7 +550,7 @@ describe("API Types Tests", {
   test_blob_lastindexof: function () {
     // must conform to behavior:
     // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/lastIndexOf
-    var b1 = Titanium.API.createBytes("abcdefgA");
+    var b1 = Ti.API.createBytes("abcdefgA");
     value_of(b1.lastIndexOf)
       .should_be_function();
     value_of(b1.lastIndexOf("a"))
@@ -616,7 +616,7 @@ describe("API Types Tests", {
     value_of(b1.lastIndexOf("defe", 1))
       .should_be(-1);
 
-    var b2 = Titanium.API.createBytes("");
+    var b2 = Ti.API.createBytes("");
     value_of(b2.lastIndexOf)
       .should_be_function();
     value_of(b2.lastIndexOf("a"))
@@ -676,7 +676,7 @@ describe("API Types Tests", {
     value_of(b2.lastIndexOf("defe", 1))
       .should_be(-1);
 
-    var b3 = Titanium.API.createBytes("abcdefgAadef");
+    var b3 = Ti.API.createBytes("abcdefgAadef");
     value_of(b3.lastIndexOf)
       .should_be_function();
     value_of(b3.lastIndexOf("a"))
@@ -743,7 +743,7 @@ describe("API Types Tests", {
       .should_be(-1);
   },
   test_blob_charat: function () {
-    var b1 = Titanium.API.createBytes("abcdefg");
+    var b1 = Ti.API.createBytes("abcdefg");
     value_of(b1.charAt(-100))
       .should_be("");
     value_of(b1.charAt(-1))
@@ -767,7 +767,7 @@ describe("API Types Tests", {
     value_of(b1.charAt(700))
       .should_be("");
 
-    var b2 = Titanium.API.createBytes("");
+    var b2 = Ti.API.createBytes("");
     value_of(b2.charAt(-100))
       .should_be("");
     value_of(b2.charAt(-1))
@@ -792,7 +792,7 @@ describe("API Types Tests", {
       .should_be("");
   },
   test_blob_split: function () {
-    var b1 = Titanium.API.createBytes("abcdefg");
+    var b1 = Ti.API.createBytes("abcdefg");
     var b1s = b1.split();
     value_of(b1s)
       .should_be_object();
@@ -801,14 +801,14 @@ describe("API Types Tests", {
     value_of(b1s[0])
       .should_be("abcdefg");
 
-    var b2 = Titanium.API.createBytes("");
+    var b2 = Ti.API.createBytes("");
     var b2s = b2.split();
     value_of(b2s.length)
       .should_be(1);
     value_of(b2s[0])
       .should_be("");
 
-    var b3 = Titanium.API.createBytes("abcdefg");
+    var b3 = Ti.API.createBytes("abcdefg");
     var b3s = b3.split(",");
     value_of(b3s)
       .should_be_object();
@@ -817,7 +817,7 @@ describe("API Types Tests", {
     value_of(b3s[0])
       .should_be("abcdefg");
 
-    var b4 = Titanium.API.createBytes("ab,cdefg");
+    var b4 = Ti.API.createBytes("ab,cdefg");
     var b4s = b4.split(",");
     value_of(b4s)
       .should_be_object();
@@ -828,7 +828,7 @@ describe("API Types Tests", {
     value_of(b4s[1])
       .should_be("cdefg");
 
-    var b5 = Titanium.API.createBytes(",ab,cdefg,,");
+    var b5 = Ti.API.createBytes(",ab,cdefg,,");
     var b5s = b5.split(",");
     value_of(b5s)
       .should_be_object();
@@ -845,7 +845,7 @@ describe("API Types Tests", {
     value_of(b5s[4])
       .should_be("");
 
-    var b6 = Titanium.API.createBytes(",ab,cdefg,");
+    var b6 = Ti.API.createBytes(",ab,cdefg,");
     var b6s = b6.split(",", 2);
     value_of(b6s)
       .should_be_object();
@@ -856,14 +856,14 @@ describe("API Types Tests", {
     value_of(b6s[1])
       .should_be("ab");
 
-    var b7 = Titanium.API.createBytes("abc,def,ghi");
+    var b7 = Ti.API.createBytes("abc,def,ghi");
     var b7s = b7.split(",", 0);
     value_of(b7s)
       .should_be_object();
     value_of(b7s.length)
       .should_be(0);
 
-    var b8 = Titanium.API.createBytes("abcde");
+    var b8 = Ti.API.createBytes("abcde");
     var b8s = b8.split("");
     value_of(b8s)
       .should_be_object();
@@ -881,7 +881,7 @@ describe("API Types Tests", {
       .should_be('e');
   },
   test_blob_substr: function () {
-    var blob = Titanium.API.createBytes("abcdefghij");
+    var blob = Ti.API.createBytes("abcdefghij");
     value_of(blob.substr)
       .should_be_function();
     value_of(blob.substr(1, 2))
@@ -902,7 +902,7 @@ describe("API Types Tests", {
       .should_be("");
   },
   test_blob_substring: function () {
-    var blob = Titanium.API.createBytes("Mozilla");
+    var blob = Ti.API.createBytes("Mozilla");
     value_of(blob.substring)
       .should_be_function();
     value_of(blob.substring(3, 0))
@@ -929,43 +929,43 @@ describe("API Types Tests", {
       .should_be("Mozilla");
   },
   test_blob_tolowercase: function () {
-    var blob = Titanium.API.createBytes("Mozilla123!?");
+    var blob = Ti.API.createBytes("Mozilla123!?");
     value_of(blob.toLowerCase)
       .should_be_function();
     value_of(blob.toLowerCase())
       .should_be("mozilla123!?");
-    blob = Titanium.API.createBytes("mOZILLA123!?");
+    blob = Ti.API.createBytes("mOZILLA123!?");
     value_of(blob.toLowerCase())
       .should_be("mozilla123!?");
-    blob = Titanium.API.createBytes("mO   ZILLA123!?");
+    blob = Ti.API.createBytes("mO   ZILLA123!?");
     value_of(blob.toLowerCase())
       .should_be("mo   zilla123!?");
-    blob = Titanium.API.createBytes("1234567890-=!@#$%^&*()_+");
+    blob = Ti.API.createBytes("1234567890-=!@#$%^&*()_+");
     value_of(blob.toLowerCase())
       .should_be("1234567890-=!@#$%^&*()_+");
   },
   test_blob_touppercase: function () {
-    var blob = Titanium.API.createBytes("Mozilla123!?");
+    var blob = Ti.API.createBytes("Mozilla123!?");
     value_of(blob.toUpperCase)
       .should_be_function();
     value_of(blob.toUpperCase())
       .should_be("MOZILLA123!?");
 
-    blob = Titanium.API.createBytes("mOZILLA123!?");
+    blob = Ti.API.createBytes("mOZILLA123!?");
     value_of(blob.toUpperCase())
       .should_be("MOZILLA123!?");
 
-    blob = Titanium.API.createBytes("mO   ZILLA123!?");
+    blob = Ti.API.createBytes("mO   ZILLA123!?");
     value_of(blob.toUpperCase())
       .should_be("MO   ZILLA123!?");
 
-    blob = Titanium.API.createBytes("1234567890-=!@#$%^&*()_+");
+    blob = Ti.API.createBytes("1234567890-=!@#$%^&*()_+");
     value_of(blob.toUpperCase())
       .should_be("1234567890-=!@#$%^&*()_+");
   },
   test_blob_concat: function () {
-    var blob = Titanium.API.createBytes("Moz");
-    var blob2 = Titanium.API.createBytes("illa");
+    var blob = Ti.API.createBytes("Moz");
+    var blob2 = Ti.API.createBytes("illa");
     value_of(blob.concat)
       .should_be_function();
     value_of(blob.concat("illa"))

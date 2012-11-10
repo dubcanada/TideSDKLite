@@ -16,19 +16,19 @@
 
 describe("Globals Tests", {
   test_platform: function () {
-    // function to testout the global properties in Titanium.
-    value_of(Titanium.platform)
+    // function to testout the global properties in Ti.
+    value_of(Ti.platform)
       .should_be_string();
     // get the platform and version.
-    value_of(Titanium.platform)
+    value_of(Ti.platform)
       .should_be_one_of(['win32', 'osx', 'linux']);
-    Titanium.API.info("Titanium.platform = " + Titanium.platform);
+    Ti.API.info("Ti.platform = " + Ti.platform);
   },
 
   test_version: function () {
-    value_of(Titanium.version)
+    value_of(Ti.version)
       .should_be_string();
-    var arr = Titanium.version.split('.');
+    var arr = Ti.version.split('.');
     value_of(arr.length)
       .should_be(3);
     value_of(Number(arr[0]))
@@ -38,6 +38,6 @@ describe("Globals Tests", {
     value_of(Number(arr[2]))
       .should_be_number();
 
-    Titanium.API.info("Titanium.version = " + Titanium.version);
+    Ti.API.info("Ti.version = " + Ti.version);
   }
 });

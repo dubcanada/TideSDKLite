@@ -17,16 +17,16 @@
 describe("Network.Host Tests", {
   // test the network object and properties.
   test_network_object: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.getHostByAddress)
+    value_of(Ti.Network.getHostByAddress)
       .should_be_function();
-    value_of(Titanium.Network.getHostByName)
+    value_of(Ti.Network.getHostByName)
       .should_be_function();
   },
 
   test_network_Host_object: function () {
-    var theHost = Titanium.Network.getHostByName("127.0.0.1");
+    var theHost = Ti.Network.getHostByName("127.0.0.1");
 
     value_of(theHost.getAddresses)
       .should_be_function();
@@ -41,7 +41,7 @@ describe("Network.Host Tests", {
   },
 
   test_network_Host_by_address: function () {
-    var theHost = Titanium.Network.getHostByAddress("127.0.0.1");
+    var theHost = Ti.Network.getHostByAddress("127.0.0.1");
     value_of(theHost)
       .should_be_object();
     value_of(theHost.isInvalid())
@@ -49,11 +49,11 @@ describe("Network.Host Tests", {
 
     value_of(theHost.getName())
       .should_be("127.0.0.1");
-    Titanium.API.debug(theHost.toString());
+    Ti.API.debug(theHost.toString());
   },
 
   test_network_Host_by_name: function () {
-    var theHost = Titanium.Network.getHostByName("localhost");
+    var theHost = Ti.Network.getHostByName("localhost");
     value_of(theHost)
       .should_be_object();
     value_of(theHost.isInvalid())
@@ -71,7 +71,7 @@ describe("Network.Host Tests", {
       for (i = 0; i < alias.length; i++) {
         value_of(alias[i])
           .should_be_string();
-        Titanium.API.debug(alias[i]);
+        Ti.API.debug(alias[i]);
         if (alias[i].indexOf(hostname) != -1) {
           bfound = true;
           break;
@@ -81,11 +81,11 @@ describe("Network.Host Tests", {
       value_of(bfound)
         .should_be_true();
     }
-    Titanium.API.debug(theHost.toString());
+    Ti.API.debug(theHost.toString());
   },
 
   test_network_Host_addresses: function () {
-    var theHost = Titanium.Network.getHostByName("127.0.0.1");
+    var theHost = Ti.Network.getHostByName("127.0.0.1");
     value_of(theHost)
       .should_be_object();
     value_of(theHost.isInvalid())
@@ -105,7 +105,7 @@ describe("Network.Host Tests", {
   },
 
   test_network_Host_aliases: function () {
-    var theHost = Titanium.Network.getHostByName("127.0.0.1");
+    var theHost = Ti.Network.getHostByName("127.0.0.1");
     value_of(theHost)
       .should_be_object();
     value_of(theHost.isInvalid())

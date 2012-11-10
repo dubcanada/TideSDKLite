@@ -58,14 +58,14 @@ namespace tide
     /*static*/
     Logger* Logger::Get(std::string name)
     {
-        name = std::string(PRODUCT_NAME) + "." + name;
+        name = std::string(GLOBAL_NAMESPACE) + "." + name;
         return Logger::GetImpl(name);
     }
 
     /*static*/
     void Logger::Initialize(bool console, std::string logFilePath, Level level)
     {
-        Logger::loggers[PRODUCT_NAME] = 
+        Logger::loggers[GLOBAL_NAMESPACE] = 
             new RootLogger(console, logFilePath, level);
     }
 
@@ -432,7 +432,7 @@ namespace tide
 
     RootLogger* RootLogger::instance = NULL;
     RootLogger::RootLogger(bool consoleLogging, std::string logFilePath, Level level) :
-        Logger(PRODUCT_NAME, level),
+        Logger(GLOBAL_NAMESPACE, level),
         consoleLogging(consoleLogging),
         fileLogging(!logFilePath.empty())
     {

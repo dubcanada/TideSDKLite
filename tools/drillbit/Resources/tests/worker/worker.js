@@ -16,7 +16,7 @@
 
 describe("async worker tests", {
   test_worker_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker(function () {
+    var worker = Ti.Worker.createWorker(function () {
       postMessage("123");
     });
     var timer = setTimeout(function () {
@@ -38,9 +38,9 @@ describe("async worker tests", {
   },
 
   test_worker_with_titanium_as_async: function (result) {
-    var version = Titanium.version;
-    var worker = Titanium.Worker.createWorker(function () {
-      postMessage(Titanium.version);
+    var version = Ti.version;
+    var worker = Ti.Worker.createWorker(function () {
+      postMessage(Ti.version);
     });
     worker.onmessage = function (v) {
       clearTimeout(timer);
@@ -63,7 +63,7 @@ describe("async worker tests", {
 
   },
   test_worker_as_external_file_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test.js');
+    var worker = Ti.Worker.createWorker('test.js');
 
     worker.onmessage = function (v) {
       clearTimeout(timer);
@@ -87,7 +87,7 @@ describe("async worker tests", {
     worker.postMessage("123");
   },
   test_worker_as_external_file_with_import_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test2.js');
+    var worker = Ti.Worker.createWorker('test2.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -112,7 +112,7 @@ describe("async worker tests", {
     worker.postMessage("456");
   },
   test_worker_as_queue_before_start_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test2.js');
+    var worker = Ti.Worker.createWorker('test2.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -139,7 +139,7 @@ describe("async worker tests", {
     worker.start();
   },
   test_worker_attach_onmessage_after_start_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test2.js');
+    var worker = Ti.Worker.createWorker('test2.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -165,7 +165,7 @@ describe("async worker tests", {
     worker.postMessage("456");
   },
   test_worker_test_multiple_imports_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test3.js');
+    var worker = Ti.Worker.createWorker('test3.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -191,7 +191,7 @@ describe("async worker tests", {
     };
   },
   test_worker_test_titanium_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test4.js');
+    var worker = Ti.Worker.createWorker('test4.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -209,7 +209,7 @@ describe("async worker tests", {
         value_of(v)
           .should_be_object();
         value_of(v.message)
-          .should_be(Titanium.version);
+          .should_be(Ti.version);
         result.passed();
       } catch (e) {
         result.failed(e);
@@ -217,7 +217,7 @@ describe("async worker tests", {
     };
   },
   test_worker_data_types_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test5.js');
+    var worker = Ti.Worker.createWorker('test5.js');
 
     worker.start();
 
@@ -247,7 +247,7 @@ describe("async worker tests", {
     };
   },
   test_worker_multiple_queued_items_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test5.js');
+    var worker = Ti.Worker.createWorker('test5.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -278,7 +278,7 @@ describe("async worker tests", {
     };
   },
   test_worker_multiple_sleep_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test6.js');
+    var worker = Ti.Worker.createWorker('test6.js');
 
     var timer = setTimeout(function () {
       result.failed("timed out");
@@ -304,7 +304,7 @@ describe("async worker tests", {
     };
   },
   test_worker_multiple_sleep_interrupted_as_async: function (result) {
-    var worker = Titanium.Worker.createWorker('test6.js');
+    var worker = Ti.Worker.createWorker('test6.js');
     worker.start();
     worker.onmessage = function (v) {
       if (v.message == 0) {

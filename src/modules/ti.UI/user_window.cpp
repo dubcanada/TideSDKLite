@@ -1569,7 +1569,7 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     // Place the Titanium object into the window's global object
     KObjectRef delegateGlobalObject = new KDelegatingObject(
         host->GetGlobalObject(), windowTiObject);
-    frameGlobal->SetObject(GLOBAL_NS_VARNAME, delegateGlobalObject);
+    frameGlobal->SetObject(GLOBAL_NAMESPACE, delegateGlobalObject);
 }
 
 static KValueRef DeferredGarbageCollection(const ValueList& args)

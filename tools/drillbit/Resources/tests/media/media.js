@@ -17,14 +17,14 @@
 describe("Media Tests", {
 
   test_create_sound: function () {
-    value_of(Titanium.Media.createSound)
+    value_of(Ti.Media.createSound)
       .should_be_function();
-    value_of(Titanium.Media.beep)
+    value_of(Ti.Media.beep)
       .should_be_function();
 
     var exception = false;
     try {
-      Titanium.Media.createSound();
+      Ti.Media.createSound();
     } catch (E) {
       exception = true;
     }
@@ -32,7 +32,7 @@ describe("Media Tests", {
     value_of(exception)
       .should_be_true();
 
-    var sound = Titanium.Media.createSound(Titanium.App.appURLToPath("app://sound.wav"));
+    var sound = Ti.Media.createSound(Ti.App.appURLToPath("app://sound.wav"));
     value_of(sound.play)
       .should_be_function();
     value_of(sound.pause)
@@ -60,11 +60,11 @@ describe("Media Tests", {
   },
 
   test_beep: function () {
-    Titanium.Media.beep();
+    Ti.Media.beep();
   },
 
   test_play_sound_as_async: function (callback) {
-    var sound = Titanium.Media.createSound("app://sound.wav");
+    var sound = Ti.Media.createSound("app://sound.wav");
     sound.onComplete(function () {
       value_of(sound.isPlaying())
         .should_be_false();
@@ -94,8 +94,8 @@ describe("Media Tests", {
     }, 10000);
   },
   test_play_sound_via_path_as_async: function (callback) {
-    var soundPath = Titanium.App.appURLToPath("app://sound.wav");
-    var sound = Titanium.Media.createSound(soundPath);
+    var soundPath = Ti.App.appURLToPath("app://sound.wav");
+    var sound = Ti.Media.createSound(soundPath);
     sound.onComplete(function () {
       value_of(sound.isPlaying())
         .should_be_false();
@@ -125,7 +125,7 @@ describe("Media Tests", {
     }, 10000);
   },
   test_stop_does_not_call_oncomplete_as_async: function (callback) {
-    var sound = Titanium.Media.createSound("app://sound.wav");
+    var sound = Ti.Media.createSound("app://sound.wav");
     sound.onComplete(function () {
       value_of(sound.isPlaying())
         .should_be_false();
@@ -148,7 +148,7 @@ describe("Media Tests", {
   },
   test_play_sound_looping_as_async: function (callback) {
     var timesPlayed = 0;
-    var sound = Titanium.Media.createSound("app://short_sound.wav");
+    var sound = Ti.Media.createSound("app://short_sound.wav");
 
     sound.setLooping(true);
     sound.onComplete(function () {
@@ -165,7 +165,7 @@ describe("Media Tests", {
     }, 4000);
   },
   test_play_sound_volume_as_async: function (callback) {
-    var sound = Titanium.Media.createSound("app://sound.wav");
+    var sound = Ti.Media.createSound("app://sound.wav");
     sound.play();
 
     steps = [
@@ -215,7 +215,7 @@ describe("Media Tests", {
     // This code at some point caused a crash on OS X because
     // the intro object would be garbage collected before the
     // sound was finished.
-    var w = Titanium.UI.createWindow("app://destruction-test.html");
+    var w = Ti.UI.createWindow("app://destruction-test.html");
     w.open();
     setTimeout(function () {
       w.close();
@@ -224,7 +224,7 @@ describe("Media Tests", {
   },
   test_looping_stop_as_async: function (callback) {
     var timesPlayed = 0;
-    var sound = Titanium.Media.createSound("app://short_sound.wav");
+    var sound = Ti.Media.createSound("app://short_sound.wav");
 
     sound.setLooping(true);
     sound.onComplete(function () {
@@ -247,7 +247,7 @@ describe("Media Tests", {
     }, 4000);
   },
   issue35_open_sound_crashes_as_async: function (callback) {
-    var sound = Titanium.Media.createSound('app://sound.wav');
+    var sound = Ti.Media.createSound('app://sound.wav');
     sound.play();
 
     var timer = setTimeout(function () {

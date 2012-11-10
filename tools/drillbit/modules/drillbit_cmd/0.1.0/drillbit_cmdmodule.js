@@ -15,7 +15,6 @@
 **/
 
 (function () {
-  var Ti = Titanium;
   var print = Ti.API.print;
   var println = Ti.App.stdout;
   var errPrint = Ti.App.stderr;

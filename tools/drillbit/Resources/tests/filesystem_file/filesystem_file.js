@@ -17,7 +17,7 @@
 describe("Ti.Filesystem File tests", {
   before_all: function () {
     // clean up testing folder if needed
-    var base = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDataDirectory(), "unittest_filesystem_file");
+    var base = Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDataDirectory(), "unittest_filesystem_file");
     if (base.exists() && base.isDirectory()) {
       base.deleteDirectory(true);
     } else if (base.exists() && base.isFile()) {
@@ -29,33 +29,33 @@ describe("Ti.Filesystem File tests", {
     this.base = base;
 
     this.createDirTree = function (base, name) {
-      var dir = Titanium.Filesystem.getFile(base, name);
+      var dir = Ti.Filesystem.getFile(base, name);
       if (!dir.exists()) {
         dir.createDirectory();
       }
 
-      var file1 = Titanium.Filesystem.getFileStream(dir, "file1.txt");
-      var file2 = Titanium.Filesystem.getFileStream(dir, "file2.txt");
-      var subDir1 = Titanium.Filesystem.getFile(dir, "subDir1");
+      var file1 = Ti.Filesystem.getFileStream(dir, "file1.txt");
+      var file2 = Ti.Filesystem.getFileStream(dir, "file2.txt");
+      var subDir1 = Ti.Filesystem.getFile(dir, "subDir1");
       subDir1.createDirectory();
-      var file3 = Titanium.Filesystem.getFileStream(subDir1, "file3.txt");
+      var file3 = Ti.Filesystem.getFileStream(subDir1, "file3.txt");
 
-      file1.open(Titanium.Filesystem.MODE_WRITE);
+      file1.open(Ti.Filesystem.MODE_WRITE);
       file1.write("Text for file1");
       file1.close();
 
-      file2.open(Titanium.Filesystem.MODE_WRITE);
+      file2.open(Ti.Filesystem.MODE_WRITE);
       file2.write("Text for file2");
       file2.close();
 
-      file3.open(Titanium.Filesystem.MODE_WRITE);
+      file3.open(Ti.Filesystem.MODE_WRITE);
       file3.write("Text for file3");
       file3.close();
     };
 
     this.createFile = function (base, name, text) {
-      var fs = Titanium.Filesystem.getFileStream(base, name);
-      fs.open(Titanium.Filesystem.MODE_WRITE);
+      var fs = Ti.Filesystem.getFileStream(base, name);
+      fs.open(Ti.Filesystem.MODE_WRITE);
       fs.write(text);
       fs.close();
     };
@@ -63,7 +63,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   file_props: function () {
-    var f = Titanium.Filesystem.getFile(this.base, "newFile.txt");
+    var f = Ti.Filesystem.getFile(this.base, "newFile.txt");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -72,7 +72,7 @@ describe("Ti.Filesystem File tests", {
     // create new file to test props with
     this.createFile(this.base, "filePropsTest.txt", "This is the text for the text file.");
 
-    f = Titanium.Filesystem.getFile(this.base, "filePropsTest.txt");
+    f = Ti.Filesystem.getFile(this.base, "filePropsTest.txt");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -117,7 +117,7 @@ describe("Ti.Filesystem File tests", {
 
   directory_props: function () {
     // directory props
-    var f = Titanium.Filesystem.getFile(this.base, "dirPropsTest");
+    var f = Ti.Filesystem.getFile(this.base, "dirPropsTest");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -131,7 +131,7 @@ describe("Ti.Filesystem File tests", {
       .should_be_false();
     // directories are by default executable
     // -- in win32 this impl only checks to see if this is an .exe (so skip)
-    if (Titanium.platform != "win32") {
+    if (Ti.platform != "win32") {
       value_of(f.isExecutable())
         .should_be_true();
     }
@@ -153,7 +153,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   resolve: function () {
-    var f = Titanium.Filesystem.getFile(this.base, "fileTest-Resolve");
+    var f = Ti.Filesystem.getFile(this.base, "fileTest-Resolve");
     value_of(f)
       .should_not_be_null();
     value_of(f.resolve("filename.txt"))
@@ -161,7 +161,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   file_operations: function () {
-    var f = Titanium.Filesystem.getFile(this.base, "fileToCopy.txt");
+    var f = Ti.Filesystem.getFile(this.base, "fileToCopy.txt");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -170,21 +170,21 @@ describe("Ti.Filesystem File tests", {
     // create new file to test props with
     this.createFile(this.base, "fileToCopy.txt", "This ist he text for the test file.");
 
-    var copiedF = Titanium.Filesystem.getFile(this.base, "copiedFile.txt");
+    var copiedF = Ti.Filesystem.getFile(this.base, "copiedFile.txt");
     var r = f.copy(copiedF);
     value_of(r)
       .should_be_true();
     value_of(copiedF.exists())
       .should_be_true();
 
-    var movedF = Titanium.Filesystem.getFile(this.base, "movedFile.txt");
+    var movedF = Ti.Filesystem.getFile(this.base, "movedFile.txt");
     r = copiedF.move(movedF);
     value_of(r)
       .should_be_true();
     value_of(movedF.exists())
       .should_be_true();
 
-    var renamedF = Titanium.Filesystem.getFile(this.base, "renamedFile.txt");
+    var renamedF = Ti.Filesystem.getFile(this.base, "renamedFile.txt");
     r = movedF.rename("renamedFile.txt");
     value_of(r)
       .should_be_true();
@@ -196,7 +196,7 @@ describe("Ti.Filesystem File tests", {
       .should_be_true();
 
     // touch to create a new file
-    var t = Titanium.Filesystem.getFile(this.base, "touched.txt");
+    var t = Ti.Filesystem.getFile(this.base, "touched.txt");
     value_of(t.exists())
       .should_be_false();
     value_of(t.touch())
@@ -208,7 +208,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   directory_operations: function () {
-    var d = Titanium.Filesystem.getFile(this.base, "playDirectory");
+    var d = Ti.Filesystem.getFile(this.base, "playDirectory");
     value_of(d)
       .should_not_be_null();
     value_of(d.exists())
@@ -229,7 +229,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   directory_listing: function () {
-    var d = Titanium.Filesystem.getFile(this.base, "directoryListingTest");
+    var d = Ti.Filesystem.getFile(this.base, "directoryListingTest");
     value_of(d)
       .should_not_be_null();
     value_of(d.exists())
@@ -245,7 +245,7 @@ describe("Ti.Filesystem File tests", {
     value_of(listings.length)
       .should_be(3);
 
-    var subDir1 = Titanium.Filesystem.getFile(d, "subDir1");
+    var subDir1 = Ti.Filesystem.getFile(d, "subDir1");
     value_of(subDir1.isDirectory())
       .should_be_true();
 
@@ -257,7 +257,7 @@ describe("Ti.Filesystem File tests", {
   },
 
   parent: function () {
-    var f = Titanium.Filesystem.getFile(this.base, "parentTestFile.txt");
+    var f = Ti.Filesystem.getFile(this.base, "parentTestFile.txt");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -270,7 +270,7 @@ describe("Ti.Filesystem File tests", {
 
   shortcut: function () {
     this.createFile(this.base, "shortcutTestFile.txt", "text for test file");
-    var f = Titanium.Filesystem.getFile(this.base, "shortcutTestFile.txt");
+    var f = Ti.Filesystem.getFile(this.base, "shortcutTestFile.txt");
 
     value_of(f)
       .should_not_be_null();
@@ -279,11 +279,11 @@ describe("Ti.Filesystem File tests", {
 
     // use .lnk in win32
     var shortcutFilename = "my-shortcut";
-    if (Titanium.platform == "win32") {
+    if (Ti.platform == "win32") {
       shortcutFilename += ".lnk";
     }
 
-    var shortcutFile = Titanium.Filesystem.getFile(this.base, shortcutFilename);
+    var shortcutFile = Ti.Filesystem.getFile(this.base, shortcutFilename);
     var r = f.createShortcut(shortcutFile);
     value_of(r)
       .should_be_true();
@@ -293,7 +293,7 @@ describe("Ti.Filesystem File tests", {
 
   file_permissions: function () {
     this.createFile(this.base, "permissionsTestFile.txt", "text for test file");
-    var f = Titanium.Filesystem.getFile(this.base, "permissionsTestFile.txt");
+    var f = Ti.Filesystem.getFile(this.base, "permissionsTestFile.txt");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -305,7 +305,7 @@ describe("Ti.Filesystem File tests", {
     value_of(f.isWriteable())
       .should_be_true();
 
-    if (Titanium.platform != "win32") {
+    if (Ti.platform != "win32") {
       // POCO doesn't implement executable for win32
       f.setExecutable(true);
       value_of(f.isExecutable())
@@ -333,7 +333,7 @@ describe("Ti.Filesystem File tests", {
 
   test_file_readLine_isEmpty: function () {
     this.createFile(this.base, "readline.txt", "\nfoo\n\n");
-    var f = Titanium.Filesystem.getFile(this.base, "readline.txt");
+    var f = Ti.Filesystem.getFile(this.base, "readline.txt");
     value_of(f)
       .should_not_be_null();
     var c = 0;
@@ -366,7 +366,7 @@ describe("Ti.Filesystem File tests", {
 
     this.createFile(this.base, "timestamp.dat", curDate.toUTCString());
 
-    var f = Titanium.Filesystem.getFile(this.base, "timestamp.dat");
+    var f = Ti.Filesystem.getFile(this.base, "timestamp.dat");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -379,7 +379,7 @@ describe("Ti.Filesystem File tests", {
 
     tsDate.setTime(timestamp);
 
-    Titanium.API.debug("date " + curDate + " " + tsDate);
+    Ti.API.debug("date " + curDate + " " + tsDate);
     value_of(curDate < tsDate)
       .should_be_true();
 
@@ -392,7 +392,7 @@ describe("Ti.Filesystem File tests", {
 
     this.createFile(this.base, "modifydate.dat", curDate.toUTCString());
 
-    var f = Titanium.Filesystem.getFile(this.base, "modifydate.dat");
+    var f = Ti.Filesystem.getFile(this.base, "modifydate.dat");
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -407,7 +407,7 @@ describe("Ti.Filesystem File tests", {
 
     tsDate.setTime(timestamp);
 
-    Titanium.API.debug("date " + curDate + " " + tsDate);
+    Ti.API.debug("date " + curDate + " " + tsDate);
     value_of(curDate < tsDate)
       .should_be_true();
 
@@ -432,9 +432,9 @@ describe("Ti.Filesystem File tests", {
 
   test_available_space: function () {
     // retrieve a known folder so we can calculate the disk space
-    var dir = Titanium.Filesystem.getProgramsDirectory()
+    var dir = Ti.Filesystem.getProgramsDirectory()
       .nativePath();
-    var f = Titanium.Filesystem.getFile(dir);
+    var f = Ti.Filesystem.getFile(dir);
     value_of(f)
       .should_not_be_null();
 
@@ -445,7 +445,7 @@ describe("Ti.Filesystem File tests", {
   },
   test_read_large_file: function () {
     var data = make_large_file();
-    var file = Titanium.Filesystem.getFile(data[0]);
+    var file = Ti.Filesystem.getFile(data[0]);
 
     var fileStream = file.open();
     var contents = fileStream.read();
@@ -460,8 +460,8 @@ describe("Ti.Filesystem File tests", {
   test_file_url_three_slashes: function () {
     // File URLs on all platforms needs to begin with three slashes
     // (effectively an empty host name)
-    var file = Titanium.Filesystem.getFile(
-    Titanium.API.application.dataPath, "a_file.txt");
+    var file = Ti.Filesystem.getFile(
+    Ti.API.application.dataPath, "a_file.txt");
     value_of(file.toURL()
       .indexOf("file:///"))
       .should_be(0);

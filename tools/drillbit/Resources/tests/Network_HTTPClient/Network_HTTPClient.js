@@ -17,14 +17,14 @@
 describe("Network.HTTPClient", {
   before_all: function () {
     // Launch test http server
-    this.httpd = Titanium.Process.createProcess({
-      args: ['python', Titanium.API.application.resourcesPath + "/httpd.py"]
+    this.httpd = Ti.Process.createProcess({
+      args: ['python', Ti.API.application.resourcesPath + "/httpd.py"]
     });
     this.httpd.launch();
 
     this.text = "here is some text for you!";
     this.reply = "I got it!";
-    this.filepath = Titanium.API.application.resourcesPath + "/test.txt";
+    this.filepath = Ti.API.application.resourcesPath + "/test.txt";
   },
 
   after_all: function () {
@@ -33,7 +33,7 @@ describe("Network.HTTPClient", {
 
   before: function () {
     this.url = "http://127.0.0.1:8888/";
-    this.client = Titanium.Network.createHTTPClient();
+    this.client = Ti.Network.createHTTPClient();
   },
 
   after: function () {
@@ -81,35 +81,35 @@ describe("Network.HTTPClient", {
   },
 
   test_encode_decode: function () {
-    var foo = Titanium.Network.encodeURIComponent(null);
+    var foo = Ti.Network.encodeURIComponent(null);
     value_of(foo)
       .should_be('');
 
-    foo = Titanium.Network.encodeURIComponent('');
+    foo = Ti.Network.encodeURIComponent('');
     value_of(foo)
       .should_be('');
 
-    foo = Titanium.Network.encodeURIComponent('a');
+    foo = Ti.Network.encodeURIComponent('a');
     value_of(foo)
       .should_be('a');
 
-    foo = Titanium.Network.decodeURIComponent(null);
+    foo = Ti.Network.decodeURIComponent(null);
     value_of(foo)
       .should_be('');
 
-    foo = Titanium.Network.decodeURIComponent('');
+    foo = Ti.Network.decodeURIComponent('');
     value_of(foo)
       .should_be('');
 
-    foo = Titanium.Network.decodeURIComponent('a');
+    foo = Ti.Network.decodeURIComponent('a');
     value_of(foo)
       .should_be('a');
 
-    foo = Titanium.Network.encodeURIComponent('a b');
+    foo = Ti.Network.encodeURIComponent('a b');
     value_of(foo)
       .should_be('a%20b');
 
-    foo = Titanium.Network.decodeURIComponent(foo);
+    foo = Ti.Network.decodeURIComponent(foo);
     value_of(foo)
       .should_be('a b');
   },
@@ -133,7 +133,7 @@ describe("Network.HTTPClient", {
     // We want to make sure the web server has started up, so sleep
     // a little bit before starting this test.
     function runTest() {
-      client.addEventListener(Titanium.HTTP_DONE, function () {
+      client.addEventListener(Ti.HTTP_DONE, function () {
         try {
           value_of(this.responseText)
             .should_be(text);
@@ -160,7 +160,7 @@ describe("Network.HTTPClient", {
   test_sync_get: function () {
     done = false;
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function () {
+    this.client.addEventListener(Ti.HTTP_DONE, function () {
       done = true;
     });
 
@@ -176,7 +176,7 @@ describe("Network.HTTPClient", {
   test_timeout_as_async: function (callback) {
     var timer = null;
 
-    this.client.addEventListener(Titanium.HTTP_TIMEOUT, function (e) {
+    this.client.addEventListener(Ti.HTTP_TIMEOUT, function (e) {
       try {
         value_of(this.timedOut)
           .should_be_true();
@@ -202,12 +202,12 @@ describe("Network.HTTPClient", {
   test_abort_as_async: function (callback) {
     var timer = null;
 
-    this.client.addEventListener(Titanium.HTTP_ABORT, function () {
+    this.client.addEventListener(Ti.HTTP_ABORT, function () {
       clearTimeout(timer);
       callback.passed();
     });
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function () {
+    this.client.addEventListener(Ti.HTTP_DONE, function () {
       // This should not get called
       clearTimeout(timer);
       callback.failed("Request was not aborted");
@@ -230,7 +230,7 @@ describe("Network.HTTPClient", {
     var client = this.client;
     var timer = 0;
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function () {
+    this.client.addEventListener(Ti.HTTP_DONE, function () {
       clearTimeout(timer);
 
       if (client.status != 200) {
@@ -252,7 +252,7 @@ describe("Network.HTTPClient", {
     var timer = 0;
     var reply = this.reply;
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function (e) {
+    this.client.addEventListener(Ti.HTTP_DONE, function (e) {
       try {
         value_of(this.status)
           .should_be(200);
@@ -279,7 +279,7 @@ describe("Network.HTTPClient", {
     var timer = 0;
     var reply = this.reply;
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function (e) {
+    this.client.addEventListener(Ti.HTTP_DONE, function (e) {
       try {
         value_of(this.status)
           .should_be(200);
@@ -309,7 +309,7 @@ describe("Network.HTTPClient", {
     var timer = 0;
     var reply = this.reply;
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function (e) {
+    this.client.addEventListener(Ti.HTTP_DONE, function (e) {
       try {
         value_of(this.status)
           .should_be(200);
@@ -341,7 +341,7 @@ describe("Network.HTTPClient", {
     var text = this.text;
     var url = this.url;
 
-    this.client.addEventListener(Titanium.HTTP_REDIRECT, function () {
+    this.client.addEventListener(Ti.HTTP_REDIRECT, function () {
       try {
         value_of(this.url)
           .should_be(url);
@@ -350,7 +350,7 @@ describe("Network.HTTPClient", {
         callback.failed(e);
       }
     });
-    this.client.addEventListener(Titanium.HTTP_DONE, function () {
+    this.client.addEventListener(Ti.HTTP_DONE, function () {
       try {
         value_of(this.status)
           .should_be(200);
@@ -378,7 +378,7 @@ describe("Network.HTTPClient", {
     var text = this.text;
     var data = "";
 
-    this.client.addEventListener(Titanium.HTTP_DONE, function () {
+    this.client.addEventListener(Ti.HTTP_DONE, function () {
       try {
         value_of(data)
           .should_be(text);
@@ -434,7 +434,7 @@ describe("Network.HTTPClient", {
   },
 
   test_send_file: function () {
-    var file = Titanium.Filesystem.getFileStream(this.filepath);
+    var file = Ti.Filesystem.getFileStream(this.filepath);
     value_of(file)
       .should_be_object();
     this.client.open("POST", this.url + "recvfile", false);
