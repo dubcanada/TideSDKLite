@@ -11,3 +11,5 @@ build/win32
 vc80.pdb
 vc80.idb
 thirdparty*
+*.xcodeproj*
+.DS_Store
