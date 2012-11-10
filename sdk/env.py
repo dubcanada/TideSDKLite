@@ -43,7 +43,7 @@ import __init__
 class PackagingEnvironment(object):
     def __init__(self, target_os, packaging_server=False, appstore=False):
         self.components_dir = None
-        self.version = __init__.get_titanium_version()
+        self.version = __init__.get_version()
         self.excludes = ['.pdb', '.exp', '.ilk', '.lib', '.svn',
             '.git', '.gitignore', '.cvsignore']
             

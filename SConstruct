@@ -35,7 +35,7 @@ import distutils.dir_util as dir_util
 from tide import BuildConfig
 
 build = BuildConfig(
-    PRODUCT_VERSION = sdk.get_titanium_version(),
+    PRODUCT_VERSION = sdk.get_version(),
     PRODUCT_NAME = 'Titanium',
     PRODUCT_NAME1 = 'TideSDK',
     GLOBAL_NAMESPACE ='Ti',
