@@ -47,6 +47,7 @@ for dir in [
     'monkey',
     'database',
     'worker',
-    'codec'
+    'codec',
+    'socket'
 ]:
     build_module_from_directory(dir)

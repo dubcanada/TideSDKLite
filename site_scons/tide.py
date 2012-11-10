@@ -225,6 +225,9 @@ class BuildConfig(object):
             libpath = [self.tp('libproxy', 'lib')]
             libs = ['libproxy']
 
+        elif name is 'boost' and self.is_osx():
+            cpppath = [self.tp('boost', 'include')]
+
         if name is 'webkit':
             if self.is_win32() or self.is_linux():
                 cpppath = [self.tp('webkit', 'include')]

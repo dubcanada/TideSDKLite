@@ -172,13 +172,18 @@ namespace UTILS_NS
          * @returns argument value or an empty string if not found
          */
         string GetArgumentValue(string needle);
+        
+        /**
+        * Get the runtime directory path
+        */
+        std::string getRuntimePath() const;
 
         /**
          * Get an active component path given a name.
          * @arg name a component name either the name of a module (e.g. 'ui') or 'runtime'
          * @returns the path to the component with the given name or an empty string if not found
          */
-        string GetComponentPath(string name);
+        std::string GetComponentPath(const std::string& name) const;
 
         /**
          * Get all resolved components for this application including
