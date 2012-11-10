@@ -1,5 +1,5 @@
 ---
 namespace: Ti.Database.DB
 type: object
-description: An object representing a Titanium Database.
+description: An object representing a TideSDK Database.
 since: 0.4.0

@@ -14,7 +14,7 @@ examples:
     - description: Playing a simple sound
       code: |
                 <pre><code>
-                    // The "app://" points to the Resources folder of your Titanium application.
+                    // The "app://" points to the Resources folder of your TideSDK application.
                     var soundObj = Ti.Media.createSound('app://path/to/file.mp3');
                     soundObj.play();
                 </code></pre>

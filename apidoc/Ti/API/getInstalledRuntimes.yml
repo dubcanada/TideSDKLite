@@ -2,7 +2,7 @@
 namespace: Ti.API.getInstalledRuntimes
 type: function
 description: |
-    Get a list of the currently installed Titanium runtime components.
+    Get a list of the currently installed TideSDK runtime components.
     An installed component is one that has been found on the list of paths
     returned by Ti.API.getComponentSearchPaths. This list does not
     include bundled components.

@@ -31,7 +31,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# parse out Titanium API documentation templates into a 
+# parse out TideSDK API documentation templates into a 
 # format that can be used by other documentation generators
 # such as PDF, etc.
 
