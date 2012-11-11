@@ -50,10 +50,10 @@ namespace ti
          * @tiapi(method=True,name=Process.createProcess,since=0.5)
          * @tiapi Create a Process object. There are two main ways to use this function:
          * @tiapi  With an options object (preferred):
-         * @tiapi  Titanium.Process.createProcess({args: ['mycmd', 'arg1', 'arg2'],
+         * @tiapi  Ti.Process.createProcess({args: ['mycmd', 'arg1', 'arg2'],
          * @tiapi     env: {'PATH': '/something'}, stdin: pipeIn, stdout: pipeOut, stderr: pipeErr});
          * @tiapi OR
-         * @tiapi  Titanium.Process.createProcess(args[, environment, stdin, stdout, stderr]);
+         * @tiapi  Ti.Process.createProcess(args[, environment, stdin, stdout, stderr]);
          * @tiresult[Process.Process] The process object
          */
         SetMethod("createProcess", &ProcessBinding::CreateProcess);
@@ -224,7 +224,7 @@ namespace ti
             argList = options->GetList("args", 0);
             if (argList.isNull())
                 throw ValueException::FromString(
-                    "Titanium.Process option 'args' must be an array");
+                    "Ti.Process option 'args' must be an array");
 
             environment = options->GetObject("env", 0);
 
@@ -273,19 +273,19 @@ namespace ti
         if (argList.isNull())
         {
             throw ValueException::FromString(
-                "Titanium.Process option argument 'args' was undefined");
+                "Ti.Process option argument 'args' was undefined");
         }
 
         if (argList->Size() == 0)
         {
             throw ValueException::FromString(
-                "Titanium.Process option argument 'args' must have at least 1 element");
+                "Ti.Process option argument 'args' must have at least 1 element");
         }
         else if (argList->At(0)->IsNull() ||
             (argList->At(0)->IsString() && strlen(argList->At(0)->ToString()) == 0))
         {
             throw ValueException::FromString(
-                "Titanium.Process 1st argument must not be null/empty");
+                "Ti.Process 1st argument must not be null/empty");
         }
 
         KListRef argsClone = new StaticBoundList();

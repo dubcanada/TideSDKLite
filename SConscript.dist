@@ -47,13 +47,13 @@ excludes = ['.pdb', '.exp', '.ilk', '.db', '.gitignore','.psd', '.xib'
 # This prepares the SDK directory for packaging.
 if not(path.exists(sdk_dir)):
     os.makedirs(sdk_dir)
-effess.lightweight_copy_tree(path.join(build.titanium_sdk_dir, build.os),
+effess.lightweight_copy_tree(path.join(build.tide_sdk_dir, build.os),
     sdk_dir, exclude=excludes)
-effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "closure")),
+effess.copy_to_dir(glob(path.join(build.tide_sdk_dir, "closure")),
     sdk_dir, exclude=excludes)
-effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "*.py")),
+effess.copy_to_dir(glob(path.join(build.tide_sdk_dir, "*.py")),
     sdk_dir, exclude=excludes)
-effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "PyRTF")),
+effess.copy_to_dir(glob(path.join(build.tide_sdk_dir, "PyRTF")),
     sdk_dir, exclude=excludes)
 effess.copy_to_dir(glob(path.join('site_scons', "effess.py")),
     sdk_dir, exclude=excludes)
@@ -62,7 +62,7 @@ if build.is_osx():
     os.system('ibtool --errors --warnings --notices ' + \
         '--output-format human-readable-text --compile %s %s' % \
         (path.join(sdk_dir, 'MainMenu.nib'),
-        path.join(build.titanium_sdk_dir, 'osx', 'MainMenu.xib')))
+        path.join(build.tide_sdk_dir, 'osx', 'MainMenu.xib')))
 
 if build.is_win32():
     effess.copy_to_dir(build.tp('microsoft', 'Microsoft_VC80_CRT_x86.msm'),

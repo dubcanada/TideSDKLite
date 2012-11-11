@@ -64,7 +64,7 @@ ${component_refs}
 		<Custom Action="NetInstall" After="NetInstall.Setup">NOT Installed</Custom>
 	</InstallExecuteSequence>
 
-	<Binary Id="TitaniumInstallerDll" SourceFile=${titanium_installer_dll}/>
+	<Binary Id="TitaniumInstallerDll" SourceFile=${tide_installer_dll}/>
 	<Binary Id="BannerBmp" SourceFile=${banner_bmp}/>
 
 	<UIRef Id="WixUI_Common" />

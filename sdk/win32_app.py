@@ -132,8 +132,8 @@ class Win32App(App):
             template_args['license_file'] = quoteattr(license_rtf_path)
             template_args['crt_msm'] = quoteattr(p.join(self.sdk_dir, 'installer',
                 'Microsoft_VC80_CRT_x86.msm'))
-            template_args['titanium_installer_dll'] = quoteattr(p.join(
-                self.sdk_dir, 'installer', 'titanium_installer.dll'))
+            template_args['tide_installer_dll'] = quoteattr(p.join(
+                self.sdk_dir, 'installer', 'tide_installer.dll'))
             template_args['dialog_bmp'] = quoteattr(self.get_installer_image(
                 'dialog-bmp', p.join(self.sdk_dir, 'default_dialog.bmp')))
             template_args['banner_bmp'] = quoteattr(self.get_installer_image(

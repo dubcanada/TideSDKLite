@@ -27,7 +27,7 @@ FileUtils.mkdir_p module_dir_name unless File.exists?(module_dir_name)
 bh = File.open(File.join(module_dir_name,"#{name}_binding.h"),'w')
 bh.puts <<-END
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
@@ -58,7 +58,7 @@ bh.close
 bc = File.open(File.join(module_dir_name,"#{name}_binding.cpp"),'w')
 bc.puts <<-END
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */	
@@ -80,7 +80,7 @@ bc.close
 mh = File.open(File.join(module_dir_name,"#{name}_module.h"),'w')
 mh.puts <<-END
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
@@ -120,7 +120,7 @@ mh.close
 mc = File.open(File.join(module_dir_name,"#{name}_module.cpp"),'w')
 mc.puts <<-END
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license. 
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */

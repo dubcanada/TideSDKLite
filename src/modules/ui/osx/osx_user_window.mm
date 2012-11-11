@@ -336,7 +336,7 @@ namespace ti
             return this->config->GetX();
 
         // Cocoa frame coordinates are absolute on a plane with all
-        // screens, but Titanium wants them relative to the screen.
+        // screens, but TideSDK wants them relative to the screen.
         NSRect screenFrame = [this->GetWindowScreen() frame];
         return [nativeWindow frame].origin.x - screenFrame.origin.x;
     }
@@ -352,7 +352,7 @@ namespace ti
             return this->config->GetY();
 
         // Cocoa frame coordinates are absolute on a plane with all
-        // screens, but Titanium wants them relative to the screen.
+        // screens, but TideSDK wants them relative to the screen.
         NSRect screenFrame = [this->GetWindowScreen() frame];
         double y = [nativeWindow frame].origin.y - screenFrame.origin.y;
 

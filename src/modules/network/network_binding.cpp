@@ -81,7 +81,7 @@ namespace ti
     {
         GetInterfaceList();
 
-        // methods that are available on Titanium.Network
+        // methods that are available on Ti.Network
         /**
          * @tiapi(method=True,name=Network.createTCPSocket,since=0.2) Creates a TCPSocket object
          * @tiarg(for=Network.createTCPSocket,name=host,type=String) the hostname to connect to

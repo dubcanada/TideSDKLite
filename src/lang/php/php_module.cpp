@@ -141,8 +141,8 @@ namespace tide
         global->Set("PHP", Value::NewObject(this->binding));
         Script::GetInstance()->AddScriptEvaluator(this->binding);
 
-        zval *titaniumValue = PHPUtils::ToPHPValue(Value::NewObject(global));
-        ZEND_SET_SYMBOL(&EG(symbol_table), PRODUCT_NAME, titaniumValue);
+        zval *tideValue = PHPUtils::ToPHPValue(Value::NewObject(global));
+        ZEND_SET_SYMBOL(&EG(symbol_table), PRODUCT_NAME, tideValue);
     }
 
 

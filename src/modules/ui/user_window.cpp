@@ -1476,7 +1476,7 @@ void UserWindow::RemoveChild(AutoUserWindow child)
     }
 }
 
-static bool ShouldHaveTitaniumObject(JSGlobalContextRef ctx, JSObjectRef global)
+static bool ShouldHaveTiObject(JSGlobalContextRef ctx, JSObjectRef global)
 {
     // We really only want URLs that are loaded via the
     // app, ti or file protocol to have the Ti object.
@@ -1595,8 +1595,8 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     // Only certain pages should get the Ti object. This is to prevent
     // malicious sites from always getting access to the user's system. This
     // can be overridden by any other API that calls InsertAPI on this DOM window.
-    bool hasTitaniumObject = ShouldHaveTitaniumObject(context, globalObject);
-    if (hasTitaniumObject)
+    bool hasTiObject = ShouldHaveTiObject(context, globalObject);
+    if (hasTiObject)
     {
         this->InsertAPI(frameGlobal);
         UserWindow::LoadUIJavaScript(context);
@@ -1605,7 +1605,7 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     AutoPtr<Event> event = this->CreateEvent(Event::PAGE_INITIALIZED);
     event->SetObject("scope", frameGlobal);
     event->SetString("url", config->GetURL());
-    event->SetBool("hasTitaniumObject", hasTitaniumObject);
+    event->SetBool("hasTiObject", hasTiObject);
     this->FireEvent(event);
 
     // The page location has changed, but JavaScriptCore may have references

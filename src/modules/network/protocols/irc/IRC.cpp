@@ -24,7 +24,7 @@
 
 
     Numeorous minor changes by Jeff Haynie <jhaynie@appcelerator.org> to
-    get it working well under Titanium
+    get it working well under TideSDK
 */
 
 #include "IRC.h"

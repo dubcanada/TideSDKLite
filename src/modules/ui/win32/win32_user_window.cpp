@@ -305,7 +305,7 @@ void Win32UserWindow::InitWebKit()
     KObjectRef global = host->GetGlobalObject();
     if (global->Get("userAgent")->IsUndefined())
     {
-        _bstr_t uaURL("http://titaniumapp.com");
+        _bstr_t uaURL("http://tidesdk.org");
         BSTR uaResp;
         webView->userAgentForURL(uaURL.copy(), &uaResp);
         std::string uaStr = _bstr_t(uaResp);
