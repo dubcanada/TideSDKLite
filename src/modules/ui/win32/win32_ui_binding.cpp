@@ -38,6 +38,8 @@
 #include <sstream>
 #include <windows.h>
 
+#include <tide/net/proxy_config.h>
+
 using std::vector;
 namespace ti
 {
