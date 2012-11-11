@@ -16,7 +16,6 @@
 
 (function () {
   var Drillbit = function () {
-    var Ti = Titanium;
 
     this.frontend = null;
     this.auto_close = false;
@@ -352,7 +351,7 @@
       var runner_js = Ti.Filesystem.getFile(user_scripts_dir, entry.name + '_driver.js');
       var data = {
         entry: entry,
-        Titanium: Ti,
+        Ti: Ti,
         excludes: excludes
       };
       var user_script = null;
@@ -528,5 +527,5 @@
     }
   };
 
-  Titanium.Drillbit = new Drillbit();
+  Ti.Drillbit = new Drillbit();
 })();

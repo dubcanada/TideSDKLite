@@ -35,9 +35,9 @@
 describe("Contents of user agent", {
   validate_name_and_version: function () {
     value_of(Ti.userAgent)
-      .should_contain('Titanium/');
+      .should_contain('TideSDK/');
     value_of(Ti.userAgent)
-      .should_contain('Titanium/' + Ti.version);
+      .should_contain('TideSDK/' + Ti.version);
     // for now, we're going to simulate Safari -- this addresses TI-303
     value_of(Ti.userAgent)
       .should_contain('Safari');

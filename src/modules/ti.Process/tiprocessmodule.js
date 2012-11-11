@@ -32,7 +32,6 @@
  * limitations under the License.
  **/
 (function () {
-  var Ti = Titanium;
   var CreateProcess = Ti.Process.createProcess;
 
   Ti.Process.createProcess = function () {

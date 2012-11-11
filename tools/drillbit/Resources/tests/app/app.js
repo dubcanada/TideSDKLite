@@ -40,7 +40,7 @@ describe("App Tests", {
       .should_be_string();
 
     value_of(Ti.App.getID())
-      .should_be('com.titaniumapp.unittest');
+      .should_be('org.tidesdk.unittest');
     value_of(Ti.App.getName())
       .should_be('foobar');
     value_of(Ti.App.getVersion())

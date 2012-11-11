@@ -32,7 +32,7 @@
  * limitations under the License.
  **/
 
-// A collection of JS patches for various UI functionality in Titanium
+// A collection of JS patches for various UI functionality in TideSDK
 //
 // execute in anonymous function block so now variables leak into the
 // global scope
@@ -202,12 +202,12 @@
    */
   if (!Ti.JSON) Ti.JSON = window.JSON;
 
-  // Enable titanium notifications as a fallback when platform
+  // Enable TideSDK notifications as a fallback when platform
   // native notifications are not available.
   if (Ti.UI.nativeNotifications == false) {
     var notification_windows = 1;
 
-    function TitaniumNotification(window) {
+    function TideNotification(window) {
       var self = this;
       var width = 300;
       var height = 80;
@@ -305,7 +305,7 @@
     Ti.UI.createNotification = function () {
       var window = Ti.UI.mainWindow.getDOMWindow();
       if (!window) throw "Unable to get main window DOM!"
-      var n = new TitaniumNotification(window);
+      var n = new TideNotification(window);
       if (arguments.length == 1) n.configure(arguments[0]);
       return n;
     }

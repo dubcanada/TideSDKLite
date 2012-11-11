@@ -266,8 +266,6 @@ if (!this.JSON) {
 * limitations under the License.
 **/
 
-// var Ti = Titanium;
-
 Test = {
   currentTest: null,
   results: [],

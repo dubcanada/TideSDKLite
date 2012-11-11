@@ -402,7 +402,7 @@ EJS.prototype = {
 
 EJS.newRequest = function () {
   var factories = [function () {
-    return Titanium.Network.createHTTPClient();
+    return Ti.Network.createHTTPClient();
   }, function () {
     return new ActiveXObject("Msxml2.XMLHTTP");
   }, function () {

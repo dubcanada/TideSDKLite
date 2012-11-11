@@ -287,7 +287,7 @@ describe("PHP tests", {
     value_of(result)
       .should_be("DINOBONES");
   },
-  test_titanium_object_access: function (callback) {
+  test_tidesdk_object_access: function (callback) {
     var result = get_resources_directory_via_php()
       .toString();
     value_of(result)

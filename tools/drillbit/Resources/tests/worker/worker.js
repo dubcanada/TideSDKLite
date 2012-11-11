@@ -55,7 +55,7 @@ describe("async worker tests", {
     worker.start();
   },
 
-  test_worker_with_titanium_as_async: function (result) {
+  test_worker_with_tidesdk_as_async: function (result) {
     var version = Ti.version;
     var worker = Ti.Worker.createWorker(function () {
       postMessage(Ti.version);
@@ -208,7 +208,7 @@ describe("async worker tests", {
       }
     };
   },
-  test_worker_test_titanium_as_async: function (result) {
+  test_worker_test_tidesdk_as_async: function (result) {
     var worker = Ti.Worker.createWorker('test4.js');
 
     var timer = setTimeout(function () {

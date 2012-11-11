@@ -15,16 +15,14 @@
 **/
 
 // ==UserScript==
-// @name	Titanium App Tester
-// @author	Appcelerator
-// @description	Titanium Tests
-// @include	app://com.titaniumapp.unittest/index.html
+// @name	TideSDK App Tester
+// @author	Software In Public Interest (SPI)
+// @description	TideSDK Tests
+// @include	app://org.tidesdk.unittest/index.html
 // @version	0.1
 // ==/UserScript==
 
 <%
-  var Ti = Titanium;
-
 	function add_line_numbers(entry, fname) {
 	  var f = entry.test[fname];
 	  var code = String(f);
