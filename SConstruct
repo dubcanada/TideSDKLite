@@ -36,8 +36,7 @@ from tide import BuildConfig
 
 build = BuildConfig(
     PRODUCT_VERSION = sdk.get_version(),
-    PRODUCT_NAME = 'Titanium',
-    PRODUCT_NAME1 = 'TideSDK',
+    PRODUCT_NAME = 'TideSDK',
     GLOBAL_NAMESPACE ='Ti',
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),

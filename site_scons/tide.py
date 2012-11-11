@@ -75,8 +75,7 @@ class BuildConfig(object):
 
         vars = SCons.Variables.Variables(args = ARGUMENTS)
         vars.Add('PRODUCT_VERSION', 'The product version for Tide', kwargs['PRODUCT_VERSION'])
-        vars.Add('PRODUCT_NAME', 'The product name that Kroll will display (default: "Kroll")', kwargs['PRODUCT_NAME'])
-        vars.Add('PRODUCT_NAME1', 'The product name that Kroll will display (default: "Kroll")', kwargs['PRODUCT_NAME1'])
+        vars.Add('PRODUCT_NAME', 'The product name that libTide will display (default: "Tide")', kwargs['PRODUCT_NAME'])
         vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
         vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
@@ -102,7 +101,6 @@ class BuildConfig(object):
             ['_OS_NAME', self.os],
             ['_PRODUCT_VERSION', '${PRODUCT_VERSION}'],
             ['_PRODUCT_NAME', '${PRODUCT_NAME}'],
-            ['_PRODUCT_NAME1', '${PRODUCT_NAME1}'],
             ['_GLOBAL_NAMESPACE', '${GLOBAL_NAMESPACE}'],
             ['_CONFIG_FILENAME' , '${CONFIG_FILENAME}'],
             ['_BOOT_RUNTIME_FLAG', '${BOOT_RUNTIME_FLAG}'],
