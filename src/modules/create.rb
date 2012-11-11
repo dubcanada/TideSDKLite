@@ -17,13 +17,8 @@ end
 
 name = arg.downcase
 
-if name=~/^ti\./
-  s = name.index '.'
-  name = name[s+1..-1]
-end
-
 module_name = name.capitalize
-module_dir_name = "ti.#{module_name}"
+module_dir_name = "#{module_name}"
 header_define = name.upcase
 module_lib_name = module_dir_name.gsub '.','_'
 
@@ -97,21 +92,21 @@ mh.puts <<-END
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define TITANIUM_#{header_define}_API EXPORT
+#define TIDESDK_#{header_define}_API EXPORT
 #elif defined(OS_WIN32)
-# ifdef TITANIUM_#{header_define}_API_EXPORT
-#  define TITANIUM_#{header_define}_API __declspec(dllexport)
+# ifdef TIDESDK_#{header_define}_API_EXPORT
+#  define TIDESDK_#{header_define}_API __declspec(dllexport)
 # else
-#  define TITANIUM_#{header_define}_API __declspec(dllimport)
+#  define TIDESDK_#{header_define}_API __declspec(dllimport)
 # endif
 # define EXPORT __declspec(dllexport)
 #endif
 
 namespace ti 
 {
-	class TITANIUM_#{header_define}_API #{module_name}Module : public tide::Module
+	class TIDESDK_#{header_define}_API #{module_name}Module : public tide::Module
 	{
-		KROLL_MODULE_CLASS(#{module_name}Module)
+		TIDE_MODULE_CLASS(#{module_name}Module)
 		
 	private:
 		tide::KObjectRef binding;
@@ -138,7 +133,7 @@ using namespace ti;
 
 namespace ti
 {
-	KROLL_MODULE(#{module_name}Module,STRING(MODULE_NAME), STRING(MODULE_VERSION));
+	TIDE_MODULE(#{module_name}Module,STRING(MODULE_NAME), STRING(MODULE_VERSION));
 	
 	void #{module_name}Module::Initialize()
 	{
@@ -166,11 +161,11 @@ import os
 Import('build')
 
 env = build.env.Clone();
-env.Append(CPPDEFINES = ('TITANIUM_#{header_define}_API_EXPORT', 1))
+env.Append(CPPDEFINES = ('TIDESDK_#{header_define}_API_EXPORT', 1))
 build.add_thirdparty(env, 'poco')
 
-m = build.add_module('ti.#{name}', env=env)
-t = env.SharedLibrary(target = m.build_dir + '/ti#{name}module', source = Glob('*.cpp'))
+m = build.add_module('#{name}', env=env)
+t = env.SharedLibrary(target = m.build_dir + '/tide#{name}', source = Glob('*.cpp'))
 build.mark_build_target(t)
 END
 sc.close

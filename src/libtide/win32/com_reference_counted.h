@@ -40,7 +40,7 @@
  */
 namespace tide
 {
-    class KROLL_API COMReferenceCounted : public ReferenceCounted, public IUnknown
+    class TIDE_API COMReferenceCounted : public ReferenceCounted, public IUnknown
     {
     public:
         // IUnknown

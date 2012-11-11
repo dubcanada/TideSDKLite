@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_VALUE_EXCEPTION_H_
-#define _KR_VALUE_EXCEPTION_H_
+#ifndef _VALUE_EXCEPTION_H_
+#define _VALUE_EXCEPTION_H_
 
 #include <vector>
 #include <string>
@@ -46,7 +46,7 @@ namespace tide
     #pragma GCC visibility push(default)
 #endif
 
-    class KROLL_API ValueException : public std::exception
+    class TIDE_API ValueException : public std::exception
     {
         public:
         ValueException(KValueRef v);

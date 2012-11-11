@@ -33,17 +33,20 @@
 
 import os, os.path as path
 Import('build')
+Import('LIBTIDE_NAME')
 
+libtide_name = 'lib' + LIBTIDE_NAME
 Env = build.env.Clone()
-sources = ['boot.cpp']
 Env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'NO_UNZIP=1'])
 
 # We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
-Env.Append(CPPPATH=[path.join(build.tide_source_dir, 'libtide')])
+Env.Append(CPPPATH=[path.join(build.tide_source_dir, libtide_name)])
 
 # Add the utils
 Env.Append(CPPPATH=[build.tide_utils_dir])
+
+sources = ['boot.cpp']
 sources += build.get_tide_utils(path.join(build.dir, 'objs', 'boot'), unzip=False)
 
 if build.is_osx():
@@ -89,10 +92,6 @@ build.mark_build_target(p)
 if build.is_win32():
     t = build.utils.CopyToDir(p[0], path.join(build.dir, 'runtime'))
     build.mark_build_target(t)
-
-    webkit_tp = path.join(build.third_party, 'webkit')
-    webkit_lib = path.join(webkit_tp, 'lib')
-    webkit_tlb = path.join(webkit_lib, 'WebKit.tlb')
 
     cc_manifest = path.join(build.cwd(), 'support', 'common_controls.manifest')
     merged_manifest = path.join(build.dir, 'tiboot.merged.manifest')

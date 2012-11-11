@@ -68,13 +68,13 @@ namespace UTILS_NS
         return WideToUTF8(inString);
     }
 
-    KROLL_API std::string UTF8ToSystem(const std::string& in)
+    TIDE_API std::string UTF8ToSystem(const std::string& in)
     {
         // Assume the system character set is UTF-8 for now.
         return in;
     }
 
-    KROLL_API std::string UTF8ToSystem(const char* in)
+    TIDE_API std::string UTF8ToSystem(const char* in)
     {
         // Assume the system character set is UTF-8 for now.
         return in;

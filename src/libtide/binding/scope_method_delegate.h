@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_SCOPE_METHOD_DELEGATE_H_
-#define _KR_BOUND_METHOD_DELEGATE_H_
+#ifndef _SCOPE_METHOD_DELEGATE_H_
+#define _SCOPE_METHOD_DELEGATE_H_
 
 namespace tide {
 
@@ -49,7 +49,7 @@ namespace tide {
      * namespace dots (such as ti.foo.bar) and if so, delegate to a
      * differently supplied scope object for delegation.
      */
-    class KROLL_API ScopeMethodDelegate : public KMethod
+    class TIDE_API ScopeMethodDelegate : public KMethod
     {
     
     public:

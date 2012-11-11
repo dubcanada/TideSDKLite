@@ -106,7 +106,6 @@ namespace tide
 #endif
 
 #include "utils/utils.h"
-#include "net/net.h"
 #include "reference_counted.h"
 #include "logger.h"
 

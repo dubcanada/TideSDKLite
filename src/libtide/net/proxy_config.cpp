@@ -33,15 +33,17 @@
 **/
 
 #include "../tide.h"
-#include "net.h"
+#include "proxy_config.h"
 #include <sstream>
 
+#include <Poco/StringTokenizer.h>
+
 using std::string;
-using std::vector;
-using Poco::Net::IPAddress;
-using Poco::StringTokenizer;
 using Poco::NumberParser;
-using Poco::URI;
+
+#ifndef OS_OSX
+#include <libproxy/proxy.h>
+#endif
 
 namespace tide
 {
@@ -149,7 +151,7 @@ SharedProxy GetHTTPSProxyOverride()
 SharedProxy GetProxyForURL(string& url)
 {
     static Logger* logger = GetLogger();
-    URI uri(url);
+    Poco::URI uri(url);
 
     // Don't try to detect proxy settings for URLs we know are local
     std::string scheme(uri.getScheme());
@@ -186,7 +188,7 @@ static inline bool EndsWith(string haystack, string needle)
     return haystack.find(needle) == (haystack.size() - needle.size());
 }
 
-static bool ShouldBypassWithEntry(URI& uri, SharedPtr<BypassEntry> entry)
+static bool ShouldBypassWithEntry(Poco::URI& uri, SharedPtr<BypassEntry> entry)
 {
     const std::string& uriHost = uri.getHost();
     const std::string& uriScheme = uri.getScheme();
@@ -220,7 +222,7 @@ static bool ShouldBypassWithEntry(URI& uri, SharedPtr<BypassEntry> entry)
     return false;
 }
 
-bool ShouldBypass(URI& uri, vector<SharedPtr<BypassEntry> >& bypassList)
+bool ShouldBypass(Poco::URI& uri, std::vector<SharedPtr<BypassEntry> >& bypassList)
 {
     GetLogger()->Debug("Checking whether %s should be bypassed.", 
         uri.toString().c_str());
@@ -242,7 +244,7 @@ SharedPtr<BypassEntry> ParseBypassEntry(string entry)
     // entire string is a wildcard this is an unconditional bypass.
     if (entry.at(0) == '*' && entry.size() == 1)
     {
-        // Null URI means always bypass
+        // Null Poco::URI means always bypass
         return 0;
     }
     else if (entry.at(0) == '*' && entry.size() > 1)
@@ -354,11 +356,11 @@ SharedProxy ParseProxyEntry(string entry, const string& urlScheme,
 }
 
 void ParseProxyList(string proxyListString,
-    vector<SharedProxy>& proxyList, const string& urlScheme)
+    std::vector<SharedProxy>& proxyList, const string& urlScheme)
 {
     string sep = "; ";
-    StringTokenizer proxyTokens(proxyListString, sep,
-        StringTokenizer::TOK_IGNORE_EMPTY | StringTokenizer::TOK_TRIM);
+    Poco::StringTokenizer proxyTokens(proxyListString, sep,
+        Poco::StringTokenizer::TOK_IGNORE_EMPTY | Poco::StringTokenizer::TOK_TRIM);
     for (size_t i = 0; i < proxyTokens.count(); i++)
     {
         string entry = proxyTokens[i];
@@ -379,5 +381,43 @@ void ParseProxyList(string proxyListString,
     }
 }
 
+#ifndef OS_OSX
+
+static pxProxyFactory* GetProxyFactory()
+{
+				// TODO: We should free this on exit.
+				static pxProxyFactory* factory = NULL;
+				if (!factory)
+				{
+								factory = px_proxy_factory_new();
+				}
+				return factory;
+}
+
+SharedProxy GetProxyForURLImpl(Poco::URI& uri)
+{
+				std::string url(uri.toString());
+				char* urlC = strdup(url.c_str());
+				char** proxies = px_proxy_factory_get_proxies(GetProxyFactory(), urlC);
+				free(urlC);
+
+				// TODO: Instead of just returning the first applicable proxy, this
+				// should return a list of them.
+				const char* proxyChars = proxies[0];
+				if (!proxyChars)
+								return 0;
+
+				// Do not pass in an entryScheme here (third argument), because it will
+				// override the host scheme, which is the most important in this case.
+				SharedProxy proxy(ProxyConfig::ParseProxyEntry(
+																proxyChars, uri.getScheme(), std::string()));
+
+				for (int i = 0; proxies[i]; i++)
+								free(proxies[i]);
+				free(proxies);
+
+				return proxy;
+}
+#endif
 } // namespace ProxyConfig
 } // namespace tide

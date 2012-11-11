@@ -49,4 +49,4 @@ if build.is_win32():
     env.Append(LINKFLAGS=['/LTCG', '/INCREMENTAL:NO'])
 
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'javascriptmodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tidejavascript'), Glob('*.cpp')))

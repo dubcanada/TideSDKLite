@@ -32,12 +32,12 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_GLOBAL_OBJECT_H_
-#define _KR_GLOBAL_OBJECT_H_
+#ifndef _GLOBAL_OBJECT_H_
+#define _GLOBAL_OBJECT_H_
 
 namespace tide
 {
-    class KROLL_API GlobalObject : public KEventObject
+    class TIDE_API GlobalObject : public KEventObject
     {
     public:
         GlobalObject();

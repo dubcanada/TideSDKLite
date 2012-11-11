@@ -36,6 +36,7 @@
 #include <sstream>
 #include <map>
 #include <algorithm>
+#include <Poco/StringTokenizer.h>
  
 using std::string;
 using std::map;

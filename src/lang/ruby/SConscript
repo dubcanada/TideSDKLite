@@ -68,7 +68,7 @@ elif build.is_win32():
     env.Append(LIBS=['msvcrt-ruby18'])
 
 build.mark_build_target(env.SharedLibrary(
-    path.join(module.dir, 'rubymodule'), Glob('*.cpp')))
+    path.join(module.dir, 'tideruby'), Glob('*.cpp')))
 
 if build.is_win32():
     build.utils.LightWeightCopy(build.tp('ruby'), module.dir)

@@ -7,12 +7,12 @@
 #url: http://appcelerator.org
 #loglevel: ERROR
 runtime:0.x
-tiapp:0.x
-tinetwork:0.x
-tifilesystem:0.x
-tiplatform:0.x
-tiprocess:0.x
-timonkey:0.x
-tidatabase:0.x
+app:0.x
+network:0.x
+filesystem:0.x
+platform:0.x
+process:0.x
+monkey:0.x
+database:0.x
 drillbit:0.1.0
 drillbit_cmd:0.1.0

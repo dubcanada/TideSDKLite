@@ -47,7 +47,7 @@ namespace tide
      * Class that is implemented by the OS to handle OS-specific
      * loading and unloading of Kroll.
      */
-    class KROLL_API Host : public ModuleProvider
+    class TIDE_API Host : public ModuleProvider
     {
     public:
         Host(int argc, const char** argv);
@@ -120,7 +120,7 @@ namespace tide
         SharedPtr<Module> GetModuleByPath(std::string& path);
 
         /**
-         * Get a module give by the module name (such as tiui)
+         * Get a module give by the module name (such as tideui)
          * @param name of the module
          * @return A reference to the module
          */
@@ -203,17 +203,17 @@ namespace tide
         void ExitImpl(int exitcode);
     };
 
-    KROLL_API KValueRef RunOnMainThread(KMethodRef method, const ValueList& args,
+    TIDE_API KValueRef RunOnMainThread(KMethodRef method, const ValueList& args,
         bool waitForCompletion=true);
-    KROLL_API KValueRef RunOnMainThread(KMethodRef method, KObjectRef thisObject,
+    TIDE_API KValueRef RunOnMainThread(KMethodRef method, KObjectRef thisObject,
         const ValueList& args, bool waitForCompletion=true);
-    KROLL_API bool IsMainThread();
+    TIDE_API bool IsMainThread();
 }
 
 #ifdef OS_WIN32
-extern "C" KROLL_API int Execute(HINSTANCE hInstance, int argc, const char **argv);
+extern "C" TIDE_API int Execute(HINSTANCE hInstance, int argc, const char **argv);
 #else
-extern "C" KROLL_API int Execute(int argc, const char **argv);
+extern "C" TIDE_API int Execute(int argc, const char **argv);
 #endif
 
 #endif

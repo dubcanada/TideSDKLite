@@ -32,12 +32,12 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_EVENT_H_
-#define _KR_EVENT_H_
+#ifndef _EVENT_H_
+#define _EVENT_H_
 
 namespace tide
 {
-    class KROLL_API Event : public KAccessorObject
+    class TIDE_API Event : public KAccessorObject
     {
     public:
         Event(AutoPtr<KEventObject> target, const std::string& eventName);

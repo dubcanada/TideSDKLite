@@ -173,7 +173,11 @@ class BuildConfig(object):
 
         if self.is_osx():
             sdk_version = '10.7'
-            sdk_dir = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX%s.sdk' % sdk_version
+            xcode_path = os.popen("/usr/bin/xcode-select --print-path").readline().rstrip('\n')
+            if(False == os.path.exists(xcode_path)):
+                print 'XCode not found. Make sure you have set your xcode with xcode-select'
+                Exit(2)
+            sdk_dir = '%s/Platforms/MacOSX.platform/Developer/SDKs/MacOSX%s.sdk' % (xcode_path, sdk_version)
             sdk_minversion = '-mmacosx-version-min=%s' % sdk_version
             self.env['MACOSX_DEPLOYMENT_TARGET'] = '%s' % sdk_version
 

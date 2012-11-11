@@ -44,7 +44,7 @@ namespace UTILS_NS
     /**
      * Represents a concrete Kroll application -- found on disk
      */
-    class KROLL_API Application
+    class TIDE_API Application
     {
         private:
         Application(string appPath, string manifestPath);
@@ -175,7 +175,7 @@ namespace UTILS_NS
 
         /**
          * Get an active component path given a name.
-         * @arg name a component name either the name of a module (e.g. 'tiui') or 'runtime'
+         * @arg name a component name either the name of a module (e.g. 'ui') or 'runtime'
          * @returns the path to the component with the given name or an empty string if not found
          */
         string GetComponentPath(string name);
