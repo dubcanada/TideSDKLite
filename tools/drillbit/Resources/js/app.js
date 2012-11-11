@@ -55,7 +55,7 @@ Ti.AppCreator = {
     var mainMenu = Ti.Filesystem.getFile(assetsDir, 'MainMenu.nib');
     mainMenu.copy(lproj);
 
-    var icns = Ti.Filesystem.getFile(assetsDir, 'Titanium.icns');
+    var icns = Ti.Filesystem.getFile(assetsDir, 'tidesdk.icns');
     icns.copy(lproj);
 
     var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -67,7 +67,7 @@ Ti.AppCreator = {
     "	<key>CFBundleExecutable</key>\n" +
     "	<string>" + name + "</string>\n" +
     "	<key>CFBundleIconFile</key>\n" +
-    "	<string>Ti.icns</string>\n" +
+    "	<string>tidesdk.icns</string>\n" +
     "	<key>CFBundleIdentifier</key>\n" +
     "	<string>" + appid + (install ? '.installer' : '') + "</string>\n" +
     "	<key>CFBundleInfoDictionaryVersion</key>\n" +
