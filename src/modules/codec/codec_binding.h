@@ -37,10 +37,6 @@
 
 #include <tide/tide.h>
 
-#include <Poco/Zip/Zip.h>
-#include <Poco/Zip/Compress.h>
-#include <Poco/Zip/Decompress.h>
-#include <Poco/Path.h>
 
 namespace ti
 {

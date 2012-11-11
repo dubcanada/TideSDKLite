@@ -36,6 +36,10 @@
 #include "codec_binding.h"
 
 #include <sstream>
+
+#include <Poco/Zip/Zip.h>
+#include <Poco/Zip/Compress.h>
+#include <Poco/Zip/Decompress.h>
 #include <Poco/Base64Encoder.h>
 #include <Poco/Base64Decoder.h>
 #include <Poco/DigestEngine.h>
@@ -47,9 +51,8 @@
 #include <Poco/HexBinaryEncoder.h>
 #include <Poco/HexBinaryDecoder.h>
 #include <Poco/Checksum.h>
-#include <Poco/Data/BLOB.h>
-#include <Poco/Data/BLOBStream.h>
 #include <Poco/File.h>
+#include <Poco/Path.h>
 
 #define CODEC_MD2       1
 #define CODEC_MD4       2
