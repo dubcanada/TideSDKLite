@@ -1,0 +1,9 @@
+language: cpp
+compiler:
+  - gcc
+before_script:
+  - sudo apt-get install ruby-dev libdbus-glib-1-dev libnotify-dev libgstreamer0.10-dev libxss-dev libsoup2.4-1 libsoup2.4-dev libsoup-gnome2.4-dev libicu-dev libgnutls-dev libjpeg62-dev libenchant-dev
+script: scons drillbit
+branches:
+  only:
+    - master
