@@ -46,6 +46,7 @@
 #include "proxy_config.h"
 
 #include <Poco/Thread.h>
+#include <Poco/StringTokenizer.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 #include <SystemConfiguration/SystemConfiguration.h>
