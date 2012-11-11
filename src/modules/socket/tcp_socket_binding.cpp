@@ -24,7 +24,12 @@
 namespace ti
 {
 	TCPSocketBinding::TCPSocketBinding(Host* host, const std::string& hostname, const std::string& port) :
-		Socket(host, string("Socket.TCPSocketBinding")),
+// TODO: See if this breaks windows and linux, if it doesn't remove this.
+#ifdef OS_OSX
+		Socket<tcp::socket>(host, string("Socket.TCPSocketBinding")),
+#else
+        Socket(host, string("Socket.TCPSocketBinding")),
+#endif
 		onConnect(0),
 		hostname(hostname),
 		port(port),
