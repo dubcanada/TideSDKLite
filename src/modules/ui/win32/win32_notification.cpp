@@ -51,7 +51,7 @@ void Notification::ShutdownImpl()
 {
 }
 
-static UINT snarlWindowMessage = ::RegisterWindowMessageA("TitaniumSnarlMessage");
+static UINT snarlWindowMessage = ::RegisterWindowMessageA("TideSDKSnarlMessage");
 static bool MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     if (message != snarlWindowMessage)

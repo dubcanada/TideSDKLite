@@ -184,7 +184,7 @@ namespace ti
         if (!windowObject->Get(GLOBAL_NAMESPACE)->IsObject() &&
             !target.isNull() && target->Get("insertAPI")->IsMethod())
         {
-            logger->Info("Forcing Titanium API into: %s\n", url.c_str());
+            logger->Info("Forcing TideSDK API into: %s\n", url.c_str());
             target->CallNS("insertAPI", Value::NewObject(windowObject));
         }
 
