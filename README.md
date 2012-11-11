@@ -2,9 +2,7 @@ TideSDK
 =======
 
 Current Build Status
-
 [![Build Status](https://travis-ci.org/TideSDK/TideSDK.png)](https://travis-ci.org/TideSDK/TideSDK)
-
 *realtime build only tests linux*
 
 
