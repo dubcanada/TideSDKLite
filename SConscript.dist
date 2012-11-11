@@ -55,7 +55,7 @@ effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "*.py")),
     sdk_dir, exclude=excludes)
 effess.copy_to_dir(glob(path.join(build.titanium_sdk_dir, "PyRTF")),
     sdk_dir, exclude=excludes)
-effess.copy_to_dir(glob(path.join(build.tide_source_dir, 'tools', "effess.py")),
+effess.copy_to_dir(glob(path.join('site_scons', "effess.py")),
     sdk_dir, exclude=excludes)
 
 if build.is_osx():
