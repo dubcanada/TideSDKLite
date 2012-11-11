@@ -763,7 +763,8 @@ namespace ti
         [openDlg setResolvesAliases:YES];
 
         NSMutableArray *filetypes = nil;
-        NSString *begin = nil, *filename = nil;
+        NSString *filename = nil, *pathString;
+        NSURL *begin = nil;
 
         if (!defaultName.empty())
         {
@@ -771,7 +772,9 @@ namespace ti
         }
         if (!path.empty())
         {
-            begin = [NSString stringWithUTF8String:path.c_str()];
+            pathString = [NSString stringWithUTF8String:path.c_str()];
+            begin = [NSURL fileURLWithPath:pathString];
+            [openDlg setDirectoryURL:begin];
         }
         if (types.size() > 0)
         {
@@ -781,17 +784,22 @@ namespace ti
                 const char *s = types.at(t).c_str();
                 [filetypes addObject:[NSString stringWithUTF8String:s]];
             }
+            [openDlg setAllowedFileTypes:filetypes];
         }
 
-        if ([openDlg runModalForDirectory:begin file:filename types:filetypes] == NSOKButton)
+        if ([openDlg runModal] == NSFileHandlingPanelOKButton)
         {
-            NSArray* selected = [openDlg filenames];
-            for (int i = 0; i < (int)[selected count]; i++)
-            {
-                NSString* fileName = [selected objectAtIndex:i];
-                std::string fn = [fileName UTF8String];
+            NSArray* URLs = [openDlg URLs];
+            
+            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            
+            for (NSURL *url in URLs) {
+                NSString *filePath= [url path];
+                string fn = [filePath UTF8String];
                 results->Append(Value::NewString(fn));
             }
+            
+            [fileManager release];
         }
         [filetypes release];
 
@@ -845,17 +853,20 @@ namespace ti
         {
             [sp setAllowedFileTypes:filetypes];
         }
-
-        runResult = [sp 
-            runModalForDirectory:[NSString stringWithUTF8String:path.c_str()]
-            file:[NSString stringWithUTF8String:defaultName.c_str()]];
+        
+        NSURL *directoryPath = [NSURL URLWithString:[NSString stringWithUTF8String:path.c_str()] relativeToURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+        [sp setDirectoryURL:directoryPath];
+        [sp setNameFieldStringValue:[NSString stringWithUTF8String:defaultName.c_str()]];
+        
+        runResult = [sp runModal];
 
         ValueList args;
 
         KListRef results = new StaticBoundList();
-        if (runResult == NSFileHandlingPanelOKButton) 
+        if (runResult == NSFileHandlingPanelOKButton)
         {
-            NSString *selected = [sp filename];
+            NSURL *fileURL = [sp URL];
+            NSString *selected = [fileURL path];
             results->Append(Value::NewString([selected UTF8String]));
         }
 
