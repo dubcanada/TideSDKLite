@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,65 +34,65 @@
 
 describe("UI Tests", {
   test_ui_module_methods: function () {
-    value_of(Titanium.UI.addTray)
+    value_of(Ti.UI.addTray)
       .should_be_function();
-    value_of(Titanium.UI.clearTray)
+    value_of(Ti.UI.clearTray)
       .should_be_function();
-    value_of(Titanium.UI.createMenu)
+    value_of(Ti.UI.createMenu)
       .should_be_function();
-    value_of(Titanium.UI.getContextMenu)
+    value_of(Ti.UI.getContextMenu)
       .should_be_function();
-    value_of(Titanium.UI.getIdleTime)
+    value_of(Ti.UI.getIdleTime)
       .should_be_function();
-    value_of(Titanium.UI.getMenu)
+    value_of(Ti.UI.getMenu)
       .should_be_function();
-    value_of(Titanium.UI.mainWindow)
+    value_of(Ti.UI.mainWindow)
       .should_be_object();
-    value_of(Titanium.UI.setContextMenu)
+    value_of(Ti.UI.setContextMenu)
       .should_be_function();
-    value_of(Titanium.UI.setDockIcon)
+    value_of(Ti.UI.setDockIcon)
       .should_be_function();
-    value_of(Titanium.UI.setDockMenu)
+    value_of(Ti.UI.setDockMenu)
       .should_be_function();
-    value_of(Titanium.UI.setIcon)
+    value_of(Ti.UI.setIcon)
       .should_be_function();
-    value_of(Titanium.UI.setMenu)
+    value_of(Ti.UI.setMenu)
       .should_be_function();
-    value_of(Titanium.UI.setBadge)
+    value_of(Ti.UI.setBadge)
       .should_be_function();
-    value_of(Titanium.UI.setBadgeImage)
+    value_of(Ti.UI.setBadgeImage)
       .should_be_function();
   },
   test_windows_array: function () {
-    value_of(Titanium.UI.getOpenWindows())
+    value_of(Ti.UI.getOpenWindows())
       .should_be_object();
-    value_of(Titanium.UI.getOpenWindows()
+    value_of(Ti.UI.getOpenWindows()
       .length)
       .should_be(1);
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
-    value_of(Titanium.UI.getOpenWindows()
+    value_of(Ti.UI.getOpenWindows()
       .length)
       .should_be(1);
     w.open();
-    value_of(Titanium.UI.getOpenWindows()
+    value_of(Ti.UI.getOpenWindows()
       .length)
       .should_be(2);
-    value_of(Titanium.UI.getCurrentWindow()
+    value_of(Ti.UI.getCurrentWindow()
       .equals(w.getParent()))
       .should_be_true();
 
-    var w2 = Titanium.UI.getCurrentWindow()
+    var w2 = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
-    value_of(Titanium.UI.getOpenWindows()
+    value_of(Ti.UI.getOpenWindows()
       .length)
       .should_be(2);
     w2.open();
-    value_of(Titanium.UI.getOpenWindows()
+    value_of(Ti.UI.getOpenWindows()
       .length)
       .should_be(3);
-    value_of(Titanium.UI.getCurrentWindow()
+    value_of(Ti.UI.getCurrentWindow()
       .equals(w2.getParent()))
       .should_be_true();
     value_of(w2.getParent()
@@ -84,7 +102,7 @@ describe("UI Tests", {
       .should_be_true();
   },
   test_window_max_size: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.setHeight(700);
     w.setWidth(700);
@@ -144,7 +162,7 @@ describe("UI Tests", {
     w.close();
   },
   test_window_min_size: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.setHeight(100);
     w.setWidth(130);
@@ -205,7 +223,7 @@ describe("UI Tests", {
     w.close();
   },
   test_window_set_height: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.setHeight(100);
     value_of(w.getHeight())
@@ -255,7 +273,7 @@ describe("UI Tests", {
       .should_be(136);
   },
   test_window_set_width: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.setWidth(100);
     value_of(w.getWidth())
@@ -305,7 +323,7 @@ describe("UI Tests", {
       .should_be(136);
   },
   test_window_set_closeable: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'http://blahblah.html',
       closeable: false
@@ -326,7 +344,7 @@ describe("UI Tests", {
       .should_be_true();
   },
   test_window_set_minimizable: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       minimizable: false
@@ -347,7 +365,7 @@ describe("UI Tests", {
       .should_be_true();
   },
   test_window_set_maximizable: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       maximizable: false
@@ -368,7 +386,7 @@ describe("UI Tests", {
       .should_be_true();
   },
   test_window_set_using_chrome: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       usingChrome: false
@@ -389,7 +407,7 @@ describe("UI Tests", {
       .should_be_true();
   },
   test_window_visibility_as_async: function (test) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       visible: false
@@ -401,7 +419,7 @@ describe("UI Tests", {
       .should_be_false();
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       visible: true
@@ -415,7 +433,7 @@ describe("UI Tests", {
     var timer = 0;
     // may not be visible right away, we need to add an event listener
     // for PAGE_LOADED
-    w.addEventListener(Titanium.PAGE_LOADED, function (event) {
+    w.addEventListener(Ti.PAGE_LOADED, function (event) {
       clearTimeout(timer);
       try {
         value_of(w.isVisible())
@@ -442,7 +460,7 @@ describe("UI Tests", {
     w.open();
   },
   test_window_location: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       x: 100,
@@ -488,7 +506,7 @@ describe("UI Tests", {
       .should_be(-333);
   },
   test_offscreen_window_locations: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       x: 100,
@@ -554,7 +572,7 @@ describe("UI Tests", {
     w.setX(100000);
     w.setY(200000);
 
-    if (Titanium.platform != "win32") {
+    if (Ti.platform != "win32") {
       value_of(w.getX())
         .should_be(100000);
       value_of(w.getY())
@@ -567,7 +585,7 @@ describe("UI Tests", {
     }
   },
   test_window_bounds: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       width: 444,
@@ -668,7 +686,7 @@ describe("UI Tests", {
       .should_be(200);
   },
   test_window_maximize: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       maximized: true
@@ -680,7 +698,7 @@ describe("UI Tests", {
       .should_be(true);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       maximized: false
@@ -692,7 +710,7 @@ describe("UI Tests", {
       .should_be(false);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     value_of(w.isMaximized())
       .should_be(false);
@@ -710,7 +728,7 @@ describe("UI Tests", {
       .should_be(true);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     value_of(w.isMaximized())
       .should_be(false);
@@ -732,7 +750,7 @@ describe("UI Tests", {
     w.close();
   },
   test_window_minimize: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       minimized: true
@@ -744,7 +762,7 @@ describe("UI Tests", {
       .should_be(true);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow({
       url: 'app://blahblah.html',
       minimized: false
@@ -756,7 +774,7 @@ describe("UI Tests", {
       .should_be(false);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     value_of(w.isMinimized())
       .should_be(false);
@@ -774,7 +792,7 @@ describe("UI Tests", {
       .should_be(true);
     w.close();
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     value_of(w.isMinimized())
       .should_be(false);
@@ -811,7 +829,7 @@ describe("UI Tests", {
         callback.passed();
       } else {
         count = count - 1;
-        w = Titanium.UI.getCurrentWindow()
+        w = Ti.UI.getCurrentWindow()
           .createWindow('app://multi_open.html');
         w.open();
         setTimeout(function () {
@@ -822,14 +840,14 @@ describe("UI Tests", {
     openBlimpWindow();
   },
   test_title_override_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://multi_open.html');
-    var w2 = Titanium.UI.getCurrentWindow()
+    var w2 = Ti.UI.getCurrentWindow()
       .createWindow('app://multi_open.html');
     w.setTitle("Set1!");
     w.setTitle("Set2!");
 
-    w.addEventListener(Titanium.PAGE_INITIALIZED, function (event) {
+    w.addEventListener(Ti.PAGE_INITIALIZED, function (event) {
       w.setTitle("blah");
     });
 
@@ -853,17 +871,17 @@ describe("UI Tests", {
     }, 1000);
   },
   test_close_message_on_originating_window_as_async: function (callback) {
-    Titanium.saw_close = false;
-    Titanium.saw_closed = false;
+    Ti.saw_close = false;
+    Ti.saw_closed = false;
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://test_close_event_listener.html');
     w.open();
 
     setTimeout(function () {
       w.close();
       setTimeout(function () {
-        if (Titanium.API.saw_close) {
+        if (Ti.API.saw_close) {
           callback.passed();
         } else {
           callback.failed("Closing window did not receive CLOSE event");
@@ -872,7 +890,7 @@ describe("UI Tests", {
     }, 200);
   },
   test_window_top_most: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
 
     w.open();
@@ -915,7 +933,7 @@ describe("UI Tests", {
   },
 
   test_window_resizable: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     value_of(w.isResizable())
       .should_be(true);
@@ -938,15 +956,15 @@ describe("UI Tests", {
   test_window_focus_as_async: function (callback) {
     var hasFocus = false;
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
-    var w2 = Titanium.UI.getCurrentWindow()
+    var w2 = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.open();
     w2.open();
 
     w.addEventListener(function (event) {
-      if (event.type == Titanium.FOCUSED) {
+      if (event.type == Ti.FOCUSED) {
         hasFocus = true;
       }
     });
@@ -969,9 +987,9 @@ describe("UI Tests", {
   test_window_unfocus_as_async: function (callback) {
     var sawEvent = false;
     // get the current UserWindow object
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
-    var w2 = Titanium.UI.getCurrentWindow()
+    var w2 = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.open();
     w2.open();
@@ -979,12 +997,12 @@ describe("UI Tests", {
     // basically the same test as before, but we add the event listener to
     // the second window and wait for the unfocus event.
     w2.addEventListener(function (event) {
-      if (event.type == Titanium.FOCUSED) {
+      if (event.type == Ti.FOCUSED) {
         setTimeout(function () {
           w2.unfocus();
         }, 200);
       }
-      if (event.type == Titanium.UNFOCUSED) {
+      if (event.type == Ti.UNFOCUSED) {
         sawEvent = true;
       }
     });
@@ -1001,8 +1019,8 @@ describe("UI Tests", {
     }, 600);
   },
   test_window_mainWnd_by_ID: function () {
-    var currentWnd = Titanium.UI.getCurrentWindow();
-    var mainWnd = Titanium.UI.getMainWindow();
+    var currentWnd = Ti.UI.getCurrentWindow();
+    var mainWnd = Ti.UI.getMainWindow();
     value_of(mainWnd.getID() == currentWnd.getID())
       .should_be_true();
 
@@ -1021,7 +1039,7 @@ describe("UI Tests", {
     w.close();
   },
   test_window_icon: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.open();
 
@@ -1040,7 +1058,7 @@ describe("UI Tests", {
     w.close();
   },
   test_window_getchildren: function () {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://blahblah.html');
     w.open();
 
@@ -1075,14 +1093,14 @@ describe("UI Tests", {
       .should_be_null();
   },
   test_window_opener_as_async: function (callback) {
-    Titanium.API.ui_test_opener_value = undefined;
-    var w = Titanium.UI.getCurrentWindow()
+    Ti.API.ui_test_opener_value = undefined;
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://test_window_opener.html');
     w.open();
     setTimeout(function () {
       var failed = true;
       try {
-        value_of(Titanium.API.ui_test_opener_value)
+        value_of(Ti.API.ui_test_opener_value)
           .should_be_true();
       } catch (e) {
         callback.failed(e);
@@ -1101,7 +1119,7 @@ describe("UI Tests", {
     }, 1000);
   },
   test_window_opener_different_domain_as_async: function (callback) {
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('http://www.google.com/');
     w.open();
     setTimeout(function () {
@@ -1125,7 +1143,7 @@ describe("UI Tests", {
     var window_count = 0;
 
     function openPage(page_name, run_test) {
-      var w = Titanium.UI.createWindow("http://api.appcelerator.net/p/pages/unittest/" + page_name + ".html");
+      var w = Ti.UI.createWindow("http://api.appcelerator.net/p/pages/unittest/" + page_name + ".html");
       w.setWidth(320);
       w.setHeight(90);
       w.addEventListener(function (e) {
@@ -1190,7 +1208,7 @@ describe("UI Tests", {
   },
   */
   issue32_unicode_in_title: function () {
-    var win = Titanium.UI.getCurrentWindow()
+    var win = Ti.UI.getCurrentWindow()
       .createWindow('http://en.wikipedia.org/wiki/The_Evil_Dead');
     win.setTitle("'添加新帐户");
     value_of(win.getTitle())
@@ -1198,7 +1216,7 @@ describe("UI Tests", {
   },
   TI224_test_mixcase_urls: function () {
     var url = 'http://en.wikipedia.org/wiki/The_Evil_Dead';
-    var w = Titanium.UI.createWindow(url);
+    var w = Ti.UI.createWindow(url);
     w.open();
 
     value_of(w.getURL())

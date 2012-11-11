@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.Host
-type: object
-description: An object representing a host on the network.
-since: 0.2.0

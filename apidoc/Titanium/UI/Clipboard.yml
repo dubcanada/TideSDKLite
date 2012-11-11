@@ -1,5 +1,0 @@
----
-namespace: Titanium.UI.Clipboard
-type: object
-description: A module used for accessing clipboard data.
-since: 0.7.0

@@ -1,0 +1,5 @@
+---
+namespace: Ti.Analytics
+type: module
+description: The Tide Analytics module used for recording analytics events.
+since: 0.7.0

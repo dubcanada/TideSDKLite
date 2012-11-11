@@ -1,8 +1,0 @@
----
-namespace: Titanium.Network.HTTPServerRequest.getHeaders
-type: method
-description: get an HTTP header value from this request
-since: 0.7.0
-platforms: [osx, linux, win32]
-returns: String
-parameters: []

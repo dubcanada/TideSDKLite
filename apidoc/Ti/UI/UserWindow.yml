@@ -1,0 +1,5 @@
+---
+namespace: Ti.UI.UserWindow
+type: object
+description: An object representing a top-level Tide window.
+since: 0.2.0

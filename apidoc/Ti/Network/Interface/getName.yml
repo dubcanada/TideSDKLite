@@ -1,0 +1,8 @@
+---
+namespace: Ti.Network.Interface.getName
+type: method
+description: Get the name of this interface.
+since: 0.9.0
+platforms: [osx, linux, win32]
+returns: String
+parameters: []

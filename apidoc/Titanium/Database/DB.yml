@@ -1,5 +1,0 @@
----
-namespace: Titanium.Database.DB
-type: object
-description: An object representing a Titanium Database.
-since: 0.4.0

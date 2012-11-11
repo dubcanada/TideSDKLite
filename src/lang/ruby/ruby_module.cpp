@@ -81,7 +81,7 @@ namespace tide
         
         // Bind the API global constant
         VALUE ruby_api_val = RubyUtils::KObjectToRubyValue(Value::NewObject(global));
-        rb_define_global_const(PRODUCT_NAME, ruby_api_val);
+        rb_define_global_const(GLOBAL_NAMESPACE, ruby_api_val);
     }
 
     const static std::string ruby_suffix = "module.rb";

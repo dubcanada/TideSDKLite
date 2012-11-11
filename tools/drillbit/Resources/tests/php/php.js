@@ -1,3 +1,37 @@
+/**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
+* Copyright (c) 2008-2012 Appcelerator Inc.
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
+
 describe("PHP tests", {
   test_bind_types: function () {
     value_of(window.bind_types)
@@ -170,9 +204,9 @@ describe("PHP tests", {
       .should_be(7);
   },
   test_preprocess_as_async: function (callback) {
-    var w = Titanium.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
+    var w = Ti.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
     var timer = 0;
-    w.addEventListener(Titanium.PAGE_LOADED, function (event) {
+    w.addEventListener(Ti.PAGE_LOADED, function (event) {
       clearTimeout(timer);
       try {
         function domValue(id) {
@@ -218,10 +252,10 @@ describe("PHP tests", {
       .should_be("ninja food");
   },
   test_deep_global_variable_isolation_as_async: function (callback) {
-    Titanium.page_two_loaded = function () {
+    Ti.page_two_loaded = function () {
       // Modify the main page version of '$substance'
       modify_substance();
-      var result = Titanium.get_page_two_substance();
+      var result = Ti.get_page_two_substance();
       if (result == "page two") {
         callback.passed();
       } else {
@@ -229,7 +263,7 @@ describe("PHP tests", {
       }
     };
 
-    var w = Titanium.UI.getCurrentWindow()
+    var w = Ti.UI.getCurrentWindow()
       .createWindow('app://another.html');
     w.open();
 
@@ -253,7 +287,7 @@ describe("PHP tests", {
     value_of(result)
       .should_be("DINOBONES");
   },
-  test_titanium_object_access: function (callback) {
+  test_tidesdk_object_access: function (callback) {
     var result = get_resources_directory_via_php()
       .toString();
     value_of(result)
@@ -265,7 +299,7 @@ describe("PHP tests", {
     // Test that files in the Resources directory
     //  are on the include path.
     var include_path = get_include_path();
-    var res_dir = Titanium.API.getApplication()
+    var res_dir = Ti.API.getApplication()
       .getResourcesPath();
     value_of(include_path.indexOf(res_dir) != -1)
       .should_be_true();

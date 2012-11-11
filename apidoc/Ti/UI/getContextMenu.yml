@@ -1,0 +1,8 @@
+---
+namespace: Ti.UI.getContextMenu
+type: function
+description: Return this application's context menu or null if none is set.
+since: 0.2.0
+platforms: ['osx', 'linux', 'win32']
+returns: UI.Menu|null
+parameters: []

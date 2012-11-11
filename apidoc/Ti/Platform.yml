@@ -1,0 +1,5 @@
+---
+namespace: Ti.Platform
+type: module
+description: A module for exposing platform-specific functionality.
+since: 0.2.0

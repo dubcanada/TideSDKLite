@@ -670,7 +670,7 @@ namespace KJSUtil
 
         JSValueRef jsAPI = ToJSValue(
             Value::NewObject(GlobalObject::GetInstance()), jsContext);
-        JSStringRef propertyName = JSStringCreateWithUTF8CString(PRODUCT_NAME);
+        JSStringRef propertyName = JSStringCreateWithUTF8CString(GLOBAL_NAMESPACE);
         JSObjectSetProperty(jsContext, globalObject, propertyName,
             jsAPI, kJSPropertyAttributeNone, NULL);
         JSStringRelease(propertyName);

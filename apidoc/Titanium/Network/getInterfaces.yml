@@ -1,8 +1,0 @@
----
-namespace: Titanium.Network.getInterfaces
-type: function
-description: Return a list of network interfaces on this system.
-since: 0.9.0
-platforms: ['osx', 'linux', 'win32']
-returns: Array<Network.Interface>
-parameters: []

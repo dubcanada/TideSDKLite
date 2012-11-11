@@ -1,0 +1,5 @@
+---
+namespace: Ti.API
+type: module
+description: A module for holding core Tide functionality.
+since: 0.2.0

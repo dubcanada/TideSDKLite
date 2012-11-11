@@ -1,8 +1,0 @@
----
-namespace: Titanium.API.Application.isCurrent
-type: method
-description: Returns whether or not this is the currently running application.
-since: 0.4.0
-platforms: [osx, linux, win32]
-returns: Boolean
-parameters: []

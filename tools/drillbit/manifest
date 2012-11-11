@@ -1,9 +1,9 @@
 #appname:Drillbit
 #version:0.5.0
-#appid:com.titaniumapp.unittest.driver
-#publisher:Appcelerator
+#appid:org.tidesdk.unittest.driver
+#publisher:Software In Public Interest (SPI)
 #image:default_app_logo.png
-#url:http://titaniumapp.com
+#url:http://tidesdk.org
 #guid:D83B08F4-B43B-4909-9FEE-336CDB44750B
 #desc:Unit Test Driver
 sdk:

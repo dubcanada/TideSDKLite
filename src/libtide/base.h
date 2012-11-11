@@ -99,13 +99,14 @@
 #define STRING(str) VAL(str)
 
 #ifndef _PRODUCT_NAME
-   #define _PRODUCT_NAME Kroll
+   #define _PRODUCT_NAME Tide
 #endif
 
+// XXX Temporary
 #define PRODUCT_NAME STRING(_PRODUCT_NAME)
 
-#ifndef GLOBAL_NS_VARNAME
-  #define GLOBAL_NS_VARNAME STRING(_GLOBAL_NS_VARNAME)
+#ifndef GLOBAL_NAMESPACE
+  #define GLOBAL_NAMESPACE STRING(_GLOBAL_NAMESPACE)
 #endif
 
 #ifndef CONFIG_FILENAME

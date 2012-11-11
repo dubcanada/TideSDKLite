@@ -16,82 +16,69 @@
 	#buttons button {margin-right:10px;-webkit-appearance:push-button;}
 	iframe {padding:0;margin:0;height:171px;}
 </style>
-<script type="text/javascript" src="ti://ui/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="ti://ui/jquery-1.8.2.min.js"></script>
 <script>
-   Titanium.UI.currentWindow.addEventListener(function(name)
-   {
-		switch(name)
-		{
-			case 'unfocused':
-			{
-				$(document.body).addClass('unfocused');
-				break;
-			}
-			case 'focused':
-			{
-				$(document.body).removeClass('unfocused');
-				$('#btn_install').focus();
-				break;
-			}
-		}
+   Ti.UI.currentWindow.addEventListener(function (name) {
+     switch (name) {
+       case 'unfocused': {
+         $(document.body).addClass('unfocused');
+         break;
+       }
+       case 'focused': {
+         $(document.body).removeClass('unfocused');
+         $('#btn_install').focus();
+         break;
+       }
+     }
    });
-   function frameLoaded()
-   {
-	  // re-write links to open in external system browser
-      var nodes = window.frames['notes_html'].document.getElementsByTagName("A");
-	  for (var c=0;c<nodes.length;c++)
-	  {
-		var node = nodes[c];
-		node.setAttribute('target','ti:systembrowser');
-	  }
+
+   function frameLoaded() {
+     // re-write links to open in external system browser
+     var nodes = window.frames['notes_html'].document.getElementsByTagName("A");
+     for (var c = 0; c < nodes.length; c++) {
+       var node = nodes[c];
+       node.setAttribute('target', 'ti:systembrowser');
+     }
    }
-	$(function()
-	{
-		var currentWindow = Titanium.UI.getCurrentWindow();
-		var name = currentWindow.getDialogParameter('name');
-		var icon = currentWindow.getDialogParameter('icon');
-		var ver_from = currentWindow.getDialogParameter('ver_from');
-		var ver_to = currentWindow.getDialogParameter('ver_to');
-		var notes_url = currentWindow.getDialogParameter('notes_url');
-		var parent = currentWindow.getParent();
-		
-		Titanium.UI.currentWindow.setTitle(name+' Update Available');
-		
-		if (notes_url)
-		{
-			$('#notes_html').attr('src',notes_url);
-		}
-		else
-		{
-			$('#notes_body').css('display','none');
-			currentWindow.setHeight(170);
-			currentWindow.setWidth(450);
-		}
-		$('.name').html(name);
-		$('.tover').html(ver_to);
-		$('.fromver').html(ver_from);
-		
-		$('#btn_later').click(function()
-		{
-			currentWindow.close('later');
-		});
-		
-		$('#btn_install').click(function()
-		{
-			currentWindow.close('install');
-		});
-		
-		if (icon)
-		{
-			$('#icon').get(0).onerror = function()
-			{
-				// hide if we can't find it
-				$('#icon').css('visibility','hidden');
-			};
-			$('#icon').attr('src',icon).css('visibility','visible');
-		}
-		
-	});
+   $(function () {
+     var currentWindow = Ti.UI.getCurrentWindow();
+     var name = currentWindow.getDialogParameter('name');
+     var icon = currentWindow.getDialogParameter('icon');
+     var ver_from = currentWindow.getDialogParameter('ver_from');
+     var ver_to = currentWindow.getDialogParameter('ver_to');
+     var notes_url = currentWindow.getDialogParameter('notes_url');
+     var parent = currentWindow.getParent();
+
+     Ti.UI.currentWindow.setTitle(name + ' Update Available');
+
+     if (notes_url) {
+       $('#notes_html').attr('src', notes_url);
+     } else {
+       $('#notes_body').css('display', 'none');
+       currentWindow.setHeight(170);
+       currentWindow.setWidth(450);
+     }
+     $('.name').html(name);
+     $('.tover').html(ver_to);
+     $('.fromver').html(ver_from);
+
+     $('#btn_later').click(function () {
+       currentWindow.close('later');
+     });
+
+     $('#btn_install').click(function () {
+       currentWindow.close('install');
+     });
+
+     if (icon) {
+       $('#icon').get(0).onerror = function () {
+         // hide if we can't find it
+         $('#icon').css('visibility', 'hidden');
+       };
+       $('#icon').attr('src', icon).css('visibility', 'visible');
+     }
+
+   });
 </script>
 </head>
 <body>

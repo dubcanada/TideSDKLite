@@ -2,7 +2,7 @@
 + DRILLBIT +
 ------------
 
-Drillbit is a Titanium unit test framework.
+Drillbit is a TideSDK unit test framework.
 
 ============================
 How to write a drillbit test
@@ -92,8 +92,8 @@ Here's a few examples, the rest can be found in drillbit_func.js:
 
 Examples:
 
-value_of(Titanium.App.getVersion()).should_be_number();
-value_of(Titanium.userAgent).should_contain('Titanium/');
+value_of(Ti.App.getVersion()).should_be_number();
+value_of(Ti.userAgent).should_contain('TideSDK/');
 value_of('a').should_be_one_of(['a','b','c']);
 
 
