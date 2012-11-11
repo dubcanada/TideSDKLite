@@ -24,12 +24,7 @@
 namespace ti
 {
 	SecureTCPSocket::SecureTCPSocket(Host *host, TCPSocketBinding * tcp_socket_binding)
-// TODO: See if this breaks windows and linux, if it doesn't remove this.
-#ifdef OS_OSX
         : Socket<boost::asio::ssl::stream<tcp::socket&> >(host, string("Socket.SecureTCPSocket")),
-#else
-        : Socket(host, string("Socket.SecureTCPSocket")),
-#endif
 		ctx(*SocketService::getIOService(), boost::asio::ssl::context::sslv23),
 		tcp_socket(NULL)
 	{
