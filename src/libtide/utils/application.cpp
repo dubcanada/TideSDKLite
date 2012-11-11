@@ -333,10 +333,6 @@ namespace UTILS_NS
         {
             zipfile = string("sdk-") +  d->version + ".zip";
         }
-        else if (d->type == MOBILESDK)
-        {
-            zipfile = string("mobilesdk-") +  d->version + ".zip";
-        }
         else if (d->type == APP_UPDATE)
         {
             zipfile = "appupdate";
@@ -380,8 +376,6 @@ namespace UTILS_NS
             url.append(RUNTIME_UUID);
         if (d->type == SDK)
             url.append(SDK_UUID);
-        if (d->type == MOBILESDK)
-            url.append(MOBILESDK_UUID);
         if (d->type == MODULE)
             url.append(MODULE_UUID);
         if (d->type == APP_UPDATE)
