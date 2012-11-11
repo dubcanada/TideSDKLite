@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.HTTPServerResponse
-type: object
-description: An object representing a single HTTP server response.
-since: 0.3.0

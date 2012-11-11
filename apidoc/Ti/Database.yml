@@ -1,0 +1,5 @@
+---
+namespace: Ti.Database
+type: module
+description: A module for dealing with Database storage.
+since: 0.4.0

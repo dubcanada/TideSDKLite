@@ -41,9 +41,9 @@
 // Most of the code was adapted from code in Chromium's src/base/...
 namespace UTILS_NS
 {
-    KROLL_API std::string CFStringToUTF8(CFStringRef cfstring);
-    KROLL_API CFStringRef UTF8ToCFString(const std::string& input);
-    KROLL_API std::string CFErrorToString(CFErrorRef cferror);
+    TIDE_API std::string CFStringToUTF8(CFStringRef cfstring);
+    TIDE_API CFStringRef UTF8ToCFString(const std::string& input);
+    TIDE_API std::string CFErrorToString(CFErrorRef cferror);
 
     // CFRef<> is patterned after scoped_ptr<>, but maintains ownership
     // of a CoreFoundation object: any object that can be represented as a

@@ -53,7 +53,7 @@ namespace ti
 {
     class TIDESDK_MONKEY_API MonkeyModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(MonkeyModule)
+        TIDE_MODULE_CLASS(MonkeyModule)
         
 
     private:

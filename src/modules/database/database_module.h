@@ -63,7 +63,7 @@ namespace ti
      */
     class TIDESDK_DATABASE_API DatabaseModule : public tide::Module, public StaticBoundObject
     {
-        KROLL_MODULE_CLASS(DatabaseModule)
+        TIDE_MODULE_CLASS(DatabaseModule)
 
     private:
         tide::KObjectRef binding;

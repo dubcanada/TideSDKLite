@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_STATIC_BOUND_OBJECT_H_
-#define _KR_STATIC_BOUND_OBJECT_H_
+#ifndef _STATIC_BOUND_OBJECT_H_
+#define _STATIC_BOUND_OBJECT_H_
 
 #include <vector>
 #include <string>
@@ -67,7 +67,7 @@ namespace tide
      * alert(myObject.add(10, 15)); // 25
      * \endcode
      */
-    class KROLL_API StaticBoundObject : public KObject
+    class TIDE_API StaticBoundObject : public KObject
     {
     public:
         StaticBoundObject(const char* type = "StaticBoundObject");

@@ -1,9 +1,0 @@
----
-namespace: Titanium.Codec.decodeBase64
-type: function
-description: Decode a Base64-encoded String.
-since: 0.7.0
-platforms: ['osx', 'linux', 'win32']
-returns: String
-parameters: 
-    - [String, data, String to decode.]

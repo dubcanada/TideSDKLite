@@ -1,0 +1,10 @@
+---
+namespace: Ti.Platform.getOSType
+type: function
+description: |
+    Return the operating system architecture type of this system. This
+    value will be either '32bit' or '64bit.'
+since: 0.9.0
+platforms: ['osx', 'linux', 'win32']
+returns: String
+parameters: []

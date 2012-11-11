@@ -1,8 +1,8 @@
 #appname:UnitTest Harness
 #version:0.6.0
-#appid:com.titaniumapp.unittest
-#publisher:Appcelerator
-#url:http://titaniumapp.com
+#appid:org.tidesdk.unittest
+#publisher:Software In Public Interest (SPI)
+#url:http://tidesdk.org
 #guid:CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4
 #desc:Unit Test Harness
 runtime:1.3.0-beta

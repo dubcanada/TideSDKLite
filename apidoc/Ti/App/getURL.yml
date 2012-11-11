@@ -1,0 +1,8 @@
+---
+namespace: Ti.App.getURL
+type: function
+description: Return the application URL definedin the tiapp.xml file.
+since: 0.4.0
+platforms: ['osx', 'linux', 'win32']
+returns: String
+parameters: []

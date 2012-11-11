@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PROFILED_BOUND_OBJECT_H_
-#define _KR_PROFILED_BOUND_OBJECT_H_
+#ifndef _PROFILED_BOUND_OBJECT_H_
+#define _PROFILED_BOUND_OBJECT_H_
 #include <Poco/FileStream.h>
 #include <Poco/Mutex.h>
 
@@ -43,7 +43,7 @@ namespace tide
      * The ProfiledBoundObject is a wrapped KObject that does profiling on a 
      * wrapped KObject
      */
-    class KROLL_API ProfiledBoundObject : public KObject
+    class TIDE_API ProfiledBoundObject : public KObject
     {
         public:
         ProfiledBoundObject(KObjectRef delegate);

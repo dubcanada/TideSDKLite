@@ -37,11 +37,11 @@
 #include <string>
 namespace UTILS_NS
 {
-    KROLL_API std::wstring UTF8ToWide(const std::string& in);
-    KROLL_API std::wstring UTF8ToWide(const char* in);
-    KROLL_API std::string WideToUTF8(const std::wstring& in);
-    KROLL_API std::string WideToUTF8(const wchar_t* in);
-    KROLL_API std::string UTF8ToSystem(const std::string& in);
-    KROLL_API std::string UTF8ToSystem(const char* in);
+    TIDE_API std::wstring UTF8ToWide(const std::string& in);
+    TIDE_API std::wstring UTF8ToWide(const char* in);
+    TIDE_API std::string WideToUTF8(const std::wstring& in);
+    TIDE_API std::string WideToUTF8(const wchar_t* in);
+    TIDE_API std::string UTF8ToSystem(const std::string& in);
+    TIDE_API std::string UTF8ToSystem(const char* in);
 }
 #endif

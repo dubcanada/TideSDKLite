@@ -1,9 +1,0 @@
----
-namespace: Titanium.Platform.openApplication
-type: function
-description: Open the given application or file in the system's default program.
-since: 0.9.0
-platforms: ['osx', 'linux', 'win32']
-returns: String
-parameters: 
-    - [String, name, The name or path to the application or file to open.]

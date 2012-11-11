@@ -48,7 +48,7 @@ using namespace ti;
 
 namespace ti
 {
-    KROLL_MODULE(MediaModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+    TIDE_MODULE(MediaModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
     void MediaModule::Initialize()
     {

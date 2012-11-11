@@ -37,7 +37,7 @@
 
 namespace ti
 {
-    KROLL_MODULE(UIModule, STRING(MODULE_NAME), STRING(MODULE_VERSION))
+    TIDE_MODULE(UIModule, STRING(MODULE_NAME), STRING(MODULE_VERSION))
     UIModule* UIModule::instance_ = 0;
 
     void UIModule::Initialize()

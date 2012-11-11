@@ -1,7 +1,0 @@
----
-namespace: Titanium.UNFULLSCREENED
-type: property
-description: The UNFULLSCREENED event constant
-since: 0.6.0
-platforms: ['osx', 'linux', 'win32']
-returns: String

@@ -187,8 +187,8 @@ std::wstring CollapseWhitespace(const std::wstring& text,
                                           bool trim_sequences_with_line_breaks);
 
 // These convert between ASCII (7-bit) and UTF16 strings.
-std::string KROLL_API WideToASCII(const std::wstring& wide);
-std::wstring KROLL_API ASCIIToWide(const std::string& ascii);
+std::string TIDE_API WideToASCII(const std::wstring& wide);
+std::wstring TIDE_API ASCIIToWide(const std::string& ascii);
 
 // These convert between UTF-8, -16, and -32 strings. They are potentially slow,
 // so avoid unnecessary conversions. The low-level versions return a boolean
@@ -196,20 +196,20 @@ std::wstring KROLL_API ASCIIToWide(const std::string& ascii);
 // do the best it can and put the result in the output buffer. The versions that
 // return strings ignore this error and just return the best conversion
 // possible.
-KROLL_API bool WideToUTF8(const wchar_t* src, size_t src_len, std::string* output);
-KROLL_API std::string WideToUTF8(const std::wstring& wide);
-KROLL_API bool UTF8ToWide(const char* src, size_t src_len, std::wstring* output);
-KROLL_API std::wstring UTF8ToWide(const std::string& utf8);
+TIDE_API bool WideToUTF8(const wchar_t* src, size_t src_len, std::string* output);
+TIDE_API std::string WideToUTF8(const std::wstring& wide);
+TIDE_API bool UTF8ToWide(const char* src, size_t src_len, std::wstring* output);
+TIDE_API std::wstring UTF8ToWide(const std::string& utf8);
 
-bool KROLL_API WideToUTF16(const wchar_t* src, size_t src_len, string16* output);
-string16 KROLL_API WideToUTF16(const std::wstring& wide);
-bool KROLL_API UTF16ToWide(const char16* src, size_t src_len, std::wstring* output);
-std::wstring KROLL_API UTF16ToWide(const string16& utf8);
+bool TIDE_API WideToUTF16(const wchar_t* src, size_t src_len, string16* output);
+string16 TIDE_API WideToUTF16(const std::wstring& wide);
+bool TIDE_API UTF16ToWide(const char16* src, size_t src_len, std::wstring* output);
+std::wstring TIDE_API UTF16ToWide(const string16& utf8);
 
-bool KROLL_API UTF8ToUTF16(const char* src, size_t src_len, string16* output);
-string16 KROLL_API UTF8ToUTF16(const std::string& utf8);
-bool KROLL_API UTF16ToUTF8(const char16* src, size_t src_len, std::string* output);
-std::string KROLL_API UTF16ToUTF8(const string16& utf16);
+bool TIDE_API UTF8ToUTF16(const char* src, size_t src_len, string16* output);
+string16 TIDE_API UTF8ToUTF16(const std::string& utf8);
+bool TIDE_API UTF16ToUTF8(const char16* src, size_t src_len, std::string* output);
+std::string TIDE_API UTF16ToUTF8(const string16& utf16);
 
 // Defines the error handling modes of WideToCodepage and CodepageToWide.
 class OnStringUtilConversionError {

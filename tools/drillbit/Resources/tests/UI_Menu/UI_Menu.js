@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +34,7 @@
 
 describe("UI.Menu", {
   test_basic_methods: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenu)
       .should_be_function();
     value_of(tui.createMenuItem)
@@ -29,19 +47,19 @@ describe("UI.Menu", {
       .should_be_function();
     value_of(tui.setContextMenu)
       .should_be_function();
-    if (Titanium.platform == "osx") {
+    if (Ti.platform == "osx") {
       value_of(tui.setDockMenu)
         .should_be_function();
     }
 
-    var w = Titanium.UI.getCurrentWindow();
+    var w = Ti.UI.getCurrentWindow();
     value_of(w.setMenu)
       .should_be_function();
     value_of(w.setContextMenu)
       .should_be_function();
   },
   test_basic_menu_methods: function () {
-    var menu = Titanium.UI.createMenu();
+    var menu = Ti.UI.createMenu();
     value_of(menu.getLength)
       .should_be_function();
     value_of(menu.getItemAt)
@@ -60,7 +78,7 @@ describe("UI.Menu", {
       .should_be_function();
   },
   test_basic_menu_item: function () {
-    var menuItem = Titanium.UI.createMenuItem("Blahblah");
+    var menuItem = Ti.UI.createMenuItem("Blahblah");
     value_of(menuItem.getLabel)
       .should_be_function();
     value_of(menuItem.setLabel)
@@ -79,7 +97,7 @@ describe("UI.Menu", {
       .should_be("Blahblah");
   },
   test_basic_menu_append_and_getitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -130,7 +148,7 @@ describe("UI.Menu", {
       .should_be(true);
   },
   test_menu_removeitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -190,7 +208,7 @@ describe("UI.Menu", {
       .should_be_true();
   },
   test_invalid_removeitem_at: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -269,7 +287,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_menu_insertitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -329,7 +347,7 @@ describe("UI.Menu", {
       .should_be_true();
   },
   test_invalid_insertitemat: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -373,7 +391,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_basic_menu_add_separator: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -402,7 +420,7 @@ describe("UI.Menu", {
       .should_be(false);
   },
   test_basic_menu_add_item: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);
@@ -438,7 +456,7 @@ describe("UI.Menu", {
       .should_be("app://blah.png");
   },
   test_basic_menu_add_check: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     value_of(menu.getLength())
       .should_be(0);

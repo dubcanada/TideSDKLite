@@ -53,7 +53,7 @@ namespace ti
 {
     class TIDESDK_PROCESS_API ProcessModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(ProcessModule)
+        TIDE_MODULE_CLASS(ProcessModule)
         
 
     private:

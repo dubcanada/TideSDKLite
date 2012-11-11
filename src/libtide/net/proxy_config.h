@@ -32,11 +32,14 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PROXY_CONFIG_H_
-#define _KR_PROXY_CONFIG_H_
+#ifndef _PROXY_CONFIG_H_
+#define _PROXY_CONFIG_H_
+
+#include <Poco/URI.h>
+
 namespace tide
 {
-    class KROLL_API BypassEntry
+    class TIDE_API BypassEntry
     {
     public:
         BypassEntry() : port(0) {}
@@ -46,7 +49,7 @@ namespace tide
     };
 
     enum ProxyType { HTTP, HTTPS, FTP, SOCKS };
-    class KROLL_API Proxy
+    class TIDE_API Proxy
     {
     public:
         ProxyType type;
@@ -57,15 +60,16 @@ namespace tide
         std::string ToString();
         static ProxyType SchemeToProxyType(std::string);
     };
+    typedef SharedPtr<Proxy> SharedProxy;
 
     namespace ProxyConfig
     {
-        KROLL_API void SetHTTPProxyOverride(SharedProxy);
-        KROLL_API void SetHTTPSProxyOverride(SharedProxy);
-        KROLL_API SharedProxy GetHTTPProxyOverride();
-        KROLL_API SharedProxy GetHTTPSProxyOverride();
-        KROLL_API SharedProxy GetProxyForURL(std::string& url);
-        KROLL_API SharedProxy ParseProxyEntry(std::string proxyEntry,
+        TIDE_API void SetHTTPProxyOverride(SharedProxy);
+        TIDE_API void SetHTTPSProxyOverride(SharedProxy);
+        TIDE_API SharedProxy GetHTTPProxyOverride();
+        TIDE_API SharedProxy GetHTTPSProxyOverride();
+        TIDE_API SharedProxy GetProxyForURL(std::string& url);
+        TIDE_API SharedProxy ParseProxyEntry(std::string proxyEntry,
             const std::string& urlScheme, const std::string& entryScheme);
 
         SharedProxy GetProxyForURLImpl(Poco::URI& uri);

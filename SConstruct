@@ -35,9 +35,9 @@ import distutils.dir_util as dir_util
 from tide import BuildConfig
 
 build = BuildConfig(
-    PRODUCT_VERSION = sdk.get_titanium_version(),
-    PRODUCT_NAME = 'Titanium',
-    GLOBAL_NS_VARNAME = 'Titanium',
+    PRODUCT_VERSION = sdk.get_version(),
+    PRODUCT_NAME = 'TideSDK',
+    GLOBAL_NAMESPACE ='Ti',
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
     THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
@@ -99,7 +99,7 @@ if ARGUMENTS.get('test_crash', 0):
 
 ## Kroll *must not be required* for installation
 SConscript('SConscript.thirdparty')
-SConscript('installer/SConscript')
+SConscript('src/installer/SConscript')
 
 # After libtide builds, the environment will  link 
 # against libtide, so anything that should be

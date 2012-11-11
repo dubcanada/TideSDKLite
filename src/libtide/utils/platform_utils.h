@@ -48,28 +48,28 @@ namespace UTILS_NS
          * Get the first MAC address of this computer
          * @returns the first MAC address in standard dotted format
          */
-        KROLL_API std::string GetFirstMACAddress();
+        TIDE_API std::string GetFirstMACAddress();
 
         /*
          * Get the first MAC address of this computer
          * @returns the first MAC address in standard dotted format
          */
-        KROLL_API void GetFirstMACAddressImpl(MACAddress&);
+        TIDE_API void GetFirstMACAddressImpl(MACAddress&);
 
         /**
          * Generate an ID for this machine based on it's MAC Address.
          */
-        KROLL_API std::string GetMachineId();
+        TIDE_API std::string GetMachineId();
 
         /**
          * Get the username of the current user.
          */
-        KROLL_API std::string GetUsername();
+        TIDE_API std::string GetUsername();
 
         /**
          * Get the number of processors on this machine.
          */
-        KROLL_API int GetProcessorCount();
+        TIDE_API int GetProcessorCount();
     };
 }
 #endif

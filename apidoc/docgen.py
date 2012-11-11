@@ -31,7 +31,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# parse out Titanium API documentation templates into a 
+# parse out Tide API documentation templates into a 
 # format that can be used by other documentation generators
 # such as PDF, etc.
 
@@ -47,16 +47,16 @@ try:
     from mako.template import Template
     from mako import exceptions
 except:
-    print "Crap, you don't have mako!\n"
-    print "Easy install that bitch:\n"
+    print "You don't have mako!\n"
+    print "Installing mako:\n"
     print ">  easy_install Mako"
     sys.exit(1)
 
 try:
     import yaml
 except:
-    print "Crap, you don't have yaml!\n"
-    print "Easy install that bitch:\n"
+    print "You don't have yaml!\n"
+    print "Installing mako:\n"
     print ">  easy_install PyYaml"
     sys.exit(1)
 
@@ -220,7 +220,7 @@ def spit_json(options):
 
     # Create the JSON search index.
     search_json = []
-    top_level_modules = ['Titanium']
+    top_level_modules = ['Ti']
     for api_name in API.apis:
         api = API.apis[api_name]
         if options.verbose == 1:

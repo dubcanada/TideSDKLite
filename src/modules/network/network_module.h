@@ -57,7 +57,7 @@ namespace ti
 {
     class TIDESDK_NETWORK_API NetworkModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(NetworkModule)
+        TIDE_MODULE_CLASS(NetworkModule)
 
     public:
         static std::string& GetRootCertPath();

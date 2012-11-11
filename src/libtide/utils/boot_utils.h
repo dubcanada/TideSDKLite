@@ -67,7 +67,7 @@ namespace UTILS_NS
      * Represents a single component dependency -- 
      * one line in the application manifest
      */
-    class KROLL_API Dependency
+    class TIDE_API Dependency
     {
         public:
         enum Requirement
@@ -99,7 +99,7 @@ namespace UTILS_NS
     /**
      * Represents a concrete Kroll components -- a runtime or module found on disk
      */
-    class KROLL_API KComponent
+    class TIDE_API KComponent
     {
         public:
         KComponentType type;
@@ -120,26 +120,26 @@ namespace UTILS_NS
          * @returns 1 if the first is larger, 0 if they are equal,
          *     -1 if the second is larger
          */
-        KROLL_API int CompareVersions(std::string, std::string);
+        TIDE_API int CompareVersions(std::string, std::string);
 
         /**
          * Compare two version strings in a piecewise way, weakly
          * @returns true if the first is larger or false otherwise
          */
-        KROLL_API bool WeakCompareComponents(SharedComponent, SharedComponent);
+        TIDE_API bool WeakCompareComponents(SharedComponent, SharedComponent);
 
         /**
          * Read a manifest file. 
          * @returns a vector of key-value pairs which represent the 
          *    manifest's contents or an empty vector if it cannot be read.
          */
-        KROLL_API vector<pair<string, string> > ReadManifestFile(std::string);
+        TIDE_API vector<pair<string, string> > ReadManifestFile(std::string);
 
         /**
          * Launch the intaller to install a list of dependencies. 
          * @returns false only if the installer cannot be found
          */
-        KROLL_API bool RunInstaller(
+        TIDE_API bool RunInstaller(
             vector<SharedDependency> missing,
             SharedApplication application,
             std::string updatefile = "",
@@ -147,12 +147,12 @@ namespace UTILS_NS
             bool quiet=false,
             bool forceInstaller=false);
 
-        KROLL_API std::vector<std::string>& GetComponentSearchPaths();
+        TIDE_API std::vector<std::string>& GetComponentSearchPaths();
 
-        KROLL_API std::vector<SharedComponent>& GetInstalledComponents(
+        TIDE_API std::vector<SharedComponent>& GetInstalledComponents(
             bool force=false);
         
-        KROLL_API SharedComponent ResolveDependency(SharedDependency dep, std::vector<SharedComponent>&);
+        TIDE_API SharedComponent ResolveDependency(SharedDependency dep, std::vector<SharedComponent>&);
 
     };
 }

@@ -12,7 +12,7 @@
 
 namespace ti
 {
-	KROLL_MODULE(AppModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+	TIDE_MODULE(AppModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
 	static Logger* GetLogger()
 	{

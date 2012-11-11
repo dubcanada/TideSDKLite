@@ -1,0 +1,8 @@
+---
+namespace: Ti.Platform.getProcessorCount
+type: function
+description: Return the number of processors on this system.
+since: 0.9.0
+platforms: ['osx', 'linux', 'win32']
+returns: Number
+parameters: []

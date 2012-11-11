@@ -54,7 +54,7 @@ namespace ti
     class TIDESDK_PLATFORM_API PlatformModule : public tide::Module
     {
     public:
-        KROLL_MODULE_CLASS(PlatformModule)
+        TIDE_MODULE_CLASS(PlatformModule)
         virtual void Start();
 
     private:

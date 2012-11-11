@@ -8,7 +8,7 @@
          */
         file.read = function()
         {
-            var fs = this.open(Titanium.Filesystem.MODE_READ);
+            var fs = this.open(Ti.Filesystem.MODE_READ);
             var content = fs.read();
             fs.close();
             return content;
@@ -17,7 +17,7 @@
         {
             if (this._lineReader == undefined)
             {
-                this._lineReader = this.open(Titanium.Filesystem.MODE_READ);
+                this._lineReader = this.open(Ti.Filesystem.MODE_READ);
             }
             var content = this._lineReader.readLine();
             if (content == null)
@@ -29,7 +29,7 @@
         }
         file.write = function(data)
         {
-            var fs = this.open(Titanium.Filesystem.MODE_WRITE);
+            var fs = this.open(Ti.Filesystem.MODE_WRITE);
             var result = fs.write(data);
             fs.close();
             return result;
@@ -38,15 +38,15 @@
 		return file;
     }
 
-    var getFile = Titanium.Filesystem.getFile; 
-    Titanium.Filesystem.getFile = function()
+    var getFile = Ti.Filesystem.getFile; 
+    Ti.Filesystem.getFile = function()
     {
         var file = getFile.apply(this, arguments);
         return patchFile(file);
     }
 
-    var createTempFile = Titanium.Filesystem.createTempFile;
-    Titanium.Filesystem.createTempFile = function()
+    var createTempFile = Ti.Filesystem.createTempFile;
+    Ti.Filesystem.createTempFile = function()
     {
         var file = createTempFile.apply(this, arguments);
         return patchFile(file);

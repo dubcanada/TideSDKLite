@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_BYTES_OBJECT_H_
-#define _KR_BYTES_OBJECT_H_
+#ifndef _BYTES_H_
+#define _BYTES_H_
 
 #include "../tide.h"
 #include <vector>
@@ -47,7 +47,7 @@ namespace tide
     /**
      * An object that represents an arbitrary amount of binary data§
      */
-    class KROLL_API Bytes : public StaticBoundObject
+    class TIDE_API Bytes : public StaticBoundObject
     {
     public:
         // Create empty bytes object with no size

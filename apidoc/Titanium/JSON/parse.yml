@@ -1,9 +1,0 @@
----
-namespace: Titanium.JSON.parse
-type: function
-description: Deserialize a JSON string into a JavaScript value.
-since: 0.4.0
-platforms: ['osx', 'linux', 'win32']
-returns: any
-parameters: 
-    - [String, jsonString, JSON string to deserialize into a JavaScript object.]

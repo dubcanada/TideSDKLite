@@ -74,10 +74,10 @@ class BuildConfig(object):
                 self.arch = 'x86'
 
         vars = SCons.Variables.Variables(args = ARGUMENTS)
-        vars.Add('PRODUCT_VERSION', 'The underlying product version for Kroll', kwargs['PRODUCT_VERSION'])
-        vars.Add('PRODUCT_NAME', 'The underlying product name that Kroll will display (default: "Kroll")', kwargs['PRODUCT_NAME'])
-        vars.Add('GLOBAL_NS_VARNAME','The name of the Kroll global variable', kwargs['GLOBAL_NS_VARNAME'])
-        vars.Add('CONFIG_FILENAME','The name of the Kroll config file', kwargs['CONFIG_FILENAME'])
+        vars.Add('PRODUCT_VERSION', 'The product version for Tide', kwargs['PRODUCT_VERSION'])
+        vars.Add('PRODUCT_NAME', 'The product name that libTide will display (default: "Tide")', kwargs['PRODUCT_NAME'])
+        vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
+        vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
         vars.Add('CRASH_REPORT_URL','The URL to send crash dumps to', kwargs['CRASH_REPORT_URL'])
         vars.Add('MSVC_VERSION', '', '8.0')
@@ -88,7 +88,8 @@ class BuildConfig(object):
                 default_value = os.environ[key]
             vars.Add(key, description, default_value)
 
-        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
+        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
+        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
         add_environ_arg('MSVS', 'Path of Microsoft Visual Studio', 'C:\\Program Files\\Microsoft Visual Studio 8')
         add_environ_arg('PKG_CONFIG_PATH', 'The path for pkg-config', '/usr/lib/pkgconfig')
         add_environ_arg('PYTHON_VERSION', 'The version of Python to build against', '2.7')
@@ -101,7 +102,7 @@ class BuildConfig(object):
             ['_OS_NAME', self.os],
             ['_PRODUCT_VERSION', '${PRODUCT_VERSION}'],
             ['_PRODUCT_NAME', '${PRODUCT_NAME}'],
-            ['_GLOBAL_NS_VARNAME', '${GLOBAL_NS_VARNAME}'],
+            ['_GLOBAL_NAMESPACE', '${GLOBAL_NAMESPACE}'],
             ['_CONFIG_FILENAME' , '${CONFIG_FILENAME}'],
             ['_BOOT_RUNTIME_FLAG', '${BOOT_RUNTIME_FLAG}'],
             ['_BOOT_HOME_FLAG', '${BOOT_HOME_FLAG}'],
@@ -171,7 +172,11 @@ class BuildConfig(object):
 
         if self.is_osx():
             sdk_version = '10.7'
-            sdk_dir = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX%s.sdk' % sdk_version
+            xcode_path = os.popen("/usr/bin/xcode-select --print-path").readline().rstrip('\n')
+            if(False == os.path.exists(xcode_path)):
+                print 'XCode not found. Make sure you have set your xcode with xcode-select'
+                Exit(2)
+            sdk_dir = '%s/Platforms/MacOSX.platform/Developer/SDKs/MacOSX%s.sdk' % (xcode_path, sdk_version)
             sdk_minversion = '-mmacosx-version-min=%s' % sdk_version
             self.env['MACOSX_DEPLOYMENT_TARGET'] = '%s' % sdk_version
 

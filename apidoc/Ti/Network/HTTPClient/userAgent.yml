@@ -1,0 +1,7 @@
+---
+namespace: Ti.Network.HTTPClient.userAgent
+type: property
+description: "User agent string to use for requests. (Default: Ti.userAgent)"
+since: 0.7.0
+platforms: [osx, linux, win32]
+returns: String

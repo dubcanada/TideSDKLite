@@ -32,12 +32,12 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PROFILED_GLOBAL_OBJECT_H_
-#define _KR_PROFILED_GLOBAL_OBJECT_H_
+#ifndef _PROFILED_GLOBAL_OBJECT_H_
+#define _PROFILED_GLOBAL_OBJECT_H_
 
 namespace tide
 {
-    class KROLL_API ProfiledGlobalObject : public GlobalObject
+    class TIDE_API ProfiledGlobalObject : public GlobalObject
     {
     public:
         ProfiledGlobalObject(KObjectRef delegate);

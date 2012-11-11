@@ -53,7 +53,7 @@ namespace ti
 {
     class TIDESDK_CODEC_API CodecModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(CodecModule)
+        TIDE_MODULE_CLASS(CodecModule)
         
     private:
         tide::KObjectRef binding;

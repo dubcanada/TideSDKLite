@@ -45,6 +45,8 @@
 #include "protocols/http/http_client_binding.h"
 #include "protocols/http/http_server_binding.h"
 
+#include <tide/net/proxy_config.h>
+
 #include <Poco/Mutex.h>
 #include <Poco/Net/NetworkInterface.h>
 using Poco::Net::NetworkInterface;

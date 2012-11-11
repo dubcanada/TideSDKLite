@@ -1,0 +1,5 @@
+---
+namespace: Ti.Media
+type: module
+description: A module for dealing with media.
+since: 0.2.0

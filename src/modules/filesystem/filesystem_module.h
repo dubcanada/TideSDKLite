@@ -53,7 +53,7 @@ namespace ti
 {
     class TIDESDK_FILESYSTEM_API FilesystemModule : public tide::Module
     {
-        KROLL_MODULE_CLASS(FilesystemModule)
+        TIDE_MODULE_CLASS(FilesystemModule)
         
     private:
         KObjectRef binding;

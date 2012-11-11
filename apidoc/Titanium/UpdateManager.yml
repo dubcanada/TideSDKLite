@@ -1,5 +1,0 @@
----
-namespace: Titanium.UpdateManager
-type: module
-description: A module for dealing with application and component updates.
-since: 0.4.0

@@ -1,8 +1,0 @@
----
-namespace: Titanium.App.getPath
-type: function
-description: Return the full path to the application executable.
-since: 0.8.0
-platforms: ['osx', 'linux', 'win32']
-returns: String
-parameters: []

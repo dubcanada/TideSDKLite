@@ -1,9 +1,0 @@
----
-namespace: Titanium.Platform.takeScreenshot
-type: function
-description: Take a PNG screenshot of the root window and save it to the given filename.
-since: 0.4.0
-platforms: ['win32', 'osx']
-returns: String
-parameters: 
-    - [String, filename, The filename to write the image to.]

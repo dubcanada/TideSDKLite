@@ -1,0 +1,8 @@
+---
+namespace: Ti.Notification.Notification.hide
+type: method
+description: Hide this Notification.
+since: 0.9.0
+platforms: [osx, linux, win32]
+returns: Boolean
+parameters: []

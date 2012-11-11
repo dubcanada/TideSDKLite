@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +34,7 @@
 
 describe("UI.MenuItem Tests", {
   test_basic_methods: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_function();
     value_of(tui.createCheckMenuItem).should_be_function();
     value_of(tui.createSeparatorMenuItem).should_be_function();
@@ -94,7 +112,7 @@ describe("UI.MenuItem Tests", {
     check_all(sep_item3, sep_type);
   },
   test_setlabel: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_;
     var menu = tui.createMenu();
     var item = tui.createMenuItem("blah1");
@@ -124,7 +142,7 @@ describe("UI.MenuItem Tests", {
     value_of(check_item3.getLabel()).should_be("booboo3");
   },
   test_enable_disable: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     value_of(tui.createMenuItem).should_be_;
     var menu = tui.createMenu();
     var item = tui.createMenuItem("blah1");
@@ -154,7 +172,7 @@ describe("UI.MenuItem Tests", {
     test_it(check_item3);
   },
   test_set_submenu: function () {
-    var tui = Titanium.UI;
+    var tui = Ti.UI;
     var menu = tui.createMenu();
     var mitem = tui.createMenuItem("blah1");
 
@@ -188,7 +206,7 @@ describe("UI.MenuItem Tests", {
     test_it(check_item3);
   },
   test_set_recursive_menu: function () {
-    var menu = Titanium.UI.createMenu();
+    var menu = Ti.UI.createMenu();
     menu.addItem("blah1");
     menu.addItem("blah2");
     menu.addItem("blah3");
@@ -212,7 +230,7 @@ describe("UI.MenuItem Tests", {
     } catch (e) {}
     value_of(exc).should_be(true);
 
-    var itemz = Titanium.UI.createMenuItem();
+    var itemz = Ti.UI.createMenuItem();
     itemz.setSubmenu(menu);
     try {
       item2.getSubmenu().appendItem(itemz);

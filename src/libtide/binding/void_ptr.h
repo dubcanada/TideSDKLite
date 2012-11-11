@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_VOID_PTR_OBJECT_H_
-#define _KR_VOID_PTR_OBJECT_H_
+#ifndef _VOID_PTR_H_
+#define _VOID_PTR_H_
 
 #include "../tide.h"
 
@@ -42,7 +42,7 @@ namespace tide
     /**
      * An object that represents an arbitrary amount of binary data§
      */
-    class KROLL_API VoidPtr : public StaticBoundObject
+    class TIDE_API VoidPtr : public StaticBoundObject
     {
     public:
         VoidPtr(void* pointer) :

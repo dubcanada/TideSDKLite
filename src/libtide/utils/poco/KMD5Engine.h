@@ -98,7 +98,7 @@
 #include "KDigestEngine.h"
 
 namespace KPoco {
-class KROLL_API MD5Engine: public DigestEngine
+class TIDE_API MD5Engine: public DigestEngine
     /// This class implementes the MD5 message digest algorithm,
     /// described in RFC 1321.
 {

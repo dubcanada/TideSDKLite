@@ -58,16 +58,16 @@
 #endif
 
 #ifdef USE_NO_EXPORT
-#define KROLL_API
+#define TIDE_API
 #else
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define KROLL_API EXPORT
+#define TIDE_API EXPORT
 #elif defined(OS_WIN32)
-# ifdef KROLL_API_EXPORT
-#  define KROLL_API __declspec(dllexport)
+# ifdef TIDE_API_EXPORT
+#  define TIDE_API __declspec(dllexport)
 # else
-#  define KROLL_API __declspec(dllimport)
+#  define TIDE_API __declspec(dllimport)
 # endif
 # define EXPORT __declspec(dllexport)
 #endif
@@ -99,13 +99,14 @@
 #define STRING(str) VAL(str)
 
 #ifndef _PRODUCT_NAME
-   #define _PRODUCT_NAME Kroll
+   #define _PRODUCT_NAME Tide
 #endif
 
+// XXX Temporary
 #define PRODUCT_NAME STRING(_PRODUCT_NAME)
 
-#ifndef GLOBAL_NS_VARNAME
-  #define GLOBAL_NS_VARNAME STRING(_GLOBAL_NS_VARNAME)
+#ifndef GLOBAL_NAMESPACE
+  #define GLOBAL_NAMESPACE STRING(_GLOBAL_NAMESPACE)
 #endif
 
 #ifndef CONFIG_FILENAME
