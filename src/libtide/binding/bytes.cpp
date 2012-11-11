@@ -36,7 +36,6 @@
 #include <cstring>
 #include <Poco/String.h>
 #include <Poco/StringTokenizer.h>
-#include <Poco/Data/BLOB.h>
 
 namespace tide
 {

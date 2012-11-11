@@ -40,7 +40,6 @@
 #include <string>
 #include <map>
 #include <cstring>
-#include <Poco/Data/BLOB.h>
 
 namespace tide
 {

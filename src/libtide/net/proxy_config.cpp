@@ -36,10 +36,11 @@
 #include "proxy_config.h"
 #include <sstream>
 
+#include <Poco/String.h>
+#include <Poco/NumberParser.h>
 #include <Poco/StringTokenizer.h>
 
 using std::string;
-using Poco::NumberParser;
 
 #ifndef OS_OSX
 #include <libproxy/proxy.h>
@@ -323,7 +324,7 @@ SharedProxy ParseProxyEntry(string entry, const string& urlScheme,
         try
         {
             portString = FileUtils::Trim(portString);
-            port = NumberParser::parseUnsigned(portString);
+            port = Poco::NumberParser::parseUnsigned(portString);
         }
         catch (Poco::SyntaxException& e)
         {

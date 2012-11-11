@@ -37,7 +37,6 @@
 #include <sstream>
 #include <functional>
 #include <Poco/Path.h>
-#include <Poco/FileStream.h>
 using std::vector;
 using std::string;
 
