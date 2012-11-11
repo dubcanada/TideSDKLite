@@ -55,7 +55,7 @@ Ti.AppCreator = {
     var mainMenu = Ti.Filesystem.getFile(assetsDir, 'MainMenu.nib');
     mainMenu.copy(lproj);
 
-    var icns = Ti.Filesystem.getFile(assetsDir, 'tidesdk.icns');
+    var icns = Ti.Filesystem.getFile(assetsDir, 'Titanium.icns');
     icns.copy(lproj);
 
     var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
