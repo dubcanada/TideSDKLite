@@ -19,13 +19,13 @@
 #include <algorithm>
 #include <sstream>
 
-using Poco::Util::TitaniumPropertyFileConfiguration;
+using Poco::Util::TidePropertyFileConfiguration;
 
 namespace ti
 {
 
 static void ParsePropertyNode(xmlNodePtr node,
-	AutoPtr<TitaniumPropertyFileConfiguration> config)
+	AutoPtr<TidePropertyFileConfiguration> config)
 {
 	std::string name(ConfigUtils::GetPropertyValue(node, "name"));
 
