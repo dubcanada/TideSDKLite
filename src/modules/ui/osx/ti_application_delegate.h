@@ -35,7 +35,7 @@
 #ifndef TI_APP_H
 #define TI_APP_H
 #import "../ui_module.h"
-@interface TitaniumApplicationDelegate : NSObject <NSApplicationDelegate>
+@interface TideSDKApplicationDelegate : NSObject <NSApplicationDelegate>
 {
     ti::OSXUIBinding *binding;
 }

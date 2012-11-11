@@ -210,8 +210,8 @@
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame
 {
 	// If this NULL value is registered when the load finishes, we need
-	// to manually inject Titanium into the frame. if the frame isn't in
-	// the map at all -- an error happened and we shouldn't inject Titanium.
+	// to manually inject TideSDK into the frame. if the frame isn't in
+	// the map at all -- an error happened and we shouldn't inject TideSDK.
 	[self registerGlobalObject:NULL forFrame:frame];
 }
 

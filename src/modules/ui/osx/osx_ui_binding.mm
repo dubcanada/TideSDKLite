@@ -63,7 +63,7 @@ namespace ti
         nativeDockMenu(nil),
         activeWindow(0)
     {
-        TitaniumApplicationDelegate<NSApplicationDelegate>* application = [[TitaniumApplicationDelegate alloc] initWithBinding:this];
+        TideSDKApplicationDelegate<NSApplicationDelegate>* application = [[TideSDKApplicationDelegate alloc] initWithBinding:this];
         [application retain];
 
         NSApplication* nsapp = [NSApplication sharedApplication];
@@ -80,7 +80,7 @@ namespace ti
         this->SetupMainMenu(true);
 
         // Register our custom URL handler
-        [NSURLProtocol registerClass:[TitaniumProtocols class]];
+        [NSURLProtocol registerClass:[TideSDKProtocols class]];
 
         // SECURITY FLAG: this will allow apps to have the same security
         // as local files (like cross-domain XHR requests).  we should 

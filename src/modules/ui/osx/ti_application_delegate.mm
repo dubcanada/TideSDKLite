@@ -38,7 +38,7 @@
 #import "osx_ui_binding.h"
 #import "osx_menu_item.h"
 
-@implementation TitaniumApplicationDelegate
+@implementation TideSDKApplicationDelegate
 
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 {
