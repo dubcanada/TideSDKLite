@@ -32,8 +32,6 @@
 * limitations under the License.
 **/
 
-var Ti = Titanium;
-
 Ti.AppCreator = {
 
   osx: function (assetsDir, destination, name, appid, install) {

@@ -32,10 +32,6 @@
 * limitations under the License.
 **/
 
-if (typeof (Ti) == 'undefined') Ti = {};
-
-var Ti = Titanium;
-
 Ti.Project = {
   requiredModulesList: ['api', 'tiapp', 'tifilesystem', 'tiplatform', 'tiui', 'javascript'],
   requiredModules: [],
