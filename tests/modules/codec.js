@@ -4,15 +4,15 @@ var testString = "Only two things are infinite, the universe and human stupidity
 
 describe("checksum", function () {
     it("returns the correct checksum using the default algorithm", function () {
-        expect(Titanium.Codec.checksum(testString)).toEqual("B2B0664C");
+        expect(Ti.Codec.checksum(testString)).toEqual("B2B0664C");
     });
 
     it("returns the correct checksum using crc32 alogrithm", function () {
-        expect(Titanium.Codec.checksum(testString, Titanium.Codec.CRC32)).toEqual(2997904972);
+        expect(Ti.Codec.checksum(testString, Ti.Codec.CRC32)).toEqual(2997904972);
     });
 
     it("returns the correct checksum using ADLER32 algorithm", function () {
-        expect(Titanium.Codec.checksum(testString, Titanium.Codec.ADLER32)).toEqual(3417123301);
+        expect(Ti.Codec.checksum(testString, Ti.Codec.ADLER32)).toEqual(3417123301);
     });
 });
 
@@ -23,24 +23,24 @@ xdescribe("createZip", function () {
 describe("decodeBase64", function () {
     // FIXME: appears our impl is putting newlines in the hash causing these tests to fail.
     it("returns the original string that was base 64 encoded", function () {
-        expect(Titanium.Codec.decodeBase64(base64Encoded)).toEqual(testString);
+        expect(Ti.Codec.decodeBase64(base64Encoded)).toEqual(testString);
     });
 });
 
 describe("encodeBase64", function () {
     it("returns the base 64 encoded string", function () {
-        expect(Titanium.Codec.encodeBase64(testString)).toEqual(base64Encoded);
+        expect(Ti.Codec.encodeBase64(testString)).toEqual(base64Encoded);
     });
 });
 
 describe("decodeHexBinary", function () {
     it("returns the original string that was hex encoded", function () {
-        expect(Titanium.Codec.decodeHexBinary(hexEncoded)).toEqual(testString);
+        expect(Ti.Codec.decodeHexBinary(hexEncoded)).toEqual(testString);
     });
 });
 
 describe("encodeHexBinary", function () {
     it("returns the hex encoded string", function () {
-        expect(Titanium.Codec.encodeHexBinary(testString)).toEqual(hexEncoded);
+        expect(Ti.Codec.encodeHexBinary(testString)).toEqual(hexEncoded);
     });
 });
