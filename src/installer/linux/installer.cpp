@@ -244,10 +244,12 @@ void Installer::CreateInfoBox(GtkWidget* vbox)
         gtk_box_pack_start(GTK_BOX(infoVbox), urlLabel, FALSE, FALSE, 0);
     }
 
-    GtkWidget* icon = this->GetApplicationIcon();
+    // Commenting icon as we dont have new icon created in code yet.
+    // TODO: add new icon and uncomment below code
+    //GtkWidget* icon = this->GetApplicationIcon();
     GtkWidget* infoBox = gtk_hbox_new(FALSE, 5);
     gtk_container_set_border_width(GTK_CONTAINER(infoBox), 5);
-    gtk_box_pack_start(GTK_BOX(infoBox), icon, FALSE, FALSE, 0);
+    //gtk_box_pack_start(GTK_BOX(infoBox), icon, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(infoBox), infoVbox, FALSE, FALSE, 0);
 
     gtk_box_pack_start(GTK_BOX(vbox), infoBox, FALSE, FALSE, 0);
