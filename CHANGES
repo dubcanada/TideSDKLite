@@ -36,8 +36,6 @@ Breaking Changes
   - Windows XP: C:\Documents and Settings\All Users\Application Data\TideSDK
   - OSX (Lion and Mountain Lion): ~/Library/Application\ Support/TideSDK
   - Ubuntu Linux: .tidesdk 
-- An updated TideSDK Builder is available as a replacement for the previous
-  TiDev Community.
 - Global JavaScript namespace is now Ti (changed from Titanium)
 - Previous Titanium.Include() method has been removed.
 - Script evaluators and PHP, Python and Ruby language support has reverted to
