@@ -200,7 +200,6 @@ namespace ti
 
             // Force the inclusion of a version string. WebKit GTK does not do
             // this by default and some misbehaving JavaScript code relies on it.
-            // https://appcelerator.lighthouseapp.com/projects/25719/tickets/149-windownavigator-is-undefined-when-running-on-linux
             userAgent.append(" Version/4.0 "PRODUCT_NAME"/"PRODUCT_VERSION);
             host->GetGlobalObject()->Set("userAgent", Value::NewString(userAgent));
 
