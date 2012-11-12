@@ -208,7 +208,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{343, 270}, {633, 416}}</string>
 				<int key="NSWTFlags">536870912</int>
-				<string key="NSWindowTitle">Titanium Installer</string>
+				<string key="NSWindowTitle">TideSDK Installer</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>

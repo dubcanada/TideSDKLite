@@ -51,7 +51,7 @@ sources.extend(build.get_tide_utils(p.join(build.dir, 'objs', 'netinstaller')))
 # In the end we want something that looks like this inside of build.runtime_build_dir
 #    installer/Installer App.app/Contents/MacOS/Installer App
 #    installer/Installer App.app/Contents/Resources/English.lproj/MainMenu.nib
-#    installer/Installer App.app/Contents/Resources/English.lproj/titanium.icns
+#    installer/Installer App.app/Contents/Resources/English.lproj/tidesdk.icns
 #    installer/Installer App.app/Contents/Info.plist
 #    see installation/distribution_guide.txt
 contents = p.join(build.dir, 'sdk', 'installer', 'Installer App.app', 'Contents')
