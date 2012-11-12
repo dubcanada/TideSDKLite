@@ -1136,7 +1136,7 @@ describe("UI Tests", {
   /* Disable test - api endpoint no longer exists
   test_yahoo_white_black_window_as_async: function (callback) {
     // this is a small variation (for automation purposes) of the yahoo white/black test case for controlling
-    // multiple titanium windows cross-domain and being able to inject variables/functions into
+    // multiple tidesdk windows cross-domain and being able to inject variables/functions into
     // one or more cross domain ti windows and being able to do cross-window communication
 
     window.childWindows = {};

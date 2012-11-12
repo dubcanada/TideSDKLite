@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
-<id>com.titaniumapp.sandbox</id>
+<ti:app xmlns:ti='http://ti.tidesdk.org'>
+<id>org.tidesdk.sandbox</id>
 <name>Sandbox</name>
 <version>1.0</version>
-<publisher>Appcelerator</publisher>
-<url>titaniumapp.com</url>
-<copyright>2010 by Appcelerator</copyright>
+<publisher>Software In Public Interest</publisher>
+<url>tidesdk.org</url>
+<copyright>2012 by Software In Public Interest(SPI)</copyright>
 <analytics>false</analytics>
 <window>
 <id>initial</id>
-<title>Titanium Sandbox</title>
+<title>TideSDK Sandbox</title>
 <url>app://index.html</url>
 <width>800</width>
 <max-width>3000</max-width>

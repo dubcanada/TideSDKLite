@@ -1,24 +1,24 @@
 #appname:Sandbox
 #version:1.0
-#appid:com.titaniumapp.sandbox
-#publisher:Appcelerator
+#appid:org.tidesdk.sandbox
+#publisher:Software In Public Interest (SPI)
 #image:default_app_logo.png
-#url:http://titaniumapp.com
+#url:http://tidesdk.org
 #guid:C33218F4-A11B-4909-9FEE-116EDB34750B
-#desc:Titanium Sandbox
+#desc:TideSDK Sandbox
 sdk:
 runtime:
-tiapp:
-tifilesystem:
-tiplatform:
-tiui:
+app:
+filesystem:
+platform:
+ui:
 python:
 ruby:
 php:
-timedia:
-timonkey:
-tinetwork:
-tiprocess:
-tidatabase:
-tiworker:
-ticodec:
+media:
+monkey:
+network:
+process:
+database:
+worker:
+codec:

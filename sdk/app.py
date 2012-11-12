@@ -169,7 +169,7 @@ class App(object):
         excludes.append(p.join(self.source_dir, 'modules'))
         
         # If we are staging into a subdirectory of the original
-        # application directory (like Titanium Developer), then
+        # application directory (like TideSDK Developer), then
         # ignore the immediate child of the original app directory
         # on the way to the stagin directory. Example:
         # App directory: /tmp/MyProject

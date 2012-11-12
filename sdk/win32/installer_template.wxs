@@ -54,8 +54,8 @@ ${component_refs}
 	<!-- the "immediate" setup action exists to initialize the progress bar with our job count -->
 	<!-- ugly hack to pass in our dependenices and bundled modules/runtime into the deferred/async action -->
 	<CustomAction Id="NetInstall.Params" Return="check" Property="NetInstall" Value="${dependencies}"/>
-	<CustomAction Id="NetInstall.Setup" BinaryKey="TitaniumInstallerDll" DllEntry="NetInstall" Execute="immediate"/>
-	<CustomAction Id="NetInstall" BinaryKey="TitaniumInstallerDll" DllEntry="NetInstall" Execute="deferred"/>
+	<CustomAction Id="NetInstall.Setup" BinaryKey="TideSDKInstallerDll" DllEntry="NetInstall" Execute="immediate"/>
+	<CustomAction Id="NetInstall" BinaryKey="TideSDKInstallerDll" DllEntry="NetInstall" Execute="deferred"/>
 
 	<InstallExecuteSequence>
 		<RemoveExistingProducts After="InstallInitialize"/>
@@ -64,7 +64,7 @@ ${component_refs}
 		<Custom Action="NetInstall" After="NetInstall.Setup">NOT Installed</Custom>
 	</InstallExecuteSequence>
 
-	<Binary Id="TitaniumInstallerDll" SourceFile=${tide_installer_dll}/>
+	<Binary Id="TideSDKInstallerDll" SourceFile=${tide_installer_dll}/>
 	<Binary Id="BannerBmp" SourceFile=${banner_bmp}/>
 
 	<UIRef Id="WixUI_Common" />

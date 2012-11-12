@@ -68,22 +68,22 @@ class PackagingEnvironment(object):
     def init_normal_dirs(self, script_dir):
         if (self.target_os == 'linux'):
             self.install_dirs = [
-                p.expanduser('~/.titanium'),
-                "/opt/titanium",
-                "/usr/local/lib/titanium",
-                "/usr/lib/titanium"
+                p.expanduser('~/.tidesdk'),
+                "/opt/tidesdk",
+                "/usr/local/lib/tidesdk",
+                "/usr/lib/tidesdk"
             ]
         elif (self.target_os == 'osx'):
             self.install_dirs = [
-                p.expanduser('~/Library/Application Support/Titanium'),
-                '/Library/Application Support/Titanium'
+                p.expanduser('~/Library/Application Support/TideSDK'),
+                '/Library/Application Support/TideSDK'
             ]
         elif (self.target_os == 'win32'):
             self.install_dirs = [
-                p.join(os.environ['APPDATA'], 'Titanium'),
+                p.join(os.environ['APPDATA'], 'TideSDK'),
                 # TODO: Is there a better way to determine this directory?
-                'C:\\ProgramData\\Titanium',
-                'C:\\Documents and Settings\All Users\Application Data\Titanium'
+                'C:\\ProgramData\\TideSDK',
+                'C:\\Documents and Settings\All Users\Application Data\TideSDK'
             ]
         else:
             raise Exception("Unknown environment!")
