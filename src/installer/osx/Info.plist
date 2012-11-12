@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>tidesdk.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.titaniumapp.installer.app</string>
+	<string>org.tidesdk.installer.app</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

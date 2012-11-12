@@ -51,7 +51,7 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
     return [mimeType autorelease];
 }
 
-@implementation TitaniumProtocols
+@implementation TideSDKProtocols
 
 +(BOOL)canInitWithRequest:(NSURLRequest*)theRequest 
 {
@@ -78,7 +78,7 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
 
 +(NSURLRequest*)canonicalRequestForRequest:(NSURLRequest*)request 
 {
-    return [TitaniumProtocols getNormalizedRequest:request];
+    return [TideSDKProtocols getNormalizedRequest:request];
 }
 
 +(NSString*)mimeTypeFromExtension:(NSString*)ext
@@ -125,7 +125,7 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
 
 -(NSData*)preprocessRequest:(const char*)url returningMimeType:(NSString**)mimeType
 {
-    static Logger* logger = Logger::Get("UI.TitaniumProtocols");
+    static Logger* logger = Logger::Get("UI.TideSDKProtocols");
     KObjectRef scope = new StaticBoundObject();
     KObjectRef headers = new StaticBoundObject();
     scope->Set("httpHeaders", Value::NewObject(headers));
@@ -161,13 +161,13 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
 
 -(void)startLoading
 {
-    static Logger* logger = Logger::Get("UI.TitaniumProtocols");
+    static Logger* logger = Logger::Get("UI.TideSDKProtocols");
     id<NSURLProtocolClient> client = [self client];
     NSURL* url = [[self request] URL];
 
     // First check if this is the non-canonical version of this request.
     // If it is, we redirect to the canonical version.
-    NSURLRequest* normalized = [TitaniumProtocols getNormalizedRequest:[self request]];
+    NSURLRequest* normalized = [TideSDKProtocols getNormalizedRequest:[self request]];
     if (normalized != [self request])
     {
         NSURLResponse* response = [[NSURLResponse alloc]
@@ -202,7 +202,7 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
     {
         NSString* nsPath = [NSString stringWithUTF8String:path.c_str()];
         data = [NSData dataWithContentsOfFile:nsPath options:0 error:&error];
-        mimeType = [TitaniumProtocols mimeTypeFromExtension:
+        mimeType = [TideSDKProtocols mimeTypeFromExtension:
             [nsPath pathExtension]];
         cachePolicy = NSURLCacheStorageAllowed;
 

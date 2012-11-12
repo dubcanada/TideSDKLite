@@ -1,5 +1,5 @@
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
@@ -8,7 +8,7 @@
 #include <Poco/StringTokenizer.h>
 #include <Poco/File.h>
 
-using Poco::Util::TitaniumPropertyFileConfiguration;
+using Poco::Util::TidePropertyFileConfiguration;
 
 namespace ti
 {
@@ -24,11 +24,11 @@ PropertiesBinding::PropertiesBinding(const std::string& filePath) :
 		if (!file.exists()) 
 			file.createFile();
 
-		config = new TitaniumPropertyFileConfiguration(filePath);
+		config = new TidePropertyFileConfiguration(filePath);
 	}
 	else
 	{
-		config = new TitaniumPropertyFileConfiguration();
+		config = new TidePropertyFileConfiguration();
 	}
 
 	SetMethod("getBool", &PropertiesBinding::GetBool);

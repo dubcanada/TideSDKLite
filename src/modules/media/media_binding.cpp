@@ -35,7 +35,6 @@
 #include "media_binding.h"
 #include <tide/tide.h>
 #include <cstring>
-#include <Poco/URI.h>
 
 namespace ti
 {

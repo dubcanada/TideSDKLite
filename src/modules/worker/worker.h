@@ -38,7 +38,6 @@
 #include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
-#include <Poco/Condition.h>
 #include <Poco/Mutex.h>
 #include <Poco/ScopedLock.h>
 #include <queue>

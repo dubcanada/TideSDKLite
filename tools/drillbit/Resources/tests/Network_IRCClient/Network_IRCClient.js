@@ -92,7 +92,7 @@ describe("Network.IRCClient", {
     value_of(client)
       .should_be_object();
     try {
-      client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date()
+      client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "tideSDKDrillbit", "tester", String(new Date()
         .getTime()), function (cmd, channel, data, nick) {
         clearTimeout(connTimer);
 
@@ -132,7 +132,7 @@ describe("Network.IRCClient", {
 
      var connTimer = null;
      try {
-       client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date()
+       client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "tideSDKDrillbit", "tester", String(new Date()
          .getTime()), function (cmd, channel, data, nick) {
          connectCount++;
          clearTimeout(connTimer);

@@ -45,26 +45,21 @@ namespace UTILS_NS
 {
     std::string FileUtils::GetUserRuntimeHomeDirectory()
     {
+        // As of Mac 10.7 /Library/ is no longer writable by anyone but root
+        // We are going to install it into ~/Library/
         NSString* nsPath = [NSSearchPathForDirectoriesInDomains(
-            NSApplicationSupportDirectory, NSUserDomainMask, NO) objectAtIndex: 0];
+            NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
         nsPath = [nsPath stringByAppendingPathComponent:
             [NSString stringWithUTF8String:PRODUCT_NAME]];
-        return [[nsPath stringByExpandingTildeInPath] UTF8String];
-        
-        // On OS X 10.7 the installer will put the runtime and modules
-        // into the user's domain since /Library is now read only by non-admin users.
-        // If we do not find a TideSDK installation in the local domain, use
-        // the user domain instead.
-        if (![[NSFileManager defaultManager] fileExistsAtPath:nsPath])
-            return FileUtils::GetUserRuntimeHomeDirectory();
-        
         return [[nsPath stringByExpandingTildeInPath] UTF8String];
     }
     
     std::string FileUtils::GetSystemRuntimeHomeDirectory()
     {
         NSString* nsPath = [NSSearchPathForDirectoriesInDomains(
-            NSLibraryDirectory, NSUserDomainMask, NO) objectAtIndex: 0];
+            NSApplicationSupportDirectory, NSUserDomainMask, NO) objectAtIndex: 0];
+        nsPath = [nsPath stringByAppendingPathComponent:
+                  [NSString stringWithUTF8String:PRODUCT_NAME]];
         return [[nsPath stringByExpandingTildeInPath] UTF8String];
     }
 

@@ -67,5 +67,5 @@ env['CCFLAGS'] = ccf
 
 env.Append(LIBS=['msi']); # Add the MSI lib.
 build.mark_build_target(env.SharedLibrary(
-    path.join(build.dir, 'sdk', 'installer', 'titanium_installer'),
-    sources + ['titanium_actions.cpp']))
+    path.join(build.dir, 'sdk', 'installer', 'tide_installer'),
+    sources + ['tide_actions.cpp']))

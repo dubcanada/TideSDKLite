@@ -37,7 +37,6 @@
 #include <sstream>
 #include <functional>
 #include <Poco/Path.h>
-#include <Poco/FileStream.h>
 using std::vector;
 using std::string;
 
@@ -185,7 +184,7 @@ namespace ti
         if (!windowObject->Get(GLOBAL_NAMESPACE)->IsObject() &&
             !target.isNull() && target->Get("insertAPI")->IsMethod())
         {
-            logger->Info("Forcing Titanium API into: %s\n", url.c_str());
+            logger->Info("Forcing TideSDK API into: %s\n", url.c_str());
             target->CallNS("insertAPI", Value::NewObject(windowObject));
         }
 

@@ -518,7 +518,7 @@ HRESULT STDMETHODCALLTYPE Win32WebKitUIDelegate::printFrame(
     DOCINFO docInfo;
     ZeroMemory(&docInfo, sizeof(DOCINFO));
     docInfo.cbSize = sizeof(DOCINFO);
-    docInfo.lpszDocName = _T("Titanium Document");
+    docInfo.lpszDocName = _T("TideSDK Document");
     ::StartDoc(hdc, &docInfo);
 
     void* graphicsContext = 0;

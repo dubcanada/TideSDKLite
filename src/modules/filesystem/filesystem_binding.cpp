@@ -371,7 +371,7 @@ namespace ti
 
     void FilesystemBinding::DeletePendingOperations(const ValueList& args, KValueRef result)
     {
-        KR_DUMP_LOCATION
+        TIDE_DUMP_LOCATION
         if (asyncOperations.size()==0)
         {
             result->SetBool(true);

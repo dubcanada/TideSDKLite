@@ -36,8 +36,8 @@
 //
 
 
-#ifndef Util_TitaniumMapConfiguration_INCLUDED
-#define Util_TitaniumMapConfiguration_INCLUDED
+#ifndef Util_TideMapConfiguration_INCLUDED
+#define Util_TideMapConfiguration_INCLUDED
 
 
 #include "Poco/Util/Util.h"
@@ -49,12 +49,12 @@ namespace Poco {
 namespace Util {
 
 
-class TitaniumMapConfiguration: public AbstractConfiguration
+class TideMapConfiguration: public AbstractConfiguration
 	/// An implementation of AbstractConfiguration that stores configuration data in a map.
 {
 public:
-	TitaniumMapConfiguration();
-		/// Creates an empty TitaniumMapConfiguration.
+	TideMapConfiguration();
+		/// Creates an empty TideMapConfiguration.
 
 	void clear();
 		/// Clears the configuration.
@@ -69,7 +69,7 @@ protected:
 	bool getRaw(const std::string& key, std::string& value) const;
 	void setRaw(const std::string& key, const std::string& value);
 	void enumerate(const std::string& key, Keys& range) const;
-	~TitaniumMapConfiguration();
+	~TideMapConfiguration();
 
 	iterator begin() const;
 	iterator end() const;
@@ -82,4 +82,4 @@ private:
 } } // namespace Poco::Util
 
 
-#endif // Util_TitaniumMapConfiguration_INCLUDED
+#endif // Util_TideMapConfiguration_INCLUDED

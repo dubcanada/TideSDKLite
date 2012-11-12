@@ -1,5 +1,5 @@
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
@@ -109,7 +109,7 @@
 	// place our user agent string in the global so we can later use it
 	KObjectRef global = host->GetGlobalObject();
 	NSString* fullUserAgent = [webView userAgentForURL:
-		[NSURL URLWithString:@"http://titaniumapp.com"]];
+		[NSURL URLWithString:@"http://tidesdk.org"]];
 	global->SetString("userAgent", [fullUserAgent UTF8String]);
 
 	return self;
@@ -210,8 +210,8 @@
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame
 {
 	// If this NULL value is registered when the load finishes, we need
-	// to manually inject Titanium into the frame. if the frame isn't in
-	// the map at all -- an error happened and we shouldn't inject Titanium.
+	// to manually inject TideSDK into the frame. if the frame isn't in
+	// the map at all -- an error happened and we shouldn't inject TideSDK.
 	[self registerGlobalObject:NULL forFrame:frame];
 }
 

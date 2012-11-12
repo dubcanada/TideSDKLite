@@ -55,7 +55,7 @@
     }
 
     userAgent = [NSString stringWithFormat:
-        @"Mozilla/5.0 (compatible; Titanium_Downloader/%s; Mac)",
+        @"Mozilla/5.0 (compatible; TideSDK_Downloader/%s; Mac)",
         STRING(_PRODUCT_VERSION)];
 
     return self;

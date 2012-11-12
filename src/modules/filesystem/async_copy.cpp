@@ -210,7 +210,7 @@ namespace ti
 
     void AsyncCopy::Cancel(const ValueList& args, KValueRef result)
     {
-        KR_DUMP_LOCATION
+        TIDE_DUMP_LOCATION
         if (thread!=NULL && thread->isRunning())
         {
             this->stopped = true;

@@ -34,7 +34,7 @@
 //
 
 
-#include "TitaniumMapConfiguration.h"
+#include "TideMapConfiguration.h"
 #include <set>
 
 
@@ -42,23 +42,23 @@ namespace Poco {
 namespace Util {
 
 
-TitaniumMapConfiguration::TitaniumMapConfiguration()
+TideMapConfiguration::TideMapConfiguration()
 {
 }
 
 
-TitaniumMapConfiguration::~TitaniumMapConfiguration()
+TideMapConfiguration::~TideMapConfiguration()
 {
 }
 
 
-void TitaniumMapConfiguration::clear()
+void TideMapConfiguration::clear()
 {
 	_map.clear();
 }
 
 
-bool TitaniumMapConfiguration::getRaw(const std::string& key, std::string& value) const
+bool TideMapConfiguration::getRaw(const std::string& key, std::string& value) const
 {
 	StringMap::const_iterator it = _map.find(key);
 	if (it != _map.end())
@@ -70,13 +70,13 @@ bool TitaniumMapConfiguration::getRaw(const std::string& key, std::string& value
 }
 
 
-void TitaniumMapConfiguration::setRaw(const std::string& key, const std::string& value)
+void TideMapConfiguration::setRaw(const std::string& key, const std::string& value)
 {
 	_map[key] = value;
 }
 
 
-bool TitaniumMapConfiguration::removeProperty(const std::string& key)
+bool TideMapConfiguration::removeProperty(const std::string& key)
 {
 	StringMap::iterator it = _map.find(key);
 	if (it != _map.end())
@@ -88,7 +88,7 @@ bool TitaniumMapConfiguration::removeProperty(const std::string& key)
 }
 
 
-void TitaniumMapConfiguration::enumerate(const std::string& key, Keys& range) const
+void TideMapConfiguration::enumerate(const std::string& key, Keys& range) const
 {
 	std::set<std::string> keys;
 	std::string prefix = key;
@@ -114,13 +114,13 @@ void TitaniumMapConfiguration::enumerate(const std::string& key, Keys& range) co
 }
 
 
-TitaniumMapConfiguration::iterator TitaniumMapConfiguration::begin() const
+TideMapConfiguration::iterator TideMapConfiguration::begin() const
 {
 	return _map.begin();
 }
 
 
-TitaniumMapConfiguration::iterator TitaniumMapConfiguration::end() const
+TideMapConfiguration::iterator TideMapConfiguration::end() const
 {
 	return _map.end();
 }

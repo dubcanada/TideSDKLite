@@ -31,7 +31,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Titanium application packaging script
+# TideSDK application packaging script
 
 import env
 import os

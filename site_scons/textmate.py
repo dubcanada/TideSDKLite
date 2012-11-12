@@ -40,7 +40,7 @@ completions_template = """<?xml version="1.0" encoding="UTF-8"?>
 	<key>name</key>
 	<string>Completions</string>
 	<key>scope</key>
-	<string>source.js.titanium</string>
+	<string>source.js.tidesdk</string>
 	<key>settings</key>
 	<dict>
 		<key>completions</key>
@@ -63,7 +63,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
 	<key>name</key>
 	<string>%s</string>
 	<key>scope</key>
-	<string>source.js.titanium</string>
+	<string>source.js.tidesdk</string>
 	<key>tabTrigger</key>
 	<string>%s</string>
 	<key>uuid</key>
@@ -77,7 +77,7 @@ info_plist = """<?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Titanium</string>
+	<string>TideSDK</string>
 	<key>mainMenu</key>
 	<dict>
 		<key>items</key>
@@ -98,7 +98,7 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
 	<key>comment</key>
-	<string>Titanium</string>
+	<string>TideSDK</string>
 	<key>foldingStartMarker</key>
 	<string>(^.*{[^}]*$|^.*\([^\)]*$|^.*/\*(?!.*\*/).*$)</string>
 	<key>foldingStopMarker</key>
@@ -106,14 +106,14 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 	<key>keyEquivalent</key>
 	<string>^~T</string>
 	<key>name</key>
-	<string>Titanium</string>
+	<string>TideSDK</string>
 	<key>patterns</key>
 	<array>
 		<dict>
 			<key>match</key>
-			<string>\b(Titanium)\b</string>
+			<string>\b(TideSDK)\b</string>
 			<key>name</key>
-			<string>support.class.js.titanium</string>
+			<string>support.class.js.tidesdk</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -123,7 +123,7 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.class.js.titanium</string>
+					<string>support.class.js.tidesdk</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -132,7 +132,7 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.selector.titanium</string>
+			<string>meta.selector.tidesdk</string>
 			<key>end</key>
 			<string>(\))</string>
 			<key>endCaptures</key>
@@ -153,9 +153,9 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(Titanium)\.</string>
+			<string>(TideSDK)\.</string>
 			<key>name</key>
-			<string>support.function.js.titanium</string>
+			<string>support.function.js.tidesdk</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -163,7 +163,7 @@ syntaxes = """<?xml version="1.0" encoding="UTF-8"?>
 		</dict>
 	</array>
 	<key>scopeName</key>
-	<string>source.js.titanium</string>
+	<string>source.js.tidesdk</string>
 	<key>uuid</key>
 	<string>101C29E1-B91C-4CC5-9578-F1F0C5A0642B</string>
 </dict>
@@ -176,7 +176,7 @@ def make_template(module,fn,tab,out):
     out.write(template % (module,fn,tab,id))
     return id
 
-#make_template('Titanium.Filesystem','Filesystem')
+#make_template('Ti.Filesystem','Filesystem')
 
 top_level = []
 all_methods = []
@@ -200,7 +200,7 @@ def generate_textmate_bundle(json_file,outdir):
 
     for namespace in data:
         sf = open(os.path.join(snip_dir,namespace+'.tmSnippet'),'w+')
-        theid = make_template('Titanium.'+namespace,namespace,'Titanium',sf)
+        theid = make_template('Ti.'+namespace,namespace,'Ti',sf)
         sf.close()
         completions.append("Titanum.%s" % namespace)
         completion_menus[namespace] = theid
@@ -232,10 +232,10 @@ def generate_textmate_bundle(json_file,outdir):
                     package_name = cur[0:-1]
                     name = path.replace('.','_')
                     sf = open(os.path.join(snip_dir,name+'.tmSnippet'),'w+')
-                    theid = make_template('Titanium.'+path,method_name,'Titanium.'+package_name,sf)
+                    theid = make_template('Ti.'+path,method_name,'Ti.'+package_name,sf)
                     sf.close()
-                    completions.append("Titanium.%s" % path)
-                    sub_methods["Titanium.%s" % path]=theid
+                    completions.append("Ti.%s" % path)
+                    sub_methods["Ti.%s" % path]=theid
             if i+1 < len(tokens):
                 path+='.'
     
@@ -248,7 +248,7 @@ def generate_textmate_bundle(json_file,outdir):
     cf.write(completions_template % cstr)
     cf.close()
     
-    cf = open(os.path.join(syntax_dir,'Titanium.tmLanguage'),'w+')
+    cf = open(os.path.join(syntax_dir,'Ti.tmLanguage'),'w+')
     cf.write(syntaxes)
     cf.close()
     

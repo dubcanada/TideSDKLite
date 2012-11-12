@@ -104,7 +104,7 @@ static HINTERNET GetNetConnection()
         return netHandle;
 
     netHandle = InternetOpenW(
-        L"Mozilla/5.0 (compatible; Titanium_Downloader/0.1; Win32)",
+        L"Mozilla/5.0 (compatible; TideSDK_Downloader/0.1; Win32)",
         INTERNET_OPEN_TYPE_PRECONFIG, 0, 0, 0);
 
     if (!netHandle)

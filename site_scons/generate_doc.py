@@ -40,7 +40,7 @@ data = json.loads(data)
 c = 0
 
 for module in sorted(data):
-    print "* \"Titanium.%s\":#C%i" % (module,c)
+    print "* \"Ti.%s\":#C%i" % (module,c)
     c+=1
 
 print "\n"
@@ -49,13 +49,13 @@ c = 0
 x = 0
 
 for module in sorted(data):
-    print "h1(#C%i). Titanium.%s" % (c,module)
+    print "h1(#C%i). Ti.%s" % (c,module)
     print "\n"
     c+=1
 
     for api in sorted(data[module]):
         api_data = data[module][api]
-        print "* \"Titanium.%s.%s\":#X%i" % (module,api,x)
+        print "* \"Ti.%s.%s\":#X%i" % (module,api,x)
         x+=1
     
     x = 0
@@ -63,7 +63,7 @@ for module in sorted(data):
     
     for api in sorted(data[module]):
         api_data = data[module][api]
-        print "h2(#X%i). Titanium.%s.%s" % (x,module,api)
+        print "h2(#X%i). Ti.%s.%s" % (x,module,api)
         print "\n"
         x+=1
         print "%s\n" % api_data['description']

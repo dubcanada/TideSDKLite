@@ -57,8 +57,8 @@
   <script>
 	function runCallback ()
 	{
-		if (Titanium.UI.currentWindow.callback) {
-			Titanium.UI.currentWindow.callback();
+		if (Ti.UI.currentWindow.callback) {
+			Ti.UI.currentWindow.callback();
 		}
 	}
   </script>
@@ -74,7 +74,7 @@
   <script>
       // fix opacity rendering issue in chrome (for now)
       // 
-      //if (Titanium.platform == "win32") {
+      //if (Ti.platform == "win32") {
       //  $("#content").css("opacity", "1");
       //  $("body").css("opacity", "1");
       //}

@@ -13,4 +13,4 @@ x.y (release unknown - yyyy-mm-dd)
  - window.Titanium renamed to window.Ti
  - Titanium.Include() method removed
  - Titanium.Network.online removed (was deprecated in 1.2.0-RC4)
-
+ - Titanium.Network.addConnectivityListener removed (was deprecated in 1.2.0-RC4)

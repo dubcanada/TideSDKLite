@@ -1,5 +1,5 @@
 /**
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008-2010 Appcelerator, Inc. All Rights Reserved.
  */
@@ -9,7 +9,7 @@
 
 #include <tide/tide.h>
 #include <Poco/AutoPtr.h>
-#include "TitaniumPropertyFileConfiguration.h"
+#include "TidePropertyFileConfiguration.h"
 
 namespace ti
 {
@@ -39,7 +39,7 @@ namespace ti
 		void Setter(const ValueList& args, Type type);
 		void SaveConfig();
 
-		Poco::AutoPtr<Poco::Util::TitaniumPropertyFileConfiguration> GetConfig()
+		Poco::AutoPtr<Poco::Util::TidePropertyFileConfiguration> GetConfig()
 		{
 			return config;
 		}
@@ -47,7 +47,7 @@ namespace ti
 	protected:
 		Logger* logger;
 		std::string filePath;
-		Poco::AutoPtr<Poco::Util::TitaniumPropertyFileConfiguration> config;
+		Poco::AutoPtr<Poco::Util::TidePropertyFileConfiguration> config;
 	};
 }
 

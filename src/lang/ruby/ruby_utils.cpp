@@ -303,6 +303,7 @@ namespace tide
         {
             return RubyUtils::ToRubyValue(value);
         }
+        return 0;
     }
 
     // A :responds_to? method for finding KObject properties in Ruby

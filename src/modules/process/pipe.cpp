@@ -76,7 +76,7 @@ namespace ti
         /**
          * @tiapi(method=True,name=Process.Pipe.attach,since=0.5)
          * @tiapi Attach an IO object to this pipe. An IO object is an object that
-         * @tiapi implements a public "write(Bytes)". In Titanium, this include
+         * @tiapi implements a public "write(Bytes)". In Ti, this include
          * @tiapi FileStreams, and Pipes. You may also use your own custom IO implementation
          * @tiapi here.
          */

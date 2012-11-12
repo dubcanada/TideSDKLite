@@ -31,7 +31,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Titanium API Coverage Generator
+# TideSDK API Coverage Generator
 
 import glob, re, os.path as path
 import fnmatch, os, sys, types

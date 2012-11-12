@@ -116,6 +116,7 @@ class App(object):
         self.get_tiapp_element_as_prop('publisher', 'publisher')
         self.get_tiapp_element_as_prop('url', 'url')
         self.get_tiapp_element_as_prop('log-level', 'loglevel')
+        self.get_tiapp_element_as_prop('stream', 'stream')
 
     def write_manifest(self, path):
         f = codecs.open(p.join(path, 'manifest'), 'wb', 'utf-8')
@@ -136,9 +137,9 @@ class App(object):
         if hasattr(self, 'url'):
             write_line(u'#url: ' + self.url)
         if hasattr(self, 'loglevel'):
-            write_line(u'#loglevel: ' + self.url)
+            write_line(u'#loglevel: ' + self.loglevel)
         if hasattr(self, 'stream'):
-            write_line(u'#stream: ' + self.url)
+            write_line(u'#stream: ' + self.stream)
 
         write_line(u'runtime: ' + self.runtime_version)
         if hasattr(self, 'sdk_version'):
@@ -168,7 +169,7 @@ class App(object):
         excludes.append(p.join(self.source_dir, 'modules'))
         
         # If we are staging into a subdirectory of the original
-        # application directory (like Titanium Developer), then
+        # application directory (like TideSDK Developer), then
         # ignore the immediate child of the original app directory
         # on the way to the stagin directory. Example:
         # App directory: /tmp/MyProject

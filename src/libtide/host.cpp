@@ -47,7 +47,6 @@
 #include <Poco/Path.h>
 #include <Poco/Environment.h>
 #include <Poco/AutoPtr.h>
-#include <Poco/Util/PropertyFileConfiguration.h>
 #include <Poco/StringTokenizer.h>
 #include <Poco/Timespan.h>
 

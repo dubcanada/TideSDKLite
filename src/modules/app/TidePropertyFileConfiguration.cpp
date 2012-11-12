@@ -34,7 +34,7 @@
 //
 
 
-#include "TitaniumPropertyFileConfiguration.h"
+#include "TidePropertyFileConfiguration.h"
 #include "Poco/Exception.h"
 #include "Poco/String.h"
 #include "Poco/Path.h"
@@ -51,29 +51,29 @@ namespace Poco {
 namespace Util {
 
 
-TitaniumPropertyFileConfiguration::TitaniumPropertyFileConfiguration()
+TidePropertyFileConfiguration::TidePropertyFileConfiguration()
 {
 }
 
 
-TitaniumPropertyFileConfiguration::TitaniumPropertyFileConfiguration(std::istream& istr)
+TidePropertyFileConfiguration::TidePropertyFileConfiguration(std::istream& istr)
 {
 	load(istr);
 }
 
 	
-TitaniumPropertyFileConfiguration::TitaniumPropertyFileConfiguration(const std::string& path)
+TidePropertyFileConfiguration::TidePropertyFileConfiguration(const std::string& path)
 {
 	load(path);
 }
 
 
-TitaniumPropertyFileConfiguration::~TitaniumPropertyFileConfiguration()
+TidePropertyFileConfiguration::~TidePropertyFileConfiguration()
 {
 }
 
 	
-void TitaniumPropertyFileConfiguration::load(std::istream& istr)
+void TidePropertyFileConfiguration::load(std::istream& istr)
 {
 	clear();
 	while (!istr.eof())
@@ -83,7 +83,7 @@ void TitaniumPropertyFileConfiguration::load(std::istream& istr)
 }
 
 	
-void TitaniumPropertyFileConfiguration::load(const std::string& path)
+void TidePropertyFileConfiguration::load(const std::string& path)
 {
 	Poco::FileInputStream istr(path);
 	if (istr.good())
@@ -93,10 +93,10 @@ void TitaniumPropertyFileConfiguration::load(const std::string& path)
 }
 
 
-void TitaniumPropertyFileConfiguration::save(std::ostream& ostr) const
+void TidePropertyFileConfiguration::save(std::ostream& ostr) const
 {
-	TitaniumMapConfiguration::iterator it = begin();
-	TitaniumMapConfiguration::iterator ed = end();
+	TideMapConfiguration::iterator it = begin();
+	TideMapConfiguration::iterator ed = end();
 	while (it != ed)
 	{
 		ostr << it->first << ": " << it->second << "\n";
@@ -105,7 +105,7 @@ void TitaniumPropertyFileConfiguration::save(std::ostream& ostr) const
 }
 
 
-void TitaniumPropertyFileConfiguration::save(const std::string& path) const
+void TidePropertyFileConfiguration::save(const std::string& path) const
 {
 	Poco::FileOutputStream ostr(path);
 	if (ostr.good())
@@ -120,7 +120,7 @@ void TitaniumPropertyFileConfiguration::save(const std::string& path) const
 }
 
 
-void TitaniumPropertyFileConfiguration::parseLine(std::istream& istr)
+void TidePropertyFileConfiguration::parseLine(std::istream& istr)
 {
 	static const int eof = std::char_traits<char>::eof(); 
 
@@ -148,7 +148,7 @@ void TitaniumPropertyFileConfiguration::parseLine(std::istream& istr)
 }
 
 
-int TitaniumPropertyFileConfiguration::readChar(std::istream& istr)
+int TidePropertyFileConfiguration::readChar(std::istream& istr)
 {
 	for (;;)
 	{

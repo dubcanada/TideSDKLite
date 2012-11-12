@@ -62,7 +62,7 @@ namespace ti
             GetSystemMetrics(SM_CYSMICON));
         notifyIconData->hIcon = icon;
 
-        lstrcpy(notifyIconData->szTip, L"Titanium Application");
+        lstrcpy(notifyIconData->szTip, L"TideSDK Application");
         Shell_NotifyIcon(NIM_ADD, notifyIconData);
         this->trayIconData = notifyIconData;
 

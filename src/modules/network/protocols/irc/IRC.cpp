@@ -22,9 +22,7 @@
     email:    iainsheppard@yahoo.co.uk
     IRC:    #magpie @ irc.quakenet.org
 
-
-    Numeorous minor changes by Jeff Haynie <jhaynie@appcelerator.org> to
-    get it working well under Titanium
+    Numeorous minor changes by Jeff Haynie to get it working well under TideSDK
 */
 
 #include "IRC.h"

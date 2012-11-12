@@ -36,7 +36,7 @@
 #import <Foundation/Foundation.h>
 #import <Foundation/NSURLRequest.h>
 #import <Foundation/NSURLProtocol.h>
-@interface TitaniumProtocols : NSURLProtocol {
+@interface TideSDKProtocols : NSURLProtocol {
 }
 +(NSString *)mimeTypeFromExtension:(NSString *)ext;
 @end

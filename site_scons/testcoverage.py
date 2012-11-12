@@ -29,7 +29,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Titanium Test Coverage Generator
+# TideSDK Test Coverage Generator
 
 import os, sys, fnmatch, re
 import simplejson
@@ -62,7 +62,7 @@ class GlobDirectoryWalker:
                         return fullname
 
 def generate_test_coverage(dirs, apicoverage, outfile):
-    api_regex = 'Titanium\.([A-Za-z0-9_]+)(\.([A-Za-z0-0_]+))?'
+    api_regex = 'Ti\.([A-Za-z0-9_]+)(\.([A-Za-z0-0_]+))?'
     
     testcoverage = {}
     testcoverage['modules'] = {}
@@ -91,7 +91,7 @@ def generate_test_coverage(dirs, apicoverage, outfile):
                 tokens = line.split(',')
                 if tokens[1] in ["call", "get"]:
                     entry = tokens[2]
-                    entry = entry.replace('Titanium.','')
+                    entry = entry.replace('Ti.','')
                     module = '<global>'
                     if entry.find(".") != -1: module = entry[0:entry.find(".")]
                     if entry.find('.') == -1: continue

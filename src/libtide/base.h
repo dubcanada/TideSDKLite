@@ -119,18 +119,18 @@
 // define a macro that points to the name of the enclosing function where
 // referenced or if not supported on target compiler, just default to filename
 #ifndef OS_WIN32
-#define KR_FUNC __PRETTY_FUNCTION__
+#define TIDE_FUNC __PRETTY_FUNCTION__
 #else
-#define KR_FUNC __FILE__
+#define TIDE_FUNC __FILE__
 #endif
 
 #ifdef DEBUG
-#define KR_DUMP_LOCATION std::cout << "[" << KR_FUNC << "::" << __LINE__ << "]" << std::endl;
+#define TIDE_DUMP_LOCATION std::cout << "[" << TIDE_FUNC << "::" << __LINE__ << "]" << std::endl;
 #else
-#define KR_DUMP_LOCATION
+#define TIDE_DUMP_LOCATION
 #endif
 
-#define KR_UNUSED(o) if (o) {}
+#define TIDE_UNUSED(o) if (o) {}
 
 // this was borrowed from Google Gears
 // A macro to disallow the evil copy constructor and operator= functions.
@@ -139,24 +139,6 @@
   TypeName(const TypeName&);                    \
   void operator=(const TypeName&)
 
-
-#if defined(OS_WIN32)
-#ifndef WINVER
-#define WINVER 0x0501
-#endif
-
-#ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0501
-#endif
-
-#ifndef _WIN32_WINDOWS
-#define _WIN32_WINDOWS 0x0410
-#endif
-
-#ifndef _WIN32_IE
-#define _WIN32_IE 0x600
-#endif
-#endif
 
 #ifdef DEBUG
 #include <sstream>

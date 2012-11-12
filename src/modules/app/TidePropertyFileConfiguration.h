@@ -36,12 +36,12 @@
 //
 
 
-#ifndef Util_TitaniumPropertyFileConfiguration_INCLUDED
-#define Util_TitaniumPropertyFileConfiguration_INCLUDED
+#ifndef Util_TidePropertyFileConfiguration_INCLUDED
+#define Util_TidePropertyFileConfiguration_INCLUDED
 
 
 #include "Poco/Util/Util.h"
-#include "TitaniumMapConfiguration.h"
+#include "TideMapConfiguration.h"
 #include <istream>
 #include <ostream>
 
@@ -50,7 +50,7 @@ namespace Poco {
 namespace Util {
 
 
-class TitaniumPropertyFileConfiguration: public TitaniumMapConfiguration
+class TidePropertyFileConfiguration: public TideMapConfiguration
 	/// This implementation of a Configuration reads properties
 	/// from a Java-style properties file.
 	///
@@ -77,15 +77,15 @@ class TitaniumPropertyFileConfiguration: public TitaniumMapConfiguration
 	/// a colon ':' nor an equal sign '=' character.
 {
 public:
-	TitaniumPropertyFileConfiguration();
-		/// Creates an empty TitaniumPropertyFileConfiguration.
+	TidePropertyFileConfiguration();
+		/// Creates an empty TidePropertyFileConfiguration.
 
-	TitaniumPropertyFileConfiguration(std::istream& istr);
-		/// Creates an TitaniumPropertyFileConfiguration and loads the configuration data
+	TidePropertyFileConfiguration(std::istream& istr);
+		/// Creates an TidePropertyFileConfiguration and loads the configuration data
 		/// from the given stream, which must be in properties file format.
 		
-	TitaniumPropertyFileConfiguration(const std::string& path);
-		/// Creates an TitaniumPropertyFileConfiguration and loads the configuration data
+	TidePropertyFileConfiguration(const std::string& path);
+		/// Creates an TidePropertyFileConfiguration and loads the configuration data
 		/// from the given file, which must be in properties file format.
 		
 	void load(std::istream& istr);
@@ -107,7 +107,7 @@ public:
 		/// Writes the configuration data to the given file.
 
 protected:
-	~TitaniumPropertyFileConfiguration();
+	~TidePropertyFileConfiguration();
 	
 private:
 	void parseLine(std::istream& istr);
@@ -118,4 +118,4 @@ private:
 } } // namespace Poco::Util
 
 
-#endif // Util_TitaniumPropertyFileConfiguration_INCLUDED
+#endif // Util_TidePropertyFileConfiguration_INCLUDED

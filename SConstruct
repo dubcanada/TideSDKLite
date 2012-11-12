@@ -49,8 +49,8 @@ EnsurePythonVersion(2,5)
 
 build.set_tide_source_dir(path.abspath('src'))
 
-build.titanium_source_dir = path.abspath('.')
-build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
+build.tide_source_dir = path.abspath('.')
+build.tide_sdk_dir = path.join(build.tide_source_dir, 'sdk')
 
 # This should only be used for accessing various
 # scripts in the tide build directory. All resources
@@ -58,7 +58,7 @@ build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
 build.tide_build_dir = path.join(build.tide_source_dir, 'build')
 
 build.env.Append(CPPPATH=[
-    build.titanium_source_dir,
+    build.tide_source_dir,
     build.tide_source_dir,
     build.tide_include_dir
 ])
