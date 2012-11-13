@@ -158,13 +158,17 @@ class App(object):
     def get_contents_dir(self):
         return self.stage_dir
 
-    def stage(self, stage_dir, bundle=False, no_install=False, js_obfuscate=False):
+    def stage(self, stage_dir, bundle=False, no_install=False, js_obfuscate=False, ignore_patterns=""):
         print('Staging %s' % self.name)
         self.stage_dir = fix_path(stage_dir)
         contents = self.contents = self.get_contents_dir()
         self.env.log(u'Copying contents from %s to %s' % (self.source_dir, contents))
         excludes = self.env.get_excludes()
         
+        # Add ignore_patterns to excludes
+        if ignore_patterns != "":
+            excludes.extend(ignore_patterns.split(','))
+
         # Don't prematurely copy custom modules (we only want them if they're in the manifest)
         excludes.append(p.join(self.source_dir, 'modules'))
         
