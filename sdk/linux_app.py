@@ -35,8 +35,8 @@ import os.path as p
 from app import App
 
 class LinuxApp(App):
-    def stage(self, stage_dir, bundle, no_install, js_obfuscate):
-        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
+    def stage(self, stage_dir, bundle, no_install, js_obfuscate, ignore_patterns):
+        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate, ignore_patterns=ignore_patterns)
 
         contents = self.get_contents_dir()
         self.env.log(u'Copying tiboot to %s' % contents)

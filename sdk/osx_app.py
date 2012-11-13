@@ -41,11 +41,11 @@ class OSXApp(App):
     def get_contents_dir(self):
         return p.join(self.stage_dir, 'Contents')
 
-    def stage(self, stage_dir, bundle, no_install, js_obfuscate):
+    def stage(self, stage_dir, bundle, no_install, js_obfuscate, ignore_patterns):
         if not stage_dir.endswith('.app'):
             stage_dir += '.app'
 
-        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
+        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate, ignore_patterns=ignore_patterns)
 
         self.env.log(u'Copying tiboot to %s' % self.contents)
         self.executable_path = p.join(self.contents, 'MacOS', self.name)
