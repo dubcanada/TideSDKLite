@@ -74,7 +74,7 @@ Support
 - Documentation: [http://tidesdk.multipart.net/docs/user-dev/generated](http://tidesdk.multipart.net/docs/user-dev/generated)
 - Source Code: [https://github.com/TideSDK/TideSDK](https://github.com/TideSDK/TideSDK)
 - Tutorials: Get started easily [http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide](http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide)
-- Q &amp; A on Stack Overflow: Get help [http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide](http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide)
+- Q &amp; A on Stack Overflow: Get help [http://stackoverflow.com/questions/tagged/tidesdk](http://stackoverflow.com/questions/tagged/tidesdk)
 - Report a Bug: Help us improve [https://github.com/TideSDK/TideSDK/issues](https://github.com/TideSDK/TideSDK/issues).
 - IRC: Chat with us on #tidesdk on freenode.net
 - Twitter: Follow TideSDK [@tidesdk](http://twitter.com/tidesdk).
