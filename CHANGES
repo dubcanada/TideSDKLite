@@ -61,7 +61,7 @@ Breaking Changes
     </script>
     ```
     
-  Python embedding and inclusion
+  Python embedding and inclusion:
     ```
     <script type="text/python">
       // python code
