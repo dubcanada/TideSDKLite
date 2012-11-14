@@ -39,13 +39,13 @@
 
 namespace tide
 {
-namespace KJSUtil
+namespace JSUtil
 {
     static inline Logger* GetLogger()
     {
         static Logger* logger = 0;
         if (!logger)
-            logger = Logger::Get("JavaScript.KJSUtil");
+            logger = Logger::Get("JavaScript.JSUtil");
         return logger;
     }
 

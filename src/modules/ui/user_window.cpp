@@ -1511,7 +1511,7 @@ static bool ShouldHaveTiObject(JSGlobalContextRef ctx, JSObjectRef global)
         return false;
     }
 
-    string url(KJSUtil::ToChars(locString));
+    string url(JSUtil::ToChars(locString));
     transform(url.begin(), url.end(), url.begin(), tolower);
     return url.find("app://") == 0 || url.find("ti://") == 0 ||
         url.find("file://") == 0 || url.find("data:text/html;") == 0;
@@ -1581,7 +1581,7 @@ static KValueRef DeferredGarbageCollection(const ValueList& args)
 void UserWindow::RegisterJSContext(JSGlobalContextRef context)
 {
     JSObjectRef globalObject = JSContextGetGlobalObject(context);
-    KJSUtil::RegisterGlobalContext(globalObject, context);
+    JSUtil::RegisterGlobalContext(globalObject, context);
 
     // Get the global object as a KKJSObject
     KObjectRef frameGlobal = new KKJSObject(context, globalObject);
@@ -1621,7 +1621,7 @@ void UserWindow::LoadUIJavaScript(JSGlobalContextRef context)
     std::string jsPath = FileUtils::Join(modulePath.c_str(), "ui.js", NULL);
     try
     {
-        KJSUtil::EvaluateFile(context, (char*) jsPath.c_str());
+        JSUtil::EvaluateFile(context, (char*) jsPath.c_str());
     }
     catch (tide::ValueException &e)
     {

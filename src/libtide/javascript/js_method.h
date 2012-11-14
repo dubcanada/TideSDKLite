@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KJS_KMETHOD_H_
-#define _KJS_KMETHOD_H_
+#ifndef _JS_METHOD_H_
+#define _JS_METHOD_H_
 
 #include "javascript_module.h"
 

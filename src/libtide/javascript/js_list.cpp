@@ -46,7 +46,7 @@ namespace tide
          * contexts later. Global contexts need to be registered by all modules
          * that use a KJS context. */
         JSObjectRef globalObject = JSContextGetGlobalObject(context);
-        JSGlobalContextRef globalContext = KJSUtil::GetGlobalContext(globalObject);
+        JSGlobalContextRef globalContext = JSUtil::GetGlobalContext(globalObject);
 
         // This context hasn't been registered. Something has gone pretty
         // terribly wrong and Kroll will likely crash soon. Nonetheless, keep
@@ -56,7 +56,7 @@ namespace tide
                 " One of the modules is misbehaving." << std::endl;
         this->context = globalContext;
 
-        KJSUtil::ProtectGlobalContext(this->context);
+        JSUtil::ProtectGlobalContext(this->context);
         JSValueProtect(this->context, this->jsobject);
 
         this->kobject = new KKJSObject(this->context, this->jsobject);
@@ -65,7 +65,7 @@ namespace tide
     KKJSList::~KKJSList()
     {
         JSValueUnprotect(this->context, this->jsobject);
-        KJSUtil::UnprotectGlobalContext(this->context);
+        JSUtil::UnprotectGlobalContext(this->context);
     }
 
     unsigned int KKJSList::Size()

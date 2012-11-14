@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KJS_KLIST_H_
-#define _KJS_KLIST_H_
+#ifndef _JS_LIST_H_
+#define _JS_LIST_H_
 
 #include "javascript_module.h"
 

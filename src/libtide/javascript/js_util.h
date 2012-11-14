@@ -31,12 +31,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
-#ifndef _KJS_UTIL_H_
-#define _KJS_UTIL_H_
+#ifndef _JS_UTIL_H_
+#define _JS_UTIL_H_
 
 namespace tide
 {
-namespace KJSUtil
+namespace JSUtil
 {
 
 TIDE_API KValueRef ToKrollValue(JSValueRef, JSContextRef, JSObjectRef);

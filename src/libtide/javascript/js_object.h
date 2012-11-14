@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KJS_KOBJECT_H_
-#define _KJS_KOBJECT_H_
+#ifndef _JS_OBJECT_H_
+#define _JS_OBJECT_H_
 
 #include "javascript_module.h"
 
