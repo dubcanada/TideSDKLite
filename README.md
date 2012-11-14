@@ -1,6 +1,11 @@
 TideSDK
 =======
 
+Current Build Status
+[![Build Status](https://travis-ci.org/TideSDK/TideSDK.png)](https://travis-ci.org/TideSDK/TideSDK)
+*realtime build only tests linux*
+
+
 Create multi-platform desktop apps with HTML5, CSS3 and JavaScript. TideSDK is an amazing project, formally called Titanium Desktop, that we are continuing under a community based, open source initiative.
 
 TideSDK also supports the use of Python, PHP and Ruby extend its capabilities beyond the realm of any competitive framework. Our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop and beyond as we move forward.
