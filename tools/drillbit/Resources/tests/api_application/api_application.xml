@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
-<id>com.titaniumapp.unittest</id>
+<ti:app xmlns:ti='http://ti.tidesdk.org'>
+<id>org.tidesdk.unittest</id>
 <name>foobar</name>
 <version>1.2</version>
 <publisher>yoy</publisher>
@@ -15,7 +15,7 @@
 <property name="baddouble" type="double">abc</property>
 <window>
 <id>initial</id>
-<title>Titanium Unit Test Driver (aka Drillbit)</title>
+<title>TideSDK Unit Test Driver (aka Drillbit)</title>
 <url>app://index.html</url>
 <width>750</width>
 <max-width>3000</max-width>

@@ -51,13 +51,13 @@ if p.exists(win32_dir):
 import PyRTF
 
 class Win32App(App):
-    def stage(self, stage_dir, bundle, no_install, js_obfuscate):
-        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
+    def stage(self, stage_dir, bundle, no_install, js_obfuscate, ignore_patterns):
+        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate, ignore_patterns=ignore_patterns)
 
         contents = self.get_contents_dir()
-        self.env.log(u'Copying kboot.exe to %s' % contents);
+        self.env.log(u'Copying tiboot.exe to %s' % contents);
         self.executable_path = p.join(contents, '%s.exe' % self.name)
-        effess.copy(p.join(self.sdk_dir, 'kboot.exe'), self.executable_path)
+        effess.copy(p.join(self.sdk_dir, 'tiboot.exe'), self.executable_path)
 
         # The .installed file for Windows should always exist,
         # since we only ever install via the MSI installer.
@@ -132,8 +132,8 @@ class Win32App(App):
             template_args['license_file'] = quoteattr(license_rtf_path)
             template_args['crt_msm'] = quoteattr(p.join(self.sdk_dir, 'installer',
                 'Microsoft_VC80_CRT_x86.msm'))
-            template_args['titanium_installer_dll'] = quoteattr(p.join(
-                self.sdk_dir, 'installer', 'titanium_installer.dll'))
+            template_args['tide_installer_dll'] = quoteattr(p.join(
+                self.sdk_dir, 'installer', 'tide_installer.dll'))
             template_args['dialog_bmp'] = quoteattr(self.get_installer_image(
                 'dialog-bmp', p.join(self.sdk_dir, 'default_dialog.bmp')))
             template_args['banner_bmp'] = quoteattr(self.get_installer_image(

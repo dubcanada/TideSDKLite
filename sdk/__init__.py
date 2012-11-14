@@ -29,5 +29,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-def get_titanium_version():
-    return '1.2.2'
+def get_version():
+    return '1.3.0-beta'

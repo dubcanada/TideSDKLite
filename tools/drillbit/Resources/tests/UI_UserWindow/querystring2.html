@@ -1,14 +1,11 @@
 <html>
-<body>
-<script>
-if (String(document.location).indexOf("arg1"))
-{
-	Titanium.page_loaded_callback();
-}
-else
-{
-	document.location = "querystring2.html?arg1=yes";
-}
-</script>
-</body>
+  <body>
+    <script>
+      if (String(document.location).indexOf("arg1")) {
+        Ti.page_loaded_callback();
+      } else {
+        document.location = "querystring2.html?arg1=yes";
+      }
+    </script>
+  </body>
 </html>

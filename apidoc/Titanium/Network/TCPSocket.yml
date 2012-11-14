@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.TCPSocket
-type: object
-description: An object representing a TCP client socket connection.
-since: 0.2.0

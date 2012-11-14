@@ -1,8 +1,0 @@
----
-namespace: Titanium.UI.UserWindow.isDocumentEdited
-type: method
-description: Checks whether a window is in an edited state
-since: 1.1.0
-platforms: [osx]
-returns: Boolean
-parameters: []

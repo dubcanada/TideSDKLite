@@ -47,20 +47,20 @@ def package_app_builder(target, source, env):
 
     pkg_env = sdk.env.PackagingEnvironment(build.os)
     app = pkg_env.create_app(env['PATH'])
-    app.stage(path.join(build.dir, app.name), bundle=True, no_install=True, js_obfuscate=False)
+    app.stage(path.join(build.dir, app.name), bundle=True, no_install=True, js_obfuscate=False, ignore_patterns="")
 
     if ARGUMENTS.get('run', False):
         app.run()
 
 def package_sdkinstaller(target, source, env):
-    print "Packaging Titanium SDK Installer..."
+    print "Packaging TideSDK Installer..."
 
     # Create a staged application, but don't bundle it, because we
     # want to force the installer to run and install the new SDK.
     import sdk.env
     pkg_env = sdk.env.PackagingEnvironment(build.os)
     app = pkg_env.create_app(env['PATH'])
-    app.stage(path.join(build.dir, app.name), bundle=False, no_install=False, js_obfuscate=False)
+    app.stage(path.join(build.dir, app.name), bundle=False, no_install=False, js_obfuscate=False, ignore_patterns="")
 
     # Copy the zip files from the dist directory to developer.contents/dist
     print "    -> Copying sdk zip from %s to %s" % \
@@ -82,15 +82,14 @@ build.env['BUILDERS']['PackageSDKInstaller'] = build.env.Builder(
     multi=0)
 
 def make_app_target(name, path):
-    t = build.env.PackageApp('#titanium-app-' + name, [], PATH=path)
+    t = build.env.PackageApp('#tide-app-' + name, [], PATH=path)
     Depends(t, build.build_targets + build.staging_targets)
     Alias(name, t)
 
-make_app_target('developer', path.normpath("%s/../../titanium_developer" % build.cwd()))
 make_app_target('drillbit', path.join(build.cwd(), 'drillbit'))
 make_app_target('sandbox', path.join(build.cwd(), 'sandbox'))
 
-t = build.env.PackageSDKInstaller('#titanium-app-sdk-installer', [],
+t = build.env.PackageSDKInstaller('#tidesdk-app-sdk-installer', [],
     PATH=path.join(build.cwd(), 'sdkinstaller'))
 Depends(t, build.build_targets + build.staging_targets + build.dist_targets)
 Alias('sdkinstaller', t)

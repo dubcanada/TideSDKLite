@@ -1,0 +1,5 @@
+---
+namespace: Ti.Notification.Notification
+type: object
+description: An object representing a Desktop notification.
+since: 0.4.0

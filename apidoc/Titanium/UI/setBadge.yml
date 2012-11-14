@@ -1,9 +1,0 @@
----
-namespace: Titanium.UI.setBadge
-type: function
-description: "Set the application icon's badge text."
-since: 0.2.0
-platforms: ['osx']
-returns: String
-parameters: 
-    - [String, text, The new badge text.]

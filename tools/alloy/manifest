@@ -1,0 +1,14 @@
+#appname:Alloy
+#version:1.0
+#appid:org.tidesdk.alloy
+#publisher:Software In Public Interest (SPI)
+#image:default_app_logo.png
+#url:http://tidesdk.org
+#guid:be69fe4c-966b-483c-b57c-7ba4a34fbf10
+#desc:Alloy shell
+runtime:
+python:
+ruby:
+alloy:
+app:
+#php:

@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +32,6 @@
 * limitations under the License.
 **/
 
-var Ti = Titanium;
-
 Ti.AppCreator = {
 
   osx: function (assetsDir, destination, name, appid, install) {
@@ -30,16 +46,16 @@ Ti.AppCreator = {
     var lproj = Ti.Filesystem.getFile(resources, 'English.lproj');
     lproj.createDirectory(true);
 
-    var fromMacos = Ti.Filesystem.getFile(assetsDir, 'kboot');
+    var fromMacos = Ti.Filesystem.getFile(assetsDir, 'tiboot');
     fromMacos.copy(macos);
-    var boot = Ti.Filesystem.getFile(macos, 'kboot');
+    var boot = Ti.Filesystem.getFile(macos, 'tiboot');
     boot.rename(name);
     boot.setExecutable(true);
 
     var mainMenu = Ti.Filesystem.getFile(assetsDir, 'MainMenu.nib');
     mainMenu.copy(lproj);
 
-    var icns = Ti.Filesystem.getFile(assetsDir, 'Titanium.icns');
+    var icns = Ti.Filesystem.getFile(assetsDir, 'TideSDK.icns');
     icns.copy(lproj);
 
     var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -51,7 +67,7 @@ Ti.AppCreator = {
     "	<key>CFBundleExecutable</key>\n" +
     "	<string>" + name + "</string>\n" +
     "	<key>CFBundleIconFile</key>\n" +
-    "	<string>Ti.icns</string>\n" +
+    "	<string>tidesdk.icns</string>\n" +
     "	<key>CFBundleIdentifier</key>\n" +
     "	<string>" + appid + (install ? '.installer' : '') + "</string>\n" +
     "	<key>CFBundleInfoDictionaryVersion</key>\n" +
@@ -94,9 +110,9 @@ Ti.AppCreator = {
     var resources = Ti.Filesystem.getFile(appDir, 'Resources');
     resources.createDirectory(true);
 
-    var kboot = Ti.Filesystem.getFile(assetsDir, 'kboot');
+    var tiboot = Ti.Filesystem.getFile(assetsDir, 'tiboot');
     var appExecutable = Ti.Filesystem.getFile(appDir, name);
-    kboot.copy(appExecutable);
+    tiboot.copy(appExecutable);
 
     // set our marker file
     var marker = Ti.Filesystem.getFile(appDir, '.installed');
@@ -119,9 +135,9 @@ Ti.AppCreator = {
     var resources = Ti.Filesystem.getFile(appDir, 'Resources');
     resources.createDirectory(true);
 
-    var kboot = Ti.Filesystem.getFile(assetsDir, 'kboot.exe');
+    var tiboot = Ti.Filesystem.getFile(assetsDir, 'tiboot.exe');
     var appExecutable = Ti.Filesystem.getFile(appDir, name + '.exe');
-    kboot.copy(appExecutable);
+    tiboot.copy(appExecutable);
 
     // set our marker file
     var marker = Ti.Filesystem.getFile(appDir, '.installed');

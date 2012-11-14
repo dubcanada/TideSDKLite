@@ -41,15 +41,15 @@ class OSXApp(App):
     def get_contents_dir(self):
         return p.join(self.stage_dir, 'Contents')
 
-    def stage(self, stage_dir, bundle, no_install, js_obfuscate):
+    def stage(self, stage_dir, bundle, no_install, js_obfuscate, ignore_patterns):
         if not stage_dir.endswith('.app'):
             stage_dir += '.app'
 
-        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate)
+        App.stage(self, stage_dir, bundle=bundle, no_install=no_install, js_obfuscate=js_obfuscate, ignore_patterns=ignore_patterns)
 
-        self.env.log(u'Copying kboot to %s' % self.contents)
+        self.env.log(u'Copying tiboot to %s' % self.contents)
         self.executable_path = p.join(self.contents, 'MacOS', self.name)
-        effess.copy(p.join(self.sdk_dir, 'kboot'), self.executable_path)
+        effess.copy(p.join(self.sdk_dir, 'tiboot'), self.executable_path)
 
         self.env.log(u'Copying Mac resources to %s' % self.contents)
         # Copy Info.plist to Contents
@@ -58,7 +58,7 @@ class OSXApp(App):
         effess.replace_vars(plist_file, {
             'APPEXE': self.name,
             'APPNAME': self.name,
-            'APPICON': 'titanium.icns',
+            'APPICON': 'tidesdk.icns',
             'APPID': self.id,
             'APPNIB': 'MainMenu',
             'APPVER': self.version,
@@ -68,19 +68,19 @@ class OSXApp(App):
         lproj_dir = p.join(self.contents, 'Resources', 'English.lproj')
         effess.copy_to_dir(p.join(self.sdk_dir, 'MainMenu.nib'), lproj_dir)
 
-        # If there is an icon defined, create a custom titanium.icns file
+        # If there is an icon defined, create a custom tidesdk.icns file
         if hasattr(self, 'image'):
             self.env.run([
                 p.join(self.sdk_dir, 'makeicns'),
                 '-in', p.join(self.contents, 'Resources', self.image),
-                '-out', p.join(lproj_dir, 'titanium.icns')
+                '-out', p.join(lproj_dir, 'tidesdk.icns')
             ])
         else:
-            effess.copy_to_dir(p.join(self.sdk_dir, 'titanium.icns'), lproj_dir)
+            effess.copy_to_dir(p.join(self.sdk_dir, 'tidesdk.icns'), lproj_dir)
 
         # The installer also needs to have the application icon as well.
         if no_install is False:
-            effess.copy_to_dir(p.join(lproj_dir, 'titanium.icns'),
+            effess.copy_to_dir(p.join(lproj_dir, 'tidesdk.icns'),
                 p.join(self.contents, 'installer',' Installer App.app', 'Contents',
                     'Resources', 'English.lproj'))
 

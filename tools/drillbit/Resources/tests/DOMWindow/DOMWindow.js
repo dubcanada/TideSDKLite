@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +39,7 @@ describe("DOM Window Tests", {
     var open_window_assert = null;
     var open_window_test = null;
 
-    Titanium.open_window_callback = function (windowIn) {
+    Ti.open_window_callback = function (windowIn) {
       clearTimeout(open_window_timer);
       try {
         open_window_assert.apply(self, [windowIn]);
@@ -51,7 +69,7 @@ describe("DOM Window Tests", {
   test_open_no_url_as_async: function (callback) {
     var w = window.open();
     setTimeout(function () {
-      if (typeof (w) != "object" || typeof (w.Titanium) != 'object') callback.failed("Could not find Titanium object in window");
+      if (typeof (w) != "object" || typeof (w.Ti) != 'object') callback.failed("Could not find Ti object in window");
       else callback.passed();
       w.close();
     }, 200);
@@ -60,7 +78,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
     }, ["a.html"]);
   },
@@ -68,13 +86,13 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .isFullscreen())
         .should_be_false();
     }, ["a.html", "a"]);
@@ -83,13 +101,13 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getHeight())
         .should_be(100);
     }, ["a.html", "a", "height=100"]);
@@ -98,16 +116,16 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getWidth())
         .should_be(121);
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .isResizable())
         .should_be_true();
     }, ["a.html", "a", "width=121"]);
@@ -118,13 +136,13 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getX())
         .should_be(125);
     }, ["a.html", "a", "left=125"]);
@@ -133,13 +151,13 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getY())
         .should_be(125);
     }, ["a.html", "a", "top=125"]);
@@ -148,25 +166,25 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
-      value_of(w.Titanium.UI.getCurrentWindow())
+      value_of(w.Ti.UI.getCurrentWindow())
         .should_be_object();
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getY())
         .should_be(125);
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getX())
         .should_be(125);
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getWidth())
         .should_be(121);
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .getHeight())
         .should_be(101);
-      value_of(w.Titanium.UI.getCurrentWindow()
+      value_of(w.Ti.UI.getCurrentWindow()
         .isFullscreen())
         .should_be_false();
     }, ["a.html", "a", "left=125,top=125,width=121,height=101"]);
@@ -175,7 +193,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -187,7 +205,7 @@ describe("DOM Window Tests", {
     this.async_window_open(test, function (w) {
       value_of(w)
         .should_be_object();
-      value_of(w.Titanium)
+      value_of(w.Ti)
         .should_be_object();
       value_of(w.document.title)
         .should_be("Hello");
@@ -199,15 +217,15 @@ describe("DOM Window Tests", {
   },
   test_window_focus_as_async: function (test) {
     // Open window1.
-    w1 = Titanium.UI.createWindow("app://rel.html");
-    w1.addEventListener(Titanium.PAGE_INITIALIZED, function () {
+    w1 = Ti.UI.createWindow("app://rel.html");
+    w1.addEventListener(Ti.PAGE_INITIALIZED, function () {
 
       //Open window2 so that window1 no longer has focus.
       w1.addEventListener(w1.FOCUSED, function () {
         test.passed();
       });
-      w2 = Titanium.UI.createWindow("app://rel.html");
-      w2.addEventListener(Titanium.PAGE_INITIALIZED,
+      w2 = Ti.UI.createWindow("app://rel.html");
+      w2.addEventListener(Ti.PAGE_INITIALIZED,
 
       function () {
         w1.domWindow.focus();
@@ -221,8 +239,8 @@ describe("DOM Window Tests", {
   },
   test_window_unfocus_as_async: function (test) {
     // Open window1.
-    w1 = Titanium.UI.createWindow("app://rel.html");
-    w1.addEventListener(Titanium.UNFOCUSED, function () {
+    w1 = Ti.UI.createWindow("app://rel.html");
+    w1.addEventListener(Ti.UNFOCUSED, function () {
       test.passed();
     });
     w1.open();
@@ -241,28 +259,28 @@ describe("DOM Window Tests", {
   }
   //test_data_uri_non_base64_encoded_as_async: function(test)
   //{
-  //	var path = Titanium.App.appURLToPath("app://rel.html");
-  //	var html = Titanium.Filesystem.getFile(path).read();
+  //	var path = Ti.App.appURLToPath("app://rel.html");
+  //	var html = Ti.Filesystem.getFile(path).read();
 
   //	this.async_window_open(test, function(w)
   //	{
   //		value_of(w).should_be_object();
-  //		value_of(w.Titanium).should_be_object();
+  //		value_of(w.Ti).should_be_object();
   //		value_of(w.document.title).should_be("Hello");
   //		value_of(w.result).should_be('Hello');
   //	}, ["data:text/html;charset=utf-8,"+html]);
   //},
   //test_data_uri_base64_encoded_as_async: function(test)
   //{
-  //	var path = Titanium.App.appURLToPath("app://rel.html");
-  //	var html = Titanium.Filesystem.getFile(path).read();
+  //	var path = Ti.App.appURLToPath("app://rel.html");
+  //	var html = Ti.Filesystem.getFile(path).read();
 
   //	this.async_window_open(test, function(w)
   //	{
   //		value_of(w).should_be_object();
-  //		value_of(w.Titanium).should_be_object();
+  //		value_of(w.Ti).should_be_object();
   //		value_of(w.document.title).should_be("Hello");
   //		value_of(w.result).should_be('Hello');
-  //	}, ["data:text/html;charset=utf-8;base64,"+Titanium.Codec.encodeBase64(html)]);
+  //	}, ["data:text/html;charset=utf-8;base64,"+Ti.Codec.encodeBase64(html)]);
   //},
 });

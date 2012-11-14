@@ -1,5 +1,0 @@
----
-namespace: Titanium.Filesystem
-type: module
-description: A module for accessing the Filesystem.
-since: 0.2.0

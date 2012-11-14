@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+
+# This file has been modified from its orginal sources.
+#
+# Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+# Copyright (c) 2012 David Pratt
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Copyright (c) 2008-2012 Appcelerator Inc.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os, os.path as p, distutils.dir_util as dir_util
+
+Import('build')
+
+Env = build.env.Clone()
+Env.Append(FRAMEWORKS=['Cocoa'])
+sources = Glob('*.m') + Glob('*.mm')
+
+# Optimize the installer for size.
+ccflags = list(Env['CCFLAGS'])
+ccflags.append('-Oz')
+Env['CCFLAGS'] = ccflags
+
+Env.Append(CPPPATH=[build.tide_utils_dir])
+sources.extend(build.get_tide_utils(p.join(build.dir, 'objs', 'netinstaller')))
+
+# We want to build this directly into the runtime dist directory to avoid copying
+# In the end we want something that looks like this inside of build.runtime_build_dir
+#    installer/Installer App.app/Contents/MacOS/Installer App
+#    installer/Installer App.app/Contents/Resources/English.lproj/MainMenu.nib
+#    installer/Installer App.app/Contents/Resources/English.lproj/tidesdk.icns
+#    installer/Installer App.app/Contents/Info.plist
+#    see installation/distribution_guide.txt
+contents = p.join(build.dir, 'sdk', 'installer', 'Installer App.app', 'Contents')
+inst = Env.Program(p.join(contents, 'MacOS', 'Installer App'), sources)
+Env.AddPostAction(inst, 'strip -u -r "%s"' % str(inst[0]))
+build.mark_build_target(inst)
+
+lproj_dir = p.join(contents, 'Resources', 'English.lproj')
+build.mark_build_target(build.utils.CopyToDir(Glob('*.plist'), contents))
+build.mark_build_target(build.utils.CopyToDir([
+    p.join(build.tide_sdk_dir, 'osx', 'tidesdk.icns'),
+    p.join(build.cwd(), 'dialog-warning.png')], lproj_dir))
+
+for f in Glob('English.lproj/*.xib'):
+    f = str(f)
+    out = p.join(lproj_dir, p.splitext(p.basename(f))[0] + '.nib')
+    Env.AddPostAction(inst, 'ibtool --errors --warnings --notices --output-format human-readable-text --compile "%s" "%s"' % (out, f))

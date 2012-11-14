@@ -1,5 +1,0 @@
----
-namespace: Titanium.Codec
-type: module
-description: A module for dealing with encoding and decoding.
-since: 0.7.0

@@ -1,0 +1,5 @@
+---
+namespace: Ti.Worker.Worker
+type: object
+description: An object representing a Tide Worker.
+since: 0.6.0

@@ -4,7 +4,7 @@ describe("Properties", function () {
     describe("given a properties object initialized with some values", function () {
 
         beforeEach(function () {
-            properties = Titanium.App.createProperties({
+            properties = Ti.App.createProperties({
                 'double': 1.123456,
                 'int': 1,
                 'list': ["a", "b", "c"],
@@ -74,7 +74,7 @@ describe("Properties", function () {
     describe("loading properties from a file", function () {
         beforeEach(function () {
             var path = Drillbit.testDirectory.nativePath() + "/properties.txt";
-            properties = Titanium.App.loadProperties(path);
+            properties = Ti.App.loadProperties(path);
         });
 
         it("should have a 'int' property with an integer value", function () {

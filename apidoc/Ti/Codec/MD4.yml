@@ -1,0 +1,7 @@
+---
+namespace: Ti.Codec.MD4
+type: property
+description: Constant specifying the MD4 hash algorithm.
+since: 0.7.0
+platforms: ['osx', 'linux', 'win32']
+returns: String

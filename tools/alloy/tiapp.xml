@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ti:app xmlns:ti='http://ti.tidesdk.org'>
+<id>org.tidesdk.alloy</id>
+<name>Alloy</name>
+<version>1.0</version>
+<publisher>Software In Public Interest (SPI)</publisher>
+<url>tidesdk.org</url>
+<copyright>2012 by Software In Public Interest (SPI)</copyright>
+</ti:app>

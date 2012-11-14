@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,14 +36,14 @@ describe("Network.IRCClient", {
   // ti.network.HTTP objects are covered in the http_server unit test.
 
   before_all: function () {
-    value_of(Titanium.Network)
+    value_of(Ti.Network)
       .should_not_be_null();
-    value_of(Titanium.Network.createIRCClient)
+    value_of(Ti.Network.createIRCClient)
       .should_be_function();
-    value_of(Titanium.Network.IRCClient)
+    value_of(Ti.Network.IRCClient)
       .should_not_be_null();
 
-    this.client = Titanium.Network.createIRCClient();
+    this.client = Ti.Network.createIRCClient();
     value_of(this.client)
       .should_be_object();
 
@@ -67,14 +85,14 @@ describe("Network.IRCClient", {
     test.passed();
     /*
     var connectCount = this.connectCount;
-    var client = Titanium.Network.createIRCClient()
+    var client = Ti.Network.createIRCClient()
      value_of(client)
       .should_be_object();
     var connTimer = null;
     value_of(client)
       .should_be_object();
     try {
-      client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date()
+      client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "tideSDKDrillbit", "tester", String(new Date()
         .getTime()), function (cmd, channel, data, nick) {
         clearTimeout(connTimer);
 
@@ -108,28 +126,28 @@ describe("Network.IRCClient", {
 
      /*
      var connectCount = this.connectCount;
-     var client = Titanium.Network.createIRCClient()
+     var client = Ti.Network.createIRCClient()
       value_of(client)
        .should_be_object();
 
      var connTimer = null;
      try {
-       client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date()
+       client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "tideSDKDrillbit", "tester", String(new Date()
          .getTime()), function (cmd, channel, data, nick) {
          connectCount++;
          clearTimeout(connTimer);
 
-         Titanium.API.debug("Connected to IRC server " + connectCount);
+         Ti.API.debug("Connected to IRC server " + connectCount);
          if (client.connected) {
            var nicTimer = setTimeout(function () {
              try {
-               Titanium.API.debug("checking the default nickname");
+               Ti.API.debug("checking the default nickname");
                value_of(client.getNick())
                  .should_be("drillbit_tester_app");
                value_of(client.getNick())
                  .should_not_be("drillbitNickName");
 
-               Titanium.API.debug("setup a new nickname");
+               Ti.API.debug("setup a new nickname");
                var newUser = "nickname" + String(new Date()
                  .getTime());
                var newUser = "drillbitNickName";
@@ -153,7 +171,7 @@ describe("Network.IRCClient", {
              }
            }, 10000);
          } else {
-           Titanium.API.debug("potentially kicked off IRC, don't know what to do");
+           Ti.API.debug("potentially kicked off IRC, don't know what to do");
            test.passed();
          }
        });

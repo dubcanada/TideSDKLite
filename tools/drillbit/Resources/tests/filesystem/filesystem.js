@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +35,7 @@
 describe("Ti.Filesystem tests", {
   before_all: function () {
     // clean up testing folder if needed
-    var base = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDataDirectory(), "unittest_filesystem");
+    var base = Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDataDirectory(), "unittest_filesystem");
     if (base.exists() && base.isDirectory()) {
       base.deleteDirectory(true);
     } else if (base.exists() && base.isFile()) {
@@ -29,26 +47,26 @@ describe("Ti.Filesystem tests", {
     this.base = base;
 
     this.createDirTree = function (base, name) {
-      var dir = Titanium.Filesystem.getFile(base, name);
+      var dir = Ti.Filesystem.getFile(base, name);
       if (!dir.exists()) {
         dir.createDirectory();
       }
 
-      var file1 = Titanium.Filesystem.getFileStream(dir, "file1.txt");
-      var file2 = Titanium.Filesystem.getFileStream(dir, "file2.txt");
-      var subDir1 = Titanium.Filesystem.getFile(dir, "subDir1");
+      var file1 = Ti.Filesystem.getFileStream(dir, "file1.txt");
+      var file2 = Ti.Filesystem.getFileStream(dir, "file2.txt");
+      var subDir1 = Ti.Filesystem.getFile(dir, "subDir1");
       subDir1.createDirectory();
-      var file3 = Titanium.Filesystem.getFileStream(subDir1, "file3.txt");
+      var file3 = Ti.Filesystem.getFileStream(subDir1, "file3.txt");
 
-      file1.open(Titanium.Filesystem.MODE_WRITE);
+      file1.open(Ti.Filesystem.MODE_WRITE);
       file1.write("Text for file1");
       file1.close();
 
-      file2.open(Titanium.Filesystem.MODE_WRITE);
+      file2.open(Ti.Filesystem.MODE_WRITE);
       file2.write("Text for file2");
       file2.close();
 
-      file3.open(Titanium.Filesystem.MODE_WRITE);
+      file3.open(Ti.Filesystem.MODE_WRITE);
       file3.write("Text for file3");
       file3.close();
     };
@@ -61,31 +79,31 @@ describe("Ti.Filesystem tests", {
 
     for (var c = 0; c < methods.length; c++) {
       var method = methods[c];
-      value_of(Titanium.Filesystem[method])
+      value_of(Ti.Filesystem[method])
         .should_be_function();
     }
   },
 
   other_props: function () {
-    value_of(Titanium.Filesystem.getLineEnding)
+    value_of(Ti.Filesystem.getLineEnding)
       .should_be_function();
-    value_of(Titanium.Filesystem.getSeparator)
+    value_of(Ti.Filesystem.getSeparator)
       .should_be_function();
-    value_of(Titanium.Filesystem.MODE_READ)
+    value_of(Ti.Filesystem.MODE_READ)
       .should_not_be_null();
-    value_of(Titanium.Filesystem.MODE_WRITE)
+    value_of(Ti.Filesystem.MODE_WRITE)
       .should_not_be_null();
-    value_of(Titanium.Filesystem.MODE_APPEND)
+    value_of(Ti.Filesystem.MODE_APPEND)
       .should_not_be_null();
 
-    value_of(Titanium.Filesystem.getLineEnding())
+    value_of(Ti.Filesystem.getLineEnding())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getSeparator())
+    value_of(Ti.Filesystem.getSeparator())
       .should_not_be_null();
   },
 
   get_file: function () {
-    var f = Titanium.Filesystem.getFile(this.base, "getFileTest.txt");
+    var f = Ti.Filesystem.getFile(this.base, "getFileTest.txt");
     value_of(f)
       .should_not_be_null();
     // we only created a path to a file, not a real file.
@@ -94,16 +112,16 @@ describe("Ti.Filesystem tests", {
   },
 
   get_file_stream: function () {
-    var fs = Titanium.Filesystem.getFileStream(this.base, "getFileStreamTest.txt");
+    var fs = Ti.Filesystem.getFileStream(this.base, "getFileStreamTest.txt");
     value_of(fs)
       .should_not_be_null();
   },
 
   temp_file: function () {
-    value_of(Titanium.Filesystem.createTempFile)
+    value_of(Ti.Filesystem.createTempFile)
       .should_be_function();
 
-    var f = Titanium.Filesystem.createTempFile();
+    var f = Ti.Filesystem.createTempFile();
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -115,10 +133,10 @@ describe("Ti.Filesystem tests", {
   },
 
   temp_directory: function () {
-    value_of(Titanium.Filesystem.createTempDirectory)
+    value_of(Ti.Filesystem.createTempDirectory)
       .should_be_function();
 
-    var f = Titanium.Filesystem.createTempDirectory();
+    var f = Ti.Filesystem.createTempDirectory();
     value_of(f)
       .should_not_be_null();
     value_of(f.exists())
@@ -130,44 +148,44 @@ describe("Ti.Filesystem tests", {
   },
 
   common_directories: function () {
-    value_of(Titanium.Filesystem.getProgramsDirectory)
+    value_of(Ti.Filesystem.getProgramsDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getApplicationDirectory)
+    value_of(Ti.Filesystem.getApplicationDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getRuntimeHomeDirectory)
+    value_of(Ti.Filesystem.getRuntimeHomeDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getResourcesDirectory)
+    value_of(Ti.Filesystem.getResourcesDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getDesktopDirectory)
+    value_of(Ti.Filesystem.getDesktopDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getDocumentsDirectory)
+    value_of(Ti.Filesystem.getDocumentsDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getUserDirectory)
+    value_of(Ti.Filesystem.getUserDirectory)
       .should_be_function();
 
-    value_of(Titanium.Filesystem.getProgramsDirectory())
+    value_of(Ti.Filesystem.getProgramsDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getApplicationDirectory())
+    value_of(Ti.Filesystem.getApplicationDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getRuntimeHomeDirectory())
+    value_of(Ti.Filesystem.getRuntimeHomeDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getResourcesDirectory())
+    value_of(Ti.Filesystem.getResourcesDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getDesktopDirectory())
+    value_of(Ti.Filesystem.getDesktopDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getDocumentsDirectory())
+    value_of(Ti.Filesystem.getDocumentsDirectory())
       .should_not_be_null();
-    value_of(Titanium.Filesystem.getUserDirectory())
+    value_of(Ti.Filesystem.getUserDirectory())
       .should_not_be_null();
   },
 
   test_ProgramsDirectory: function () {
-    value_of(Titanium.Filesystem.getProgramsDirectory)
+    value_of(Ti.Filesystem.getProgramsDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getProgramsDirectory())
+    value_of(Ti.Filesystem.getProgramsDirectory())
       .should_not_be_null();
 
-    var folder = Titanium.Filesystem.getProgramsDirectory();
+    var folder = Ti.Filesystem.getProgramsDirectory();
     value_of(folder)
       .should_not_be_null();
     value_of(folder.exists())
@@ -177,20 +195,20 @@ describe("Ti.Filesystem tests", {
     value_of(folder.isDirectory())
       .should_be_true();
 
-    Titanium.API.debug("Titanium.Filesystem.getProgramsDirectory=" + folder.nativePath());
+    Ti.API.debug("Ti.Filesystem.getProgramsDirectory=" + folder.nativePath());
 
     var progFileFolder = null;
 
-    if (Titanium.platform == 'win32') {
+    if (Ti.platform == 'win32') {
       // in windows we have an environment variable we can check
       // for the program files directory.
 
-      progFileFolder = Titanium.API.getEnvironment()["PROGRAMFILES"];
-      Titanium.API.debug("windows env PROGRAMFILES=" + progFileFolder);
-    } else if (Titanium.platform == 'osx') {
+      progFileFolder = Ti.API.getEnvironment()["PROGRAMFILES"];
+      Ti.API.debug("windows env PROGRAMFILES=" + progFileFolder);
+    } else if (Ti.platform == 'osx') {
       // on the Mac, this should be hard coded to '/Applications' according to the source code.
       progFileFolder = "/Applications";
-    } else if (Titanium.platform == 'linux') {
+    } else if (Ti.platform == 'linux') {
       // currently under linux we are hard coded to this path.  this could change
       progFileFolder = "/usr/local/bin";
     } else {
@@ -201,27 +219,27 @@ describe("Ti.Filesystem tests", {
   },
 
   test_ApplicationDirectory: function () {
-    value_of(Titanium.Filesystem.getApplicationDirectory)
+    value_of(Ti.Filesystem.getApplicationDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getApplicationDirectory())
+    value_of(Ti.Filesystem.getApplicationDirectory())
       .should_not_be_null();
 
-    var f = Titanium.Filesystem.getApplicationDirectory();
-    Titanium.API.debug("application folder" + f.nativePath());
-    value_of(f == Titanium.App.home)
+    var f = Ti.Filesystem.getApplicationDirectory();
+    Ti.API.debug("application folder" + f.nativePath());
+    value_of(f == Ti.App.home)
       .should_be_true();
   },
 
   test_RuntimeHomeDirectory: function () {
-    value_of(Titanium.Filesystem.getRuntimeHomeDirectory)
+    value_of(Ti.Filesystem.getRuntimeHomeDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getRuntimeHomeDirectory())
+    value_of(Ti.Filesystem.getRuntimeHomeDirectory())
       .should_not_be_null();
 
-    var f = Titanium.Filesystem.getRuntimeHomeDirectory();
-    Titanium.API.debug("runtime home folder" + f.nativePath());
+    var f = Ti.Filesystem.getRuntimeHomeDirectory();
+    Ti.API.debug("runtime home folder" + f.nativePath());
 
-    var componentPaths = Titanium.API.getComponentSearchPaths();
+    var componentPaths = Ti.API.getComponentSearchPaths();
     value_of(componentPaths)
       .should_be_array();
 
@@ -229,7 +247,7 @@ describe("Ti.Filesystem tests", {
 
     for (i = 0; i < componentPaths.length; i++) {
       if (f == componentPaths[i]) {
-        Titanium.API.debug("runtime reported path = " + componentPaths[i].toString());
+        Ti.API.debug("runtime reported path = " + componentPaths[i].toString());
         bfound = true;
         break;
       }
@@ -239,25 +257,25 @@ describe("Ti.Filesystem tests", {
   },
 
   test_ResourcesDirectory: function () {
-    value_of(Titanium.Filesystem.getResourcesDirectory)
+    value_of(Ti.Filesystem.getResourcesDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getResourcesDirectory())
+    value_of(Ti.Filesystem.getResourcesDirectory())
       .should_not_be_null();
 
-    var f = Titanium.Filesystem.getResourcesDirectory();
-    Titanium.API.debug("Resources folder" + f.nativePath());
+    var f = Ti.Filesystem.getResourcesDirectory();
+    Ti.API.debug("Resources folder" + f.nativePath());
 
     value_of(f.nativePath()
-      .indexOf(Titanium.Filesystem.getApplicationDirectory()))
+      .indexOf(Ti.Filesystem.getApplicationDirectory()))
       .should_not_be(-1);
   },
   test_DesktopDirectory: function () {
-    value_of(Titanium.Filesystem.getDesktopDirectory)
+    value_of(Ti.Filesystem.getDesktopDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getDesktopDirectory())
+    value_of(Ti.Filesystem.getDesktopDirectory())
       .should_not_be_null();
 
-    var desktop = Titanium.Filesystem.getDesktopDirectory();
+    var desktop = Ti.Filesystem.getDesktopDirectory();
     value_of(desktop)
       .should_not_be_null();
 
@@ -265,26 +283,26 @@ describe("Ti.Filesystem tests", {
     // we have an environment variable we can check
     // for the user home directory.  then we can make sure it's a substring
     // of the desktop folder path
-    if (Titanium.platform == 'win32') {
-      userHome = Titanium.API.getEnvironment()["USERPROFILE"];
-      Titanium.API.debug(Titanium.platform + " env USERPROFILE=" + userHome);
+    if (Ti.platform == 'win32') {
+      userHome = Ti.API.getEnvironment()["USERPROFILE"];
+      Ti.API.debug(Ti.platform + " env USERPROFILE=" + userHome);
     } else {
       // on the Mac, this should be hard coded to '~/desktop' according to the source code.
       // on linux, this will be hard coded in a similar fashion
-      userHome = Titanium.API.getEnvironment()["HOME"];
-      Titanium.API.debug(Titanium.platform + " env HOME=" + userHome);
+      userHome = Ti.API.getEnvironment()["HOME"];
+      Ti.API.debug(Ti.platform + " env HOME=" + userHome);
     }
     var path = desktop.nativePath();
     value_of(path.indexOf(userHome))
       .should_not_be(-1);
   },
   test_DocumentsDirectory: function () {
-    value_of(Titanium.Filesystem.getDocumentsDirectory)
+    value_of(Ti.Filesystem.getDocumentsDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getDocumentsDirectory())
+    value_of(Ti.Filesystem.getDocumentsDirectory())
       .should_not_be_null();
 
-    var documents = Titanium.Filesystem.getDesktopDirectory();
+    var documents = Ti.Filesystem.getDesktopDirectory();
     value_of(documents)
       .should_not_be_null();
 
@@ -292,50 +310,50 @@ describe("Ti.Filesystem tests", {
     // we have an environment variable we can check
     // for the user home directory.  then we can make sure it's a substring
     // of the desktop folder path
-    if (Titanium.platform == 'win32') {
-      userHome = Titanium.API.getEnvironment()["USERPROFILE"];
-      Titanium.API.debug(Titanium.platform + " env USERPROFILE=" + userHome);
+    if (Ti.platform == 'win32') {
+      userHome = Ti.API.getEnvironment()["USERPROFILE"];
+      Ti.API.debug(Ti.platform + " env USERPROFILE=" + userHome);
     } else {
       // on the Mac, this should be hard coded to '~/desktop' according to the source code.
       // on linux, this will be hard coded in a similar fashion
-      userHome = Titanium.API.getEnvironment()["HOME"];
-      Titanium.API.debug(Titanium.platform + " env HOME=" + userHome);
+      userHome = Ti.API.getEnvironment()["HOME"];
+      Ti.API.debug(Ti.platform + " env HOME=" + userHome);
     }
     var path = documents.nativePath();
     value_of(path.indexOf(userHome))
       .should_not_be(-1);
   },
   test_UserDirectory: function () {
-    value_of(Titanium.Filesystem.getUserDirectory)
+    value_of(Ti.Filesystem.getUserDirectory)
       .should_be_function();
-    value_of(Titanium.Filesystem.getUserDirectory())
+    value_of(Ti.Filesystem.getUserDirectory())
       .should_not_be_null();
 
-    var f = Titanium.Filesystem.getUserDirectory();
+    var f = Ti.Filesystem.getUserDirectory();
     value_of(f)
       .should_not_be_null();
-    Titanium.API.debug("user home folder =" + f.nativePath());
+    Ti.API.debug("user home folder =" + f.nativePath());
 
     var userHome = null;
-    if (Titanium.platform == 'win32') {
+    if (Ti.platform == 'win32') {
       // in windows we have an environment variable we can check
       // for the program files directory.
-      userHome = Titanium.API.getEnvironment()["USERPROFILE"];
-      Titanium.API.debug(Titanium.platform + " environment USERPROFILE=" + userHome);
+      userHome = Ti.API.getEnvironment()["USERPROFILE"];
+      Ti.API.debug(Ti.platform + " environment USERPROFILE=" + userHome);
     } else {
       // on the Mac, this should be hard coded to '~/desktop' according to the source code.
-      userHome = Titanium.API.getEnvironment()["HOME"];
-      Titanium.API.debug(Titanium.platform + " environment HOME=" + userHome);
+      userHome = Ti.API.getEnvironment()["HOME"];
+      Ti.API.debug(Ti.platform + " environment HOME=" + userHome);
     }
     value_of(f.nativePath())
       .should_be(userHome);
   },
 
   root_directories: function () {
-    value_of(Titanium.Filesystem.getRootDirectories)
+    value_of(Ti.Filesystem.getRootDirectories)
       .should_be_function();
 
-    var rootDirs = Titanium.Filesystem.getRootDirectories();
+    var rootDirs = Ti.Filesystem.getRootDirectories();
     value_of(rootDirs)
       .should_not_be_null();
     value_of(rootDirs.length > 0)
@@ -356,10 +374,10 @@ describe("Ti.Filesystem tests", {
   },
 
   async_copy: function () {
-    var fromDir = Titanium.Filesystem.getFile(this.base, "ayncCopyFrom");
-    var toDir = Titanium.Filesystem.getFile(this.base, "asynCopyTo");
+    var fromDir = Ti.Filesystem.getFile(this.base, "ayncCopyFrom");
+    var toDir = Ti.Filesystem.getFile(this.base, "asynCopyTo");
     this.createDirTree(this.base, "ayncCopyFrom");
-    Titanium.Filesystem.asyncCopy(fromDir, toDir, function () {
+    Ti.Filesystem.asyncCopy(fromDir, toDir, function () {
 
       value_of(AsyncCopy.running)
         .should_be_true();
@@ -370,7 +388,7 @@ describe("Ti.Filesystem tests", {
       value_of(listings.length == 3)
         .should_be_true();
 
-      var toSubDir1 = Titanium.Filesystem.getFile(fromDir, "subDir1");
+      var toSubDir1 = Ti.Filesystem.getFile(fromDir, "subDir1");
       value_of(toSubDir1.isDirectory())
         .should_be_true();
 
@@ -383,32 +401,32 @@ describe("Ti.Filesystem tests", {
   },
 
   test_line_endings: function () {
-    value_of(Titanium.Filesystem.getLineEnding)
+    value_of(Ti.Filesystem.getLineEnding)
       .should_be_function();
-    value_of(Titanium.Filesystem.getLineEnding())
+    value_of(Ti.Filesystem.getLineEnding())
       .should_not_be_null();
 
-    if (Titanium.platform == 'win32') {
+    if (Ti.platform == 'win32') {
       // this is weird, we need to investigate further.
-      value_of(Titanium.Filesystem.getLineEnding())
+      value_of(Ti.Filesystem.getLineEnding())
         .should_be("\n");
     } else {
-      value_of(Titanium.Filesystem.getLineEnding())
+      value_of(Ti.Filesystem.getLineEnding())
         .should_be("\n");
     }
   },
 
   test_separator: function () {
-    value_of(Titanium.Filesystem.getSeparator)
+    value_of(Ti.Filesystem.getSeparator)
       .should_be_function();
-    value_of(Titanium.Filesystem.getSeparator())
+    value_of(Ti.Filesystem.getSeparator())
       .should_not_be_null();
 
-    if (Titanium.platform == 'win32') {
-      value_of(Titanium.Filesystem.getSeparator())
+    if (Ti.platform == 'win32') {
+      value_of(Ti.Filesystem.getSeparator())
         .should_be("\\");
     } else {
-      value_of(Titanium.Filesystem.getSeparator())
+      value_of(Ti.Filesystem.getSeparator())
         .should_be("/");
     }
   }

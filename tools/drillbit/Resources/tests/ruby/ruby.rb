@@ -1,6 +1,6 @@
 require 'foo'
 $orig_include_path = $LOAD_PATH
-builder_path = Titanium.API.getApplication().getResourcesPath() + '/builder/lib'
+builder_path = Ti.API.getApplication().getResourcesPath() + '/builder/lib'
 $LOAD_PATH << builder_path
 require 'builder/lib/builder'
 require 'markaby/lib/markaby'

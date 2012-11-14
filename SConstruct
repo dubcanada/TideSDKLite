@@ -32,35 +32,35 @@
 import os.path as path
 import sdk
 import distutils.dir_util as dir_util
-from kroll import BuildConfig
+from tide import BuildConfig
 
 build = BuildConfig(
-    PRODUCT_VERSION = sdk.get_titanium_version(),
-    PRODUCT_NAME = 'Titanium',
-    GLOBAL_NS_VARNAME = 'Titanium',
+    PRODUCT_VERSION = sdk.get_version(),
+    PRODUCT_NAME = 'TideSDK',
+    GLOBAL_NAMESPACE ='Ti',
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
-    THIRD_PARTY_DIR = path.join(path.abspath('kroll'), 'thirdparty'),
+    THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
     DISTRIBUTION_URL = 'api.appcelerator.net',
     CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report'
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_kroll_source_dir(path.abspath('kroll'))
+build.set_tide_source_dir(path.abspath('src'))
 
-build.titanium_source_dir = path.abspath('.')
-build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
+build.tide_source_dir = path.abspath('.')
+build.tide_sdk_dir = path.join(build.tide_source_dir, 'sdk')
 
 # This should only be used for accessing various
-# scripts in the kroll build directory. All resources
+# scripts in the tide build directory. All resources
 # should instead be built to build.dir
-build.kroll_build_dir = path.join(build.kroll_source_dir, 'build')
+build.tide_build_dir = path.join(build.tide_source_dir, 'build')
 
 build.env.Append(CPPPATH=[
-    build.titanium_source_dir,
-    build.kroll_source_dir,
-    build.kroll_include_dir
+    build.tide_source_dir,
+    build.tide_source_dir,
+    build.tide_include_dir
 ])
 
 # debug build flags
@@ -80,7 +80,9 @@ if build.is_win32():
     build.env.Append(CCFLAGS=['/EHsc', '/GR', '/MD'])
     build.env.Append(LINKFLAGS=['/DEBUG', '/PDB:${TARGET}.pdb'])
 
-Export('build', 'debug')
+LIBTIDE_NAME = 'tide'
+
+Export('build', 'debug', 'LIBTIDE_NAME')
 targets = COMMAND_LINE_TARGETS
 clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
@@ -96,14 +98,24 @@ if ARGUMENTS.get('test_crash', 0):
     build.env.Append(CPPDEFINES = ('TEST_CRASH_DETECTION', 1))
 
 ## Kroll *must not be required* for installation
-SConscript('kroll/SConscript.thirdparty')
-SConscript('installer/SConscript')
+SConscript('SConscript.thirdparty')
+SConscript('src/installer/SConscript')
 
-# After Kroll builds, the environment will  link 
-# against libkroll, so anything that should not be
-# linked against libkroll should be above this point.
-SConscript('kroll/SConscript', exports='debug')
-SConscript('modules/SConscript')
+# After libtide builds, the environment will  link 
+# against libtide, so anything that should be
+# linked against libtide should be above this point.
+
+SConscript('src/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
+SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
+
+# Now that libtide is built add it as a default for
+# all the following build steps.
+build.env.Append(LIBS=[LIBTIDE_NAME])
+build.env.Append(LIBPATH=[build.runtime_build_dir])
+
+SConscript('src/lang/SConscript')
+
+SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')
 SConscript('SConscript.docs')
 SConscript('SConscript.test')

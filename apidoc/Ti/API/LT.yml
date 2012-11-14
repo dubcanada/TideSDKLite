@@ -1,0 +1,9 @@
+---
+namespace: Ti.API.LT
+type: property
+description: |
+    A constant representing an less-than dependency.
+    This is used to specify resolutions to Tide application dependencies.
+since: 0.4.0
+platforms: ['osx', 'linux', 'win32']
+returns: Number

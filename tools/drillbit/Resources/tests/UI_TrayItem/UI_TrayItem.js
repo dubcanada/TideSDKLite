@@ -1,4 +1,22 @@
 /**
+* This file has been modified from its orginal sources.
+*
+* Copyright (c) 2012 Software in the Public Interest Inc (SPI)
+* Copyright (c) 2012 David Pratt
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+***
 * Copyright (c) 2008-2012 Appcelerator Inc.
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +34,16 @@
 
 describe("UI.Tray Tests", {
   test_ui_module_methods: function () {
-    value_of(Titanium.UI.addTray)
+    value_of(Ti.UI.addTray)
       .should_be_function();
-    value_of(Titanium.UI.clearTray)
+    value_of(Ti.UI.clearTray)
       .should_be_function();
-    value_of(Titanium.UI.Tray)
+    value_of(Ti.UI.Tray)
       .should_not_be_null();
   },
 
   test_tray_object: function () {
-    var trayObj = Titanium.UI.addTray("app://logo_small.png", function () {});
+    var trayObj = Ti.UI.addTray("app://logo_small.png", function () {});
 
     value_of(trayObj)
       .should_be_object();
@@ -45,11 +63,11 @@ describe("UI.Tray Tests", {
     value_of(trayObj.setMenu)
       .should_be_function();
 
-    Titanium.UI.clearTray();
+    Ti.UI.clearTray();
   },
 
   test_tray_hint: function () {
-    var trayObj = Titanium.UI.addTray("app://logo_small.png", function () {});
+    var trayObj = Ti.UI.addTray("app://logo_small.png", function () {});
 
     value_of(trayObj)
       .should_be_object();
@@ -58,11 +76,11 @@ describe("UI.Tray Tests", {
     value_of(trayObj.getHint())
       .should_be("get a clue");
 
-    Titanium.UI.clearTray();
+    Ti.UI.clearTray();
   },
 
   test_tray_icon: function () {
-    var trayObj = Titanium.UI.addTray("app://logo_small.png", function () {});
+    var trayObj = Ti.UI.addTray("app://logo_small.png", function () {});
 
     value_of(trayObj)
       .should_be_object();
@@ -78,12 +96,12 @@ describe("UI.Tray Tests", {
     value_of(trayObj.getIcon())
       .should_be("app://tray.png");
 
-    Titanium.UI.clearTray();
+    Ti.UI.clearTray();
   },
 
   test_tray_menu: function () {
-    var trayObj = Titanium.UI.addTray("app://logo_small.png", function () {});
-    var menu = Titanium.UI.createMenu();
+    var trayObj = Ti.UI.addTray("app://logo_small.png", function () {});
+    var menu = Ti.UI.createMenu();
 
     value_of(trayObj)
       .should_be_object();
@@ -108,11 +126,11 @@ describe("UI.Tray Tests", {
     value_of(theMenu.equals(menu))
       .should_be_true();
 
-    Titanium.UI.clearTray();
+    Ti.UI.clearTray();
   },
 
   test_tray_remove: function () {
-    var trayObj = Titanium.UI.addTray("app://logo_small.png", function () {});
+    var trayObj = Ti.UI.addTray("app://logo_small.png", function () {});
 
     value_of(trayObj)
       .should_be_object();

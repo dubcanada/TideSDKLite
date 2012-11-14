@@ -116,6 +116,7 @@ class App(object):
         self.get_tiapp_element_as_prop('publisher', 'publisher')
         self.get_tiapp_element_as_prop('url', 'url')
         self.get_tiapp_element_as_prop('log-level', 'loglevel')
+        self.get_tiapp_element_as_prop('stream', 'stream')
 
     def write_manifest(self, path):
         f = codecs.open(p.join(path, 'manifest'), 'wb', 'utf-8')
@@ -136,9 +137,9 @@ class App(object):
         if hasattr(self, 'url'):
             write_line(u'#url: ' + self.url)
         if hasattr(self, 'loglevel'):
-            write_line(u'#loglevel: ' + self.url)
+            write_line(u'#loglevel: ' + self.loglevel)
         if hasattr(self, 'stream'):
-            write_line(u'#stream: ' + self.url)
+            write_line(u'#stream: ' + self.stream)
 
         write_line(u'runtime: ' + self.runtime_version)
         if hasattr(self, 'sdk_version'):
@@ -157,18 +158,22 @@ class App(object):
     def get_contents_dir(self):
         return self.stage_dir
 
-    def stage(self, stage_dir, bundle=False, no_install=False, js_obfuscate=False):
+    def stage(self, stage_dir, bundle=False, no_install=False, js_obfuscate=False, ignore_patterns=""):
         print('Staging %s' % self.name)
         self.stage_dir = fix_path(stage_dir)
         contents = self.contents = self.get_contents_dir()
         self.env.log(u'Copying contents from %s to %s' % (self.source_dir, contents))
         excludes = self.env.get_excludes()
         
+        # Add ignore_patterns to excludes
+        if ignore_patterns != "":
+            excludes.extend(ignore_patterns.split(','))
+
         # Don't prematurely copy custom modules (we only want them if they're in the manifest)
         excludes.append(p.join(self.source_dir, 'modules'))
         
         # If we are staging into a subdirectory of the original
-        # application directory (like Titanium Developer), then
+        # application directory (like TideSDK Developer), then
         # ignore the immediate child of the original app directory
         # on the way to the stagin directory. Example:
         # App directory: /tmp/MyProject

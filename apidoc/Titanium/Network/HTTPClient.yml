@@ -1,5 +1,0 @@
----
-namespace: Titanium.Network.HTTPClient
-type: object
-description: An HTTPClient which can be used as an alternative to XMLHttpRequest.
-since: 0.3.0

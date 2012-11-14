@@ -1,9 +1,0 @@
----
-namespace: Titanium.API.fireEvent
-type: function
-description: Fire an event to the top-level event listener.
-since: 0.5.0
-platforms: ['osx', 'linux', 'win32']
-returns: void
-parameters: 
-    - [String|Object, event, The name of the event to fire or the event object itself]

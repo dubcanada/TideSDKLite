@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
-<id>com.titaniumapp.unittest.driver</id>
+<ti:app xmlns:ti='http://ti.tidesdk.org'>
+<id>org.tidesdk.unittest.driver</id>
 <name>Drillbit</name>
 <version>1.0</version>
-<publisher>Appcelerator</publisher>
-<url>titaniumapp.com</url>
+<publisher>Software In Public Interest (SPI)</publisher>
+<url>tidesdk.org</url>
 <copyright>2009 by Appcelerator</copyright>
 <analytics>false</analytics>
 <window>
 <id>initial</id>
-<title>Titanium Unit Test Driver (aka Drillbit)</title>
+<title>TideSDK Unit Test Driver (aka Drillbit)</title>
 <url>app://index.html</url>
 <width>800</width>
 <max-width>3000</max-width>

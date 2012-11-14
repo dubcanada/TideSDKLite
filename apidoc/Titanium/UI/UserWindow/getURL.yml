@@ -1,8 +1,0 @@
----
-namespace: Titanium.UI.UserWindow.getURL
-type: method
-description: Return this window's current URL."
-since: 0.2.0
-platforms: [osx, linux, win32]
-returns: String
-parameters: []

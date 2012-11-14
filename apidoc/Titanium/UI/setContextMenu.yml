@@ -1,9 +1,0 @@
----
-namespace: Titanium.UI.setContextMenu
-type: function
-description: "Set the application's context menu"
-since: 0.2.0
-platforms: ['osx', 'linux', 'win32']
-returns: String
-parameters: 
-    - [UI.Menu|null, menu, a MenuItem object or null to unset the menu.]
