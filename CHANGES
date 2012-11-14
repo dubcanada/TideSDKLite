@@ -38,6 +38,15 @@ Breaking Changes
   - Ubuntu Linux: .tidesdk 
 - Global JavaScript namespace is now Ti (changed from Titanium)
 - Previous Titanium.Include() method has been removed.
+- Modules in manifext.txt are no longer prefaced with ti.
+  ie. ti.Codec is now codec
+- Titanium.Network.online removed that was deprecated in 1.2.0-RC4.
+   Use native methods for determining an Internet connection instead. For example:
+    ```
+    if(navigator.onLine) {
+      // your code
+    }
+    ```
 - Script evaluators and PHP, Python and Ruby language support has reverted to
   the previous 1.1.0 approach as illustrated in the following examples:
 
