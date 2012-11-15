@@ -88,7 +88,7 @@ def dequote(s):
 
 if __name__ == '__main__':
     parser = OptionParser(usage="%prog [options] appdir", version="%prog " + VERSION)
-    parser.add_option("-d", "--dest",dest="destination",default="../out",help="destination folder for output", metavar="FILE")
+    parser.add_option("-d", "--dest",dest="destination",default="..",help="destination folder for output", metavar="FILE")
     parser.add_option("-v", "--verbose",action="store_true",dest="verbose",default=False,help="turn on verbose logging")
     parser.add_option("-o", "--os",dest="platform",default=get_platform(),help="platform if different than %s" % get_platform())
     parser.add_option("-t", "--type",dest="type",default="network",help="package type: network or bundle")
