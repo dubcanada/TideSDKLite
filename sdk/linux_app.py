@@ -54,8 +54,6 @@ class LinuxApp(App):
             tar_file.add(f, tarname)
 
         f = p.join(package_dir, longname + ".tgz")
-        cmd = "tar cvzf \"" + f + "\" \"" + self.stage_dir + "\""
+        cmd = "cd \"" + self.stage_dir + "\" ;tar cvzf \"" + f + "\" \"./\""
         print cmd
         os.system(cmd)
-        #effess.make_tgz(self.stage_dir, p.join(package_dir, longname + '.tgz'),
-        #    callback=tar_callback)
