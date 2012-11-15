@@ -129,7 +129,7 @@ namespace EnvironmentUtils
 #endif
     }
 
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
     std::map<std::string, std::string> GetEnvironment()
     {
         std::map<std::string, std::string> environment;

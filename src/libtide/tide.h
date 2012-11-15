@@ -40,8 +40,8 @@
  * \endcode
  */
 
-#ifndef _KROLL_H_
-#define _KROLL_H_
+#ifndef _TIDE_H_
+#define _TIDE_H_
 
 #include "base.h"
 #include <Poco/SharedPtr.h>

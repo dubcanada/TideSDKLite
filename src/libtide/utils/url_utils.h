@@ -60,7 +60,7 @@ namespace UTILS_NS
         TIDE_API std::string PathToFileURL(std::string path);
 
 // These functions are not available outside a Kroll application
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
         /**
          * Normalize a URL. If this url is an app:// URL, ensure that it
          * has the app id as the hostname

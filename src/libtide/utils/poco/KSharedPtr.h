@@ -45,7 +45,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
-#ifdef _KROLL_H_
+#ifdef _TIDE_H_
 #error You are using the simple shared pointer implementation while using libtide.
 #endif
 
