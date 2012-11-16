@@ -42,7 +42,7 @@ namespace tide
     class Host;
 
     /**
-     * An interface that represents a Kroll Module.
+     * An interface that represents a Tide Module.
      *
      * The easiest way to create a module is to use the convenience macros defined in module.h.
      * Example MyModule.h:

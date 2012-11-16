@@ -116,7 +116,7 @@ namespace tide
             throw e;
         }
 
-        return RubyUtils::ToKrollValue(result);
+        return RubyUtils::ToTiValue(result);
     }
 
     void KRubyMethod::Set(const char *name, KValueRef value)

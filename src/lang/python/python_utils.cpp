@@ -298,7 +298,7 @@ namespace tide
         }
     }
 
-    KValueRef PythonUtils::ToKrollValue(PyObject* value)
+    KValueRef PythonUtils::ToTiValue(PyObject* value)
     {
         PyLockGIL lock;
 
@@ -357,7 +357,7 @@ namespace tide
         }
 
         // These are objects that originated in the binding layer.
-        // We need to unwrap them when we pass them back to Kroll.
+        // We need to unwrap them when we pass them back to Tide.
         else if (PyObject_TypeCheck(value, &PyKObjectType))
         {
             PyKObject *o = reinterpret_cast<PyKObject*>(value);
@@ -410,7 +410,7 @@ namespace tide
         {
             std::string valueStr(PythonUtils::ToString(value));
             Logger::Get("Python.PythonUtils")->Error(
-                "Failed to convert Python value to Kroll value: %s",
+                "Failed to convert Python value to Tide value: %s",
                 valueStr.c_str());
             kvalue = Value::Undefined;
         }
@@ -451,7 +451,7 @@ namespace tide
         PyLockGIL lock;
         PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
         Py_INCREF(self);
-        KValueRef tiValue = PythonUtils::ToKrollValue(value);
+        KValueRef tiValue = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
@@ -549,7 +549,7 @@ namespace tide
         PyLockGIL lock;
         PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
         KListRef klist = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToKrollValue(v);
+        KValueRef kv = PythonUtils::ToTiValue(v);
 
         {
             PyAllowThreads allow;
@@ -564,7 +564,7 @@ namespace tide
         PyLockGIL lock;
         PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
         KListRef klist = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToKrollValue(value);
+        KValueRef kv = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
@@ -587,7 +587,7 @@ namespace tide
         for (int i = 0; i < size; i++)
         {
             PyObject* v = PySequence_GetItem(o2, i);
-            KValueRef kv = PythonUtils::ToKrollValue(v);
+            KValueRef kv = PythonUtils::ToTiValue(v);
 
             {
                 PyAllowThreads allow;
@@ -642,7 +642,7 @@ namespace tide
             for (int c = 0; c < PyTuple_Size(args); c++)
             {
                 PyObject* arg = PyTuple_GetItem(args, c);
-                KValueRef kValue = PythonUtils::ToKrollValue(arg);
+                KValueRef kValue = PythonUtils::ToTiValue(arg);
                 Value::Unwrap(kValue);
                 a.push_back(kValue);
             }

@@ -51,7 +51,7 @@ namespace tide
 
     namespace PHPUtils
     {
-        KValueRef ToKrollValue(zval* value TSRMLS_DC);
+        KValueRef ToTiValue(zval* value TSRMLS_DC);
         zval* ToPHPValue(KValueRef value);
         void ToPHPValue(KValueRef value, zval** returnValue);
         std::string ZvalToPropertyName(zval* property);
@@ -63,7 +63,7 @@ namespace tide
         void KObjectToKPHPObject(KValueRef objectValue, zval** returnValue);
         void KMethodToKPHPMethod(KValueRef methodValue, zval** returnValue);
         void KListToKPHPArray(KValueRef listValue, zval** returnValue);
-        void InitializePHPKrollClasses();
+        void InitializePHPTideClasses();
         bool PHPObjectsEqual(zval* val1, zval* val2 TSRMLS_DC);
         int HashZvalCompareCallback(const zval** one, const zval** two TSRMLS_DC);
         SharedStringList GetClassMethods(zend_class_entry* ce TSRMLS_DC);

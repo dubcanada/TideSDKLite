@@ -45,12 +45,12 @@
 
 #define MAIN_THREAD_JOB_EVENT_SUBTYPE 6666
 
-@interface KrollMainThreadCaller : NSObject
+@interface TideMainThreadCaller : NSObject
 {
 }
 - (void)signalMainThreadJob;
 @end
-@implementation KrollMainThreadCaller
+@implementation TideMainThreadCaller
 - (void)signalMainThreadJob
 {
     Host::GetInstance()->RunMainThreadJobs();
@@ -61,7 +61,7 @@ namespace tide
 {
     static NSThread* mainThread;
     static Poco::Mutex* cryptoMutexes = 0;
-    static KrollMainThreadCaller* mainThreadCaller = 0;
+    static TideMainThreadCaller* mainThreadCaller = 0;
 
     static void CryptoLockingCallback(int mode, int n, const char* file, int line)
     {
@@ -86,7 +86,7 @@ namespace tide
         }
 
         if (!mainThreadCaller)
-            mainThreadCaller = [[KrollMainThreadCaller alloc] init];
+            mainThreadCaller = [[TideMainThreadCaller alloc] init];
 
         mainThread = [NSThread currentThread];
     }

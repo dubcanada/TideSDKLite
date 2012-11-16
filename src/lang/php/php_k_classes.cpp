@@ -200,7 +200,7 @@ namespace tide
             while (zend_hash_get_current_data_ex(Z_ARRVAL_P(zargs),
                 (void **) &parameter, &position) == SUCCESS)
             {
-                kargs.push_back(PHPUtils::ToKrollValue(*parameter TSRMLS_CC));
+                kargs.push_back(PHPUtils::ToTiValue(*parameter TSRMLS_CC));
                 zend_hash_move_forward_ex(Z_ARRVAL_P(zargs), &position);
             }
         }
@@ -240,7 +240,7 @@ namespace tide
 
         // Use the standard object destructor, but we want to use a
         // custom memory free so that we can deference the internal
-        // Kroll value.
+        // Tide value.
         retval.handle = zend_objects_store_put(intern,
             (zend_objects_store_dtor_t) zend_objects_destroy_object,
             (zend_objects_free_object_storage_t) PHPKObjectFreeStorage,
@@ -295,20 +295,20 @@ namespace tide
 
         try
         {
-            KValueRef krollValue = PHPUtils::ToKrollValue(value TSRMLS_CC);
+            KValueRef tideValue = PHPUtils::ToTiValue(value TSRMLS_CC);
             if (!property) // A NULL property name means this is an append ([]=) operation.
             {
                 // TODO: It's unclear what this should do if not called on a list.
                 if (kthis->kvalue->IsList())
                 {
-                    kthis->kvalue->ToList()->Append(krollValue);
+                    kthis->kvalue->ToList()->Append(tideValue);
                 }
             }
             else
             {
                 KObjectRef kobject = kthis->kvalue->ToObject();
                 string propertyName = PHPUtils::ZvalToPropertyName(property);
-                    kobject->Set(propertyName.c_str(), krollValue);
+                    kobject->Set(propertyName.c_str(), tideValue);
             }
         }
         catch (ValueException& e)
@@ -477,7 +477,7 @@ namespace tide
         for (int i = 0; i < ZEND_NUM_ARGS(); i++)
         {
             zval** zargValue = arguments[i];
-            KValueRef argValue = PHPUtils::ToKrollValue(*zargValue TSRMLS_CC);
+            KValueRef argValue = PHPUtils::ToTiValue(*zargValue TSRMLS_CC);
             kargs.push_back(argValue);
         }
         efree(arguments);
@@ -543,7 +543,7 @@ namespace tide
 
         KListRef klist(GET_MY_KLIST());
         string indexString(PHPUtils::ZvalToPropertyName(zindexString));
-        KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+        KValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
 
         if (KList::IsInt(indexString))
         {
@@ -585,7 +585,7 @@ namespace tide
         }
 
         KListRef klist(GET_MY_KLIST());
-        KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+        KValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
         klist->Append(value);
     } 
 
@@ -645,7 +645,7 @@ namespace tide
 
     namespace PHPUtils
     {
-        void InitializePHPKrollClasses()
+        void InitializePHPTideClasses()
         {
             TSRMLS_FETCH();
 

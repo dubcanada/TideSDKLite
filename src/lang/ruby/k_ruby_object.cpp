@@ -80,7 +80,7 @@ namespace tide
             if (rb_obj_is_kind_of(exception, rb_eNoMethodError) != Qtrue
                 && rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
             {
-                KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+                KValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }
@@ -120,7 +120,7 @@ namespace tide
             ruby_value = rb_protect(kobj_do_method_missing_call, rargs, &error);
 
             // protect against NoMethodErrors which we don't want to propogate
-            // back through Kroll, but other exceptions should be thrown.
+            // back through Tide, but other exceptions should be thrown.
             VALUE exception = rb_gv_get("$!");
             if (rb_obj_is_kind_of(exception, rb_eNoMethodError) == Qtrue
                 || rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
@@ -129,13 +129,13 @@ namespace tide
             }
             else
             {
-                KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+                KValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }
         }
 
-        return RubyUtils::ToKrollValue(ruby_value);
+        return RubyUtils::ToTiValue(ruby_value);
     }
 
     bool KRubyObject::Equals(KObjectRef other)

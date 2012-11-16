@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_HOST_H_
-#define _KR_HOST_H_
+#ifndef _TIDE_HOST_H_
+#define _TIDE_HOST_H_
 
 #include <Poco/Timestamp.h>
 #include <Poco/Mutex.h>
@@ -45,7 +45,7 @@ namespace tide
 
     /**
      * Class that is implemented by the OS to handle OS-specific
-     * loading and unloading of Kroll.
+     * loading and unloading of Tide.
      */
     class TIDE_API Host : public ModuleProvider
     {

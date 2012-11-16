@@ -73,7 +73,7 @@ namespace tide
 
     void RubyModule::InitializeBinding()
     {
-        // Expose the Ruby evaluator into Kroll
+        // Expose the Ruby evaluator into Tide
         KObjectRef global = this->host->GetGlobalObject();
         this->binding = new RubyEvaluator();
         global->Set("Ruby", Value::NewObject(binding));

@@ -44,7 +44,7 @@ namespace tide
     {
     public:
         static void InitializePythonKClasses();
-        static KValueRef ToKrollValue(PyObject* value);
+        static KValueRef ToTiValue(PyObject* value);
         static PyObject* ToPyObject(KValueRef value);
         static PyObject* ToPyObject(const ValueList& list);
         static const char* ToString(PyObject* value);

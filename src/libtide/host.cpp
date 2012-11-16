@@ -410,7 +410,7 @@ namespace tide
             SharedString s = e.GetValue()->DisplayString();
             logger->Error("Could not load module (%s): %s", path.c_str(), s->c_str());
 #ifdef OS_OSX
-            KrollDumpStackTrace();
+            TideDumpStackTrace();
 #endif
         }
         catch(std::exception &e)
@@ -418,14 +418,14 @@ namespace tide
             string msg = e.what();
             logger->Error("Could not load module (%s): %s", path.c_str(), msg.c_str());
 #ifdef OS_OSX
-            KrollDumpStackTrace();
+            TideDumpStackTrace();
 #endif
         }
         catch(...)
         {
             logger->Error("Could not load module (%s)", path.c_str());
 #ifdef OS_OSX
-            KrollDumpStackTrace();
+            TideDumpStackTrace();
 #endif
         }
 

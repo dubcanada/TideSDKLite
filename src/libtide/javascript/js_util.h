@@ -39,7 +39,7 @@ namespace tide
 namespace JSUtil
 {
 
-TIDE_API KValueRef ToKrollValue(JSValueRef, JSContextRef, JSObjectRef);
+TIDE_API KValueRef ToTiValue(JSValueRef, JSContextRef, JSObjectRef);
 TIDE_API JSValueRef ToJSValue(KValueRef, JSContextRef);
 TIDE_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
 TIDE_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);

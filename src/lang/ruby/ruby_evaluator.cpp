@@ -99,7 +99,7 @@ namespace tide
         if (assignment) // Assignment
         {
             rval = rb_ary_entry(args, 0);
-            KValueRef val = RubyUtils::ToKrollValue(rval);
+            KValueRef val = RubyUtils::ToTiValue(rval);
             global_object->Set(name, val);
         }
         else if (v->IsMethod()) // Method call
@@ -136,7 +136,7 @@ namespace tide
         VALUE ctx = rb_gv_get(theid.c_str());
         if (ctx == Qnil)
         {
-            VALUE ctx_class = rb_define_class("KrollRubyContext", rb_cObject);
+            VALUE ctx_class = rb_define_class("TideRubyContext", rb_cObject);
             rb_define_method(ctx_class, "method_missing", VALUEFUNC(m_missing), -1); 
             ctx = rb_obj_alloc(ctx_class);
             rb_gv_set(theid.c_str(), ctx);
@@ -188,7 +188,7 @@ namespace tide
 
             // Display a stringified version of the exception.
             VALUE exception = rb_gv_get("$!");
-            KValueRef v = RubyUtils::ToKrollValue(exception);
+            KValueRef v = RubyUtils::ToTiValue(exception);
             SharedString ss = v->DisplayString();
             error.append(ss->c_str());
 
@@ -210,7 +210,7 @@ namespace tide
             return;
         }
 
-        result->SetValue(RubyUtils::ToKrollValue(returnValue));
+        result->SetValue(RubyUtils::ToTiValue(returnValue));
     }
 
     void RubyEvaluator::ContextToGlobal(VALUE ctx, KObjectRef o)

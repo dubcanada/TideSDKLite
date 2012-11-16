@@ -86,7 +86,7 @@ namespace tide
         if (index >= 0 && index < this->Size())
         {
             PyObject *p = PyList_GetItem(this->list, index);
-            KValueRef v = PythonUtils::ToKrollValue(p);
+            KValueRef v = PythonUtils::ToTiValue(p);
             return v;
         }
         else

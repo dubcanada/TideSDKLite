@@ -49,7 +49,7 @@ namespace tide
         JSGlobalContextRef globalContext = JSUtil::GetGlobalContext(globalObject);
 
         // This context hasn't been registered. Something has gone pretty
-        // terribly wrong and Kroll will likely crash soon. Nonetheless, keep
+        // terribly wrong and TideSDK will likely crash soon. Nonetheless, keep
         // the user up-to-date to keep their hopes up.
         if (globalContext == NULL)
             std::cerr << "Could not locate global context for a KJS method."  <<
@@ -81,11 +81,11 @@ namespace tide
 
         if (exception != NULL) //exception thrown
         {
-            KValueRef tv_exp = JSUtil::ToKrollValue(exception, this->context, NULL);
+            KValueRef tv_exp = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(tv_exp);
         }
 
-        KValueRef kvalue = JSUtil::ToKrollValue(jsValue, this->context, this->jsobject);
+        KValueRef kvalue = JSUtil::ToTiValue(jsValue, this->context, this->jsobject);
         return kvalue;
     }
 
@@ -101,7 +101,7 @@ namespace tide
 
         if (exception != NULL) // An exception was thrown.
         {
-            KValueRef exceptionValue = JSUtil::ToKrollValue(exception, this->context, NULL);
+            KValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(exceptionValue);
         }
     }

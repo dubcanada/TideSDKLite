@@ -39,7 +39,7 @@ namespace tide
 {
     namespace PHPUtils
     {
-        KValueRef ToKrollValue(zval *value TSRMLS_DC)
+        KValueRef ToTiValue(zval *value TSRMLS_DC)
         {
             KValueRef returnValue = Value::NewNull();
             int type = Z_TYPE_P(value);
@@ -126,7 +126,7 @@ namespace tide
             }
             else if (value->IsNumber())
             {
-                // All numbers passing between Kroll and and PHP will be implicitly
+                // All numbers passing between Tide and and PHP will be implicitly
                 // converted into floating point. This could cause some PHP to
                 // function incorrectly if it's doing strict type checking. We
                 // need to clearly document this.
@@ -203,11 +203,11 @@ namespace tide
                     if (ignoreGlobals && !strcmp(key, "GLOBALS"))
                         continue;
 
-                    list->Set(key, ToKrollValue(*value TSRMLS_CC));
+                    list->Set(key, ToTiValue(*value TSRMLS_CC));
                 }
                 else // Numeric key
                 {
-                    list->SetAt(index, ToKrollValue(*value TSRMLS_CC));
+                    list->SetAt(index, ToTiValue(*value TSRMLS_CC));
                 }
             }
 

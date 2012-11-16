@@ -49,7 +49,7 @@ namespace tide
         JSGlobalContextRef globalContext = JSUtil::GetGlobalContext(globalObject);
 
         // This context hasn't been registered. Something has gone pretty
-        // terribly wrong and Kroll will likely crash soon. Nonetheless, keep
+        // terribly wrong and TideSDK will likely crash soon. Nonetheless, keep
         // the user up-to-date to keep their hopes up.
         if (globalContext == NULL)
             std::cerr << "Could not locate global context for a KJS method."  <<

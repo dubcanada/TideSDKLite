@@ -68,7 +68,7 @@
 #endif
 
 /**
- * An API for various file utilities (mostly centered around the kroll runtime)
+ * An API for various file utilities (mostly centered around the TideSDK runtime)
  * Platform-dependent functions can be defined in <os>/<os>_utils.h instead of
  * behind an #ifdef in this file.
  */

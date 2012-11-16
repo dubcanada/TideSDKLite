@@ -109,7 +109,7 @@ namespace tide
         }
         else
         {
-            KValueRef kv = PythonUtils::ToKrollValue(returnValue);
+            KValueRef kv = PythonUtils::ToTiValue(returnValue);
             Py_DECREF(returnValue);
         }
 
@@ -161,7 +161,7 @@ namespace tide
             std::string sk = PythonUtils::ToString(k);
             if (sk.find("__") != 0)
             {
-                KValueRef newValue = PythonUtils::ToKrollValue(v);
+                KValueRef newValue = PythonUtils::ToTiValue(v);
                 KValueRef existingValue = o->Get(sk.c_str());
                 if (!newValue->Equals(existingValue))
                 {

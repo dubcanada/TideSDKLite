@@ -56,7 +56,7 @@ PyErr_Fetch(&_ptype, &_pvalue, &_trace); \
 ValueException _ex = ValueException::FromString("Unknown"); \
 if (_pvalue != NULL) \
 { \
-    KValueRef _ex_val = PythonUtils::ToKrollValue(_pvalue); \
+    KValueRef _ex_val = PythonUtils::ToTiValue(_pvalue); \
     _ex = ValueException(_ex_val); \
 } \
 Py_XDECREF(_ptype); \

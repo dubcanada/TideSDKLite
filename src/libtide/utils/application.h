@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_UTILS_APPLICATION_H_
-#define _KR_UTILS_APPLICATION_H_
+#ifndef _TIDE_APPLICATION_H_
+#define _TIDE_APPLICATION_H_
 
 namespace UTILS_NS
 {
@@ -42,7 +42,7 @@ namespace UTILS_NS
     using std::pair;
 
     /**
-     * Represents a concrete Kroll application -- found on disk
+     * Represents a concrete Tide application
      */
     class TIDE_API Application
     {

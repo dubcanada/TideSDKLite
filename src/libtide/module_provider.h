@@ -51,7 +51,7 @@ namespace tide
      * In general, module providers will be a part of the system, but they are meant
      * as a way to provide extension points to 3rd party languages such as Python, Ruby, etc.
      *
-     * Currently any language supported by Kroll includes it's own ModuleProvider
+     * Currently any language supported by Tide includes it's own ModuleProvider
      */
     class EXPORT ModuleProvider
     {

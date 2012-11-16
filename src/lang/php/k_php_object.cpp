@@ -89,13 +89,13 @@ namespace tide {
             zval* zProperty = Z_OBJ_HANDLER_P(object, read_property)(
                 object, &zname, 2 TSRMLS_CC);
 
-            return PHPUtils::ToKrollValue(zProperty TSRMLS_CC);
+            return PHPUtils::ToTiValue(zProperty TSRMLS_CC);
 
         } // Next just try reading it from the properties hash.
         else if (zend_hash_find(Z_OBJPROP_P(object),
             name, nameLength + 1, (void**) &zPropertyPtr) != FAILURE)
         {
-            return PHPUtils::ToKrollValue(*zPropertyPtr TSRMLS_CC);
+            return PHPUtils::ToTiValue(*zPropertyPtr TSRMLS_CC);
 
         } // Check if the method exists on the object
         else if (this->MethodExists(name TSRMLS_CC))

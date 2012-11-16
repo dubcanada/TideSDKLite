@@ -61,9 +61,9 @@ namespace tide
         protected:
         zval *list;
 
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray, const char* key);
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray);
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char* key);
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray);
         DISALLOW_EVIL_CONSTRUCTORS(KPHPList);
     };
 }

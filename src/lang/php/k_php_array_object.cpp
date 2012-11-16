@@ -68,7 +68,7 @@ namespace tide
         }
 
         TSRMLS_FETCH();
-        KValueRef v = PHPUtils::ToKrollValue((zval *) copyval TSRMLS_CC);
+        KValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
         return v;
     }
 
@@ -81,7 +81,7 @@ namespace tide
         }
         else
         {
-            AddKrollValueToPHPArray(value, this->list, name);
+            AddTideValueToPHPArray(value, this->list, name);
         }
     }
 
@@ -154,7 +154,7 @@ namespace tide
         return this->list;
     }
 
-    void KPHPArrayObject::AddKrollValueToPHPArray(KValueRef value, zval *phpArray, const char *key)
+    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char *key)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -170,7 +170,7 @@ namespace tide
         else if (value->IsNumber())
         {
             /* No way to check whether the number is an
-               integer or a double here. All Kroll numbers
+               integer or a double here. All Tide numbers
                are doubles, so return a double. This could
                cause some PHP to function incorrectly if it's
                doing strict type checking. */
@@ -201,7 +201,7 @@ namespace tide
         }
     }
 
-    void KPHPArrayObject::AddKrollValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index)
+    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -217,7 +217,7 @@ namespace tide
         else if (value->IsNumber())
         {
             /* No way to check whether the number is an
-               integer or a double here. All Kroll numbers
+               integer or a double here. All Tide numbers
                are doubles, so return a double. This could
                cause some PHP to function incorrectly if it's
                doing strict type checking. */
@@ -248,7 +248,7 @@ namespace tide
         }
     }
 
-    void KPHPArrayObject::AddKrollValueToPHPArray(KValueRef value, zval *phpArray)
+    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -264,7 +264,7 @@ namespace tide
         else if (value->IsNumber())
         {
             /* No way to check whether the number is an
-               integer or a double here. All Kroll numbers
+               integer or a double here. All Tide numbers
                are doubles, so return a double. This could
                cause some PHP to function incorrectly if it's
                doing strict type checking. */

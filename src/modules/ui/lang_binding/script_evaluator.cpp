@@ -73,7 +73,7 @@ namespace ti
     try
     {
         tide::Script::GetInstance()->Evaluate([mimeType UTF8String], "<script>",
-            [sourceCode UTF8String], JSContextToKrollContext(context));
+            [sourceCode UTF8String], JSContextToTideContext(context));
     }
     catch (ValueException& exception)
     {

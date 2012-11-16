@@ -33,7 +33,7 @@
 **/
  
 /**
- * This file is the easiest way to gain access to the full Kroll API
+ * This file is the easiest way to gain access to the full TideSDK API
  * To use it, just do the following:
  * \code
  * #include <tide/tide.h>

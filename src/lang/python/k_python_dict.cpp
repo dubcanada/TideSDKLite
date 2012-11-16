@@ -78,7 +78,7 @@ namespace tide
 
         try
         {
-            KValueRef value = PythonUtils::ToKrollValue(item);
+            KValueRef value = PythonUtils::ToTiValue(item);
             Py_DECREF(item);
             return value;
         }

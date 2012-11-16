@@ -42,7 +42,7 @@
 #include <map>
 #include <tide/tide.h>
 
-/* KJS <-> Kroll bindings */
+/* KJS <-> TideSDK bindings */
 namespace tide 
 {
     class KKJSObject;

@@ -115,7 +115,7 @@ namespace tide {
         }
         else if (zReturnValue)
         {
-            KValueRef returnValue(PHPUtils::ToKrollValue(zReturnValue TSRMLS_CC));
+            KValueRef returnValue(PHPUtils::ToTiValue(zReturnValue TSRMLS_CC));
             zval_ptr_dtor(&zReturnValue);
             return returnValue;
         }

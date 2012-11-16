@@ -82,7 +82,7 @@ namespace tide
         php_embed_module.phpinfo_as_text = 1;
         php_embed_init(argc, argv PTSRMLS_CC);
 
-        PHPUtils::InitializePHPKrollClasses();
+        PHPUtils::InitializePHPTideClasses();
         this->InitializeBinding();
         host->AddModuleProvider(this);
 

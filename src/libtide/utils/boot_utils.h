@@ -97,7 +97,7 @@ namespace UTILS_NS
     };
 
     /**
-     * Represents a concrete Kroll components -- a runtime or module found on disk
+     * Represents a concrete TideSDK components -- a runtime or module found on disk
      */
     class TIDE_API KComponent
     {
