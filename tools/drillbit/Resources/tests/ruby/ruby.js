@@ -221,7 +221,7 @@ describe("Ruby Tests", {
       .should_be_true();
   },
   test_js_type_dict: function () {
-    value_of(test_js_type_TiObject({
+    value_of(test_js_type_kobject({
       'a1': 'sauce'
     }))
       .should_be_true();
