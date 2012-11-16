@@ -40,7 +40,7 @@
 
 namespace ti
 {
-    class TrayItem : public KEventObject
+    class TrayItem : public EventObject
     {
 
     public:

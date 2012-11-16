@@ -49,7 +49,7 @@ namespace ti
     }
 
     HTTPClientBinding::HTTPClientBinding(Host* host) :
-        KEventObject("Network.HTTPClient"),
+        EventObject("Network.HTTPClient"),
         host(host),
         async(true),
         timeout(5 * 60 * 1000),
@@ -336,7 +336,7 @@ namespace ti
             RunOnMainThread(this->ondatastream, GetAutoPtr(), args, true);
         }
 
-        return KEventObject::FireEvent(eventName);
+        return EventObject::FireEvent(eventName);
     }
 
     void HTTPClientBinding::run()

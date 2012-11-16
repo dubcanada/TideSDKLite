@@ -47,7 +47,7 @@
 
 namespace ti
 {
-    class HTTPClientBinding : public KEventObject, public Poco::Runnable
+    class HTTPClientBinding : public EventObject, public Poco::Runnable
     {
     public:
         HTTPClientBinding(Host* host);

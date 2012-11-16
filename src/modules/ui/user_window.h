@@ -56,7 +56,7 @@ namespace ti
         double height;
     } Bounds;
 
-    class UserWindow : public KEventObject
+    class UserWindow : public EventObject
     {
         public:
             // Platform-specific implementation.

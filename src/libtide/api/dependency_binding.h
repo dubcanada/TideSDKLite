@@ -42,7 +42,7 @@
 
 namespace tide
 {
-    class DependencyBinding : public KAccessorObject
+    class DependencyBinding : public AccessorObject
     {
         public:
         DependencyBinding(SharedDependency dependency);

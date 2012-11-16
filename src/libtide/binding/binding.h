@@ -41,7 +41,7 @@ namespace tide
 {
     class Event;
     class EventListener;
-    class KEventObject;
+    class EventObject;
     class ProfiledGlobalObject;
 }
 

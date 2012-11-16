@@ -35,7 +35,7 @@
 #include "../tide.h"
 namespace tide
 {
-    ReadEvent::ReadEvent(AutoPtr<KEventObject> target, BytesRef data) :
+    ReadEvent::ReadEvent(AutoPtr<EventObject> target, BytesRef data) :
         Event(target, Event::READ),
         data(data)
     {

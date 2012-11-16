@@ -43,11 +43,11 @@ namespace tide
     class EventListener;
     typedef std::list<EventListener*> EventListenerList;
 
-    class TIDE_API KEventObject : public KAccessorObject
+    class TIDE_API EventObject : public AccessorObject
     {
     public:
-        KEventObject(const char* name = "KEventObject");
-        virtual ~KEventObject();
+        EventObject(const char* name = "EventObject");
+        virtual ~EventObject();
 
         AutoPtr<Event> CreateEvent(const std::string& eventName);
 

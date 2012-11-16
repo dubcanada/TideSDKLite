@@ -62,7 +62,7 @@ static void AddQueryParameter(std::string& url, const std::string& key,
 }
 
 AnalyticsBinding::AnalyticsBinding() :
-    KEventObject("Network.Analytics"),
+    EventObject("Network.Analytics"),
     running(true),
     curlHandle(0),
     startCallback(0)

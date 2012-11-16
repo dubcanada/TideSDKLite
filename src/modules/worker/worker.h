@@ -46,7 +46,7 @@ namespace ti
 {
     class WorkerContext;
 
-    class Worker : public KEventObject
+    class Worker : public EventObject
     {
     public:
         Worker(std::string& code);

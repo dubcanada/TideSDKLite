@@ -39,7 +39,7 @@
 
 namespace ti
 {
-    class Clipboard : public KAccessorObject
+    class Clipboard : public AccessorObject
     {
         public:
         Clipboard();

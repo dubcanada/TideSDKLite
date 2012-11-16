@@ -37,7 +37,7 @@
 namespace ti
 {
 
-Notification::Notification() : KAccessorObject("Notification"),
+Notification::Notification() : AccessorObject("Notification"),
     timeout(-1)
 {
     SetMethod("setTitle", &Notification::_SetTitle);

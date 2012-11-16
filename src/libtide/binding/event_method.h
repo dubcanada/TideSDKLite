@@ -37,11 +37,11 @@
 
 namespace tide
 {
-    class TIDE_API KEventMethod : public KEventObject, public KMethod
+    class TIDE_API EventMethod : public EventObject, public KMethod
     {
         public:
-        KEventMethod(const char* name = "") :
-            KEventObject(name),
+        EventMethod(const char* name = "") :
+            EventObject(name),
             count(1) {}
 
         // @see KMethod::Call
@@ -50,31 +50,31 @@ namespace tide
         // @see KMethod::Set
         virtual void Set(const char *name, KValueRef value)
         {
-            KEventObject::Set(name, value);
+            EventObject::Set(name, value);
         }
 
         // @see KMethod::Get
         virtual KValueRef Get(const char *name)
         {
-            return KEventObject::Get(name);
+            return EventObject::Get(name);
         }
 
         // @see KMethod::GetPropertyNames
         virtual SharedStringList GetPropertyNames()
         {
-            return KEventObject::GetPropertyNames();
+            return EventObject::GetPropertyNames();
         }
 
         // @see KMethod::HasProperty
         virtual bool HasProperty(const char *name)
         {
-            return KEventObject::HasProperty(name);
+            return EventObject::HasProperty(name);
         }
         
         // @see KMethod::DisplayString
         SharedString DisplayString(int levels)
         {
-            return KEventObject::DisplayString(levels);
+            return EventObject::DisplayString(levels);
         }
 
         /**
@@ -88,7 +88,7 @@ namespace tide
 
             KMethodRef bound_method = new StaticBoundMethod(callback);
             KValueRef method_value = Value::NewMethod(bound_method);
-            KEventObject::Set(name, method_value);
+            EventObject::Set(name, method_value);
         }
 
         virtual void duplicate()

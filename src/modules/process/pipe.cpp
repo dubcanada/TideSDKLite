@@ -56,7 +56,7 @@ namespace ti
     std::vector<AutoPtr<Event> > otherEvents;
 
     Pipe::Pipe(const char *type) :
-        KEventObject(type),
+        EventObject(type),
         logger(Logger::Get("Process.Pipe"))
     {
         /**

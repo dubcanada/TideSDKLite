@@ -40,7 +40,7 @@ namespace ti
     UIBinding* UIBinding::instance = NULL;
 
     UIBinding::UIBinding(Host* host) :
-        KAccessorObject("UI"),
+        AccessorObject("UI"),
         host(host)
     {
         instance = this;

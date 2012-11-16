@@ -75,7 +75,7 @@ namespace ti
     }
 
     NetworkBinding::NetworkBinding(Host* host) :
-        KAccessorObject("Network"),
+        AccessorObject("Network"),
         host(host),
         global(host->GetGlobalObject())
     {

@@ -42,7 +42,7 @@
 
 namespace ti
 {
-    class ProcessBinding : public KAccessorObject
+    class ProcessBinding : public AccessorObject
     {
     public:
         ProcessBinding();

@@ -45,7 +45,7 @@ namespace ti
     class Pipe;
     typedef AutoPtr<Pipe> AutoPipe;
 
-    class Pipe : public KEventObject
+    class Pipe : public EventObject
     {
         public:
         Pipe(const char *type = "Process.Pipe");

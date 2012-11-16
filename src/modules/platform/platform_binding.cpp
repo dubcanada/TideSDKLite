@@ -43,7 +43,7 @@ namespace ti
 {
 
 PlatformBinding::PlatformBinding() :
-    KAccessorObject("Platform")
+    AccessorObject("Platform")
 {
     /**
      * @tiapi(method=True,name=Platform.getOSType,since=0.9)

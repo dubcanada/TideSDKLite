@@ -38,7 +38,7 @@
 
 namespace ti
 {
-    class PlatformBinding : public KAccessorObject
+    class PlatformBinding : public AccessorObject
     {
     public:
         PlatformBinding();

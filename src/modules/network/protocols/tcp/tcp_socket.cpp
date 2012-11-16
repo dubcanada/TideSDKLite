@@ -43,7 +43,7 @@
 namespace ti
 {
     TCPSocket::TCPSocket(std::string& host, int port) :
-        KEventObject("Network.TCPSocket"),
+        EventObject("Network.TCPSocket"),
         address(host, port),
         socket(address.family()),
         state(CLOSED),

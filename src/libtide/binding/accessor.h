@@ -39,10 +39,10 @@ namespace tide
 {
     typedef std::map<std::string, KMethodRef> AccessorMap;
 
-    class TIDE_API KAccessor
+    class TIDE_API Accessor
     {
     protected:
-        KAccessor() {}
+        Accessor() {}
 
         inline void RecordAccessor(const std::string& name, KValueRef value)
         {
@@ -118,7 +118,7 @@ namespace tide
             return map[name];
         }
 
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessor);
+        DISALLOW_EVIL_CONSTRUCTORS(Accessor);
         AccessorMap getterMap;
         AccessorMap setterMap;
     };

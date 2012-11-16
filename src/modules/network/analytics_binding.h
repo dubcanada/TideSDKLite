@@ -45,7 +45,7 @@
 
 namespace ti
 {
-    class AnalyticsBinding : public KEventObject, public Poco::Runnable
+    class AnalyticsBinding : public EventObject, public Poco::Runnable
     {
     public:
         AnalyticsBinding();

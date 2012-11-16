@@ -44,7 +44,7 @@
 namespace tide
 {
     /**
-     * The KDelegatingObject lets you wrap a globally accessible
+     * The DelegatingObject lets you wrap a globally accessible
      * object in such a way as it appears to have special properties in
      * in local contexts. When a Get(...) occurs, the object searches a local
      * delegate and then a global one. When a Set(...) occurs, the object
@@ -52,12 +52,12 @@ namespace tide
      * is most useful if the local properties are assigned to the local object
      * in an initial setup phase.
      */
-    class TIDE_API KDelegatingObject : public KObject
+    class TIDE_API DelegatingObject : public KObject
     {
         public:
-        KDelegatingObject(KObjectRef global);
-        KDelegatingObject(KObjectRef global, KObjectRef local);
-        virtual ~KDelegatingObject();
+        DelegatingObject(KObjectRef global);
+        DelegatingObject(KObjectRef global, KObjectRef local);
+        virtual ~DelegatingObject();
         virtual KValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual void Set(const char *name, KValueRef value);
@@ -80,7 +80,7 @@ namespace tide
          */
         KObjectRef local;
 
-        DISALLOW_EVIL_CONSTRUCTORS(KDelegatingObject);
+        DISALLOW_EVIL_CONSTRUCTORS(DelegatingObject);
 
     protected:
         Poco::Mutex mutex;

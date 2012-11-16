@@ -49,7 +49,7 @@ using std::map;
 namespace tide
 {
     APIBinding::APIBinding(Host* host) :
-        KAccessorObject("API"),
+        AccessorObject("API"),
         host(host),
         global(host->GetGlobalObject()),
         logger(Logger::Get("API")),

@@ -37,7 +37,7 @@
 #include <tide/tide.h>
 namespace ti
 {
-    class Menu : public KAccessorObject
+    class Menu : public AccessorObject
     {
     public:
         // Platform-independent implementation

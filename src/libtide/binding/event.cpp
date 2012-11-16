@@ -70,8 +70,8 @@ namespace tide
     std::string Event::HTTP_DATA_SENT = "http.datasent";
     std::string Event::HTTP_DATA_RECEIVED = "http.datareceived";
 
-    Event::Event(AutoPtr<KEventObject> target, const std::string& eventName) :
-        KAccessorObject("Event"),
+    Event::Event(AutoPtr<EventObject> target, const std::string& eventName) :
+        AccessorObject("Event"),
         target(target),
         eventName(eventName),
         stopped(false),

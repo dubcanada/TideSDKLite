@@ -38,19 +38,19 @@
 namespace tide
 {
     /**
-     * The KAccessorMethod allows you to expose getters and setters as property access.
-     * @see KAccessorObject
+     * The AccessorMethod allows you to expose getters and setters as property access.
+     * @see AccessorObject
      */
-    class TIDE_API KAccessorMethod : public StaticBoundMethod, public KAccessor
+    class TIDE_API AccessorMethod : public StaticBoundMethod, public Accessor
     {
     public:
-        KAccessorMethod(MethodCallback* callback, const char* type = "KAccessorMethod");
+        AccessorMethod(MethodCallback* callback, const char* type = "AccessorMethod");
         virtual void Set(const char* name, KValueRef value);
         virtual KValueRef Get(const char* name);
         virtual bool HasProperty(const char* name);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessorMethod);
+        DISALLOW_EVIL_CONSTRUCTORS(AccessorMethod);
     };
 }
 

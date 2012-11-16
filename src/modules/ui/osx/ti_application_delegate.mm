@@ -96,7 +96,7 @@
 -(BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication hasVisibleWindows:(BOOL)visibleWindows
 {
     // Allow application to handle the dock click event in a custom way.
-    AutoPtr<KEventObject> target = GlobalObject::GetInstance();
+    AutoPtr<EventObject> target = GlobalObject::GetInstance();
     AutoPtr<Event> event = target->CreateEvent(Event::REOPEN);
     event->SetBool("hasVisibleWindows", visibleWindows);
     return target->FireEvent(event) ? YES : NO;

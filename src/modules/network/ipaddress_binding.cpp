@@ -37,7 +37,7 @@
 namespace ti
 {
     IPAddressBinding::IPAddressBinding(std::string ip) :
-        KAccessorObject("Network.IPAddress"),
+        AccessorObject("Network.IPAddress"),
         invalid(false)
     {
         this->Init();

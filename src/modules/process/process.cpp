@@ -57,7 +57,7 @@ namespace ti
     }
 
     Process::Process() :
-        KEventMethod("Process.Process"),
+        EventMethod("Process.Process"),
         stdoutPipe(new Pipe()),
         stderrPipe(new Pipe()),
         stdinPipe(new Pipe()),

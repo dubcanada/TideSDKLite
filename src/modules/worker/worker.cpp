@@ -45,7 +45,7 @@ namespace ti
     }
 
     Worker::Worker(std::string& code) :
-        KEventObject("Worker.Worker"),
+        EventObject("Worker.Worker"),
         code(code),
         workerContext(new WorkerContext(this)),
         adapter(0)
@@ -175,7 +175,7 @@ namespace ti
 
     void Worker::Set(const char* name, KValueRef value)
     {
-        KEventObject::Set(name, value);
+        EventObject::Set(name, value);
 
         // We now have an onMessage target. Send all our queued
         // messages to this method.

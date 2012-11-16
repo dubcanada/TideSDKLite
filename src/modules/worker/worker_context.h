@@ -46,7 +46,7 @@
 namespace ti
 {
     class Worker;
-    class WorkerContext : public KEventObject
+    class WorkerContext : public EventObject
     {
     public:
         WorkerContext(Worker* worker);

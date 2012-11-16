@@ -46,7 +46,7 @@ namespace ti
     }
 
     WorkerContext::WorkerContext(Worker* worker) :
-        KEventObject("Worker.WorkerContext"),
+        EventObject("Worker.WorkerContext"),
         worker(worker),
         jsContext(0),
         running(false)

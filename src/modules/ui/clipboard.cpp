@@ -39,7 +39,7 @@ using Poco::StringTokenizer;
 namespace ti
 {
     Clipboard::Clipboard() :
-        KAccessorObject("UI.Clipboard")
+        AccessorObject("UI.Clipboard")
     {
         this->SetMethod("setData", &Clipboard::_SetData);
         this->SetMethod("getData", &Clipboard::_GetData);

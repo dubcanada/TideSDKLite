@@ -40,7 +40,7 @@ namespace ti
     using std::string;
 
     Menu::Menu() :
-        KAccessorObject("UI.Menu")
+        AccessorObject("UI.Menu")
     {
         this->SetMethod("appendItem", &Menu::_AppendItem);
         this->SetMethod("getItemAt", &Menu::_GetItemAt);

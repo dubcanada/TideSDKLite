@@ -44,7 +44,7 @@ namespace ti
 {
     class Process;
     typedef AutoPtr<Process> AutoProcess;
-    class Process : public KEventMethod
+    class Process : public EventMethod
     {
     public:
         Process();

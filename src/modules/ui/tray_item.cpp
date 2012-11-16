@@ -38,7 +38,7 @@
 namespace ti
 {
     TrayItem::TrayItem(std::string& iconURL) : 
-        KEventObject("UI.TrayItem"),
+        EventObject("UI.TrayItem"),
         iconURL(iconURL),
         iconPath(URLUtils::URLToPath(iconURL)),
         removed(false)

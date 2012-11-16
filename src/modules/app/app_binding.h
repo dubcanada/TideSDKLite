@@ -12,7 +12,7 @@
 
 namespace ti
 {
-	class AppBinding : public KAccessorObject
+	class AppBinding : public AccessorObject
 	{
 	public:
 		AppBinding(Host *host,KObjectRef);

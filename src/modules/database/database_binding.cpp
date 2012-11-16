@@ -168,7 +168,7 @@ namespace ti
     }
 
     DatabaseBinding::DatabaseBinding(std::string& name, bool isWebKitDatabase) :
-        KAccessorObject("Database.DB"),
+        AccessorObject("Database.DB"),
         session(0),
         name(name),
         path(name),

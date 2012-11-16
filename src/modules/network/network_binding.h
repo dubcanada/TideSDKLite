@@ -45,7 +45,7 @@ namespace ti
 
 namespace ti
 {
-    class NetworkBinding : public KAccessorObject
+    class NetworkBinding : public AccessorObject
     {
     public:
         NetworkBinding(Host*);

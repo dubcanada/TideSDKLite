@@ -42,7 +42,7 @@
 
 namespace ti
 {
-    class DatabaseBinding : public KAccessorObject
+    class DatabaseBinding : public AccessorObject
     {
     public:
         DatabaseBinding(std::string& name, bool isWebKitDatabase);

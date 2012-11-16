@@ -37,7 +37,7 @@
 namespace tide
 {
     DependencyBinding::DependencyBinding(SharedDependency dependency) :
-        KAccessorObject("API.Dependency"),
+        AccessorObject("API.Dependency"),
         dependency(dependency)
     {
         /**

@@ -40,7 +40,7 @@
 
 namespace ti
 {
-    class HTTPCookie : public KAccessorObject
+    class HTTPCookie : public AccessorObject
     {
     public:
         HTTPCookie();

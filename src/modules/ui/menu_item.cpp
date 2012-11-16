@@ -40,7 +40,7 @@ namespace ti
     using std::vector;
 
     MenuItem::MenuItem(MenuItemType type) :
-        KEventObject("UI.MenuItem"),
+        EventObject("UI.MenuItem"),
         type(type),
         enabled(true),
         label(""),

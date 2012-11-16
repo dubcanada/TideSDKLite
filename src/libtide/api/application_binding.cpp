@@ -50,7 +50,7 @@
 namespace tide
 {
     ApplicationBinding::ApplicationBinding(SharedApplication application, bool current) :
-        KAccessorObject("API.Application"),
+        AccessorObject("API.Application"),
         application(application),
         current(current)
     {

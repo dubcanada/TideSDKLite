@@ -46,7 +46,7 @@
 
 namespace ti
 {
-    class TCPSocket : public KEventObject
+    class TCPSocket : public EventObject
     {
     public:
         TCPSocket(std::string& host, int port);

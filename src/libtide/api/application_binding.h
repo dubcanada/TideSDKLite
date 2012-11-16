@@ -42,7 +42,7 @@
 
 namespace tide
 {
-    class ApplicationBinding : public KAccessorObject
+    class ApplicationBinding : public AccessorObject
     {
         public:
         ApplicationBinding(SharedApplication application, bool current = false);

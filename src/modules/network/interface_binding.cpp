@@ -40,7 +40,7 @@ using Poco::Net::NetworkInterface;
 namespace ti
 {
     InterfaceBinding::InterfaceBinding(NetworkInterface& interface) :
-        KAccessorObject("Network.Interface"),
+        AccessorObject("Network.Interface"),
         interface(interface)
     {
         this->SetMethod("getAddress", &InterfaceBinding::_GetAddress); // COMPATIBILITY

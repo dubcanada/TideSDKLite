@@ -37,7 +37,7 @@
 #include <tide/tide.h>
 namespace ti
 {
-    class MenuItem : public KEventObject
+    class MenuItem : public EventObject
     {
     public:
         enum MenuItemType

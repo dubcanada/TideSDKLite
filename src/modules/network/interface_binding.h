@@ -41,7 +41,7 @@
 
 namespace ti
 {
-    class InterfaceBinding : public KAccessorObject
+    class InterfaceBinding : public AccessorObject
     {
     public:
         InterfaceBinding(Poco::Net::NetworkInterface&);

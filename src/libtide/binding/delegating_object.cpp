@@ -37,24 +37,24 @@
 
 namespace tide
 {
-    KDelegatingObject::KDelegatingObject(KObjectRef global) :
+    DelegatingObject::DelegatingObject(KObjectRef global) :
         global(global),
         local(new StaticBoundObject())
     {
     }
 
-    KDelegatingObject::KDelegatingObject(
+    DelegatingObject::DelegatingObject(
         KObjectRef global, KObjectRef local) :
         global(global),
         local(local)
     {
     }
 
-    KDelegatingObject::~KDelegatingObject()
+    DelegatingObject::~DelegatingObject()
     {
     }
 
-    KValueRef KDelegatingObject::Get(const char *name)
+    KValueRef DelegatingObject::Get(const char *name)
     {
         Poco::Mutex::ScopedLock lock(mutex);
 
@@ -73,7 +73,7 @@ namespace tide
         }
     }
 
-    void KDelegatingObject::Set(const char *name, KValueRef value)
+    void DelegatingObject::Set(const char *name, KValueRef value)
     {
         // We want to set the property on both
         // the local and the global object.
@@ -82,12 +82,12 @@ namespace tide
         global->Set(name, value);
     }
 
-    bool KDelegatingObject::HasProperty(const char* name)
+    bool DelegatingObject::HasProperty(const char* name)
     {
         return global->HasProperty(name) || local->HasProperty(name);
     }
 
-    SharedStringList KDelegatingObject::GetPropertyNames()
+    SharedStringList DelegatingObject::GetPropertyNames()
     {
         Poco::Mutex::ScopedLock lock(mutex);
 

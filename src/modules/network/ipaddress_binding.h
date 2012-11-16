@@ -44,7 +44,7 @@ using Poco::Net::InvalidAddressException;
 
 namespace ti
 {
-    class IPAddressBinding : public KAccessorObject
+    class IPAddressBinding : public AccessorObject
     {
     public:
         IPAddressBinding(std::string);

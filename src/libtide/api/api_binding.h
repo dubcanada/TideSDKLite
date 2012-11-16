@@ -44,7 +44,7 @@
 
 namespace tide
 {
-    class APIBinding : public KAccessorObject
+    class APIBinding : public AccessorObject
     {
         public:
         APIBinding(Host* host);

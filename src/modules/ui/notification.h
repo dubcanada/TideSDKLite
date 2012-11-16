@@ -50,7 +50,7 @@ typedef char PlatformNotification;
 namespace ti
 {
 
-class Notification : public KAccessorObject
+class Notification : public AccessorObject
 {
 public:
     Notification();

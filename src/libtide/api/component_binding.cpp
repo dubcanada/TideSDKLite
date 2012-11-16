@@ -38,7 +38,7 @@
 namespace tide
 {
     ComponentBinding::ComponentBinding(SharedComponent component) :
-        KAccessorObject("API.Component"),
+        AccessorObject("API.Component"),
         component(component)
     {
         /**

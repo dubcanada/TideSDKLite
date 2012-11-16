@@ -12,7 +12,7 @@
 namespace ti
 {
 	AppBinding::AppBinding(Host* host, KObjectRef global) :
-		KAccessorObject("App"),
+		AccessorObject("App"),
 		host(host),
 		global(global)
 	{

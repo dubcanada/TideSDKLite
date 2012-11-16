@@ -38,7 +38,7 @@
 namespace ti
 {
 UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow parent) :
-    KEventObject("UI.UserWindow"),
+    EventObject("UI.UserWindow"),
     logger(Logger::Get("UI.UserWindow")),
     binding(UIModule::GetInstance()->GetUIBinding()),
     domWindow(0),
@@ -1545,8 +1545,8 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
 {
     // Produce a delegating object to represent the top-level Ti object.
     // When a property isn't found in this object it will look for it globally.
-    KObjectRef windowTiObject(new KAccessorObject());
-    KObjectRef windowUIObject(new KAccessorObject());
+    KObjectRef windowTiObject(new AccessorObject());
+    KObjectRef windowUIObject(new AccessorObject());
 
     // Place currentWindow in the delegate base.
     windowUIObject->Set("getCurrentWindow", this->Get("getCurrentWindow"));
@@ -1560,14 +1560,14 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     windowUIObject->Set("openSaveAsDialog", this->Get("openSaveAsDialog"));
 
     // Create a delegate object for the UI API. When a property cannot be
-    // found in binding, KDelegatingObject will search for it in
+    // found in binding, DelegatingObject will search for it in
     // the base. When developers modify this object, it will be modified
     // globally.
-    KObject* delegateUIAPI = new KDelegatingObject(binding, windowUIObject);
+    KObject* delegateUIAPI = new DelegatingObject(binding, windowUIObject);
     windowTiObject->Set("UI", Value::NewObject(delegateUIAPI));
 
     // Place the Ti object into the window's global object
-    KObjectRef delegateGlobalObject = new KDelegatingObject(
+    KObjectRef delegateGlobalObject = new DelegatingObject(
         host->GetGlobalObject(), windowTiObject);
     frameGlobal->SetObject(GLOBAL_NAMESPACE, delegateGlobalObject);
 }

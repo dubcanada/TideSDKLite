@@ -41,7 +41,7 @@
 
 namespace ti
 {
-    class UIBinding : public KAccessorObject
+    class UIBinding : public AccessorObject
     {
 
     public:
