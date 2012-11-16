@@ -32,22 +32,7 @@
 # limitations under the License.
 
 from os import path
-Import('build build_module_from_directory')
+Import('build env module')
 
-# These each have their own line because we can comment
-# them out easily if we need temporarily disable one.
-for dir in [
-    'app', 
-    'ui',
-    'update',
-    'network',
-    'filesystem',
-    'media',
-    'platform',
-    'process',
-    'monkey',
-    'database',
-    'worker',
-    'codec'
-]:
-    build_module_from_directory(dir)
+# Copy the support files the module build directory
+build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), module.dir)
