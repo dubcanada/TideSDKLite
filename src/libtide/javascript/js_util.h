@@ -41,9 +41,9 @@ namespace JSUtil
 
 TIDE_API KValueRef ToTiValue(JSValueRef, JSContextRef, JSObjectRef);
 TIDE_API JSValueRef ToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KListToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef TiObjectToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef TiMethodToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef TiListToJSValue(KValueRef, JSContextRef);
 TIDE_API std::string ToChars(JSStringRef);
 TIDE_API bool IsArrayLike(JSObjectRef, JSContextRef);
 TIDE_API JSGlobalContextRef CreateGlobalContext();

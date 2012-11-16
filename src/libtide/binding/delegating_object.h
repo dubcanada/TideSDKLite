@@ -52,19 +52,19 @@ namespace tide
      * is most useful if the local properties are assigned to the local object
      * in an initial setup phase.
      */
-    class TIDE_API DelegatingObject : public KObject
+    class TIDE_API DelegatingObject : public TiObject
     {
         public:
-        DelegatingObject(KObjectRef global);
-        DelegatingObject(KObjectRef global, KObjectRef local);
+        DelegatingObject(TiObjectRef global);
+        DelegatingObject(TiObjectRef global, TiObjectRef local);
         virtual ~DelegatingObject();
         virtual KValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual void Set(const char *name, KValueRef value);
         virtual bool HasProperty(const char* name);
 
-        virtual inline KObjectRef GetGlobal() { return this->global; }
-        virtual inline KObjectRef GetLocal() { return this->local; }
+        virtual inline TiObjectRef GetGlobal() { return this->global; }
+        virtual inline TiObjectRef GetLocal() { return this->local; }
 
         private:
         /**
@@ -72,13 +72,13 @@ namespace tide
          * is used to find properties if they are not found in
          * the local object.
          */
-        KObjectRef global;
+        TiObjectRef global;
 
         /**
          * The local part of this delegate object. This object
          * is the first in line for property retrieval. 
          */
-        KObjectRef local;
+        TiObjectRef local;
 
         DISALLOW_EVIL_CONSTRUCTORS(DelegatingObject);
 

@@ -57,7 +57,7 @@ namespace ti
     class AsyncCopy : public StaticBoundObject
     {
     public:
-        AsyncCopy(FilesystemBinding* parent,tide::Host *host,std::vector<std::string> files, std::string destination, KMethodRef callback);
+        AsyncCopy(FilesystemBinding* parent,tide::Host *host,std::vector<std::string> files, std::string destination, TiMethodRef callback);
         virtual ~AsyncCopy();
 
     private:
@@ -65,7 +65,7 @@ namespace ti
         Host *host;
         std::vector<std::string> files;
         std::string destination;
-        KMethodRef callback;
+        TiMethodRef callback;
         Poco::Thread *thread;
         bool stopped;
 

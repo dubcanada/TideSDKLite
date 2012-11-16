@@ -136,21 +136,21 @@ namespace tide
         return v;
     }
 
-    KValueRef Value::NewList(KListRef value)
+    KValueRef Value::NewList(TiListRef value)
     {
         KValueRef v(new Value());
         v->SetList(value);
         return v;
     }
 
-    KValueRef Value::NewMethod(KMethodRef method)
+    KValueRef Value::NewMethod(TiMethodRef method)
     {
         KValueRef v(new Value());
         v->SetMethod(method);
         return v;
     }
 
-    KValueRef Value::NewObject(KObjectRef value)
+    KValueRef Value::NewObject(TiObjectRef value)
     {
         KValueRef v(new Value());
         v->SetObject(value);
@@ -176,9 +176,9 @@ namespace tide
     double Value::ToNumber() const { return numberValue; }
     bool Value::ToBool() const { return boolValue; }
     const char* Value::ToString() const { return stringValue; }
-    KObjectRef Value::ToObject() const { return objectValue; }
-    KMethodRef Value::ToMethod() const { return objectValue.cast<KMethod>(); }
-    KListRef Value::ToList() const { return objectValue.cast<KList>(); }
+    TiObjectRef Value::ToObject() const { return objectValue; }
+    TiMethodRef Value::ToMethod() const { return objectValue.cast<TiMethod>(); }
+    TiListRef Value::ToList() const { return objectValue.cast<TiList>(); }
 
     void Value::SetValue(KValueRef other)
     {
@@ -256,7 +256,7 @@ namespace tide
         this->SetString(value.get()->c_str());
     }
 
-    void Value::SetList(KListRef value)
+    void Value::SetList(TiListRef value)
     {
         reset();
         this->objectValue = value;
@@ -267,7 +267,7 @@ namespace tide
         }
     }
 
-    void Value::SetObject(KObjectRef value)
+    void Value::SetObject(TiObjectRef value)
     {
         reset();
         this->objectValue = value;
@@ -278,7 +278,7 @@ namespace tide
         }
     }
 
-    void Value::SetMethod(KMethodRef value)
+    void Value::SetMethod(TiMethodRef value)
     {
         reset();
         this->objectValue = value;
@@ -358,7 +358,7 @@ namespace tide
             case OBJECT:
             case METHOD:
             {
-                KObjectRef o(this->ToObject());
+                TiObjectRef o(this->ToObject());
                 if (levels == 0)
                 {
                     oss << "<" << o->GetType() << " at " << o.get() << ">";
@@ -417,17 +417,17 @@ namespace tide
 
         if (value->IsMethod())
         {
-            KMethodRef list = KMethod::Unwrap(value->ToMethod());
-            value->SetMethod(list);
+            TiMethodRef method = TiMethod::Unwrap(value->ToMethod());
+            value->SetMethod(method);
         }
         else if (value->IsList())
         {
-            KListRef list = KList::Unwrap(value->ToList());
+            TiListRef list = TiList::Unwrap(value->ToList());
             value->SetList(list);
         }
         else if (value->IsObject())
         {
-            KObjectRef obj = KObject::Unwrap(value->ToObject());
+            TiObjectRef obj = TiObject::Unwrap(value->ToObject());
             value->SetObject(obj);
         }
     }

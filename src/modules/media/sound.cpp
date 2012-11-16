@@ -251,7 +251,7 @@ namespace ti
         return state == PAUSED;
     }
 
-    void Sound::SetOnComplete(KMethodRef newCallback)
+    void Sound::SetOnComplete(TiMethodRef newCallback)
     {
         this->callback = newCallback;
     }

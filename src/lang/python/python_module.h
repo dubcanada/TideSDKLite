@@ -96,7 +96,7 @@ namespace tide
         }
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
         static PythonModule *instance_;
         DISALLOW_EVIL_CONSTRUCTORS(PythonModule);
     };

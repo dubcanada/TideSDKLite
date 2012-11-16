@@ -38,7 +38,7 @@
 namespace tide
 {
 
-    MainThreadJob::MainThreadJob(KMethodRef method, KObjectRef thisObject,
+    MainThreadJob::MainThreadJob(TiMethodRef method, TiObjectRef thisObject,
         const ValueList& args, bool waitForCompletion) :
         method(method),
         thisObject(thisObject),

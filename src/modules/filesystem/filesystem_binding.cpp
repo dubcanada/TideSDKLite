@@ -59,7 +59,7 @@
 
 namespace ti
 {
-    FilesystemBinding::FilesystemBinding(Host *host, KObjectRef global) :
+    FilesystemBinding::FilesystemBinding(Host *host, TiObjectRef global) :
         StaticBoundObject("Filesystem"),
         host(host),
         global(global),
@@ -309,15 +309,15 @@ namespace ti
             std::vector<std::string> roots;
             path.listRoots(roots);
 
-            KListRef rootList = new StaticBoundList();
+            TiListRef rootList = new StaticBoundList();
             for(size_t i = 0; i < roots.size(); i++)
             {
                 ti::File* file = new ti::File(roots.at(i));
-                KValueRef value = Value::NewObject((KObjectRef) file);
+                KValueRef value = Value::NewObject((TiObjectRef) file);
                 rootList->Append(value);
             }
 
-            KListRef list = rootList;
+            TiListRef list = rootList;
             result->SetList(list);
         }
         catch (Poco::Exception& exc)
@@ -339,7 +339,7 @@ namespace ti
         }
         else if (args.at(0)->IsList())
         {
-            KListRef list = args.at(0)->ToList();
+            TiListRef list = args.at(0)->ToList();
             for (unsigned int c = 0; c < list->Size(); c++)
             {
                 files.push_back(FilesystemUtils::FilenameFromValue(list->At(c)));
@@ -351,8 +351,8 @@ namespace ti
         }
         KValueRef v = args.at(1);
         std::string destination(FilesystemUtils::FilenameFromValue(v));
-        KMethodRef method = args.at(2)->ToMethod();
-        KObjectRef copier = new ti::AsyncCopy(this,host,files,destination,method);
+        TiMethodRef method = args.at(2)->ToMethod();
+        TiObjectRef copier = new ti::AsyncCopy(this,host,files,destination,method);
         result->SetObject(copier);
         asyncOperations.push_back(copier);
         // we need to create a timer thread that can cleanup operations
@@ -377,11 +377,11 @@ namespace ti
             result->SetBool(true);
             return;
         }
-        std::vector<KObjectRef>::iterator iter = asyncOperations.begin();
+        std::vector<TiObjectRef>::iterator iter = asyncOperations.begin();
 
         while (iter!=asyncOperations.end())
         {
-            KObjectRef c = (*iter);
+            TiObjectRef c = (*iter);
             KValueRef v = c->Get("running");
             bool running = v->ToBool();
             if (!running)
@@ -401,7 +401,7 @@ namespace ti
         START_TIDE_THREAD;
 
         ValueList args = ValueList();
-        KMethodRef m = this->Get("_invoke")->ToMethod();
+        TiMethodRef m = this->Get("_invoke")->ToMethod();
         KValueRef result = RunOnMainThread(m, args);
         if (result->ToBool())
         {

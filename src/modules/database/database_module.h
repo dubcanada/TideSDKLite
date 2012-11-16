@@ -66,7 +66,7 @@ namespace ti
         TIDE_MODULE_CLASS(DatabaseModule)
 
     private:
-        tide::KObjectRef binding;
+        tide::TiObjectRef binding;
         void Open(const ValueList& args, KValueRef result);
         void OpenFile(const ValueList& args, KValueRef result);
     };

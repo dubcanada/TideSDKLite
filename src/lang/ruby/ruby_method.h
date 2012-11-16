@@ -37,7 +37,7 @@
 
 namespace tide {
 
-class KRubyMethod : public KMethod
+class KRubyMethod : public TiMethod
 {
     public:
     KRubyMethod(VALUE method);
@@ -57,7 +57,7 @@ class KRubyMethod : public KMethod
      *  @param other the object to test
      *  @returns true if objects have reference equality, false otherwise
      */
-    virtual bool Equals(KObjectRef);
+    virtual bool Equals(TiObjectRef);
 
     private:
     VALUE method;

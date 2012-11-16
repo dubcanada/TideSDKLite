@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class TIDE_API KKJSList : public KList
+    class TIDE_API KKJSList : public TiList
     {
 
         public:
@@ -51,7 +51,7 @@ namespace tide
         virtual KValueRef Get(const char* name);
         virtual SharedStringList GetPropertyNames();
         virtual bool HasProperty(const char* name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         virtual void Append(KValueRef value);
         virtual unsigned int Size();
         virtual KValueRef At(unsigned int index);
@@ -63,7 +63,7 @@ namespace tide
         protected:
         JSGlobalContextRef context;
         JSObjectRef jsobject;
-        AutoPtr<KKJSObject> kobject;
+        AutoPtr<KKJSObject> tiObject;
 
         private:
         DISALLOW_EVIL_CONSTRUCTORS(KKJSList);

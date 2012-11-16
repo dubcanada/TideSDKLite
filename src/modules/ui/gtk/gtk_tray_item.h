@@ -41,7 +41,7 @@ namespace ti
     {
 
     public:
-        GtkTrayItem(std::string& iconURL, KMethodRef cb);
+        GtkTrayItem(std::string& iconURL, TiMethodRef cb);
         ~GtkTrayItem();
 
         void SetIcon(std::string& iconPath);
@@ -51,12 +51,12 @@ namespace ti
 
         GtkStatusIcon* GetWidget();
         AutoPtr<GtkMenu> GetMenu();
-        KMethodRef GetCallback();
+        TiMethodRef GetCallback();
 
     protected:
         GtkStatusIcon* item;
         AutoPtr<GtkMenu> menu;
-        KMethodRef callback;
+        TiMethodRef callback;
         bool active;
     };
 }

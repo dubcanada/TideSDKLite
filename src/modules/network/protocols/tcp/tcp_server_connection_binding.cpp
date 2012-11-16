@@ -280,7 +280,7 @@ namespace ti
         }
         else if (args.at(0)->IsObject())
         {
-            KObjectRef dataObject(args.GetObject(0));
+            TiObjectRef dataObject(args.GetObject(0));
             data = dataObject.cast<Bytes>();
         }
 

@@ -38,39 +38,39 @@
 namespace tide
 {
     typedef KValueRef (*KFunctionPtrCallback) (const ValueList& args);
-    class TIDE_API KFunctionPtrMethod : public KMethod
+    class TIDE_API FunctionPtrMethod : public TiMethod
     {
         public:
-        KFunctionPtrMethod(KFunctionPtrCallback);
-        virtual ~KFunctionPtrMethod();
+        FunctionPtrMethod(KFunctionPtrCallback);
+        virtual ~FunctionPtrMethod();
 
         /**
-         * @see KMethod::Call
+         * @see TiMethod::Call
          */
         virtual KValueRef Call(const ValueList& args);
 
         /**
-         * @see KObject::Set
+         * @see TiObject::Set
          */
         virtual void Set(const char *name, KValueRef value);
 
         /**
-         * @see KObject::Get
+         * @see TiObject::Get
          */
         virtual KValueRef Get(const char *name);
 
         /**
-         * @see KObject::GetPropertyNames
+         * @see TiObject::GetPropertyNames
          */
         virtual SharedStringList GetPropertyNames();
         
 
         protected:
         KFunctionPtrCallback callback;
-        KObjectRef object;
+        TiObjectRef object;
 
         private:
-        DISALLOW_EVIL_CONSTRUCTORS(KFunctionPtrMethod);
+        DISALLOW_EVIL_CONSTRUCTORS(FunctionPtrMethod);
     };
 }
 

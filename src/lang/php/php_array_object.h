@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KPHPArrayObject : public KList
+    class KPHPArrayObject : public TiList
     {
         public:
         KPHPArrayObject(zval *list);
@@ -47,7 +47,7 @@ namespace tide
 
         KValueRef Get(const char *name);
         void Set(const char *name, KValueRef value);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         SharedStringList GetPropertyNames();
 
         unsigned int Size();

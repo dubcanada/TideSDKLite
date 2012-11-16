@@ -111,7 +111,7 @@ namespace tide
         this->preventedDefault = true;
     }
 
-    void Event::SetEventConstants(KObject* target)
+    void Event::SetEventConstants(TiObject* target)
     {
         // @tiproperty[String, ALL, since=0.6] The ALL event constant
         // @tiproperty[String, FOCUSED, since=0.6] The FOCUSED event constant

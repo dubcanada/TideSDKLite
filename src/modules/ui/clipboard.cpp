@@ -100,7 +100,7 @@ namespace ti
         std::vector<std::string> uriList;
         if (value->IsList())
         {
-            KListRef list(value->ToList());
+            TiListRef list(value->ToList());
             for (unsigned int i = 0; i < list->Size(); i++)
             {
                 KValueRef element(list->At(i));

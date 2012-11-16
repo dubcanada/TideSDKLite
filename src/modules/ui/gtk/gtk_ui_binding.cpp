@@ -103,7 +103,7 @@ namespace ti
         this->iconPath = iconPath;
     }
 
-    AutoTrayItem GtkUIBinding::AddTray(std::string& iconPath, KMethodRef cb)
+    AutoTrayItem GtkUIBinding::AddTray(std::string& iconPath, TiMethodRef cb)
     {
         AutoTrayItem item = new GtkTrayItem(iconPath, cb);
         return item;

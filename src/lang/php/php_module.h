@@ -130,7 +130,7 @@ namespace tide
         Poco::URI* GetURI() { return uriStack.size() == 0 ? 0 : uriStack.top(); }
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
         static std::ostringstream buffer;
         static std::string mimeType;
         static PHPModule *instance_;

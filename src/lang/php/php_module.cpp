@@ -121,7 +121,7 @@ namespace tide
     {
         PHPModule::instance_ = NULL;
 
-        KObjectRef global = this->host->GetGlobalObject();
+        TiObjectRef global = this->host->GetGlobalObject();
         Script::GetInstance()->RemoveScriptEvaluator(this->binding);
         global->Set("PHP", Value::Undefined);
         this->binding->Set("evaluate", Value::Undefined);
@@ -136,7 +136,7 @@ namespace tide
     {
         PHPModule::mimeType = SG(default_mimetype);
 
-        KObjectRef global = this->host->GetGlobalObject();
+        TiObjectRef global = this->host->GetGlobalObject();
         this->binding = new PHPEvaluator();
         global->Set("PHP", Value::NewObject(this->binding));
         Script::GetInstance()->AddScriptEvaluator(this->binding);

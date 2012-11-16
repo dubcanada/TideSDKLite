@@ -88,7 +88,7 @@ namespace ti
     void Menu::_AppendItem(const ValueList& args, KValueRef result)
     {
         args.VerifyException("appendItem", "o");
-        KObjectRef o = args.at(0)->ToObject();
+        TiObjectRef o = args.at(0)->ToObject();
 
         AutoMenuItem item = o.cast<MenuItem>();
         if (!item.isNull())
@@ -109,7 +109,7 @@ namespace ti
     void Menu::_InsertItemAt(const ValueList& args, KValueRef result)
     {
         args.VerifyException("insertItemAt", "o,i");
-        KObjectRef o = args.at(0)->ToObject();
+        TiObjectRef o = args.at(0)->ToObject();
         AutoMenuItem item = o.cast<MenuItem>();
 
         if (!item.isNull())

@@ -58,7 +58,7 @@ namespace tide
     }
 
     KRubyHash::KRubyHash(VALUE hash) :
-        KObject("Ruby.KRubyHash"),
+        TiObject("Ruby.KRubyHash"),
         hash(hash),
         object(new KRubyObject(hash))
     {
@@ -131,7 +131,7 @@ namespace tide
         return this->object->ToRuby();
     }
 
-    bool KRubyHash::Equals(KObjectRef other)
+    bool KRubyHash::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyHash> hashOther = other.cast<KRubyHash>();
         if (hashOther.isNull())

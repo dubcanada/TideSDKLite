@@ -43,11 +43,11 @@ namespace ti
     class CodecBinding : public StaticBoundObject
     {
     public:
-        CodecBinding(KObjectRef);
+        CodecBinding(TiObjectRef);
     protected:
         virtual ~CodecBinding();
     private:
-        KObjectRef global;
+        TiObjectRef global;
 
         void EncodeBase64(const ValueList& args, KValueRef result);
         void DecodeBase64(const ValueList& args, KValueRef result);

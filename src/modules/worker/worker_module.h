@@ -56,7 +56,7 @@ namespace ti
         TIDE_MODULE_CLASS(WorkerModule)
         
     private:
-        tide::KObjectRef binding;
+        tide::TiObjectRef binding;
     };
 
 }

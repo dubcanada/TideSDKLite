@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KRubyList : public KList
+    class KRubyList : public TiList
     {
     public:
         KRubyList(VALUE);
@@ -62,7 +62,7 @@ namespace tide
      *  @param other the object to test
      *  @returns true if objects have reference equality, false otherwise
      */
-    virtual bool Equals(KObjectRef);
+    virtual bool Equals(TiObjectRef);
 
     protected:
         VALUE list;

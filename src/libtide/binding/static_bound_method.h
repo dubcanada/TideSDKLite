@@ -38,7 +38,7 @@
 namespace tide
 {
 
-    class TIDE_API StaticBoundMethod : public KMethod
+    class TIDE_API StaticBoundMethod : public TiMethod
     {
     public:
 
@@ -46,22 +46,22 @@ namespace tide
         virtual ~StaticBoundMethod();
 
         /**
-         * @see KMethod::Call
+         * @see TiMethod::Call
          */
         virtual KValueRef Call(const ValueList& args);
 
         /**
-         * @see KObject::Set
+         * @see TiObject::Set
          */
         virtual void Set(const char *name, KValueRef value);
 
         /**
-         * @see KObject::Get
+         * @see TiObject::Get
          */
         virtual KValueRef Get(const char *name);
 
         /**
-         * @see KObject::GetPropertyNames
+         * @see TiObject::GetPropertyNames
          */
         virtual SharedStringList GetPropertyNames();
         
@@ -74,7 +74,7 @@ namespace tide
         {
             MethodCallback* callback = NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(this), method);
 
-            KMethodRef bound_method = new StaticBoundMethod(callback);
+            TiMethodRef bound_method = new StaticBoundMethod(callback);
             KValueRef method_value = Value::NewMethod(bound_method);
             this->Set(name, method_value);
         }

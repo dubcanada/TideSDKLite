@@ -42,7 +42,7 @@ using std::string;
 
 namespace ti
 {
-    MonkeyBinding::MonkeyBinding(Host *host, KObjectRef global) :
+    MonkeyBinding::MonkeyBinding(Host *host, TiObjectRef global) :
         StaticBoundObject("Monkey"),
         global(global),
         logger(Logger::Get("Monkey"))
@@ -143,7 +143,7 @@ namespace ti
 
     void MonkeyBinding::Callback(const ValueList &args, KValueRef result)
     {
-        KObjectRef event = args.at(0)->ToObject();
+        TiObjectRef event = args.at(0)->ToObject();
         if (!event->Get("url")->IsString() ||
             !event->Get("scope")->IsObject() ||
             !event->GetObject("scope")->Get("window"))
@@ -153,7 +153,7 @@ namespace ti
         }
 
         std::string url = event->GetString("url");
-        KObjectRef windowObject = event->GetObject("scope")->GetObject("window");
+        TiObjectRef windowObject = event->GetObject("scope")->GetObject("window");
         vector<Script*>::iterator iter = scripts.begin();
         while (iter != scripts.end())
         {
@@ -166,8 +166,8 @@ namespace ti
     }
 
     void MonkeyBinding::EvaluateUserScript(
-        KObjectRef event, std::string& url,
-        KObjectRef windowObject, std::string& scriptSource)
+        TiObjectRef event, std::string& url,
+        TiObjectRef windowObject, std::string& scriptSource)
     {
         static Logger *logger = Logger::Get("Monkey");
         // I got a castle in brooklyn, that's where i dwell
@@ -180,7 +180,7 @@ namespace ti
             return;
         }
 
-        KObjectRef target = event->GetObject("target");
+        TiObjectRef target = event->GetObject("target");
         if (!windowObject->Get(GLOBAL_NAMESPACE)->IsObject() &&
             !target.isNull() && target->Get("insertAPI")->IsMethod())
         {
@@ -188,7 +188,7 @@ namespace ti
             target->CallNS("insertAPI", Value::NewObject(windowObject));
         }
 
-        KMethodRef evalFunction = windowObject->GetMethod("eval");
+        TiMethodRef evalFunction = windowObject->GetMethod("eval");
         logger->Info("Loading userscript for %s\n", url.c_str());
         try
         {

@@ -37,7 +37,7 @@
 namespace tide
 {
     KRubyMethod::KRubyMethod(VALUE method) :
-        KMethod("Ruby.KRubyMethod"),
+        TiMethod("Ruby.KRubyMethod"),
         method(method),
         arg(Qnil),
         object(new KRubyObject(method)),
@@ -144,7 +144,7 @@ namespace tide
         return this->object->ToRuby();
     }
 
-    bool KRubyMethod::Equals(KObjectRef other)
+    bool KRubyMethod::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyMethod> methodOther = other.cast<KRubyMethod>();
         if (methodOther.isNull())

@@ -37,9 +37,9 @@
 using namespace tide;
 
 ScopeMethodDelegate::ScopeMethodDelegate(MethodDelegateType type,
-                                         KObjectRef global,
-                                         KObjectRef scope,
-                                         KMethodRef delegate) :
+                                         TiObjectRef global,
+                                         TiObjectRef scope,
+                                         TiMethodRef delegate) :
     type(type), global(global), scope(scope), delegate(delegate)
 {
 }
@@ -73,7 +73,7 @@ bool ScopeMethodDelegate::IsGlobalKey(std::string& key)
 KValueRef ScopeMethodDelegate::Call(const ValueList& args)
 {
     std::string key = args.at(0)->ToString();
-    KObjectRef obj = IsGlobalKey(key) ? global : scope;
+    TiObjectRef obj = IsGlobalKey(key) ? global : scope;
     if (type == GET)
     {
         // not found, look inside scope
@@ -87,7 +87,7 @@ KValueRef ScopeMethodDelegate::Call(const ValueList& args)
     }
 }
 
-AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(KObjectRef global, KObjectRef bo)
+AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(TiObjectRef global, TiObjectRef bo)
 {
     AutoPtr<StaticBoundObject> scope = new StaticBoundObject();
     SharedStringList keys = bo->GetPropertyNames();
@@ -101,13 +101,13 @@ AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(KObjectRef global
 
         if (key == "set")
         {
-            KMethodRef d = new ScopeMethodDelegate(SET, global, scope, value->ToMethod());
+            TiMethodRef d = new ScopeMethodDelegate(SET, global, scope, value->ToMethod());
             KValueRef v = Value::NewMethod(d);
             scope->Set(key.c_str(), v);
         }
         else if (key == "get")
         {
-            KMethodRef d = new ScopeMethodDelegate(GET, global, scope, value->ToMethod());
+            TiMethodRef d = new ScopeMethodDelegate(GET, global, scope, value->ToMethod());
             KValueRef v = Value::NewMethod(d);
             scope->Set(key.c_str(), v);
         }

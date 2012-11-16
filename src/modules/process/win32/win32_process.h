@@ -64,7 +64,7 @@ namespace ti
         virtual void RecreateNativePipes();
         
     protected:
-        std::string ArgListToString(KListRef argList);
+        std::string ArgListToString(TiListRef argList);
         
         Poco::Thread exitMonitorThread;
         Poco::RunnableAdapter<Win32Process>* exitMonitorAdapter;

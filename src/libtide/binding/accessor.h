@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    typedef std::map<std::string, KMethodRef> AccessorMap;
+    typedef std::map<std::string, TiMethodRef> AccessorMap;
 
     class TIDE_API Accessor
     {
@@ -66,7 +66,7 @@ namespace tide
             if (!existingValue->IsUndefined())
                 return existingValue;
 
-            KMethodRef getter = FindAccessor(name, getterMap);
+            TiMethodRef getter = FindAccessor(name, getterMap);
             if (getter.isNull())
                 return existingValue;
 
@@ -82,7 +82,7 @@ namespace tide
             if (!existingValue->IsUndefined())
                 return false;
 
-            KMethodRef setter = FindAccessor(name, setterMap);
+            TiMethodRef setter = FindAccessor(name, setterMap);
             if (setter.isNull())
                 return false;
 
@@ -107,7 +107,7 @@ namespace tide
             map[name] = accessor->ToMethod();
         }
 
-        inline KMethodRef FindAccessor(std::string& name, AccessorMap& map)
+        inline TiMethodRef FindAccessor(std::string& name, AccessorMap& map)
         {
             // Lower-case the name so that all comparisons are case-insensitive.
             std::transform(name.begin(), name.end(), name.begin(), tolower);

@@ -80,7 +80,7 @@
 
 	window = inWindow;
 	logger = Logger::Get("UI.WebViewDelegate");
-	frameToGlobalObject = new std::map<WebFrame*, KObjectRef>();
+	frameToGlobalObject = new std::map<WebFrame*, TiObjectRef>();
 	host = Host::GetInstance();
 	WebView* webView = [window webView];
 
@@ -107,7 +107,7 @@
 	[webView setApplicationNameForUserAgent:appName];
 
 	// place our user agent string in the global so we can later use it
-	KObjectRef global = host->GetGlobalObject();
+	TiObjectRef global = host->GetGlobalObject();
 	NSString* fullUserAgent = [webView userAgentForURL:
 		[NSURL URLWithString:@"http://tidesdk.org"]];
 	global->SetString("userAgent", [fullUserAgent UTF8String]);
@@ -165,34 +165,34 @@
 #pragma mark -
 #pragma mark WebFrameLoadDelegate
 
-- (void)registerGlobalObject:(KObjectRef)globalObject forFrame:(WebFrame *)frame
+- (void)registerGlobalObject:(TiObjectRef)globalObject forFrame:(WebFrame *)frame
 {
 	(*frameToGlobalObject)[frame] = globalObject;
 }
 
-- (KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame
+- (TiObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame
 {
 	UserWindow* userWindow = [window userWindow];
 	userWindow->RegisterJSContext(context);
 
 	// Track that we've cleared this frame
 	JSObjectRef globalObject = JSContextGetGlobalObject(context);
-	KObjectRef globalKObject  = new KKJSObject(context, globalObject);
-	[self registerGlobalObject:globalKObject forFrame:frame];
+	TiObjectRef globalTiObject  = new KKJSObject(context, globalObject);
+	[self registerGlobalObject:globalTiObject forFrame:frame];
 
-	return globalKObject;
+	return globalTiObject;
 }
 
 - (BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame
 {
-	std::map<WebFrame*, KObjectRef>::iterator iter =
+	std::map<WebFrame*, TiObjectRef>::iterator iter =
 		frameToGlobalObject->find(frame);
 	return iter != frameToGlobalObject->end();
 }
 
-- (KObjectRef)globalObjectForFrame:(WebFrame*) frame
+- (TiObjectRef)globalObjectForFrame:(WebFrame*) frame
 {
-	std::map<WebFrame*, KObjectRef>::iterator iter =
+	std::map<WebFrame*, TiObjectRef>::iterator iter =
 		frameToGlobalObject->find(frame);
 	if (iter == frameToGlobalObject->end())
 		return 0;
@@ -202,7 +202,7 @@
 
 - (void)deregisterGlobalObjectForFrame:(WebFrame *)frame
 {
-	std::map<WebFrame*, KObjectRef>::iterator i =
+	std::map<WebFrame*, TiObjectRef>::iterator i =
 		frameToGlobalObject->find(frame);
 	frameToGlobalObject->erase(frame);
 }
@@ -239,7 +239,7 @@
 	}
 
 	JSGlobalContextRef context = [frame globalContext];
-	KObjectRef global = [self globalObjectForFrame:frame];
+	TiObjectRef global = [self globalObjectForFrame:frame];
 	if (global.isNull())
 	{
 		// The load was successful, but this page doesn't have a script tag

@@ -42,18 +42,18 @@ namespace tide
     //  in the global scope so they are available without a window
     namespace JavaScriptMethods
     {
-        void Bind(KObjectRef global)
+        void Bind(TiObjectRef global)
         {
-            global->SetMethod("setTimeout", new KFunctionPtrMethod(&SetTimeout));
-            global->SetMethod("clearTimeout", new KFunctionPtrMethod(&ClearTimeout));
-            global->SetMethod("setInterval", new KFunctionPtrMethod(&SetInterval));
-            global->SetMethod("clearInterval", new KFunctionPtrMethod(&ClearInterval));
+            global->SetMethod("setTimeout", new FunctionPtrMethod(&SetTimeout));
+            global->SetMethod("clearTimeout", new FunctionPtrMethod(&ClearTimeout));
+            global->SetMethod("setInterval", new FunctionPtrMethod(&SetInterval));
+            global->SetMethod("clearInterval", new FunctionPtrMethod(&ClearInterval));
         }
         
         class MainThreadCaller
         {
         public:
-            KMethodRef method;
+            TiMethodRef method;
             ValueList args;
             
             void OnTimer(Poco::Timer& timer)
@@ -69,7 +69,7 @@ namespace tide
         
         static KValueRef CreateTimer(const ValueList& args, bool interval)
         {
-            KMethodRef method = 0;
+            TiMethodRef method = 0;
             if (args.at(0)->IsMethod())
             {
                 method = args.GetMethod(0);
@@ -147,13 +147,13 @@ namespace tide
         KValueRef ClearTimeout(const ValueList& args)
         {
             args.VerifyException("clearTimeout", "i");
-            return Host::GetInstance()->RunOnMainThread(new KFunctionPtrMethod(&StopTimer), 0, args, false);
+            return Host::GetInstance()->RunOnMainThread(new FunctionPtrMethod(&StopTimer), 0, args, false);
         }
         
         KValueRef ClearInterval(const ValueList& args)
         {
             args.VerifyException("clearInterval", "i");
-            return Host::GetInstance()->RunOnMainThread(new KFunctionPtrMethod(&StopTimer), 0, args, false);
+            return Host::GetInstance()->RunOnMainThread(new FunctionPtrMethod(&StopTimer), 0, args, false);
         }
     }
 }

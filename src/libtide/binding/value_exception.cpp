@@ -66,7 +66,7 @@ namespace tide
         return ValueException(Value::NewString(text));
     }
 
-    ValueException ValueException::FromObject(KObjectRef o)
+    ValueException ValueException::FromObject(TiObjectRef o)
     {
         return ValueException(Value::NewObject(o));
     }

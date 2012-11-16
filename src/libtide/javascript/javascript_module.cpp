@@ -45,7 +45,7 @@ namespace tide
         JavaScriptModule::instance = this;
         host->AddModuleProvider(this);
         
-        KObjectRef global(Host::GetInstance()->GetGlobalObject());
+        TiObjectRef global(Host::GetInstance()->GetGlobalObject());
         JavaScriptMethods::Bind(global);
     }
 

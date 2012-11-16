@@ -52,7 +52,7 @@ namespace ti
         void SetMenu(AutoMenu newMenu);
         void SetContextMenu(AutoMenu);
         void SetIcon(std::string&);
-        AutoTrayItem AddTray(std::string&, KMethodRef cb);
+        AutoTrayItem AddTray(std::string&, TiMethodRef cb);
         long GetIdleTime();
         AutoMenu GetMenu();
         AutoMenu GetContextMenu();

@@ -37,7 +37,7 @@
 
 namespace tide {
 
-class KRubyHash : public KObject {
+class KRubyHash : public TiObject {
 public:
     KRubyHash(VALUE object);
     virtual ~KRubyHash();
@@ -54,7 +54,7 @@ public:
      *  @param other the object to test
      *  @returns true if objects have reference equality, false otherwise
      */
-    virtual bool Equals(KObjectRef);
+    virtual bool Equals(TiObjectRef);
 
 private:
     VALUE hash;

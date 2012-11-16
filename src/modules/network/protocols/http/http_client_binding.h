@@ -72,16 +72,16 @@ namespace ti
         std::string username;
         std::string password;
         Poco::Net::NameValueCollection requestCookies;
-        std::map<std::string, KObjectRef> responseCookies;
+        std::map<std::string, TiObjectRef> responseCookies;
         Poco::Net::NameValueCollection responseHeaders;
         Poco::Net::NameValueCollection nextResponseHeaders;
         std::vector<std::string> requestHeaders;
 
-        KMethodRef outputHandler;
-        KMethodRef ondatastream;
-        KMethodRef onreadystate;
-        KMethodRef onsendstream;
-        KMethodRef onload;
+        TiMethodRef outputHandler;
+        TiMethodRef ondatastream;
+        TiMethodRef onreadystate;
+        TiMethodRef onsendstream;
+        TiMethodRef onload;
 
         // This variables must be reset on each send()
         SharedPtr<Poco::Thread> thread;
@@ -101,7 +101,7 @@ namespace ti
 
         void run(); // Poco Thread implementation.
         bool BeginRequest(KValueRef sendData);
-        void BeginWithPostDataObject(KObjectRef object);
+        void BeginWithPostDataObject(TiObjectRef object);
         void SetRequestData();
         void ChangeState(int readyState);
         void GetResponseCookie(std::string cookieLine);

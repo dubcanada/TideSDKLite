@@ -64,7 +64,7 @@ namespace tide
     {
     }
 
-    static KObjectRef global_object;
+    static TiObjectRef global_object;
     static VALUE m_missing(int argc, VALUE* argv, VALUE self)
     {
         bool assignment = false;
@@ -104,7 +104,7 @@ namespace tide
         }
         else if (v->IsMethod()) // Method call
         {
-            rval = RubyUtils::GenericKMethodCall(v->ToMethod(), args);
+            rval = RubyUtils::GenericTiMethodCall(v->ToMethod(), args);
         }
         else // Plain old access
         {
@@ -113,7 +113,7 @@ namespace tide
         return rval;
     }
 
-    std::string RubyEvaluator::GetContextId(KObjectRef global)
+    std::string RubyEvaluator::GetContextId(TiObjectRef global)
     {
         static int nextId = 0;
         int cid = 0;
@@ -127,10 +127,10 @@ namespace tide
         {
             cid = idv->ToInt();
         }
-        return std::string("$windowProc") + KList::IntToChars(cid);
+        return std::string("$windowProc") + TiList::IntToChars(cid);
     }
 
-    VALUE RubyEvaluator::GetContext(KObjectRef global)
+    VALUE RubyEvaluator::GetContext(TiObjectRef global)
     {
         std::string theid = this->GetContextId(global);
         VALUE ctx = rb_gv_get(theid.c_str());
@@ -213,7 +213,7 @@ namespace tide
         result->SetValue(RubyUtils::ToTiValue(returnValue));
     }
 
-    void RubyEvaluator::ContextToGlobal(VALUE ctx, KObjectRef o)
+    void RubyEvaluator::ContextToGlobal(VALUE ctx, TiObjectRef o)
     {
         if (global_object.isNull())
             return;
@@ -230,7 +230,7 @@ namespace tide
                 continue;
 
             volatile VALUE rmeth = rb_funcall(ctx, rb_intern("method"), 1, meth_symbol);
-            KMethodRef method = new KRubyMethod(rmeth, meth_name);
+            TiMethodRef method = new KRubyMethod(rmeth, meth_name);
             o->SetMethod(meth_name, method);
         }
     }

@@ -111,7 +111,7 @@ namespace tide
         }
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
         static RubyModule *instance_;
         DISALLOW_EVIL_CONSTRUCTORS(RubyModule);
     };

@@ -142,8 +142,8 @@ namespace ti
 
         if (args.at(0)->IsObject())
         {
-            KObjectRef o = args.at(0)->ToObject();
-            o = KObject::Unwrap(o);
+            TiObjectRef o = args.at(0)->ToObject();
+            o = TiObject::Unwrap(o);
             newSubmenu = o.cast<Menu>();
         }
 
@@ -236,7 +236,7 @@ namespace ti
         result->SetObject(newItem);
     }
 
-    void MenuItem::HandleClickEvent(KObjectRef source)
+    void MenuItem::HandleClickEvent(TiObjectRef source)
     {
         if (this->FireEvent(Event::CLICKED)
             && this->IsCheck() && this->autoCheck)

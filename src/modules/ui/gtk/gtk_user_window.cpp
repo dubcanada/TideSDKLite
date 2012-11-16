@@ -637,7 +637,7 @@ namespace ti
     {
         JSGlobalContextRef context = webkit_web_frame_get_global_context(frame);
         JSObjectRef global_object = JSContextGetGlobalObject(context);
-        KObjectRef frame_global = new KKJSObject(context, global_object);
+        TiObjectRef frame_global = new KKJSObject(context, global_object);
 
         // If uri is NULL, then likely this is the result of a cancel,
         // so don't report it as a PageLoad
@@ -1246,7 +1246,7 @@ namespace ti
     struct FileChooserJob
     {
         GtkWindow* window;
-        KMethodRef callback;
+        TiMethodRef callback;
         FileChooserMode mode;
         bool multiple;
         std::string title;
@@ -1261,7 +1261,7 @@ namespace ti
         AutoPtr<VoidPtr> dataObject(args.at(0)->ToObject().cast<VoidPtr>());
         void* data = dataObject->GetPtr();
         FileChooserJob* job = static_cast<FileChooserJob*>(data);
-        KListRef results = new StaticBoundList();
+        TiListRef results = new StaticBoundList();
         static std::string openFilesDirectory("");
     
         GtkFileChooserAction action;
@@ -1356,7 +1356,7 @@ namespace ti
     }
     
 
-    void GtkUserWindow::OpenFileChooserDialog(KMethodRef callback,
+    void GtkUserWindow::OpenFileChooserDialog(TiMethodRef callback,
         bool multiple, std::string& title, std::string& path,
         std::string& defaultName, std::vector<std::string>& types,
         std::string& typesDescription)
@@ -1372,12 +1372,12 @@ namespace ti
         job->typesDescription = typesDescription;
         job->mode = SELECT_FILE;
 
-        KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+        TiMethodRef work(new tide::FunctionPtrMethod(&FileChooserWork));
         ValueList args(Value::NewObject(new VoidPtr(job)));
         RunOnMainThread(work, args, false);
     }
 
-    void GtkUserWindow::OpenFolderChooserDialog(KMethodRef callback,
+    void GtkUserWindow::OpenFolderChooserDialog(TiMethodRef callback,
         bool multiple, std::string& title, std::string& path,
         std::string& defaultName)
     {
@@ -1395,12 +1395,12 @@ namespace ti
         job->typesDescription = typesDescription;
         job->mode = SELECT_FOLDER;
 
-        KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+        TiMethodRef work(new tide::FunctionPtrMethod(&FileChooserWork));
         ValueList args(Value::NewObject(new VoidPtr(job)));
         RunOnMainThread(work, args, false);
     }
 
-    void GtkUserWindow::OpenSaveAsDialog(KMethodRef callback,
+    void GtkUserWindow::OpenSaveAsDialog(TiMethodRef callback,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription)
     {
@@ -1415,7 +1415,7 @@ namespace ti
         job->typesDescription = typesDescription;
         job->mode = SAVE_FILE;
 
-        KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+        TiMethodRef work(new tide::FunctionPtrMethod(&FileChooserWork));
         ValueList args(Value::NewObject(new VoidPtr(job)));
         RunOnMainThread(work, args, false);
     }

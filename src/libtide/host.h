@@ -57,7 +57,7 @@ namespace tide
         inline bool DebugModeEnabled() { return this->debug; }
         inline bool ProfilingEnabled() { return this->profile; }
         inline Poco::Timestamp::TimeDiff GetElapsedTime() { return timeStarted.elapsed(); }
-        inline KObjectRef GetGlobalObject() { return GlobalObject::GetInstance(); }
+        inline TiObjectRef GetGlobalObject() { return GlobalObject::GetInstance(); }
         /**
          * Get the host singleton.
          */
@@ -80,7 +80,7 @@ namespace tide
          * @param waitForCompletion block until method is finished (default: true)
          * @return the method's return value§
          */
-        KValueRef RunOnMainThread(KMethodRef method, const ValueList& args,
+        KValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
             bool waitForCompletion=true);
 
         /*
@@ -90,7 +90,7 @@ namespace tide
          * @param waitForCompletion block until method is finished (default: true)
          * @return the method's return value§
          */
-        KValueRef RunOnMainThread(KMethodRef method, KObjectRef thisObject,
+        KValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
             const ValueList& args, bool waitForCompletion=true);
 
         /**
@@ -203,9 +203,9 @@ namespace tide
         void ExitImpl(int exitcode);
     };
 
-    TIDE_API KValueRef RunOnMainThread(KMethodRef method, const ValueList& args,
+    TIDE_API KValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
         bool waitForCompletion=true);
-    TIDE_API KValueRef RunOnMainThread(KMethodRef method, KObjectRef thisObject,
+    TIDE_API KValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
         const ValueList& args, bool waitForCompletion=true);
     TIDE_API bool IsMainThread();
 }

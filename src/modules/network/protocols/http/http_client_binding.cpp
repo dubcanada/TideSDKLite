@@ -189,8 +189,8 @@ namespace ti
         }
         else if (args.at(0)->IsObject())
         {
-            KObjectRef handlerObject(args.at(0)->ToObject());
-            KMethodRef writeMethod(handlerObject->GetMethod("write", 0));
+            TiObjectRef handlerObject(args.at(0)->ToObject());
+            TiMethodRef writeMethod(handlerObject->GetMethod("write", 0));
             if (writeMethod.isNull())
             {
                 GetLogger()->Error("Unsupported object type as output handler:"
@@ -247,12 +247,12 @@ namespace ti
 
     void HTTPClientBinding::GetResponseHeaders(const ValueList& args, KValueRef result)
     {
-        KListRef headers(new StaticBoundList());
+        TiListRef headers(new StaticBoundList());
 
         NameValueCollection::ConstIterator i = this->responseHeaders.begin();
         while (i != this->responseHeaders.end())
         {
-            KListRef headerEntry(new StaticBoundList());
+            TiListRef headerEntry(new StaticBoundList());
             headerEntry->Append(Value::NewString(i->first));
             headerEntry->Append(Value::NewString(i->second));
             headers->Append(Value::NewList(headerEntry));
@@ -345,18 +345,18 @@ namespace ti
 
         // We need this binding to stay alive at least until we have
         // finished this thread. So save 'this' in an AutoPtr.
-        KObjectRef save(this, true);
+        TiObjectRef save(this, true);
         this->ExecuteRequest();
 
         END_TIDE_THREAD;
     }
 
-    static std::string ObjectToFilename(KObjectRef dataObject)
+    static std::string ObjectToFilename(TiObjectRef dataObject)
     {
         // Now try to treat this object like as a file-like object with
         // a .read() method which returns a Bytes. If this fails we'll
         // return NULL.
-        KMethodRef nativePathMethod(dataObject->GetMethod("nativePath", 0));
+        TiMethodRef nativePathMethod(dataObject->GetMethod("nativePath", 0));
         if (nativePathMethod.isNull())
             return "data";
 
@@ -408,7 +408,7 @@ namespace ti
         }
     }
 
-    void HTTPClientBinding::BeginWithPostDataObject(KObjectRef object)
+    void HTTPClientBinding::BeginWithPostDataObject(TiObjectRef object)
     {
         struct curl_httppost* last = 0;
 
@@ -419,7 +419,7 @@ namespace ti
             KValueRef value(object->Get(propertyName->c_str()));
             if (value->IsList())
             {
-                KListRef list(value->ToList());
+                TiListRef list(value->ToList());
                 for (unsigned int i = 0; i < list->Size(); i++)
                     this->AddScalarValueToCurlForm(propertyName, list->At(i), &last);
             }

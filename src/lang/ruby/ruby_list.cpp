@@ -38,7 +38,7 @@
 namespace tide
 {
     KRubyList::KRubyList(VALUE list) :
-        KList("Ruby.KRubyList"),
+        TiList("Ruby.KRubyList"),
         list(list),
         object(new KRubyObject(list))
     {
@@ -79,9 +79,9 @@ namespace tide
 
     void KRubyList::Set(const char* name, KValueRef value)
     {
-        if (KList::IsInt(name))
+        if (TiList::IsInt(name))
         {
-            this->SetAt(KList::ToIndex(name), value);
+            this->SetAt(TiList::ToIndex(name), value);
         }
         else
         {
@@ -100,9 +100,9 @@ namespace tide
 
     KValueRef KRubyList::Get(const char* name)
     {
-        if (KList::IsInt(name))
+        if (TiList::IsInt(name))
         {
-            return this->At(KList::ToIndex(name));
+            return this->At(TiList::ToIndex(name));
         }
         else
         {
@@ -115,7 +115,7 @@ namespace tide
         SharedStringList property_names = object->GetPropertyNames();
         for (size_t i = 0; i < this->Size(); i++)
         {
-            std::string name = KList::IntToChars(i);
+            std::string name = TiList::IntToChars(i);
             property_names->push_back(new std::string(name));
         }
 
@@ -132,7 +132,7 @@ namespace tide
         return this->object->DisplayString(levels);
     }
 
-    bool KRubyList::Equals(KObjectRef other)
+    bool KRubyList::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyList> listOther = other.cast<KRubyList>();
         if (listOther.isNull())

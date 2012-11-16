@@ -37,7 +37,7 @@
 namespace tide
 {
     KPythonDict::KPythonDict(PyObject *obj) :
-        KObject("Python,KPythonDict"),
+        TiObject("Python,KPythonDict"),
         object(obj)
     {
         PyLockGIL lock;
@@ -89,7 +89,7 @@ namespace tide
         }
     }
 
-    bool KPythonDict::Equals(KObjectRef other)
+    bool KPythonDict::Equals(TiObjectRef other)
     {
         AutoPtr<KPythonDict> pyOther = other.cast<KPythonDict>();
 

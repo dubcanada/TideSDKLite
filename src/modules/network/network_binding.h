@@ -56,7 +56,7 @@ namespace ti
 
     private:
         Host* host;
-        KObjectRef global;
+        TiObjectRef global;
 
         AutoPtr<HostBinding> GetHostBinding(std::string host);
 

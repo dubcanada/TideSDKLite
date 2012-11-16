@@ -37,7 +37,7 @@
 namespace tide
 {
     KPythonMethod::KPythonMethod(PyObject *method) :
-        KMethod("Python.KMethod"),
+        TiMethod("Python.TiMethod"),
         method(method),
         object(new KPythonObject(method))
     {
@@ -103,7 +103,7 @@ namespace tide
         return this->object->ToPython();
     }
 
-    bool KPythonMethod::Equals(KObjectRef other)
+    bool KPythonMethod::Equals(TiObjectRef other)
     {
         AutoPtr<KPythonMethod> pyOther = other.cast<KPythonMethod>();
 

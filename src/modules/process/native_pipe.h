@@ -48,7 +48,7 @@ namespace ti
         NativePipe(bool isReader);
         ~NativePipe();
         void StartMonitor();
-        void StartMonitor(KMethodRef readCallback);
+        void StartMonitor(TiMethodRef readCallback);
         virtual void StopMonitors();
         virtual int Write(BytesRef bytes);
         void PollForWriteIteration();
@@ -56,17 +56,17 @@ namespace ti
         virtual void CloseNative();
         virtual void CloseNativeRead() = 0;
         virtual void CloseNativeWrite() = 0;
-        inline void SetReadCallback(KMethodRef cb) { this->readCallback = cb; }
+        inline void SetReadCallback(TiMethodRef cb) { this->readCallback = cb; }
 
     protected:
         bool closed;
         bool isReader;
-        std::vector<KObjectRef> attachedObjects;
+        std::vector<TiObjectRef> attachedObjects;
         Poco::RunnableAdapter<NativePipe>* writeThreadAdapter;
         Poco::RunnableAdapter<NativePipe>* readThreadAdapter;
         Poco::Thread writeThread;
         Poco::Thread readThread;
-        KMethodRef readCallback;
+        TiMethodRef readCallback;
         Logger* logger;
         Poco::Mutex buffersMutex;
         std::queue<BytesRef> buffers;

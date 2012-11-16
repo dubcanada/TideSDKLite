@@ -54,9 +54,9 @@ namespace tide
             DOUBLE = 2, /**< double */
             BOOL = 3, /**< boolean */
             STRING = 4, /**< const char* */
-            LIST = 5, /**< KListRef */
-            OBJECT = 6, /**< KObjectRef */
-            METHOD = 7, /**< KMethodRef */
+            LIST = 5, /**< TiListRef */
+            OBJECT = 6, /**< TiObjectRef */
+            METHOD = 7, /**< TiMethodRef */
             NULLV = 0, /**< NULL */
             UNDEFINED = -1 /**< undefined */
         };
@@ -114,19 +114,19 @@ namespace tide
          * Construct a new \link #Value::Type::LIST list\endlink value.
          * @param value The list value
          */
-        static KValueRef NewList(KListRef value);
+        static KValueRef NewList(TiListRef value);
 
         /**
          * Construct a new \link #Value::Type::OBJECT object\endlink value.
          * @param value The object value
          */
-        static KValueRef NewObject(KObjectRef value);
+        static KValueRef NewObject(TiObjectRef value);
 
         /**
          * Construct a new \link #Value::Type::METHOD method\endlink value.
          * @param value The method value
          */
-        static KValueRef NewMethod(KMethodRef value);
+        static KValueRef NewMethod(TiMethodRef value);
 
         virtual ~Value();
 
@@ -212,19 +212,19 @@ namespace tide
         const char* ToString() const;
 
         /**
-         * @return the value as a \link #Value::Type::LIST KListRef\endlink
+         * @return the value as a \link #Value::Type::LIST TiListRef\endlink
          */
-        KListRef ToList() const;
+        TiListRef ToList() const;
 
         /**
-         * @return the value as a \link #Value::Type::OBJECT KObjectRef\endlink
+         * @return the value as a \link #Value::Type::OBJECT TiObjectRef\endlink
          */
-        KObjectRef ToObject() const;
+        TiObjectRef ToObject() const;
 
         /**
-         * @return the value as a \link #Value::Type::METHOD KMethodRef\endlink
+         * @return the value as a \link #Value::Type::METHOD TiMethodRef\endlink
          */
-        KMethodRef ToMethod() const;
+        TiMethodRef ToMethod() const;
 
         /**
          * @return a string representation of this Value's type
@@ -289,19 +289,19 @@ namespace tide
          * Change the internal value of this Value to an \link #Value::Type::LIST list\endlink
          * @param value the list value
          */
-        void SetList(KListRef value);
+        void SetList(TiListRef value);
 
         /**
          * Change the internal value of this Value to an \link #Value::Type::OBJECT object\endlink
          * @param value the object value
          */
-        void SetObject(KObjectRef value);
+        void SetObject(TiObjectRef value);
 
         /**
          * Change the internal value of this Value to an \link #Value::Type::METHOD method\endlink
          * @param value the method value
          */
-        void SetMethod(KMethodRef value);
+        void SetMethod(TiMethodRef value);
 
         /**
          * Change the internal value of this Value to \link #Value::Type::NULL NULL\endlink
@@ -323,7 +323,7 @@ namespace tide
         double numberValue;
         bool boolValue;
         char* stringValue;
-        KObjectRef objectValue;
+        TiObjectRef objectValue;
 
         void reset();
 

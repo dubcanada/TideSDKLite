@@ -455,18 +455,18 @@ namespace ti
                 std::vector<std::string> files;
                 dir.list(files);
 
-                KListRef fileList = new StaticBoundList();
+                TiListRef fileList = new StaticBoundList();
                 for(size_t i = 0; i < files.size(); i++)
                 {
                     std::string entry = files.at(i);
                     // store it as the fullpath
                     std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                     ti::File* file = new ti::File(filename);
-                    KValueRef value = Value::NewObject((KObjectRef) file);
+                    KValueRef value = Value::NewObject((TiObjectRef) file);
                     fileList->Append(value);
                 }
 
-                KListRef list = fileList;
+                TiListRef list = fileList;
                 result->SetList(list);
             }
             else

@@ -63,7 +63,7 @@
 
 namespace ti
 {
-    CodecBinding::CodecBinding(KObjectRef global) :
+    CodecBinding::CodecBinding(TiObjectRef global) :
         StaticBoundObject("Codec"),
         global(global)
     {
@@ -434,7 +434,7 @@ namespace ti
             throw ValueException::FromFormat("Error: Directory %s doesn't exist in createZip", directory.c_str());
         }
         
-        KMethodRef zipAsyncMethod = new KFunctionPtrMethod(&CodecBinding::CreateZipAsync);
+        TiMethodRef zipAsyncMethod = new FunctionPtrMethod(&CodecBinding::CreateZipAsync);
         ValueList zipArgs;
         zipArgs.push_back(Value::NewString(directory));
         zipArgs.push_back(Value::NewString(zipFile));
@@ -467,7 +467,7 @@ namespace ti
             throw ValueException::FromString("Error: Destination directory name in extractZip is empty");
         }
 
-        KMethodRef extractAsyncMethod = new KFunctionPtrMethod(&CodecBinding::ExtractZipAsync);
+        TiMethodRef extractAsyncMethod = new FunctionPtrMethod(&CodecBinding::ExtractZipAsync);
         ValueList extractArgs;
         extractArgs.push_back(Value::NewString(zipFile));
         extractArgs.push_back(Value::NewString(directory));
@@ -490,7 +490,7 @@ namespace ti
         std::string directory = args.GetString(0);
         std::string zipFile = args.GetString(1);
         AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-        KMethodRef callback = 0;
+        TiMethodRef callback = 0;
         if (args.size() > 3)
         {
             callback = args.GetMethod(3);
@@ -531,7 +531,7 @@ namespace ti
         std::string zipFile = args.GetString(0);
         std::string directory = args.GetString(1);
         AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-        KMethodRef callback = 0;
+        TiMethodRef callback = 0;
         if (args.size() > 3)
         {
             callback = args.GetMethod(3);

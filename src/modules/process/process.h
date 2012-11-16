@@ -50,32 +50,32 @@ namespace ti
         Process();
         virtual ~Process();
         static AutoProcess CreateProcess();
-        virtual KObjectRef CloneEnvironment();
+        virtual TiObjectRef CloneEnvironment();
         virtual void LaunchAsync();
         virtual BytesRef LaunchSync();
         virtual void ExitMonitorAsync();
         virtual void ExitMonitorSync();
         std::string ArgumentsToString();
-        void SetOnRead(KMethodRef method);
-        void SetOnExit(KMethodRef onExit);
+        void SetOnRead(TiMethodRef method);
+        void SetOnExit(TiMethodRef onExit);
         void Exited(bool async);
         void ExitCallback(const ValueList& args, KValueRef result);
         virtual KValueRef Call(const ValueList& args);
-        static KObjectRef GetCurrentEnvironment();
+        static TiObjectRef GetCurrentEnvironment();
 
         void SetStdin(AutoPipe stdinPipe);
         void SetStdout(AutoPipe stdoutPipe);
         void SetStderr(AutoPipe stderrPipe);
         inline bool IsRunning() { return running; }
         inline void SetPID(int pid) { this->pid = pid; }
-        virtual inline void SetArguments(KListRef args) { this->args = args; }
-        inline void SetEnvironment(KObjectRef env) { this->environment = env; }
+        virtual inline void SetArguments(TiListRef args) { this->args = args; }
+        inline void SetEnvironment(TiObjectRef env) { this->environment = env; }
         inline int GetPID() { return this->pid; }
         inline AutoPipe GetStdin() { return this->stdinPipe; }
         inline AutoPipe GetStdout() { return this->stdoutPipe; }
         inline AutoPipe GetStderr() { return this->stderrPipe; }
-        inline KListRef GetArgs() { return this->args; };
-        inline KObjectRef GetEnvironment() { return this->environment; }
+        inline TiListRef GetArgs() { return this->args; };
+        inline TiObjectRef GetEnvironment() { return this->environment; }
         void SetEnvironment(const char *name, const char *value)
         {
             environment->SetString(name, value);
@@ -117,15 +117,15 @@ namespace ti
         AutoPipe stdoutPipe;
         AutoPipe stderrPipe;
         AutoPipe stdinPipe;
-        KObjectRef environment;
-        KListRef args;
+        TiObjectRef environment;
+        TiListRef args;
         int pid;
         KValueRef exitCode;
-        KMethodRef onRead;
-        KMethodRef onExit;
+        TiMethodRef onRead;
+        TiMethodRef onExit;
         Poco::RunnableAdapter<Process>* exitMonitorAdapter;
         Poco::Thread exitMonitorThread;
-        KMethodRef exitCallback;
+        TiMethodRef exitCallback;
         bool running;
     };
 }

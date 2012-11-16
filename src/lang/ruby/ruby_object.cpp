@@ -37,7 +37,7 @@
 namespace tide
 {
     KRubyObject::KRubyObject(VALUE object) :
-        KObject("Ruby.KRubyObject"),
+        TiObject("Ruby.KRubyObject"),
         object(object)
     {
         rb_gc_register_address(&object);
@@ -138,7 +138,7 @@ namespace tide
         return RubyUtils::ToTiValue(ruby_value);
     }
 
-    bool KRubyObject::Equals(KObjectRef other)
+    bool KRubyObject::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyObject> rubyOther = other.cast<KRubyObject>();
         if (rubyOther.isNull())

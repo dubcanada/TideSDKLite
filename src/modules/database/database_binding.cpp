@@ -246,7 +246,7 @@ namespace ti
                     KValueRef anarg = args.at(c);
                     if (anarg->IsList())
                     {
-                        KListRef list = anarg->ToList();
+                        TiListRef list = anarg->ToList();
                         for (size_t a=0;a<list->Size();a++)
                         {
                             KValueRef arg = list->At(a);
@@ -278,12 +278,12 @@ namespace ti
             if (count > 0)
             {
                 RecordSet rs(select);
-                KObjectRef r = new ResultSetBinding(rs);
+                TiObjectRef r = new ResultSetBinding(rs);
                 result->SetObject(r);
             }
             else
             {
-                KObjectRef r = new ResultSetBinding();
+                TiObjectRef r = new ResultSetBinding();
                 result->SetObject(r);
             }
         }

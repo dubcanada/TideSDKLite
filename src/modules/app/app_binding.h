@@ -15,12 +15,12 @@ namespace ti
 	class AppBinding : public AccessorObject
 	{
 	public:
-		AppBinding(Host *host,KObjectRef);
+		AppBinding(Host *host,TiObjectRef);
 		virtual ~AppBinding();
 
 	private:
 		Host* host;
-		KObjectRef global;
+		TiObjectRef global;
 
 		void GetID(const ValueList& args, KValueRef result);
 		void GetName(const ValueList& args, KValueRef result);

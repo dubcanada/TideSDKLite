@@ -68,7 +68,7 @@ namespace ti
          */
         this->SetMethod("openFile", &DatabaseModule::OpenFile);
 
-        KObjectRef autoThis(this, true);
+        TiObjectRef autoThis(this, true);
         host->GetGlobalObject()->SetObject("Database", autoThis);
     }
 
@@ -97,7 +97,7 @@ namespace ti
             const char* error = "openFile requires an object with a "
                 "toString method returning a String";
 
-            KObjectRef o(args.GetObject(0));
+            TiObjectRef o(args.GetObject(0));
             if (!o->Get("toString")->IsMethod())
                 throw ValueException::FromString(error);
 

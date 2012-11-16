@@ -53,7 +53,7 @@ namespace ti
         void CreateProcess(const ValueList& args, KValueRef result);
         void CreatePipe(const ValueList& args, KValueRef result);
         void GetCurrentProcess(const ValueList& args, KValueRef result);
-        void ExtendArgs(KListRef dest, KListRef args);
+        void ExtendArgs(TiListRef dest, TiListRef args);
     };
 }
 

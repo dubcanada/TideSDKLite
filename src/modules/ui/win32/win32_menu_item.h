@@ -54,7 +54,7 @@ namespace ti
         void SetLabelImpl(std::string newLabel);
         void SetIconImpl(std::string newIconPath);
         void SetStateImpl(bool newState);
-        void SetCallbackImpl(KMethodRef callback);
+        void SetCallbackImpl(TiMethodRef callback);
         void SetSubmenuImpl(AutoMenu newSubmenu);
         void SetEnabledImpl(bool enabled);
 

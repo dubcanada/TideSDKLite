@@ -38,11 +38,11 @@
 #include <tide/tide.h>
 
 using tide::Value;
-using tide::KObject;
+using tide::TiObject;
 using tide::StaticBoundObject;
-using tide::KMethod;
+using tide::TiMethod;
 using tide::StaticBoundMethod;
-using tide::KList;
+using tide::TiList;
 using tide::StaticBoundList;
 
 #include <gdk/gdk.h>

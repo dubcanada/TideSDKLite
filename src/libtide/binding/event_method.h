@@ -37,41 +37,41 @@
 
 namespace tide
 {
-    class TIDE_API EventMethod : public EventObject, public KMethod
+    class TIDE_API EventMethod : public EventObject, public TiMethod
     {
         public:
         EventMethod(const char* name = "") :
             EventObject(name),
             count(1) {}
 
-        // @see KMethod::Call
+        // @see TiMethod::Call
         virtual KValueRef Call(const ValueList& args) = 0;
 
-        // @see KMethod::Set
+        // @see TiMethod::Set
         virtual void Set(const char *name, KValueRef value)
         {
             EventObject::Set(name, value);
         }
 
-        // @see KMethod::Get
+        // @see TiMethod::Get
         virtual KValueRef Get(const char *name)
         {
             return EventObject::Get(name);
         }
 
-        // @see KMethod::GetPropertyNames
+        // @see TiMethod::GetPropertyNames
         virtual SharedStringList GetPropertyNames()
         {
             return EventObject::GetPropertyNames();
         }
 
-        // @see KMethod::HasProperty
+        // @see TiMethod::HasProperty
         virtual bool HasProperty(const char *name)
         {
             return EventObject::HasProperty(name);
         }
         
-        // @see KMethod::DisplayString
+        // @see TiMethod::DisplayString
         SharedString DisplayString(int levels)
         {
             return EventObject::DisplayString(levels);
@@ -86,7 +86,7 @@ namespace tide
         {
             MethodCallback* callback = NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(this), method);
 
-            KMethodRef bound_method = new StaticBoundMethod(callback);
+            TiMethodRef bound_method = new StaticBoundMethod(callback);
             KValueRef method_value = Value::NewMethod(bound_method);
             EventObject::Set(name, method_value);
         }

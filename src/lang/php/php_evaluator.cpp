@@ -92,14 +92,14 @@ namespace tide
         }
     }
 
-    static string GetContextId(KObjectRef global)
+    static string GetContextId(TiObjectRef global)
     {
         string contextId(global->GetString("__php_module_id__"));
         if (contextId.empty())
         {
             static int nextId = 0;
             contextId.append("__kroll__namespace__");
-            contextId.append(KList::IntToChars(++nextId));
+            contextId.append(TiList::IntToChars(++nextId));
             global->SetString("__php_module_id__", contextId);
         }
 
@@ -117,7 +117,7 @@ namespace tide
         string mimeType(args.GetString(0));
         string name(args.GetString(1));
         string code(args.GetString(2));
-        KObjectRef windowGlobal(args.GetObject(3));
+        TiObjectRef windowGlobal(args.GetObject(3));
         KValueRef kv(Value::Undefined);
 
         // Contexts must be the same for runs with the same global object.
@@ -142,7 +142,7 @@ namespace tide
         // at parse/compile time -- see: main/main.c line 969
         PG(during_request_startup) = 0;
 
-        KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+        TiObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
         PHPUtils::SwapGlobalObject(windowGlobal, &EG(symbol_table) TSRMLS_CC);
 
         zend_first_try
@@ -202,7 +202,7 @@ namespace tide
         Poco::URI uri(url);
         string path(URLUtils::URLToPath(url));
 
-        KObjectRef scope = args.GetObject(1);
+        TiObjectRef scope = args.GetObject(1);
         TSRMLS_FETCH();
 
         PHPModule::SetBuffering(true);
@@ -243,7 +243,7 @@ namespace tide
         zend_end_try();
 
         string output(PHPModule::GetBuffer().str());
-        KObjectRef o = new StaticBoundObject();
+        TiObjectRef o = new StaticBoundObject();
         o->SetObject("data", new Bytes(output));
         o->SetString("mimeType", PHPModule::GetMimeType().c_str());
         result->SetObject(o);

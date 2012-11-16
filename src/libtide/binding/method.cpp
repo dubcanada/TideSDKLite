@@ -39,24 +39,24 @@
 namespace tide
 {
 
-    SharedString KMethod::DisplayString(int levels)
+    SharedString TiMethod::DisplayString(int levels)
     {
         std::ostringstream oss;
         oss << "<" << this->GetType() << " at " << this << ">";
         return new std::string(oss.str());
     }
 
-    KValueRef KMethod::Call(KObjectRef thisObject, const ValueList& args)
+    KValueRef TiMethod::Call(TiObjectRef thisObject, const ValueList& args)
     {
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call()
+    KValueRef TiMethod::Call()
     {
         return this->Call(ValueList());
     }
 
-    KValueRef KMethod::Call(const char* one, KValueRef two, KValueRef three,
+    KValueRef TiMethod::Call(const char* one, KValueRef two, KValueRef three,
         KValueRef four)
     {
         ValueList args;
@@ -67,14 +67,14 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(KValueRef one)
+    KValueRef TiMethod::Call(KValueRef one)
     {
         ValueList args;
         args.push_back(one);
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(KValueRef one, KValueRef two)
+    KValueRef TiMethod::Call(KValueRef one, KValueRef two)
     {
         ValueList args;
         args.push_back(one);
@@ -82,7 +82,7 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(KValueRef one, KValueRef two, KValueRef three)
+    KValueRef TiMethod::Call(KValueRef one, KValueRef two, KValueRef three)
     {
         ValueList args;
         args.push_back(one);
@@ -91,14 +91,14 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(const char* one)
+    KValueRef TiMethod::Call(const char* one)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(const char* one, KValueRef two)
+    KValueRef TiMethod::Call(const char* one, KValueRef two)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
@@ -106,7 +106,7 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef KMethod::Call(const char* one, KValueRef two, KValueRef three)
+    KValueRef TiMethod::Call(const char* one, KValueRef two, KValueRef three)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
@@ -115,7 +115,7 @@ namespace tide
         return this->Call(args);
     }
 
-    KMethodRef KMethod::Unwrap(KMethodRef o)
+    TiMethodRef TiMethod::Unwrap(TiMethodRef o)
     {
         AutoPtr<ProfiledBoundMethod> pmeth = o.cast<ProfiledBoundMethod>();
         if (pmeth.isNull())

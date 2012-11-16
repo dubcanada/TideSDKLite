@@ -51,12 +51,12 @@ namespace ti
         Pipe(const char *type = "Process.Pipe");
         virtual ~Pipe();
         virtual int Write(BytesRef data);
-        virtual void CallWrite(KObjectRef target, BytesRef data);
+        virtual void CallWrite(TiObjectRef target, BytesRef data);
         virtual void Close();
-        virtual void CallClose(KObjectRef target);
+        virtual void CallClose(TiObjectRef target);
         virtual void Flush();
-        void Attach(KObjectRef object);
-        void Detach(KObjectRef object);
+        void Attach(TiObjectRef object);
+        void Detach(TiObjectRef object);
         bool IsAttached();
         AutoPipe Clone();
         std::vector<BytesRef> readData;
@@ -72,7 +72,7 @@ namespace ti
         void _Write(const ValueList& args, KValueRef result);
         void _Flush(const ValueList& args, KValueRef result);
         Poco::Mutex attachedMutex;
-        std::vector<KObjectRef> attachedObjects;
+        std::vector<TiObjectRef> attachedObjects;
         Logger *logger;
     };
 }

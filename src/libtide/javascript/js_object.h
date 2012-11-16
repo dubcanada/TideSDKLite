@@ -43,7 +43,7 @@
 
 namespace tide
 {
-    class TIDE_API KKJSObject : public KObject
+    class TIDE_API KKJSObject : public TiObject
     {
         public:
         KKJSObject(JSContextRef context, JSObjectRef js_object);
@@ -53,7 +53,7 @@ namespace tide
         virtual KValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual bool HasProperty(const char* name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
 
         bool SameContextGroup(JSContextRef c);
         JSObjectRef GetJSObject();

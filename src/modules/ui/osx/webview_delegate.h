@@ -50,15 +50,15 @@
     Host* host;
     WebInspector* inspector;
     BOOL initialDisplay;
-    std::map<WebFrame*, KObjectRef>* frameToGlobalObject;
+    std::map<WebFrame*, TiObjectRef>* frameToGlobalObject;
     Logger* logger;
 }
 -(id)initWithWindow:(NativeWindow*)window;
 -(void)setupPreferences;
--(void)registerGlobalObject:(KObjectRef) globalObject forFrame:(WebFrame *)frame;
--(KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
+-(void)registerGlobalObject:(TiObjectRef) globalObject forFrame:(WebFrame *)frame;
+-(TiObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
 -(BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame;
--(KObjectRef)globalObjectForFrame:(WebFrame*) frame;
+-(TiObjectRef)globalObjectForFrame:(WebFrame*) frame;
 -(void)deregisterGlobalObjectForFrame:(WebFrame *)frame;
 @end
 #endif
@@ -72,15 +72,15 @@
     NativeWindow* window;
     Host* host;
     BOOL initialDisplay;
-    std::map<WebFrame*, KObjectRef>* frameToGlobalObject;
+    std::map<WebFrame*, TiObjectRef>* frameToGlobalObject;
     Logger* logger;
 }
 -(id)initWithWindow:(NativeWindow*)window;
 -(void)setupPreferences;
--(void)registerGlobalObject:(KObjectRef) globalObject forFrame:(WebFrame *)frame;
--(KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
+-(void)registerGlobalObject:(TiObjectRef) globalObject forFrame:(WebFrame *)frame;
+-(TiObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
 -(BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame;
--(KObjectRef)globalObjectForFrame:(WebFrame*) frame;
+-(TiObjectRef)globalObjectForFrame:(WebFrame*) frame;
 -(void)deregisterGlobalObjectForFrame:(WebFrame *)frame;
 @end
 #endif

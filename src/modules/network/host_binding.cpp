@@ -124,7 +124,7 @@ namespace ti
     }
     void HostBinding::GetAliases(const ValueList& args, KValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<std::string> aliases = this->host.aliases();
         std::vector<std::string>::iterator iter = aliases.begin();
         while (iter!=aliases.end())
@@ -136,13 +136,13 @@ namespace ti
     }
     void HostBinding::GetAddresses(const ValueList& args, KValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<IPAddress> addresses = this->host.addresses();
         std::vector<IPAddress>::iterator iter = addresses.begin();
         while (iter!=addresses.end())
         {
             IPAddress address = (*iter++);
-            KObjectRef obj = new IPAddressBinding(address);
+            TiObjectRef obj = new IPAddressBinding(address);
             KValueRef addr = Value::NewObject(obj);
             list->Append(addr);
         }

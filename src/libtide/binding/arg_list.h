@@ -46,7 +46,7 @@ namespace tide
      * An argument list
      *
      * This class is only used for argument lists. For a list implementation to be
-     *  used as a value in the binding layer, take a look at KList and StaticBoundList.
+     *  used as a value in the binding layer, take a look at TiList and StaticBoundList.
      */
     class TIDE_API ArgList
     {
@@ -74,9 +74,9 @@ namespace tide
         double GetNumber(size_t index, double defaultValue=0.0) const;
         bool GetBool(size_t index, bool defaultValue=false) const;
         std::string GetString(size_t index, std::string defaultValue="") const;
-        KObjectRef GetObject(size_t index, KObjectRef defaultValue=NULL) const;
-        KMethodRef GetMethod(size_t index, KMethodRef defaultValue=NULL) const;
-        KListRef GetList(size_t index, KListRef defaultValue=NULL) const;
+        TiObjectRef GetObject(size_t index, TiObjectRef defaultValue=NULL) const;
+        TiMethodRef GetMethod(size_t index, TiMethodRef defaultValue=NULL) const;
+        TiListRef GetList(size_t index, TiListRef defaultValue=NULL) const;
 
         private:
         SharedPtr<std::vector<KValueRef> > args;

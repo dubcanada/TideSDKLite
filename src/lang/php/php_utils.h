@@ -43,11 +43,11 @@ namespace tide
     {
         zend_object std;
         KValueRef kvalue;
-    } PHPKObject;
-    extern zend_class_entry *PHPKObjectClassEntry;
-    extern zend_class_entry *PHPKMethodClassEntry;
-    extern zend_class_entry *PHPKListClassEntry;
-    extern zend_object_handlers PHPKObjectHandlers;
+    } PHPTiObject;
+    extern zend_class_entry *PHPTiObjectClassEntry;
+    extern zend_class_entry *PHPTiMethodClassEntry;
+    extern zend_class_entry *PHPTiListClassEntry;
+    extern zend_object_handlers PHPTiObjectHandlers;
 
     namespace PHPUtils
     {
@@ -55,26 +55,26 @@ namespace tide
         zval* ToPHPValue(KValueRef value);
         void ToPHPValue(KValueRef value, zval** returnValue);
         std::string ZvalToPropertyName(zval* property);
-        KListRef PHPArrayToKList(zval* array TSRMLS_DC,
+        TiListRef PHPArrayToTiList(zval* array TSRMLS_DC,
             bool ignoreGlobals=false);
-        KListRef PHPHashTableToKList(HashTable* hashtable TSRMLS_DC,
+        TiListRef PHPHashTableToTiList(HashTable* hashtable TSRMLS_DC,
              bool ignoreGlobals=false);
         SharedStringList GetHashKeys(HashTable* hash);
-        void KObjectToKPHPObject(KValueRef objectValue, zval** returnValue);
-        void KMethodToKPHPMethod(KValueRef methodValue, zval** returnValue);
-        void KListToKPHPArray(KValueRef listValue, zval** returnValue);
+        void TiObjectToKPHPObject(KValueRef objectValue, zval** returnValue);
+        void TiMethodToKPHPMethod(KValueRef methodValue, zval** returnValue);
+        void TiListToKPHPArray(KValueRef listValue, zval** returnValue);
         void InitializePHPTideClasses();
         bool PHPObjectsEqual(zval* val1, zval* val2 TSRMLS_DC);
         int HashZvalCompareCallback(const zval** one, const zval** two TSRMLS_DC);
         SharedStringList GetClassMethods(zend_class_entry* ce TSRMLS_DC);
-        KListRef GetClassVars(zend_class_entry* ce TSRMLS_DC);
+        TiListRef GetClassVars(zend_class_entry* ce TSRMLS_DC);
         zend_function* GetGlobalFunction(const char *name TSRMLS_DC);
         void GenerateCaseMap(string code TSRMLS_DC);
 
-        KObjectRef GetCurrentGlobalObject();
-        void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable, KObjectRef global TSRMLS_DC);
-        void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable, KObjectRef global TSRMLS_DC);
-        void SwapGlobalObject(KObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC);
+        TiObjectRef GetCurrentGlobalObject();
+        void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable, TiObjectRef global TSRMLS_DC);
+        void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable, TiObjectRef global TSRMLS_DC);
+        void SwapGlobalObject(TiObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC);
     }
 }
 

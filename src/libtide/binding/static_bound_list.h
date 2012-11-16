@@ -38,13 +38,13 @@
 namespace tide
 {
 
-    class TIDE_API StaticBoundList : public KList
+    class TIDE_API StaticBoundList : public TiList
     {
     public:
 
         StaticBoundList(const char *type = "StaticBoundList");
         virtual ~StaticBoundList();
-        static KListRef FromStringVector(std::vector<std::string>&);
+        static TiListRef FromStringVector(std::vector<std::string>&);
 
         /**
          * Append a value to this list

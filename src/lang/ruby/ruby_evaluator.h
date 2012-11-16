@@ -47,9 +47,9 @@ namespace tide
         void Evaluate(const ValueList& args, KValueRef result);
 
         private:
-        std::string GetContextId(KObjectRef global);
-        VALUE GetContext(KObjectRef global);
-        void ContextToGlobal(VALUE ctx, KObjectRef o);
+        std::string GetContextId(TiObjectRef global);
+        VALUE GetContext(TiObjectRef global);
+        void ContextToGlobal(VALUE ctx, TiObjectRef o);
     };
 }
 

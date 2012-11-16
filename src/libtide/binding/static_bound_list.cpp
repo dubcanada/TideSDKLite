@@ -40,7 +40,7 @@
 namespace tide
 {
     StaticBoundList::StaticBoundList(const char *type) :
-        KList(type),
+        TiList(type),
         object(new StaticBoundObject()),
         length(0)
     {
@@ -52,14 +52,14 @@ namespace tide
 
     void StaticBoundList::Append(KValueRef value)
     {
-        std::string name = KList::IntToChars(this->length);
+        std::string name = TiList::IntToChars(this->length);
         this->object->Set(name.c_str(), value);
         this->length++;
     }
 
     void StaticBoundList::SetAt(unsigned int index, KValueRef value)
     {
-        std::string name = KList::IntToChars(index);
+        std::string name = TiList::IntToChars(index);
         this->object->Set(name.c_str(), value);
         if (index >= this->length)
             this->length = index + 1;
@@ -70,7 +70,7 @@ namespace tide
         if (index >= this->length)
             return false;
 
-        std::string name = KList::IntToChars(index);
+        std::string name = TiList::IntToChars(index);
         this->object->Unset(name.c_str());
         for (unsigned int i = index; i + 1 < this->length; i++)
             this->SetAt(i, this->At(i + 1));
@@ -86,7 +86,7 @@ namespace tide
 
     KValueRef StaticBoundList::At(unsigned int index)
     {
-        std::string name = KList::IntToChars(index);
+        std::string name = TiList::IntToChars(index);
         KValueRef value = this->object->Get(name.c_str());
         return value;
     }
@@ -94,7 +94,7 @@ namespace tide
     void StaticBoundList::Set(const char *name, KValueRef value)
     {
         int index = -1;
-        if (KList::IsInt(name) && (index = atoi(name)) >= 0)
+        if (TiList::IsInt(name) && (index = atoi(name)) >= 0)
         {
             this->SetAt(index, value);
         }
@@ -114,9 +114,9 @@ namespace tide
         return this->object->GetPropertyNames();
     }
 
-    KListRef StaticBoundList::FromStringVector(std::vector<std::string>& values)
+    TiListRef StaticBoundList::FromStringVector(std::vector<std::string>& values)
     {
-        KListRef l = new StaticBoundList();
+        TiListRef l = new StaticBoundList();
         std::vector<std::string>::iterator i = values.begin();
         while (i != values.end())
         {

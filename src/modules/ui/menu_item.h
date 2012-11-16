@@ -79,7 +79,7 @@ namespace ti
         bool IsSeparator();
         bool IsCheck();
         bool IsEnabled();
-        virtual void HandleClickEvent(KObjectRef source);
+        virtual void HandleClickEvent(TiObjectRef source);
         void EnsureHasSubmenu();
         bool ContainsItem(MenuItem* item);
         bool ContainsSubmenu(Menu* submenu);
@@ -97,9 +97,9 @@ namespace ti
         std::string label;
         std::string iconURL;
         std::string iconPath;
-        KMethodRef callback;
+        TiMethodRef callback;
         AutoMenu submenu;
-        std::vector<KMethodRef> eventListeners;
+        std::vector<TiMethodRef> eventListeners;
         bool state;
         bool autoCheck;
     };

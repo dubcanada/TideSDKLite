@@ -308,7 +308,7 @@ namespace tide
         vector<pair<string, string> > manifest =
             BootUtils::ReadManifestFile(this->application->manifestPath);
 
-        KListRef manifestList = APIBinding::ManifestToKList(manifest);
+        TiListRef manifestList = APIBinding::ManifestToTiList(manifest);
         result->SetList(manifestList);
     }
 
@@ -328,7 +328,7 @@ namespace tide
     void ApplicationBinding::_GetArguments(const ValueList& args, KValueRef result)
     {
         std::vector<std::string> arguments = this->application->GetArguments();
-        KListRef argumentList = StaticBoundList::FromStringVector(arguments);
+        TiListRef argumentList = StaticBoundList::FromStringVector(arguments);
         result->SetList(argumentList);
     }
 
@@ -349,14 +349,14 @@ namespace tide
 
     void ApplicationBinding::_GetDependencies(const ValueList& args, KValueRef result)
     {
-        result->SetList(APIBinding::DependencyVectorToKList(
+        result->SetList(APIBinding::DependencyVectorToTiList(
             this->application->dependencies));
     }
 
     void ApplicationBinding::_ResolveDependencies(const ValueList& args, KValueRef result)
     {
         std::vector<SharedDependency> unresolved = this->application->ResolveDependencies();
-        result->SetList(APIBinding::DependencyVectorToKList(unresolved));
+        result->SetList(APIBinding::DependencyVectorToTiList(unresolved));
     }
 
     void ApplicationBinding::_GetComponents(const ValueList& args, KValueRef result)
@@ -374,14 +374,14 @@ namespace tide
         {
             components.push_back(this->application->sdks[i]);
         }
-        KListRef componentList = APIBinding::ComponentVectorToKList(components);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components);
         result->SetList(componentList);
     }
 
     void ApplicationBinding::_GetModules(const ValueList& args, KValueRef result)
     {
         std::vector<SharedComponent>& components = this->application->modules;
-        KListRef componentList = APIBinding::ComponentVectorToKList(components);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components);
         result->SetList(componentList);
     }
 
@@ -401,7 +401,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components);
         result->SetList(componentList);
     }
 
@@ -409,7 +409,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components, MODULE);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components, MODULE);
         result->SetList(componentList);
     }
 
@@ -417,7 +417,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components, RUNTIME);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components, RUNTIME);
         result->SetList(componentList);
     }
 
@@ -425,7 +425,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components);
         result->SetList(componentList);
     }
 
@@ -433,7 +433,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components, MODULE);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components, MODULE);
         result->SetList(componentList);
     }
 
@@ -441,7 +441,7 @@ namespace tide
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);
-        KListRef componentList = APIBinding::ComponentVectorToKList(components, RUNTIME);
+        TiListRef componentList = APIBinding::ComponentVectorToTiList(components, RUNTIME);
         result->SetList(componentList);
     }
 }

@@ -51,9 +51,9 @@ namespace ti
         virtual ~IRCClientBinding();
     private:
         Host* host;
-        KObjectRef global;
+        TiObjectRef global;
         IRC irc;
-        KMethodRef callback;
+        TiMethodRef callback;
         Poco::Thread *thread;
         
         static void Run(void*);

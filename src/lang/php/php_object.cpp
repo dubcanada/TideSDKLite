@@ -37,7 +37,7 @@
 namespace tide {
 
     KPHPObject::KPHPObject(zval* object) :
-        KObject("PHP.KPHPObject"),
+        TiObject("PHP.KPHPObject"),
         object(object)
     {
         zval_addref_p(object);
@@ -108,7 +108,7 @@ namespace tide {
         }
     }
 
-    bool KPHPObject::Equals(KObjectRef other)
+    bool KPHPObject::Equals(TiObjectRef other)
     {
         AutoPtr<KPHPObject> phpOther = other.cast<KPHPObject>();
         if (phpOther.isNull())

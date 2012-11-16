@@ -66,9 +66,9 @@ namespace ti
             virtual ~UserWindow();
             void UpdateWindowForURL(std::string url);
             void RegisterJSContext(JSGlobalContextRef);
-            void InsertAPI(KObjectRef frameGlobal);
-            void PageLoaded(KObjectRef scope, std::string &url, JSGlobalContextRef context);
-            inline KObjectRef GetDOMWindow() { return this->domWindow; }
+            void InsertAPI(TiObjectRef frameGlobal);
+            void PageLoaded(TiObjectRef scope, std::string &url, JSGlobalContextRef context);
+            inline TiObjectRef GetDOMWindow() { return this->domWindow; }
             inline Host* GetHost() { return this->host; }
             inline bool IsToolWindow() {return this->config->IsToolWindow(); }
             inline void SetToolWindow(bool toolWindow) {this->config->SetToolWindow(toolWindow); }
@@ -164,13 +164,13 @@ namespace ti
             void _SetContents(const ValueList& args, KValueRef result);
             void SetContents(const std::string& content, const std::string& baseURL);
             void _SetPluginsEnabled(const ValueList& args, KValueRef result);
-            virtual void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+            virtual void OpenFileChooserDialog(TiMethodRef callback, bool multiple,
                 std::string& title, std::string& path, std::string& defaultName,
                 std::vector<std::string>& types, std::string& typesDescription) = 0;
-            virtual void OpenFolderChooserDialog( KMethodRef callback,
+            virtual void OpenFolderChooserDialog( TiMethodRef callback,
                 bool multiple, std::string& title, std::string& path,
                 std::string& defaultName) = 0;
-            virtual void OpenSaveAsDialog(KMethodRef callback, std::string& title,
+            virtual void OpenSaveAsDialog(TiMethodRef callback, std::string& title,
                 std::string& path, std::string& defaultName,
                 std::vector<std::string>& types, std::string& typesDescription) = 0;
             void _SetDocumentEdited(const ValueList &args, KValueRef result);
@@ -256,7 +256,7 @@ namespace ti
         protected:
             Logger* logger;
             AutoUIBinding binding;
-            KObjectRef domWindow;
+            TiObjectRef domWindow;
             Host* host;
             AutoPtr<WindowConfig> config;
             AutoUserWindow parent;
@@ -269,7 +269,7 @@ namespace ti
             virtual AutoUserWindow GetParent();
             virtual void AddChild(AutoUserWindow);
             virtual void RemoveChild(AutoUserWindow);
-            void ReadChooserDialogObject(KObjectRef o, bool& multiple,
+            void ReadChooserDialogObject(TiObjectRef o, bool& multiple,
                 std::string& title, std::string& path, std::string& defaultName,
                 std::vector<std::string>& types, std::string& typesDescription);
             static void LoadUIJavaScript(JSGlobalContextRef context);

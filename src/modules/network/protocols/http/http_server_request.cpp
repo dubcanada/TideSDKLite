@@ -152,7 +152,7 @@ namespace ti
     void HttpServerRequest::GetHeaders(const ValueList& args, KValueRef result)
     {
         Poco::Net::HTTPServerRequest::ConstIterator iter = request.begin();
-        KObjectRef headers = new StaticBoundObject();
+        TiObjectRef headers = new StaticBoundObject();
         
         for(; iter != request.end(); iter++)
         {

@@ -38,7 +38,7 @@
 
 namespace tide
 {
-    ProfiledBoundList::ProfiledBoundList(KListRef delegate) :
+    ProfiledBoundList::ProfiledBoundList(TiListRef delegate) :
         ProfiledBoundObject(delegate),
         list(delegate),
         count(1)

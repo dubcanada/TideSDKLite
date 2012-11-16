@@ -87,13 +87,13 @@ def test_js_type_list(t):
 	return type(t) == types.ListType
 
 def test_js_type_klist(t):
-	return type(t).__name__ == 'KList'
+	return type(t).__name__ == 'TiList'
 
 def test_js_type_kmethod(t):
-	return type(t).__name__ == 'KMethod'
+	return type(t).__name__ == 'TiMethod'
 
 def test_js_type_kobject(t):
-	return type(t).__name__ == 'KObject'
+	return type(t).__name__ == 'TiObject'
 
 def test_js_type_dict(t):
 	return type(t) == types.DictType

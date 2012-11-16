@@ -838,7 +838,7 @@ void UserWindow::_SetMaxHeight(const tide::ValueList& args, tide::KValueRef resu
 void UserWindow::_GetBounds(const tide::ValueList& args, tide::KValueRef result)
 {
     Bounds bounds = this->GetBounds();
-    KObjectRef b(new StaticBoundObject());
+    TiObjectRef b(new StaticBoundObject());
     b->SetDouble("x", bounds.x);
     b->SetDouble("y", bounds.y);
     b->SetDouble("width", bounds.width);
@@ -867,7 +867,7 @@ void UserWindow::_SetBounds(const tide::ValueList& args, tide::KValueRef result)
         return;
     }
 
-    KObjectRef o = args.at(0)->ToObject();
+    TiObjectRef o = args.at(0)->ToObject();
     if (!o->Get("x")->IsNumber()
         || !o->Get("y")->IsNumber()
         || !o->Get("width")->IsNumber()
@@ -1207,12 +1207,12 @@ void UserWindow::_GetParent(const tide::ValueList& args, tide::KValueRef result)
 
 void UserWindow::_GetChildren(const tide::ValueList& args, tide::KValueRef result)
 {
-    KListRef childList = new StaticBoundList();
+    TiListRef childList = new StaticBoundList();
 
     std::vector<AutoUserWindow>::iterator i = this->children.begin();
     while (i != this->children.end())
     {
-        KObjectRef child = *i++;
+        TiObjectRef child = *i++;
         childList->Append(Value::NewObject(child));
     }
 
@@ -1266,7 +1266,7 @@ void UserWindow::UpdateWindowForURL(std::string url)
 }
 
 void UserWindow::ReadChooserDialogObject(
-    KObjectRef o,
+    TiObjectRef o,
     bool& multiple,
     std::string& title,
     std::string& path,
@@ -1289,7 +1289,7 @@ void UserWindow::ReadChooserDialogObject(
     path = o->GetString("path", path);
     defaultName = o->GetString("defaultName", defaultName);
 
-    KListRef listTypes = new StaticBoundList();
+    TiListRef listTypes = new StaticBoundList();
     listTypes = o->GetList("types", listTypes);
     for (size_t i = 0; i < listTypes->Size(); i++)
     {
@@ -1307,7 +1307,7 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, KValueRef result)
 {
     args.VerifyException("openFileChooserDialog", "m ?o");
 
-    KMethodRef callback = args.at(0)->ToMethod();
+    TiMethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;
@@ -1315,10 +1315,10 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, KValueRef result)
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    TiObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        TiObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1341,7 +1341,7 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, KValueRef result)
 void UserWindow::_OpenFolderChooserDialog(const ValueList& args, KValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
-    KMethodRef callback = args.at(0)->ToMethod();
+    TiMethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;
@@ -1349,10 +1349,10 @@ void UserWindow::_OpenFolderChooserDialog(const ValueList& args, KValueRef resul
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    TiObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        TiObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1375,7 +1375,7 @@ void UserWindow::_OpenFolderChooserDialog(const ValueList& args, KValueRef resul
 void UserWindow::_OpenSaveAsDialog(const ValueList& args, KValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
-    KMethodRef callback = args.at(0)->ToMethod();
+    TiMethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;
@@ -1383,10 +1383,10 @@ void UserWindow::_OpenSaveAsDialog(const ValueList& args, KValueRef result)
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    TiObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        TiObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1541,12 +1541,12 @@ static bool IsMainFrame(JSGlobalContextRef ctx, JSObjectRef global)
     return parentObject == global;
 }
 
-void UserWindow::InsertAPI(KObjectRef frameGlobal)
+void UserWindow::InsertAPI(TiObjectRef frameGlobal)
 {
     // Produce a delegating object to represent the top-level Ti object.
     // When a property isn't found in this object it will look for it globally.
-    KObjectRef windowTiObject(new AccessorObject());
-    KObjectRef windowUIObject(new AccessorObject());
+    TiObjectRef windowTiObject(new AccessorObject());
+    TiObjectRef windowUIObject(new AccessorObject());
 
     // Place currentWindow in the delegate base.
     windowUIObject->Set("getCurrentWindow", this->Get("getCurrentWindow"));
@@ -1563,11 +1563,11 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     // found in binding, DelegatingObject will search for it in
     // the base. When developers modify this object, it will be modified
     // globally.
-    KObject* delegateUIAPI = new DelegatingObject(binding, windowUIObject);
+    TiObject* delegateUIAPI = new DelegatingObject(binding, windowUIObject);
     windowTiObject->Set("UI", Value::NewObject(delegateUIAPI));
 
     // Place the Ti object into the window's global object
-    KObjectRef delegateGlobalObject = new DelegatingObject(
+    TiObjectRef delegateGlobalObject = new DelegatingObject(
         host->GetGlobalObject(), windowTiObject);
     frameGlobal->SetObject(GLOBAL_NAMESPACE, delegateGlobalObject);
 }
@@ -1584,7 +1584,7 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     JSUtil::RegisterGlobalContext(globalObject, context);
 
     // Get the global object as a KKJSObject
-    KObjectRef frameGlobal = new KKJSObject(context, globalObject);
+    TiObjectRef frameGlobal = new KKJSObject(context, globalObject);
 
     // We only want to set this UserWindow's DOM window property if the
     // particular frame that just loaded was the main frame. Each frame
@@ -1611,7 +1611,7 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     // The page location has changed, but JavaScriptCore may have references
     // to old DOMs still in memory waiting on garbage collection. Force a GC
     // here so that memory usage stays reasonable.
-    RunOnMainThread(new KFunctionPtrMethod(&DeferredGarbageCollection),
+    RunOnMainThread(new FunctionPtrMethod(&DeferredGarbageCollection),
         ArgList(), false);
 }
 
@@ -1637,7 +1637,7 @@ void UserWindow::LoadUIJavaScript(JSGlobalContextRef context)
 }
 
 void UserWindow::PageLoaded(
-    KObjectRef globalObject, std::string &url, JSGlobalContextRef context)
+    TiObjectRef globalObject, std::string &url, JSGlobalContextRef context)
 {
     AutoPtr<Event> event = this->CreateEvent(Event::PAGE_LOADED);
     event->SetObject("scope", globalObject);

@@ -161,7 +161,7 @@ namespace ti
 
     void UIBinding::_GetOpenWindows(const ValueList& args, KValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<AutoUserWindow>::iterator w = openWindows.begin();
         while (w != openWindows.end()) {
             list->Append(Value::NewObject(*w++));
@@ -205,7 +205,7 @@ namespace ti
     {
         args.VerifyException("createMenuItem", "?s m|0 s|0");
         std::string label = args.GetString(0, "");
-        KMethodRef eventListener = args.GetMethod(1, NULL);
+        TiMethodRef eventListener = args.GetMethod(1, NULL);
         std::string iconURL = args.GetString(2, "");
 
         AutoMenuItem item = this->CreateMenuItem();
@@ -229,7 +229,7 @@ namespace ti
     {
         args.VerifyException("createCheckMenuItem", "?s m|0");
         std::string label = args.GetString(0, "");
-        KMethodRef eventListener = args.GetMethod(1, NULL);
+        TiMethodRef eventListener = args.GetMethod(1, NULL);
 
         AutoMenuItem item = this->CreateCheckMenuItem();
         if (!label.empty())
@@ -321,7 +321,7 @@ namespace ti
         args.VerifyException("createTrayIcon", "s,?m");
         std::string iconURL = args.GetString(0);
 
-        KMethodRef cbSingleClick = args.GetMethod(1, NULL);
+        TiMethodRef cbSingleClick = args.GetMethod(1, NULL);
         AutoTrayItem item = this->AddTray(iconURL, cbSingleClick);
         this->trayItems.push_back(item);
         result->SetObject(item);
@@ -418,15 +418,15 @@ namespace ti
         std::vector<AutoUserWindow>& openWindows = UIBinding::GetInstance()->GetOpenWindows();
         for (size_t i = 0; i < openWindows.size(); i++)
         {
-            KObjectRef domWindow = openWindows[i]->GetDOMWindow();
+            TiObjectRef domWindow = openWindows[i]->GetDOMWindow();
             if (domWindow.isNull())
                 continue;
 
-            KObjectRef console = domWindow->GetObject("console", 0);
+            TiObjectRef console = domWindow->GetObject("console", 0);
             if (console.isNull())
                 continue;
 
-            KMethodRef method = console->GetMethod(origMethodName.c_str(), 0);
+            TiMethodRef method = console->GetMethod(origMethodName.c_str(), 0);
             if (method.isNull())
                 method = console->GetMethod(methodName.c_str(), 0);
 

@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KPythonTuple : public KList
+    class KPythonTuple : public TiList
     {
     public:
         KPythonTuple(PyObject *obj);
@@ -47,7 +47,7 @@ namespace tide
 
         KValueRef Get(const char *name);
         void Set(const char *name, KValueRef value);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         SharedStringList GetPropertyNames();
 
         unsigned int Size();

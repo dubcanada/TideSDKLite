@@ -37,7 +37,7 @@
 namespace tide
 {
     KKJSMethod::KKJSMethod(JSContextRef context, JSObjectRef jsobject, JSObjectRef thisObject) :
-        KMethod("JavaScript.KKJSMethod"),
+        TiMethod("JavaScript.KKJSMethod"),
         context(NULL),
         jsobject(jsobject),
         thisObject(thisObject)
@@ -64,7 +64,7 @@ namespace tide
         if (thisObject != NULL)
             JSValueProtect(this->context, thisObject);
 
-        this->kobject = new KKJSObject(this->context, jsobject);
+        this->tiObject = new KKJSObject(this->context, jsobject);
     }
 
     KKJSMethod::~KKJSMethod()
@@ -78,32 +78,32 @@ namespace tide
 
     KValueRef KKJSMethod::Get(const char *name)
     {
-        return kobject->Get(name);
+        return tiObject->Get(name);
     }
 
     void KKJSMethod::Set(const char *name, KValueRef value)
     {
-        return kobject->Set(name, value);
+        return tiObject->Set(name, value);
     }
 
-    bool KKJSMethod::Equals(KObjectRef other)
+    bool KKJSMethod::Equals(TiObjectRef other)
     {
-        return this->kobject->Equals(other);
+        return this->tiObject->Equals(other);
     }
 
     SharedStringList KKJSMethod::GetPropertyNames()
     {
-        return kobject->GetPropertyNames();
+        return tiObject->GetPropertyNames();
     }
 
     bool KKJSMethod::HasProperty(const char* name)
     {
-        return kobject->HasProperty(name);
+        return tiObject->HasProperty(name);
     }
 
     bool KKJSMethod::SameContextGroup(JSContextRef c)
     {
-        return kobject->SameContextGroup(c);
+        return tiObject->SameContextGroup(c);
     }
 
     JSObjectRef KKJSMethod::GetJSObject()
@@ -140,7 +140,7 @@ namespace tide
         return this->Call(this->jsobject, args);
     }
 
-    KValueRef KKJSMethod::Call(KObjectRef thisObject, const ValueList& args)
+    KValueRef KKJSMethod::Call(TiObjectRef thisObject, const ValueList& args)
     {
         JSValueRef thisObjectValue = JSUtil::ToJSValue(Value::NewObject(thisObject), this->context);
         if (!JSValueIsObject(this->context, thisObjectValue))

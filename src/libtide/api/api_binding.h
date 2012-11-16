@@ -51,17 +51,17 @@ namespace tide
         virtual ~APIBinding();
 
         void Log(int severity, KValueRef);
-        static KListRef ComponentVectorToKList(
+        static TiListRef ComponentVectorToTiList(
             vector<SharedComponent>&,
             KComponentType filter = UNKNOWN);
-        static KListRef DependencyVectorToKList(
+        static TiListRef DependencyVectorToTiList(
             std::vector<SharedDependency>&);
-        static KListRef ManifestToKList(
+        static TiListRef ManifestToTiList(
             vector<pair<string, string> >&);
 
         private:
         Host* host;
-        KObjectRef global;
+        TiObjectRef global;
         Logger* logger;
 
         // Use a FastMutex to protect the installer, because we are
@@ -70,7 +70,7 @@ namespace tide
         Poco::Thread* installerThread;
         Poco::RunnableAdapter<APIBinding>* installerThreadAdapter;
         vector<SharedDependency> installerDependencies;
-        KMethodRef installerCallback;
+        TiMethodRef installerCallback;
 
         void RunInstaller();
 
@@ -112,56 +112,56 @@ namespace tide
         void _CreateDependency(const ValueList& args, KValueRef value);
         void _InstallDependencies(const ValueList& args, KValueRef value);
 
-        void _CreateKObject(const ValueList& args, KValueRef result);
-        void _CreateKMethod(const ValueList& args, KValueRef result);
-        void _CreateKList(const ValueList& args, KValueRef result);
+        void _CreateTiObject(const ValueList& args, KValueRef result);
+        void _CreateTiMethod(const ValueList& args, KValueRef result);
+        void _CreateTiList(const ValueList& args, KValueRef result);
         void _CreateBytes(const ValueList& args, KValueRef result);
     };
 
     /**
-     * An wrapper for a KObject which encapsulates another one for testing
+     * An wrapper for a TiObject which encapsulates another one for testing
      */
-    class KObjectWrapper : public KObject
+    class TiObjectWrapper : public TiObject
     {
     public:
-        KObjectWrapper(KObjectRef object);
+        TiObjectWrapper(TiObjectRef object);
         void Set(const char *name, KValueRef value);
         KValueRef Get(const char *name);
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels);
-        bool Equals(KObjectRef other);
+        bool Equals(TiObjectRef other);
 
     private:
-        KObjectRef object;
+        TiObjectRef object;
     };
 
     /**
-     * An wrapper for a KMethod which encapsulates another one for testing
+     * An wrapper for a TiMethod which encapsulates another one for testing
      */
-    class KMethodWrapper : public KMethod
+    class TiMethodWrapper : public TiMethod
     {
     public:
-        KMethodWrapper(KMethodRef method);
+        TiMethodWrapper(TiMethodRef method);
         KValueRef Call(const ValueList& args);
         void Set(const char *name, KValueRef value);
         KValueRef Get(const char *name);
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels);
-        bool Equals(KObjectRef other);
+        bool Equals(TiObjectRef other);
 
     private:
-        KMethodRef method;
+        TiMethodRef method;
     };
 
     /**
-     * An wrapper for a KList which encapsulates another one for testing
+     * An wrapper for a TiList which encapsulates another one for testing
      */
-    class KListWrapper : public KList
+    class TiListWrapper : public TiList
     {
     public:
-        KListWrapper(KListRef list);
+        TiListWrapper(TiListRef list);
         void Append(KValueRef value);
         unsigned int Size();
         KValueRef At(unsigned int index);
@@ -172,9 +172,9 @@ namespace tide
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels=3);
-        bool Equals(KObjectRef other);
+        bool Equals(TiObjectRef other);
     private:
-        KListRef list;
+        TiListRef list;
     };
 }
 #endif

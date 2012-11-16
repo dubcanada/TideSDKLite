@@ -105,19 +105,19 @@ namespace ti
     {
     }
 
-    void Pipe::Attach(KObjectRef object)
+    void Pipe::Attach(TiObjectRef object)
     {
         Poco::Mutex::ScopedLock lock(attachedMutex);
         attachedObjects.push_back(object);
     }
 
-    void Pipe::Detach(KObjectRef object)
+    void Pipe::Detach(TiObjectRef object)
     {
         Poco::Mutex::ScopedLock lock(attachedMutex);
-        std::vector<KObjectRef>::iterator i = attachedObjects.begin();
+        std::vector<TiObjectRef>::iterator i = attachedObjects.begin();
         while (i != attachedObjects.end())
         {
-            KObjectRef obj = *i;
+            TiObjectRef obj = *i;
             if (obj->Equals(object))
             {
                 i = attachedObjects.erase(i);
@@ -240,9 +240,9 @@ namespace ti
         return bytes->Length();
     }
 
-    void Pipe::CallWrite(KObjectRef target, BytesRef bytes)
+    void Pipe::CallWrite(TiObjectRef target, BytesRef bytes)
     {
-        KMethodRef writeMethod = target->GetMethod("write");
+        TiMethodRef writeMethod = target->GetMethod("write");
 
         if (writeMethod.isNull())
         {
@@ -283,7 +283,7 @@ namespace ti
         }
     }
 
-    void Pipe::CallClose(KObjectRef target)
+    void Pipe::CallClose(TiObjectRef target)
     {
         KValueRef closeMethod = target->Get("close");
 

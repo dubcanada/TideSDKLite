@@ -48,9 +48,9 @@ namespace tide
         static PyObject* ToPyObject(KValueRef value);
         static PyObject* ToPyObject(const ValueList& list);
         static const char* ToString(PyObject* value);
-        static PyObject* KObjectToPyObject(KValueRef o);
-        static PyObject* KMethodToPyObject(KValueRef o);
-        static PyObject* KListToPyObject(KValueRef o);
+        static PyObject* TiObjectToPyObject(KValueRef o);
+        static PyObject* TiMethodToPyObject(KValueRef o);
+        static PyObject* TiListToPyObject(KValueRef o);
         static std::string PythonErrorToString();
 
     private:

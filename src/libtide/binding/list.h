@@ -43,11 +43,11 @@ namespace tide
     /**
      * A binding that represents a list§
      */
-    class TIDE_API KList : public KObject
+    class TIDE_API TiList : public TiObject
     {
     public:
-        KList(const char *type = "KList") : KObject(type) {}
-        virtual ~KList() {}
+        TiList(const char *type = "TiList") : TiObject(type) {}
+        virtual ~TiList() {}
 
         /**
          * Append a value to this list
@@ -124,17 +124,17 @@ namespace tide
         static std::string IntToChars(unsigned int value);
 
         /**
-         * Convert the given string into a KList index.
+         * Convert the given string into a TiList index.
          */
         static unsigned int ToIndex(const std::string& str);
 
         /**
          * Return the unwrapped version of this object
          */
-        static KListRef Unwrap(KListRef);
+        static TiListRef Unwrap(TiListRef);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KList);
+        DISALLOW_EVIL_CONSTRUCTORS(TiList);
     };
 }
 

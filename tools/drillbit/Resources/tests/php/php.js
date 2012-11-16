@@ -94,17 +94,17 @@ describe("PHP tests", {
       .should_be_true();
     value_of(test_js_type_float(3.14))
       .should_be_true();
-    value_of(test_js_type_object(function () {}, 'PHPKMethod'))
+    value_of(test_js_type_object(function () {}, 'PHPTiMethod'))
       .should_be_true();
-    value_of(test_js_type_object([1, 2, 3], 'PHPKList'))
+    value_of(test_js_type_object([1, 2, 3], 'PHPTiList'))
       .should_be_true();
     value_of(test_js_klist_elements([1, 2, 3]))
       .should_be_true();
     value_of(test_js_type_object({
       'a1': 'sauce'
-    }, 'PHPKObject'))
+    }, 'PHPTiObject'))
       .should_be_true();
-    value_of(test_js_type_object({}, 'PHPKObject'))
+    value_of(test_js_type_object({}, 'PHPTiObject'))
       .should_be_true();
     value_of(test_js_type_null(null))
       .should_be_true();

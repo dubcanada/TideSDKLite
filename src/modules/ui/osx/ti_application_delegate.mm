@@ -66,7 +66,7 @@
     AutoPtr<GlobalObject> globalObject(GlobalObject::GetInstance());
     AutoPtr<Event> event(globalObject->CreateEvent(Event::OPEN_REQUEST));
 
-    KListRef files(new StaticBoundList());
+    TiListRef files(new StaticBoundList());
     files->Append(Value::NewString([filename UTF8String]));
     event->SetList("files", files);
 
@@ -79,7 +79,7 @@
     AutoPtr<GlobalObject> globalObject(GlobalObject::GetInstance());
     AutoPtr<Event> event(globalObject->CreateEvent(Event::OPEN_REQUEST));
 
-    KListRef files(new StaticBoundList());
+    TiListRef files(new StaticBoundList());
 
     int arrayCount = [filenames count];
     for (int i = 0; i < arrayCount; i++)

@@ -63,9 +63,9 @@ using Poco::AutoPtr;
 namespace tide
 {
     class Value;
-    class KObject;
-    class KMethod;
-    class KList;
+    class TiObject;
+    class TiMethod;
+    class TiList;
 
     class StaticBoundObject;
     class StaticBoundMethod;
@@ -80,9 +80,9 @@ namespace tide
     class ArgList;
 
     typedef AutoPtr<Value> KValueRef;
-    typedef AutoPtr<KObject> KObjectRef;
-    typedef AutoPtr<KMethod> KMethodRef;
-    typedef AutoPtr<KList> KListRef;
+    typedef AutoPtr<TiObject> TiObjectRef;
+    typedef AutoPtr<TiMethod> TiMethodRef;
+    typedef AutoPtr<TiList> TiListRef;
     typedef AutoPtr<Bytes> BytesRef;
 
     typedef SharedPtr<std::string> SharedString;

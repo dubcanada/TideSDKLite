@@ -37,7 +37,7 @@
 namespace tide
 {
     KKJSList::KKJSList(JSContextRef context, JSObjectRef jsobject) :
-        KList("JavaScript.KKJSList"),
+        TiList("JavaScript.KKJSList"),
         context(NULL),
         jsobject(jsobject)
     {
@@ -59,7 +59,7 @@ namespace tide
         JSUtil::ProtectGlobalContext(this->context);
         JSValueProtect(this->context, this->jsobject);
 
-        this->kobject = new KKJSObject(this->context, this->jsobject);
+        this->tiObject = new KKJSObject(this->context, this->jsobject);
     }
 
     KKJSList::~KKJSList()
@@ -70,7 +70,7 @@ namespace tide
 
     unsigned int KKJSList::Size()
     {
-        KValueRef length_val = this->kobject->Get("length");
+        KValueRef length_val = this->tiObject->Get("length");
         if (length_val->IsInt())
             return (unsigned int) length_val->ToInt();
         else
@@ -79,20 +79,20 @@ namespace tide
 
     KValueRef KKJSList::At(unsigned int index)
     {
-        std::string name = KList::IntToChars(index);
-        KValueRef value = this->kobject->Get(name.c_str());
+        std::string name = TiList::IntToChars(index);
+        KValueRef value = this->tiObject->Get(name.c_str());
         return value;
     }
 
     void KKJSList::SetAt(unsigned int index, KValueRef value)
     {
-        std::string name = KList::IntToChars(index);
-        this->kobject->Set(name.c_str(), value);
+        std::string name = TiList::IntToChars(index);
+        this->tiObject->Set(name.c_str(), value);
     }
 
     void KKJSList::Append(KValueRef value)
     {
-        KValueRef push_method = this->kobject->Get("push");
+        KValueRef push_method = this->tiObject->Get("push");
 
         if (push_method->IsMethod())
         {
@@ -110,7 +110,7 @@ namespace tide
     {
         if (index >= 0 && index < this->Size())
         {
-            KValueRef spliceMethod = this->kobject->Get("splice");
+            KValueRef spliceMethod = this->tiObject->Get("splice");
             spliceMethod->ToMethod()->Call(
                 Value::NewInt(index),
                 Value::NewInt(1));
@@ -122,32 +122,32 @@ namespace tide
 
     KValueRef KKJSList::Get(const char* name)
     {
-        return kobject->Get(name);
+        return tiObject->Get(name);
     }
 
     void KKJSList::Set(const char* name, KValueRef value)
     {
-        return kobject->Set(name, value);
+        return tiObject->Set(name, value);
     }
 
-    bool KKJSList::Equals(KObjectRef other)
+    bool KKJSList::Equals(TiObjectRef other)
     {
-        return this->kobject->Equals(other);
+        return this->tiObject->Equals(other);
     }
 
     SharedStringList KKJSList::GetPropertyNames()
     {
-         return kobject->GetPropertyNames();
+         return tiObject->GetPropertyNames();
     }
 
     bool KKJSList::HasProperty(const char* name)
     {
-        return kobject->HasProperty(name);
+        return tiObject->HasProperty(name);
     }
 
     bool KKJSList::SameContextGroup(JSContextRef c)
     {
-        return kobject->SameContextGroup(c);
+        return tiObject->SameContextGroup(c);
     }
 
     JSObjectRef KKJSList::GetJSObject()

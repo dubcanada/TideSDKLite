@@ -37,7 +37,7 @@
 namespace tide
 {
     KKJSObject::KKJSObject(JSContextRef context, JSObjectRef jsobject) :
-        KObject("JavaScript.KKJSObject"),
+        TiObject("JavaScript.KKJSObject"),
         context(NULL),
         jsobject(jsobject)
     {
@@ -106,7 +106,7 @@ namespace tide
         }
     }
 
-    bool KKJSObject::Equals(KObjectRef other)
+    bool KKJSObject::Equals(TiObjectRef other)
     {
         AutoPtr<KKJSObject> kjsOther = other.cast<KKJSObject>();
         if (kjsOther.isNull())

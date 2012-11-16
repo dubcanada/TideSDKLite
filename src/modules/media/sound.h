@@ -68,7 +68,7 @@ namespace ti
         bool IsLooping();
         bool IsPlaying();
         bool IsPaused();
-        void SetOnComplete(KMethodRef newCallback);
+        void SetOnComplete(TiMethodRef newCallback);
         void Load();
         void Unload();
         void SoundCompletedIteration();
@@ -86,7 +86,7 @@ namespace ti
         SoundState state;
         std::string url;
         std::string path;
-        KMethodRef callback;
+        TiMethodRef callback;
         bool looping;
     };
 }

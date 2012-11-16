@@ -57,7 +57,7 @@ namespace ti
         
 
     private:
-        tide::KObjectRef binding;
+        tide::TiObjectRef binding;
     };
 
 }

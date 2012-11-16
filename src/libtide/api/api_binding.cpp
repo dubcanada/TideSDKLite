@@ -205,25 +205,25 @@ namespace tide
         this->SetMethod("getEnvironment", &APIBinding::_GetEnvironment);
 
         /**
-         * @tiapi(method=True,name=API.createKObject,since=0.5) Create a Tide object.
-         * @tiarg[Object, toWrap, optional=true] An object to wrap in a new KObject.
-         * @tiresult[Object] A new KObject.
+         * @tiapi(method=True,name=API.createTiObject,since=0.5) Create a Tide object.
+         * @tiarg[Object, toWrap, optional=true] An object to wrap in a new TiObject.
+         * @tiresult[Object] A new TiObject.
          */
-        this->SetMethod("createKObject", &APIBinding::_CreateKObject);
+        this->SetMethod("createTiObject", &APIBinding::_CreateTiObject);
 
         /**
-         * @tiapi(method=True,name=API.createKMethod,since=0.5) create a Tide method.
-         * @tiarg[Function, toWrap, optional=true] A function to wrap in a new KMethod
-         * @tiresult[Function] A new KMethod.
+         * @tiapi(method=True,name=API.createTiMethod,since=0.5) create a Tide method.
+         * @tiarg[Function, toWrap, optional=true] A function to wrap in a new TiMethod
+         * @tiresult[Function] A new TiMethod.
          */
-        this->SetMethod("createKMethod", &APIBinding::_CreateKMethod);
+        this->SetMethod("createTiMethod", &APIBinding::_CreateTiMethod);
         
         /**
-         * @tiapi(method=True,name=API.createKList,since=0.5) create a Tide list.
-         * @tiarg[Array, toWrap, optional=true] A function to wrap in a new KMethod
-         * @tiresult[Array] A new KList.
+         * @tiapi(method=True,name=API.createTiList,since=0.5) create a Tide list.
+         * @tiarg[Array, toWrap, optional=true] A function to wrap in a new TiMethod
+         * @tiresult[Array] A new TiList.
          */
-        this->SetMethod("createKList", &APIBinding::_CreateKList);
+        this->SetMethod("createTiList", &APIBinding::_CreateTiList);
 
         /**
          * @tiapi(method=True,name=API.createBytes,since=0.9) Create a Tide Bytes object.
@@ -682,7 +682,7 @@ namespace tide
 
     void APIBinding::_GetApplication(const ValueList& args, KValueRef result)
     {
-        KObjectRef app = new ApplicationBinding(host->GetApplication(), true);
+        TiObjectRef app = new ApplicationBinding(host->GetApplication(), true);
         result->SetObject(app);
     }
 
@@ -691,7 +691,7 @@ namespace tide
     {
         bool force = args.GetBool(0, false);
         vector<SharedComponent>& components = BootUtils::GetInstalledComponents(force);
-        KListRef componentList = ComponentVectorToKList(components, type);
+        TiListRef componentList = ComponentVectorToTiList(components, type);
         result->SetList(componentList);
     }
 
@@ -728,7 +728,7 @@ namespace tide
     void APIBinding::_GetComponentSearchPaths(const ValueList& args, KValueRef result)
     {
         vector<string>& paths = BootUtils::GetComponentSearchPaths();
-        KListRef pathList = StaticBoundList::FromStringVector(paths);
+        TiListRef pathList = StaticBoundList::FromStringVector(paths);
         result->SetList(pathList);
     }
 
@@ -777,7 +777,7 @@ namespace tide
         {
             SharedDependency d = Dependency::NewDependencyFromValues(
                 static_cast<KComponentType>(type), name, version);
-            KObjectRef dBinding = new DependencyBinding(d);
+            TiObjectRef dBinding = new DependencyBinding(d);
             result->SetObject(dBinding);
         }
     }
@@ -785,8 +785,8 @@ namespace tide
     void APIBinding::_InstallDependencies(const ValueList& args, KValueRef result)
     {
         args.VerifyException("installDependencies", "l,m");
-        KListRef dependenciesList = args.GetList(0);
-        KMethodRef callback = args.GetMethod(1, 0);
+        TiListRef dependenciesList = args.GetList(0);
+        TiMethodRef callback = args.GetMethod(1, 0);
         vector<SharedDependency> dependencies;
 
         for (unsigned int i = 0; i < dependenciesList->Size(); i++)
@@ -875,11 +875,11 @@ namespace tide
         END_TIDE_THREAD;
     }
 
-    KListRef APIBinding::ComponentVectorToKList(
+    TiListRef APIBinding::ComponentVectorToTiList(
         vector<SharedComponent>& components,
         KComponentType filter)
     {
-        KListRef componentList = new StaticBoundList();
+        TiListRef componentList = new StaticBoundList();
         vector<SharedComponent>::iterator i = components.begin();
         while (i != components.end())
         {
@@ -894,9 +894,9 @@ namespace tide
         return componentList;
     }
 
-    KListRef APIBinding::DependencyVectorToKList(std::vector<SharedDependency>& deps)
+    TiListRef APIBinding::DependencyVectorToTiList(std::vector<SharedDependency>& deps)
     {
-        KListRef dependencyList = new StaticBoundList();
+        TiListRef dependencyList = new StaticBoundList();
         std::vector<SharedDependency>::iterator i = deps.begin();
         while (i != deps.end())
         {
@@ -906,13 +906,13 @@ namespace tide
         return dependencyList;
     }
 
-    KListRef APIBinding::ManifestToKList(vector<pair<string, string> >& manifest)
+    TiListRef APIBinding::ManifestToTiList(vector<pair<string, string> >& manifest)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         vector<pair<string, string> >::iterator i = manifest.begin();
         while (i != manifest.end())
         {
-            KListRef entry = new StaticBoundList();
+            TiListRef entry = new StaticBoundList();
             entry->Append(Value::NewString(i->first));
             entry->Append(Value::NewString(i->second));
             list->Append(Value::NewList(entry));
@@ -921,38 +921,38 @@ namespace tide
         return list;
     }
 
-    void APIBinding::_CreateKObject(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiObject(const ValueList& args, KValueRef result)
     {
-        args.VerifyException("createKObject", "?o");
+        args.VerifyException("createTiObject", "?o");
         if (args.size() <= 0)
         {
             result->SetObject(new StaticBoundObject());
         }
         else
         {
-            KObjectRef wrapped = args.GetObject(0);
-            result->SetObject(new KObjectWrapper(wrapped));
+            TiObjectRef wrapped = args.GetObject(0);
+            result->SetObject(new TiObjectWrapper(wrapped));
         }
     }
 
-    void APIBinding::_CreateKMethod(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiMethod(const ValueList& args, KValueRef result)
     {
-        args.VerifyException("createKMethod", "m");
-        KMethodRef wrapped = args.GetMethod(0);
-        result->SetMethod(new KMethodWrapper(args.GetMethod(0)));
+        args.VerifyException("createTiMethod", "m");
+        TiMethodRef wrapped = args.GetMethod(0);
+        result->SetMethod(new TiMethodWrapper(args.GetMethod(0)));
     }
 
-    void APIBinding::_CreateKList(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiList(const ValueList& args, KValueRef result)
     {
-        args.VerifyException("createKList", "?l");
+        args.VerifyException("createTiList", "?l");
         if (args.size() <= 0)
         {
             result->SetList(new StaticBoundList());
         }
         else
         {
-            KListRef wrapped = args.GetList(0);
-            result->SetList(new KListWrapper(wrapped));
+            TiListRef wrapped = args.GetList(0);
+            result->SetList(new TiListWrapper(wrapped));
         }
     }
 
@@ -968,7 +968,7 @@ namespace tide
         }
         else if (value->IsList())
         {
-            KListRef list = value->ToList();
+            TiListRef list = value->ToList();
             for (size_t j = 0; j < list->Size(); j++)
             {
                 GetBytes(list->At((int)j), blobs);
@@ -1003,137 +1003,137 @@ namespace tide
         result->SetObject(bytes);
     }
 
-    KObjectWrapper::KObjectWrapper(KObjectRef object) :
+    TiObjectWrapper::TiObjectWrapper(TiObjectRef object) :
         object(object)
     {
     }
 
-    void KObjectWrapper::Set(const char *name, KValueRef value)
+    void TiObjectWrapper::Set(const char *name, KValueRef value)
     {
         object->Set(name, value);
     }
 
-    KValueRef KObjectWrapper::Get(const char *name)
+    KValueRef TiObjectWrapper::Get(const char *name)
     {
         return object->Get(name);
     }
 
-    bool KObjectWrapper::HasProperty(const char *name)
+    bool TiObjectWrapper::HasProperty(const char *name)
     {
         return object->HasProperty(name);    
     }
     
-    SharedStringList KObjectWrapper::GetPropertyNames()
+    SharedStringList TiObjectWrapper::GetPropertyNames()
     {
         return object->GetPropertyNames();
     }
 
-    SharedString KObjectWrapper::DisplayString(int levels)
+    SharedString TiObjectWrapper::DisplayString(int levels)
     {
         return object->DisplayString(levels);
     }
 
-    bool KObjectWrapper::Equals(KObjectRef other)
+    bool TiObjectWrapper::Equals(TiObjectRef other)
     {
         return object->Equals(other);    
     }
     
-    KMethodWrapper::KMethodWrapper(KMethodRef method) :
+    TiMethodWrapper::TiMethodWrapper(TiMethodRef method) :
         method(method)
     {
     }
 
-    KValueRef KMethodWrapper::Call(const ValueList& args)
+    KValueRef TiMethodWrapper::Call(const ValueList& args)
     {
         return method->Call(args);
     }
 
-    void KMethodWrapper::Set(const char *name, KValueRef value)
+    void TiMethodWrapper::Set(const char *name, KValueRef value)
     {
         method->Set(name, value);
     }
 
-    KValueRef KMethodWrapper::Get(const char *name)
+    KValueRef TiMethodWrapper::Get(const char *name)
     {
         return method->Get(name);
     }
 
-    bool KMethodWrapper::HasProperty(const char *name)
+    bool TiMethodWrapper::HasProperty(const char *name)
     {
         return method->HasProperty(name);
     }
     
-    SharedStringList KMethodWrapper::GetPropertyNames()
+    SharedStringList TiMethodWrapper::GetPropertyNames()
     {
         return method->GetPropertyNames();
     }
 
-    SharedString KMethodWrapper::DisplayString(int levels)
+    SharedString TiMethodWrapper::DisplayString(int levels)
     {
         return method->DisplayString(levels);
     }
     
-    bool KMethodWrapper::Equals(KObjectRef other)
+    bool TiMethodWrapper::Equals(TiObjectRef other)
     {
         return method->Equals(other);    
     }
 
-    KListWrapper::KListWrapper(KListRef list) :
+    TiListWrapper::TiListWrapper(TiListRef list) :
         list(list)
     {
     }
 
-    void KListWrapper::Append(KValueRef value)
+    void TiListWrapper::Append(KValueRef value)
     {
         list->Append(value);
     }
 
-    unsigned int KListWrapper::Size()
+    unsigned int TiListWrapper::Size()
     {
         return list->Size();
     }
 
-    KValueRef KListWrapper::At(unsigned int index)
+    KValueRef TiListWrapper::At(unsigned int index)
     {
         return list->At(index);
     }
 
-    void KListWrapper::SetAt(unsigned int index, KValueRef value)
+    void TiListWrapper::SetAt(unsigned int index, KValueRef value)
     {
         list->SetAt(index, value);
     }
 
-    bool KListWrapper::Remove(unsigned int index)
+    bool TiListWrapper::Remove(unsigned int index)
     {
         return list->Remove(index);
     }
 
-    void KListWrapper::Set(const char *name, KValueRef value)
+    void TiListWrapper::Set(const char *name, KValueRef value)
     {
         list->Set(name, value);
     }
 
-    KValueRef KListWrapper::Get(const char *name)
+    KValueRef TiListWrapper::Get(const char *name)
     {
         return list->Get(name);
     }
 
-    bool KListWrapper::HasProperty(const char *name)
+    bool TiListWrapper::HasProperty(const char *name)
     {
         return list->HasProperty(name);
     }
     
-    SharedStringList KListWrapper::GetPropertyNames()
+    SharedStringList TiListWrapper::GetPropertyNames()
     {
         return list->GetPropertyNames();
     }
 
-    SharedString KListWrapper::DisplayString(int levels)
+    SharedString TiListWrapper::DisplayString(int levels)
     {
         return list->DisplayString(levels);
     }
     
-    bool KListWrapper::Equals(KObjectRef other)
+    bool TiListWrapper::Equals(TiObjectRef other)
     {
         return list->Equals(other);    
     }

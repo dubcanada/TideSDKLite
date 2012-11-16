@@ -37,7 +37,7 @@
 namespace tide
 {
     StaticBoundMethod::StaticBoundMethod(MethodCallback* callback, const char *type)
-        : KMethod(type), callback(callback)
+        : TiMethod(type), callback(callback)
     {
         this->object = new StaticBoundObject();
     }

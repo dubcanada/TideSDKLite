@@ -53,7 +53,7 @@ using Poco::Net::NetworkInterface;
 
 namespace ti
 {
-    static KListRef interfaceList(0);
+    static TiListRef interfaceList(0);
     static std::string firstIPv4Address = "127.0.0.1";
 
     static void GetInterfaceList()
@@ -217,7 +217,7 @@ namespace ti
     {
         if (args.at(0)->IsObject())
         {
-            KObjectRef obj = args.at(0)->ToObject();
+            TiObjectRef obj = args.at(0)->ToObject();
             AutoPtr<IPAddressBinding> b = obj.cast<IPAddressBinding>();
             if (!b.isNull())
             {
@@ -235,7 +235,7 @@ namespace ti
             }
             else
             {
-                KMethodRef toStringMethod = obj->GetMethod("toString");
+                TiMethodRef toStringMethod = obj->GetMethod("toString");
                 if (toStringMethod.isNull())
                     throw ValueException::FromString("Unknown object passed");
 
@@ -276,7 +276,7 @@ namespace ti
     void NetworkBinding::_CreateTCPServerSocket(const ValueList& args, KValueRef result)
     {
         args.VerifyException("createTCPServerSocket", "m");
-        KMethodRef target = args.at(0)->ToMethod();
+        TiMethodRef target = args.at(0)->ToMethod();
         result->SetObject(new TCPServerSocketBinding(host,target));
     }
 

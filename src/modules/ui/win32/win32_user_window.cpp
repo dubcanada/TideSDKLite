@@ -85,7 +85,7 @@ static void HandleHResultError(std::string message, HRESULT result, bool fatal=f
             break;
         default:
             message.append("Unknown Error (");
-            message.append(KList::IntToChars(result));
+            message.append(TiList::IntToChars(result));
             message.append(")");
             break;
     }
@@ -302,7 +302,7 @@ void Win32UserWindow::InitWebKit()
     webView->setApplicationNameForUserAgent(ua.copy());
 
     // place our user agent string in the global so we can later use it
-    KObjectRef global = host->GetGlobalObject();
+    TiObjectRef global = host->GetGlobalObject();
     if (global->Get("userAgent")->IsUndefined())
     {
         _bstr_t uaURL("http://tidesdk.org");
@@ -1208,33 +1208,33 @@ void Win32UserWindow::ShowInspector(bool console)
     }
 }
 
-void Win32UserWindow::OpenFileChooserDialog(KMethodRef callback, bool multiple,
+void Win32UserWindow::OpenFileChooserDialog(TiMethodRef callback, bool multiple,
     std::string& title, std::string& path, std::string& defaultName,
     std::vector<std::string>& types, std::string& typesDescription)
 {
 
-    KListRef results = this->SelectFile(
+    TiListRef results = this->SelectFile(
         false, multiple, title, path, defaultName, types, typesDescription);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-void Win32UserWindow::OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+void Win32UserWindow::OpenFolderChooserDialog(TiMethodRef callback, bool multiple,
     std::string& title, std::string& path, std::string& defaultName)
 {
-    KListRef results = SelectDirectory(multiple, title, path, defaultName);
+    TiListRef results = SelectDirectory(multiple, title, path, defaultName);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-void Win32UserWindow::OpenSaveAsDialog(KMethodRef callback, std::string& title,
+void Win32UserWindow::OpenSaveAsDialog(TiMethodRef callback, std::string& title,
     std::string& path, std::string& defaultName,
     std::vector<std::string>& types, std::string& typesDescription)
 {
-    KListRef results = SelectFile(true, false, title, path, defaultName,
+    TiListRef results = SelectFile(true, false, title, path, defaultName,
          types, typesDescription);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-KListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::string& title,
+TiListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::string& title,
     std::string& path, std::string& defaultName, std::vector<std::string>& types,
     std::string& typesDescription)
 {
@@ -1333,7 +1333,7 @@ KListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::string
     // If multiple files have been selected there will be two '\0' characters
     // at the end of this array of characters, so if we enabled multiple file
     // selected, just check for that second '\0'.
-    KListRef results = new StaticBoundList();
+    TiListRef results = new StaticBoundList();
     if (multiple && ofn.lpstrFile[ofn.nFileOffset - 1] == L'\0')
     {
         std::vector<std::wstring> files;
@@ -1353,10 +1353,10 @@ KListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::string
     return results;
 }
 
-KListRef Win32UserWindow::SelectDirectory(bool multiple, std::string& title,
+TiListRef Win32UserWindow::SelectDirectory(bool multiple, std::string& title,
     std::string& path, std::string& defaultName)
 {
-    KListRef results = new StaticBoundList();
+    TiListRef results = new StaticBoundList();
 
     BROWSEINFO bi = { 0 };
     std::wstring titleW = ::UTF8ToWide(title);

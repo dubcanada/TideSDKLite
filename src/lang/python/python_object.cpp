@@ -37,7 +37,7 @@
 namespace tide
 {
     KPythonObject::KPythonObject(PyObject *obj) :
-        KObject("Python.KPythonObject"),
+        TiObject("Python.KPythonObject"),
         object(obj),
         readOnly(false),
         delegate(NULL)
@@ -118,7 +118,7 @@ namespace tide
         return tide_value;
     }
 
-    bool KPythonObject::Equals(KObjectRef other)
+    bool KPythonObject::Equals(TiObjectRef other)
     {
         AutoPtr<KPythonObject> pyOther = other.cast<KPythonObject>();
 

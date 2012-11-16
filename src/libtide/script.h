@@ -54,22 +54,22 @@ namespace tide
         static bool HasExtension(const char *url, const char *ext);
         static std::string GetExtension(const char *url);
         
-        void AddScriptEvaluator(KObjectRef evaluator);
-        void RemoveScriptEvaluator(KObjectRef evaluator);
+        void AddScriptEvaluator(TiObjectRef evaluator);
+        void RemoveScriptEvaluator(TiObjectRef evaluator);
 
         bool CanEvaluate(const char *mimeType);
         bool CanPreprocess(const char *url);
-        KListRef GetEvaluators() { return evaluators; }
+        TiListRef GetEvaluators() { return evaluators; }
 
-        KValueRef Evaluate(const char *mimeType, const char *name, const char *code, KObjectRef scope);
-        AutoPtr<PreprocessData> Preprocess(const char *url, KObjectRef scope);
+        KValueRef Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope);
+        AutoPtr<PreprocessData> Preprocess(const char *url, TiObjectRef scope);
         
     protected:
-        KListRef evaluators;
+        TiListRef evaluators;
         static SharedPtr<Script> instance;
         
         Script() : evaluators(new StaticBoundList()) { }
-        KObjectRef FindEvaluatorWithMethod(const char *method, const char *arg);
+        TiObjectRef FindEvaluatorWithMethod(const char *method, const char *arg);
     };
 }
 

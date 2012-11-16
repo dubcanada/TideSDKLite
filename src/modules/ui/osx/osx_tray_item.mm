@@ -35,7 +35,7 @@
 #include "../ui_module.h"
 namespace ti
 {
-    OSXTrayItem::OSXTrayItem(std::string& iconURL, KMethodRef cb) :
+    OSXTrayItem::OSXTrayItem(std::string& iconURL, TiMethodRef cb) :
         TrayItem(iconURL),
         nativeMenu(0),
         menu(0),

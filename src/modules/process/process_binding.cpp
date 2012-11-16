@@ -211,16 +211,16 @@ namespace ti
     void ProcessBinding::CreateProcess(const ValueList& args, KValueRef result)
     {
         args.VerifyException("createProcess", "o|l");
-        KObjectRef temp = 0;
-        KListRef argList = 0;
-        KObjectRef environment = 0;
+        TiObjectRef temp = 0;
+        TiListRef argList = 0;
+        TiObjectRef environment = 0;
         AutoPipe stdinPipe = 0;
         AutoPipe stdoutPipe = 0;
         AutoPipe stderrPipe = 0;
 
         if (args.at(0)->IsObject())
         {
-            KObjectRef options = args.GetObject(0);
+            TiObjectRef options = args.GetObject(0);
             argList = options->GetList("args", 0);
             if (argList.isNull())
                 throw ValueException::FromString(
@@ -288,7 +288,7 @@ namespace ti
                 "Ti.Process 1st argument must not be null/empty");
         }
 
-        KListRef argsClone = new StaticBoundList();
+        TiListRef argsClone = new StaticBoundList();
         ExtendArgs(argsClone, argList);
 
         AutoProcess process = Process::CreateProcess();
@@ -307,14 +307,14 @@ namespace ti
         result->SetMethod(process);
     }
     
-    void ProcessBinding::ExtendArgs(KListRef dest, KListRef args)
+    void ProcessBinding::ExtendArgs(TiListRef dest, TiListRef args)
     {
         for (size_t i = 0; i < args->Size(); i++)
         {
             KValueRef arg = Value::Undefined;
             if (args->At(i)->IsList())
             {
-                KListRef list = args->At(i)->ToList();
+                TiListRef list = args->At(i)->ToList();
                 ExtendArgs(dest, list);
                 continue;
             }

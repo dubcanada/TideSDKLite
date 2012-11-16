@@ -43,7 +43,7 @@ namespace ti
     
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    TCPServerSocketConnector::TCPServerSocketConnector(KMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_) :
+    TCPServerSocketConnector::TCPServerSocketConnector(TiMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_) :
         callback(callback_),socket(socket_),reactor(reactor_)
     {
         reactor.addEventHandler(socket, Poco::Observer<TCPServerSocketConnector, Poco::Net::ReadableNotification>(*this, &TCPServerSocketConnector::onAccept));
@@ -75,7 +75,7 @@ namespace ti
     
     //////////////////////////////////////////////////////////////////////////////////////////
     
-    TCPServerSocketBinding::TCPServerSocketBinding(Host* ti_host, KMethodRef create) :
+    TCPServerSocketBinding::TCPServerSocketBinding(Host* ti_host, TiMethodRef create) :
         StaticBoundObject("Network.TCPServerSocket"),
         onCreate(create), 
         socket(0),

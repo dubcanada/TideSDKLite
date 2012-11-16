@@ -51,9 +51,9 @@ namespace tide
 
         AutoPtr<Event> CreateEvent(const std::string& eventName);
 
-        virtual void AddEventListener(const char* event, KMethodRef listener);
-        virtual void AddEventListener(std::string& event, KMethodRef listener);
-        virtual void RemoveEventListener(std::string& event, KMethodRef listener);
+        virtual void AddEventListener(const char* event, TiMethodRef listener);
+        virtual void AddEventListener(std::string& event, TiMethodRef listener);
+        virtual void RemoveEventListener(std::string& event, TiMethodRef listener);
         virtual void RemoveAllEventListeners();
 
         void FireEvent(const char* event);
@@ -76,16 +76,16 @@ namespace tide
     class EventListener
     {
     public:
-        EventListener(std::string& targetedEvent, KMethodRef callback);
-        EventListener(const char* targetedEvent, KMethodRef callback);
+        EventListener(std::string& targetedEvent, TiMethodRef callback);
+        EventListener(const char* targetedEvent, TiMethodRef callback);
 
         bool Handles(const char* event);
-        bool Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous);
-        KMethodRef Callback();
+        bool Dispatch(TiObjectRef thisObject, const ValueList& args, bool synchronous);
+        TiMethodRef Callback();
 
     private:
         std::string targetedEvent;
-        KMethodRef callback;
+        TiMethodRef callback;
     };
 }
 

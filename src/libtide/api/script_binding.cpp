@@ -99,7 +99,7 @@ namespace tide
     {
         args.VerifyException("addScriptEvaluator", "o");
         
-        KObjectRef evaluator = args.GetObject(0);
+        TiObjectRef evaluator = args.GetObject(0);
         Script::GetInstance()->AddScriptEvaluator(evaluator);
     }
     
@@ -107,7 +107,7 @@ namespace tide
     {
         args.VerifyException("removeScriptEvaluator", "o");
         
-        KObjectRef evaluator = args.GetObject(0);
+        TiObjectRef evaluator = args.GetObject(0);
         Script::GetInstance()->RemoveScriptEvaluator(evaluator);
     }
     
@@ -134,7 +134,7 @@ namespace tide
         const char *mimeType = args.GetString(0).c_str();
         const char *name = args.GetString(1).c_str();
         const char *code = args.GetString(2).c_str();
-        KObjectRef scope = args.GetObject(3);
+        TiObjectRef scope = args.GetObject(3);
         result->SetValue(Script::GetInstance()->Evaluate(mimeType, name, code, scope));
     }
     
@@ -143,10 +143,10 @@ namespace tide
         args.VerifyException("preprocess", "s o");
         
         const char *url = args.GetString(0).c_str();
-        KObjectRef scope = args.GetObject(1);
+        TiObjectRef scope = args.GetObject(1);
         
         AutoPtr<PreprocessData> data = Script::GetInstance()->Preprocess(url, scope);
-        KObjectRef o = new StaticBoundObject();
+        TiObjectRef o = new StaticBoundObject();
         o->Set("mimeType", Value::NewString(data->mimeType.c_str()));
         o->Set("data", Value::NewObject(data->data));
         result->SetObject(o);

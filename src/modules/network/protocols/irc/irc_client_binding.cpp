@@ -165,13 +165,13 @@ namespace ti
     void IRCClientBinding::GetUsers(const ValueList& args, KValueRef result)
     {
         const char *channel = args.at(0)->ToString();
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         channel_user* cu = irc.get_users();
         while(cu)
         {
             if (!strcmp(cu->channel,(char*)channel) && cu->nick && strlen(cu->nick)>0)
             {
-                KObjectRef entry = new StaticBoundObject();
+                TiObjectRef entry = new StaticBoundObject();
                 entry->Set("name",Value::NewString(cu->nick));
                 entry->Set("operator",Value::NewBool(cu->flags & IRC_USER_OP));
                 entry->Set("voice",Value::NewBool(cu->flags & IRC_USER_VOICE));

@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KPythonObject : public KObject
+    class KPythonObject : public TiObject
     {
     public:
         KPythonObject(PyObject *obj);
@@ -48,14 +48,14 @@ namespace tide
 
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         virtual SharedStringList GetPropertyNames();
         PyObject* ToPython();
 
     private:
         PyObject *object;
         bool readOnly;
-        KObjectRef delegate;
+        TiObjectRef delegate;
         DISALLOW_EVIL_CONSTRUCTORS(KPythonObject);
     };
 }

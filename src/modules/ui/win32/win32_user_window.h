@@ -43,12 +43,12 @@ namespace ti
         Win32UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow& parent);
         ~Win32UserWindow();
 
-        void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+        void OpenFileChooserDialog(TiMethodRef callback, bool multiple,
             std::string& title, std::string& path, std::string& defaultName,
             std::vector<std::string>& types, std::string& typesDescription);
-        void OpenFolderChooserDialog( KMethodRef callback, bool multiple,
+        void OpenFolderChooserDialog( TiMethodRef callback, bool multiple,
             std::string& title, std::string& path, std::string& defaultName);
-        void OpenSaveAsDialog( KMethodRef callback, std::string& title,
+        void OpenSaveAsDialog( TiMethodRef callback, std::string& title,
             std::string& path, std::string& defaultName,
             std::vector<std::string>& types, std::string& typesDescription);
         void ResizeSubViews();
@@ -167,11 +167,11 @@ namespace ti
         void SetupMenu();
         void SetupIcon();
 
-        KListRef SelectFile(
+        TiListRef SelectFile(
             bool saveDialog, bool multiple, std::string& title,
             std::string& path, std::string& defaultName,
             std::vector<std::string>& types, std::string& typesDescription);
-        KListRef SelectDirectory(bool multiple, std::string& title,
+        TiListRef SelectDirectory(bool multiple, std::string& title,
             std::string& path, std::string& defaultName);
         Logger* logger;
     };

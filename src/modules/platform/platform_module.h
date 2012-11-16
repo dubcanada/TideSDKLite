@@ -58,7 +58,7 @@ namespace ti
         virtual void Start();
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
     };
 
 }

@@ -120,19 +120,19 @@ namespace JSUtil
                 else if (JSObjectIsFunction(jsContext, o))
                 {
                     // this is a pure JS method: proxy it
-                    KMethodRef tibm = new KKJSMethod(jsContext, o, thisObject);
+                    TiMethodRef tibm = new KKJSMethod(jsContext, o, thisObject);
                     tideValue = Value::NewMethod(tibm);
                 }
                 else if (IsArrayLike(o, jsContext))
                 {
                     // this is a pure JS array: proxy it
-                    KListRef tibl = new KKJSList(jsContext, o);
+                    TiListRef tibl = new KKJSList(jsContext, o);
                     tideValue = Value::NewList(tibl);
                 }
                 else
                 {
                     // this is a pure JS object: proxy it
-                    KObjectRef tibo = new KKJSObject(jsContext, o);
+                    TiObjectRef tibo = new KKJSObject(jsContext, o);
                     tideValue = Value::NewObject(tibo);
                 }
             }
@@ -183,7 +183,7 @@ namespace JSUtil
         }
         else if (value->IsObject())
         {
-            KObjectRef obj = value->ToObject();
+            TiObjectRef obj = value->ToObject();
             AutoPtr<KKJSObject> kobj = obj.cast<KKJSObject>();
             if (!kobj.isNull() && kobj->SameContextGroup(jsContext))
             {
@@ -192,13 +192,13 @@ namespace JSUtil
             }
             else
             {
-                // this is a KObject that needs to be proxied
-                jsValue = KObjectToJSValue(value, jsContext);
+                // this is a TiObject that needs to be proxied
+                jsValue = TiObjectToJSValue(value, jsContext);
             }
         }
         else if (value->IsMethod())
         {
-            KMethodRef meth = value->ToMethod();
+            TiMethodRef meth = value->ToMethod();
             AutoPtr<KKJSMethod> kmeth = meth.cast<KKJSMethod>();
             if (!kmeth.isNull() && kmeth->SameContextGroup(jsContext))
             {
@@ -207,23 +207,23 @@ namespace JSUtil
             }
             else
             {
-                // this is a KMethod that needs to be proxied
-                jsValue = KMethodToJSValue(value, jsContext);
+                // this is a TiMethod that needs to be proxied
+                jsValue = TiMethodToJSValue(value, jsContext);
             }
         }
         else if (value->IsList())
         {
-            KListRef list = value->ToList();
-            AutoPtr<KKJSList> klist = list.cast<KKJSList>();
-            if (!klist.isNull() && klist->SameContextGroup(jsContext))
+            TiListRef list = value->ToList();
+            AutoPtr<KKJSList> tiList = list.cast<KKJSList>();
+            if (!tiList.isNull() && tiList->SameContextGroup(jsContext))
             {
                 // this object is actually a pure JS array
-                jsValue = klist->GetJSObject();
+                jsValue = tiList->GetJSObject();
             }
             else
             {
-                // this is a KList that needs to be proxied
-                jsValue = KListToJSValue(value, jsContext);
+                // this is a TiList that needs to be proxied
+                jsValue = TiListToJSValue(value, jsContext);
             }
         }
         else if (value->IsNull())
@@ -243,7 +243,7 @@ namespace JSUtil
 
     }
 
-    JSValueRef KObjectToJSValue(KValueRef objectValue, JSContextRef jsContext)
+    JSValueRef TiObjectToJSValue(KValueRef objectValue, JSContextRef jsContext)
     {
         if (KJSKObjectClass == NULL)
         {
@@ -259,7 +259,7 @@ namespace JSUtil
         return JSObjectMake(jsContext, KJSKObjectClass, new KValueRef(objectValue));
     }
 
-    JSValueRef KMethodToJSValue(KValueRef methodValue, JSContextRef jsContext)
+    JSValueRef TiMethodToJSValue(KValueRef methodValue, JSContextRef jsContext)
     {
         if (KJSKMethodClass == NULL)
         {
@@ -279,7 +279,7 @@ namespace JSUtil
         return jsobject;
     }
 
-    JSValueRef KListToJSValue(KValueRef listValue, JSContextRef jsContext)
+    JSValueRef TiListToJSValue(KValueRef listValue, JSContextRef jsContext)
     {
 
         if (KJSKListClass == NULL)
@@ -365,7 +365,7 @@ namespace JSUtil
             return false;
 
         // Convert the name to a std::string.
-        KObjectRef object = (*value)->ToObject();
+        TiObjectRef object = (*value)->ToObject();
         std::string name(ToChars(jsProperty));
 
         // Special properties always take precedence. This is important
@@ -401,7 +401,7 @@ namespace JSUtil
         if (value == NULL)
             return JSValueMakeUndefined(jsContext);
 
-        KObjectRef object = (*value)->ToObject();
+        TiObjectRef object = (*value)->ToObject();
         std::string name(ToChars(jsProperty));
         JSValueRef jsValue = NULL;
         try
@@ -436,7 +436,7 @@ namespace JSUtil
         if (value == NULL)
             return false;
 
-        KObjectRef object = (*value)->ToObject();
+        TiObjectRef object = (*value)->ToObject();
         bool success = false;
         std::string propertyName(ToChars(jsProperty));
         try
@@ -479,7 +479,7 @@ namespace JSUtil
         if (value == NULL)
             return JSValueMakeUndefined(jsContext);
 
-        KMethodRef method = (*value)->ToMethod();
+        TiMethodRef method = (*value)->ToMethod();
         ValueList args;
         for (size_t i = 0; i < argCount; i++)
         {
@@ -558,7 +558,7 @@ namespace JSUtil
         // of a number -- bad news.
         if (value->IsList() && !strcmp(name, "length"))
         {
-            KListRef l = value->ToList();
+            TiListRef l = value->ToList();
             return JSValueMakeNumber(jsContext, l->Size());
         }
 
@@ -651,7 +651,7 @@ namespace JSUtil
         if (value == NULL)
             return;
 
-        KObjectRef object = (*value)->ToObject();
+        TiObjectRef object = (*value)->ToObject();
         SharedStringList props = object->GetPropertyNames();
         AddSpecialPropertyNames(*value, props, false);
         for (size_t i = 0; i < props->size(); i++)

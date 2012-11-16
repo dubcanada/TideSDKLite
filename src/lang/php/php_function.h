@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KPHPFunction : public KMethod
+    class KPHPFunction : public TiMethod
     {
         public:
         KPHPFunction(const char *functionName);
@@ -48,7 +48,7 @@ namespace tide
         virtual KValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual SharedString DisplayString(int);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         bool PropertyExists(const char* property);
 
         inline std::string& GetMethodName() { return methodName; }
@@ -56,7 +56,7 @@ namespace tide
         private:
         std::string methodName;
         zval* zMethodName;
-        KObjectRef globalObject;
+        TiObjectRef globalObject;
     };
 }
 

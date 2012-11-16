@@ -56,14 +56,14 @@ namespace ti
         virtual void AppMenuChanged();
         virtual void AppIconChanged();
         void RemoveOldMenu();
-        void OpenFileChooserDialog(KMethodRef callback,
+        void OpenFileChooserDialog(TiMethodRef callback,
             bool multiple, std::string& title, std::string& path,
             std::string& defaultName, std::vector<std::string>& types,
             std::string& typesDescription);
-        void OpenFolderChooserDialog(KMethodRef callback,
+        void OpenFolderChooserDialog(TiMethodRef callback,
             bool multiple, std::string& title, std::string& path,
             std::string& defaultName);
-        void OpenSaveAsDialog(KMethodRef callback,
+        void OpenSaveAsDialog(TiMethodRef callback,
             std::string& title, std::string& path,
             std::string& defaultName, std::vector<std::string>& types,
             std::string& typesDescription);

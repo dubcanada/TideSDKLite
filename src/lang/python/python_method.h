@@ -40,7 +40,7 @@
 namespace tide
 {
     class KPythonObject;
-    class KPythonMethod : public KMethod
+    class KPythonMethod : public TiMethod
     {
     public:
         KPythonMethod(PyObject *obj);
@@ -49,7 +49,7 @@ namespace tide
         KValueRef Call(const ValueList& args);
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         virtual SharedStringList GetPropertyNames();
         PyObject* ToPython();
 

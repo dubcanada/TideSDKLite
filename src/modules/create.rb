@@ -42,11 +42,11 @@ namespace ti
 	class #{module_name}Binding : public StaticBoundObject
 	{
 	public:
-		#{module_name}Binding(KObjectRef);
+		#{module_name}Binding(TiObjectRef);
 	protected:
 		virtual ~#{module_name}Binding();
 	private:
-		KObjectRef global;
+		TiObjectRef global;
 	};
 }
 
@@ -67,7 +67,7 @@ bc.puts <<-END
 
 namespace ti
 {
-	#{module_name}Binding::#{module_name}Binding(KObjectRef global) : global(global)
+	#{module_name}Binding::#{module_name}Binding(TiObjectRef global) : global(global)
 	{
 	}
 	#{module_name}Binding::~#{module_name}Binding()
@@ -109,7 +109,7 @@ namespace ti
 		TIDE_MODULE_CLASS(#{module_name}Module)
 		
 	private:
-		tide::KObjectRef binding;
+		tide::TiObjectRef binding;
 	};
 
 }

@@ -34,11 +34,11 @@
 
 describe("API Types Tests", {
   test_core_types_harness: function () {
-    value_of(Ti.API.createKObject)
+    value_of(Ti.API.createTiObject)
       .should_be_function();
-    value_of(Ti.API.createKMethod)
+    value_of(Ti.API.createTiMethod)
       .should_be_function();
-    value_of(Ti.API.createKList)
+    value_of(Ti.API.createTiList)
       .should_be_function();
     value_of(Ti.API.createBytes)
       .should_be_function();
@@ -51,8 +51,8 @@ describe("API Types Tests", {
       }
       return n;
     };
-    var o = Ti.API.createKObject();
-    // There should be no properties showing for a blank KObject
+    var o = Ti.API.createTiObject();
+    // There should be no properties showing for a blank TiObject
     value_of(count_properties(o))
       .should_be(0);
 
@@ -68,7 +68,7 @@ describe("API Types Tests", {
     var other = Object();
     value_of(o.equals(other))
       .should_be_false();
-    other = Ti.API.createKObject();
+    other = Ti.API.createTiObject();
     value_of(o.equals(other))
       .should_be_false();
     value_of(o.toString())
@@ -106,7 +106,7 @@ describe("API Types Tests", {
     };
     var o = Object();
     o.property_one = "blahblah";
-    var ko = Ti.API.createKObject(o);
+    var ko = Ti.API.createTiObject(o);
 
     value_of(count_properties(ko))
       .should_be(1);
@@ -128,7 +128,7 @@ describe("API Types Tests", {
       .should_be("oh noes");
   },
   test_empty_klist: function () {
-    var l = Ti.API.createKList();
+    var l = Ti.API.createTiList();
     value_of(l.length)
       .should_be_number();
     value_of(l.equals)
@@ -160,7 +160,7 @@ describe("API Types Tests", {
       .should_be_function();
   },
   test_modifying_klist: function () {
-    var l = Ti.API.createKList();
+    var l = Ti.API.createTiList();
     value_of(l.length)
       .should_be(0);
     l.push(123);
@@ -223,7 +223,7 @@ describe("API Types Tests", {
   },
   test_wrapped_klist: function () {
     var mylist = [1, 2, 3];
-    var l = Ti.API.createKList(mylist);
+    var l = Ti.API.createTiList(mylist);
     value_of(l.length)
       .should_be_number();
     value_of(l.equals)
@@ -348,7 +348,7 @@ describe("API Types Tests", {
     };
     
     variable = "dos";
-    var f = Ti.API.createKMethod(myfunction);
+    var f = Ti.API.createTiMethod(myfunction);
     var result = f();
     value_of(result)
       .should_be("dos");
@@ -368,7 +368,7 @@ describe("API Types Tests", {
 
     setTimeout(function () {
       variable = "dos";
-      var f = Ti.API.createKMethod(myfunction2());
+      var f = Ti.API.createTiMethod(myfunction2());
       var result = f();
 
       if (result !== "dos") {

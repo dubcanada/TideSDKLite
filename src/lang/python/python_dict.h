@@ -39,7 +39,7 @@
 
 namespace tide
 {
-    class KPythonDict : public KObject
+    class KPythonDict : public TiObject
     {
     public:
         KPythonDict(PyObject *obj);
@@ -47,7 +47,7 @@ namespace tide
 
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         virtual SharedStringList GetPropertyNames();
 
         PyObject* ToPython();

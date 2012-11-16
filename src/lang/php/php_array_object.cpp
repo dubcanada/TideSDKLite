@@ -37,7 +37,7 @@
 namespace tide
 {
     KPHPArrayObject::KPHPArrayObject(zval *list) :
-        KList("PHP.KPHPArrayObject"),
+        TiList("PHP.KPHPArrayObject"),
         list(list)
     {
         if (Z_TYPE_P(list) != IS_ARRAY)
@@ -50,9 +50,9 @@ namespace tide
 
     KValueRef KPHPArrayObject::Get(const char* name)
     {
-        if (KList::IsInt(name))
+        if (TiList::IsInt(name))
         {
-            return this->At(KList::ToIndex(name));
+            return this->At(TiList::ToIndex(name));
         }
 
         unsigned long hashval = zend_get_hash_value((char *) name, strlen(name));
@@ -75,9 +75,9 @@ namespace tide
     void KPHPArrayObject::Set(const char* name, KValueRef value)
     {
         // Check for integer value as name
-        if (KList::IsInt(name))
+        if (TiList::IsInt(name))
         {
-            this->SetAt(KList::ToIndex(name), value);
+            this->SetAt(TiList::ToIndex(name), value);
         }
         else
         {
@@ -85,7 +85,7 @@ namespace tide
         }
     }
 
-    bool KPHPArrayObject::Equals(KObjectRef other)
+    bool KPHPArrayObject::Equals(TiObjectRef other)
     {
         AutoPtr<KPHPArrayObject> phpOther = other.cast<KPHPArrayObject>();
 

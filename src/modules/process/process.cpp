@@ -205,7 +205,7 @@ namespace ti
         }
     }
 
-    void Process::SetOnRead(KMethodRef newOnRead)
+    void Process::SetOnRead(TiMethodRef newOnRead)
     {
         if (running)
         {
@@ -217,7 +217,7 @@ namespace ti
         this->onRead = newOnRead;
     }
 
-    void Process::SetOnExit(KMethodRef newOnExit)
+    void Process::SetOnExit(TiMethodRef newOnExit)
     {
         this->AddEventListener(Event::EXIT, newOnExit);
         if (!this->onExit.isNull())
@@ -225,10 +225,10 @@ namespace ti
         this->onExit = newOnExit;
     }
 
-    KObjectRef Process::CloneEnvironment()
+    TiObjectRef Process::CloneEnvironment()
     {
         SharedStringList properties = environment->GetPropertyNames();
-        KObjectRef clonedEnvironment = new StaticBoundObject();
+        TiObjectRef clonedEnvironment = new StaticBoundObject();
         for (size_t i = 0; i < properties->size(); i++)
         {
             std::string property = *properties->at(i);
@@ -490,9 +490,9 @@ namespace ti
     }
 
     /*static*/
-    KObjectRef Process::GetCurrentEnvironment()
+    TiObjectRef Process::GetCurrentEnvironment()
     {
-        KObjectRef kenv = new StaticBoundObject();
+        TiObjectRef kenv = new StaticBoundObject();
         std::map<std::string, std::string> env = EnvironmentUtils::GetEnvironment();
 
         std::map<std::string, std::string>::iterator i = env.begin();

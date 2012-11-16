@@ -45,13 +45,13 @@ namespace ti
     class FilesystemBinding : public StaticBoundObject
     {
     public:
-        FilesystemBinding(Host*, KObjectRef);
+        FilesystemBinding(Host*, TiObjectRef);
         virtual ~FilesystemBinding();
 
     private:
         Host *host;
-        KObjectRef global;
-        std::vector<KObjectRef> asyncOperations;
+        TiObjectRef global;
+        std::vector<TiObjectRef> asyncOperations;
         Poco::Timer *timer;
 
         void CreateTempFile(const ValueList& args, KValueRef result);

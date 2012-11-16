@@ -38,7 +38,7 @@
 
 namespace ti
 {
-    MediaBinding::MediaBinding(KObjectRef global) :
+    MediaBinding::MediaBinding(TiObjectRef global) :
         StaticBoundObject("Media"),
         global(global)
     {

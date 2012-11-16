@@ -88,7 +88,7 @@ namespace tide
         // done here, the interpreter will have bitten the dust
             PyGILState_Ensure();
 
-        KObjectRef global = this->host->GetGlobalObject();
+        TiObjectRef global = this->host->GetGlobalObject();
         global->Set("Python", Value::Undefined);
         Script::GetInstance()->RemoveScriptEvaluator(this->binding);
         this->binding = NULL;
@@ -99,7 +99,7 @@ namespace tide
     void PythonModule::InitializeBinding()
     {
         PyLockGIL lock;
-        KObjectRef global = this->host->GetGlobalObject();
+        TiObjectRef global = this->host->GetGlobalObject();
         this->binding = new PythonEvaluator();
         global->Set("Python", Value::NewObject(this->binding));
         Script::GetInstance()->AddScriptEvaluator(this->binding);
@@ -107,7 +107,7 @@ namespace tide
         {
             PyObject* main_module = PyImport_AddModule("__main__");
             PyObject* main_dict = PyModule_GetDict(main_module);
-            PyObject* api = PythonUtils::KObjectToPyObject(Value::NewObject(global));
+            PyObject* api = PythonUtils::TiObjectToPyObject(Value::NewObject(global));
             PyDict_SetItemString(main_dict, PRODUCT_NAME, api);
             Py_DECREF(api);
         }

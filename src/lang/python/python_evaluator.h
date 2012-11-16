@@ -48,8 +48,8 @@ namespace tide
 
     private:
         static void UnindentCode(std::string &code);
-        static void DictToKObjectProps(PyObject* map, KObjectRef o);
-        static void KObjectPropsToDict(KObjectRef o, PyObject* pyobj);
+        static void DictToTiObjectProps(PyObject* map, TiObjectRef o);
+        static void TiObjectPropsToDict(TiObjectRef o, PyObject* pyobj);
     };
 }
 

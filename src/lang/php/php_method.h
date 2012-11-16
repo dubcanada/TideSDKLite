@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    class KPHPMethod : public KMethod
+    class KPHPMethod : public TiMethod
     {
         public:
         KPHPMethod(zval* object, const char* methodName);
@@ -49,7 +49,7 @@ namespace tide
         virtual KValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual SharedString DisplayString(int);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
         bool PropertyExists(const char* property);
         zval* ToPHP();
 
@@ -57,7 +57,7 @@ namespace tide
         zval* object;
         char* methodName;
         zval* zMethodName;
-        KObjectRef globalObject;
+        TiObjectRef globalObject;
     };
 }
 

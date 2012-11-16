@@ -55,8 +55,8 @@ namespace ti
 
     private:
         Host* host;
-        KObjectRef global;
-        KMethodRef callback;
+        TiObjectRef global;
+        TiMethodRef callback;
         std::string ipaddress;
         int port;
         Poco::Thread *thread;
