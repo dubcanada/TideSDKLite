@@ -34,7 +34,7 @@
 from os import path
 Import('build env module')
 
-env.Append(CPPDEFINES=('KROLL_PHP_API_EXPORT', 1))
+env.Append(CPPDEFINES=('TIDESDK_PHP_API_EXPORT', 1))
 build.add_thirdparty(env, 'poco')
 
 # PHP's headers are so messy that they flood the build with warnings 

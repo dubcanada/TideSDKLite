@@ -100,7 +100,7 @@ namespace tide
 
 namespace tide
 {
-    class KROLL_PHP_API PHPModule : public Module, public ModuleProvider
+    class TIDESDK_PHP_API PHPModule : public Module, public ModuleProvider
     {
     public:
         PHPModule(Host* host, const char* path) :

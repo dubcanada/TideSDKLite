@@ -76,7 +76,7 @@ namespace tide
         // basic bookkeeping for the reference counter, but other
         // than that, everything past here is like executing a job
         // in a synchronous fashion.
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
         this->Run();
 
         try
@@ -88,7 +88,7 @@ namespace tide
             std::cerr << bge.what() << std::endl;
         }
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 
     void AsyncJob::Run()

@@ -155,12 +155,12 @@ namespace ti
     }
     void IRCClientBinding::Run (void* p)
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         IRC *irc = (IRC*)p;
         irc->message_loop();
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
     void IRCClientBinding::GetUsers(const ValueList& args, KValueRef result)
     {

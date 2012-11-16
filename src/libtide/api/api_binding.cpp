@@ -860,7 +860,7 @@ namespace tide
     
     void APIBinding::RunInstaller()
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         SharedApplication app = host->GetApplication();
         BootUtils::RunInstaller(
@@ -872,7 +872,7 @@ namespace tide
         }
         this->installerMutex.unlock();
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 
     KListRef APIBinding::ComponentVectorToKList(

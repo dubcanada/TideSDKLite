@@ -66,7 +66,7 @@ throw _ex;
 
 namespace tide
 {
-    class KROLL_PYTHON_API PythonModule : public Module, public ModuleProvider
+    class TIDESDK_PYTHON_API PythonModule : public Module, public ModuleProvider
     {
     public:
         PythonModule(Host* host, const char* path) :

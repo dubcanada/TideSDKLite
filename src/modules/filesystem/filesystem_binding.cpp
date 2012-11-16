@@ -398,7 +398,7 @@ namespace ti
 
     void FilesystemBinding::OnAsyncOperationTimer(Poco::Timer &timer)
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         ValueList args = ValueList();
         KMethodRef m = this->Get("_invoke")->ToMethod();
@@ -408,6 +408,6 @@ namespace ti
             timer.restart(0);
         }
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 }

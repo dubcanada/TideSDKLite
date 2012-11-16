@@ -37,12 +37,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define KROLL_RUBY_API EXPORT
+#define TIDESDK_RUBY_API EXPORT
 #elif defined(OS_WIN32)
-# ifdef KROLL_RUBY_API_EXPORT
-#  define KROLL_RUBY_API __declspec(dllexport)
+# ifdef TIDESDK_RUBY_API_EXPORT
+#  define TIDESDK_RUBY_API __declspec(dllexport)
 # else
-#  define KROLL_RUBY_API __declspec(dllimport)
+#  define TIDESDK_RUBY_API __declspec(dllimport)
 # endif
 #endif
 
@@ -83,7 +83,7 @@
 
 namespace tide
 {
-    class KROLL_RUBY_API RubyModule : public Module, public ModuleProvider
+    class TIDESDK_RUBY_API RubyModule : public Module, public ModuleProvider
     {
     public:
         RubyModule(Host* host, const char* path) :

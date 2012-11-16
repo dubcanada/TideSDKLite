@@ -98,13 +98,13 @@ namespace ti
 
     void Worker::Run()
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         // The worker manages the lifetime of the worker context, so we
         // can just pass a pointer to ourselves instead of an AutoPtr.
         workerContext->StartWorker(this->code);
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 
     void Worker::SendMessageToMainThread(KValueRef message)

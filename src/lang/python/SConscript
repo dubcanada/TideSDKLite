@@ -34,7 +34,7 @@
 from os import path
 Import('build env module')
 
-env.Append(CPPDEFINES=('KROLL_PYTHON_API_EXPORT', 1))
+env.Append(CPPDEFINES=('TIDESDK_PYTHON_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 if build.is_osx():
