@@ -42,7 +42,7 @@ using std::wstring;
 #define MAX_PATH 512
 #endif
 
-namespace KrollBoot
+namespace TideBoot
 {
     extern string applicationHome;
     extern string updateFile;
@@ -107,7 +107,7 @@ namespace KrollBoot
 
         // This may have been an install, so ensure that KR_HOME is correct
         EnvironmentUtils::Set("KR_HOME", app->path);
-        exit(KrollBoot::StartHost());
+        exit(TideBoot::StartHost());
     }
 
     static HMODULE SafeLoadRuntimeDLL(string& path)
@@ -180,25 +180,25 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR command_line, int)
 int main(int __argc, const char* __argv[])
 #endif
 {
-    KrollBoot::argc = __argc;
-    KrollBoot::argv = (const char**) __argv;
+    TideBoot::argc = __argc;
+    TideBoot::argv = (const char**) __argv;
 
 #ifdef USE_BREAKPAD
     // Don't install a handler if we are just handling an error.
     if (__argc > 2 && !strcmp(CRASH_REPORT_OPT, __argv[1]))
     {
-        return KrollBoot::SendCrashReport();
+        return TideBoot::SendCrashReport();
     }
 
     wchar_t tempPath[MAX_PATH];
     GetTempPathW(MAX_PATH, tempPath);
-    KrollBoot::breakpad = new google_breakpad::ExceptionHandler(
+    TideBoot::breakpad = new google_breakpad::ExceptionHandler(
         tempPath,
         0,
-        KrollBoot::HandleCrash,
+        TideBoot::HandleCrash,
         0,
         google_breakpad::ExceptionHandler::HANDLER_ALL);
 #endif
 
-    return KrollBoot::Bootstrap();
+    return TideBoot::Bootstrap();
 }

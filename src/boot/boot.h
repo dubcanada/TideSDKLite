@@ -70,7 +70,7 @@ using std::map;
 #define MODULE_SEPARATOR ":"
 #endif
 
-namespace KrollBoot
+namespace TideBoot
 {
     /**
      * Implemented platform independently
