@@ -32,18 +32,18 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_ARRAY_OBJECT_H_
-#define _K_PHP_ARRAY_OBJECT_H_
+#ifndef _PYTHON_TUPLE_H_
+#define _PYTHON_TUPLE_H_
 
-#include "php_module.h"
+#include "python_module.h"
 
 namespace tide
 {
-    class KPHPArrayObject : public KList
+    class KPythonTuple : public KList
     {
-        public:
-        KPHPArrayObject(zval *list);
-        virtual ~KPHPArrayObject();
+    public:
+        KPythonTuple(PyObject *obj);
+        virtual ~KPythonTuple();
 
         KValueRef Get(const char *name);
         void Set(const char *name, KValueRef value);
@@ -56,15 +56,12 @@ namespace tide
         bool Remove(unsigned int index);
         KValueRef At(unsigned int index);
 
-        zval* ToPHP();
+        PyObject* ToPython();
 
-        protected:
-        zval *list;
-
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char *key);
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray);
-        DISALLOW_EVIL_CONSTRUCTORS(KPHPArrayObject);
+    protected:
+        PyObject *tuple;
+        AutoPtr<KPythonObject> object;
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonTuple);
     };
 }
 

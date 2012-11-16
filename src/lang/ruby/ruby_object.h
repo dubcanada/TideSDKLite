@@ -32,37 +32,36 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_TUPLE_H_
-#define _K_PYTHON_TUPLE_H_
+#ifndef _RUBY_OBJECT_H_
+#define _RUBY_OBJECT_H_
 
-#include "python_module.h"
+namespace tide {
 
-namespace tide
-{
-    class KPythonTuple : public KList
-    {
-    public:
-        KPythonTuple(PyObject *obj);
-        virtual ~KPythonTuple();
+class KRubyObject : public KObject {
+public:
+    KRubyObject(VALUE object);
+    virtual ~KRubyObject();
 
-        KValueRef Get(const char *name);
-        void Set(const char *name, KValueRef value);
-        virtual bool Equals(KObjectRef);
-        SharedStringList GetPropertyNames();
+    virtual void Set(const char *name, KValueRef value);
+    virtual KValueRef Get(const char *name);
 
-        unsigned int Size();
-        void Append(KValueRef value);
-        virtual void SetAt(unsigned int index, KValueRef value);
-        bool Remove(unsigned int index);
-        KValueRef At(unsigned int index);
+    virtual SharedStringList GetPropertyNames();
+    virtual SharedString DisplayString(int);
+    VALUE ToRuby();
 
-        PyObject* ToPython();
+    /*
+     * Determine if the given Ruby object equals this one
+     * by comparing these objects's identity e.g. equals?()
+     *  @param other the object to test
+     *  @returns true if objects have reference equality, false otherwise
+     */
+    virtual bool Equals(KObjectRef);
 
-    protected:
-        PyObject *tuple;
-        AutoPtr<KPythonObject> object;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonTuple);
-    };
+private:
+    VALUE object;
+
+};
+
 }
 
-#endif
+#endif /* RUBY_BOUND_OBJECT_H_ */

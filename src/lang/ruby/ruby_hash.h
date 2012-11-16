@@ -32,32 +32,36 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_FUNCTION_H_
-#define _K_PHP_FUNCTION_H_
+#ifndef _RUBY_HASH_H_
+#define _RUBY_HASH_H_
 
-namespace tide
-{
-    class KPHPFunction : public KMethod
-    {
-        public:
-        KPHPFunction(const char *functionName);
+namespace tide {
 
-        virtual ~KPHPFunction();
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual SharedStringList GetPropertyNames();
-        virtual SharedString DisplayString(int);
-        virtual bool Equals(KObjectRef);
-        bool PropertyExists(const char* property);
+class KRubyHash : public KObject {
+public:
+    KRubyHash(VALUE object);
+    virtual ~KRubyHash();
 
-        inline std::string& GetMethodName() { return methodName; }
+    virtual void Set(const char *name, KValueRef value);
+    virtual KValueRef Get(const char *name);
+    virtual SharedStringList GetPropertyNames();
+    virtual SharedString DisplayString(int);
+    VALUE ToRuby();
 
-        private:
-        std::string methodName;
-        zval* zMethodName;
-        KObjectRef globalObject;
-    };
+    /*
+     * Determine if the given Ruby object equals this one
+     * by comparing these objects's identity e.g. equals?()
+     *  @param other the object to test
+     *  @returns true if objects have reference equality, false otherwise
+     */
+    virtual bool Equals(KObjectRef);
+
+private:
+    VALUE hash;
+    AutoPtr<KRubyObject> object;
+
+};
+
 }
 
-#endif
+#endif /* RUBY_BOUND_OBJECT_H_ */

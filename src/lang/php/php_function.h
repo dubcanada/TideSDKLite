@@ -32,18 +32,17 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_METHOD_H_
-#define _K_PHP_METHOD_H_
+#ifndef _PHP_FUNCTION_H_
+#define _PHP_FUNCTION_H_
 
 namespace tide
 {
-    class KPHPMethod : public KMethod
+    class KPHPFunction : public KMethod
     {
         public:
-        KPHPMethod(zval* object, const char* methodName);
-        KPHPMethod(const char *functionName);
+        KPHPFunction(const char *functionName);
 
-        virtual ~KPHPMethod();
+        virtual ~KPHPFunction();
         KValueRef Call(const ValueList& args);
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
@@ -51,11 +50,11 @@ namespace tide
         virtual SharedString DisplayString(int);
         virtual bool Equals(KObjectRef);
         bool PropertyExists(const char* property);
-        zval* ToPHP();
+
+        inline std::string& GetMethodName() { return methodName; }
 
         private:
-        zval* object;
-        char* methodName;
+        std::string methodName;
         zval* zMethodName;
         KObjectRef globalObject;
     };

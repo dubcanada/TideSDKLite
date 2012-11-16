@@ -32,20 +32,21 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_OBJECT_H_
-#define _K_PYTHON_OBJECT_H_
+#ifndef _PYTHON_METHOD_H_
+#define _PYTHON_METHOD_H_
 
 #include "python_module.h"
 
 namespace tide
 {
-    class KPythonObject : public KObject
+    class KPythonObject;
+    class KPythonMethod : public KMethod
     {
     public:
-        KPythonObject(PyObject *obj);
-        KPythonObject(PyObject *obj, bool readOnly);
-        virtual ~KPythonObject();
+        KPythonMethod(PyObject *obj);
+        virtual ~KPythonMethod();
 
+        KValueRef Call(const ValueList& args);
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
         virtual bool Equals(KObjectRef);
@@ -53,10 +54,9 @@ namespace tide
         PyObject* ToPython();
 
     private:
-        PyObject *object;
-        bool readOnly;
-        KObjectRef delegate;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonObject);
+        PyObject* method;
+        AutoPtr<KPythonObject> object;
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonMethod);
     };
 }
 

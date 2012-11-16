@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include "k_python_method.h"
+#include "python_method.h"
 
 namespace tide
 {

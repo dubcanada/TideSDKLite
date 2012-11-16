@@ -32,31 +32,39 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_METHOD_H_
-#define _K_PYTHON_METHOD_H_
+#ifndef _PHP_LIST_H_
+#define _PHP_LIST_H_
 
-#include "python_module.h"
+#include "php_module.h"
 
 namespace tide
 {
-    class KPythonObject;
-    class KPythonMethod : public KMethod
+    class KPHPList : public KList
     {
-    public:
-        KPythonMethod(PyObject *obj);
-        virtual ~KPythonMethod();
+        public:
+        KPHPList(zval *list);
+        virtual ~KPHPList();
 
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
+        KValueRef Get(const char* name);
+        void Set(const char* name, KValueRef value);
         virtual bool Equals(KObjectRef);
-        virtual SharedStringList GetPropertyNames();
-        PyObject* ToPython();
+        SharedStringList GetPropertyNames();
 
-    private:
-        PyObject* method;
-        AutoPtr<KPythonObject> object;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonMethod);
+        unsigned int Size();
+        void Append(KValueRef value);
+        virtual void SetAt(unsigned int index, KValueRef value);
+        bool Remove(unsigned int index);
+        KValueRef At(unsigned int index);
+
+        zval* ToPHP();
+
+        protected:
+        zval *list;
+
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char* key);
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
+        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray);
+        DISALLOW_EVIL_CONSTRUCTORS(KPHPList);
     };
 }
 

@@ -32,60 +32,48 @@
 * limitations under the License.
 **/
 
-#include "k_python_list.h"
+#include "python_list.h"
 
 namespace tide
 {
-    KPythonList::KPythonList(PyObject *list) :
-        KList("Python.KPythonList"),
-        list(list),
-        object(new KPythonObject(list, true))
+    KPythonTuple::KPythonTuple(PyObject *tuple) :
+        KList("Python.KPythonTuple"),
+        tuple(tuple),
+        object(new KPythonObject(tuple, true))
     {
         PyLockGIL lock;
-        Py_INCREF(this->list);
+        Py_INCREF(this->tuple);
     }
 
-    KPythonList::~KPythonList()
+    KPythonTuple::~KPythonTuple()
     {
         PyLockGIL lock;
-        Py_DECREF(this->list);
+        Py_DECREF(this->tuple);
     }
 
-    void KPythonList::Append(KValueRef value)
+    void KPythonTuple::Append(KValueRef value)
+    {
+        throw ValueException::FromString("Cannot modify the size of a Python tuple.");
+    }
+
+    unsigned int KPythonTuple::Size()
     {
         PyLockGIL lock;
-        PyObject* py_value = PythonUtils::ToPyObject(value);
-        PyList_Append(this->list, py_value);
+        return PyTuple_Size(this->tuple);
     }
 
-    unsigned int KPythonList::Size()
+    bool KPythonTuple::Remove(unsigned int index)
     {
-        PyLockGIL lock;
-        return PyList_Size(this->list);
+        throw ValueException::FromString("Cannot modify the size of a Python tuple.");
+        return false;
     }
 
-    bool KPythonList::Remove(unsigned int index)
-    {
-        PyLockGIL lock;
-        if (index < this->Size())
-        {
-            PyObject* emptyList = PyList_New(0);
-            PyList_SetSlice(this->list, index, index + 1, emptyList);
-            Py_DECREF(emptyList);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    KValueRef KPythonList::At(unsigned int index)
+    KValueRef KPythonTuple::At(unsigned int index)
     {
         PyLockGIL lock;
         if (index >= 0 && index < this->Size())
         {
-            PyObject *p = PyList_GetItem(this->list, index);
+            PyObject *p = PyTuple_GetItem(this->tuple, index);
             KValueRef v = PythonUtils::ToTiValue(p);
             return v;
         }
@@ -95,34 +83,17 @@ namespace tide
         }
     }
 
-    void KPythonList::Set(const char* name, KValueRef value)
+    void KPythonTuple::Set(const char *name, KValueRef value)
     {
-        if (KList::IsInt(name))
-        {
-            this->SetAt(KList::ToIndex(name), value);
-        }
-        else
-        {
-            this->object->Set(name, value);
-        }
+        throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    void KPythonList::SetAt(unsigned int index, KValueRef value)
+    void KPythonTuple::SetAt(unsigned int index, KValueRef value)
     {
-        PyLockGIL lock;
-        while (index >= this->Size())
-        {
-            // Now we need to create entries between current size
-            // and new size and make the entries undefined.
-            Py_INCREF(Py_None);
-            PyList_Append(this->list, Py_None);
-        }
-        PyObject* py_value = PythonUtils::ToPyObject(value);
-        PyList_SetItem(this->list, index, py_value);
-        return;
+        throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    KValueRef KPythonList::Get(const char* name)
+    KValueRef KPythonTuple::Get(const char *name)
     {
         if (KList::IsInt(name))
         {
@@ -134,7 +105,7 @@ namespace tide
         }
     }
 
-    SharedStringList KPythonList::GetPropertyNames()
+    SharedStringList KPythonTuple::GetPropertyNames()
     {
         SharedStringList property_names = object->GetPropertyNames();
         for (size_t i = 0; i < this->Size(); i++)
@@ -142,23 +113,24 @@ namespace tide
             std::string name = KList::IntToChars(i);
             property_names->push_back(new std::string(name));
         }
-
         return property_names;
     }
 
-    PyObject* KPythonList::ToPython()
+    PyObject* KPythonTuple::ToPython()
     {
         return this->object->ToPython();
     }
 
-    bool KPythonList::Equals(KObjectRef other)
+    bool KPythonTuple::Equals(KObjectRef other)
     {
-        AutoPtr<KPythonList> pyOther = other.cast<KPythonList>();
-
-        // This is not a Python object
+        AutoPtr<KPythonTuple> pyOther = other.cast<KPythonTuple>();
         if (pyOther.isNull())
+        {
             return false;
-
-        return pyOther->ToPython() == this->ToPython();
+        }
+        else
+        {
+            return pyOther->ToPython() == this->ToPython();
+        }
     }
 }

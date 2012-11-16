@@ -32,28 +32,29 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_OBJECT_H_
-#define _K_PHP_OBJECT_H_
+#ifndef _PYTHON_DICT_H_
+#define _PYTHON_DICT_H_
+
+#include "python_module.h"
 
 namespace tide
 {
-    class KPHPObject : public KObject
+    class KPythonDict : public KObject
     {
-        public:
-        KPHPObject(zval* object);
-        virtual ~KPHPObject();
+    public:
+        KPythonDict(PyObject *obj);
+        virtual ~KPythonDict();
 
         virtual void Set(const char *name, KValueRef value);
         virtual KValueRef Get(const char *name);
-        virtual SharedStringList GetPropertyNames();
-        virtual SharedString DisplayString(int);
         virtual bool Equals(KObjectRef);
-        bool PropertyExists(const char* property TSRMLS_DC);
-        bool MethodExists(const char* methodName TSRMLS_DC);
-        zval* ToPHP();
-        
-        private:
-        zval* object;
+        virtual SharedStringList GetPropertyNames();
+
+        PyObject* ToPython();
+
+    private:
+        PyObject *object;
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonDict);
     };
 }
 

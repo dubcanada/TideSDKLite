@@ -32,39 +32,31 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_LIST_H_
-#define _K_PHP_LIST_H_
+#ifndef _PYTHON_OBJECT_H_
+#define _PYTHON_OBJECT_H_
 
-#include "php_module.h"
+#include "python_module.h"
 
 namespace tide
 {
-    class KPHPList : public KList
+    class KPythonObject : public KObject
     {
-        public:
-        KPHPList(zval *list);
-        virtual ~KPHPList();
+    public:
+        KPythonObject(PyObject *obj);
+        KPythonObject(PyObject *obj, bool readOnly);
+        virtual ~KPythonObject();
 
-        KValueRef Get(const char* name);
-        void Set(const char* name, KValueRef value);
+        virtual void Set(const char *name, KValueRef value);
+        virtual KValueRef Get(const char *name);
         virtual bool Equals(KObjectRef);
-        SharedStringList GetPropertyNames();
+        virtual SharedStringList GetPropertyNames();
+        PyObject* ToPython();
 
-        unsigned int Size();
-        void Append(KValueRef value);
-        virtual void SetAt(unsigned int index, KValueRef value);
-        bool Remove(unsigned int index);
-        KValueRef At(unsigned int index);
-
-        zval* ToPHP();
-
-        protected:
-        zval *list;
-
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char* key);
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
-        static void AddTideValueToPHPArray(KValueRef value, zval *phpArray);
-        DISALLOW_EVIL_CONSTRUCTORS(KPHPList);
+    private:
+        PyObject *object;
+        bool readOnly;
+        KObjectRef delegate;
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonObject);
     };
 }
 

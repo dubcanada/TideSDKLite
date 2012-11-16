@@ -32,29 +32,42 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_DICT_H_
-#define _K_PYTHON_DICT_H_
+#ifndef _RUBY_LIST_H_
+#define _RUBY_LIST_H_
 
-#include "python_module.h"
+#include "ruby_module.h"
 
 namespace tide
 {
-    class KPythonDict : public KObject
+    class KRubyList : public KList
     {
     public:
-        KPythonDict(PyObject *obj);
-        virtual ~KPythonDict();
+        KRubyList(VALUE);
+        virtual ~KRubyList();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
-        virtual SharedStringList GetPropertyNames();
+        void Append(KValueRef value);
+        unsigned int Size();
+        KValueRef At(unsigned int index);
+        void SetAt(unsigned int index, KValueRef value);
+        bool Remove(unsigned int index);
+        void Set(const char* name, KValueRef value);
+        KValueRef Get(const char* name);
+        SharedStringList GetPropertyNames();
+        SharedString DisplayString(int);
+        VALUE ToRuby();
 
-        PyObject* ToPython();
+    /*
+     * Determine if the given Ruby object equals this one
+     * by comparing these objects's identity e.g. equals?()
+     *  @param other the object to test
+     *  @returns true if objects have reference equality, false otherwise
+     */
+    virtual bool Equals(KObjectRef);
 
-    private:
-        PyObject *object;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonDict);
+    protected:
+        VALUE list;
+        AutoPtr<KRubyObject> object;
+        DISALLOW_EVIL_CONSTRUCTORS(KRubyList);
     };
 }
 
