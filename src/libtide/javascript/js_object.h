@@ -49,8 +49,8 @@ namespace tide
         KKJSObject(JSContextRef context, JSObjectRef js_object);
         ~KKJSObject();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual bool HasProperty(const char* name);
         virtual bool Equals(TiObjectRef);

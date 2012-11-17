@@ -50,17 +50,17 @@ namespace ti
         bool OpenURLImpl(const std::string& url);
         void TakeScreenshotImpl(const std::string& targetFile);
 
-        void _GetType(const ValueList& args, KValueRef result);
-        void _GetName(const ValueList& args, KValueRef result);
-        void _GetProcessorCount(const ValueList& args, KValueRef result);
-        void _GetVersion(const ValueList& args, KValueRef result);
-        void _GetArchitecture(const ValueList& args, KValueRef result);
-        void _GetMachineId(const ValueList& args, KValueRef result);
-        void _GetUsername(const ValueList& args, KValueRef result);
-        void _CreateUUID(const ValueList& args, KValueRef result);
-        void _OpenURL(const ValueList& args, KValueRef result);
-        void _OpenApplication(const ValueList& args, KValueRef result);
-        void _TakeScreenshot(const ValueList& args, KValueRef result);
+        void _GetType(const ValueList& args, ValueRef result);
+        void _GetName(const ValueList& args, ValueRef result);
+        void _GetProcessorCount(const ValueList& args, ValueRef result);
+        void _GetVersion(const ValueList& args, ValueRef result);
+        void _GetArchitecture(const ValueList& args, ValueRef result);
+        void _GetMachineId(const ValueList& args, ValueRef result);
+        void _GetUsername(const ValueList& args, ValueRef result);
+        void _CreateUUID(const ValueList& args, ValueRef result);
+        void _OpenURL(const ValueList& args, ValueRef result);
+        void _OpenApplication(const ValueList& args, ValueRef result);
+        void _TakeScreenshot(const ValueList& args, ValueRef result);
     };
 }
 

@@ -271,7 +271,7 @@ namespace ti
         return pid;
     }
     
-    void Win32Process::ReadCallback(const ValueList& args, KValueRef result)
+    void Win32Process::ReadCallback(const ValueList& args, ValueRef result)
     {
         if (args.at(0)->IsObject())
         {

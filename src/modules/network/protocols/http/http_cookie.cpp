@@ -185,34 +185,34 @@ namespace ti
         this->SetMethod("toString", &HTTPCookie::ToString);
     }
 
-    void HTTPCookie::GetName(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.getName().c_str());
     }
 
-    void HTTPCookie::SetName(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetName(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setName", "s");
         this->cookie.setName(args.GetString(0));
     }
 
-    void HTTPCookie::GetValue(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetValue(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.getValue().c_str());
     }
 
-    void HTTPCookie::SetValue(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetValue(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setValue", "s");
         this->cookie.setValue(args.GetString(0));
     }
 
-    void HTTPCookie::GetVersion(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetVersion(const ValueList& args, ValueRef result)
     {
         result->SetInt(this->cookie.getVersion());
     }
 
-    void HTTPCookie::SetVersion(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetVersion(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setVersion", "i");
         int version = args.GetInt(0);
@@ -224,73 +224,73 @@ namespace ti
         this->cookie.setVersion(version);
     }
 
-    void HTTPCookie::GetDomain(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetDomain(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.getDomain().c_str());
     }
 
-    void HTTPCookie::SetDomain(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetDomain(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setDomain", "s");
         this->cookie.setDomain(args.GetString(0));
     }
 
-    void HTTPCookie::GetPath(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetPath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.getPath().c_str());
     }
 
-    void HTTPCookie::SetPath(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetPath(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setPath", "s");
         this->cookie.setPath(args.GetString(0));
     }
 
-    void HTTPCookie::GetMaxAge(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetMaxAge(const ValueList& args, ValueRef result)
     {
         result->SetInt(this->cookie.getMaxAge());
     }
 
-    void HTTPCookie::SetMaxAge(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetMaxAge(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setMaxAge", "i");
         this->cookie.setMaxAge(args.GetInt(0));
     }
 
-    void HTTPCookie::GetComment(const ValueList& args, KValueRef result)
+    void HTTPCookie::GetComment(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.getComment().c_str());
     }
 
-    void HTTPCookie::SetComment(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetComment(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setComment", "s");
         this->cookie.setComment(args.GetString(0));
     }
 
-    void HTTPCookie::IsHTTPOnly(const ValueList& args, KValueRef result)
+    void HTTPCookie::IsHTTPOnly(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->cookie.getHttpOnly());
     }
 
-    void HTTPCookie::SetHTTPOnly(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetHTTPOnly(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setHTTPOnly", "b");
         this->cookie.setHttpOnly(args.GetBool(0));
     }
 
-    void HTTPCookie::IsSecure(const ValueList& args, KValueRef result)
+    void HTTPCookie::IsSecure(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->cookie.getSecure());
     }
 
-    void HTTPCookie::SetSecure(const ValueList& args, KValueRef result)
+    void HTTPCookie::SetSecure(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setSecure", "b");
         this->cookie.setSecure(args.GetBool(0));
     }
 
-    void HTTPCookie::ToString(const ValueList& args, KValueRef result)
+    void HTTPCookie::ToString(const ValueList& args, ValueRef result)
     {
         result->SetString(this->cookie.toString().c_str());
     }

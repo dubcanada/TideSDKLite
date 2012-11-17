@@ -46,14 +46,14 @@ namespace ti
         ~Clipboard();
 
         enum DataType { TEXT, URI_LIST, IMAGE, UNKNOWN };
-        void _GetData(const ValueList& args, KValueRef result);
-        void _SetData(const ValueList& args, KValueRef result);
-        void _ClearData(const ValueList& args, KValueRef result);
-        void _HasData(const ValueList& args, KValueRef result);
-        void _GetText(const ValueList& args, KValueRef result);
-        void _SetText(const ValueList& args, KValueRef result);
-        void _ClearText(const ValueList& args, KValueRef result);
-        void _HasText(const ValueList& args, KValueRef result);
+        void _GetData(const ValueList& args, ValueRef result);
+        void _SetData(const ValueList& args, ValueRef result);
+        void _ClearData(const ValueList& args, ValueRef result);
+        void _HasData(const ValueList& args, ValueRef result);
+        void _GetText(const ValueList& args, ValueRef result);
+        void _SetText(const ValueList& args, ValueRef result);
+        void _ClearText(const ValueList& args, ValueRef result);
+        void _HasText(const ValueList& args, ValueRef result);
         bool HasData(DataType type);
         void ClearData(DataType type);
 

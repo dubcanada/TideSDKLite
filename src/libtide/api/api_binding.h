@@ -50,7 +50,7 @@ namespace tide
         APIBinding(Host* host);
         virtual ~APIBinding();
 
-        void Log(int severity, KValueRef);
+        void Log(int severity, ValueRef);
         static TiListRef ComponentVectorToTiList(
             vector<SharedComponent>&,
             KComponentType filter = UNKNOWN);
@@ -74,48 +74,48 @@ namespace tide
 
         void RunInstaller();
 
-        void _Set(const ValueList& args, KValueRef result);
-        void _Get(const ValueList& args, KValueRef result);
-        void _AddEventListener(const ValueList& args, KValueRef result);
-        void _RemoveEventListener(const ValueList& args, KValueRef result);
-        void _FireEvent(const ValueList& args, KValueRef result);
+        void _Set(const ValueList& args, ValueRef result);
+        void _Get(const ValueList& args, ValueRef result);
+        void _AddEventListener(const ValueList& args, ValueRef result);
+        void _RemoveEventListener(const ValueList& args, ValueRef result);
+        void _FireEvent(const ValueList& args, ValueRef result);
 
-        Logger::Level ValueToLevel(KValueRef v);
-        void _SetLogLevel(const ValueList& args, KValueRef result);
-        void _GetLogLevel(const ValueList& args, KValueRef result);
-        void _RunOnMainThread(const ValueList& args, KValueRef result);
-        void _RunOnMainThreadAsync(const ValueList& args, KValueRef result);
+        Logger::Level ValueToLevel(ValueRef v);
+        void _SetLogLevel(const ValueList& args, ValueRef result);
+        void _GetLogLevel(const ValueList& args, ValueRef result);
+        void _RunOnMainThread(const ValueList& args, ValueRef result);
+        void _RunOnMainThreadAsync(const ValueList& args, ValueRef result);
 
-        void _Print(const ValueList& args, KValueRef result);
-        void _Log(const ValueList& args, KValueRef result);
-        void _LogTrace(const ValueList& args, KValueRef result);
-        void _LogDebug(const ValueList& args, KValueRef result);
-        void _LogInfo(const ValueList& args, KValueRef result);
-        void _LogNotice(const ValueList& args, KValueRef result);
-        void _LogWarn(const ValueList& args, KValueRef result);
-        void _LogError(const ValueList& args, KValueRef result);
-        void _LogCritical(const ValueList& args, KValueRef result);
-        void _LogFatal(const ValueList& args, KValueRef result);
+        void _Print(const ValueList& args, ValueRef result);
+        void _Log(const ValueList& args, ValueRef result);
+        void _LogTrace(const ValueList& args, ValueRef result);
+        void _LogDebug(const ValueList& args, ValueRef result);
+        void _LogInfo(const ValueList& args, ValueRef result);
+        void _LogNotice(const ValueList& args, ValueRef result);
+        void _LogWarn(const ValueList& args, ValueRef result);
+        void _LogError(const ValueList& args, ValueRef result);
+        void _LogCritical(const ValueList& args, ValueRef result);
+        void _LogFatal(const ValueList& args, ValueRef result);
 
-        void _GetInstalledComponentsImpl(KComponentType type, const ValueList& args, KValueRef result);
-        void _GetApplication(const ValueList& args, KValueRef value);
-        void _GetInstalledComponents(const ValueList& args, KValueRef value);
-        void _GetInstalledModules(const ValueList& args, KValueRef value);
-        void _GetInstalledSDKs(const ValueList& args, KValueRef value);
-        void _GetInstalledMobileSDKs(const ValueList& args, KValueRef value);
-        void _GetInstalledRuntimes(const ValueList& args, KValueRef value);
-        void _GetComponentSearchPaths(const ValueList& args, KValueRef value);
-        void _ReadApplicationManifest(const ValueList& args, KValueRef value);
-        void _ComponentGUIDToComponentType(const ValueList& args, KValueRef value);
-        void _GetEnvironment(const ValueList& args, KValueRef value);
+        void _GetInstalledComponentsImpl(KComponentType type, const ValueList& args, ValueRef result);
+        void _GetApplication(const ValueList& args, ValueRef value);
+        void _GetInstalledComponents(const ValueList& args, ValueRef value);
+        void _GetInstalledModules(const ValueList& args, ValueRef value);
+        void _GetInstalledSDKs(const ValueList& args, ValueRef value);
+        void _GetInstalledMobileSDKs(const ValueList& args, ValueRef value);
+        void _GetInstalledRuntimes(const ValueList& args, ValueRef value);
+        void _GetComponentSearchPaths(const ValueList& args, ValueRef value);
+        void _ReadApplicationManifest(const ValueList& args, ValueRef value);
+        void _ComponentGUIDToComponentType(const ValueList& args, ValueRef value);
+        void _GetEnvironment(const ValueList& args, ValueRef value);
         
-        void _CreateDependency(const ValueList& args, KValueRef value);
-        void _InstallDependencies(const ValueList& args, KValueRef value);
+        void _CreateDependency(const ValueList& args, ValueRef value);
+        void _InstallDependencies(const ValueList& args, ValueRef value);
 
-        void _CreateTiObject(const ValueList& args, KValueRef result);
-        void _CreateTiMethod(const ValueList& args, KValueRef result);
-        void _CreateTiList(const ValueList& args, KValueRef result);
-        void _CreateBytes(const ValueList& args, KValueRef result);
+        void _CreateTiObject(const ValueList& args, ValueRef result);
+        void _CreateTiMethod(const ValueList& args, ValueRef result);
+        void _CreateTiList(const ValueList& args, ValueRef result);
+        void _CreateBytes(const ValueList& args, ValueRef result);
     };
 
     /**
@@ -125,8 +125,8 @@ namespace tide
     {
     public:
         TiObjectWrapper(TiObjectRef object);
-        void Set(const char *name, KValueRef value);
-        KValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        ValueRef Get(const char *name);
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels);
@@ -143,9 +143,9 @@ namespace tide
     {
     public:
         TiMethodWrapper(TiMethodRef method);
-        KValueRef Call(const ValueList& args);
-        void Set(const char *name, KValueRef value);
-        KValueRef Get(const char *name);
+        ValueRef Call(const ValueList& args);
+        void Set(const char *name, ValueRef value);
+        ValueRef Get(const char *name);
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels);
@@ -162,13 +162,13 @@ namespace tide
     {
     public:
         TiListWrapper(TiListRef list);
-        void Append(KValueRef value);
+        void Append(ValueRef value);
         unsigned int Size();
-        KValueRef At(unsigned int index);
-        void SetAt(unsigned int index, KValueRef value);
+        ValueRef At(unsigned int index);
+        void SetAt(unsigned int index, ValueRef value);
         bool Remove(unsigned int index);
-        void Set(const char *name, KValueRef value);
-        KValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        ValueRef Get(const char *name);
         bool HasProperty(const char *name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int levels=3);

@@ -22,30 +22,30 @@ namespace ti
 		Host* host;
 		TiObjectRef global;
 
-		void GetID(const ValueList& args, KValueRef result);
-		void GetName(const ValueList& args, KValueRef result);
-		void GetVersion(const ValueList& args, KValueRef result);
-		void GetPublisher(const ValueList& args, KValueRef result);
-		void GetCopyright(const ValueList& args, KValueRef result);
-		void GetDescription(const ValueList& args, KValueRef result);
-		void GetURL(const ValueList& args, KValueRef result);
-		void GetGUID(const ValueList& args, KValueRef result);
-		void GetIcon(const ValueList& args, KValueRef result);
-		void GetStreamURL(const ValueList& args, KValueRef result);
-		void GetPath(const ValueList& args, KValueRef result);
-		void GetHome(const ValueList& args, KValueRef result);
-		void GetArguments(const ValueList& args, KValueRef result);
-		void AppURLToPath(const ValueList& args, KValueRef result);
-		void SetMenu(const ValueList& args, KValueRef result);
-		void Exit(const ValueList& args, KValueRef result);
-		void Restart(const ValueList& args, KValueRef result);
-		void StdOut(const ValueList& args, KValueRef result);
-		void StdErr(const ValueList& args, KValueRef result);
-		void StdIn(const ValueList& args, KValueRef result);
+		void GetID(const ValueList& args, ValueRef result);
+		void GetName(const ValueList& args, ValueRef result);
+		void GetVersion(const ValueList& args, ValueRef result);
+		void GetPublisher(const ValueList& args, ValueRef result);
+		void GetCopyright(const ValueList& args, ValueRef result);
+		void GetDescription(const ValueList& args, ValueRef result);
+		void GetURL(const ValueList& args, ValueRef result);
+		void GetGUID(const ValueList& args, ValueRef result);
+		void GetIcon(const ValueList& args, ValueRef result);
+		void GetStreamURL(const ValueList& args, ValueRef result);
+		void GetPath(const ValueList& args, ValueRef result);
+		void GetHome(const ValueList& args, ValueRef result);
+		void GetArguments(const ValueList& args, ValueRef result);
+		void AppURLToPath(const ValueList& args, ValueRef result);
+		void SetMenu(const ValueList& args, ValueRef result);
+		void Exit(const ValueList& args, ValueRef result);
+		void Restart(const ValueList& args, ValueRef result);
+		void StdOut(const ValueList& args, ValueRef result);
+		void StdErr(const ValueList& args, ValueRef result);
+		void StdIn(const ValueList& args, ValueRef result);
 
-		void CreateProperties(const ValueList& args, KValueRef result);
-		void LoadProperties(const ValueList& args, KValueRef result);
-		void GetSystemProperties(const ValueList& args, KValueRef result);
+		void CreateProperties(const ValueList& args, ValueRef result);
+		void LoadProperties(const ValueList& args, ValueRef result);
+		void GetSystemProperties(const ValueList& args, ValueRef result);
 
 	protected:
 		void Setup();

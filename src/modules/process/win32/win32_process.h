@@ -60,7 +60,7 @@ namespace ti
         virtual BytesRef MonitorSync();
         virtual int Wait();
         virtual std::string ArgumentsToString();
-        void ReadCallback(const ValueList& args, KValueRef result);
+        void ReadCallback(const ValueList& args, ValueRef result);
         virtual void RecreateNativePipes();
         
     protected:

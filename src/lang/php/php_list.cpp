@@ -48,7 +48,7 @@ namespace tide
     {
     }
 
-    KValueRef KPHPList::Get(const char* name)
+    ValueRef KPHPList::Get(const char* name)
     {
         if (TiList::IsInt(name))
         {
@@ -68,11 +68,11 @@ namespace tide
         }
 
         TSRMLS_FETCH();
-        KValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
+        ValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
         return v;
     }
 
-    void KPHPList::Set(const char* name, KValueRef value)
+    void KPHPList::Set(const char* name, ValueRef value)
     {
         // Check for integer value as name
         if (TiList::IsInt(name))
@@ -110,12 +110,12 @@ namespace tide
         return (unsigned int) zend_hash_num_elements(Z_ARRVAL_P(this->list));
     }
 
-    void KPHPList::Append(KValueRef value)
+    void KPHPList::Append(ValueRef value)
     {
         AddTideValueToPHPArray(value, this->list);
     }
 
-    void KPHPList::SetAt(unsigned int index, KValueRef value)
+    void KPHPList::SetAt(unsigned int index, ValueRef value)
     {
         AddTideValueToPHPArray(value, this->list, index);
     }
@@ -131,7 +131,7 @@ namespace tide
         return false;
     }
 
-    KValueRef KPHPList::At(unsigned int index)
+    ValueRef KPHPList::At(unsigned int index)
     {
         zval **copyval;
 
@@ -142,7 +142,7 @@ namespace tide
         }
 
         TSRMLS_FETCH();
-        KValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
+        ValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
         return v;
     }
 
@@ -151,7 +151,7 @@ namespace tide
         return this->list;
     }
 
-    void KPHPList::AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char* key)
+    void KPHPList::AddTideValueToPHPArray(ValueRef value, zval *phpArray, const char* key)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -198,7 +198,7 @@ namespace tide
         }
     }
 
-    void KPHPList::AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index)
+    void KPHPList::AddTideValueToPHPArray(ValueRef value, zval *phpArray, unsigned int index)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -245,7 +245,7 @@ namespace tide
         }
     }
 
-    void KPHPList::AddTideValueToPHPArray(KValueRef value, zval *phpArray)
+    void KPHPList::AddTideValueToPHPArray(ValueRef value, zval *phpArray)
     {
         AddTideValueToPHPArray(value, phpArray, (unsigned int) zend_hash_num_elements(Z_ARRVAL_P(phpArray)));
     }

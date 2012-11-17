@@ -50,7 +50,7 @@ namespace tide
          * Append a value to this list
          * Errors will result in a thrown ValueException
          */
-        virtual void Append(KValueRef value);
+        virtual void Append(ValueRef value);
 
         /**
          * Get the length of this list.
@@ -61,13 +61,13 @@ namespace tide
          * @return the value at the given index.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef At(unsigned int index);
+        virtual ValueRef At(unsigned int index);
 
         /**
          * Set a property on this object to the given value
          * Errors will result in a thrown ValueException
          */
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
 
         /**
          * Remove the list entry at the given index.
@@ -82,14 +82,14 @@ namespace tide
          * by appending Value::Undefined;
          * Errors will result in a thrown ValueException
          */
-        virtual void SetAt(unsigned int index, KValueRef value);
+        virtual void SetAt(unsigned int index, ValueRef value);
 
         /**
          * @return the property with the given name or Value::Undefined
          * if the property is not found.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
 
         /**
          * @return a list of this object's property names.

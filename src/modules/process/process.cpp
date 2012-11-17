@@ -337,12 +337,12 @@ namespace ti
             RunOnMainThread(exitCallback, ValueList());
     }
 
-    void Process::ExitCallback(const ValueList& args, KValueRef result)
+    void Process::ExitCallback(const ValueList& args, ValueRef result)
     {
         this->Exited(true);
     }
 
-    void Process::_GetPID(const ValueList& args, KValueRef result)
+    void Process::_GetPID(const ValueList& args, ValueRef result)
     {
         int pid = GetPID();
         if (pid != -1)
@@ -351,21 +351,21 @@ namespace ti
             result->SetNull();
     }
 
-    void Process::_GetExitCode(const ValueList& args, KValueRef result)
+    void Process::_GetExitCode(const ValueList& args, ValueRef result)
     {
         result->SetValue(exitCode);
     }
     
-    void Process::_GetArguments(const ValueList& args, KValueRef result)
+    void Process::_GetArguments(const ValueList& args, ValueRef result)
     {
         result->SetList(this->args);
     }
     
-    void Process::_GetEnvironment(const ValueList& args, KValueRef result)
+    void Process::_GetEnvironment(const ValueList& args, ValueRef result)
     {
         if (args.size() > 0 && args.at(0)->IsString())
         {
-            KValueRef value = environment->Get(args.at(0)->ToString());
+            ValueRef value = environment->Get(args.at(0)->ToString());
             result->SetValue(value);
         }
         else {
@@ -373,7 +373,7 @@ namespace ti
         }
     }
     
-    void Process::_SetEnvironment(const ValueList& args, KValueRef result)
+    void Process::_SetEnvironment(const ValueList& args, ValueRef result)
     {
         if (args.size() >= 2 && args.at(0)->IsString() && args.at(1)->IsString())
         {
@@ -381,27 +381,27 @@ namespace ti
         }
     }
     
-    void Process::_CloneEnvironment(const ValueList& args, KValueRef result)
+    void Process::_CloneEnvironment(const ValueList& args, ValueRef result)
     {
         result->SetObject(CloneEnvironment());
     }
     
-    void Process::_Launch(const ValueList& args, KValueRef result)
+    void Process::_Launch(const ValueList& args, ValueRef result)
     {
         LaunchAsync();
     }
     
-    void Process::_Terminate(const ValueList& args, KValueRef result)
+    void Process::_Terminate(const ValueList& args, ValueRef result)
     {
         Terminate();
     }
     
-    void Process::_Kill(const ValueList& args, KValueRef result)
+    void Process::_Kill(const ValueList& args, ValueRef result)
     {
         Kill();
     }
     
-    void Process::_SendSignal(const ValueList& args, KValueRef result)
+    void Process::_SendSignal(const ValueList& args, ValueRef result)
     {
         if (args.size() >= 1 && args.at(0)->IsNumber())
         {
@@ -446,45 +446,45 @@ namespace ti
         }
     }
 
-    void Process::_SetOnRead(const ValueList& args, KValueRef result)
+    void Process::_SetOnRead(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setOnRead", "m");
         this->SetOnRead(args.GetMethod(0));
     }
 
-    void Process::_SetOnExit(const ValueList& args, KValueRef result)
+    void Process::_SetOnExit(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setOnExit", "m");
         this->SetOnExit(args.GetMethod(0));
     }
 
-    void Process::_GetStdin(const ValueList& args, KValueRef result)
+    void Process::_GetStdin(const ValueList& args, ValueRef result)
     {
         result->SetObject(stdinPipe);
     }
     
-    void Process::_GetStdout(const ValueList& args, KValueRef result)
+    void Process::_GetStdout(const ValueList& args, ValueRef result)
     {
         result->SetObject(stdoutPipe);
     }
     
-    void Process::_GetStderr(const ValueList& args, KValueRef result)
+    void Process::_GetStderr(const ValueList& args, ValueRef result)
     {
         result->SetObject(stderrPipe);
     }
     
-    void Process::_IsRunning(const ValueList& args, KValueRef result)
+    void Process::_IsRunning(const ValueList& args, ValueRef result)
     {
         result->SetBool(running);
     }
 
-    KValueRef Process::Call(const ValueList& args)
+    ValueRef Process::Call(const ValueList& args)
     {
         BytesRef output = LaunchSync();
         return Value::NewObject(output);
     }
 
-    void Process::_ToString(const ValueList& args, KValueRef result)
+    void Process::_ToString(const ValueList& args, ValueRef result)
     {
         result->SetString(ArgumentsToString().c_str());
     }

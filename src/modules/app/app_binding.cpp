@@ -189,46 +189,46 @@ namespace ti
 	{
 	}
 
-	void AppBinding::GetID(const ValueList& args, KValueRef result)
+	void AppBinding::GetID(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetAppID().c_str());
 	}
-	void AppBinding::GetName(const ValueList& args, KValueRef result)
+	void AppBinding::GetName(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetAppName().c_str());
 	}
-	void AppBinding::GetVersion(const ValueList& args, KValueRef result)
+	void AppBinding::GetVersion(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetVersion().c_str());
 	}
-	void AppBinding::GetPublisher(const ValueList& args, KValueRef result)
+	void AppBinding::GetPublisher(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetPublisher().c_str());
 	}
-	void AppBinding::GetCopyright(const ValueList& args, KValueRef result)
+	void AppBinding::GetCopyright(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetCopyright().c_str());
 	}
-	void AppBinding::GetDescription(const ValueList& args, KValueRef result)
+	void AppBinding::GetDescription(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetDescription().c_str());
 	}
-	void AppBinding::GetURL(const ValueList& args, KValueRef result)
+	void AppBinding::GetURL(const ValueList& args, ValueRef result)
 	{
 		result->SetString(AppConfig::Instance()->GetURL().c_str());
 	}
-	void AppBinding::GetGUID(const ValueList& args, KValueRef result)
+	void AppBinding::GetGUID(const ValueList& args, ValueRef result)
 	{
 		std::string guid = host->GetApplication()->guid;
 		result->SetString(guid);
 	}
 
-	void AppBinding::Exit(const ValueList& args, KValueRef result)
+	void AppBinding::Exit(const ValueList& args, ValueRef result)
 	{
 		host->Exit(args.GetInt(0, 0));
 	}
 
-	void AppBinding::AppURLToPath(const ValueList& args, KValueRef result)
+	void AppBinding::AppURLToPath(const ValueList& args, ValueRef result)
 	{
 		args.VerifyException("appURLToPath", "s");
 		std::string url = args.GetString(0);
@@ -240,7 +240,7 @@ namespace ti
 		result->SetString(path);
 	}
 
-	void AppBinding::CreateProperties(const ValueList& args, KValueRef result)
+	void AppBinding::CreateProperties(const ValueList& args, ValueRef result)
 	{
 		AutoPtr<PropertiesBinding> properties = new PropertiesBinding();
 		result->SetObject(properties);
@@ -251,7 +251,7 @@ namespace ti
 			SharedStringList names = p->GetPropertyNames();
 			for (size_t i = 0; i < names->size(); i++)
 			{
-				KValueRef value = p->Get(names->at(i));
+				ValueRef value = p->Get(names->at(i));
 				ValueList setterArgs;
 				setterArgs.push_back(Value::NewString(names->at(i)));
 				setterArgs.push_back(value);
@@ -268,7 +268,7 @@ namespace ti
 		}
 	}
 
-	void AppBinding::LoadProperties(const ValueList& args, KValueRef result)
+	void AppBinding::LoadProperties(const ValueList& args, ValueRef result)
 	{
 		if (args.size() >= 1 && args.at(0)->IsString()) {
 			std::string file_path = args.at(0)->ToString();
@@ -277,16 +277,16 @@ namespace ti
 		}
 	}
 	
-	void AppBinding::GetSystemProperties(const ValueList& args, KValueRef result)
+	void AppBinding::GetSystemProperties(const ValueList& args, ValueRef result)
 	{
 		result->SetObject(AppConfig::Instance()->GetSystemProperties());
 	}
 
-	void AppBinding::StdOut(const ValueList& args, KValueRef result)
+	void AppBinding::StdOut(const ValueList& args, ValueRef result)
 	{
 		for (size_t c=0; c < args.size(); c++)
 		{
-			KValueRef arg = args.at(c);
+			ValueRef arg = args.at(c);
 			if (arg->IsString())
 			{
 				const char *s = arg->ToString();
@@ -301,11 +301,11 @@ namespace ti
 		std::cout << std::endl;
 	}
 
-	void AppBinding::StdErr(const ValueList& args, KValueRef result)
+	void AppBinding::StdErr(const ValueList& args, ValueRef result)
 	{
 		for (size_t c = 0; c < args.size(); c++)
 		{
-			KValueRef arg = args.at(c);
+			ValueRef arg = args.at(c);
 			if (arg->IsString())
 			{
 				const char *s = arg->ToString();
@@ -320,7 +320,7 @@ namespace ti
 		std::cerr << std::endl;
 	}
 
-	void AppBinding::StdIn(const ValueList& args, KValueRef result)
+	void AppBinding::StdIn(const ValueList& args, ValueRef result)
 	{
 		args.VerifyException("stdin", "?ss");
 		std::string input;
@@ -340,14 +340,14 @@ namespace ti
 		result->SetString(input);
 	}
 
-	void AppBinding::GetStreamURL(const ValueList& args, KValueRef result)
+	void AppBinding::GetStreamURL(const ValueList& args, ValueRef result)
 	{
 		SharedApplication app = this->host->GetApplication();
 		std::string url(app->GetStreamURL("https"));
 
 		for (size_t c = 0; c < args.size(); c++)
 		{
-			KValueRef arg = args.at(c);
+			ValueRef arg = args.at(c);
 			if (arg->IsString())
 			{
 				url.append("/");
@@ -357,7 +357,7 @@ namespace ti
 		result->SetString(url);
 	}
 
-	void AppBinding::GetIcon(const ValueList& args, KValueRef result)
+	void AppBinding::GetIcon(const ValueList& args, ValueRef result)
 	{
 		SharedApplication app = this->host->GetApplication();
 		result->SetNull();	
@@ -368,17 +368,17 @@ namespace ti
 		}
 	}
 
-	void AppBinding::GetPath(const ValueList& args, KValueRef result)
+	void AppBinding::GetPath(const ValueList& args, ValueRef result)
 	{
 		result->SetString(host->GetApplication()->GetArguments().at(0).c_str());
 	}
 
-	void AppBinding::GetHome(const ValueList& args, KValueRef result)
+	void AppBinding::GetHome(const ValueList& args, ValueRef result)
 	{
 		result->SetString(host->GetApplication()->path);
 	}
 
-	void AppBinding::GetArguments(const ValueList& args, KValueRef result)
+	void AppBinding::GetArguments(const ValueList& args, ValueRef result)
 	{
 		static TiListRef argList(0);
 		if (argList.isNull())

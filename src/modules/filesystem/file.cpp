@@ -113,7 +113,7 @@ namespace ti
     {
     }
 
-    void File::Open(const ValueList& args, KValueRef result)
+    void File::Open(const ValueList& args, ValueRef result)
     {
         args.VerifyException("open", "?ibb");
 
@@ -121,7 +121,7 @@ namespace ti
         result->SetObject(stream);
 
         // Perform open operation before returning stream object
-        KValueRef openResult(Value::NewUndefined());
+        ValueRef openResult(Value::NewUndefined());
         stream->_Open(args, openResult);
         if (openResult->ToBool() == false)
         {
@@ -130,19 +130,19 @@ namespace ti
         }
     }
 
-    void File::ToURL(const ValueList& args, KValueRef result)
+    void File::ToURL(const ValueList& args, ValueRef result)
     {
         std::string url(URLUtils::PathToFileURL(this->filename));
         result->SetString(url.c_str());
     }
 
-    void File::ToString(const ValueList& args, KValueRef result)
+    void File::ToString(const ValueList& args, ValueRef result)
     {
         Logger::Get("File")->Debug("ToString: %s", filename.c_str());
         result->SetString(this->filename.c_str());
     }
 
-    void File::IsFile(const ValueList& args, KValueRef result)
+    void File::IsFile(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -164,7 +164,7 @@ namespace ti
         }
     }
 
-    void File::IsDirectory(const ValueList& args, KValueRef result)
+    void File::IsDirectory(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -186,7 +186,7 @@ namespace ti
         }
     }
 
-    void File::IsHidden(const ValueList& args, KValueRef result)
+    void File::IsHidden(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -208,7 +208,7 @@ namespace ti
         }
     }
 
-    void File::IsSymbolicLink(const ValueList& args, KValueRef result)
+    void File::IsSymbolicLink(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -230,7 +230,7 @@ namespace ti
         }
     }
 
-    void File::IsExecutable(const ValueList& args, KValueRef result)
+    void File::IsExecutable(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -251,7 +251,7 @@ namespace ti
         }
     }
 
-    void File::IsReadonly(const ValueList& args, KValueRef result)
+    void File::IsReadonly(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -272,7 +272,7 @@ namespace ti
         }
     }
 
-    void File::IsWritable(const ValueList& args, KValueRef result)
+    void File::IsWritable(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -293,7 +293,7 @@ namespace ti
         }
     }
 
-    void File::Resolve(const ValueList& args, KValueRef result)
+    void File::Resolve(const ValueList& args, ValueRef result)
     {
         args.VerifyException("resolve", "s");
         
@@ -302,7 +302,7 @@ namespace ti
         result->SetObject(new File(resolvedPath));
     }
 
-    void File::Copy(const ValueList& args, KValueRef result)
+    void File::Copy(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -317,7 +317,7 @@ namespace ti
         }
     }
 
-    void File::Move(const ValueList& args, KValueRef result)
+    void File::Move(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -332,7 +332,7 @@ namespace ti
         }
     }
 
-    void File::Rename(const ValueList& args, KValueRef result)
+    void File::Rename(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -349,7 +349,7 @@ namespace ti
         }
     }
 
-    void File::Touch(const ValueList& args, KValueRef result)
+    void File::Touch(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -363,7 +363,7 @@ namespace ti
         }
     }
 
-    void File::CreateDirectory(const ValueList& args, KValueRef result)
+    void File::CreateDirectory(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -398,7 +398,7 @@ namespace ti
         }
     }
 
-    void File::DeleteDirectory(const ValueList& args, KValueRef result)
+    void File::DeleteDirectory(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -424,7 +424,7 @@ namespace ti
         }
     }
 
-    void File::DeleteFile(const ValueList& args, KValueRef result)
+    void File::DeleteFile(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -444,7 +444,7 @@ namespace ti
         }
     }
 
-    void File::GetDirectoryListing(const ValueList& args, KValueRef result)
+    void File::GetDirectoryListing(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -462,7 +462,7 @@ namespace ti
                     // store it as the fullpath
                     std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                     ti::File* file = new ti::File(filename);
-                    KValueRef value = Value::NewObject((TiObjectRef) file);
+                    ValueRef value = Value::NewObject((TiObjectRef) file);
                     fileList->Append(value);
                 }
 
@@ -480,7 +480,7 @@ namespace ti
         }
     }
 
-    void File::GetParent(const ValueList& args, KValueRef result)
+    void File::GetParent(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -495,7 +495,7 @@ namespace ti
         }
     }
 
-    void File::GetExists(const ValueList& args, KValueRef result)
+    void File::GetExists(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -509,7 +509,7 @@ namespace ti
         }
     }
 
-    void File::GetCreateTimestamp(const ValueList& args, KValueRef result)
+    void File::GetCreateTimestamp(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -524,7 +524,7 @@ namespace ti
         }
     }
 
-    void File::GetModificationTimestamp(const ValueList& args, KValueRef result)
+    void File::GetModificationTimestamp(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -539,7 +539,7 @@ namespace ti
         }
     }
 
-    void File::GetName(const ValueList& args, KValueRef result)
+    void File::GetName(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -552,7 +552,7 @@ namespace ti
         }
     }
 
-    void File::GetExtension(const ValueList& args, KValueRef result)
+    void File::GetExtension(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -573,12 +573,12 @@ namespace ti
         }
     }
 
-    void File::GetNativePath(const ValueList& args, KValueRef result)
+    void File::GetNativePath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->filename);
     }
 
-    void File::GetSize(const ValueList& args, KValueRef result)
+    void File::GetSize(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -592,7 +592,7 @@ namespace ti
         }
     }
 
-    void File::GetSpaceAvailable(const ValueList& args, KValueRef result)
+    void File::GetSpaceAvailable(const ValueList& args, ValueRef result)
     {    
         double diskSize = -1.0;
         std::string error;
@@ -636,7 +636,7 @@ namespace ti
         }
     }
 
-    void File::CreateShortcut(const ValueList& args, KValueRef result)
+    void File::CreateShortcut(const ValueList& args, ValueRef result)
     {
         if (args.size()<1)
         {
@@ -685,7 +685,7 @@ namespace ti
 #endif
     }
 
-    void File::SetExecutable(const ValueList& args, KValueRef result)
+    void File::SetExecutable(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -707,7 +707,7 @@ namespace ti
         }
     }
 
-    void File::SetReadonly(const ValueList& args, KValueRef result)
+    void File::SetReadonly(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -729,7 +729,7 @@ namespace ti
         }
     }
 
-    void File::SetWritable(const ValueList& args, KValueRef result)
+    void File::SetWritable(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -761,7 +761,7 @@ namespace ti
      * Returns:
      *   true if succeeded
      */
-    void File::Unzip(const ValueList& args, KValueRef result)
+    void File::Unzip(const ValueList& args, ValueRef result)
     {
         if (args.size()!=1)
         {

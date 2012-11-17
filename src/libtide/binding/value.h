@@ -64,69 +64,69 @@ namespace tide
         /**
          * A static, reusable instance who's value is Value::Type::UNDEFINED.
          */
-        static KValueRef Undefined;
+        static ValueRef Undefined;
 
         /**
          * A static, reusable instance who's value is Value::Type::NULL
          */
-        static KValueRef Null;
+        static ValueRef Null;
 
-        static KValueRef NewUndefined();
-        static KValueRef NewNull();
+        static ValueRef NewUndefined();
+        static ValueRef NewNull();
 
         /**
          * Construct a new \link #Value::Type::INT integer\endlink value.
          * @param value The integer value
          */
-        static KValueRef NewInt(int value);
+        static ValueRef NewInt(int value);
 
         /**
          * Construct a new \link #Value::Type::DOUBLE double\endlink value.
          * @param value The double value
          */
-        static KValueRef NewDouble(double value);
+        static ValueRef NewDouble(double value);
 
         /**
          * Construct a new \link #Value::Type::BOOL boolean\endlink value.
          * @param value The boolean value
          */
-        static KValueRef NewBool(bool value);
+        static ValueRef NewBool(bool value);
 
         /**
          * Construct a new \link #Value::Type::STRING string\endlink value.
          * @param value The string value
          */
-        static KValueRef NewString(const char* value);
+        static ValueRef NewString(const char* value);
 
         /**
          * Construct a new \link #Value::Type::STRING string\endlink value.
          * @param value The string value
          */
-        static KValueRef NewString(std::string value);
+        static ValueRef NewString(std::string value);
 
         /**
          * Construct a new \link #Value::Type::STRING string\endlink value.
          * @param value The string value
          */
-        static KValueRef NewString(SharedString value);
+        static ValueRef NewString(SharedString value);
 
         /**
          * Construct a new \link #Value::Type::LIST list\endlink value.
          * @param value The list value
          */
-        static KValueRef NewList(TiListRef value);
+        static ValueRef NewList(TiListRef value);
 
         /**
          * Construct a new \link #Value::Type::OBJECT object\endlink value.
          * @param value The object value
          */
-        static KValueRef NewObject(TiObjectRef value);
+        static ValueRef NewObject(TiObjectRef value);
 
         /**
          * Construct a new \link #Value::Type::METHOD method\endlink value.
          * @param value The method value
          */
-        static KValueRef NewMethod(TiMethodRef value);
+        static ValueRef NewMethod(TiMethodRef value);
 
         virtual ~Value();
 
@@ -134,7 +134,7 @@ namespace tide
         /**
          * Test underlying value's equality to another Value
          */
-        bool Equals(KValueRef);
+        bool Equals(ValueRef);
 
         /**
          * @return true if the internal value is an \link #Value::Type::INT integer\endlink
@@ -247,7 +247,7 @@ namespace tide
          * Change the internal value of this Value from another Value object.
          * @param other another Value
          */
-        void SetValue(KValueRef other);
+        void SetValue(ValueRef other);
 
         /**
          * Change the internal value of this Value to an \link #Value::Type::INT integer\endlink
@@ -316,7 +316,7 @@ namespace tide
         /**
          * Replace a value wth an unwrapped value
          */
-        static void Unwrap(KValueRef value);
+        static void Unwrap(ValueRef value);
 
     private:
         Type type;
@@ -328,7 +328,7 @@ namespace tide
         void reset();
 
         Value();
-        Value(KValueRef value);
+        Value(ValueRef value);
         Value(const Value& value);
     };
 

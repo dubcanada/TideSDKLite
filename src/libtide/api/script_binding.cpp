@@ -95,7 +95,7 @@ namespace tide
     }
     
 
-    void ScriptBinding::_AddScriptEvaluator(const ValueList& args, KValueRef result)
+    void ScriptBinding::_AddScriptEvaluator(const ValueList& args, ValueRef result)
     {
         args.VerifyException("addScriptEvaluator", "o");
         
@@ -103,7 +103,7 @@ namespace tide
         Script::GetInstance()->AddScriptEvaluator(evaluator);
     }
     
-    void ScriptBinding::_RemoveScriptEvaluator(const ValueList& args, KValueRef result)
+    void ScriptBinding::_RemoveScriptEvaluator(const ValueList& args, ValueRef result)
     {
         args.VerifyException("removeScriptEvaluator", "o");
         
@@ -111,7 +111,7 @@ namespace tide
         Script::GetInstance()->RemoveScriptEvaluator(evaluator);
     }
     
-    void ScriptBinding::_CanEvaluate(const ValueList& args, KValueRef result)
+    void ScriptBinding::_CanEvaluate(const ValueList& args, ValueRef result)
     {
         args.VerifyException("canEvaluate", "s");
         
@@ -119,7 +119,7 @@ namespace tide
         result->SetBool(Script::GetInstance()->CanEvaluate(mimeType));
     }
     
-    void ScriptBinding::_CanPreprocess(const ValueList& args, KValueRef result)
+    void ScriptBinding::_CanPreprocess(const ValueList& args, ValueRef result)
     {
         args.VerifyException("canPreprocess", "s");
         
@@ -127,7 +127,7 @@ namespace tide
         result->SetBool(Script::GetInstance()->CanPreprocess(url));
     }
     
-    void ScriptBinding::_Evaluate(const ValueList& args, KValueRef result)
+    void ScriptBinding::_Evaluate(const ValueList& args, ValueRef result)
     {
         args.VerifyException("evaluate", "s s s o");
         
@@ -138,7 +138,7 @@ namespace tide
         result->SetValue(Script::GetInstance()->Evaluate(mimeType, name, code, scope));
     }
     
-    void ScriptBinding::_Preprocess(const ValueList& args, KValueRef result)
+    void ScriptBinding::_Preprocess(const ValueList& args, ValueRef result)
     {
         args.VerifyException("preprocess", "s o");
         

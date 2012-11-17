@@ -48,7 +48,7 @@ namespace tide
     {
     }
 
-    KValueRef KPHPArrayObject::Get(const char* name)
+    ValueRef KPHPArrayObject::Get(const char* name)
     {
         if (TiList::IsInt(name))
         {
@@ -68,11 +68,11 @@ namespace tide
         }
 
         TSRMLS_FETCH();
-        KValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
+        ValueRef v = PHPUtils::ToTiValue((zval *) copyval TSRMLS_CC);
         return v;
     }
 
-    void KPHPArrayObject::Set(const char* name, KValueRef value)
+    void KPHPArrayObject::Set(const char* name, ValueRef value)
     {
         // Check for integer value as name
         if (TiList::IsInt(name))
@@ -127,12 +127,12 @@ namespace tide
         return 0;
     }
 
-    void KPHPArrayObject::Append(KValueRef value)
+    void KPHPArrayObject::Append(ValueRef value)
     {
         /*TODO: Implement*/
     }
 
-    void KPHPArrayObject::SetAt(unsigned int index, KValueRef value)
+    void KPHPArrayObject::SetAt(unsigned int index, ValueRef value)
     {
         /*TODO: Implement*/
     }
@@ -143,7 +143,7 @@ namespace tide
         return true;
     }
 
-    KValueRef KPHPArrayObject::At(unsigned int index)
+    ValueRef KPHPArrayObject::At(unsigned int index)
     {
         /*TODO: Implement*/
         return Value::Null;
@@ -154,7 +154,7 @@ namespace tide
         return this->list;
     }
 
-    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray, const char *key)
+    void KPHPArrayObject::AddTideValueToPHPArray(ValueRef value, zval *phpArray, const char *key)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -201,7 +201,7 @@ namespace tide
         }
     }
 
-    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index)
+    void KPHPArrayObject::AddTideValueToPHPArray(ValueRef value, zval *phpArray, unsigned int index)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -248,7 +248,7 @@ namespace tide
         }
     }
 
-    void KPHPArrayObject::AddTideValueToPHPArray(KValueRef value, zval *phpArray)
+    void KPHPArrayObject::AddTideValueToPHPArray(ValueRef value, zval *phpArray)
     {
         if (value->IsNull() || value->IsUndefined())
         {

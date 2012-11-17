@@ -53,7 +53,7 @@ namespace tide {
             zval_ptr_dtor(&zMethodName);
     }
 
-    KValueRef KPHPFunction::Call(const ValueList& args)
+    ValueRef KPHPFunction::Call(const ValueList& args)
     {
         TSRMLS_FETCH();
 
@@ -111,7 +111,7 @@ namespace tide {
         }
         else if (zReturnValue)
         {
-            KValueRef returnValue(PHPUtils::ToTiValue(zReturnValue TSRMLS_CC));
+            ValueRef returnValue(PHPUtils::ToTiValue(zReturnValue TSRMLS_CC));
             zval_ptr_dtor(&zReturnValue);
             return returnValue;
         }
@@ -121,13 +121,13 @@ namespace tide {
         }
     }
 
-    void KPHPFunction::Set(const char *name, KValueRef value)
+    void KPHPFunction::Set(const char *name, ValueRef value)
     {
         // TODO: PHP methods do not have properties. Should we should set
         // them on a StaticBoundObject here?
     }
 
-    KValueRef KPHPFunction::Get(const char *name)
+    ValueRef KPHPFunction::Get(const char *name)
     {
         // TODO: PHP methods do not have properties. Should we should get
         // them from a StaticBoundObject here?

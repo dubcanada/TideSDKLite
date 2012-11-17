@@ -250,7 +250,7 @@ namespace ti
     
     ///////////////////////////////////////////////////////////////////////////////////
 
-    void TCPServerConnectionBinding::Close(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::Close(const ValueList& args, ValueRef result)
     {
         if (!closed)
         {
@@ -264,7 +264,7 @@ namespace ti
         }
     }
     
-    void TCPServerConnectionBinding::Write(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::Write(const ValueList& args, ValueRef result)
     {
         args.VerifyException("Write", "o|s");
 
@@ -303,27 +303,27 @@ namespace ti
         result->SetBool(true);
     }
     
-    void TCPServerConnectionBinding::SetOnRead(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::SetOnRead(const ValueList& args, ValueRef result)
     {
         this->onRead = args.at(0)->ToMethod();
     }
 
-    void TCPServerConnectionBinding::SetOnWrite(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::SetOnWrite(const ValueList& args, ValueRef result)
     {
         this->onWrite = args.at(0)->ToMethod();
     }
 
-    void TCPServerConnectionBinding::SetOnError(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::SetOnError(const ValueList& args, ValueRef result)
     {
         this->onError = args.at(0)->ToMethod();
     }
 
-    void TCPServerConnectionBinding::SetOnReadComplete(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::SetOnReadComplete(const ValueList& args, ValueRef result)
     {
         this->onReadComplete = args.at(0)->ToMethod();
     }
 
-    void TCPServerConnectionBinding::IsClosed(const ValueList& args, KValueRef result)
+    void TCPServerConnectionBinding::IsClosed(const ValueList& args, ValueRef result)
     {
         return result->SetBool(this->closed);
     }

@@ -54,11 +54,11 @@ namespace tide
     {
     }
 
-    KValueRef DelegatingObject::Get(const char *name)
+    ValueRef DelegatingObject::Get(const char *name)
     {
         Poco::Mutex::ScopedLock lock(mutex);
 
-        KValueRef val = local->Get(name);
+        ValueRef val = local->Get(name);
         if (!val->IsUndefined())
         {
             // We want properties of the local object to
@@ -73,7 +73,7 @@ namespace tide
         }
     }
 
-    void DelegatingObject::Set(const char *name, KValueRef value)
+    void DelegatingObject::Set(const char *name, ValueRef value)
     {
         // We want to set the property on both
         // the local and the global object.

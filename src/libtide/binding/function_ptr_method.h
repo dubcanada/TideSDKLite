@@ -37,7 +37,7 @@
 
 namespace tide
 {
-    typedef KValueRef (*KFunctionPtrCallback) (const ValueList& args);
+    typedef ValueRef (*KFunctionPtrCallback) (const ValueList& args);
     class TIDE_API FunctionPtrMethod : public TiMethod
     {
         public:
@@ -47,17 +47,17 @@ namespace tide
         /**
          * @see TiMethod::Call
          */
-        virtual KValueRef Call(const ValueList& args);
+        virtual ValueRef Call(const ValueList& args);
 
         /**
          * @see TiObject::Set
          */
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
 
         /**
          * @see TiObject::Get
          */
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
 
         /**
          * @see TiObject::GetPropertyNames

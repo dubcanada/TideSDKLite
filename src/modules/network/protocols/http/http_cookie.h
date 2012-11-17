@@ -47,25 +47,25 @@ namespace ti
         HTTPCookie(Poco::Net::HTTPCookie& cookie);
         void InitializeBinding();
 
-        void GetName(const ValueList& args, KValueRef result);
-        void SetName(const ValueList& args, KValueRef result);
-        void GetValue(const ValueList& args, KValueRef result);
-        void SetValue(const ValueList& args, KValueRef result);
-        void GetVersion(const ValueList& args, KValueRef result);
-        void SetVersion(const ValueList& args, KValueRef result);
-        void GetDomain(const ValueList& args, KValueRef result);
-        void SetDomain(const ValueList& args, KValueRef result);
-        void GetPath(const ValueList& args, KValueRef result);
-        void SetPath(const ValueList& args, KValueRef result);
-        void GetMaxAge(const ValueList& args, KValueRef result);
-        void SetMaxAge(const ValueList& args, KValueRef result);
-        void GetComment(const ValueList& args, KValueRef result);
-        void SetComment(const ValueList& args, KValueRef result);
-        void IsHTTPOnly(const ValueList& args, KValueRef result);
-        void SetHTTPOnly(const ValueList& args, KValueRef result);
-        void IsSecure(const ValueList& args, KValueRef result);
-        void SetSecure(const ValueList& args, KValueRef result);
-        void ToString(const ValueList& args, KValueRef result);
+        void GetName(const ValueList& args, ValueRef result);
+        void SetName(const ValueList& args, ValueRef result);
+        void GetValue(const ValueList& args, ValueRef result);
+        void SetValue(const ValueList& args, ValueRef result);
+        void GetVersion(const ValueList& args, ValueRef result);
+        void SetVersion(const ValueList& args, ValueRef result);
+        void GetDomain(const ValueList& args, ValueRef result);
+        void SetDomain(const ValueList& args, ValueRef result);
+        void GetPath(const ValueList& args, ValueRef result);
+        void SetPath(const ValueList& args, ValueRef result);
+        void GetMaxAge(const ValueList& args, ValueRef result);
+        void SetMaxAge(const ValueList& args, ValueRef result);
+        void GetComment(const ValueList& args, ValueRef result);
+        void SetComment(const ValueList& args, ValueRef result);
+        void IsHTTPOnly(const ValueList& args, ValueRef result);
+        void SetHTTPOnly(const ValueList& args, ValueRef result);
+        void IsSecure(const ValueList& args, ValueRef result);
+        void SetSecure(const ValueList& args, ValueRef result);
+        void ToString(const ValueList& args, ValueRef result);
 
         SharedString DisplayString(int levels);
 

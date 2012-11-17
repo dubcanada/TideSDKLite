@@ -84,32 +84,32 @@ namespace tide
         this->SetMethod("isLoaded", &ComponentBinding::_IsLoaded);
     }
 
-    void ComponentBinding::_GetType(const ValueList& args, KValueRef result)
+    void ComponentBinding::_GetType(const ValueList& args, ValueRef result)
     {
         result->SetInt((int) this->component->type);
     }
 
-    void ComponentBinding::_GetName(const ValueList& args, KValueRef result)
+    void ComponentBinding::_GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->component->name);
     }
 
-    void ComponentBinding::_GetVersion(const ValueList& args, KValueRef result)
+    void ComponentBinding::_GetVersion(const ValueList& args, ValueRef result)
     {
         result->SetString(this->component->version);
     }
 
-    void ComponentBinding::_GetPath(const ValueList& args, KValueRef result)
+    void ComponentBinding::_GetPath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->component->path);
     }
 
-    void ComponentBinding::_IsBundled(const ValueList& args, KValueRef result)
+    void ComponentBinding::_IsBundled(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->component->bundled);
     }
 
-    void ComponentBinding::_IsLoaded(const ValueList& args, KValueRef result)
+    void ComponentBinding::_IsLoaded(const ValueList& args, ValueRef result)
     {
         SharedApplication app = Host::GetInstance()->GetApplication();
         result->SetBool(false);

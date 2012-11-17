@@ -54,7 +54,7 @@ namespace tide
      *   this->SetMethod("add", &MyObject::Add);
      * }
      *
-     * void MyObject::Add(const ValueList& args, KValueRef result) {
+     * void MyObject::Add(const ValueList& args, ValueRef result) {
      *   result->SetInt(args[0]->ToInt() + args[1]->ToInt());
      * }
      * \endcode
@@ -74,9 +74,9 @@ namespace tide
         virtual ~StaticBoundObject();
 
         virtual bool HasProperty(const char* name);
-        virtual KValueRef Get(const char* name);
+        virtual ValueRef Get(const char* name);
         virtual SharedStringList GetPropertyNames();
-        virtual void Set(const char* name, KValueRef value);
+        virtual void Set(const char* name, ValueRef value);
         virtual void Unset(const char* name);
 
         /**
@@ -84,15 +84,15 @@ namespace tide
          * occurs will throw an exception of type ValueException.
          */
         template <typename T>
-        void SetMethod(const char* name, void (T::*method)(const ValueList&, KValueRef))
+        void SetMethod(const char* name, void (T::*method)(const ValueList&, ValueRef))
         {
             this->Set(name, Value::NewMethod(new StaticBoundMethod(
-                NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(this), method))));
+                NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(this), method))));
         }
 
 
     protected:
-        std::map<std::string, KValueRef> properties;
+        std::map<std::string, ValueRef> properties;
         Poco::Mutex mutex;
 
     private:

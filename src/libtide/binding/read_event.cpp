@@ -42,7 +42,7 @@ namespace tide
         this->SetMethod("getData", &ReadEvent::_GetData);
     }
 
-    void ReadEvent::_GetData(const ValueList&, KValueRef result)
+    void ReadEvent::_GetData(const ValueList&, ValueRef result)
     {
         result->SetObject(this->data);
     }

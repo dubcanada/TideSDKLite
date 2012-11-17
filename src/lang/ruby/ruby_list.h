@@ -45,13 +45,13 @@ namespace tide
         KRubyList(VALUE);
         virtual ~KRubyList();
 
-        void Append(KValueRef value);
+        void Append(ValueRef value);
         unsigned int Size();
-        KValueRef At(unsigned int index);
-        void SetAt(unsigned int index, KValueRef value);
+        ValueRef At(unsigned int index);
+        void SetAt(unsigned int index, ValueRef value);
         bool Remove(unsigned int index);
-        void Set(const char* name, KValueRef value);
-        KValueRef Get(const char* name);
+        void Set(const char* name, ValueRef value);
+        ValueRef Get(const char* name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int);
         VALUE ToRuby();

@@ -213,7 +213,7 @@ namespace ti
         return binding;
     }
 
-    void NetworkBinding::_GetHostByAddress(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetHostByAddress(const ValueList& args, ValueRef result)
     {
         if (args.at(0)->IsObject())
         {
@@ -250,12 +250,12 @@ namespace ti
         }
     }
 
-    void NetworkBinding::_GetHostByName(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetHostByName(const ValueList& args, ValueRef result)
     {
         result->SetObject(GetHostBinding(args.GetString(0)));
     }
 
-    void NetworkBinding::_CreateIPAddress(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateIPAddress(const ValueList& args, ValueRef result)
     {
         AutoPtr<IPAddressBinding> binding = new IPAddressBinding(args.at(0)->ToString());
         if (binding->IsInvalid())
@@ -265,7 +265,7 @@ namespace ti
         result->SetObject(binding);
     }
 
-    void NetworkBinding::_CreateTCPSocket(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateTCPSocket(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTCPSocket", "sn");
         std::string host(args.GetString(0));
@@ -273,35 +273,35 @@ namespace ti
         result->SetObject(new TCPSocket(host, port));
     }
 
-    void NetworkBinding::_CreateTCPServerSocket(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateTCPServerSocket(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTCPServerSocket", "m");
         TiMethodRef target = args.at(0)->ToMethod();
         result->SetObject(new TCPServerSocketBinding(host,target));
     }
 
-    void NetworkBinding::_CreateIRCClient(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateIRCClient(const ValueList& args, ValueRef result)
     {
         AutoPtr<IRCClientBinding> irc = new IRCClientBinding(host);
         result->SetObject(irc);
     }
 
-    void NetworkBinding::_CreateHTTPClient(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateHTTPClient(const ValueList& args, ValueRef result)
     {
         result->SetObject(new HTTPClientBinding(host));
     }
 
-    void NetworkBinding::_CreateHTTPServer(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateHTTPServer(const ValueList& args, ValueRef result)
     {
         result->SetObject(new HTTPServerBinding(host));
     }
 
-    void NetworkBinding::_CreateHTTPCookie(const ValueList& args, KValueRef result)
+    void NetworkBinding::_CreateHTTPCookie(const ValueList& args, ValueRef result)
     {
         result->SetObject(new HTTPCookie());
     }
 
-    void NetworkBinding::_EncodeURIComponent(const ValueList &args, KValueRef result)
+    void NetworkBinding::_EncodeURIComponent(const ValueList &args, ValueRef result)
     {
         if (args.at(0)->IsNull() || args.at(0)->IsUndefined())
         {
@@ -337,7 +337,7 @@ namespace ti
         }
     }
 
-    void NetworkBinding::_DecodeURIComponent(const ValueList &args, KValueRef result)
+    void NetworkBinding::_DecodeURIComponent(const ValueList &args, ValueRef result)
     {
         if (args.at(0)->IsNull() || args.at(0)->IsUndefined())
         {
@@ -369,14 +369,14 @@ namespace ti
         return ProxyConfig::ParseProxyEntry(entry, scheme, std::string());
     }
 
-    void NetworkBinding::_SetHTTPProxy(const ValueList& args, KValueRef result)
+    void NetworkBinding::_SetHTTPProxy(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setHTTPProxy", "s|0 ?s s s");
         SharedProxy proxy(ArgumentsToProxy(args, "http"));
         ProxyConfig::SetHTTPProxyOverride(proxy);
     }
 
-    void NetworkBinding::_GetHTTPProxy(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetHTTPProxy(const ValueList& args, ValueRef result)
     {
         SharedProxy proxy = ProxyConfig::GetHTTPProxyOverride();
 
@@ -386,14 +386,14 @@ namespace ti
             result->SetString(proxy->ToString().c_str());
     }
 
-    void NetworkBinding::_SetHTTPSProxy(const ValueList& args, KValueRef result)
+    void NetworkBinding::_SetHTTPSProxy(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setHTTPSProxy", "s|0 ?s s s");
         SharedProxy proxy(ArgumentsToProxy(args, "https"));
         ProxyConfig::SetHTTPSProxyOverride(proxy);
     }
 
-    void NetworkBinding::_GetHTTPSProxy(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetHTTPSProxy(const ValueList& args, ValueRef result)
     {
         SharedProxy proxy = ProxyConfig::GetHTTPSProxyOverride();
 
@@ -408,12 +408,12 @@ namespace ti
         return this->host;
     }
 
-    void NetworkBinding::_GetFirstMACAddress(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetFirstMACAddress(const ValueList& args, ValueRef result)
     {
         result->SetString(PlatformUtils::GetFirstMACAddress().c_str());
     }
 
-    void NetworkBinding::_GetFirstIPAddress(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetFirstIPAddress(const ValueList& args, ValueRef result)
     {
         static std::string address(NetworkBinding::GetFirstIPAddress());
         result->SetString(address.c_str());
@@ -425,7 +425,7 @@ namespace ti
         return firstIPv4Address;
     }
 
-    void NetworkBinding::_GetInterfaces(const ValueList& args, KValueRef result)
+    void NetworkBinding::_GetInterfaces(const ValueList& args, ValueRef result)
     {
         result->SetList(interfaceList);
     }

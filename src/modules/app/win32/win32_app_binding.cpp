@@ -11,7 +11,7 @@
 namespace ti
 {
 
-void AppBinding::Restart(const ValueList& args, KValueRef result)
+void AppBinding::Restart(const ValueList& args, ValueRef result)
 {
 	Host* host = Host::GetInstance();
 	std::wstring cmdline(::UTF8ToWide(host->GetApplication()->arguments.at(0)));

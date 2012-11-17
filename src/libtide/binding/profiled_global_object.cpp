@@ -51,12 +51,12 @@ namespace tide
     {
     }
 
-    void ProfiledGlobalObject::Set(const char* name, KValueRef value)
+    void ProfiledGlobalObject::Set(const char* name, ValueRef value)
     {
         profiledObject->Set(name, value);
     }
 
-    KValueRef ProfiledGlobalObject::Get(const char* name)
+    ValueRef ProfiledGlobalObject::Get(const char* name)
     {
         return profiledObject->Get(name);
     }

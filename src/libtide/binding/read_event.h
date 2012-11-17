@@ -41,7 +41,7 @@ namespace tide
     {
     public:
         ReadEvent(AutoPtr<EventObject> target, BytesRef);
-        void _GetData(const ValueList&, KValueRef result);
+        void _GetData(const ValueList&, ValueRef result);
 
     protected:
         BytesRef data;

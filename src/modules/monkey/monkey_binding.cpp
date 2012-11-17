@@ -141,7 +141,7 @@ namespace ti
         }
     }
 
-    void MonkeyBinding::Callback(const ValueList &args, KValueRef result)
+    void MonkeyBinding::Callback(const ValueList &args, ValueRef result)
     {
         TiObjectRef event = args.at(0)->ToObject();
         if (!event->Get("url")->IsString() ||

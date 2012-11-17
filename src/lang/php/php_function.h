@@ -43,9 +43,9 @@ namespace tide
         KPHPFunction(const char *functionName);
 
         virtual ~KPHPFunction();
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
+        ValueRef Call(const ValueList& args);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
         virtual SharedString DisplayString(int);
         virtual bool Equals(TiObjectRef);

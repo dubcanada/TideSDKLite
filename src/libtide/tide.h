@@ -55,7 +55,7 @@ using Poco::AutoPtr;
     // this is important which essentially marks all of
     // these classes below and the typedef/templates to be
     // visible outside of the library.  if you don't do this
-    // you won't be able to catch exceptions of KValueRef for
+    // you won't be able to catch exceptions of ValueRef for
     // example
     #pragma GCC visibility push(default)
 #endif
@@ -79,7 +79,7 @@ namespace tide
     class Logger;
     class ArgList;
 
-    typedef AutoPtr<Value> KValueRef;
+    typedef AutoPtr<Value> ValueRef;
     typedef AutoPtr<TiObject> TiObjectRef;
     typedef AutoPtr<TiMethod> TiMethodRef;
     typedef AutoPtr<TiList> TiListRef;

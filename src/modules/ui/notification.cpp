@@ -57,36 +57,36 @@ Notification::~Notification()
     this->DestroyImpl();
 }
 
-void Notification::_SetTitle(const ValueList& args, KValueRef result)
+void Notification::_SetTitle(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setTitle", "s");
     this->title = args.GetString(0);
 }
 
-void Notification::_SetMessage(const ValueList& args, KValueRef result)
+void Notification::_SetMessage(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setMessage", "s");
     this->message = args.GetString(0);
 }
 
-void Notification::_SetIcon(const ValueList& args, KValueRef result)
+void Notification::_SetIcon(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setIcon", "s");
     this->iconURL = args.GetString(0);
 }
 
-void Notification::_SetTimeout(const ValueList& args, KValueRef result)
+void Notification::_SetTimeout(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setTimeout", "i");
     this->timeout = args.GetInt(0);
 }
 
-void Notification::_Show(const ValueList& args, KValueRef result)
+void Notification::_Show(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->ShowImpl());
 }
 
-void Notification::_Hide(const ValueList& args, KValueRef result)
+void Notification::_Hide(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->HideImpl());
 }

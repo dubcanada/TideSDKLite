@@ -54,7 +54,7 @@ namespace tide
         return rb_apply(object, rb_intern("method_missing"), args);
     }
 
-    void KRubyObject::Set(const char *name, KValueRef value)
+    void KRubyObject::Set(const char *name, ValueRef value)
     {
         VALUE ruby_value = RubyUtils::ToRubyValue(value);
         std::string setter_name = std::string(name) + "=";
@@ -80,7 +80,7 @@ namespace tide
             if (rb_obj_is_kind_of(exception, rb_eNoMethodError) != Qtrue
                 && rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
             {
-                KValueRef exceptionValue = RubyUtils::ToTiValue(exception);
+                ValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }
@@ -94,7 +94,7 @@ namespace tide
         }
     }
 
-    KValueRef KRubyObject::Get(const char *name)
+    ValueRef KRubyObject::Get(const char *name)
     {
         std::string iv_name = std::string("@") + name;
         ID iv_ID = rb_intern(iv_name.c_str());
@@ -129,7 +129,7 @@ namespace tide
             }
             else
             {
-                KValueRef exceptionValue = RubyUtils::ToTiValue(exception);
+                ValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }

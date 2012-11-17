@@ -162,7 +162,7 @@ namespace ti
 
         END_TIDE_THREAD;
     }
-    void IRCClientBinding::GetUsers(const ValueList& args, KValueRef result)
+    void IRCClientBinding::GetUsers(const ValueList& args, ValueRef result)
     {
         const char *channel = args.at(0)->ToString();
         TiListRef list = new StaticBoundList();
@@ -181,7 +181,7 @@ namespace ti
         }
         result->SetList(list);
     }
-    void IRCClientBinding::Connect(const ValueList& args, KValueRef result)
+    void IRCClientBinding::Connect(const ValueList& args, ValueRef result)
     {
         //TODO: check to make sure not connected already
         //TODO: check args
@@ -204,7 +204,7 @@ namespace ti
         this->Set("connected",Value::NewBool(true));
         this->thread->start(&IRCClientBinding::Run,&irc);
     }
-    void IRCClientBinding::Disconnect(const ValueList& args, KValueRef result)
+    void IRCClientBinding::Disconnect(const ValueList& args, ValueRef result)
     {
         bool connected = this->Get("connected")->ToBool();
         if (connected)
@@ -214,7 +214,7 @@ namespace ti
             this->Set("connected",Value::NewBool(false));
         }
     }
-    void IRCClientBinding::Send(const ValueList& args, KValueRef result)
+    void IRCClientBinding::Send(const ValueList& args, ValueRef result)
     {
         bool connected = this->Get("connected")->ToBool();
         if (connected)
@@ -238,7 +238,7 @@ namespace ti
             }
         }
     }
-    void IRCClientBinding::SetNick(const ValueList& args, KValueRef result)
+    void IRCClientBinding::SetNick(const ValueList& args, ValueRef result)
     {
         const char *nick = args.at(0)->ToString();
 #ifdef DEBUG
@@ -246,7 +246,7 @@ namespace ti
 #endif
         this->irc.nick((char*)nick);
     }
-    void IRCClientBinding::GetNick(const ValueList& args, KValueRef result)
+    void IRCClientBinding::GetNick(const ValueList& args, ValueRef result)
     {
         std::string nick = this->irc.current_nick();
 #ifdef DEBUG
@@ -254,7 +254,7 @@ namespace ti
 #endif
         result->SetString(nick);
     }
-    void IRCClientBinding::Join(const ValueList& args, KValueRef result)
+    void IRCClientBinding::Join(const ValueList& args, ValueRef result)
     {
         bool connected = this->Get("connected")->ToBool();
         if (connected)
@@ -266,7 +266,7 @@ namespace ti
             this->irc.join((char*)channel);
         }
     }
-    void IRCClientBinding::Unjoin(const ValueList& args, KValueRef result)
+    void IRCClientBinding::Unjoin(const ValueList& args, ValueRef result)
     {
         bool connected = this->Get("connected")->ToBool();
         if (connected)
@@ -275,11 +275,11 @@ namespace ti
             this->irc.part((char*)channel);
         }
     }
-    void IRCClientBinding::IsOp(const ValueList& args, KValueRef result)
+    void IRCClientBinding::IsOp(const ValueList& args, ValueRef result)
     {
         //TODO:
     }
-    void IRCClientBinding::IsVoice(const ValueList& args, KValueRef result)
+    void IRCClientBinding::IsVoice(const ValueList& args, ValueRef result)
     {
         //TODO:
     }

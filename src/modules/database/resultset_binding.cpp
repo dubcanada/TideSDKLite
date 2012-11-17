@@ -107,7 +107,7 @@ namespace ti
     ResultSetBinding::~ResultSetBinding()
     {
     }
-    void ResultSetBinding::IsValidRow(const ValueList& args, KValueRef result)
+    void ResultSetBinding::IsValidRow(const ValueList& args, ValueRef result)
     {
         if (rs.isNull())
         {
@@ -118,21 +118,21 @@ namespace ti
             result->SetBool(!eof);
         }
     }
-    void ResultSetBinding::Next(const ValueList& args, KValueRef result)
+    void ResultSetBinding::Next(const ValueList& args, ValueRef result)
     {
         if (!rs.isNull() && !eof)
         {
             eof = (rs->moveNext() == false);
         }
     }
-    void ResultSetBinding::Close(const ValueList& args, KValueRef result)
+    void ResultSetBinding::Close(const ValueList& args, ValueRef result)
     {
         if (!rs.isNull())
         {
             rs = NULL;
         }
     }
-    void ResultSetBinding::RowCount(const ValueList& args, KValueRef result)
+    void ResultSetBinding::RowCount(const ValueList& args, ValueRef result)
     {
         if (rs.isNull())
         {
@@ -143,7 +143,7 @@ namespace ti
             result->SetInt(rs->rowCount());
         }
     }
-    void ResultSetBinding::FieldCount(const ValueList& args, KValueRef result)
+    void ResultSetBinding::FieldCount(const ValueList& args, ValueRef result)
     {
         if (rs.isNull())
         {
@@ -154,7 +154,7 @@ namespace ti
             result->SetInt(rs->columnCount());
         }
     }
-    void ResultSetBinding::FieldName(const ValueList& args, KValueRef result)
+    void ResultSetBinding::FieldName(const ValueList& args, ValueRef result)
     {
         if (rs.isNull())
         {
@@ -167,7 +167,7 @@ namespace ti
             result->SetString(str.c_str());
         }
     }
-    void ResultSetBinding::Field(const ValueList& args, KValueRef result)
+    void ResultSetBinding::Field(const ValueList& args, ValueRef result)
     {
         if (rs.isNull())
         {
@@ -179,7 +179,7 @@ namespace ti
             TransformValue(args.at(0)->ToInt(),result);
         }
     }
-    void ResultSetBinding::FieldByName(const ValueList& args, KValueRef result)
+    void ResultSetBinding::FieldByName(const ValueList& args, ValueRef result)
     {
         result->SetNull();
         if (!rs.isNull())
@@ -198,7 +198,7 @@ namespace ti
             }
         }
     }
-    void ResultSetBinding::TransformValue(size_t index, KValueRef result)
+    void ResultSetBinding::TransformValue(size_t index, ValueRef result)
     {
         MetaColumn::ColumnDataType type = rs->columnType(index);
         Poco::DynamicAny value = rs->value(index);

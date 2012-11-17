@@ -43,8 +43,8 @@ namespace tide
     {
     public:
         PythonEvaluator();
-        void Evaluate(const ValueList& args, KValueRef result);
-        void CanEvaluate(const ValueList& args, KValueRef result);
+        void Evaluate(const ValueList& args, ValueRef result);
+        void CanEvaluate(const ValueList& args, ValueRef result);
 
     private:
         static void UnindentCode(std::string &code);

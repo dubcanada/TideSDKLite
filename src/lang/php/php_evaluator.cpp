@@ -80,7 +80,7 @@ namespace tide
         SetMethod("preprocess", &PHPEvaluator::Preprocess);
     }
 
-    void PHPEvaluator::CanEvaluate(const ValueList& args, KValueRef result)
+    void PHPEvaluator::CanEvaluate(const ValueList& args, ValueRef result)
     {
         args.VerifyException("canEvaluate", "s");
         
@@ -106,7 +106,7 @@ namespace tide
         return contextId;
     }
 
-    void PHPEvaluator::Evaluate(const ValueList& args, KValueRef result)
+    void PHPEvaluator::Evaluate(const ValueList& args, ValueRef result)
     {
         static Poco::Mutex evaluatorMutex;
         Poco::Mutex::ScopedLock evaluatorLock(evaluatorMutex);
@@ -118,7 +118,7 @@ namespace tide
         string name(args.GetString(1));
         string code(args.GetString(2));
         TiObjectRef windowGlobal(args.GetObject(3));
-        KValueRef kv(Value::Undefined);
+        ValueRef kv(Value::Undefined);
 
         // Contexts must be the same for runs with the same global object.
         string contextId(GetContextId(windowGlobal));
@@ -160,7 +160,7 @@ namespace tide
         result->SetValue(kv);
     }
 
-    void PHPEvaluator::CanPreprocess(const ValueList& args, KValueRef result)
+    void PHPEvaluator::CanPreprocess(const ValueList& args, ValueRef result)
     {
         args.VerifyException("canPreprocess", "s");
 
@@ -192,7 +192,7 @@ namespace tide
         }
     }
     
-    void PHPEvaluator::Preprocess(const ValueList& args, KValueRef result)
+    void PHPEvaluator::Preprocess(const ValueList& args, ValueRef result)
     {
         args.VerifyException("preprocess", "s o");
 

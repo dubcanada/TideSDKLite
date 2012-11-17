@@ -64,7 +64,7 @@ namespace ti
         if (!method->HasProperty("toString") || !method->Get("toString")->IsMethod())
             throw ValueException::FromString("Worker method must be a JavaScript method with a toString function.");
 
-        KValueRef toStringResult(method->Get("toString")->ToMethod()->Call());
+        ValueRef toStringResult(method->Get("toString")->ToMethod()->Call());
         if (!toStringResult->IsString())
             throw ValueException::FromString("Worker method toString did not return a string.");
 
@@ -74,7 +74,7 @@ namespace ti
         return result;
     }
 
-    void WorkerBinding::_CreateWorker(const ValueList& args, KValueRef result)
+    void WorkerBinding::_CreateWorker(const ValueList& args, ValueRef result)
     {
         static Logger* logger = Logger::Get("Worker");
         args.VerifyException("createWorker", "m|s");

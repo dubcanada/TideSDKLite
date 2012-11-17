@@ -64,13 +64,13 @@ namespace ti
 
         protected:
         int FindFirstLineFeed(char *data, int length, int *charsToErase);
-        void _Close(const ValueList& args, KValueRef result);
-        void _SetOnClose(const ValueList& args, KValueRef result);
-        void _Attach(const ValueList& args, KValueRef result);
-        void _Detach(const ValueList& args, KValueRef result);
-        void _IsAttached(const ValueList& args, KValueRef result);
-        void _Write(const ValueList& args, KValueRef result);
-        void _Flush(const ValueList& args, KValueRef result);
+        void _Close(const ValueList& args, ValueRef result);
+        void _SetOnClose(const ValueList& args, ValueRef result);
+        void _Attach(const ValueList& args, ValueRef result);
+        void _Detach(const ValueList& args, ValueRef result);
+        void _IsAttached(const ValueList& args, ValueRef result);
+        void _Write(const ValueList& args, ValueRef result);
+        void _Flush(const ValueList& args, ValueRef result);
         Poco::Mutex attachedMutex;
         std::vector<TiObjectRef> attachedObjects;
         Logger *logger;

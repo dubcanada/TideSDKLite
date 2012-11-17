@@ -58,13 +58,13 @@ namespace tide {
         virtual ~ScopeMethodDelegate();
 
 
-        void Set(const char *name, KValueRef value);
-        KValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        ValueRef Get(const char *name);
         SharedStringList GetPropertyNames();
 
 
         bool IsGlobalKey(std::string& key);
-        KValueRef Call(const ValueList& args);
+        ValueRef Call(const ValueList& args);
 
         /**
          * create a delegate from a TiObject to a wrapped

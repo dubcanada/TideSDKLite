@@ -56,7 +56,7 @@ namespace ti
     {
     }
 
-    void TrayItem::_SetIcon(const ValueList& args, KValueRef result)
+    void TrayItem::_SetIcon(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setIcon", "s");
 
@@ -70,12 +70,12 @@ namespace ti
             this->SetIcon(this->iconPath);
     }
 
-    void TrayItem::_GetIcon(const ValueList& args, KValueRef result)
+    void TrayItem::_GetIcon(const ValueList& args, ValueRef result)
     {
         result->SetString(this->iconURL);
     }
 
-    void TrayItem::_SetMenu(const ValueList& args, KValueRef result)
+    void TrayItem::_SetMenu(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setMenu", "o|0");
         AutoMenu menu(0); // A NULL value is an unset
@@ -90,12 +90,12 @@ namespace ti
         this->menu = menu;
     }
 
-    void TrayItem::_GetMenu(const ValueList& args, KValueRef result)
+    void TrayItem::_GetMenu(const ValueList& args, ValueRef result)
     {
         result->SetObject(this->menu);
     }
 
-    void TrayItem::_SetHint(const ValueList& args, KValueRef result)
+    void TrayItem::_SetHint(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setHint", "s|0");
         this->hint = "";
@@ -107,12 +107,12 @@ namespace ti
             this->SetHint(hint);
     }
 
-    void TrayItem::_GetHint(const ValueList& args, KValueRef result)
+    void TrayItem::_GetHint(const ValueList& args, ValueRef result)
     {
         result->SetString(this->hint);
     }
 
-    void TrayItem::_Remove(const ValueList& args, KValueRef result)
+    void TrayItem::_Remove(const ValueList& args, ValueRef result)
     {
         if (removed)
             return;

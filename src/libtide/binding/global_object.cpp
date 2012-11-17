@@ -60,12 +60,12 @@ namespace tide
 
     }
 
-    void GlobalObject::GetVersion(const ValueList& args, KValueRef result)
+    void GlobalObject::GetVersion(const ValueList& args, ValueRef result)
     {
         result->SetString(PRODUCT_VERSION);
     }
 
-    void GlobalObject::GetPlatform(const ValueList& args, KValueRef result)
+    void GlobalObject::GetPlatform(const ValueList& args, ValueRef result)
     {
         result->SetString(OS_NAME);
     }

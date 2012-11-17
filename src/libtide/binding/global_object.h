@@ -57,8 +57,8 @@ namespace tide
     private:
         static AutoPtr<GlobalObject> instance;
 
-        void GetVersion(const ValueList& args, KValueRef result);
-        void GetPlatform(const ValueList& args, KValueRef result);
+        void GetVersion(const ValueList& args, ValueRef result);
+        void GetPlatform(const ValueList& args, ValueRef result);
     };
 }
 

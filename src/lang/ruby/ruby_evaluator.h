@@ -43,8 +43,8 @@ namespace tide
         RubyEvaluator();
         ~RubyEvaluator();
 
-        void CanEvaluate(const ValueList& args, KValueRef result);
-        void Evaluate(const ValueList& args, KValueRef result);
+        void CanEvaluate(const ValueList& args, ValueRef result);
+        void Evaluate(const ValueList& args, ValueRef result);
 
         private:
         std::string GetContextId(TiObjectRef global);

@@ -46,18 +46,18 @@ namespace tide
         return new std::string(oss.str());
     }
 
-    KValueRef TiMethod::Call(TiObjectRef thisObject, const ValueList& args)
+    ValueRef TiMethod::Call(TiObjectRef thisObject, const ValueList& args)
     {
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call()
+    ValueRef TiMethod::Call()
     {
         return this->Call(ValueList());
     }
 
-    KValueRef TiMethod::Call(const char* one, KValueRef two, KValueRef three,
-        KValueRef four)
+    ValueRef TiMethod::Call(const char* one, ValueRef two, ValueRef three,
+        ValueRef four)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
@@ -67,14 +67,14 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(KValueRef one)
+    ValueRef TiMethod::Call(ValueRef one)
     {
         ValueList args;
         args.push_back(one);
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(KValueRef one, KValueRef two)
+    ValueRef TiMethod::Call(ValueRef one, ValueRef two)
     {
         ValueList args;
         args.push_back(one);
@@ -82,7 +82,7 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(KValueRef one, KValueRef two, KValueRef three)
+    ValueRef TiMethod::Call(ValueRef one, ValueRef two, ValueRef three)
     {
         ValueList args;
         args.push_back(one);
@@ -91,14 +91,14 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(const char* one)
+    ValueRef TiMethod::Call(const char* one)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(const char* one, KValueRef two)
+    ValueRef TiMethod::Call(const char* one, ValueRef two)
     {
         ValueList args;
         args.push_back(Value::NewString(one));
@@ -106,7 +106,7 @@ namespace tide
         return this->Call(args);
     }
 
-    KValueRef TiMethod::Call(const char* one, KValueRef two, KValueRef three)
+    ValueRef TiMethod::Call(const char* one, ValueRef two, ValueRef three)
     {
         ValueList args;
         args.push_back(Value::NewString(one));

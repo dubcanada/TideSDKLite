@@ -70,19 +70,19 @@ public:
     virtual bool IsReadable() const;
 
     // TODO: make this private once removed from File.
-    void _Open(const ValueList& args, KValueRef result);
+    void _Open(const ValueList& args, ValueRef result);
 
 private:
-    void _IsOpen(const ValueList& args, KValueRef result);
-    void _Close(const ValueList& args, KValueRef result);
-    void _Seek(const ValueList& args, KValueRef result);
-    void _Tell(const ValueList& args, KValueRef result);
-    void _Write(const ValueList& args, KValueRef result);
-    void _Read(const ValueList& args, KValueRef result);
+    void _IsOpen(const ValueList& args, ValueRef result);
+    void _Close(const ValueList& args, ValueRef result);
+    void _Seek(const ValueList& args, ValueRef result);
+    void _Tell(const ValueList& args, ValueRef result);
+    void _Write(const ValueList& args, ValueRef result);
+    void _Read(const ValueList& args, ValueRef result);
 
-    void _ReadLine(const ValueList& args, KValueRef result);
-    void _WriteLine(const ValueList& args, KValueRef result);
-    void _Ready(const ValueList& args, KValueRef result);
+    void _ReadLine(const ValueList& args, ValueRef result);
+    void _WriteLine(const ValueList& args, ValueRef result);
+    void _Ready(const ValueList& args, ValueRef result);
 
     std::string filename;
 

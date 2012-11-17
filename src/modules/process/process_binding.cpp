@@ -208,7 +208,7 @@ namespace ti
     {
     }
 
-    void ProcessBinding::CreateProcess(const ValueList& args, KValueRef result)
+    void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createProcess", "o|l");
         TiObjectRef temp = 0;
@@ -311,7 +311,7 @@ namespace ti
     {
         for (size_t i = 0; i < args->Size(); i++)
         {
-            KValueRef arg = Value::Undefined;
+            ValueRef arg = Value::Undefined;
             if (args->At(i)->IsList())
             {
                 TiListRef list = args->At(i)->ToList();
@@ -331,7 +331,7 @@ namespace ti
         }
     }
 
-    void ProcessBinding::CreatePipe(const ValueList& args, KValueRef result)
+    void ProcessBinding::CreatePipe(const ValueList& args, ValueRef result)
     {
         result->SetObject(new Pipe());
     }

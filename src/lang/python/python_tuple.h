@@ -45,16 +45,16 @@ namespace tide
         KPythonTuple(PyObject *obj);
         virtual ~KPythonTuple();
 
-        KValueRef Get(const char *name);
-        void Set(const char *name, KValueRef value);
+        ValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
         virtual bool Equals(TiObjectRef);
         SharedStringList GetPropertyNames();
 
         unsigned int Size();
-        void Append(KValueRef value);
-        virtual void SetAt(unsigned int index, KValueRef value);
+        void Append(ValueRef value);
+        virtual void SetAt(unsigned int index, ValueRef value);
         bool Remove(unsigned int index);
-        KValueRef At(unsigned int index);
+        ValueRef At(unsigned int index);
 
         PyObject* ToPython();
 

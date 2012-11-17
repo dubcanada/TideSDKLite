@@ -44,9 +44,9 @@ namespace tide
     public:
         EnvironmentBinding() : TiObject("API.Environment") {}
         
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
         virtual SharedString DisplayString(int levels=3);
     };
 }

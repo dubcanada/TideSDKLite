@@ -102,7 +102,7 @@ namespace tide
             TiMethodRef finder = evaluators->At(i)->ToObject()->GetMethod(method);
             if (!finder.isNull())
             {
-                KValueRef result = finder->Call(args);
+                ValueRef result = finder->Call(args);
                 if (result->IsBool() && result->ToBool())
                 {
                     return evaluators->At(i)->ToObject();
@@ -122,7 +122,7 @@ namespace tide
         return !this->FindEvaluatorWithMethod("canPreprocess", url).isNull();
     }
     
-    KValueRef Script::Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope)
+    ValueRef Script::Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope)
     {
         TiObjectRef evaluator = this->FindEvaluatorWithMethod("canEvaluate", mimeType);
         if (!evaluator.isNull())
@@ -161,7 +161,7 @@ namespace tide
                 args.push_back(Value::NewString(url));
                 args.push_back(Value::NewObject(scope));
                 
-                KValueRef result = preprocess->Call(args);
+                ValueRef result = preprocess->Call(args);
                 
                 if (result->IsObject())
                 {
@@ -169,7 +169,7 @@ namespace tide
                     AutoPtr<PreprocessData> data = new PreprocessData();
                     if (object->HasProperty("data"))
                     {
-                        KValueRef objectData = object->Get("data");
+                        ValueRef objectData = object->Get("data");
                         if (objectData->IsObject())
                         {
                             BytesRef blobData = objectData->ToObject().cast<Bytes>();

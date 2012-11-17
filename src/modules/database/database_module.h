@@ -67,8 +67,8 @@ namespace ti
 
     private:
         tide::TiObjectRef binding;
-        void Open(const ValueList& args, KValueRef result);
-        void OpenFile(const ValueList& args, KValueRef result);
+        void Open(const ValueList& args, ValueRef result);
+        void OpenFile(const ValueList& args, ValueRef result);
     };
 }
 

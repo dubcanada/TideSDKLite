@@ -52,9 +52,9 @@ namespace tide
 
         public:
         // @see TiObject::Set
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
         // @see TiObject::Get
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
         // @see TiObject::GetPropertyNames
         virtual SharedStringList GetPropertyNames();
         // @see TiObject::DisplayString
@@ -88,10 +88,10 @@ namespace tide
 
     protected:
         TiObjectRef delegate;
-        KValueRef Wrap(KValueRef value, std::string type);
+        ValueRef Wrap(ValueRef value, std::string type);
         std::string GetSubType(std::string name);
         void Log(const char* eventType, std::string& name, Poco::Timestamp::TimeDiff);
-        static bool AlreadyWrapped(KValueRef);
+        static bool AlreadyWrapped(ValueRef);
         static Poco::FileOutputStream *stream;
         static Poco::Mutex logMutex;
         Poco::AtomicCounter count;

@@ -120,27 +120,27 @@ namespace ti
     {
     }
 
-    void Sound::Play(const ValueList& args, KValueRef result)
+    void Sound::Play(const ValueList& args, ValueRef result)
     {
         this->Play();
     }
 
-    void Sound::Pause(const ValueList& args, KValueRef result)
+    void Sound::Pause(const ValueList& args, ValueRef result)
     {
         this->Pause();
     }
 
-    void Sound::Stop(const ValueList& args, KValueRef result)
+    void Sound::Stop(const ValueList& args, ValueRef result)
     {
         this->Stop();
     }
 
-    void Sound::Reload(const ValueList& args, KValueRef result)
+    void Sound::Reload(const ValueList& args, ValueRef result)
     {
         this->Reload();
     }
 
-    void Sound::SetVolume(const ValueList& args, KValueRef result)
+    void Sound::SetVolume(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setVolume", "n");
         double volume = args.GetDouble(0);
@@ -148,33 +148,33 @@ namespace ti
         this->SetVolume(volume);
     }
 
-    void Sound::GetVolume(const ValueList& args, KValueRef result)
+    void Sound::GetVolume(const ValueList& args, ValueRef result)
     {
         result->SetDouble(this->GetVolume());
     }
 
-    void Sound::SetLooping(const ValueList& args, KValueRef result)
+    void Sound::SetLooping(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setLooping", "b");
         this->SetLooping(args.at(0)->ToBool());
     }
 
-    void Sound::IsLooping(const ValueList& args, KValueRef result)
+    void Sound::IsLooping(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->IsLooping());
     }
 
-    void Sound::IsPlaying(const ValueList& args, KValueRef result)
+    void Sound::IsPlaying(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->IsPlaying());
     }
 
-    void Sound::IsPaused(const ValueList& args, KValueRef result)
+    void Sound::IsPaused(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->IsPaused());
     }
 
-    void Sound::SetOnComplete(const ValueList& args, KValueRef result)
+    void Sound::SetOnComplete(const ValueList& args, ValueRef result)
     {
         args.VerifyException("onComplete", "m|0");
         this->SetOnComplete(args.GetMethod(0, 0));

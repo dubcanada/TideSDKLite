@@ -52,7 +52,7 @@ namespace tide
 
     typedef struct {
         PyObject_HEAD
-        KValueRef* value;
+        ValueRef* value;
     } PyTiObject;
 
     static PyTypeObject PyTiObjectType =
@@ -191,7 +191,7 @@ namespace tide
 
     }
 
-    PyObject* PythonUtils::ToPyObject(KValueRef value)
+    PyObject* PythonUtils::ToPyObject(ValueRef value)
     {
         PyLockGIL lock;
         PyObject* pythonValue = 0;
@@ -298,7 +298,7 @@ namespace tide
         }
     }
 
-    KValueRef PythonUtils::ToTiValue(PyObject* value)
+    ValueRef PythonUtils::ToTiValue(PyObject* value)
     {
         PyLockGIL lock;
 
@@ -308,7 +308,7 @@ namespace tide
         // trick. Therefore we should avoid using PyString_Check and friends for now
         // unless it does the right thing on Snow Leopard.
 
-        KValueRef kvalue(0);
+        ValueRef kvalue(0);
         if (Py_None == value)
         {
             kvalue = Value::Null;
@@ -436,7 +436,7 @@ namespace tide
         Py_INCREF(self);
         PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
 
-        KValueRef result = 0;
+        ValueRef result = 0;
         {
             PyAllowThreads allow;
             result = pyko->value->get()->ToObject()->Get(name);
@@ -451,7 +451,7 @@ namespace tide
         PyLockGIL lock;
         PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
         Py_INCREF(self);
-        KValueRef tiValue = PythonUtils::ToTiValue(value);
+        ValueRef tiValue = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
@@ -479,11 +479,11 @@ namespace tide
         return PyString_FromString(ss->c_str());
     }
 
-    PyObject* PythonUtils::TiObjectToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiObjectToPyObject(ValueRef v)
     {
         PyLockGIL lock;
         PyTiObject* obj = PyObject_New(PyTiObject, &PyTiObjectType);
-        obj->value = new KValueRef(v);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 
@@ -529,7 +529,7 @@ namespace tide
         PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
         TiListRef tiList = pyko->value->get()->ToList();
 
-        KValueRef listVal = 0;
+        ValueRef listVal = 0;
         {
             PyAllowThreads allow;
             if (i < (int) tiList->Size())
@@ -549,7 +549,7 @@ namespace tide
         PyLockGIL lock;
         PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
         TiListRef tiList = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToTiValue(v);
+        ValueRef kv = PythonUtils::ToTiValue(v);
 
         {
             PyAllowThreads allow;
@@ -564,7 +564,7 @@ namespace tide
         PyLockGIL lock;
         PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
         TiListRef tiList = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToTiValue(value);
+        ValueRef kv = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
@@ -587,7 +587,7 @@ namespace tide
         for (int i = 0; i < size; i++)
         {
             PyObject* v = PySequence_GetItem(o2, i);
-            KValueRef kv = PythonUtils::ToTiValue(v);
+            ValueRef kv = PythonUtils::ToTiValue(v);
 
             {
                 PyAllowThreads allow;
@@ -620,11 +620,11 @@ namespace tide
         return o;
     }
 
-    PyObject* PythonUtils::TiListToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiListToPyObject(ValueRef v)
     {
         PyLockGIL lock;
         PyTiObject* obj = PyObject_New(PyTiObject, &PyTiListType);
-        obj->value = new KValueRef(v);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 
@@ -636,13 +636,13 @@ namespace tide
         TiMethodRef kmeth = pyko->value->get()->ToMethod();
 
         ValueList a;
-        KValueRef result = Value::Undefined;
+        ValueRef result = Value::Undefined;
         try
         {
             for (int c = 0; c < PyTuple_Size(args); c++)
             {
                 PyObject* arg = PyTuple_GetItem(args, c);
-                KValueRef kValue = PythonUtils::ToTiValue(arg);
+                ValueRef kValue = PythonUtils::ToTiValue(arg);
                 Value::Unwrap(kValue);
                 a.push_back(kValue);
             }
@@ -668,11 +668,11 @@ namespace tide
         return PythonUtils::ToPyObject(result);
     }
 
-    PyObject* PythonUtils::TiMethodToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiMethodToPyObject(ValueRef v)
     {
         PyLockGIL lock;
         PyTiObject* obj = PyObject_New(PyTiObject, &PyTiMethodType);
-        obj->value = new KValueRef(v);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 

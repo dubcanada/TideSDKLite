@@ -67,7 +67,7 @@ namespace tide
          * @param name The property name
          * @param value The new property value
          */
-        virtual void Set(const char *name, KValueRef value) = 0;
+        virtual void Set(const char *name, ValueRef value) = 0;
 
         /**
          * @param name The property name
@@ -75,7 +75,7 @@ namespace tide
          *         if the property is not found.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef Get(const char *name) = 0;
+        virtual ValueRef Get(const char *name) = 0;
 
         /**
          * Determine if two objects have *reference* equality
@@ -114,14 +114,14 @@ namespace tide
          * @param value The new property value
          * Helpful overload to Set which takes a SharedString
          */
-        void Set(SharedString name, KValueRef value);
+        void Set(SharedString name, ValueRef value);
 
         /**
          * @see TiObject::Get(const char*)
          * @param name The property name
          * Helpful overload to Get which takes a SharedString
          */
-        KValueRef Get(SharedString name);
+        ValueRef Get(SharedString name);
 
         /**
          * Get an int property from this object.
@@ -291,20 +291,20 @@ namespace tide
          *
          * This function does nothing if the object or it's parents are undefined
          */
-        void SetNS(const char *name, KValueRef value);
+        void SetNS(const char *name, ValueRef value);
 
         /**
          * Get the value of a child of this object using a simple object notation
          * For example:
          * \code
-         * KValueRef value = this->GetNS("object.property.subproperty");
+         * ValueRef value = this->GetNS("object.property.subproperty");
          * // instead of
-         * KValueRef value = this->Get("object")->ToObject()->Get("property")->ToObject()->Get("subproperty");
+         * ValueRef value = this->Get("object")->ToObject()->Get("property")->ToObject()->Get("subproperty");
          * \endcode
          *
          * @return The value of the child object, or Value::Undefined if the object, or it's parents are undefined
          */
-        KValueRef GetNS(const char *name);
+        ValueRef GetNS(const char *name);
 
         /**
          * Call a child method on this object using simple object notation
@@ -320,27 +320,27 @@ namespace tide
          * CallNS is overridden, and can accept up to 3 arguments inline, or a ValueList
          * @return The return value of the function, or Value::Undefined if the object or method in the string is undefined
          */
-        KValueRef CallNS(const char *name);
+        ValueRef CallNS(const char *name);
         
         /**
          * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1);
+        ValueRef CallNS(const char *name, ValueRef val1);
 
         /**
          * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2);
+        ValueRef CallNS(const char *name, ValueRef val1, ValueRef val2);
 
         /**
          * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2, KValueRef val3);
+        ValueRef CallNS(const char *name, ValueRef val1, ValueRef val2, ValueRef val3);
 
         /**
          * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, const ValueList& args);
+        ValueRef CallNS(const char *name, const ValueList& args);
 
         /**
          * Return the type of this object as a string.

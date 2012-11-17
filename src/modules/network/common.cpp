@@ -121,7 +121,7 @@ BytesRef ObjectToBytes(TiObjectRef dataObject)
     if (nativeOpenMethod.isNull())
         return 0;
 
-    KValueRef streamValue(nativeOpenMethod->Call());
+    ValueRef streamValue(nativeOpenMethod->Call());
     if (streamValue.isNull() || !streamValue->IsObject())
         return 0;
 
@@ -129,7 +129,7 @@ BytesRef ObjectToBytes(TiObjectRef dataObject)
     if (nativeReadMethod.isNull())
         return 0;
 
-    KValueRef readValue(nativeReadMethod->Call());
+    ValueRef readValue(nativeReadMethod->Call());
     if (!readValue->IsObject())
         return 0;
 

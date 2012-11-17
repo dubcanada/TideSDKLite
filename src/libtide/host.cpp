@@ -716,13 +716,13 @@ namespace tide
         this->ExitImpl(exitCode);
     }
 
-    KValueRef Host::RunOnMainThread(TiMethodRef method, const ValueList& args,
+    ValueRef Host::RunOnMainThread(TiMethodRef method, const ValueList& args,
         bool waitForCompletion)
     {
         return this->RunOnMainThread(method, 0, args, waitForCompletion);
     }
 
-    KValueRef Host::RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
+    ValueRef Host::RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
         const ValueList& args, bool waitForCompletion)
     {
         MainThreadJob* job = new MainThreadJob(method, thisObject,
@@ -749,7 +749,7 @@ namespace tide
             // through because we've already called Execute() above.
             job->Wait();
 
-            KValueRef result(job->GetResult());
+            ValueRef result(job->GetResult());
             ValueException exception(job->GetException());
             delete job;
 
@@ -789,13 +789,13 @@ namespace tide
         }
     }
 
-    KValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
+    ValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
         bool waitForCompletion)
     {
         return hostInstance->RunOnMainThread(method, args, waitForCompletion);
     }
 
-    KValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
+    ValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
         const ValueList& args, bool waitForCompletion)
     {
         return hostInstance->RunOnMainThread(method, args, waitForCompletion);

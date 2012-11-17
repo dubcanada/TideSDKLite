@@ -122,7 +122,7 @@ namespace ti
         }
     }
     
-    void TCPServerSocketBinding::Listen(const ValueList& args, KValueRef result)
+    void TCPServerSocketBinding::Listen(const ValueList& args, ValueRef result)
     {
         args.VerifyException("listen", "n");
 
@@ -140,7 +140,7 @@ namespace ti
         result->SetBool(true);
     }
     
-    void TCPServerSocketBinding::Close(const ValueList& args, KValueRef result)
+    void TCPServerSocketBinding::Close(const ValueList& args, ValueRef result)
     {
         if (this->listening)
         {

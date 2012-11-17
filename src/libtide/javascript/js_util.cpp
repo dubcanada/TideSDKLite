@@ -70,16 +70,16 @@ namespace JSUtil
     static JSValueRef EqualsCallback(JSContextRef, JSObjectRef, JSObjectRef, size_t, const JSValueRef[], JSValueRef*);
 
     // Private functions
-    static void AddSpecialPropertyNames(KValueRef, SharedStringList, bool);
-    static JSValueRef GetSpecialProperty(KValueRef, const char*, JSContextRef, KValueRef);
-    static bool DoSpecialSetBehavior(KValueRef target, const char* name, KValueRef newValue);
+    static void AddSpecialPropertyNames(ValueRef, SharedStringList, bool);
+    static JSValueRef GetSpecialProperty(ValueRef, const char*, JSContextRef, ValueRef);
+    static bool DoSpecialSetBehavior(ValueRef target, const char* name, ValueRef newValue);
     static JSValueRef GetFunctionPrototype(JSContextRef jsContext, JSValueRef* exception);
     static JSValueRef GetArrayPrototype(JSContextRef jsContext, JSValueRef* exception);
 
-    KValueRef ToTiValue(JSValueRef value, JSContextRef jsContext,
+    ValueRef ToTiValue(JSValueRef value, JSContextRef jsContext,
         JSObjectRef thisObject)
     {
-        KValueRef tideValue = 0;
+        ValueRef tideValue = 0;
         JSValueRef exception = NULL;
 
         if (value == NULL)
@@ -111,7 +111,7 @@ namespace JSUtil
             JSObjectRef o = JSValueToObject(jsContext, value, &exception);
             if (o != NULL)
             {
-                KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(o));
+                ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(o));
                 if (value != NULL)
                 {
                     // This is a KJS-wrapped TideSDK value: unwrap it
@@ -160,7 +160,7 @@ namespace JSUtil
         }
     }
 
-    JSValueRef ToJSValue(KValueRef value, JSContextRef jsContext)
+    JSValueRef ToJSValue(ValueRef value, JSContextRef jsContext)
     {
         JSValueRef jsValue = NULL;
         if (value->IsInt())
@@ -243,7 +243,7 @@ namespace JSUtil
 
     }
 
-    JSValueRef TiObjectToJSValue(KValueRef objectValue, JSContextRef jsContext)
+    JSValueRef TiObjectToJSValue(ValueRef objectValue, JSContextRef jsContext)
     {
         if (KJSKObjectClass == NULL)
         {
@@ -256,10 +256,10 @@ namespace JSUtil
             jsClassDefinition.setProperty = SetPropertyCallback;
             KJSKObjectClass = JSClassCreate(&jsClassDefinition);
         }
-        return JSObjectMake(jsContext, KJSKObjectClass, new KValueRef(objectValue));
+        return JSObjectMake(jsContext, KJSKObjectClass, new ValueRef(objectValue));
     }
 
-    JSValueRef TiMethodToJSValue(KValueRef methodValue, JSContextRef jsContext)
+    JSValueRef TiMethodToJSValue(ValueRef methodValue, JSContextRef jsContext)
     {
         if (KJSKMethodClass == NULL)
         {
@@ -273,13 +273,13 @@ namespace JSUtil
             jsClassDefinition.callAsFunction = CallAsFunctionCallback;
             KJSKMethodClass = JSClassCreate(&jsClassDefinition);
         }
-        JSObjectRef jsobject = JSObjectMake(jsContext, KJSKMethodClass, new KValueRef(methodValue));
+        JSObjectRef jsobject = JSObjectMake(jsContext, KJSKMethodClass, new ValueRef(methodValue));
         JSValueRef functionPrototype = GetFunctionPrototype(jsContext, NULL);
         JSObjectSetPrototype(jsContext, jsobject, functionPrototype);
         return jsobject;
     }
 
-    JSValueRef TiListToJSValue(KValueRef listValue, JSContextRef jsContext)
+    JSValueRef TiListToJSValue(ValueRef listValue, JSContextRef jsContext)
     {
 
         if (KJSKListClass == NULL)
@@ -294,7 +294,7 @@ namespace JSUtil
             KJSKListClass = JSClassCreate(&jsClassDefinition);
         }
 
-        JSObjectRef jsobject = JSObjectMake(jsContext, KJSKListClass, new KValueRef(listValue));
+        JSObjectRef jsobject = JSObjectMake(jsContext, KJSKListClass, new ValueRef(listValue));
         JSValueRef arrayPrototype = GetArrayPrototype(jsContext, NULL);
         JSObjectSetPrototype(jsContext, jsobject, arrayPrototype);
         return jsobject;
@@ -331,7 +331,7 @@ namespace JSUtil
 
     static void FinalizeCallback(JSObjectRef jsObject)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsObject));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsObject));
         delete value;
     }
 
@@ -360,7 +360,7 @@ namespace JSUtil
     static bool HasPropertyCallback(JSContextRef jsContext, JSObjectRef jsObject,
         JSStringRef jsProperty)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsObject));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsObject));
         if (value == NULL)
             return false;
 
@@ -397,7 +397,7 @@ namespace JSUtil
         JSObjectRef jsObject, JSStringRef jsProperty, JSValueRef* jsException)
     {
 
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsObject));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsObject));
         if (value == NULL)
             return JSValueMakeUndefined(jsContext);
 
@@ -406,7 +406,7 @@ namespace JSUtil
         JSValueRef jsValue = NULL;
         try
         {
-            KValueRef kvalue = object->Get(name.c_str());
+            ValueRef kvalue = object->Get(name.c_str());
             jsValue = GetSpecialProperty(*value, name.c_str(), jsContext, kvalue);
         }
         catch (ValueException& exception)
@@ -415,14 +415,14 @@ namespace JSUtil
         }
         catch (std::exception &e)
         {
-            KValueRef v = Value::NewString(e.what());
+            ValueRef v = Value::NewString(e.what());
             *jsException = ToJSValue(v, jsContext);
         }
         catch (...)
         {
             std::string error = "Unknown exception trying to get property: ";
             error.append(name);
-            KValueRef v = Value::NewString(error);
+            ValueRef v = Value::NewString(error);
             *jsException = ToJSValue(v, jsContext);
         }
 
@@ -432,7 +432,7 @@ namespace JSUtil
     static bool SetPropertyCallback(JSContextRef jsContext, JSObjectRef jsObject,
         JSStringRef jsProperty, JSValueRef jsValue, JSValueRef* jsException)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsObject));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsObject));
         if (value == NULL)
             return false;
 
@@ -441,7 +441,7 @@ namespace JSUtil
         std::string propertyName(ToChars(jsProperty));
         try
         {
-            KValueRef newValue = ToTiValue(jsValue, jsContext, jsObject);
+            ValueRef newValue = ToTiValue(jsValue, jsContext, jsObject);
 
             // Arrays in particular have a special behavior when
             // you do something like set the "length" property
@@ -457,14 +457,14 @@ namespace JSUtil
         }
         catch (std::exception &e)
         {
-            KValueRef v = Value::NewString(e.what());
+            ValueRef v = Value::NewString(e.what());
             *jsException = ToJSValue(v, jsContext);
         }
         catch (...)
         {
             std::string error = "Unknown exception trying to set property: ";
             error.append(propertyName);
-            KValueRef v = Value::NewString(error);
+            ValueRef v = Value::NewString(error);
             *jsException = ToJSValue(v, jsContext);
         }
 
@@ -475,7 +475,7 @@ namespace JSUtil
         JSObjectRef jsFunction, JSObjectRef jsThis, size_t argCount,
         const JSValueRef jsArgs[], JSValueRef* jsException)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsFunction));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsFunction));
         if (value == NULL)
             return JSValueMakeUndefined(jsContext);
 
@@ -483,7 +483,7 @@ namespace JSUtil
         ValueList args;
         for (size_t i = 0; i < argCount; i++)
         {
-            KValueRef argVal = ToTiValue(jsArgs[i], jsContext, jsThis);
+            ValueRef argVal = ToTiValue(jsArgs[i], jsContext, jsThis);
             Value::Unwrap(argVal);
             args.push_back(argVal);
         }
@@ -491,7 +491,7 @@ namespace JSUtil
         JSValueRef jsValue = NULL;
         try
         {
-            KValueRef kvalue = method->Call(args);
+            ValueRef kvalue = method->Call(args);
             jsValue = ToJSValue(kvalue, jsContext);
         }
         catch (ValueException& exception)
@@ -501,19 +501,19 @@ namespace JSUtil
         } 
         catch (std::exception &e)
         {
-            KValueRef v = Value::NewString(e.what());
+            ValueRef v = Value::NewString(e.what());
             *jsException = ToJSValue(v, jsContext);
         }
         catch (...)
         {
-            KValueRef v = Value::NewString("Unknown exception during Tide method call");
+            ValueRef v = Value::NewString("Unknown exception during Tide method call");
             *jsException = ToJSValue(v, jsContext);
         }
 
         return jsValue;
     }
 
-    static void AddSpecialPropertyNames(KValueRef value, SharedStringList props,
+    static void AddSpecialPropertyNames(ValueRef value, SharedStringList props,
         bool showInvisible)
     {
         // Some attributes should be hidden unless the are requested specifically -- 
@@ -550,8 +550,8 @@ namespace JSUtil
         }
     }
 
-    static JSValueRef GetSpecialProperty(KValueRef value, const char* name, 
-        JSContextRef jsContext, KValueRef objValue)
+    static JSValueRef GetSpecialProperty(ValueRef value, const char* name, 
+        JSContextRef jsContext, ValueRef objValue)
     {
         // Always override the length property on lists. Some languages
         // supply their own length property, which might be a method instead
@@ -591,7 +591,7 @@ namespace JSUtil
         return ToJSValue(objValue, jsContext);
     }
 
-    static bool DoSpecialSetBehavior(KValueRef target, const char* name, KValueRef newValue)
+    static bool DoSpecialSetBehavior(ValueRef target, const char* name, ValueRef newValue)
     {
         // We only do something special if we are trying to set
         // the length property of a list to a new int value.
@@ -607,12 +607,12 @@ namespace JSUtil
         JSObjectRef jsFunction, JSObjectRef jsThis, size_t argCount,
         const JSValueRef args[], JSValueRef* exception)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsThis));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsThis));
         if (value == NULL)
             return JSValueMakeUndefined(jsContext);
 
         SharedString ss = (*value)->DisplayString(2);
-        KValueRef dsv = Value::NewString(ss);
+        ValueRef dsv = Value::NewString(ss);
         return ToJSValue(dsv, jsContext);
     }
 
@@ -620,7 +620,7 @@ namespace JSUtil
         JSObjectRef jsThis, size_t numArgs, const JSValueRef args[],
         JSValueRef* exception)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsThis));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsThis));
         if (value == NULL || numArgs < 1)
         {
             return JSValueMakeBoolean(jsContext, false);
@@ -634,7 +634,7 @@ namespace JSUtil
 
         // Ensure argument is a TideSDK JavaScript
         JSObjectRef otherObject = JSValueToObject(jsContext, args[0], NULL);
-        KValueRef* otherValue = static_cast<KValueRef*>(JSObjectGetPrivate(otherObject));
+        ValueRef* otherValue = static_cast<ValueRef*>(JSObjectGetPrivate(otherObject));
         if (otherValue == NULL)
         {
             return JSValueMakeBoolean(jsContext, false);
@@ -647,7 +647,7 @@ namespace JSUtil
     static void GetPropertyNamesCallback(JSContextRef jsContext,
         JSObjectRef jsObject, JSPropertyNameAccumulatorRef jsProperties)
     {
-        KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(jsObject));
+        ValueRef* value = static_cast<ValueRef*>(JSObjectGetPrivate(jsObject));
         if (value == NULL)
             return;
 
@@ -757,7 +757,7 @@ namespace JSUtil
         jsContextRefCounts[globalContext]--;
     }
 
-    KValueRef Evaluate(JSContextRef jsContext, const char* script, const char* url)
+    ValueRef Evaluate(JSContextRef jsContext, const char* script, const char* url)
     {
         JSObjectRef globalObject = JSContextGetGlobalObject(jsContext);
         JSStringRef scriptContents = JSStringCreateWithUTF8CString(script);
@@ -776,7 +776,7 @@ namespace JSUtil
         return ToTiValue(returnValue, jsContext, globalObject);
     }
 
-    KValueRef EvaluateFile(JSContextRef jsContext, const std::string& fullPath)
+    ValueRef EvaluateFile(JSContextRef jsContext, const std::string& fullPath)
     {
         GetLogger()->Debug("Evaluating JavaScript file at: %s", fullPath.c_str());
         std::string scriptContents(FileUtils::ReadFile(fullPath));
@@ -875,7 +875,7 @@ namespace JSUtil
         return fnPrototype;
     }
 
-    KValueRef GetProperty(JSObjectRef globalObject, std::string name)
+    ValueRef GetProperty(JSObjectRef globalObject, std::string name)
     {
         JSGlobalContextRef jsContext = GetGlobalContext(globalObject);
         JSStringRef jsName = JSStringCreateWithUTF8CString(name.c_str());

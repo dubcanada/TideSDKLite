@@ -61,7 +61,7 @@ namespace tide
         bool CanPreprocess(const char *url);
         TiListRef GetEvaluators() { return evaluators; }
 
-        KValueRef Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope);
+        ValueRef Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope);
         AutoPtr<PreprocessData> Preprocess(const char *url, TiObjectRef scope);
         
     protected:

@@ -44,9 +44,9 @@ class KRubyMethod : public TiMethod
     KRubyMethod(VALUE method, const char*);
     KRubyMethod(VALUE method, VALUE arg);
     virtual ~KRubyMethod();
-    KValueRef Call(const ValueList& args);
-    virtual void Set(const char *name, KValueRef value);
-    virtual KValueRef Get(const char *name);
+    ValueRef Call(const ValueList& args);
+    virtual void Set(const char *name, ValueRef value);
+    virtual ValueRef Get(const char *name);
     virtual SharedStringList GetPropertyNames();
     virtual SharedString DisplayString(int);
     VALUE ToRuby();

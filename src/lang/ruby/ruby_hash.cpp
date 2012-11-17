@@ -70,7 +70,7 @@ namespace tide
         rb_gc_unregister_address(&hash);
     }
 
-    KValueRef KRubyHash::Get(const char *name)
+    ValueRef KRubyHash::Get(const char *name)
     {
         VALUE keyAsSymbol = ID2SYM(rb_intern(name));
         if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsSymbol))
@@ -83,7 +83,7 @@ namespace tide
         return this->object->Get(name);
     }
 
-    void KRubyHash::Set(const char* name, KValueRef value)
+    void KRubyHash::Set(const char* name, ValueRef value)
     {
         // If this hash already has a key that's a symbol of
         // this name, then just use the symbol version. This

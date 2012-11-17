@@ -90,7 +90,7 @@ namespace tide
             this->semaphore.set();
     }
 
-    KValueRef MainThreadJob::GetResult()
+    ValueRef MainThreadJob::GetResult()
     {
         return this->returnValue;
     }

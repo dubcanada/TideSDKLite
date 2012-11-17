@@ -21,21 +21,21 @@ namespace ti
 		PropertiesBinding(const std::string& file_path = "");
 		virtual ~PropertiesBinding() {}
 
-		void GetBool(const ValueList& args, KValueRef result);
-		void GetDouble(const ValueList& args, KValueRef result);
-		void GetInt(const ValueList& args, KValueRef result);
-		void GetString(const ValueList& args, KValueRef result);
-		void GetList(const ValueList& args, KValueRef result);
-		void SetBool(const ValueList& args, KValueRef result);
-		void SetDouble(const ValueList& args, KValueRef result);
-		void SetInt(const ValueList& args, KValueRef result);
-		void SetString(const ValueList& args, KValueRef result);
-		void SetList(const ValueList& args, KValueRef result);
-		void HasProperty(const ValueList& args, KValueRef result);
-		void RemoveProperty(const ValueList& args, KValueRef result);
-		void ListProperties(const ValueList& args, KValueRef result);
-		void SaveTo(const ValueList& args, KValueRef result);
-		void Getter(const ValueList& args, KValueRef result, Type type);
+		void GetBool(const ValueList& args, ValueRef result);
+		void GetDouble(const ValueList& args, ValueRef result);
+		void GetInt(const ValueList& args, ValueRef result);
+		void GetString(const ValueList& args, ValueRef result);
+		void GetList(const ValueList& args, ValueRef result);
+		void SetBool(const ValueList& args, ValueRef result);
+		void SetDouble(const ValueList& args, ValueRef result);
+		void SetInt(const ValueList& args, ValueRef result);
+		void SetString(const ValueList& args, ValueRef result);
+		void SetList(const ValueList& args, ValueRef result);
+		void HasProperty(const ValueList& args, ValueRef result);
+		void RemoveProperty(const ValueList& args, ValueRef result);
+		void ListProperties(const ValueList& args, ValueRef result);
+		void SaveTo(const ValueList& args, ValueRef result);
+		void Getter(const ValueList& args, ValueRef result, Type type);
 		void Setter(const ValueList& args, Type type);
 		void SaveConfig();
 

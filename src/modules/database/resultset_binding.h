@@ -58,17 +58,17 @@ namespace ti
         bool eof;
         
         void Bind();
-        void TransformValue(size_t index, KValueRef result);
+        void TransformValue(size_t index, ValueRef result);
         
 
-        void IsValidRow(const ValueList& args, KValueRef result);
-        void Next(const ValueList& args, KValueRef result);
-        void Close(const ValueList& args, KValueRef result);
-        void RowCount(const ValueList& args, KValueRef result);
-        void FieldCount(const ValueList& args, KValueRef result);
-        void FieldName(const ValueList& args, KValueRef result);
-        void Field(const ValueList& args, KValueRef result);
-        void FieldByName(const ValueList& args, KValueRef result);
+        void IsValidRow(const ValueList& args, ValueRef result);
+        void Next(const ValueList& args, ValueRef result);
+        void Close(const ValueList& args, ValueRef result);
+        void RowCount(const ValueList& args, ValueRef result);
+        void FieldCount(const ValueList& args, ValueRef result);
+        void FieldName(const ValueList& args, ValueRef result);
+        void Field(const ValueList& args, ValueRef result);
+        void FieldByName(const ValueList& args, ValueRef result);
     };
 }
 

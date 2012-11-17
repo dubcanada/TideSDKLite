@@ -64,8 +64,8 @@ namespace ti
 
         void run();
         void SendEventToAPIServer(std::string& eventData);
-        void _SendEvent(const ValueList& args, KValueRef result);
-        void _StartAnalyticsThread(const ValueList &args, KValueRef result);
+        void _SendEvent(const ValueList& args, ValueRef result);
+        void _StartAnalyticsThread(const ValueList &args, ValueRef result);
     };
 }
 

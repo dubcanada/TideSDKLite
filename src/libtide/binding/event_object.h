@@ -62,9 +62,9 @@ namespace tide
         virtual bool FireEvent(AutoPtr<Event>, bool synchronous=true);
         void FireErrorEvent(std::exception& e);
 
-        void _AddEventListener(const ValueList&, KValueRef result);
-        void _RemoveEventListener(const ValueList&, KValueRef result);
-        void _RemoveAllEventListeners(const ValueList&, KValueRef result);
+        void _AddEventListener(const ValueList&, ValueRef result);
+        void _RemoveEventListener(const ValueList&, ValueRef result);
+        void _RemoveAllEventListeners(const ValueList&, ValueRef result);
 
     private:
         void ReportDispatchError(std::string& reason);

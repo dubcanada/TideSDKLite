@@ -44,13 +44,13 @@ namespace tide
     {
     public:
         static void InitializePythonKClasses();
-        static KValueRef ToTiValue(PyObject* value);
-        static PyObject* ToPyObject(KValueRef value);
+        static ValueRef ToTiValue(PyObject* value);
+        static PyObject* ToPyObject(ValueRef value);
         static PyObject* ToPyObject(const ValueList& list);
         static const char* ToString(PyObject* value);
-        static PyObject* TiObjectToPyObject(KValueRef o);
-        static PyObject* TiMethodToPyObject(KValueRef o);
-        static PyObject* TiListToPyObject(KValueRef o);
+        static PyObject* TiObjectToPyObject(ValueRef o);
+        static PyObject* TiMethodToPyObject(ValueRef o);
+        static PyObject* TiListToPyObject(ValueRef o);
         static std::string PythonErrorToString();
 
     private:

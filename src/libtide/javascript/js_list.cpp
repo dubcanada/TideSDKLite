@@ -70,29 +70,29 @@ namespace tide
 
     unsigned int KKJSList::Size()
     {
-        KValueRef length_val = this->tiObject->Get("length");
+        ValueRef length_val = this->tiObject->Get("length");
         if (length_val->IsInt())
             return (unsigned int) length_val->ToInt();
         else
             return 0;
     }
 
-    KValueRef KKJSList::At(unsigned int index)
+    ValueRef KKJSList::At(unsigned int index)
     {
         std::string name = TiList::IntToChars(index);
-        KValueRef value = this->tiObject->Get(name.c_str());
+        ValueRef value = this->tiObject->Get(name.c_str());
         return value;
     }
 
-    void KKJSList::SetAt(unsigned int index, KValueRef value)
+    void KKJSList::SetAt(unsigned int index, ValueRef value)
     {
         std::string name = TiList::IntToChars(index);
         this->tiObject->Set(name.c_str(), value);
     }
 
-    void KKJSList::Append(KValueRef value)
+    void KKJSList::Append(ValueRef value)
     {
-        KValueRef push_method = this->tiObject->Get("push");
+        ValueRef push_method = this->tiObject->Get("push");
 
         if (push_method->IsMethod())
         {
@@ -110,7 +110,7 @@ namespace tide
     {
         if (index >= 0 && index < this->Size())
         {
-            KValueRef spliceMethod = this->tiObject->Get("splice");
+            ValueRef spliceMethod = this->tiObject->Get("splice");
             spliceMethod->ToMethod()->Call(
                 Value::NewInt(index),
                 Value::NewInt(1));
@@ -120,12 +120,12 @@ namespace tide
     }
 
 
-    KValueRef KKJSList::Get(const char* name)
+    ValueRef KKJSList::Get(const char* name)
     {
         return tiObject->Get(name);
     }
 
-    void KKJSList::Set(const char* name, KValueRef value)
+    void KKJSList::Set(const char* name, ValueRef value)
     {
         return tiObject->Set(name, value);
     }

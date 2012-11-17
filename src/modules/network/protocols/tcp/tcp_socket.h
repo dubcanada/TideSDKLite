@@ -64,15 +64,15 @@ namespace ti
     private:
         void HandleError(Poco::Exception& e);
 
-        void _Connect(const ValueList& args, KValueRef result);
-        void _SetTimeout(const ValueList& args, KValueRef result);
-        void _Close(const ValueList& args, KValueRef result);
-        void _IsClosed(const ValueList& args, KValueRef result);
-        void _Write(const ValueList& args, KValueRef result);
-        void _OnRead(const ValueList& args, KValueRef result);
-        void _OnReadComplete(const ValueList& args, KValueRef result);
-        void _OnError(const ValueList& args, KValueRef result);
-        void _OnTimeout(const ValueList& args, KValueRef result);
+        void _Connect(const ValueList& args, ValueRef result);
+        void _SetTimeout(const ValueList& args, ValueRef result);
+        void _Close(const ValueList& args, ValueRef result);
+        void _IsClosed(const ValueList& args, ValueRef result);
+        void _Write(const ValueList& args, ValueRef result);
+        void _OnRead(const ValueList& args, ValueRef result);
+        void _OnReadComplete(const ValueList& args, ValueRef result);
+        void _OnError(const ValueList& args, ValueRef result);
+        void _OnTimeout(const ValueList& args, ValueRef result);
 
         Poco::Net::SocketAddress address;
         Poco::Net::StreamSocket socket;

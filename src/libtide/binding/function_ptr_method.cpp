@@ -42,17 +42,17 @@ namespace tide
     {
     }
 
-    KValueRef FunctionPtrMethod::Call(const ValueList& args)
+    ValueRef FunctionPtrMethod::Call(const ValueList& args)
     {
         return this->callback(args);
     }
 
-    void FunctionPtrMethod::Set(const char *name, KValueRef value)
+    void FunctionPtrMethod::Set(const char *name, ValueRef value)
     {
         this->object->Set(name, value);
     }
 
-    KValueRef FunctionPtrMethod::Get(const char *name)
+    ValueRef FunctionPtrMethod::Get(const char *name)
     {
         return this->object->Get(name);
     }

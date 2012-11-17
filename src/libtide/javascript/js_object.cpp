@@ -72,7 +72,7 @@ namespace tide
         return this->jsobject;
     }
 
-    KValueRef KKJSObject::Get(const char *name)
+    ValueRef KKJSObject::Get(const char *name)
     {
         JSStringRef jsName = JSStringCreateWithUTF8CString(name);
         JSValueRef exception = NULL;
@@ -81,15 +81,15 @@ namespace tide
 
         if (exception != NULL) //exception thrown
         {
-            KValueRef tv_exp = JSUtil::ToTiValue(exception, this->context, NULL);
+            ValueRef tv_exp = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(tv_exp);
         }
 
-        KValueRef kvalue = JSUtil::ToTiValue(jsValue, this->context, this->jsobject);
+        ValueRef kvalue = JSUtil::ToTiValue(jsValue, this->context, this->jsobject);
         return kvalue;
     }
 
-    void KKJSObject::Set(const char *name, KValueRef value)
+    void KKJSObject::Set(const char *name, ValueRef value)
     {
         JSValueRef jsValue = JSUtil::ToJSValue(value, this->context);
         JSStringRef jsName = JSStringCreateWithUTF8CString(name);
@@ -101,7 +101,7 @@ namespace tide
 
         if (exception != NULL) // An exception was thrown.
         {
-            KValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
+            ValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(exceptionValue);
         }
     }

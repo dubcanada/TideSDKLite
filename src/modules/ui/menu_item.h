@@ -50,26 +50,26 @@ namespace ti
         MenuItem(MenuItemType type);
         ~MenuItem();
 
-        void _IsSeparator(const ValueList& args, KValueRef result);
-        void _IsCheck(const ValueList& args, KValueRef result);
-        void _SetLabel(const ValueList& args, KValueRef result);
-        void _GetLabel(const ValueList& args, KValueRef result);
-        void _SetIcon(const ValueList& args, KValueRef result);
-        void _GetIcon(const ValueList& args, KValueRef result);
-        void _SetState(const ValueList& args, KValueRef result);
-        void _GetState(const ValueList& args, KValueRef result);
-        void _SetAutoCheck(const ValueList& args, KValueRef result);
-        void _IsAutoCheck(const ValueList& args, KValueRef result);
-        void _SetSubmenu(const ValueList& args, KValueRef result);
-        void _GetSubmenu(const ValueList& args, KValueRef result);
-        void _Enable(const ValueList& args, KValueRef result);
-        void _Disable(const ValueList& args, KValueRef result);
-        void _IsEnabled(const ValueList& args, KValueRef result);
-        void _Click(const ValueList& args, KValueRef result);
+        void _IsSeparator(const ValueList& args, ValueRef result);
+        void _IsCheck(const ValueList& args, ValueRef result);
+        void _SetLabel(const ValueList& args, ValueRef result);
+        void _GetLabel(const ValueList& args, ValueRef result);
+        void _SetIcon(const ValueList& args, ValueRef result);
+        void _GetIcon(const ValueList& args, ValueRef result);
+        void _SetState(const ValueList& args, ValueRef result);
+        void _GetState(const ValueList& args, ValueRef result);
+        void _SetAutoCheck(const ValueList& args, ValueRef result);
+        void _IsAutoCheck(const ValueList& args, ValueRef result);
+        void _SetSubmenu(const ValueList& args, ValueRef result);
+        void _GetSubmenu(const ValueList& args, ValueRef result);
+        void _Enable(const ValueList& args, ValueRef result);
+        void _Disable(const ValueList& args, ValueRef result);
+        void _IsEnabled(const ValueList& args, ValueRef result);
+        void _Click(const ValueList& args, ValueRef result);
 
-        void _AddItem(const ValueList& args, KValueRef result);
-        void _AddSeparatorItem(const ValueList& args, KValueRef result);
-        void _AddCheckItem(const ValueList& args, KValueRef result);
+        void _AddItem(const ValueList& args, ValueRef result);
+        void _AddSeparatorItem(const ValueList& args, ValueRef result);
+        void _AddCheckItem(const ValueList& args, ValueRef result);
 
         void SetLabel(string& label);
         std::string& GetLabel();

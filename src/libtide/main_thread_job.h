@@ -47,7 +47,7 @@ namespace tide
         void Lock();
         void Wait();
         void Execute();
-        KValueRef GetResult();
+        ValueRef GetResult();
         ValueException GetException();
         bool ShouldWaitForCompletion();
         void PrintException();
@@ -57,7 +57,7 @@ namespace tide
         TiObjectRef thisObject;
         const ValueList args;
         bool waitForCompletion;
-        KValueRef returnValue;
+        ValueRef returnValue;
         ValueException exception;
         Poco::Semaphore semaphore;
     };

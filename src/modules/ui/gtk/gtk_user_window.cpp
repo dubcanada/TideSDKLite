@@ -1256,7 +1256,7 @@ namespace ti
         std::string typesDescription;
     };
 
-    static KValueRef FileChooserWork(const ValueList& args)
+    static ValueRef FileChooserWork(const ValueList& args)
     {
         AutoPtr<VoidPtr> dataObject(args.at(0)->ToObject().cast<VoidPtr>());
         void* data = dataObject->GetPtr();

@@ -80,7 +80,7 @@ namespace tide
          * @param waitForCompletion block until method is finished (default: true)
          * @return the method's return value§
          */
-        KValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
+        ValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
             bool waitForCompletion=true);
 
         /*
@@ -90,7 +90,7 @@ namespace tide
          * @param waitForCompletion block until method is finished (default: true)
          * @return the method's return value§
          */
-        KValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
+        ValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
             const ValueList& args, bool waitForCompletion=true);
 
         /**
@@ -203,9 +203,9 @@ namespace tide
         void ExitImpl(int exitcode);
     };
 
-    TIDE_API KValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
+    TIDE_API ValueRef RunOnMainThread(TiMethodRef method, const ValueList& args,
         bool waitForCompletion=true);
-    TIDE_API KValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
+    TIDE_API ValueRef RunOnMainThread(TiMethodRef method, TiObjectRef thisObject,
         const ValueList& args, bool waitForCompletion=true);
     TIDE_API bool IsMainThread();
 }

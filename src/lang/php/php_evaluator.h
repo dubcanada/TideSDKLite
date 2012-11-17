@@ -43,10 +43,10 @@ namespace tide
 	{
 		public:
 		PHPEvaluator();
-		void CanEvaluate(const ValueList& args, KValueRef result);
-		void CanPreprocess(const ValueList& args, KValueRef result);
-		void Evaluate(const ValueList& args, KValueRef result);
-		void Preprocess(const ValueList& args, KValueRef result);
+		void CanEvaluate(const ValueList& args, ValueRef result);
+		void CanPreprocess(const ValueList& args, ValueRef result);
+		void Evaluate(const ValueList& args, ValueRef result);
+		void Preprocess(const ValueList& args, ValueRef result);
 		
 		protected:
 		std::string CreateContextName();

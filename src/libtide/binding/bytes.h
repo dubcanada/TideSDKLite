@@ -86,20 +86,20 @@ namespace tide
     private:
         // Binding methods
         void SetupBinding();
-        void _Write(const ValueList& args, KValueRef result);
-        void _ToString(const ValueList& args, KValueRef result);
-        void _IndexOf(const ValueList& args, KValueRef result);
-        void _LastIndexOf(const ValueList& args, KValueRef result);
-        void _CharAt(const ValueList& args, KValueRef result);
-        void _ByteAt(const ValueList& args, KValueRef result);
-        void _Split(const ValueList& args, KValueRef result);
-        void _Substr(const ValueList& args, KValueRef result);
-        void _Substring(const ValueList& args, KValueRef result);
-        void _ToLowerCase(const ValueList& args, KValueRef result);
-        void _ToUpperCase(const ValueList& args, KValueRef result);
-        void _Replace(const ValueList& args, KValueRef result);
-        void _Concat(const ValueList& args, KValueRef result);
-        void _Slice(const ValueList& args, KValueRef result);
+        void _Write(const ValueList& args, ValueRef result);
+        void _ToString(const ValueList& args, ValueRef result);
+        void _IndexOf(const ValueList& args, ValueRef result);
+        void _LastIndexOf(const ValueList& args, ValueRef result);
+        void _CharAt(const ValueList& args, ValueRef result);
+        void _ByteAt(const ValueList& args, ValueRef result);
+        void _Split(const ValueList& args, ValueRef result);
+        void _Substr(const ValueList& args, ValueRef result);
+        void _Substring(const ValueList& args, ValueRef result);
+        void _ToLowerCase(const ValueList& args, ValueRef result);
+        void _ToUpperCase(const ValueList& args, ValueRef result);
+        void _Replace(const ValueList& args, ValueRef result);
+        void _Concat(const ValueList& args, ValueRef result);
+        void _Slice(const ValueList& args, ValueRef result);
 
         char* buffer;
         size_t size;

@@ -110,7 +110,7 @@ namespace tide
         }
     }
 
-    KValueRef AsyncJob::Execute()
+    ValueRef AsyncJob::Execute()
     {
         try
         {
@@ -193,17 +193,17 @@ namespace tide
         this->errorCallbacks.push_back(callback);
     }
 
-    void AsyncJob::_Cancel(const ValueList& args, KValueRef result)
+    void AsyncJob::_Cancel(const ValueList& args, ValueRef result)
     {
         this->Cancel();
     }
 
-    void AsyncJob::_GetProgress(const ValueList& args, KValueRef result)
+    void AsyncJob::_GetProgress(const ValueList& args, ValueRef result)
     {
         result->SetDouble(this->GetProgress());
     }
 
-    void AsyncJob::_IsComplete(const ValueList& args, KValueRef result)
+    void AsyncJob::_IsComplete(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->completed);
     }

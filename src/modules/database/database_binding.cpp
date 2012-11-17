@@ -71,7 +71,7 @@ namespace ti
     class ValueBinding
     {
     public:
-        void convert (Statement &select, KValueRef arg)
+        void convert (Statement &select, ValueRef arg)
         {
             if (arg->IsString())
             {
@@ -220,7 +220,7 @@ namespace ti
             delete session;
     }
 
-    void DatabaseBinding::Execute(const ValueList& args, KValueRef result)
+    void DatabaseBinding::Execute(const ValueList& args, ValueRef result)
     {
         args.VerifyException("execute", "s");
 
@@ -243,13 +243,13 @@ namespace ti
                 
                 for (size_t c=1;c<args.size();c++)
                 {
-                    KValueRef anarg = args.at(c);
+                    ValueRef anarg = args.at(c);
                     if (anarg->IsList())
                     {
                         TiListRef list = anarg->ToList();
                         for (size_t a=0;a<list->Size();a++)
                         {
-                            KValueRef arg = list->At(a);
+                            ValueRef arg = list->At(a);
                             binding.convert(select,arg);
                         }
                     }
@@ -295,7 +295,7 @@ namespace ti
         }
     }
 
-    void DatabaseBinding::Close(const ValueList& args, KValueRef result)
+    void DatabaseBinding::Close(const ValueList& args, ValueRef result)
     {
         GetLogger()->Debug("Closing database: %s", name.c_str());
         this->Close();
@@ -310,12 +310,12 @@ namespace ti
         }
     }
 
-    void DatabaseBinding::GetPath(const ValueList& args, KValueRef result)
+    void DatabaseBinding::GetPath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->path);
     }
 
-    void DatabaseBinding::Remove(const ValueList& args, KValueRef result)
+    void DatabaseBinding::Remove(const ValueList& args, ValueRef result)
     {
         this->Close();
 

@@ -255,55 +255,55 @@ namespace tide
         this->SetMethod("getBundledRuntimes", &ApplicationBinding::_GetBundledRuntimes);
     }
 
-    void ApplicationBinding::_GetID(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetID(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->id);
     }
 
-    void ApplicationBinding::_GetGUID(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetGUID(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->guid);
     }
 
-    void ApplicationBinding::_GetName(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->name);
     }
 
-    void ApplicationBinding::_GetVersion(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetVersion(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->version);
     }
 
-    void ApplicationBinding::_GetPath(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetPath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->path);
     }
 
-    void ApplicationBinding::_GetExecutablePath(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetExecutablePath(const ValueList& args, ValueRef result)
     {
         string executablePath = this->application->GetExecutablePath();
         result->SetString(executablePath);
     }
 
-    void ApplicationBinding::_GetResourcesPath(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetResourcesPath(const ValueList& args, ValueRef result)
     {
         string resourcesPath = this->application->GetResourcesPath();
         result->SetString(resourcesPath);
     }
 
-    void ApplicationBinding::_GetDataPath(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetDataPath(const ValueList& args, ValueRef result)
     {
         string dataPath = this->application->GetDataPath();
         result->SetString(dataPath);
     }
 
-    void ApplicationBinding::_GetManifestPath(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetManifestPath(const ValueList& args, ValueRef result)
     {
         result->SetString(this->application->manifestPath);
     }
 
-    void ApplicationBinding::_GetManifest(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetManifest(const ValueList& args, ValueRef result)
     {
         vector<pair<string, string> > manifest =
             BootUtils::ReadManifestFile(this->application->manifestPath);
@@ -312,12 +312,12 @@ namespace tide
         result->SetList(manifestList);
     }
 
-    void ApplicationBinding::_IsCurrent(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_IsCurrent(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->current);
     }
 
-    void ApplicationBinding::_GetPID(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetPID(const ValueList& args, ValueRef result)
     {
         if (this->current)
         {
@@ -325,21 +325,21 @@ namespace tide
         }
     }
 
-    void ApplicationBinding::_GetArguments(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetArguments(const ValueList& args, ValueRef result)
     {
         std::vector<std::string> arguments = this->application->GetArguments();
         TiListRef argumentList = StaticBoundList::FromStringVector(arguments);
         result->SetList(argumentList);
     }
 
-    void ApplicationBinding::_HasArgument(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_HasArgument(const ValueList& args, ValueRef result)
     {
         args.VerifyException("hasArgument", "s");
         string arg = args.at(0)->ToString();
         result->SetBool(this->application->HasArgument(arg));
     }
 
-    void ApplicationBinding::_GetArgumentValue(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetArgumentValue(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getArgumentValue", "s");
         string arg = args.at(0)->ToString();
@@ -347,19 +347,19 @@ namespace tide
         result->SetString(argValue);
     }
 
-    void ApplicationBinding::_GetDependencies(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetDependencies(const ValueList& args, ValueRef result)
     {
         result->SetList(APIBinding::DependencyVectorToTiList(
             this->application->dependencies));
     }
 
-    void ApplicationBinding::_ResolveDependencies(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_ResolveDependencies(const ValueList& args, ValueRef result)
     {
         std::vector<SharedDependency> unresolved = this->application->ResolveDependencies();
         result->SetList(APIBinding::DependencyVectorToTiList(unresolved));
     }
 
-    void ApplicationBinding::_GetComponents(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetComponents(const ValueList& args, ValueRef result)
     {
         // Do not use a reference here, because we don't want to modify the
         // application's modules list.
@@ -378,14 +378,14 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetModules(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetModules(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent>& components = this->application->modules;
         TiListRef componentList = APIBinding::ComponentVectorToTiList(components);
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetRuntime(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetRuntime(const ValueList& args, ValueRef result)
     {
         if (!this->application->runtime.isNull())
         {
@@ -397,7 +397,7 @@ namespace tide
         }
     }
 
-    void ApplicationBinding::_GetAvailableComponents(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetAvailableComponents(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
@@ -405,7 +405,7 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetAvailableModules(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetAvailableModules(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
@@ -413,7 +413,7 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetAvailableRuntimes(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetAvailableRuntimes(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components);
@@ -421,7 +421,7 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetBundledComponents(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetBundledComponents(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);
@@ -429,7 +429,7 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetBundledModules(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetBundledModules(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);
@@ -437,7 +437,7 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void ApplicationBinding::_GetBundledRuntimes(const ValueList& args, KValueRef result)
+    void ApplicationBinding::_GetBundledRuntimes(const ValueList& args, ValueRef result)
     {
         std::vector<SharedComponent> components;
         this->application->GetAvailableComponents(components, true);

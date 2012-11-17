@@ -49,7 +49,7 @@ namespace ti
         this->binding= new FilesystemBinding(host,host->GetGlobalObject());
 
         // set our ti.Filesystem
-        KValueRef value = Value::NewObject(this->binding);
+        ValueRef value = Value::NewObject(this->binding);
         host->GetGlobalObject()->Set("Filesystem",value);
     }
 

@@ -92,37 +92,37 @@ namespace ti
     {
     }
 
-    void InterfaceBinding::_GetAddress(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_GetAddress(const ValueList& args, ValueRef result)
     {
         result->SetString(interface.address().toString().c_str());
     }
 
-    void InterfaceBinding::_GetIPAddress(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_GetIPAddress(const ValueList& args, ValueRef result)
     {
         result->SetObject(new IPAddressBinding(interface.address()));
     }
 
-    void InterfaceBinding::_GetName(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(interface.name().c_str());
     }
 
-    void InterfaceBinding::_GetDisplayName(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_GetDisplayName(const ValueList& args, ValueRef result)
     {
         result->SetString(interface.displayName().c_str());
     }
 
-    void InterfaceBinding::_GetSubnetMask(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_GetSubnetMask(const ValueList& args, ValueRef result)
     {
         result->SetObject(new IPAddressBinding(interface.subnetMask()));
     }
 
-    void InterfaceBinding::_SupportsIPv4(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_SupportsIPv4(const ValueList& args, ValueRef result)
     {
         result->SetBool(interface.supportsIPv4());
     }
 
-    void InterfaceBinding::_SupportsIPv6(const ValueList& args, KValueRef result)
+    void InterfaceBinding::_SupportsIPv6(const ValueList& args, ValueRef result)
     {
         result->SetBool(interface.supportsIPv6());
     }

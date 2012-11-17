@@ -43,11 +43,11 @@ namespace tide
     class RubyUtils
     {
     public:
-        static KValueRef ToTiValue(VALUE value);
-        static VALUE ToRubyValue(KValueRef value);
-        static VALUE TiObjectToRubyValue(KValueRef value);
-        static VALUE TiMethodToRubyValue(KValueRef value);
-        static VALUE TiListToRubyValue(KValueRef value);
+        static ValueRef ToTiValue(VALUE value);
+        static VALUE ToRubyValue(ValueRef value);
+        static VALUE TiObjectToRubyValue(ValueRef value);
+        static VALUE TiMethodToRubyValue(ValueRef value);
+        static VALUE TiListToRubyValue(ValueRef value);
         static bool KindOf(VALUE value, VALUE klass);
 
         static ValueException GetException();

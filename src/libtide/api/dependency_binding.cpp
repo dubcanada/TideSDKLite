@@ -74,22 +74,22 @@ namespace tide
         return dependency;
     }
 
-    void DependencyBinding::_GetType(const ValueList& args, KValueRef result)
+    void DependencyBinding::_GetType(const ValueList& args, ValueRef result)
     {
         result->SetInt((int) this->dependency->type);
     }
 
-    void DependencyBinding::_GetName(const ValueList& args, KValueRef result)
+    void DependencyBinding::_GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->dependency->name);
     }
 
-    void DependencyBinding::_GetVersion(const ValueList& args, KValueRef result)
+    void DependencyBinding::_GetVersion(const ValueList& args, ValueRef result)
     {
         result->SetString(this->dependency->version);
     }
 
-    void DependencyBinding::_GetRequirement(const ValueList& args, KValueRef result)
+    void DependencyBinding::_GetRequirement(const ValueList& args, ValueRef result)
     {
         result->SetInt(this->dependency->requirement);
     }

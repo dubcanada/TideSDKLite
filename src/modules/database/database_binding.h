@@ -49,11 +49,11 @@ namespace ti
 
     protected:
         virtual ~DatabaseBinding();
-        void Open(const ValueList& args, KValueRef result);
-        void Execute(const ValueList& args, KValueRef result);
-        void Close(const ValueList& args, KValueRef result);
-        void Remove(const ValueList& args, KValueRef result);
-        void GetPath(const ValueList& args, KValueRef result);
+        void Open(const ValueList& args, ValueRef result);
+        void Execute(const ValueList& args, ValueRef result);
+        void Close(const ValueList& args, ValueRef result);
+        void Remove(const ValueList& args, ValueRef result);
+        void GetPath(const ValueList& args, ValueRef result);
         void Close();
 
         Poco::Data::Session *session;

@@ -49,7 +49,7 @@ namespace tide
     {
     }
 
-    void ProfiledBoundList::Append(KValueRef value)
+    void ProfiledBoundList::Append(ValueRef value)
     {
         list->Append(value);
     }
@@ -59,12 +59,12 @@ namespace tide
         return list->Size();
     }
 
-    KValueRef ProfiledBoundList::At(unsigned int index)
+    ValueRef ProfiledBoundList::At(unsigned int index)
     {
         return list->At(index);
     }
 
-    void ProfiledBoundList::SetAt(unsigned int index, KValueRef value)
+    void ProfiledBoundList::SetAt(unsigned int index, ValueRef value)
     {
         list->SetAt(index,value);
     }
@@ -74,12 +74,12 @@ namespace tide
         return list->Remove(index);
     }
 
-    void ProfiledBoundList::Set(const char *name, KValueRef value)
+    void ProfiledBoundList::Set(const char *name, ValueRef value)
     {
         list->Set(name, value);
     }
 
-    KValueRef ProfiledBoundList::Get(const char *name)
+    ValueRef ProfiledBoundList::Get(const char *name)
     {
         return list->Get(name);
     }

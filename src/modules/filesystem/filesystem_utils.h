@@ -41,7 +41,7 @@ namespace ti
 {
     namespace FilesystemUtils
     {
-        std::string FilenameFromValue(KValueRef);
+        std::string FilenameFromValue(ValueRef);
         std::string FilenameFromArguments(const ValueList& args);
     }
 }

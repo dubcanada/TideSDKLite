@@ -51,7 +51,7 @@ namespace tide
         Py_DECREF(this->method);
     }
 
-    KValueRef KPythonMethod::Call(const ValueList& args)
+    ValueRef KPythonMethod::Call(const ValueList& args)
     {
         PyLockGIL lock;
         PyObject *arglist = NULL;
@@ -69,7 +69,7 @@ namespace tide
         PyObject *response = PyObject_CallObject(this->method, arglist);
         Py_XDECREF(arglist);
 
-        KValueRef value = Value::Undefined;
+        ValueRef value = Value::Undefined;
         if (response == NULL && PyErr_Occurred() != NULL)
         {
             THROW_PYTHON_EXCEPTION
@@ -83,12 +83,12 @@ namespace tide
         return value;
     }
 
-    void KPythonMethod::Set(const char *name, KValueRef value)
+    void KPythonMethod::Set(const char *name, ValueRef value)
     {
         this->object->Set(name, value);
     }
 
-    KValueRef KPythonMethod::Get(const char *name)
+    ValueRef KPythonMethod::Get(const char *name)
     {
         return this->object->Get(name);
     }

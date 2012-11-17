@@ -110,12 +110,12 @@ namespace ti
     {
     }
 
-    void HTTPClientBinding::Abort(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::Abort(const ValueList& args, ValueRef result)
     {
         this->aborted = true;
     }
 
-    void HTTPClientBinding::Open(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::Open(const ValueList& args, ValueRef result)
     {
         args.VerifyException("open", "s s ?b s s");
 
@@ -157,25 +157,25 @@ namespace ti
         result->SetBool(true);
     }
 
-    void HTTPClientBinding::SetCredentials(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::SetCredentials(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setCredentials", "s s");
         this->username = args.GetString(0);
         this->password = args.GetString(1);
     }
 
-    void HTTPClientBinding::Send(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::Send(const ValueList& args, ValueRef result)
     {
         // Get send data if provided
         args.VerifyException("send", "?s|o|0");
-        KValueRef sendData(args.GetValue(0));
+        ValueRef sendData(args.GetValue(0));
 
         // Setup output stream for data
         this->responseStream = new std::ostringstream(std::ios::binary | std::ios::out);
         result->SetBool(this->BeginRequest(sendData));
     }
 
-    void HTTPClientBinding::Receive(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::Receive(const ValueList& args, ValueRef result)
     {
         args.VerifyException("receive", "m|o ?s|o|0");
 
@@ -208,11 +208,11 @@ namespace ti
         }
 
         // Get the send data if provided
-        KValueRef sendData(args.GetValue(1));
+        ValueRef sendData(args.GetValue(1));
         result->SetBool(this->BeginRequest(sendData));
     }
 
-    void HTTPClientBinding::SetRequestHeader(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::SetRequestHeader(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setRequestHeader", "s s");
         std::string key(args.GetString(0));
@@ -230,7 +230,7 @@ namespace ti
         this->requestHeaders.push_back(key);
     }
 
-    void HTTPClientBinding::GetResponseHeader(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::GetResponseHeader(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getResponseHeader", "s");
         std::string name(args.GetString(0));
@@ -245,7 +245,7 @@ namespace ti
         }
     }
 
-    void HTTPClientBinding::GetResponseHeaders(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::GetResponseHeaders(const ValueList& args, ValueRef result)
     {
         TiListRef headers(new StaticBoundList());
 
@@ -262,18 +262,18 @@ namespace ti
         result->SetList(headers);
     }
 
-    void HTTPClientBinding::SetCookie(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::SetCookie(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setCookie", "ss");
         this->requestCookies.add(args.GetString(0), args.GetString(1));
     }
 
-    void HTTPClientBinding::ClearCookies(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::ClearCookies(const ValueList& args, ValueRef result)
     {
         this->requestCookies.clear();
     }
 
-    void HTTPClientBinding::GetCookie(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::GetCookie(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getCookie", "s");
         std::string cookieName = args.GetString(0);
@@ -288,23 +288,23 @@ namespace ti
         }
     }
 
-    void HTTPClientBinding::SetTimeout(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::SetTimeout(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setTimeout", "i");
         this->timeout = args.GetInt(0);
     }
 
-    void HTTPClientBinding::GetTimeout(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::GetTimeout(const ValueList& args, ValueRef result)
     {
         result->SetInt(this->timeout);
     }
 
-    void HTTPClientBinding::GetMaxRedirects(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::GetMaxRedirects(const ValueList& args, ValueRef result)
     {
         result->SetInt(this->maxRedirects);
     }
 
-    void HTTPClientBinding::SetMaxRedirects(const ValueList& args, KValueRef result)
+    void HTTPClientBinding::SetMaxRedirects(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setMaxRedirects", "n");
         this->maxRedirects = args.GetInt(0);
@@ -360,7 +360,7 @@ namespace ti
         if (nativePathMethod.isNull())
             return "data";
 
-        KValueRef pathValue(nativePathMethod->Call());
+        ValueRef pathValue(nativePathMethod->Call());
         if (!pathValue->IsString())
             return "data";
 
@@ -369,7 +369,7 @@ namespace ti
     }
 
     void HTTPClientBinding::AddScalarValueToCurlForm(SharedString propertyName,
-        KValueRef value, curl_httppost** last)
+        ValueRef value, curl_httppost** last)
     {
         if (value->IsString())
         {
@@ -416,7 +416,7 @@ namespace ti
         for (unsigned int i = 0; i < properties->size(); i++)
         {
             SharedString propertyName(properties->at(i));
-            KValueRef value(object->Get(propertyName->c_str()));
+            ValueRef value(object->Get(propertyName->c_str()));
             if (value->IsList())
             {
                 TiListRef list(value->ToList());
@@ -430,7 +430,7 @@ namespace ti
         }
     }
 
-    bool HTTPClientBinding::BeginRequest(KValueRef sendData)
+    bool HTTPClientBinding::BeginRequest(ValueRef sendData)
     {
         if (this->curlHandle)
             throw ValueException::FromString("Tried to use an HTTPClient while "

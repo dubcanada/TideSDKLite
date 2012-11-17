@@ -47,11 +47,11 @@ namespace tide
         virtual ~ProfiledBoundMethod();
 
         // @see TiMethod::Call
-        virtual KValueRef Call(const ValueList& args);
+        virtual ValueRef Call(const ValueList& args);
         // @see TiMethod::Set
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
         // @see TiMethod::Get
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
         // @see TiMethod::GetPropertyNames
         virtual SharedStringList GetPropertyNames();
         // @see TiObject::GetType

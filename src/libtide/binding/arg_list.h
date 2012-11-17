@@ -52,10 +52,10 @@ namespace tide
     {
         public:
         ArgList();
-        ArgList(KValueRef);
-        ArgList(KValueRef, KValueRef);
-        ArgList(KValueRef, KValueRef, KValueRef);
-        ArgList(KValueRef, KValueRef, KValueRef, KValueRef);
+        ArgList(ValueRef);
+        ArgList(ValueRef, ValueRef);
+        ArgList(ValueRef, ValueRef, ValueRef);
+        ArgList(ValueRef, ValueRef, ValueRef, ValueRef);
         ArgList(const ArgList&);
         ~ArgList() {};
 
@@ -63,12 +63,12 @@ namespace tide
         void VerifyException(const char* name, std::string argSpec) const;
 
         public:
-        void push_back(KValueRef value);
+        void push_back(ValueRef value);
         size_t size() const;
-        const KValueRef& at(size_t) const;
-        const KValueRef& operator[](size_t) const;
+        const ValueRef& at(size_t) const;
+        const ValueRef& operator[](size_t) const;
 
-        KValueRef GetValue(size_t index, KValueRef defaultValue=Value::Undefined) const;
+        ValueRef GetValue(size_t index, ValueRef defaultValue=Value::Undefined) const;
         int GetInt(size_t index, int defaultValue=0) const;
         double GetDouble(size_t index, double defaultValue=0.0) const;
         double GetNumber(size_t index, double defaultValue=0.0) const;
@@ -79,9 +79,9 @@ namespace tide
         TiListRef GetList(size_t index, TiListRef defaultValue=NULL) const;
 
         private:
-        SharedPtr<std::vector<KValueRef> > args;
+        SharedPtr<std::vector<ValueRef> > args;
 
-        static inline bool VerifyArg(KValueRef arg, char t);
+        static inline bool VerifyArg(ValueRef arg, char t);
         static std::string GenerateSignature(const char* name, std::string& argSpec);
     };
 

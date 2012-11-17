@@ -58,9 +58,9 @@ namespace tide
         DelegatingObject(TiObjectRef global);
         DelegatingObject(TiObjectRef global, TiObjectRef local);
         virtual ~DelegatingObject();
-        virtual KValueRef Get(const char *name);
+        virtual ValueRef Get(const char *name);
         virtual SharedStringList GetPropertyNames();
-        virtual void Set(const char *name, KValueRef value);
+        virtual void Set(const char *name, ValueRef value);
         virtual bool HasProperty(const char* name);
 
         virtual inline TiObjectRef GetGlobal() { return this->global; }

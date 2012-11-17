@@ -109,7 +109,7 @@ AnalyticsBinding::AnalyticsBinding() :
         Event::PAGE_LOADED, this->startCallback);
 }
 
-void AnalyticsBinding::_StartAnalyticsThread(const ValueList &args, KValueRef result)
+void AnalyticsBinding::_StartAnalyticsThread(const ValueList &args, ValueRef result)
 {
     // If we've already started the Analytics thread, bail out.
     if (this->startCallback.isNull())
@@ -135,7 +135,7 @@ void AnalyticsBinding::Shutdown()
     this->thread.join();
 }
 
-void AnalyticsBinding::_SendEvent(const ValueList &args, KValueRef result)
+void AnalyticsBinding::_SendEvent(const ValueList &args, ValueRef result)
 {
     std::string eventString(args.GetString(0));
     {

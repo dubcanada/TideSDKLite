@@ -150,7 +150,7 @@ namespace tide
 
     PHP_METHOD(PHPTiObject, __toString)
     {
-        KValueRef kvalue(reinterpret_cast<PHPTiObject*>(
+        ValueRef kvalue(reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(getThis() TSRMLS_CC))->kvalue);
         SharedString ss = kvalue->DisplayString();
         ZVAL_STRINGL(return_value, (char *) ss->c_str(), ss->size(), 1);
@@ -208,7 +208,7 @@ namespace tide
         // Do the method invocation.
         try
         {
-            KValueRef returnValue = method->Call(kargs);
+            ValueRef returnValue = method->Call(kargs);
             PHPUtils::ToPHPValue(returnValue, &return_value);
         }
         catch (ValueException& e)
@@ -275,7 +275,7 @@ namespace tide
 
         try
         {
-            KValueRef value = TiObject->Get(propertyName.c_str());
+            ValueRef value = TiObject->Get(propertyName.c_str());
             return PHPUtils::ToPHPValue(value);
         }
         catch (ValueException& e)
@@ -295,7 +295,7 @@ namespace tide
 
         try
         {
-            KValueRef tideValue = PHPUtils::ToTiValue(value TSRMLS_CC);
+            ValueRef tideValue = PHPUtils::ToTiValue(value TSRMLS_CC);
             if (!property) // A NULL property name means this is an append ([]=) operation.
             {
                 // TODO: It's unclear what this should do if not called on a list.
@@ -334,7 +334,7 @@ namespace tide
             for (size_t i = 0; i < propertyNames->size(); i++)
             {
                 const char *key = propertyNames->at(i)->c_str();
-                KValueRef value = tiObject->Get(key);
+                ValueRef value = tiObject->Get(key);
                 zval* zvalue = PHPUtils::ToPHPValue(value);
                 zend_hash_add(properties, (char *)key, strlen(key)+1, &zvalue, sizeof(zval*), NULL);
             }
@@ -370,12 +370,12 @@ namespace tide
 
         if (checkType == 0)
         {
-            KValueRef value = tiObject->Get(propertyName.c_str());
+            ValueRef value = tiObject->Get(propertyName.c_str());
             return !value->IsUndefined() && !value->IsNull();
         }
         else if (checkType == 1)
         {
-            KValueRef value = tiObject->Get(propertyName.c_str());
+            ValueRef value = tiObject->Get(propertyName.c_str());
             zval* phpValue = PHPUtils::ToPHPValue(value);
             convert_to_boolean(phpValue);
             return Z_BVAL_P(phpValue);
@@ -415,7 +415,7 @@ namespace tide
             }
             else
             {
-                KValueRef value = tiObject->Get(propertyName.c_str());
+                ValueRef value = tiObject->Get(propertyName.c_str());
                 zval* phpValue = PHPUtils::ToPHPValue(value);
                 convert_to_boolean(phpValue);
                 return Z_BVAL_P(phpValue);
@@ -477,7 +477,7 @@ namespace tide
         for (int i = 0; i < ZEND_NUM_ARGS(); i++)
         {
             zval** zargValue = arguments[i];
-            KValueRef argValue = PHPUtils::ToTiValue(*zargValue TSRMLS_CC);
+            ValueRef argValue = PHPUtils::ToTiValue(*zargValue TSRMLS_CC);
             kargs.push_back(argValue);
         }
         efree(arguments);
@@ -488,12 +488,12 @@ namespace tide
         // CAUTION: FRIGGIN SWEET METHOD INVOCATION COMING UP.
         try
         {
-            KValueRef returnValue = timethod->Call(kargs);
+            ValueRef returnValue = timethod->Call(kargs);
             PHPUtils::ToPHPValue(returnValue, &return_value);
         }
         catch (ValueException& e)
         {
-            // TODO: Create an exception class that can hold a KValueRef.
+            // TODO: Create an exception class that can hold a ValueRef.
             zend_throw_exception(zend_exception_get_default(TSRMLS_C),
                 (char*) e.ToString().c_str(), 666 TSRMLS_CC);
             RETVAL_NULL();
@@ -528,7 +528,7 @@ namespace tide
 
         TiListRef klist(GET_MY_KLIST());
         string name(PHPUtils::ZvalToPropertyName(index));
-        KValueRef returnValue(klist->Get(name.c_str()));
+        ValueRef returnValue(klist->Get(name.c_str()));
         PHPUtils::ToPHPValue(returnValue, &return_value);
     }
 
@@ -543,7 +543,7 @@ namespace tide
 
         TiListRef klist(GET_MY_KLIST());
         string indexString(PHPUtils::ZvalToPropertyName(zindexString));
-        KValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
+        ValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
 
         if (TiList::IsInt(indexString))
         {
@@ -585,7 +585,7 @@ namespace tide
         }
 
         TiListRef klist(GET_MY_KLIST());
-        KValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
+        ValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
         klist->Append(value);
     } 
 
@@ -692,7 +692,7 @@ namespace tide
             zend_register_functions(NULL, PHPFunctions, NULL, MODULE_PERSISTENT TSRMLS_CC);
         }
 
-        void TiObjectToKPHPObject(KValueRef objectValue, zval** returnValue)
+        void TiObjectToKPHPObject(ValueRef objectValue, zval** returnValue)
         {
             // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();
@@ -704,7 +704,7 @@ namespace tide
             internal->kvalue = objectValue;
         }
 
-        void TiMethodToKPHPMethod(KValueRef methodValue, zval** returnValue)
+        void TiMethodToKPHPMethod(ValueRef methodValue, zval** returnValue)
         {
             // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();
@@ -716,7 +716,7 @@ namespace tide
             internal->kvalue = methodValue;
         }
 
-        void TiListToKPHPArray(KValueRef listValue, zval** returnValue)
+        void TiListToKPHPArray(ValueRef listValue, zval** returnValue)
         {
             // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();

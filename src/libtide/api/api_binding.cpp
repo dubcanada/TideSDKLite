@@ -446,11 +446,11 @@ namespace tide
     {
     }
 
-    void APIBinding::_Set(const ValueList& args, KValueRef result)
+    void APIBinding::_Set(const ValueList& args, ValueRef result)
     {
         const char *key = args.at(0)->ToString();
         string s = key;
-        KValueRef value = args.at(1);
+        ValueRef value = args.at(1);
         string::size_type pos = s.find_first_of(".");
 
         if (pos==string::npos)
@@ -466,7 +466,7 @@ namespace tide
         }
     }
 
-    Logger::Level APIBinding::ValueToLevel(KValueRef v)
+    Logger::Level APIBinding::ValueToLevel(ValueRef v)
     {
         if (v->IsString())
         {
@@ -489,11 +489,11 @@ namespace tide
         }
     }
 
-    void APIBinding::_Get(const ValueList& args, KValueRef result)
+    void APIBinding::_Get(const ValueList& args, ValueRef result)
     {
         string s = args.at(0)->ToString();
         const char *key = s.c_str();
-        KValueRef r = 0;
+        ValueRef r = 0;
         string::size_type pos = s.find_first_of(".");
 
         if (pos==string::npos)
@@ -510,22 +510,22 @@ namespace tide
         result->SetValue(r);
     }
 
-    void APIBinding::_SetLogLevel(const ValueList& args, KValueRef result)
+    void APIBinding::_SetLogLevel(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setLogLevel", "s|n");
         Logger::GetRootLogger()->SetLevel(ValueToLevel(args.at(0)));
     }
 
-    void APIBinding::_GetLogLevel(const ValueList& args, KValueRef result)
+    void APIBinding::_GetLogLevel(const ValueList& args, ValueRef result)
     {
         result->SetInt(Logger::GetRootLogger()->GetLevel());
     }
 
-    void APIBinding::_Print(const ValueList& args, KValueRef result)
+    void APIBinding::_Print(const ValueList& args, ValueRef result)
     {
         for (size_t c=0; c < args.size(); c++)
         {
-            KValueRef arg = args.at(c);
+            ValueRef arg = args.at(c);
             if (arg->IsString())
             {
                 const char *s = arg->ToString();
@@ -540,74 +540,74 @@ namespace tide
         std::cout.flush();
     }
     
-    void APIBinding::_LogTrace(const ValueList& args, KValueRef result)
+    void APIBinding::_LogTrace(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LTRACE, arg1);
     }
-    void APIBinding::_LogDebug(const ValueList& args, KValueRef result)
+    void APIBinding::_LogDebug(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LDEBUG, arg1);
     }
-    void APIBinding::_LogInfo(const ValueList& args, KValueRef result)
+    void APIBinding::_LogInfo(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LINFO, arg1);
     }
-    void APIBinding::_LogNotice(const ValueList& args, KValueRef result)
+    void APIBinding::_LogNotice(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LNOTICE, arg1);
     }
-    void APIBinding::_LogWarn(const ValueList& args, KValueRef result)
+    void APIBinding::_LogWarn(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LWARN, arg1);
     }
-    void APIBinding::_LogError(const ValueList& args, KValueRef result)
+    void APIBinding::_LogError(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LERROR, arg1);
     }
-    void APIBinding::_LogCritical(const ValueList& args, KValueRef result)
+    void APIBinding::_LogCritical(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LCRITICAL, arg1);
     }
-    void APIBinding::_LogFatal(const ValueList& args, KValueRef result)
+    void APIBinding::_LogFatal(const ValueList& args, ValueRef result)
     {
-        KValueRef arg1 = args.at(0);
+        ValueRef arg1 = args.at(0);
         this->Log(Logger::LFATAL, arg1);
     }
 
-    void APIBinding::_Log(const ValueList& args, KValueRef result)
+    void APIBinding::_Log(const ValueList& args, ValueRef result)
     {
         if (args.size() == 1)
         {
-            KValueRef v = args.at(0);
+            ValueRef v = args.at(0);
             this->Log(Logger::LINFO, v);
         }
         else if (args.size() == 2)
         {
-            KValueRef arg1 = args.at(0);
+            ValueRef arg1 = args.at(0);
             
-            KValueRef v = args.at(1);
+            ValueRef v = args.at(1);
             this->Log(ValueToLevel(arg1), v);
         }
     }
 
-    void APIBinding::_AddEventListener(const ValueList& args, KValueRef result)
+    void APIBinding::_AddEventListener(const ValueList& args, ValueRef result)
     {
         GlobalObject::GetInstance()->_AddEventListener(args, result);
     }
 
-    void APIBinding::_RemoveEventListener(const ValueList& args, KValueRef result)
+    void APIBinding::_RemoveEventListener(const ValueList& args, ValueRef result)
     {
         GlobalObject::GetInstance()->_RemoveEventListener(args, result);
     }
 
-    void APIBinding::_FireEvent(const ValueList& args, KValueRef result)
+    void APIBinding::_FireEvent(const ValueList& args, ValueRef result)
     {
         args.VerifyException("fireEvent", "s|o");
         if (args.at(0)->IsString())
@@ -623,7 +623,7 @@ namespace tide
         }
     }
 
-    void APIBinding::_RunOnMainThread(const ValueList& args, KValueRef result)
+    void APIBinding::_RunOnMainThread(const ValueList& args, ValueRef result)
     {
         if (!args.at(0)->IsMethod())
         {
@@ -641,7 +641,7 @@ namespace tide
         }
     }
 
-    void APIBinding::_RunOnMainThreadAsync(const ValueList& args, KValueRef result)
+    void APIBinding::_RunOnMainThreadAsync(const ValueList& args, ValueRef result)
     {
         if (!args.at(0)->IsMethod())
         {
@@ -660,7 +660,7 @@ namespace tide
     }
 
     //---------------- IMPLEMENTATION METHODS
-    void APIBinding::Log(int severity, KValueRef value)
+    void APIBinding::Log(int severity, ValueRef value)
     {
         // optimize these calls since they're called a lot
         if (false == logger->IsEnabled((Logger::Level)severity))
@@ -680,14 +680,14 @@ namespace tide
         }
     }
 
-    void APIBinding::_GetApplication(const ValueList& args, KValueRef result)
+    void APIBinding::_GetApplication(const ValueList& args, ValueRef result)
     {
         TiObjectRef app = new ApplicationBinding(host->GetApplication(), true);
         result->SetObject(app);
     }
 
     void APIBinding::_GetInstalledComponentsImpl(
-        KComponentType type, const ValueList& args, KValueRef result)
+        KComponentType type, const ValueList& args, ValueRef result)
     {
         bool force = args.GetBool(0, false);
         vector<SharedComponent>& components = BootUtils::GetInstalledComponents(force);
@@ -695,44 +695,44 @@ namespace tide
         result->SetList(componentList);
     }
 
-    void APIBinding::_GetInstalledComponents(const ValueList& args, KValueRef result)
+    void APIBinding::_GetInstalledComponents(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getInstalledComponents", "?b");
         _GetInstalledComponentsImpl(UNKNOWN, args, result);
     }
 
-    void APIBinding::_GetInstalledModules(const ValueList& args, KValueRef result)
+    void APIBinding::_GetInstalledModules(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getInstalledModules", "?b");
         _GetInstalledComponentsImpl(MODULE, args, result);
     }
 
-    void APIBinding::_GetInstalledRuntimes(const ValueList& args, KValueRef result)
+    void APIBinding::_GetInstalledRuntimes(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getInstalledRuntimes", "?b");
         _GetInstalledComponentsImpl(RUNTIME, args, result);
     }
 
-    void APIBinding::_GetInstalledSDKs(const ValueList& args, KValueRef result)
+    void APIBinding::_GetInstalledSDKs(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getInstalledSDKs", "?b");
         _GetInstalledComponentsImpl(SDK, args, result);
     }
 
-    void APIBinding::_GetInstalledMobileSDKs(const ValueList& args, KValueRef result)
+    void APIBinding::_GetInstalledMobileSDKs(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getInstalledMobileSDKs", "?b");
         _GetInstalledComponentsImpl(MOBILESDK, args, result);
     }
 
-    void APIBinding::_GetComponentSearchPaths(const ValueList& args, KValueRef result)
+    void APIBinding::_GetComponentSearchPaths(const ValueList& args, ValueRef result)
     {
         vector<string>& paths = BootUtils::GetComponentSearchPaths();
         TiListRef pathList = StaticBoundList::FromStringVector(paths);
         result->SetList(pathList);
     }
 
-    void APIBinding::_ReadApplicationManifest(const ValueList& args, KValueRef result)
+    void APIBinding::_ReadApplicationManifest(const ValueList& args, ValueRef result)
     {
         args.VerifyException("readApplicationManifest", "s,?s");
         string manifestPath = args.at(0)->ToString();
@@ -749,7 +749,7 @@ namespace tide
         }
     }
 
-    void APIBinding::_CreateDependency(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateDependency(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createDepenendency", "i,s,s,?i");
         int type = args.GetInt(0, UNKNOWN);
@@ -782,7 +782,7 @@ namespace tide
         }
     }
 
-    void APIBinding::_InstallDependencies(const ValueList& args, KValueRef result)
+    void APIBinding::_InstallDependencies(const ValueList& args, ValueRef result)
     {
         args.VerifyException("installDependencies", "l,m");
         TiListRef dependenciesList = args.GetList(0);
@@ -823,7 +823,7 @@ namespace tide
         }
     }
     
-    void APIBinding::_ComponentGUIDToComponentType(const ValueList& args, KValueRef result)
+    void APIBinding::_ComponentGUIDToComponentType(const ValueList& args, ValueRef result)
     {
         std::string type = args.at(0)->ToString();
         if (type == RUNTIME_UUID)
@@ -852,7 +852,7 @@ namespace tide
         }
     }
     
-    void APIBinding::_GetEnvironment(const ValueList& args, KValueRef result)
+    void APIBinding::_GetEnvironment(const ValueList& args, ValueRef result)
     {
         AutoPtr<EnvironmentBinding> env = new EnvironmentBinding();
         result->SetObject(env);
@@ -886,7 +886,7 @@ namespace tide
             SharedComponent c = *i++;
             if (filter == UNKNOWN || filter == c->type)
             {
-                KValueRef cValue = Value::NewObject(new ComponentBinding(c));
+                ValueRef cValue = Value::NewObject(new ComponentBinding(c));
                 componentList->Append(cValue);
             }
         }
@@ -900,7 +900,7 @@ namespace tide
         std::vector<SharedDependency>::iterator i = deps.begin();
         while (i != deps.end())
         {
-            KValueRef dValue = Value::NewObject(new DependencyBinding(*i++));
+            ValueRef dValue = Value::NewObject(new DependencyBinding(*i++));
             dependencyList->Append(dValue);
         }
         return dependencyList;
@@ -921,7 +921,7 @@ namespace tide
         return list;
     }
 
-    void APIBinding::_CreateTiObject(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiObject(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTiObject", "?o");
         if (args.size() <= 0)
@@ -935,14 +935,14 @@ namespace tide
         }
     }
 
-    void APIBinding::_CreateTiMethod(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiMethod(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTiMethod", "m");
         TiMethodRef wrapped = args.GetMethod(0);
         result->SetMethod(new TiMethodWrapper(args.GetMethod(0)));
     }
 
-    void APIBinding::_CreateTiList(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateTiList(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTiList", "?l");
         if (args.size() <= 0)
@@ -956,7 +956,7 @@ namespace tide
         }
     }
 
-    static void GetBytes(KValueRef value, std::vector<BytesRef>& blobs)
+    static void GetBytes(ValueRef value, std::vector<BytesRef>& blobs)
     {
         if (value->IsObject())
         {
@@ -980,7 +980,7 @@ namespace tide
         }
     }
     
-    void APIBinding::_CreateBytes(const ValueList& args, KValueRef result)
+    void APIBinding::_CreateBytes(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createBytes", "?s|n");
 
@@ -1008,12 +1008,12 @@ namespace tide
     {
     }
 
-    void TiObjectWrapper::Set(const char *name, KValueRef value)
+    void TiObjectWrapper::Set(const char *name, ValueRef value)
     {
         object->Set(name, value);
     }
 
-    KValueRef TiObjectWrapper::Get(const char *name)
+    ValueRef TiObjectWrapper::Get(const char *name)
     {
         return object->Get(name);
     }
@@ -1043,17 +1043,17 @@ namespace tide
     {
     }
 
-    KValueRef TiMethodWrapper::Call(const ValueList& args)
+    ValueRef TiMethodWrapper::Call(const ValueList& args)
     {
         return method->Call(args);
     }
 
-    void TiMethodWrapper::Set(const char *name, KValueRef value)
+    void TiMethodWrapper::Set(const char *name, ValueRef value)
     {
         method->Set(name, value);
     }
 
-    KValueRef TiMethodWrapper::Get(const char *name)
+    ValueRef TiMethodWrapper::Get(const char *name)
     {
         return method->Get(name);
     }
@@ -1083,7 +1083,7 @@ namespace tide
     {
     }
 
-    void TiListWrapper::Append(KValueRef value)
+    void TiListWrapper::Append(ValueRef value)
     {
         list->Append(value);
     }
@@ -1093,12 +1093,12 @@ namespace tide
         return list->Size();
     }
 
-    KValueRef TiListWrapper::At(unsigned int index)
+    ValueRef TiListWrapper::At(unsigned int index)
     {
         return list->At(index);
     }
 
-    void TiListWrapper::SetAt(unsigned int index, KValueRef value)
+    void TiListWrapper::SetAt(unsigned int index, ValueRef value)
     {
         list->SetAt(index, value);
     }
@@ -1108,12 +1108,12 @@ namespace tide
         return list->Remove(index);
     }
 
-    void TiListWrapper::Set(const char *name, KValueRef value)
+    void TiListWrapper::Set(const char *name, ValueRef value)
     {
         list->Set(name, value);
     }
 
-    KValueRef TiListWrapper::Get(const char *name)
+    ValueRef TiListWrapper::Get(const char *name)
     {
         return list->Get(name);
     }

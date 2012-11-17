@@ -48,7 +48,7 @@ namespace tide {
         zval_delref_p(object);
     }
 
-    void KPHPObject::Set(const char *name, KValueRef value)
+    void KPHPObject::Set(const char *name, ValueRef value)
     {
         // zend_update_property will call the write_property handler, but will
         // error out if the handler is NULL. add_property_zval_ex will try to
@@ -73,7 +73,7 @@ namespace tide {
         }
     }
 
-    KValueRef KPHPObject::Get(const char *name)
+    ValueRef KPHPObject::Get(const char *name)
     {
         zval** zPropertyPtr;
         unsigned int nameLength = strlen(name);

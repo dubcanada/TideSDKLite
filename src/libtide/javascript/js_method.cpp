@@ -76,12 +76,12 @@ namespace tide
         JSUtil::UnprotectGlobalContext(this->context);
     }
 
-    KValueRef KKJSMethod::Get(const char *name)
+    ValueRef KKJSMethod::Get(const char *name)
     {
         return tiObject->Get(name);
     }
 
-    void KKJSMethod::Set(const char *name, KValueRef value)
+    void KKJSMethod::Set(const char *name, ValueRef value)
     {
         return tiObject->Set(name, value);
     }
@@ -111,12 +111,12 @@ namespace tide
         return this->jsobject;
     }
 
-    KValueRef KKJSMethod::Call(JSObjectRef thisObject, const ValueList& args)
+    ValueRef KKJSMethod::Call(JSObjectRef thisObject, const ValueList& args)
     {
         JSValueRef* jsArgs = new JSValueRef[args.size()];
         for (int i = 0; i < (int) args.size(); i++)
         {
-            KValueRef arg = args.at(i);
+            ValueRef arg = args.at(i);
             jsArgs[i] = JSUtil::ToJSValue(arg, this->context);
         }
 
@@ -128,19 +128,19 @@ namespace tide
 
         if (jsValue == NULL && exception != NULL) //exception thrown
         {
-            KValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
+            ValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(exceptionValue);
         }
 
         return JSUtil::ToTiValue(jsValue, this->context, NULL);
     }
 
-    KValueRef KKJSMethod::Call(const ValueList& args)
+    ValueRef KKJSMethod::Call(const ValueList& args)
     {
         return this->Call(this->jsobject, args);
     }
 
-    KValueRef KKJSMethod::Call(TiObjectRef thisObject, const ValueList& args)
+    ValueRef KKJSMethod::Call(TiObjectRef thisObject, const ValueList& args)
     {
         JSValueRef thisObjectValue = JSUtil::ToJSValue(Value::NewObject(thisObject), this->context);
         if (!JSValueIsObject(this->context, thisObjectValue))

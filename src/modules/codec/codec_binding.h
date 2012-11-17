@@ -49,18 +49,18 @@ namespace ti
     private:
         TiObjectRef global;
 
-        void EncodeBase64(const ValueList& args, KValueRef result);
-        void DecodeBase64(const ValueList& args, KValueRef result);
-        void DigestToHex(const ValueList& args, KValueRef result);
-        void DigestHMACToHex(const ValueList& args, KValueRef result);
-        void EncodeHexBinary(const ValueList& args, KValueRef result);
-        void DecodeHexBinary(const ValueList& args, KValueRef result);
-        void Checksum(const ValueList& args, KValueRef result);
-        void CreateZip(const ValueList& args, KValueRef result);
-        void ExtractZip(const ValueList& args, KValueRef result);
+        void EncodeBase64(const ValueList& args, ValueRef result);
+        void DecodeBase64(const ValueList& args, ValueRef result);
+        void DigestToHex(const ValueList& args, ValueRef result);
+        void DigestHMACToHex(const ValueList& args, ValueRef result);
+        void EncodeHexBinary(const ValueList& args, ValueRef result);
+        void DecodeHexBinary(const ValueList& args, ValueRef result);
+        void Checksum(const ValueList& args, ValueRef result);
+        void CreateZip(const ValueList& args, ValueRef result);
+        void ExtractZip(const ValueList& args, ValueRef result);
         
-        static KValueRef CreateZipAsync(const ValueList& args);
-        static KValueRef ExtractZipAsync(const ValueList& args);
+        static ValueRef CreateZipAsync(const ValueList& args);
+        static ValueRef ExtractZipAsync(const ValueList& args);
     };
 }
 

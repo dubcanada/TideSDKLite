@@ -51,7 +51,7 @@ namespace tide
         Py_DECREF(this->list);
     }
 
-    void KPythonList::Append(KValueRef value)
+    void KPythonList::Append(ValueRef value)
     {
         PyLockGIL lock;
         PyObject* py_value = PythonUtils::ToPyObject(value);
@@ -80,13 +80,13 @@ namespace tide
         }
     }
 
-    KValueRef KPythonList::At(unsigned int index)
+    ValueRef KPythonList::At(unsigned int index)
     {
         PyLockGIL lock;
         if (index >= 0 && index < this->Size())
         {
             PyObject *p = PyList_GetItem(this->list, index);
-            KValueRef v = PythonUtils::ToTiValue(p);
+            ValueRef v = PythonUtils::ToTiValue(p);
             return v;
         }
         else
@@ -95,7 +95,7 @@ namespace tide
         }
     }
 
-    void KPythonList::Set(const char* name, KValueRef value)
+    void KPythonList::Set(const char* name, ValueRef value)
     {
         if (TiList::IsInt(name))
         {
@@ -107,7 +107,7 @@ namespace tide
         }
     }
 
-    void KPythonList::SetAt(unsigned int index, KValueRef value)
+    void KPythonList::SetAt(unsigned int index, ValueRef value)
     {
         PyLockGIL lock;
         while (index >= this->Size())
@@ -122,7 +122,7 @@ namespace tide
         return;
     }
 
-    KValueRef KPythonList::Get(const char* name)
+    ValueRef KPythonList::Get(const char* name)
     {
         if (TiList::IsInt(name))
         {

@@ -52,13 +52,13 @@ namespace ti
         virtual void SetHint(std::string& hint) = 0;
         virtual void Remove() = 0;
 
-        void _SetIcon(const ValueList& args, KValueRef result);
-        void _SetMenu(const ValueList& args, KValueRef result);
-        void _SetHint(const ValueList& args, KValueRef result);
-        void _GetIcon(const ValueList& args, KValueRef result);
-        void _GetMenu(const ValueList& args, KValueRef result);
-        void _GetHint(const ValueList& args, KValueRef result);
-        void _Remove(const ValueList& args, KValueRef result);
+        void _SetIcon(const ValueList& args, ValueRef result);
+        void _SetMenu(const ValueList& args, ValueRef result);
+        void _SetHint(const ValueList& args, ValueRef result);
+        void _GetIcon(const ValueList& args, ValueRef result);
+        void _GetMenu(const ValueList& args, ValueRef result);
+        void _GetHint(const ValueList& args, ValueRef result);
+        void _Remove(const ValueList& args, ValueRef result);
 
     protected:
         AutoMenu menu;

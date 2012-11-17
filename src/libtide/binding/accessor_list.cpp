@@ -48,13 +48,13 @@ namespace tide
         return StaticBoundList::HasProperty(name) || this->HasGetterFor(name);
     }
 
-    void AccessorList::Set(const char* name, KValueRef value)
+    void AccessorList::Set(const char* name, ValueRef value)
     {
         if (!this->UseSetter(name, value, StaticBoundList::Get(name)))
             StaticBoundList::Set(name, value);
     }
 
-    KValueRef AccessorList::Get(const char* name)
+    ValueRef AccessorList::Get(const char* name)
     {
         return this->UseGetter(name, StaticBoundList::Get(name));
     }

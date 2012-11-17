@@ -84,7 +84,7 @@ namespace tide
         return rb_apply(method, rb_intern("call"), rargs);
     }
 
-    KValueRef KRubyMethod::Call(const ValueList& args)
+    ValueRef KRubyMethod::Call(const ValueList& args)
     {
         // Bloody hell, Ruby will segfault if we try to pass a number
         // of args to a method that is greater than its arity
@@ -119,12 +119,12 @@ namespace tide
         return RubyUtils::ToTiValue(result);
     }
 
-    void KRubyMethod::Set(const char *name, KValueRef value)
+    void KRubyMethod::Set(const char *name, ValueRef value)
     {
         object->Set(name, value);
     }
 
-    KValueRef KRubyMethod::Get(const char *name)
+    ValueRef KRubyMethod::Get(const char *name)
     {
         return object->Get(name);
     }

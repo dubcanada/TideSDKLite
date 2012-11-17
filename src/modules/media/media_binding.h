@@ -52,8 +52,8 @@ namespace ti
 
         private:
         TiObjectRef global;
-        void _CreateSound(const ValueList& args, KValueRef result);
-        void _Beep(const ValueList& args, KValueRef result);
+        void _CreateSound(const ValueList& args, ValueRef result);
+        void _Beep(const ValueList& args, ValueRef result);
 
         virtual TiObjectRef CreateSound(std::string& url) = 0;
         virtual void Beep() = 0;

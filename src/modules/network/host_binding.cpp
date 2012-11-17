@@ -107,22 +107,22 @@ namespace ti
          */
         this->SetMethod("getAddresses",&HostBinding::GetAddresses);
     }
-    void HostBinding::ToString(const ValueList& args, KValueRef result)
+    void HostBinding::ToString(const ValueList& args, ValueRef result)
     {
         std::string s("[IPAddress ");
         s+=name;
         s+="]";
         result->SetString(s.c_str());
     }
-    void HostBinding::IsInvalid(const ValueList& args, KValueRef result)
+    void HostBinding::IsInvalid(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->invalid);
     }
-    void HostBinding::GetName(const ValueList& args, KValueRef result)
+    void HostBinding::GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->host.name().c_str());
     }
-    void HostBinding::GetAliases(const ValueList& args, KValueRef result)
+    void HostBinding::GetAliases(const ValueList& args, ValueRef result)
     {
         TiListRef list = new StaticBoundList();
         std::vector<std::string> aliases = this->host.aliases();
@@ -134,7 +134,7 @@ namespace ti
         }
         result->SetList(list);
     }
-    void HostBinding::GetAddresses(const ValueList& args, KValueRef result)
+    void HostBinding::GetAddresses(const ValueList& args, ValueRef result)
     {
         TiListRef list = new StaticBoundList();
         std::vector<IPAddress> addresses = this->host.addresses();
@@ -143,7 +143,7 @@ namespace ti
         {
             IPAddress address = (*iter++);
             TiObjectRef obj = new IPAddressBinding(address);
-            KValueRef addr = Value::NewObject(obj);
+            ValueRef addr = Value::NewObject(obj);
             list->Append(addr);
         }
         result->SetList(list);

@@ -51,7 +51,7 @@ namespace tide
         Py_DECREF(this->tuple);
     }
 
-    void KPythonTuple::Append(KValueRef value)
+    void KPythonTuple::Append(ValueRef value)
     {
         throw ValueException::FromString("Cannot modify the size of a Python tuple.");
     }
@@ -68,13 +68,13 @@ namespace tide
         return false;
     }
 
-    KValueRef KPythonTuple::At(unsigned int index)
+    ValueRef KPythonTuple::At(unsigned int index)
     {
         PyLockGIL lock;
         if (index >= 0 && index < this->Size())
         {
             PyObject *p = PyTuple_GetItem(this->tuple, index);
-            KValueRef v = PythonUtils::ToTiValue(p);
+            ValueRef v = PythonUtils::ToTiValue(p);
             return v;
         }
         else
@@ -83,17 +83,17 @@ namespace tide
         }
     }
 
-    void KPythonTuple::Set(const char *name, KValueRef value)
+    void KPythonTuple::Set(const char *name, ValueRef value)
     {
         throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    void KPythonTuple::SetAt(unsigned int index, KValueRef value)
+    void KPythonTuple::SetAt(unsigned int index, ValueRef value)
     {
         throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    KValueRef KPythonTuple::Get(const char *name)
+    ValueRef KPythonTuple::Get(const char *name)
     {
         if (TiList::IsInt(name))
         {

@@ -45,8 +45,8 @@ namespace tide
         KPythonDict(PyObject *obj);
         virtual ~KPythonDict();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
         virtual bool Equals(TiObjectRef);
         virtual SharedStringList GetPropertyNames();
 

@@ -49,11 +49,11 @@ namespace tide
         KKJSMethod(JSContextRef, JSObjectRef, JSObjectRef);
         ~KKJSMethod();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        KValueRef Call(JSObjectRef thisObject, const ValueList& args);
-        virtual KValueRef Call(const ValueList& args);
-        virtual KValueRef Call(TiObjectRef thisObject, const ValueList& args);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
+        ValueRef Call(JSObjectRef thisObject, const ValueList& args);
+        virtual ValueRef Call(const ValueList& args);
+        virtual ValueRef Call(TiObjectRef thisObject, const ValueList& args);
         virtual SharedStringList GetPropertyNames();
         virtual bool HasProperty(const char* name);
         virtual bool Equals(TiObjectRef);

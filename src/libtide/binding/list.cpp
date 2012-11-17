@@ -64,7 +64,7 @@ namespace tide
         oss << "(" << this->GetType() << ")" << " [";
         for (unsigned int i = 0; i < this->Size(); i++)
         {
-            KValueRef list_val = this->At(i);
+            ValueRef list_val = this->At(i);
             SharedString list_str = list_val->DisplayString(levels-1);
             oss << " " << *list_str << ",";
         }

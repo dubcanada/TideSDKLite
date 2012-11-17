@@ -51,10 +51,10 @@ namespace tide
         return properties.find(name) != properties.end();
     }
     
-    KValueRef StaticBoundObject::Get(const char* name)
+    ValueRef StaticBoundObject::Get(const char* name)
     {
         Poco::Mutex::ScopedLock lock(mutex);
-        std::map<std::string, KValueRef>::iterator iter = 
+        std::map<std::string, ValueRef>::iterator iter = 
             properties.find(std::string(name));
 
         if (iter == properties.end())
@@ -62,7 +62,7 @@ namespace tide
         return iter->second;
     }
 
-    void StaticBoundObject::Set(const char* name, KValueRef value)
+    void StaticBoundObject::Set(const char* name, ValueRef value)
     {
         Poco::Mutex::ScopedLock lock(mutex);
         this->properties[std::string(name)] = value;
@@ -71,7 +71,7 @@ namespace tide
     void StaticBoundObject::Unset(const char* name)
     {
         Poco::Mutex::ScopedLock lock(mutex);
-        std::map<std::string, KValueRef>::iterator iter = 
+        std::map<std::string, ValueRef>::iterator iter = 
             properties.find(std::string(name));
 
         if (this->properties.end() == iter)
@@ -83,7 +83,7 @@ namespace tide
     {
         SharedStringList list(new StringList());
         Poco::Mutex::ScopedLock lock(mutex);
-        std::map<std::string, KValueRef>::iterator iter = properties.begin();
+        std::map<std::string, ValueRef>::iterator iter = properties.begin();
 
         while (iter != properties.end())
             list->push_back(new std::string((iter++)->first));

@@ -41,10 +41,10 @@ namespace JavaScriptMethods
 {
 
 void Bind(TiObjectRef global);
-KValueRef SetTimeout(const ValueList& args);
-KValueRef SetInterval(const ValueList& args);
-KValueRef ClearTimeout(const ValueList& args);
-KValueRef ClearInterval(const ValueList& args);
+ValueRef SetTimeout(const ValueList& args);
+ValueRef SetInterval(const ValueList& args);
+ValueRef ClearTimeout(const ValueList& args);
+ValueRef ClearInterval(const ValueList& args);
 
 }
 }

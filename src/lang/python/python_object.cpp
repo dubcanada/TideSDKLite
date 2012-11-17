@@ -68,7 +68,7 @@ namespace tide
         return this->object;
     }
 
-    void KPythonObject::Set(const char *name, KValueRef value)
+    void KPythonObject::Set(const char *name, ValueRef value)
     {
         PyLockGIL lock;
         PyObject* py_value = PythonUtils::ToPyObject(value);
@@ -90,7 +90,7 @@ namespace tide
         }
     }
 
-    KValueRef KPythonObject::Get(const char *name)
+    ValueRef KPythonObject::Get(const char *name)
     {
         PyLockGIL lock;
         if (0 == (PyObject_HasAttrString(this->object, (char*)name)))
@@ -113,7 +113,7 @@ namespace tide
             THROW_PYTHON_EXCEPTION
         }
 
-        KValueRef tide_value = PythonUtils::ToTiValue(value);
+        ValueRef tide_value = PythonUtils::ToTiValue(value);
         Py_DECREF(value);
         return tide_value;
     }

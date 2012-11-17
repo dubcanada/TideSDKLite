@@ -50,12 +50,12 @@ namespace tide
         private:
         SharedComponent component;
 
-        void _GetType(const ValueList& args, KValueRef value);
-        void _GetName(const ValueList& args, KValueRef value);
-        void _GetVersion(const ValueList& args, KValueRef value);
-        void _GetPath(const ValueList& args, KValueRef value);
-        void _IsBundled(const ValueList& args, KValueRef value);
-        void _IsLoaded(const ValueList& args, KValueRef value);
+        void _GetType(const ValueList& args, ValueRef value);
+        void _GetName(const ValueList& args, ValueRef value);
+        void _GetVersion(const ValueList& args, ValueRef value);
+        void _GetPath(const ValueList& args, ValueRef value);
+        void _IsBundled(const ValueList& args, ValueRef value);
+        void _IsLoaded(const ValueList& args, ValueRef value);
     };
 }
 #endif

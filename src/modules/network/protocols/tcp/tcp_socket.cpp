@@ -249,29 +249,29 @@ namespace ti
         Close();
     }
 
-    void TCPSocket::_Connect(const ValueList& args, KValueRef result)
+    void TCPSocket::_Connect(const ValueList& args, ValueRef result)
     {
         Connect();
     }
 
-    void TCPSocket::_SetTimeout(const ValueList& args, KValueRef result)
+    void TCPSocket::_SetTimeout(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setTimeout", "n");
         SetTimeout((long)args.GetNumber(0));
     }
 
-    void TCPSocket::_Close(const ValueList& args, KValueRef result)
+    void TCPSocket::_Close(const ValueList& args, ValueRef result)
     {
         result->SetBool(Close());
     }
 
-    void TCPSocket::_IsClosed(const ValueList& args, KValueRef result)
+    void TCPSocket::_IsClosed(const ValueList& args, ValueRef result)
     {
         Poco::FastMutex::ScopedLock lock(this->mutex);
         result->SetBool(this->state == CLOSED);
     }
 
-    void TCPSocket::_Write(const ValueList& args, KValueRef result)
+    void TCPSocket::_Write(const ValueList& args, ValueRef result)
     {
         args.VerifyException("write", "s|o");
 
@@ -293,25 +293,25 @@ namespace ti
         Write(data);
     }
 
-    void TCPSocket::_OnRead(const ValueList& args, KValueRef result)
+    void TCPSocket::_OnRead(const ValueList& args, ValueRef result)
     {
         args.VerifyException("onRead", "m");
         AddEventListener("data", args.GetMethod(0));
     }
 
-    void TCPSocket::_OnReadComplete(const ValueList& args, KValueRef result)
+    void TCPSocket::_OnReadComplete(const ValueList& args, ValueRef result)
     {
         args.VerifyException("onReadComplete", "m");
         AddEventListener("end", args.GetMethod(0));
     }
 
-    void TCPSocket::_OnError(const ValueList& args, KValueRef result)
+    void TCPSocket::_OnError(const ValueList& args, ValueRef result)
     {
         args.VerifyException("onError", "m");
         AddEventListener("error", args.GetMethod(0));
     }
 
-    void TCPSocket::_OnTimeout(const ValueList& args, KValueRef result)
+    void TCPSocket::_OnTimeout(const ValueList& args, ValueRef result)
     {
         args.VerifyException("onTimeout", "m");
         AddEventListener("timeout", args.GetMethod(0));

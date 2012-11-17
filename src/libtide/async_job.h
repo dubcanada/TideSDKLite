@@ -78,7 +78,7 @@ namespace tide
          * The result of the execution of this job. On an execution
          * error and before the job is completed this will be Undefined;
          */
-        KValueRef GetResult();
+        ValueRef GetResult();
 
         /**
          * The progress of this job, which is a number in
@@ -147,7 +147,7 @@ namespace tide
         ValueList arguments;
         double progress;
         bool completed;
-        KValueRef result;
+        ValueRef result;
         bool hadError;
         bool cancelled;
         void Error(ValueException&);
@@ -159,11 +159,11 @@ namespace tide
          * choices. It can be overridden to create custom job types which
          * do something other than just execute a TiMethod.
          */
-        virtual KValueRef Execute();
+        virtual ValueRef Execute();
 
-        void _Cancel(const ValueList&, KValueRef);
-        void _GetProgress(const ValueList&, KValueRef);
-        void _IsComplete(const ValueList& args, KValueRef result);
+        void _Cancel(const ValueList&, ValueRef);
+        void _GetProgress(const ValueList&, ValueRef);
+        void _IsComplete(const ValueList& args, ValueRef result);
 
         private:
         std::vector<TiMethodRef> progressCallbacks;

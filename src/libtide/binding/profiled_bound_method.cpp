@@ -51,11 +51,11 @@ namespace tide
     {
     }
 
-    KValueRef ProfiledBoundMethod::Call(const ValueList& args)
+    ValueRef ProfiledBoundMethod::Call(const ValueList& args)
     {
         std::string type = this->GetType();
 
-        KValueRef value;
+        ValueRef value;
         Poco::Stopwatch sw;
         sw.start();
         try {
@@ -71,12 +71,12 @@ namespace tide
         return this->Wrap(value, type);
     }
 
-    void ProfiledBoundMethod::Set(const char *name, KValueRef value)
+    void ProfiledBoundMethod::Set(const char *name, ValueRef value)
     {
         method->Set(name,value);
     }
 
-    KValueRef ProfiledBoundMethod::Get(const char *name)
+    ValueRef ProfiledBoundMethod::Get(const char *name)
     {
         return method->Get(name);
     }

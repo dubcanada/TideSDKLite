@@ -51,25 +51,25 @@ namespace ti
     public:
         WorkerContext(Worker* worker);
         ~WorkerContext();
-        virtual KValueRef Get(const char*);
-        virtual void Set(const char*, KValueRef);
+        virtual ValueRef Get(const char*);
+        virtual void Set(const char*, ValueRef);
         void StartWorker(const std::string& code);
         void Terminate();
-        void SendMessageToWorker(KValueRef message);
-        void _PostMessage(const ValueList &args, KValueRef result);
-        void _ImportScripts(const ValueList &args, KValueRef result);
-        void _Sleep(const ValueList &args, KValueRef result);
+        void SendMessageToWorker(ValueRef message);
+        void _PostMessage(const ValueList &args, ValueRef result);
+        void _ImportScripts(const ValueList &args, ValueRef result);
+        void _Sleep(const ValueList &args, ValueRef result);
 
     private:
         Worker* worker;
         JSGlobalContextRef jsContext;
         bool running;
-        std::queue<KValueRef> inbox;
+        std::queue<ValueRef> inbox;
         Poco::Mutex inboxLock;
         Poco::Event messageEvent;
         Poco::Event terminateEvent;
 
-        void DeliverMessage(KValueRef message);
+        void DeliverMessage(ValueRef message);
         void MessageLoop();
     };
 }

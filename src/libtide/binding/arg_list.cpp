@@ -40,33 +40,33 @@ namespace tide
 
     ArgList::ArgList()
     {
-        this->args = new std::vector<KValueRef>;
+        this->args = new std::vector<ValueRef>;
     }
 
-    ArgList::ArgList(KValueRef a)
+    ArgList::ArgList(ValueRef a)
     {
-        this->args = new std::vector<KValueRef>;
+        this->args = new std::vector<ValueRef>;
         this->args->push_back(a);
     }
 
-    ArgList::ArgList(KValueRef a, KValueRef b)
+    ArgList::ArgList(ValueRef a, ValueRef b)
     {
-        this->args = new std::vector<KValueRef>;
+        this->args = new std::vector<ValueRef>;
         this->args->push_back(a);
         this->args->push_back(b);
     }
 
-    ArgList::ArgList(KValueRef a, KValueRef b, KValueRef c)
+    ArgList::ArgList(ValueRef a, ValueRef b, ValueRef c)
     {
-        this->args = new std::vector<KValueRef>;
+        this->args = new std::vector<ValueRef>;
         this->args->push_back(a);
         this->args->push_back(b);
         this->args->push_back(c);
     }
 
-    ArgList::ArgList(KValueRef a, KValueRef b, KValueRef c, KValueRef d)
+    ArgList::ArgList(ValueRef a, ValueRef b, ValueRef c, ValueRef d)
     {
-        this->args = new std::vector<KValueRef>;
+        this->args = new std::vector<ValueRef>;
         this->args->push_back(a);
         this->args->push_back(b);
         this->args->push_back(c);
@@ -78,7 +78,7 @@ namespace tide
         this->args = other.args;
     }
 
-    void ArgList::push_back(KValueRef v)
+    void ArgList::push_back(ValueRef v)
     {
         this->args->push_back(v);
     }
@@ -88,12 +88,12 @@ namespace tide
         return this->args->size();
     }
 
-    const KValueRef& ArgList::at(size_t index) const
+    const ValueRef& ArgList::at(size_t index) const
     {
         return this->args->at(index);
     }
 
-    const KValueRef& ArgList::operator[](size_t index) const
+    const ValueRef& ArgList::operator[](size_t index) const
     {
         return this->args->at(index);
     }
@@ -239,7 +239,7 @@ namespace tide
         }
     }
 
-    inline bool ArgList::VerifyArg(KValueRef arg, char t)
+    inline bool ArgList::VerifyArg(ValueRef arg, char t)
     {
         if ((t == 's' && arg->IsString())
          || (t == 'b' && arg->IsBool())
@@ -255,7 +255,7 @@ namespace tide
             return false;
     }
 
-    KValueRef ArgList::GetValue(size_t index, KValueRef defaultValue) const
+    ValueRef ArgList::GetValue(size_t index, ValueRef defaultValue) const
     {
         if (this->size() > index)
         {
