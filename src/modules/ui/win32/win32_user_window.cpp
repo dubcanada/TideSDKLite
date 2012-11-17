@@ -121,9 +121,10 @@ static LRESULT CALLBACK UserWindowWndProc(HWND hWnd, UINT message, WPARAM wParam
             IWebView* webView = window->GetWebView();
             if (webView)
             {
+#ifndef TIDE_LITE
                 handled = webView->forwardingWindowProc(
                     reinterpret_cast<OLE_HANDLE>(hWnd), message, wParam, lParam);
-
+#endif
                 // WebKit sometimes causes WM_PAINT messages to fire. We need to ensure
                 // we call DefWindowProc in this case, otherwise Windows will assume
                 // that it was not handled and continue to flood us with WM_PAINT messages.
@@ -351,7 +352,12 @@ void Win32UserWindow::InitWebKit()
             HandleHResultError("Error setting host window", hr, true);
     }
 
+#ifdef TIDE_LITE
+    hr = webView->initWithFrame(clientRect, 0, 0);
+#else
     hr = webView->initWithFrame(clientRect, 0, 0, oleWindowHandle);
+#endif
+
     if (FAILED(hr))
         HandleHResultError("Could not intialize WebView with frame", hr, true);
 
@@ -411,8 +417,10 @@ void Win32UserWindow::InitWebKit()
 
     webViewPrivate->Release();
 
+#ifndef TIDE_LITE
     _bstr_t inspector_url("ti://runtime/WebKit.resources/inspector/inspector.html");
     webInspector->setInspectorURL(inspector_url.copy());
+#endif
 
     hr = webView->mainFrame(&mainFrame);
     if (FAILED(hr) || !webInspector)
