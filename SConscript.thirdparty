@@ -46,7 +46,7 @@ revisions = {
     "linux-x86": 1,
     "linux-x86_64": 1,
     "osx-x86": 1,
-    "win32-x86": 1
+    "win32-x86": 2
 }
 
 arch_name = '%s-%s-v%s' % (build.os, build.arch, revisions[build.os+'-'+build.arch])
