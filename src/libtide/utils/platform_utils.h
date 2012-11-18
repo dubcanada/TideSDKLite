@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PLATFORM_UTILS_H_
-#define _KR_PLATFORM_UTILS_H_
+#ifndef _PLATFORM_UTILS_H_
+#define _PLATFORM_UTILS_H_
 #include <string>
 #include "poco/KTypes.h"
 #define MAC_ADDRESS_SIZE 6

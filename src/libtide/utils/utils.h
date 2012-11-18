@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_UTILS_H_
-#define _KR_UTILS_H_
+#ifndef _UTILS_H_
+#define _UTILS_H_
 #include "../base.h"
 
 // If this is a version of the utils which doesn't

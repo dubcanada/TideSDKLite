@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_REFERENCE_COUNTED_H_
-#define _KR_REFERENCE_COUNTED_H_
+#ifndef _REFERENCE_COUNTED_H_
+#define _REFERENCE_COUNTED_H_
 
 namespace tide
 {

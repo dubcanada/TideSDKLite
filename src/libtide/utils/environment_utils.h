@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ENVIRONMENT_UTILS_H_
-#define _KR_ENVIRONMENT_UTILS_H_
+#ifndef _ENVIRONMENT_UTILS_H_
+#define _ENVIRONMENT_UTILS_H_
 #include <string>
 
 namespace UTILS_NS

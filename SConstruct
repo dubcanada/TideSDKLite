@@ -42,7 +42,6 @@ build = BuildConfig(
     BUILD_DIR = path.abspath('build'),
     THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
     DISTRIBUTION_URL = 'api.appcelerator.net',
-    CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report'
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)

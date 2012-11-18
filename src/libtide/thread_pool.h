@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_THREAD_POOL_H_
-#define _KR_THREAD_POOL_H_
+#ifndef _THREAD_POOL_H_
+#define _THREAD_POOL_H_
 
 #include <ctime>
 

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_WIN32_H_
-#define _KR_WIN32_H_
+#ifndef _TIDE_WIN32_H_
+#define _TIDE_WIN32_H_
 #include "event_window.h"
 #include "basictypes.h"
 #include "port.h"

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_SCRIPT_H_
-#define _KR_SCRIPT_H_
+#ifndef _SCRIPT_H_
+#define _SCRIPT_H_
 
 #include <tide/tide.h>
 

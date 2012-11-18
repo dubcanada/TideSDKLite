@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_WIN32_UTILS_H_
-#define _KR_WIN32_UTILS_H_
+#ifndef _WIN32_UTILS_H_
+#define _WIN32_UTILS_H_
 #include <string>
 namespace UTILS_NS
 {
