@@ -75,6 +75,7 @@ namespace tide
         static std::string ACTIVATE;
         static std::string CLICKED;
         static std::string DOUBLE_CLICKED;
+        static std::string DOCK_ICON_CLICKED;
         static std::string EXIT;
         static std::string APP_EXIT;
         static std::string READ;
