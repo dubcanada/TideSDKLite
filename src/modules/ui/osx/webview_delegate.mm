@@ -542,8 +542,7 @@
 	return YES;
 }
 
-//TODO: in 10.5, this becomes an NSUInteger
-- (unsigned int)webView:(WebView *)wv dragDestinationActionMaskForDraggingInfo:(id <NSDraggingInfo>)draggingInfo 
+- (NSUInteger)webView:(WebView *)wv dragDestinationActionMaskForDraggingInfo:(id <NSDraggingInfo>)draggingInfo
 {
 	return WebDragDestinationActionAny;
 }
@@ -556,8 +555,7 @@
 }
 
 
-//TODO: in 10.5, this becomes an NSUInteger
-- (unsigned int)webView:(WebView *)wv dragSourceActionMaskForPoint:(NSPoint)point
+- (NSUInteger)webView:(WebView *)wv dragSourceActionMaskForPoint:(NSPoint)point
 {
 	return WebDragSourceActionAny;
 }
