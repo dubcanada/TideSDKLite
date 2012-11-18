@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_MODULE_PROVIDER_H_
-#define _KR_MODULE_PROVIDER_H_
+#ifndef _MODULE_PROVIDER_H_
+#define _MODULE_PROVIDER_H_
 #include <string>
 
 namespace tide

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ASYNC_JOB_H_
-#define _KR_ASYNC_JOB_H_
+#ifndef _ASYNC_JOB_H_
+#define _ASYNC_JOB_H_
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 

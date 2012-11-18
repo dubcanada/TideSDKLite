@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_URL_UTILS_H_
-#define _KR_URL_UTILS_H_
+#ifndef _URL_UTILS_H_
+#define _URL_UTILS_H_
 #include <string>
 namespace UTILS_NS
 {

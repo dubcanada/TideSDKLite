@@ -42,9 +42,6 @@
 #endif
 
 #define BOOTSTRAP_ENV "KR_BOOTSTRAPPED"
-#define CRASH_REPORT_OPT "--crash_report"
-
-#define CRASH_REPORT_URL  STRING(_CRASH_REPORT_URL)
 
 #include <cstring>
 #include <cstdio>
