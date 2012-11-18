@@ -126,8 +126,8 @@ static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
 -(NSData*)preprocessRequest:(const char*)url returningMimeType:(NSString**)mimeType
 {
     static Logger* logger = Logger::Get("UI.TideSDKProtocols");
-    KObjectRef scope = new StaticBoundObject();
-    KObjectRef headers = new StaticBoundObject();
+    TiObjectRef scope = new StaticBoundObject();
+    TiObjectRef headers = new StaticBoundObject();
     scope->Set("httpHeaders", Value::NewObject(headers));
 
     NSDictionary *httpHeaders = [[self request] allHTTPHeaderFields];

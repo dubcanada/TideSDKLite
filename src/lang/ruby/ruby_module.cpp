@@ -62,7 +62,7 @@ namespace tide
 
     void RubyModule::Stop()
     {
-        KObjectRef global = this->host->GetGlobalObject();
+        TiObjectRef global = this->host->GetGlobalObject();
         global->Set("Ruby", Value::Undefined);
         Script::GetInstance()->RemoveScriptEvaluator(this->binding);
         this->binding = NULL;
@@ -73,14 +73,14 @@ namespace tide
 
     void RubyModule::InitializeBinding()
     {
-        // Expose the Ruby evaluator into Kroll
-        KObjectRef global = this->host->GetGlobalObject();
+        // Expose the Ruby evaluator into Tide
+        TiObjectRef global = this->host->GetGlobalObject();
         this->binding = new RubyEvaluator();
         global->Set("Ruby", Value::NewObject(binding));
         Script::GetInstance()->AddScriptEvaluator(this->binding);
         
         // Bind the API global constant
-        VALUE ruby_api_val = RubyUtils::KObjectToRubyValue(Value::NewObject(global));
+        VALUE ruby_api_val = RubyUtils::TiObjectToRubyValue(Value::NewObject(global));
         rb_define_global_const(GLOBAL_NAMESPACE, ruby_api_val);
     }
 

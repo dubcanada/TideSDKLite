@@ -1,5 +1,5 @@
 /*
- * Appcelerator Kroll - licensed under the Apache Public License 2
+ * Appcelerator - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008-2009 Appcelerator, Inc. All Rights Reserved.
  */
@@ -45,7 +45,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
-#ifdef _KROLL_H_
+#ifdef _TIDE_H_
 #error You are using the simple shared pointer implementation while using libtide.
 #endif
 

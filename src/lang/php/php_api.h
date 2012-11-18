@@ -37,12 +37,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define KROLL_PHP_API EXPORT
+#define TIDESDK_PHP_API EXPORT
 #elif defined(OS_WIN32)
-#ifdef KROLL_PHP_API_EXPORT
-#define KROLL_PHP_API __declspec(dllexport)
+#ifdef TIDESDK_PHP_API_EXPORT
+#define TIDESDK_PHP_API __declspec(dllexport)
 #else
-#define KROLL_PHP_API __declspec(dllimport)
+#define TIDESDK_PHP_API __declspec(dllimport)
 #endif
 #endif
 

@@ -37,16 +37,16 @@
 
 namespace tide
 {
-    class TIDE_API KAccessorObject : public StaticBoundObject, public KAccessor
+    class TIDE_API AccessorObject : public StaticBoundObject, public Accessor
     {
     public:
-        KAccessorObject(const char* name = "KAccessorObject");
-        virtual void Set(const char* name, KValueRef value);
-        virtual KValueRef Get(const char* name);
+        AccessorObject(const char* name = "AccessorObject");
+        virtual void Set(const char* name, ValueRef value);
+        virtual ValueRef Get(const char* name);
         virtual bool HasProperty(const char* name);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessorObject);
+        DISALLOW_EVIL_CONSTRUCTORS(AccessorObject);
     };
 }
 

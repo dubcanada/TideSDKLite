@@ -107,7 +107,7 @@ void SetStandardCurlHandleOptions(CURL* handle)
     SET_CURL_OPTION(handle, CURLOPT_COOKIEJAR, cookieJarFilename.c_str());
 }
 
-BytesRef ObjectToBytes(KObjectRef dataObject)
+BytesRef ObjectToBytes(TiObjectRef dataObject)
 {
     // If this object is a Bytes object, just do the cast and return.
     BytesRef bytes(dataObject.cast<Bytes>());
@@ -117,19 +117,19 @@ BytesRef ObjectToBytes(KObjectRef dataObject)
     // Now try to treat this object like as a file-like object with
     // a .read() method which returns a Bytes. If this fails we'll
     // return NULL. First open file stream then try reading.
-    KMethodRef nativeOpenMethod(dataObject->GetMethod("open", 0));
+    TiMethodRef nativeOpenMethod(dataObject->GetMethod("open", 0));
     if (nativeOpenMethod.isNull())
         return 0;
 
-    KValueRef streamValue(nativeOpenMethod->Call());
+    ValueRef streamValue(nativeOpenMethod->Call());
     if (streamValue.isNull() || !streamValue->IsObject())
         return 0;
 
-    KMethodRef nativeReadMethod(streamValue->ToObject()->GetMethod("read", 0));
+    TiMethodRef nativeReadMethod(streamValue->ToObject()->GetMethod("read", 0));
     if (nativeReadMethod.isNull())
         return 0;
 
-    KValueRef readValue(nativeReadMethod->Call());
+    ValueRef readValue(nativeReadMethod->Call());
     if (!readValue->IsObject())
         return 0;
 

@@ -19,7 +19,7 @@ class TIDESDK_APP_API WindowConfig : public ReferenceCounted
 public:
 	static AutoPtr<WindowConfig> FromXMLNode(xmlNodePtr);
 	static AutoPtr<WindowConfig> FromWindowConfig(AutoPtr<WindowConfig>);
-	static AutoPtr<WindowConfig> FromProperties(KObjectRef);
+	static AutoPtr<WindowConfig> FromProperties(TiObjectRef);
 	static AutoPtr<WindowConfig> Default()
 	{
 		return new WindowConfig();

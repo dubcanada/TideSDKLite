@@ -45,7 +45,7 @@ namespace ti
     }
 
     Worker::Worker(std::string& code) :
-        KEventObject("Worker.Worker"),
+        EventObject("Worker.Worker"),
         code(code),
         workerContext(new WorkerContext(this)),
         adapter(0)
@@ -74,21 +74,21 @@ namespace ti
 
     Worker::~Worker()
     {
-        KValueRef result(0);
+        ValueRef result(0);
         this->_Terminate(ValueList(), result);
         delete this->adapter;
     }
 
-    void Worker::Error(KValueRef error)
+    void Worker::Error(ValueRef error)
     {
-        KValueRef onError = this->Get("onerror");
+        ValueRef onError = this->Get("onerror");
         if (!onError->IsMethod())
             return;
 
         RunOnMainThread(onError->ToMethod(), ValueList(error), false);
     }
 
-    void Worker::_Start(const ValueList& args, KValueRef result)
+    void Worker::_Start(const ValueList& args, ValueRef result)
     {
         if (this->thread.isRunning())
             throw ValueException::FromString("Worker already started");
@@ -98,16 +98,16 @@ namespace ti
 
     void Worker::Run()
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         // The worker manages the lifetime of the worker context, so we
         // can just pass a pointer to ourselves instead of an AutoPtr.
         workerContext->StartWorker(this->code);
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 
-    void Worker::SendMessageToMainThread(KValueRef message)
+    void Worker::SendMessageToMainThread(ValueRef message)
     {
         {
             Poco::Mutex::ScopedLock lock(inboxLock);
@@ -121,7 +121,7 @@ namespace ti
     {
         while (this->Get("onmessage")->IsMethod() && !inbox.empty())
         {
-            KValueRef message(0);
+            ValueRef message(0);
             {
                 Poco::Mutex::ScopedLock lock(inboxLock);
                 message = inbox.front();
@@ -132,7 +132,7 @@ namespace ti
         }
     }
 
-    void Worker::DeliverMessage(KValueRef message)
+    void Worker::DeliverMessage(ValueRef message)
     {
         AutoPtr<Event> event(this->CreateEvent("worker.message"));
         event->Set("message", message);
@@ -149,7 +149,7 @@ namespace ti
         }
     }
 
-    void Worker::_Terminate(const ValueList& args, KValueRef result)
+    void Worker::_Terminate(const ValueList& args, ValueRef result)
     {
         if (!this->thread.isRunning())
             return;
@@ -168,14 +168,14 @@ namespace ti
         }
     }
 
-    void Worker::_PostMessage(const ValueList& args, KValueRef result)
+    void Worker::_PostMessage(const ValueList& args, ValueRef result)
     {
         workerContext->SendMessageToWorker(args.GetValue(0));
     }
 
-    void Worker::Set(const char* name, KValueRef value)
+    void Worker::Set(const char* name, ValueRef value)
     {
-        KEventObject::Set(name, value);
+        EventObject::Set(name, value);
 
         // We now have an onMessage target. Send all our queued
         // messages to this method.

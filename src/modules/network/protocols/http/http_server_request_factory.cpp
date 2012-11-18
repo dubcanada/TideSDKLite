@@ -40,7 +40,7 @@ namespace ti
 {
     class HTTPRequestHandler : public Poco::Net::HTTPRequestHandler {
         public:
-            HTTPRequestHandler(KMethodRef callback)
+            HTTPRequestHandler(TiMethodRef callback)
                 : m_callback(callback)
             {
             }
@@ -48,7 +48,7 @@ namespace ti
             virtual void handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&);
 
         private:
-            KMethodRef m_callback;
+            TiMethodRef m_callback;
     };
 
     void HTTPRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
@@ -61,7 +61,7 @@ namespace ti
         RunOnMainThread(m_callback, args);
     }
 
-    HttpServerRequestFactory::HttpServerRequestFactory(Host *host, KMethodRef callback) :
+    HttpServerRequestFactory::HttpServerRequestFactory(Host *host, TiMethodRef callback) :
         host(host),
         callback(callback)
     {

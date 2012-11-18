@@ -37,14 +37,14 @@
 
 namespace tide
 {
-    typedef std::map<std::string, KMethodRef> AccessorMap;
+    typedef std::map<std::string, TiMethodRef> AccessorMap;
 
-    class TIDE_API KAccessor
+    class TIDE_API Accessor
     {
     protected:
-        KAccessor() {}
+        Accessor() {}
 
-        inline void RecordAccessor(const std::string& name, KValueRef value)
+        inline void RecordAccessor(const std::string& name, ValueRef value)
         {
             if (name.find("set") == 0)
                 DoMap(name.substr(3), value, setterMap);
@@ -61,19 +61,19 @@ namespace tide
             return !FindAccessor(name, getterMap).isNull();
         }
 
-        KValueRef UseGetter(std::string name, KValueRef existingValue)
+        ValueRef UseGetter(std::string name, ValueRef existingValue)
         {
             if (!existingValue->IsUndefined())
                 return existingValue;
 
-            KMethodRef getter = FindAccessor(name, getterMap);
+            TiMethodRef getter = FindAccessor(name, getterMap);
             if (getter.isNull())
                 return existingValue;
 
             return getter->Call();
         }
 
-        bool UseSetter(std::string name, KValueRef newValue, KValueRef existingValue)
+        bool UseSetter(std::string name, ValueRef newValue, ValueRef existingValue)
         {
             RecordAccessor(name, newValue);
 
@@ -82,7 +82,7 @@ namespace tide
             if (!existingValue->IsUndefined())
                 return false;
 
-            KMethodRef setter = FindAccessor(name, setterMap);
+            TiMethodRef setter = FindAccessor(name, setterMap);
             if (setter.isNull())
                 return false;
 
@@ -91,7 +91,7 @@ namespace tide
         }
 
     private:
-        inline void DoMap(std::string name, KValueRef accessor, AccessorMap& map)
+        inline void DoMap(std::string name, ValueRef accessor, AccessorMap& map)
         {
             // Lower-case the name so that all comparisons are case-insensitive.
             std::transform(name.begin(), name.end(), name.begin(), tolower);
@@ -107,7 +107,7 @@ namespace tide
             map[name] = accessor->ToMethod();
         }
 
-        inline KMethodRef FindAccessor(std::string& name, AccessorMap& map)
+        inline TiMethodRef FindAccessor(std::string& name, AccessorMap& map)
         {
             // Lower-case the name so that all comparisons are case-insensitive.
             std::transform(name.begin(), name.end(), name.begin(), tolower);
@@ -118,7 +118,7 @@ namespace tide
             return map[name];
         }
 
-        DISALLOW_EVIL_CONSTRUCTORS(KAccessor);
+        DISALLOW_EVIL_CONSTRUCTORS(Accessor);
         AccessorMap getterMap;
         AccessorMap setterMap;
     };

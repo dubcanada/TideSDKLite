@@ -39,7 +39,7 @@ extern "C" {
 }
 
 #define GET_MY_KLIST() \
-    reinterpret_cast<PHPKObject*>( \
+    reinterpret_cast<PHPTiObject*>( \
      zend_object_store_get_object(getThis() TSRMLS_CC))->kvalue->ToList()
 
 // FIXME: PHP does not export any of the token constants in the
@@ -52,37 +52,37 @@ using std::map;
 namespace tide
 {
     static map<string, string> currentCaseMap;
-    zend_class_entry *PHPKObjectClassEntry = NULL;
-    zend_class_entry *PHPKMethodClassEntry = NULL;
-    zend_class_entry *PHPKListClassEntry = NULL;
-    zend_object_handlers PHPKObjectHandlers;
-    zend_object_handlers PHPKMethodHandlers;
-    zend_object_handlers PHPKListHandlers;
+    zend_class_entry *PHPTiObjectClassEntry = NULL;
+    zend_class_entry *PHPTiMethodClassEntry = NULL;
+    zend_class_entry *PHPTiListClassEntry = NULL;
+    zend_object_handlers PHPTiObjectHandlers;
+    zend_object_handlers PHPTiMethodHandlers;
+    zend_object_handlers PHPTiListHandlers;
 
     // Private data and function declarations below here
-    static zend_object_value PHPKObjectCreateObject(zend_class_entry *ce TSRMLS_DC);
-    static zend_class_entry* PHPKObjectGetClassEntry(const zval* zthis TSRMLS_DC);
-    static zend_class_entry* PHPKMethodGetClassEntry(const zval* zthis TSRMLS_DC);
-    static zend_class_entry* PHPKListGetClassEntry(const zval* zthis TSRMLS_DC);
-    static void PHPKObjectFreeStorage(void* zthis TSRMLS_DC);
-    static zval* PHPKObjectReadProperty(zval* zthis, zval* property, int type TSRMLS_DC);
-    static void PHPKObjectWriteProperty(zval* zthis, zval* property, zval* value TSRMLS_DC);
-    static HashTable* PHPKObjectGetProperties(zval* zthis TSRMLS_DC);
-    static void PHPKObjectUnsetProperty(zval* zthis, zval* property TSRMLS_DC);
-    static int PHPKObjectHasProperty(zval* zthis, zval* property, int type TSRMLS_DC);
-    static int PHPKObjectHasDimension(zval* zthis, zval* property, int type TSRMLS_DC);
+    static zend_object_value PHPTiObjectCreateObject(zend_class_entry *ce TSRMLS_DC);
+    static zend_class_entry* PHPTiObjectGetClassEntry(const zval* zthis TSRMLS_DC);
+    static zend_class_entry* PHPTiMethodGetClassEntry(const zval* zthis TSRMLS_DC);
+    static zend_class_entry* PHPTiListGetClassEntry(const zval* zthis TSRMLS_DC);
+    static void PHPTiObjectFreeStorage(void* zthis TSRMLS_DC);
+    static zval* PHPTiObjectReadProperty(zval* zthis, zval* property, int type TSRMLS_DC);
+    static void PHPTiObjectWriteProperty(zval* zthis, zval* property, zval* value TSRMLS_DC);
+    static HashTable* PHPTiObjectGetProperties(zval* zthis TSRMLS_DC);
+    static void PHPTiObjectUnsetProperty(zval* zthis, zval* property TSRMLS_DC);
+    static int PHPTiObjectHasProperty(zval* zthis, zval* property, int type TSRMLS_DC);
+    static int PHPTiObjectHasDimension(zval* zthis, zval* property, int type TSRMLS_DC);
 
-    PHP_METHOD(PHPKObject, __toString);
-    PHP_METHOD(PHPKObject, __call);
-    PHP_METHOD(PHPKMethod, __invoke);
-    PHP_METHOD(PHPKList, offsetExists);
-    PHP_METHOD(PHPKList, offsetGet);
-    PHP_METHOD(PHPKList, offsetUnset);
-    PHP_METHOD(PHPKList, offsetSet);
-    PHP_METHOD(PHPKList, count);
-    PHP_METHOD(PHPKList, append);
-    PHP_METHOD(PHPKList, getArrayCopy);
-    PHP_METHOD(PHPKList, exchangeArray);
+    PHP_METHOD(PHPTiObject, __toString);
+    PHP_METHOD(PHPTiObject, __call);
+    PHP_METHOD(PHPTiMethod, __invoke);
+    PHP_METHOD(PHPTiList, offsetExists);
+    PHP_METHOD(PHPTiList, offsetGet);
+    PHP_METHOD(PHPTiList, offsetUnset);
+    PHP_METHOD(PHPTiList, offsetSet);
+    PHP_METHOD(PHPTiList, count);
+    PHP_METHOD(PHPTiList, append);
+    PHP_METHOD(PHPTiList, getArrayCopy);
+    PHP_METHOD(PHPTiList, exchangeArray);
 
     static ZEND_FUNCTION(krollAddFunction);
 
@@ -98,65 +98,65 @@ namespace tide
 
     // This is our class "function" table. Right now we only implement
     // __call, because that seems to be preferred over the handler version.
-    ZEND_BEGIN_ARG_INFO_EX(PHPKObjectCallArgInfo, 0, 0, 2)
+    ZEND_BEGIN_ARG_INFO_EX(PHPTiObjectCallArgInfo, 0, 0, 2)
     ZEND_ARG_INFO(0, methodName)
     ZEND_ARG_INFO(0, arguments)
     ZEND_END_ARG_INFO()
 
-    static function_entry PHPKObjectMethods[] =
+    static function_entry PHPTiObjectMethods[] =
     {
-        PHP_ME(PHPKObject, __call, PHPKObjectCallArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKObject, __toString, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __call, PHPTiObjectCallArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __toString, NULL, ZEND_ACC_PUBLIC)
         {NULL, NULL, NULL}
     };
 
-    static function_entry PHPKMethodMethods[] =
+    static function_entry PHPTiMethodMethods[] =
     {
-        PHP_ME(PHPKMethod, __invoke, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKObject, __call, PHPKObjectCallArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKObject, __toString, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiMethod, __invoke, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __call, PHPTiObjectCallArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __toString, NULL, ZEND_ACC_PUBLIC)
         {NULL, NULL, NULL}
     };
 
-    ZEND_BEGIN_ARG_INFO_EX(PHPKListOffsetGetArgInfo, 0, 0, 1)
+    ZEND_BEGIN_ARG_INFO_EX(PHPTiListOffsetGetArgInfo, 0, 0, 1)
         ZEND_ARG_INFO(0, index)
     ZEND_END_ARG_INFO()
-    ZEND_BEGIN_ARG_INFO_EX(PHPKListOffsetSetArgInfo, 0, 0, 2)
+    ZEND_BEGIN_ARG_INFO_EX(PHPTiListOffsetSetArgInfo, 0, 0, 2)
         ZEND_ARG_INFO(0, index)
         ZEND_ARG_INFO(0, newval)
     ZEND_END_ARG_INFO()
-    ZEND_BEGIN_ARG_INFO(PHPKListAppendArgInfo, 0)
+    ZEND_BEGIN_ARG_INFO(PHPTiListAppendArgInfo, 0)
         ZEND_ARG_INFO(0, value)
     ZEND_END_ARG_INFO()
-    ZEND_BEGIN_ARG_INFO(PHPKListExchangeArrayArgInfo, 0)
+    ZEND_BEGIN_ARG_INFO(PHPTiListExchangeArrayArgInfo, 0)
         ZEND_ARG_INFO(0, array)
     ZEND_END_ARG_INFO()
-    ZEND_BEGIN_ARG_INFO(PHPKListVoidArgInfo, 0)
+    ZEND_BEGIN_ARG_INFO(PHPTiListVoidArgInfo, 0)
     ZEND_END_ARG_INFO()
 
-    static function_entry PHPKListMethods[] =
+    static function_entry PHPTiListMethods[] =
     {
-        PHP_ME(PHPKObject, __call, PHPKObjectCallArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKObject, __toString, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, offsetExists, PHPKListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, offsetGet, PHPKListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, offsetSet, PHPKListOffsetSetArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, offsetUnset, PHPKListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, count, PHPKListVoidArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, exchangeArray, PHPKListExchangeArrayArgInfo, ZEND_ACC_PUBLIC)
-        PHP_ME(PHPKList, getArrayCopy, PHPKListVoidArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __call, PHPTiObjectCallArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiObject, __toString, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, offsetExists, PHPTiListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, offsetGet, PHPTiListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, offsetSet, PHPTiListOffsetSetArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, offsetUnset, PHPTiListOffsetGetArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, count, PHPTiListVoidArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, exchangeArray, PHPTiListExchangeArrayArgInfo, ZEND_ACC_PUBLIC)
+        PHP_ME(PHPTiList, getArrayCopy, PHPTiListVoidArgInfo, ZEND_ACC_PUBLIC)
         {NULL, NULL, NULL}
     };
 
-    PHP_METHOD(PHPKObject, __toString)
+    PHP_METHOD(PHPTiObject, __toString)
     {
-        KValueRef kvalue(reinterpret_cast<PHPKObject*>(
+        ValueRef kvalue(reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(getThis() TSRMLS_CC))->kvalue);
         SharedString ss = kvalue->DisplayString();
         ZVAL_STRINGL(return_value, (char *) ss->c_str(), ss->size(), 1);
     }
 
-    PHP_METHOD(PHPKObject, __call)
+    PHP_METHOD(PHPTiObject, __call)
     {
         char* methodName;
         int methodNameLength;
@@ -171,10 +171,10 @@ namespace tide
             return;
         }
 
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(getThis() TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
-        KMethodRef method = kobject->GetMethod(methodName, 0);
+        TiObjectRef TiObject = kthis->kvalue->ToObject();
+        TiMethodRef method = TiObject->GetMethod(methodName, 0);
 
         // Find the method by its name.
         if (method.isNull())
@@ -200,7 +200,7 @@ namespace tide
             while (zend_hash_get_current_data_ex(Z_ARRVAL_P(zargs),
                 (void **) &parameter, &position) == SUCCESS)
             {
-                kargs.push_back(PHPUtils::ToKrollValue(*parameter TSRMLS_CC));
+                kargs.push_back(PHPUtils::ToTiValue(*parameter TSRMLS_CC));
                 zend_hash_move_forward_ex(Z_ARRVAL_P(zargs), &position);
             }
         }
@@ -208,7 +208,7 @@ namespace tide
         // Do the method invocation.
         try
         {
-            KValueRef returnValue = method->Call(kargs);
+            ValueRef returnValue = method->Call(kargs);
             PHPUtils::ToPHPValue(returnValue, &return_value);
         }
         catch (ValueException& e)
@@ -220,15 +220,15 @@ namespace tide
         }
     }
 
-    zend_object_value PHPKObjectCreateObject(zend_class_entry *classEntry TSRMLS_DC)
+    zend_object_value PHPTiObjectCreateObject(zend_class_entry *classEntry TSRMLS_DC)
     {
-        PHPKObject* intern;
+        PHPTiObject* intern;
         zend_object_value retval;
 
-        // We're using a custom zend_object* (PHPKObject*) so we
+        // We're using a custom zend_object* (PHPTiObject*) so we
         // need to do the things done by zend_objects_new manually.
-        intern = (PHPKObject*) emalloc(sizeof(PHPKObject));
-        memset(intern, 0, sizeof(PHPKObject));
+        intern = (PHPTiObject*) emalloc(sizeof(PHPTiObject));
+        memset(intern, 0, sizeof(PHPTiObject));
 
         zend_object_std_init(&intern->std, classEntry TSRMLS_CC);
 
@@ -240,42 +240,42 @@ namespace tide
 
         // Use the standard object destructor, but we want to use a
         // custom memory free so that we can deference the internal
-        // Kroll value.
+        // Tide value.
         retval.handle = zend_objects_store_put(intern,
             (zend_objects_store_dtor_t) zend_objects_destroy_object,
-            (zend_objects_free_object_storage_t) PHPKObjectFreeStorage,
+            (zend_objects_free_object_storage_t) PHPTiObjectFreeStorage,
             NULL TSRMLS_CC);
 
         // Use our special handlers for doing common object operations.
-        if (classEntry == PHPKListClassEntry)
-            retval.handlers = &PHPKListHandlers;
-        else if (classEntry == PHPKMethodClassEntry)
-            retval.handlers = &PHPKMethodHandlers;
+        if (classEntry == PHPTiListClassEntry)
+            retval.handlers = &PHPTiListHandlers;
+        else if (classEntry == PHPTiMethodClassEntry)
+            retval.handlers = &PHPTiMethodHandlers;
         else
-            retval.handlers = &PHPKObjectHandlers;
+            retval.handlers = &PHPTiObjectHandlers;
 
         return retval;
     }
 
-    void PHPKObjectFreeStorage(void *zthis TSRMLS_DC)
+    void PHPTiObjectFreeStorage(void *zthis TSRMLS_DC)
     {
-        PHPKObject* phpkobject = static_cast<PHPKObject*>(zthis);
-        phpkobject->kvalue = 0;
+        PHPTiObject* phpTiObject = static_cast<PHPTiObject*>(zthis);
+        phpTiObject->kvalue = 0;
 
-        zend_object_std_dtor(&phpkobject->std TSRMLS_CC);
+        zend_object_std_dtor(&phpTiObject->std TSRMLS_CC);
         efree(zthis);
     }
 
-    zval* PHPKObjectReadProperty(zval* zthis, zval* property, int type TSRMLS_DC)
+    zval* PHPTiObjectReadProperty(zval* zthis, zval* property, int type TSRMLS_DC)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
+        TiObjectRef TiObject = kthis->kvalue->ToObject();
         string propertyName = PHPUtils::ZvalToPropertyName(property);
 
         try
         {
-            KValueRef value = kobject->Get(propertyName.c_str());
+            ValueRef value = TiObject->Get(propertyName.c_str());
             return PHPUtils::ToPHPValue(value);
         }
         catch (ValueException& e)
@@ -288,27 +288,27 @@ namespace tide
         }
     }
 
-    void PHPKObjectWriteProperty(zval* zthis, zval* property, zval* value TSRMLS_DC)
+    void PHPTiObjectWriteProperty(zval* zthis, zval* property, zval* value TSRMLS_DC)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
 
         try
         {
-            KValueRef krollValue = PHPUtils::ToKrollValue(value TSRMLS_CC);
+            ValueRef tideValue = PHPUtils::ToTiValue(value TSRMLS_CC);
             if (!property) // A NULL property name means this is an append ([]=) operation.
             {
                 // TODO: It's unclear what this should do if not called on a list.
                 if (kthis->kvalue->IsList())
                 {
-                    kthis->kvalue->ToList()->Append(krollValue);
+                    kthis->kvalue->ToList()->Append(tideValue);
                 }
             }
             else
             {
-                KObjectRef kobject = kthis->kvalue->ToObject();
+                TiObjectRef tiObject = kthis->kvalue->ToObject();
                 string propertyName = PHPUtils::ZvalToPropertyName(property);
-                    kobject->Set(propertyName.c_str(), krollValue);
+                    tiObject->Set(propertyName.c_str(), tideValue);
             }
         }
         catch (ValueException& e)
@@ -318,15 +318,15 @@ namespace tide
         }
     }
 
-    HashTable* PHPKObjectGetProperties(zval *zthis TSRMLS_DC)
+    HashTable* PHPTiObjectGetProperties(zval *zthis TSRMLS_DC)
     {
-        PHPKObject *kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject *kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
+        TiObjectRef tiObject = kthis->kvalue->ToObject();
 
         try
         {
-            SharedStringList propertyNames = kobject->GetPropertyNames();
+            SharedStringList propertyNames = tiObject->GetPropertyNames();
             HashTable* properties;
             ALLOC_HASHTABLE(properties);
             zend_hash_init(properties, propertyNames->size(), NULL, ZVAL_PTR_DTOR, 0);
@@ -334,7 +334,7 @@ namespace tide
             for (size_t i = 0; i < propertyNames->size(); i++)
             {
                 const char *key = propertyNames->at(i)->c_str();
-                KValueRef value = kobject->Get(key);
+                ValueRef value = tiObject->Get(key);
                 zval* zvalue = PHPUtils::ToPHPValue(value);
                 zend_hash_add(properties, (char *)key, strlen(key)+1, &zvalue, sizeof(zval*), NULL);
             }
@@ -361,28 +361,28 @@ namespace tide
      * checkType matched has_dimension's version of checkType (Martin: but not any
      * longer!).
      */
-    int PHPKObjectHasProperty(zval* zthis, zval* property, int checkType TSRMLS_DC)
+    int PHPTiObjectHasProperty(zval* zthis, zval* property, int checkType TSRMLS_DC)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
+        TiObjectRef tiObject = kthis->kvalue->ToObject();
         string propertyName = PHPUtils::ZvalToPropertyName(property);
 
         if (checkType == 0)
         {
-            KValueRef value = kobject->Get(propertyName.c_str());
+            ValueRef value = tiObject->Get(propertyName.c_str());
             return !value->IsUndefined() && !value->IsNull();
         }
         else if (checkType == 1)
         {
-            KValueRef value = kobject->Get(propertyName.c_str());
+            ValueRef value = tiObject->Get(propertyName.c_str());
             zval* phpValue = PHPUtils::ToPHPValue(value);
             convert_to_boolean(phpValue);
             return Z_BVAL_P(phpValue);
         }
         else // Generally this should be checkType == 2
         {
-            return kobject->HasProperty(propertyName.c_str());
+            return tiObject->HasProperty(propertyName.c_str());
         }
     }
 
@@ -396,26 +396,26 @@ namespace tide
      * non-false by invoking the object's offsetget($idx) method as well and
      * examining the returned value.
      */
-    int PHPKObjectHasDimension(zval* zthis, zval* property, int checkType TSRMLS_DC)
+    int PHPTiObjectHasDimension(zval* zthis, zval* property, int checkType TSRMLS_DC)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
+        TiObjectRef tiObject = kthis->kvalue->ToObject();
         string propertyName = PHPUtils::ZvalToPropertyName(property);
 
         if (checkType == 0)
         {
-            return kobject->HasProperty(propertyName.c_str());
+            return tiObject->HasProperty(propertyName.c_str());
         }
         else
         {
-            if (!kobject->HasProperty(propertyName.c_str()))
+            if (!tiObject->HasProperty(propertyName.c_str()))
             {
                 return false;
             }
             else
             {
-                KValueRef value = kobject->Get(propertyName.c_str());
+                ValueRef value = tiObject->Get(propertyName.c_str());
                 zval* phpValue = PHPUtils::ToPHPValue(value);
                 convert_to_boolean(phpValue);
                 return Z_BVAL_P(phpValue);
@@ -423,31 +423,31 @@ namespace tide
         }
     }
 
-    zend_class_entry* PHPKObjectGetClassEntry(const zval* zthis TSRMLS_DC)
+    zend_class_entry* PHPTiObjectGetClassEntry(const zval* zthis TSRMLS_DC)
     {
-        return PHPKObjectClassEntry;
+        return PHPTiObjectClassEntry;
     }
 
-    zend_class_entry* PHPKMethodGetClassEntry(const zval* zthis TSRMLS_DC)
+    zend_class_entry* PHPTiMethodGetClassEntry(const zval* zthis TSRMLS_DC)
     {
-        return PHPKMethodClassEntry;
+        return PHPTiMethodClassEntry;
     }
 
-    zend_class_entry* PHPKListGetClassEntry(const zval* zthis TSRMLS_DC)
+    zend_class_entry* PHPTiListGetClassEntry(const zval* zthis TSRMLS_DC)
     {
-        return PHPKListClassEntry;
+        return PHPTiListClassEntry;
     }
 
-    void PHPKObjectUnsetProperty(zval* zthis, zval* property TSRMLS_DC)
+    void PHPTiObjectUnsetProperty(zval* zthis, zval* property TSRMLS_DC)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(zthis TSRMLS_CC));
-        KObjectRef kobject = kthis->kvalue->ToObject();
+        TiObjectRef tiObject = kthis->kvalue->ToObject();
         string propertyName = PHPUtils::ZvalToPropertyName(property);
 
         try
         {
-            kobject->Set(propertyName.c_str(), Value::Undefined);
+            tiObject->Set(propertyName.c_str(), Value::Undefined);
         }
         catch (ValueException& e)
         {
@@ -456,11 +456,11 @@ namespace tide
         }
     }
 
-    PHP_METHOD(PHPKMethod, __invoke)
+    PHP_METHOD(PHPTiMethod, __invoke)
     {
-        PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* kthis = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(getThis() TSRMLS_CC));
-        KMethodRef kmethod = kthis->kvalue->ToMethod();
+        TiMethodRef timethod = kthis->kvalue->ToMethod();
 
         zend_function *func = EG(current_execute_data)->function_state.function;
         zval*** arguments = (zval***) emalloc(sizeof(zval**) * ZEND_NUM_ARGS());
@@ -477,7 +477,7 @@ namespace tide
         for (int i = 0; i < ZEND_NUM_ARGS(); i++)
         {
             zval** zargValue = arguments[i];
-            KValueRef argValue = PHPUtils::ToKrollValue(*zargValue TSRMLS_CC);
+            ValueRef argValue = PHPUtils::ToTiValue(*zargValue TSRMLS_CC);
             kargs.push_back(argValue);
         }
         efree(arguments);
@@ -488,12 +488,12 @@ namespace tide
         // CAUTION: FRIGGIN SWEET METHOD INVOCATION COMING UP.
         try
         {
-            KValueRef returnValue = kmethod->Call(kargs);
+            ValueRef returnValue = timethod->Call(kargs);
             PHPUtils::ToPHPValue(returnValue, &return_value);
         }
         catch (ValueException& e)
         {
-            // TODO: Create an exception class that can hold a KValueRef.
+            // TODO: Create an exception class that can hold a ValueRef.
             zend_throw_exception(zend_exception_get_default(TSRMLS_C),
                 (char*) e.ToString().c_str(), 666 TSRMLS_CC);
             RETVAL_NULL();
@@ -503,7 +503,7 @@ namespace tide
             PHPUtils::GetCurrentGlobalObject() TSRMLS_CC);
     }
 
-    PHP_METHOD(PHPKList, offsetExists)
+    PHP_METHOD(PHPTiList, offsetExists)
     {
         zval *index;
         if (zend_parse_parameters(ZEND_NUM_ARGS()
@@ -511,12 +511,12 @@ namespace tide
             return;
         }
 
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         string name(PHPUtils::ZvalToPropertyName(index));
         RETURN_BOOL((!name.empty() && klist->HasProperty(name.c_str())));
     }
 
-    PHP_METHOD(PHPKList, offsetGet)
+    PHP_METHOD(PHPTiList, offsetGet)
     {
         zval *index;
         if (zend_parse_parameters(ZEND_NUM_ARGS()
@@ -526,13 +526,13 @@ namespace tide
             
         }
 
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         string name(PHPUtils::ZvalToPropertyName(index));
-        KValueRef returnValue(klist->Get(name.c_str()));
+        ValueRef returnValue(klist->Get(name.c_str()));
         PHPUtils::ToPHPValue(returnValue, &return_value);
     }
 
-    PHP_METHOD(PHPKList, offsetSet)
+    PHP_METHOD(PHPTiList, offsetSet)
     {
         zval *zindexString, *zvalue;
         if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "zz",
@@ -541,13 +541,13 @@ namespace tide
             return;
         }
 
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         string indexString(PHPUtils::ZvalToPropertyName(zindexString));
-        KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+        ValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
 
-        if (KList::IsInt(indexString))
+        if (TiList::IsInt(indexString))
         {
-            klist->SetAt(KList::ToIndex(indexString), value);
+            klist->SetAt(TiList::ToIndex(indexString), value);
         }
         else
         {
@@ -555,7 +555,7 @@ namespace tide
         }
     }
 
-    PHP_METHOD(PHPKList, offsetUnset)
+    PHP_METHOD(PHPTiList, offsetUnset)
     {
         zval *zindex;
         if (zend_parse_parameters(ZEND_NUM_ARGS()
@@ -563,19 +563,19 @@ namespace tide
             return;
         }
 
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         string indexString(PHPUtils::ZvalToPropertyName(zindex));
         klist->Set(indexString.c_str(), Value::Undefined);
     }
 
-    PHP_METHOD(PHPKList, count)
+    PHP_METHOD(PHPTiList, count)
     {
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         SharedStringList propertyList = klist->GetPropertyNames();
         RETVAL_LONG(propertyList->size());
     }
 
-    PHP_METHOD(PHPKList, append)
+    PHP_METHOD(PHPTiList, append)
     {
         zval *zvalue;
         if (zend_parse_parameters(ZEND_NUM_ARGS()
@@ -584,14 +584,14 @@ namespace tide
             return;
         }
 
-        KListRef klist(GET_MY_KLIST());
-        KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+        TiListRef klist(GET_MY_KLIST());
+        ValueRef value(PHPUtils::ToTiValue(zvalue TSRMLS_CC));
         klist->Append(value);
     } 
 
-    PHP_METHOD(PHPKList, getArrayCopy)
+    PHP_METHOD(PHPTiList, getArrayCopy)
     {
-        KListRef klist(GET_MY_KLIST());
+        TiListRef klist(GET_MY_KLIST());
         SharedStringList propertyList = klist->GetPropertyNames();
 
         array_init(return_value);
@@ -604,7 +604,7 @@ namespace tide
         }
     }
 
-    PHP_METHOD(PHPKList, exchangeArray)
+    PHP_METHOD(PHPTiList, exchangeArray)
     {
         // TODO: Implement
     }
@@ -620,7 +620,7 @@ namespace tide
             return;
         }
         
-        PHPKObject* object = reinterpret_cast<PHPKObject*>(
+        PHPTiObject* object = reinterpret_cast<PHPTiObject*>(
             zend_object_store_get_object(phpWindowContext TSRMLS_CC));
 
         // If there is a preceding namespace to this function name trim it off.
@@ -638,92 +638,92 @@ namespace tide
 
         // Use the name without the namespace for the Window object, but use
         // the full name for the KPHPFunction.
-        KObjectRef window = object->kvalue->ToObject();
+        TiObjectRef window = object->kvalue->ToObject();
         window->Set(fnameString.c_str(),
             Value::NewMethod(new KPHPFunction(fname)));
     }
 
     namespace PHPUtils
     {
-        void InitializePHPKrollClasses()
+        void InitializePHPTideClasses()
         {
             TSRMLS_FETCH();
 
             // Initialize the class entry for our classes
-            zend_class_entry kobjectClassEntry;
-            INIT_CLASS_ENTRY(kobjectClassEntry, "PHPKObject", PHPKObjectMethods);
-            PHPKObjectClassEntry = zend_register_internal_class(&kobjectClassEntry TSRMLS_CC);
-            zend_class_entry kmethodClassEntry;
-            INIT_CLASS_ENTRY(kmethodClassEntry, "PHPKMethod", PHPKMethodMethods);
-            PHPKMethodClassEntry = zend_register_internal_class(&kmethodClassEntry TSRMLS_CC);
+            zend_class_entry tiObjectClassEntry;
+            INIT_CLASS_ENTRY(tiObjectClassEntry, "PHPTiObject", PHPTiObjectMethods);
+            PHPTiObjectClassEntry = zend_register_internal_class(&tiObjectClassEntry TSRMLS_CC);
+            zend_class_entry timethodClassEntry;
+            INIT_CLASS_ENTRY(timethodClassEntry, "PHPTiMethod", PHPTiMethodMethods);
+            PHPTiMethodClassEntry = zend_register_internal_class(&timethodClassEntry TSRMLS_CC);
             zend_class_entry klistClassEntry;
-            INIT_CLASS_ENTRY(klistClassEntry, "PHPKList", PHPKListMethods);
-            PHPKListClassEntry = zend_register_internal_class_ex(
+            INIT_CLASS_ENTRY(klistClassEntry, "PHPTiList", PHPTiListMethods);
+            PHPTiListClassEntry = zend_register_internal_class_ex(
                 &klistClassEntry, spl_ce_ArrayObject, "ArrayObject" TSRMLS_CC);
 
-            // PHPKMethod has enough of the same behavior that we can use the same
-            // handler table that PHPKObject uses. This may change in the future.
-            PHPKObjectClassEntry->create_object = PHPKObjectCreateObject;
-            PHPKMethodClassEntry->create_object = PHPKObjectCreateObject;
-            PHPKListClassEntry->create_object = PHPKObjectCreateObject;
+            // PHPTiMethod has enough of the same behavior that we can use the same
+            // handler table that PHPTiObject uses. This may change in the future.
+            PHPTiObjectClassEntry->create_object = PHPTiObjectCreateObject;
+            PHPTiMethodClassEntry->create_object = PHPTiObjectCreateObject;
+            PHPTiListClassEntry->create_object = PHPTiObjectCreateObject;
 
             // Create our custom handlers table to override the
             // default behaviour of our PHP objects.
-            PHPKObjectHandlers = *zend_get_std_object_handlers();
-            PHPKObjectHandlers.read_property = PHPKObjectReadProperty;
-            PHPKObjectHandlers.write_property = PHPKObjectWriteProperty;
-            PHPKObjectHandlers.get_properties = PHPKObjectGetProperties;
-            PHPKObjectHandlers.read_dimension = PHPKObjectReadProperty;
-            PHPKObjectHandlers.unset_property = PHPKObjectUnsetProperty;
-            PHPKObjectHandlers.unset_dimension = PHPKObjectUnsetProperty;
-            PHPKObjectHandlers.write_dimension = PHPKObjectWriteProperty;
-            PHPKObjectHandlers.has_property = PHPKObjectHasProperty;
-            PHPKObjectHandlers.has_dimension = PHPKObjectHasDimension;
-            PHPKObjectHandlers.get_class_entry = PHPKObjectGetClassEntry;
+            PHPTiObjectHandlers = *zend_get_std_object_handlers();
+            PHPTiObjectHandlers.read_property = PHPTiObjectReadProperty;
+            PHPTiObjectHandlers.write_property = PHPTiObjectWriteProperty;
+            PHPTiObjectHandlers.get_properties = PHPTiObjectGetProperties;
+            PHPTiObjectHandlers.read_dimension = PHPTiObjectReadProperty;
+            PHPTiObjectHandlers.unset_property = PHPTiObjectUnsetProperty;
+            PHPTiObjectHandlers.unset_dimension = PHPTiObjectUnsetProperty;
+            PHPTiObjectHandlers.write_dimension = PHPTiObjectWriteProperty;
+            PHPTiObjectHandlers.has_property = PHPTiObjectHasProperty;
+            PHPTiObjectHandlers.has_dimension = PHPTiObjectHasDimension;
+            PHPTiObjectHandlers.get_class_entry = PHPTiObjectGetClassEntry;
 
-            PHPKListHandlers = PHPKObjectHandlers;
-            PHPKListHandlers.get_class_entry = PHPKListGetClassEntry;
+            PHPTiListHandlers = PHPTiObjectHandlers;
+            PHPTiListHandlers.get_class_entry = PHPTiListGetClassEntry;
 
-            // PHPKList mostly uses the standard handlers.
-            PHPKMethodHandlers = *zend_get_std_object_handlers();
-            PHPKMethodHandlers.get_class_entry = PHPKMethodGetClassEntry;
+            // PHPTiList mostly uses the standard handlers.
+            PHPTiMethodHandlers = *zend_get_std_object_handlers();
+            PHPTiMethodHandlers.get_class_entry = PHPTiMethodGetClassEntry;
 
             // Initialize static functions
             zend_register_functions(NULL, PHPFunctions, NULL, MODULE_PERSISTENT TSRMLS_CC);
         }
 
-        void KObjectToKPHPObject(KValueRef objectValue, zval** returnValue)
+        void TiObjectToKPHPObject(ValueRef objectValue, zval** returnValue)
         {
-            // Initialize our object with our pre-defined KObject class entry.
+            // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();
-            object_init_ex(*returnValue, PHPKObjectClassEntry);
+            object_init_ex(*returnValue, PHPTiObjectClassEntry);
 
             // Place the KValue into the internal struct.
-            PHPKObject* internal = reinterpret_cast<PHPKObject*>(
+            PHPTiObject* internal = reinterpret_cast<PHPTiObject*>(
                 zend_object_store_get_object(*returnValue TSRMLS_CC));
             internal->kvalue = objectValue;
         }
 
-        void KMethodToKPHPMethod(KValueRef methodValue, zval** returnValue)
+        void TiMethodToKPHPMethod(ValueRef methodValue, zval** returnValue)
         {
-            // Initialize our object with our pre-defined KObject class entry.
+            // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();
-            object_init_ex(*returnValue, PHPKMethodClassEntry);
+            object_init_ex(*returnValue, PHPTiMethodClassEntry);
 
             // Place the KValue into the internal struct.
-            PHPKObject* internal = reinterpret_cast<PHPKObject*>(
+            PHPTiObject* internal = reinterpret_cast<PHPTiObject*>(
                 zend_object_store_get_object(*returnValue TSRMLS_CC));
             internal->kvalue = methodValue;
         }
 
-        void KListToKPHPArray(KValueRef listValue, zval** returnValue)
+        void TiListToKPHPArray(ValueRef listValue, zval** returnValue)
         {
-            // Initialize our object with our pre-defined KObject class entry.
+            // Initialize our object with our pre-defined TiObject class entry.
             TSRMLS_FETCH();
-            object_init_ex(*returnValue, PHPKListClassEntry);
+            object_init_ex(*returnValue, PHPTiListClassEntry);
 
             // Place the KValue into the internal struct.
-            PHPKObject* internal = reinterpret_cast<PHPKObject*>(
+            PHPTiObject* internal = reinterpret_cast<PHPTiObject*>(
                 zend_object_store_get_object(*returnValue TSRMLS_CC));
             internal->kvalue = listValue;
         }

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_COM_REFERENCE_COUNTED_H_
-#define _KR_COM_REFERENCE_COUNTED_H_
+#ifndef _COM_REFERENCE_COUNTED_H_
+#define _COM_REFERENCE_COUNTED_H_
 #include <Unknwn.h>
 /*
  * This is a COM-specific wrapper of ReferenceCounted. 

@@ -36,39 +36,39 @@
 
 namespace tide
 {
-    KEventObject::KEventObject(const char *type) :
-        KAccessorObject(type)
+    EventObject::EventObject(const char *type) :
+        AccessorObject(type)
     {
-        this->SetMethod("on", &KEventObject::_AddEventListener);
-        this->SetMethod("addEventListener", &KEventObject::_AddEventListener);
-        this->SetMethod("removeEventListener", &KEventObject::_RemoveEventListener);
+        this->SetMethod("on", &EventObject::_AddEventListener);
+        this->SetMethod("addEventListener", &EventObject::_AddEventListener);
+        this->SetMethod("removeEventListener", &EventObject::_RemoveEventListener);
 
         Event::SetEventConstants(this);
     }
 
-    KEventObject::~KEventObject()
+    EventObject::~EventObject()
     {
         this->RemoveAllEventListeners();
     }
 
-    AutoPtr<Event> KEventObject::CreateEvent(const std::string& eventName)
+    AutoPtr<Event> EventObject::CreateEvent(const std::string& eventName)
     {
-        return new Event(AutoPtr<KEventObject>(this, true), eventName);
+        return new Event(AutoPtr<EventObject>(this, true), eventName);
     }
 
-    void KEventObject::AddEventListener(const char* event, KMethodRef callback)
-    {
-        Poco::FastMutex::ScopedLock lock(this->listenersMutex);
-        listeners.push_back(new EventListener(event, callback));
-    }
-
-    void KEventObject::AddEventListener(std::string& event, KMethodRef callback)
+    void EventObject::AddEventListener(const char* event, TiMethodRef callback)
     {
         Poco::FastMutex::ScopedLock lock(this->listenersMutex);
         listeners.push_back(new EventListener(event, callback));
     }
 
-    void KEventObject::RemoveEventListener(std::string& event, KMethodRef callback)
+    void EventObject::AddEventListener(std::string& event, TiMethodRef callback)
+    {
+        Poco::FastMutex::ScopedLock lock(this->listenersMutex);
+        listeners.push_back(new EventListener(event, callback));
+    }
+
+    void EventObject::RemoveEventListener(std::string& event, TiMethodRef callback)
     {
         Poco::FastMutex::ScopedLock lock(this->listenersMutex);
 
@@ -86,7 +86,7 @@ namespace tide
         }
     }
 
-    void KEventObject::RemoveAllEventListeners()
+    void EventObject::RemoveAllEventListeners()
     {
         Poco::FastMutex::ScopedLock lock(this->listenersMutex);
 
@@ -99,12 +99,12 @@ namespace tide
         this->listeners.clear();
     }
 
-    void KEventObject::FireEvent(const char* event)
+    void EventObject::FireEvent(const char* event)
     {
         FireEvent(event, ValueList());
     }
 
-    void KEventObject::FireEvent(const char* event, const ValueList& args)
+    void EventObject::FireEvent(const char* event, const ValueList& args)
     {
         // Make a copy of the listeners map here, because firing the event might
         // take a while and we don't want to block other threads that just need
@@ -115,7 +115,7 @@ namespace tide
             listenersCopy = listeners;
         }
 
-        KObjectRef thisObject(this, true);
+        TiObjectRef thisObject(this, true);
         EventListenerList::iterator li = listenersCopy.begin();
         while (li != listenersCopy.end())
         {
@@ -139,13 +139,13 @@ namespace tide
         }    
     }
 
-    bool KEventObject::FireEvent(std::string& eventName, bool synchronous)
+    bool EventObject::FireEvent(std::string& eventName, bool synchronous)
     {
         AutoPtr<Event> event(this->CreateEvent(eventName));
         return this->FireEvent(event);
     }
 
-    bool KEventObject::FireEvent(AutoPtr<Event> event, bool synchronous)
+    bool EventObject::FireEvent(AutoPtr<Event> event, bool synchronous)
     {
         // Make a copy of the listeners map here, because firing the event might
         // take a while and we don't want to block other threads that just need
@@ -156,7 +156,7 @@ namespace tide
             listenersCopy = listeners;
         }
 
-        KObjectRef thisObject(this, true);
+        TiObjectRef thisObject(this, true);
         EventListenerList::iterator li = listenersCopy.begin();
         while (li != listenersCopy.end())
         {
@@ -186,15 +186,15 @@ namespace tide
         return !synchronous || !event->preventedDefault;
     }
 
-    void KEventObject::FireErrorEvent(std::exception& e)
+    void EventObject::FireErrorEvent(std::exception& e)
     {
         FireEvent("error", ValueList(Value::NewString(e.what())));
     }
 
-    void KEventObject::_AddEventListener(const ValueList& args, KValueRef result)
+    void EventObject::_AddEventListener(const ValueList& args, ValueRef result)
     {
         std::string event;
-        KMethodRef callback;
+        TiMethodRef callback;
 
         if (args.size() > 1 && args.at(0)->IsString() && args.at(1)->IsMethod())
         {
@@ -215,7 +215,7 @@ namespace tide
         result->SetMethod(callback);
     }
 
-    void KEventObject::_RemoveEventListener(const ValueList& args, KValueRef result)
+    void EventObject::_RemoveEventListener(const ValueList& args, ValueRef result)
     {
         args.VerifyException("removeEventListener", "s m");
 
@@ -223,19 +223,19 @@ namespace tide
         this->RemoveEventListener(event, args.GetMethod(1));
     }
 
-    void KEventObject::ReportDispatchError(std::string& reason)
+    void EventObject::ReportDispatchError(std::string& reason)
     {
         this->logger()->Error("Failed to fire event: target=%s reason=%s",
             this->GetType().c_str(), reason.c_str());
     }
 
-    EventListener::EventListener(std::string& targetedEvent, KMethodRef callback) :
+    EventListener::EventListener(std::string& targetedEvent, TiMethodRef callback) :
         targetedEvent(targetedEvent),
         callback(callback)
     {
     }
 
-    EventListener::EventListener(const char* targetedEvent, KMethodRef callback) :
+    EventListener::EventListener(const char* targetedEvent, TiMethodRef callback) :
         targetedEvent(targetedEvent),
         callback(callback)
     {
@@ -246,14 +246,14 @@ namespace tide
         return targetedEvent.compare(event) == 0 || targetedEvent == Event::ALL;
     }
 
-    inline KMethodRef EventListener::Callback()
+    inline TiMethodRef EventListener::Callback()
     {
         return this->callback;
     }
 
-    bool EventListener::Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous)
+    bool EventListener::Dispatch(TiObjectRef thisObject, const ValueList& args, bool synchronous)
     {
-        KValueRef result = RunOnMainThread(this->callback, thisObject, args, synchronous);
+        ValueRef result = RunOnMainThread(this->callback, thisObject, args, synchronous);
         if (result->IsBool())
             return result->ToBool();
         return true;

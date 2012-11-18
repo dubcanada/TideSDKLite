@@ -40,8 +40,8 @@ namespace tide
     class TIDE_API ReadEvent : public Event
     {
     public:
-        ReadEvent(AutoPtr<KEventObject> target, BytesRef);
-        void _GetData(const ValueList&, KValueRef result);
+        ReadEvent(AutoPtr<EventObject> target, BytesRef);
+        void _GetData(const ValueList&, ValueRef result);
 
     protected:
         BytesRef data;

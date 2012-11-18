@@ -43,7 +43,7 @@ namespace ti
     
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    TCPServerSocketConnector::TCPServerSocketConnector(KMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_) :
+    TCPServerSocketConnector::TCPServerSocketConnector(TiMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_) :
         callback(callback_),socket(socket_),reactor(reactor_)
     {
         reactor.addEventHandler(socket, Poco::Observer<TCPServerSocketConnector, Poco::Net::ReadableNotification>(*this, &TCPServerSocketConnector::onAccept));
@@ -75,7 +75,7 @@ namespace ti
     
     //////////////////////////////////////////////////////////////////////////////////////////
     
-    TCPServerSocketBinding::TCPServerSocketBinding(Host* ti_host, KMethodRef create) :
+    TCPServerSocketBinding::TCPServerSocketBinding(Host* ti_host, TiMethodRef create) :
         StaticBoundObject("Network.TCPServerSocket"),
         onCreate(create), 
         socket(0),
@@ -122,7 +122,7 @@ namespace ti
         }
     }
     
-    void TCPServerSocketBinding::Listen(const ValueList& args, KValueRef result)
+    void TCPServerSocketBinding::Listen(const ValueList& args, ValueRef result)
     {
         args.VerifyException("listen", "n");
 
@@ -140,7 +140,7 @@ namespace ti
         result->SetBool(true);
     }
     
-    void TCPServerSocketBinding::Close(const ValueList& args, KValueRef result)
+    void TCPServerSocketBinding::Close(const ValueList& args, ValueRef result)
     {
         if (this->listening)
         {

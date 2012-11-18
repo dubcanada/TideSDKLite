@@ -49,14 +49,14 @@ namespace ti
     private:
         Poco::Net::HTTPServerResponse& response;
 
-        void SetStatus(const ValueList& args, KValueRef result);
-        void SetReason(const ValueList& args, KValueRef result);
-        void SetStatusAndReason(const ValueList& args, KValueRef result);
-        void SetContentType(const ValueList& args, KValueRef result);
-        void SetContentLength(const ValueList& args, KValueRef result);
-        void AddCookie(const ValueList& args, KValueRef result);
-        void SetHeader(const ValueList& args, KValueRef result);
-        void Write(const ValueList& args, KValueRef result);
+        void SetStatus(const ValueList& args, ValueRef result);
+        void SetReason(const ValueList& args, ValueRef result);
+        void SetStatusAndReason(const ValueList& args, ValueRef result);
+        void SetContentType(const ValueList& args, ValueRef result);
+        void SetContentLength(const ValueList& args, ValueRef result);
+        void AddCookie(const ValueList& args, ValueRef result);
+        void SetHeader(const ValueList& args, ValueRef result);
+        void Write(const ValueList& args, ValueRef result);
 
     };
 }

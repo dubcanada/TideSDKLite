@@ -37,7 +37,7 @@
 namespace tide
 {
     KRubyObject::KRubyObject(VALUE object) :
-        KObject("Ruby.KRubyObject"),
+        TiObject("Ruby.KRubyObject"),
         object(object)
     {
         rb_gc_register_address(&object);
@@ -54,7 +54,7 @@ namespace tide
         return rb_apply(object, rb_intern("method_missing"), args);
     }
 
-    void KRubyObject::Set(const char *name, KValueRef value)
+    void KRubyObject::Set(const char *name, ValueRef value)
     {
         VALUE ruby_value = RubyUtils::ToRubyValue(value);
         std::string setter_name = std::string(name) + "=";
@@ -80,7 +80,7 @@ namespace tide
             if (rb_obj_is_kind_of(exception, rb_eNoMethodError) != Qtrue
                 && rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
             {
-                KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+                ValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }
@@ -94,7 +94,7 @@ namespace tide
         }
     }
 
-    KValueRef KRubyObject::Get(const char *name)
+    ValueRef KRubyObject::Get(const char *name)
     {
         std::string iv_name = std::string("@") + name;
         ID iv_ID = rb_intern(iv_name.c_str());
@@ -120,7 +120,7 @@ namespace tide
             ruby_value = rb_protect(kobj_do_method_missing_call, rargs, &error);
 
             // protect against NoMethodErrors which we don't want to propogate
-            // back through Kroll, but other exceptions should be thrown.
+            // back through Tide, but other exceptions should be thrown.
             VALUE exception = rb_gv_get("$!");
             if (rb_obj_is_kind_of(exception, rb_eNoMethodError) == Qtrue
                 || rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
@@ -129,16 +129,16 @@ namespace tide
             }
             else
             {
-                KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+                ValueRef exceptionValue = RubyUtils::ToTiValue(exception);
                 ValueException e = ValueException(exceptionValue);
                 throw e;
             }
         }
 
-        return RubyUtils::ToKrollValue(ruby_value);
+        return RubyUtils::ToTiValue(ruby_value);
     }
 
-    bool KRubyObject::Equals(KObjectRef other)
+    bool KRubyObject::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyObject> rubyOther = other.cast<KRubyObject>();
         if (rubyOther.isNull())

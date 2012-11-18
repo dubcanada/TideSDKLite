@@ -45,7 +45,7 @@
 
 namespace ti
 {
-    class AnalyticsBinding : public KEventObject, public Poco::Runnable
+    class AnalyticsBinding : public EventObject, public Poco::Runnable
     {
     public:
         AnalyticsBinding();
@@ -60,12 +60,12 @@ namespace ti
         Poco::Thread thread;
         std::queue<std::string> events;
         Poco::Mutex eventsLock;
-        KMethodRef startCallback;
+        TiMethodRef startCallback;
 
         void run();
         void SendEventToAPIServer(std::string& eventData);
-        void _SendEvent(const ValueList& args, KValueRef result);
-        void _StartAnalyticsThread(const ValueList &args, KValueRef result);
+        void _SendEvent(const ValueList& args, ValueRef result);
+        void _StartAnalyticsThread(const ValueList &args, ValueRef result);
     };
 }
 

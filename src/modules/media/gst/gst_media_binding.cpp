@@ -37,7 +37,7 @@
 
 namespace ti
 {
-    GstMediaBinding::GstMediaBinding(KObjectRef global) : MediaBinding(global)
+    GstMediaBinding::GstMediaBinding(TiObjectRef global) : MediaBinding(global)
     {
         char **argv;
         int argc = 0;
@@ -53,7 +53,7 @@ namespace ti
         gdk_beep();
     }
 
-    KObjectRef GstMediaBinding::CreateSound(std::string& url)
+    TiObjectRef GstMediaBinding::CreateSound(std::string& url)
     {
         //This is a path so, turn it into a file:// URL
         std::string myurl = url;

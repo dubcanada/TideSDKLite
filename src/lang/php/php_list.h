@@ -32,39 +32,39 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_ARRAY_OBJECT_H_
-#define _K_PHP_ARRAY_OBJECT_H_
+#ifndef _PHP_LIST_H_
+#define _PHP_LIST_H_
 
 #include "php_module.h"
 
 namespace tide
 {
-    class KPHPArrayObject : public KList
+    class KPHPList : public TiList
     {
         public:
-        KPHPArrayObject(zval *list);
-        virtual ~KPHPArrayObject();
+        KPHPList(zval *list);
+        virtual ~KPHPList();
 
-        KValueRef Get(const char *name);
-        void Set(const char *name, KValueRef value);
-        virtual bool Equals(KObjectRef);
+        ValueRef Get(const char* name);
+        void Set(const char* name, ValueRef value);
+        virtual bool Equals(TiObjectRef);
         SharedStringList GetPropertyNames();
 
         unsigned int Size();
-        void Append(KValueRef value);
-        virtual void SetAt(unsigned int index, KValueRef value);
+        void Append(ValueRef value);
+        virtual void SetAt(unsigned int index, ValueRef value);
         bool Remove(unsigned int index);
-        KValueRef At(unsigned int index);
+        ValueRef At(unsigned int index);
 
         zval* ToPHP();
 
         protected:
         zval *list;
 
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray, const char *key);
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray, unsigned int index);
-        static void AddKrollValueToPHPArray(KValueRef value, zval *phpArray);
-        DISALLOW_EVIL_CONSTRUCTORS(KPHPArrayObject);
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray, const char* key);
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray, unsigned int index);
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray);
+        DISALLOW_EVIL_CONSTRUCTORS(KPHPList);
     };
 }
 

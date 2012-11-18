@@ -55,7 +55,7 @@
 #endif
 #include <Poco/URI.h>
 
-#define JSContextToKrollContext(context) \
+#define JSContextToTideContext(context) \
     new KKJSObject(reinterpret_cast<JSContextRef>(context), JSContextGetGlobalObject(reinterpret_cast<JSContextRef>(context)))
 /**
  * Script evaluators are responsible for matching and evaluating custom <script> types, and preprocessing URLs
@@ -103,7 +103,7 @@ namespace ti
                 tide::Script::GetInstance()->Evaluate(
                     (const char *)_bstr_t(mimeType), "<script>",
                     (const char *)_bstr_t(sourceCode),
-                    JSContextToKrollContext(context));
+                    JSContextToTideContext(context));
             }
             catch (ValueException& exception)
             {
@@ -123,7 +123,7 @@ namespace ti
             try
             {
                 tide::Script::GetInstance()->Evaluate(mimeType, "<script>",
-                    sourceCode, JSContextToKrollContext(context));
+                    sourceCode, JSContextToTideContext(context));
             }
             catch (ValueException& exception)
             {

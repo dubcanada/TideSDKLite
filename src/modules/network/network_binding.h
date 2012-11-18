@@ -45,7 +45,7 @@ namespace ti
 
 namespace ti
 {
-    class NetworkBinding : public KAccessorObject
+    class NetworkBinding : public AccessorObject
     {
     public:
         NetworkBinding(Host*);
@@ -56,28 +56,28 @@ namespace ti
 
     private:
         Host* host;
-        KObjectRef global;
+        TiObjectRef global;
 
         AutoPtr<HostBinding> GetHostBinding(std::string host);
 
-        void _GetFirstMACAddress(const ValueList& args, KValueRef result);
-        void _GetFirstIPAddress(const ValueList& args, KValueRef result);
-        void _GetInterfaces(const ValueList& args, KValueRef result);
-        void _CreateIPAddress(const ValueList& args, KValueRef result);
-        void _CreateTCPSocket(const ValueList& args, KValueRef result);
-        void _CreateTCPServerSocket(const ValueList& args, KValueRef result);
-        void _CreateIRCClient(const ValueList& args, KValueRef result);
-        void _CreateHTTPClient(const ValueList& args, KValueRef result);
-        void _CreateHTTPServer(const ValueList& args, KValueRef result);
-        void _CreateHTTPCookie(const ValueList& args, KValueRef result);
-        void _EncodeURIComponent(const ValueList &args, KValueRef result);
-        void _DecodeURIComponent(const ValueList &args, KValueRef result);
-        void _GetHostByName(const ValueList& args, KValueRef result);
-        void _GetHostByAddress(const ValueList& args, KValueRef result);
-        void _SetHTTPProxy(const ValueList& args, KValueRef result);
-        void _SetHTTPSProxy(const ValueList& args, KValueRef result);
-        void _GetHTTPProxy(const ValueList& args, KValueRef result);
-        void _GetHTTPSProxy(const ValueList& args, KValueRef result);
+        void _GetFirstMACAddress(const ValueList& args, ValueRef result);
+        void _GetFirstIPAddress(const ValueList& args, ValueRef result);
+        void _GetInterfaces(const ValueList& args, ValueRef result);
+        void _CreateIPAddress(const ValueList& args, ValueRef result);
+        void _CreateTCPSocket(const ValueList& args, ValueRef result);
+        void _CreateTCPServerSocket(const ValueList& args, ValueRef result);
+        void _CreateIRCClient(const ValueList& args, ValueRef result);
+        void _CreateHTTPClient(const ValueList& args, ValueRef result);
+        void _CreateHTTPServer(const ValueList& args, ValueRef result);
+        void _CreateHTTPCookie(const ValueList& args, ValueRef result);
+        void _EncodeURIComponent(const ValueList &args, ValueRef result);
+        void _DecodeURIComponent(const ValueList &args, ValueRef result);
+        void _GetHostByName(const ValueList& args, ValueRef result);
+        void _GetHostByAddress(const ValueList& args, ValueRef result);
+        void _SetHTTPProxy(const ValueList& args, ValueRef result);
+        void _SetHTTPSProxy(const ValueList& args, ValueRef result);
+        void _GetHTTPProxy(const ValueList& args, ValueRef result);
+        void _GetHTTPSProxy(const ValueList& args, ValueRef result);
     };
 }
 

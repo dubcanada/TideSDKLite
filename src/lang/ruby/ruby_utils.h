@@ -43,20 +43,20 @@ namespace tide
     class RubyUtils
     {
     public:
-        static KValueRef ToKrollValue(VALUE value);
-        static VALUE ToRubyValue(KValueRef value);
-        static VALUE KObjectToRubyValue(KValueRef value);
-        static VALUE KMethodToRubyValue(KValueRef value);
-        static VALUE KListToRubyValue(KValueRef value);
+        static ValueRef ToTiValue(VALUE value);
+        static VALUE ToRubyValue(ValueRef value);
+        static VALUE TiObjectToRubyValue(ValueRef value);
+        static VALUE TiMethodToRubyValue(ValueRef value);
+        static VALUE TiListToRubyValue(ValueRef value);
         static bool KindOf(VALUE value, VALUE klass);
 
         static ValueException GetException();
-        static VALUE GenericKMethodCall(KMethodRef method, VALUE args);
+        static VALUE GenericTiMethodCall(TiMethodRef method, VALUE args);
 
     private:
-        static VALUE KObjectClass;
-        static VALUE KMethodClass;
-        static VALUE KListClass;
+        static VALUE TiObjectClass;
+        static VALUE TiMethodClass;
+        static VALUE TiListClass;
         RubyUtils(){}
         ~RubyUtils(){}
     };

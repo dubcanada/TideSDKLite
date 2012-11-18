@@ -38,29 +38,29 @@
 namespace tide
 {
     /**
-     * The ProfiledBoundList is a wrapped KList that does profiling
+     * The ProfiledBoundList is a wrapped TiList that does profiling
      */
-    class ProfiledBoundList : public ProfiledBoundObject, public KList
+    class ProfiledBoundList : public ProfiledBoundObject, public TiList
     {
     public:
-        ProfiledBoundList(KListRef delegate);
+        ProfiledBoundList(TiListRef delegate);
         virtual ~ProfiledBoundList();
 
-        // @see KList::Append
-        virtual void Append(KValueRef value);
-        // @see KList::Size
+        // @see TiList::Append
+        virtual void Append(ValueRef value);
+        // @see TiList::Size
         virtual unsigned int Size();
-        // @see KList::At
-        virtual KValueRef At(unsigned int index);
-        // @see KList::SetAt
-        virtual void SetAt(unsigned int index, KValueRef value);
-        // @see KList::Remove
+        // @see TiList::At
+        virtual ValueRef At(unsigned int index);
+        // @see TiList::SetAt
+        virtual void SetAt(unsigned int index, ValueRef value);
+        // @see TiList::Remove
         virtual bool Remove(unsigned int index);
-        // @See KList::Set
-        virtual void Set(const char *name, KValueRef value);
-        // @see KList::Get
-        virtual KValueRef Get(const char *name);
-        // @see KList::GetPropertyNames
+        // @See TiList::Set
+        virtual void Set(const char *name, ValueRef value);
+        // @see TiList::Get
+        virtual ValueRef Get(const char *name);
+        // @see TiList::GetPropertyNames
         virtual SharedStringList GetPropertyNames();
 
         bool HasProperty(const char* name);
@@ -68,7 +68,7 @@ namespace tide
         /**
          * @return the delegate of this profiled bound object
          */
-        KListRef GetDelegate() { return list; }
+        TiListRef GetDelegate() { return list; }
         virtual void duplicate()
         {
             ++count;
@@ -88,7 +88,7 @@ namespace tide
         }
 
     private:
-        KListRef list;
+        TiListRef list;
         Poco::AtomicCounter count;
 
     };

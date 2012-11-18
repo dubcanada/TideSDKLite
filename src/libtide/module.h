@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_PLUGIN_H_
-#define _KR_PLUGIN_H_
+#ifndef _PLUGIN_H_
+#define _PLUGIN_H_
 
 #include "module_provider.h"
 
@@ -42,7 +42,7 @@ namespace tide
     class Host;
 
     /**
-     * An interface that represents a Kroll Module.
+     * An interface that represents a Tide Module.
      *
      * The easiest way to create a module is to use the convenience macros defined in module.h.
      * Example MyModule.h:

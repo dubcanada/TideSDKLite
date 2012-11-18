@@ -34,7 +34,7 @@
 
 #include "boot.h"
 
-namespace KrollBoot
+namespace TideBoot
 {
     string applicationHome;
     string updateFile;

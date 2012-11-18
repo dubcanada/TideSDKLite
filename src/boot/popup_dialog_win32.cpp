@@ -40,7 +40,7 @@
 
 #define ID_INPUT_FIELD 101
 
-namespace KrollBoot
+namespace TideBoot
 {
     std::map<DWORD, Win32PopupDialog*> Win32PopupDialog::popups;
 

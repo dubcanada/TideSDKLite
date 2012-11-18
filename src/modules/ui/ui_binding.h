@@ -41,7 +41,7 @@
 
 namespace ti
 {
-    class UIBinding : public KAccessorObject
+    class UIBinding : public AccessorObject
     {
 
     public:
@@ -56,33 +56,33 @@ namespace ti
         void RemoveFromOpenWindows(AutoUserWindow);
         void ClearTray();
         void UnregisterTrayItem(TrayItem*);
-        void _GetOpenWindows(const ValueList& args, KValueRef result);
-        void _GetMainWindow(const ValueList& args, KValueRef result);
-        void _CreateWindow(const ValueList& args, KValueRef result);
-        void _CreateNotification(const ValueList& args, KValueRef result);
-        void _CreateMenu(const ValueList& args, KValueRef result);
-        void _CreateMenuItem(const ValueList& args, KValueRef result);
-        void _CreateCheckMenuItem(const ValueList& args, KValueRef result);
-        void _CreateSeparatorMenuItem(const ValueList& args, KValueRef result);
+        void _GetOpenWindows(const ValueList& args, ValueRef result);
+        void _GetMainWindow(const ValueList& args, ValueRef result);
+        void _CreateWindow(const ValueList& args, ValueRef result);
+        void _CreateNotification(const ValueList& args, ValueRef result);
+        void _CreateMenu(const ValueList& args, ValueRef result);
+        void _CreateMenuItem(const ValueList& args, ValueRef result);
+        void _CreateCheckMenuItem(const ValueList& args, ValueRef result);
+        void _CreateSeparatorMenuItem(const ValueList& args, ValueRef result);
         AutoMenu __CreateMenu(const ValueList& args);
         AutoMenuItem __CreateMenuItem(const ValueList& args);
         AutoMenuItem __CreateCheckMenuItem(const ValueList& args);
         AutoMenuItem __CreateSeparatorMenuItem(const ValueList& args);
-        void _SetMenu(const ValueList& args, KValueRef result);
-        void _GetMenu(const ValueList& args, KValueRef result);
-        void _SetContextMenu(const ValueList& args, KValueRef result);
-        void _GetContextMenu(const ValueList& args, KValueRef result);
-        void _SetIcon(const ValueList& args, KValueRef result);
+        void _SetMenu(const ValueList& args, ValueRef result);
+        void _GetMenu(const ValueList& args, ValueRef result);
+        void _SetContextMenu(const ValueList& args, ValueRef result);
+        void _GetContextMenu(const ValueList& args, ValueRef result);
+        void _SetIcon(const ValueList& args, ValueRef result);
         void _SetIcon(std::string iconURL);
-        void _AddTray(const ValueList& args, KValueRef result);
-        void _ClearTray(const ValueList& args, KValueRef result);
-        void _GetIdleTime(const ValueList& args, KValueRef result);
+        void _AddTray(const ValueList& args, ValueRef result);
+        void _ClearTray(const ValueList& args, ValueRef result);
+        void _GetIdleTime(const ValueList& args, ValueRef result);
 
         /* OS X specific callbacks */
-        void _SetDockIcon(const ValueList& args, KValueRef result);
-        void _SetDockMenu(const ValueList& args, KValueRef result);
-        void _SetBadge(const ValueList& args, KValueRef result);
-        void _SetBadgeImage(const ValueList& args, KValueRef result);
+        void _SetDockIcon(const ValueList& args, ValueRef result);
+        void _SetDockMenu(const ValueList& args, ValueRef result);
+        void _SetBadge(const ValueList& args, ValueRef result);
+        void _SetBadgeImage(const ValueList& args, ValueRef result);
 
         virtual AutoMenu CreateMenu() = 0;
         virtual AutoMenuItem CreateMenuItem() = 0;;
@@ -91,7 +91,7 @@ namespace ti
         virtual void SetMenu(AutoMenu) = 0;
         virtual void SetContextMenu(AutoMenu) = 0;
         virtual void SetIcon(std::string& iconPath) = 0;
-        virtual AutoTrayItem AddTray(std::string& iconPath, KMethodRef cbSingleClick) = 0;
+        virtual AutoTrayItem AddTray(std::string& iconPath, TiMethodRef cbSingleClick) = 0;
         virtual AutoMenu GetMenu() = 0;
         virtual AutoMenu GetContextMenu() = 0;
         virtual long GetIdleTime() = 0;

@@ -32,32 +32,32 @@
 
 namespace tide
 {
-    KFunctionPtrMethod::KFunctionPtrMethod(KFunctionPtrCallback callback) :
+    FunctionPtrMethod::FunctionPtrMethod(KFunctionPtrCallback callback) :
         callback(callback)
     {
         this->object = new StaticBoundObject();
     }
 
-    KFunctionPtrMethod::~KFunctionPtrMethod()
+    FunctionPtrMethod::~FunctionPtrMethod()
     {
     }
 
-    KValueRef KFunctionPtrMethod::Call(const ValueList& args)
+    ValueRef FunctionPtrMethod::Call(const ValueList& args)
     {
         return this->callback(args);
     }
 
-    void KFunctionPtrMethod::Set(const char *name, KValueRef value)
+    void FunctionPtrMethod::Set(const char *name, ValueRef value)
     {
         this->object->Set(name, value);
     }
 
-    KValueRef KFunctionPtrMethod::Get(const char *name)
+    ValueRef FunctionPtrMethod::Get(const char *name)
     {
         return this->object->Get(name);
     }
 
-    SharedStringList KFunctionPtrMethod::GetPropertyNames()
+    SharedStringList FunctionPtrMethod::GetPropertyNames()
     {
         return this->object->GetPropertyNames();
     }

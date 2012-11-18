@@ -32,29 +32,31 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_DICT_H_
-#define _K_PYTHON_DICT_H_
+#ifndef _PYTHON_OBJECT_H_
+#define _PYTHON_OBJECT_H_
 
 #include "python_module.h"
 
 namespace tide
 {
-    class KPythonDict : public KObject
+    class KPythonObject : public TiObject
     {
     public:
-        KPythonDict(PyObject *obj);
-        virtual ~KPythonDict();
+        KPythonObject(PyObject *obj);
+        KPythonObject(PyObject *obj, bool readOnly);
+        virtual ~KPythonObject();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
+        virtual bool Equals(TiObjectRef);
         virtual SharedStringList GetPropertyNames();
-
         PyObject* ToPython();
 
     private:
         PyObject *object;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonDict);
+        bool readOnly;
+        TiObjectRef delegate;
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonObject);
     };
 }
 

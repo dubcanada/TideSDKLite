@@ -59,11 +59,11 @@ namespace ti
     class TCPServerSocketConnector
     {
     public:
-        TCPServerSocketConnector(KMethodRef callback,Poco::Net::ServerSocket& socket,Poco::Net::SocketReactor& reactor);
+        TCPServerSocketConnector(TiMethodRef callback,Poco::Net::ServerSocket& socket,Poco::Net::SocketReactor& reactor);
         virtual ~TCPServerSocketConnector();
         void onAccept(Poco::Net::ReadableNotification* pNotification);
     private:
-        KMethodRef callback;
+        TiMethodRef callback;
         Poco::Net::ServerSocket& socket;
         Poco::Net::SocketReactor& reactor;
     };
@@ -71,14 +71,14 @@ namespace ti
     class TCPServerSocketBinding : public StaticBoundObject
     {
     public:
-        TCPServerSocketBinding(Host *ti_host, KMethodRef callback);
+        TCPServerSocketBinding(Host *ti_host, TiMethodRef callback);
         virtual ~TCPServerSocketBinding();
     private:
         enum
         {
             BUFFER_SIZE = 1024
         };
-        KMethodRef onCreate;
+        TiMethodRef onCreate;
         Poco::Net::ServerSocket* socket;
         Poco::Net::SocketReactor reactor;
         TCPServerSocketConnector* acceptor;
@@ -87,8 +87,8 @@ namespace ti
         bool listening;
         
         void ListenThread();
-        void Listen(const ValueList& args, KValueRef result);
-        void Close(const ValueList& args, KValueRef result);
+        void Listen(const ValueList& args, ValueRef result);
+        void Close(const ValueList& args, ValueRef result);
     };
     
 }

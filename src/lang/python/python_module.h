@@ -43,11 +43,11 @@
 
 #include "python_api.h"
 #include "python_utils.h"
-#include "k_python_object.h" 
-#include "k_python_method.h"
-#include "k_python_list.h"
-#include "k_python_tuple.h"
-#include "k_python_dict.h"
+#include "python_object.h" 
+#include "python_method.h"
+#include "python_list.h"
+#include "python_tuple.h"
+#include "python_dict.h"
 #include "python_evaluator.h"
 
 #define THROW_PYTHON_EXCEPTION \
@@ -56,7 +56,7 @@ PyErr_Fetch(&_ptype, &_pvalue, &_trace); \
 ValueException _ex = ValueException::FromString("Unknown"); \
 if (_pvalue != NULL) \
 { \
-    KValueRef _ex_val = PythonUtils::ToKrollValue(_pvalue); \
+    ValueRef _ex_val = PythonUtils::ToTiValue(_pvalue); \
     _ex = ValueException(_ex_val); \
 } \
 Py_XDECREF(_ptype); \
@@ -66,7 +66,7 @@ throw _ex;
 
 namespace tide
 {
-    class KROLL_PYTHON_API PythonModule : public Module, public ModuleProvider
+    class TIDESDK_PYTHON_API PythonModule : public Module, public ModuleProvider
     {
     public:
         PythonModule(Host* host, const char* path) :
@@ -96,7 +96,7 @@ namespace tide
         }
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
         static PythonModule *instance_;
         DISALLOW_EVIL_CONSTRUCTORS(PythonModule);
     };

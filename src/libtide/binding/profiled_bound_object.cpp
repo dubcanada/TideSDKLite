@@ -49,8 +49,8 @@ namespace tide
         ProfiledBoundObject::stream = stream;
     }
 
-    ProfiledBoundObject::ProfiledBoundObject(KObjectRef delegate) :
-        KObject(delegate->GetType()),
+    ProfiledBoundObject::ProfiledBoundObject(TiObjectRef delegate) :
+        TiObject(delegate->GetType()),
         delegate(delegate),
         count(1)
     {
@@ -60,20 +60,20 @@ namespace tide
     {
     }
 
-    bool ProfiledBoundObject::AlreadyWrapped(KValueRef value)
+    bool ProfiledBoundObject::AlreadyWrapped(ValueRef value)
     {
         if (value->IsMethod()) {
-            KMethodRef source = value->ToMethod();
+            TiMethodRef source = value->ToMethod();
             AutoPtr<ProfiledBoundMethod> po = source.cast<ProfiledBoundMethod>();
             return !po.isNull();
 
         } else if (value->IsList()) {
-            KListRef source = value->ToList();
+            TiListRef source = value->ToList();
             AutoPtr<ProfiledBoundList> po = source.cast<ProfiledBoundList>();
             return !po.isNull();
 
         } else if (value->IsObject()) {
-            KObjectRef source = value->ToObject();
+            TiObjectRef source = value->ToObject();
             AutoPtr<ProfiledBoundObject> po = source.cast<ProfiledBoundObject>();
             return !po.isNull();
 
@@ -82,7 +82,7 @@ namespace tide
         }
     }
 
-    KValueRef ProfiledBoundObject::Wrap(KValueRef value, std::string type)
+    ValueRef ProfiledBoundObject::Wrap(ValueRef value, std::string type)
     {
         if (AlreadyWrapped(value))
         {
@@ -90,18 +90,18 @@ namespace tide
         }
         else if (value->IsMethod())
         {
-            KMethodRef toWrap = value->ToMethod();
-            KMethodRef wrapped = new ProfiledBoundMethod(toWrap, type);
+            TiMethodRef toWrap = value->ToMethod();
+            TiMethodRef wrapped = new ProfiledBoundMethod(toWrap, type);
             return Value::NewMethod(wrapped);
         }
         else if (value->IsList())
         {
-            KListRef wrapped = new ProfiledBoundList(value->ToList());
+            TiListRef wrapped = new ProfiledBoundList(value->ToList());
             return Value::NewList(wrapped);
         }
         else if (value->IsObject())
         {
-            KObjectRef wrapped = new ProfiledBoundObject(value->ToObject());
+            TiObjectRef wrapped = new ProfiledBoundObject(value->ToObject());
             return Value::NewObject(wrapped);
         }
         else
@@ -110,10 +110,10 @@ namespace tide
         }
     }
 
-    void ProfiledBoundObject::Set(const char *name, KValueRef value)
+    void ProfiledBoundObject::Set(const char *name, ValueRef value)
     {
         std::string type = this->GetSubType(name);
-        KValueRef result = ProfiledBoundObject::Wrap(value, type);
+        ValueRef result = ProfiledBoundObject::Wrap(value, type);
 
         Poco::Stopwatch sw;
         sw.start();
@@ -123,13 +123,13 @@ namespace tide
         this->Log("set", type, sw.elapsed());
     }
 
-    KValueRef ProfiledBoundObject::Get(const char *name)
+    ValueRef ProfiledBoundObject::Get(const char *name)
     {
         std::string type = this->GetSubType(name);
 
         Poco::Stopwatch sw;
         sw.start();
-        KValueRef value = delegate->Get(name);
+        ValueRef value = delegate->Get(name);
         sw.stop();
 
         this->Log("get", type, sw.elapsed());
@@ -163,7 +163,7 @@ namespace tide
         return delegate->HasProperty(name);
     }
 
-    bool ProfiledBoundObject::Equals(KObjectRef other)
+    bool ProfiledBoundObject::Equals(TiObjectRef other)
     {
         AutoPtr<ProfiledBoundObject> pother = other.cast<ProfiledBoundObject>();
         if (!pother.isNull())

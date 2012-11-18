@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_OSX_UTILS_H_
-#define _KR_OSX_UTILS_H_
+#ifndef _OSX_UTILS_H_
+#define _OSX_UTILS_H_
 
 #include <string>
 #include <CoreFoundation/CoreFoundation.h>

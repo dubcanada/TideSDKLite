@@ -45,17 +45,17 @@ namespace ti
     class MediaBinding : public StaticBoundObject
     {
         public:
-        MediaBinding(KObjectRef);
+        MediaBinding(TiObjectRef);
 
         protected:
         virtual ~MediaBinding();
 
         private:
-        KObjectRef global;
-        void _CreateSound(const ValueList& args, KValueRef result);
-        void _Beep(const ValueList& args, KValueRef result);
+        TiObjectRef global;
+        void _CreateSound(const ValueList& args, ValueRef result);
+        void _Beep(const ValueList& args, ValueRef result);
 
-        virtual KObjectRef CreateSound(std::string& url) = 0;
+        virtual TiObjectRef CreateSound(std::string& url) = 0;
         virtual void Beep() = 0;
     };
 }

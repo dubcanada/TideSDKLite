@@ -49,20 +49,20 @@ namespace tide
     class TIDE_API ValueException : public std::exception
     {
         public:
-        ValueException(KValueRef v);
+        ValueException(ValueRef v);
         ~ValueException() throw ();
 
         public:
         static ValueException FromString(const char* s);
         static ValueException FromString(std::string s);
         static ValueException FromFormat(const char* format, ...);
-        static ValueException FromObject(KObjectRef o);
-        KValueRef GetValue();
+        static ValueException FromObject(TiObjectRef o);
+        ValueRef GetValue();
         SharedString DisplayString();
         std::string& ToString();
 
         private:
-        KValueRef value;
+        ValueRef value;
         std::string displayString;
     };
 

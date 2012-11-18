@@ -55,8 +55,8 @@ namespace ti
 
     private:
         Host* host;
-        KObjectRef global;
-        KMethodRef callback;
+        TiObjectRef global;
+        TiMethodRef callback;
         std::string ipaddress;
         int port;
         Poco::Thread *thread;
@@ -65,9 +65,9 @@ namespace ti
         
         static void Run(void*);
         
-        void Bind(const ValueList& args, KValueRef result);
-        void Close(const ValueList& args, KValueRef result);
-        void IsClosed(const ValueList& args, KValueRef result);
+        void Bind(const ValueList& args, ValueRef result);
+        void Close(const ValueList& args, ValueRef result);
+        void IsClosed(const ValueList& args, ValueRef result);
         
         void Close();
         

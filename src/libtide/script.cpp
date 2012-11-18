@@ -70,12 +70,12 @@ namespace tide
         return scriptStr.substr(scriptStr.rfind("."));
     }
     
-    void Script::AddScriptEvaluator(KObjectRef evaluator)
+    void Script::AddScriptEvaluator(TiObjectRef evaluator)
     {
         evaluators->Append(Value::NewObject(evaluator));
     }
     
-    void Script::RemoveScriptEvaluator(KObjectRef evaluator)
+    void Script::RemoveScriptEvaluator(TiObjectRef evaluator)
     {
         int index = -1;
         for (unsigned int i = 0; i < evaluators->Size(); i++)
@@ -92,17 +92,17 @@ namespace tide
         }
     }
     
-    KObjectRef Script::FindEvaluatorWithMethod(const char *method, const char *arg)
+    TiObjectRef Script::FindEvaluatorWithMethod(const char *method, const char *arg)
     {
         ValueList args;
         args.push_back(Value::NewString(arg));
         
         for (unsigned int i = 0; i < evaluators->Size(); i++)
         {
-            KMethodRef finder = evaluators->At(i)->ToObject()->GetMethod(method);
+            TiMethodRef finder = evaluators->At(i)->ToObject()->GetMethod(method);
             if (!finder.isNull())
             {
-                KValueRef result = finder->Call(args);
+                ValueRef result = finder->Call(args);
                 if (result->IsBool() && result->ToBool())
                 {
                     return evaluators->At(i)->ToObject();
@@ -122,12 +122,12 @@ namespace tide
         return !this->FindEvaluatorWithMethod("canPreprocess", url).isNull();
     }
     
-    KValueRef Script::Evaluate(const char *mimeType, const char *name, const char *code, KObjectRef scope)
+    ValueRef Script::Evaluate(const char *mimeType, const char *name, const char *code, TiObjectRef scope)
     {
-        KObjectRef evaluator = this->FindEvaluatorWithMethod("canEvaluate", mimeType);
+        TiObjectRef evaluator = this->FindEvaluatorWithMethod("canEvaluate", mimeType);
         if (!evaluator.isNull())
         {
-            KMethodRef evaluate = evaluator->GetMethod("evaluate");
+            TiMethodRef evaluate = evaluator->GetMethod("evaluate");
             if (!evaluate.isNull())
             {
                 ValueList args;
@@ -149,27 +149,27 @@ namespace tide
         }
     }
     
-    AutoPtr<PreprocessData> Script::Preprocess(const char *url, KObjectRef scope)
+    AutoPtr<PreprocessData> Script::Preprocess(const char *url, TiObjectRef scope)
     {
-        KObjectRef evaluator = this->FindEvaluatorWithMethod("canPreprocess", url);
+        TiObjectRef evaluator = this->FindEvaluatorWithMethod("canPreprocess", url);
         if (!evaluator.isNull())
         {
-            KMethodRef preprocess = evaluator->GetMethod("preprocess");
+            TiMethodRef preprocess = evaluator->GetMethod("preprocess");
             if (!preprocess.isNull())
             {
                 ValueList args;
                 args.push_back(Value::NewString(url));
                 args.push_back(Value::NewObject(scope));
                 
-                KValueRef result = preprocess->Call(args);
+                ValueRef result = preprocess->Call(args);
                 
                 if (result->IsObject())
                 {
-                    KObjectRef object = result->ToObject();
+                    TiObjectRef object = result->ToObject();
                     AutoPtr<PreprocessData> data = new PreprocessData();
                     if (object->HasProperty("data"))
                     {
-                        KValueRef objectData = object->Get("data");
+                        ValueRef objectData = object->Get("data");
                         if (objectData->IsObject())
                         {
                             BytesRef blobData = objectData->ToObject().cast<Bytes>();

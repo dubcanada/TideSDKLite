@@ -460,7 +460,7 @@ NSUInteger GTMGetStackAddressDescriptors(struct GTMAddressDescriptor outDescs[],
     return result;
 }
 
-NSString *KrollStackTrace(void) {
+NSString *TideStackTrace(void) {
     // If we don't have enough frames, return an empty string
     NSString *result = @"";
     
@@ -518,7 +518,7 @@ NSString *KrollStackTrace(void) {
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
 
-NSString *KrollStackTraceFromException(NSException *e) {
+NSString *TideStackTraceFromException(NSException *e) {
     NSString *trace = @"";
     
     // collect the addresses
@@ -548,7 +548,7 @@ NSString *KrollStackTraceFromException(NSException *e) {
 }
 #else
 
-NSString *KrollStackTraceFromException(NSException *e)
+NSString *TideStackTraceFromException(NSException *e)
 {
     return @"<stacktrace not available in <10.5>";
 }
@@ -557,12 +557,12 @@ NSString *KrollStackTraceFromException(NSException *e)
 
 
 
-void KrollDumpStackTrace() {
-    NSLog(@"%@",KrollStackTrace());
+void TideDumpStackTrace() {
+    NSLog(@"%@",TideStackTrace());
 }
 
-void KrollDumpStackTraceFromException(NSException *e){
-    NSLog(@"%@",KrollStackTraceFromException(e));
+void TideDumpStackTraceFromException(NSException *e){
+    NSLog(@"%@",TideStackTraceFromException(e));
 }
 
 

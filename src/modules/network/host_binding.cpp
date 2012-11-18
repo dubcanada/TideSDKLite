@@ -107,24 +107,24 @@ namespace ti
          */
         this->SetMethod("getAddresses",&HostBinding::GetAddresses);
     }
-    void HostBinding::ToString(const ValueList& args, KValueRef result)
+    void HostBinding::ToString(const ValueList& args, ValueRef result)
     {
         std::string s("[IPAddress ");
         s+=name;
         s+="]";
         result->SetString(s.c_str());
     }
-    void HostBinding::IsInvalid(const ValueList& args, KValueRef result)
+    void HostBinding::IsInvalid(const ValueList& args, ValueRef result)
     {
         result->SetBool(this->invalid);
     }
-    void HostBinding::GetName(const ValueList& args, KValueRef result)
+    void HostBinding::GetName(const ValueList& args, ValueRef result)
     {
         result->SetString(this->host.name().c_str());
     }
-    void HostBinding::GetAliases(const ValueList& args, KValueRef result)
+    void HostBinding::GetAliases(const ValueList& args, ValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<std::string> aliases = this->host.aliases();
         std::vector<std::string>::iterator iter = aliases.begin();
         while (iter!=aliases.end())
@@ -134,16 +134,16 @@ namespace ti
         }
         result->SetList(list);
     }
-    void HostBinding::GetAddresses(const ValueList& args, KValueRef result)
+    void HostBinding::GetAddresses(const ValueList& args, ValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<IPAddress> addresses = this->host.addresses();
         std::vector<IPAddress>::iterator iter = addresses.begin();
         while (iter!=addresses.end())
         {
             IPAddress address = (*iter++);
-            KObjectRef obj = new IPAddressBinding(address);
-            KValueRef addr = Value::NewObject(obj);
+            TiObjectRef obj = new IPAddressBinding(address);
+            ValueRef addr = Value::NewObject(obj);
             list->Append(addr);
         }
         result->SetList(list);

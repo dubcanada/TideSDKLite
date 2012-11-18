@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ASYNC_JOB_H_
-#define _KR_ASYNC_JOB_H_
+#ifndef _ASYNC_JOB_H_
+#define _ASYNC_JOB_H_
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
@@ -45,7 +45,7 @@ namespace tide
         /*
          * Create an AsyncJob and initialize its binding-layer properties.
          */
-        AsyncJob(KMethodRef job=0);
+        AsyncJob(TiMethodRef job=0);
 
         /*
          * Destroy an AsyncJob and release its callbacks.
@@ -78,7 +78,7 @@ namespace tide
          * The result of the execution of this job. On an execution
          * error and before the job is completed this will be Undefined;
          */
-        KValueRef GetResult();
+        ValueRef GetResult();
 
         /**
          * The progress of this job, which is a number in
@@ -96,7 +96,7 @@ namespace tide
 
         /**
          * A built-in progress changed callback. This will be called
-         * in the same situations as KMethod-style progress callbacks
+         * in the same situations as TiMethod-style progress callbacks
          */
         virtual void OnProgressChanged() {}
 
@@ -104,11 +104,11 @@ namespace tide
          * Add a callback to be executed when the progress of
          * this job changes
          */
-        void AddProgressCallback(KMethodRef);
+        void AddProgressCallback(TiMethodRef);
 
         /**
          * A built-in completion callback. This will be called  in the
-         *  same situations as KMethod-style completed callbacks
+         *  same situations as TiMethod-style completed callbacks
          */
         virtual void OnCompleted() {};
 
@@ -116,11 +116,11 @@ namespace tide
          * Add a callback to be executed when the progress of
          * this job changes
          */
-        void AddCompletedCallback(KMethodRef);
+        void AddCompletedCallback(TiMethodRef);
 
         /**
          * A built-in error callback. This will be called  in the
-         *  same situations as KMethod-style error callbacks
+         *  same situations as TiMethod-style error callbacks
          */
         virtual void OnError(ValueException& e) {};
 
@@ -129,7 +129,7 @@ namespace tide
          * course of this job, whether in the job itself or a callback
          * related to that job.
          */
-        void AddErrorCallback(KMethodRef);
+        void AddErrorCallback(TiMethodRef);
         
         /**
          * Set arguments for this job.
@@ -143,11 +143,11 @@ namespace tide
         ValueList& GetArguments() { return arguments; }
         
         protected:
-        KMethodRef job;
+        TiMethodRef job;
         ValueList arguments;
         double progress;
         bool completed;
-        KValueRef result;
+        ValueRef result;
         bool hadError;
         bool cancelled;
         void Error(ValueException&);
@@ -157,22 +157,22 @@ namespace tide
          * called directly, as it does not call any callbacks or necessarily
          * modify the progress -- Run or RunAsynchronously are better
          * choices. It can be overridden to create custom job types which
-         * do something other than just execute a KMethod.
+         * do something other than just execute a TiMethod.
          */
-        virtual KValueRef Execute();
+        virtual ValueRef Execute();
 
-        void _Cancel(const ValueList&, KValueRef);
-        void _GetProgress(const ValueList&, KValueRef);
-        void _IsComplete(const ValueList& args, KValueRef result);
+        void _Cancel(const ValueList&, ValueRef);
+        void _GetProgress(const ValueList&, ValueRef);
+        void _IsComplete(const ValueList& args, ValueRef result);
 
         private:
-        std::vector<KMethodRef> progressCallbacks;
-        std::vector<KMethodRef> completedCallbacks;
-        std::vector<KMethodRef> errorCallbacks;
+        std::vector<TiMethodRef> progressCallbacks;
+        std::vector<TiMethodRef> completedCallbacks;
+        std::vector<TiMethodRef> errorCallbacks;
 
         Poco::Thread* thread;
         Poco::RunnableAdapter<AsyncJob>* adapter;
-        void DoCallback(KMethodRef, bool reportErrors=false);
+        void DoCallback(TiMethodRef, bool reportErrors=false);
     };
 }
 

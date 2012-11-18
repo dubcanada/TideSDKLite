@@ -43,7 +43,7 @@ namespace ti
 {
 
 PlatformBinding::PlatformBinding() :
-    KAccessorObject("Platform")
+    AccessorObject("Platform")
 {
     /**
      * @tiapi(method=True,name=Platform.getOSType,since=0.9)
@@ -122,12 +122,12 @@ PlatformBinding::~PlatformBinding()
 {
 }
 
-void PlatformBinding::_GetName(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetName(const ValueList& args, ValueRef result)
 {
     result->SetString(Poco::Environment::osName().c_str());
 }
 
-void PlatformBinding::_GetVersion(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetVersion(const ValueList& args, ValueRef result)
 {
     static std::string osVersion;
     if (osVersion.empty())
@@ -136,49 +136,49 @@ void PlatformBinding::_GetVersion(const ValueList& args, KValueRef result)
     result->SetString(osVersion.c_str());
 }
 
-void PlatformBinding::_GetType(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetType(const ValueList& args, ValueRef result)
 {
     result->SetString(OS_TYPE);
 }
 
-void PlatformBinding::_GetProcessorCount(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetProcessorCount(const ValueList& args, ValueRef result)
 {
     result->SetInt(PlatformUtils::GetProcessorCount());
 }
 
-void PlatformBinding::_GetArchitecture(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetArchitecture(const ValueList& args, ValueRef result)
 {
     result->SetString(Poco::Environment::osArchitecture().c_str());
 }
 
-void PlatformBinding::_GetMachineId(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetMachineId(const ValueList& args, ValueRef result)
 {
     result->SetString(PlatformUtils::GetMachineId().c_str());
 }
 
-void PlatformBinding::_GetUsername(const ValueList& args, KValueRef result)
+void PlatformBinding::_GetUsername(const ValueList& args, ValueRef result)
 {
     result->SetString(PlatformUtils::GetUsername().c_str());
 }
 
-void PlatformBinding::_CreateUUID(const ValueList& args, KValueRef result)
+void PlatformBinding::_CreateUUID(const ValueList& args, ValueRef result)
 {
     result->SetString(DataUtils::GenerateUUID().c_str());
 }
 
-void PlatformBinding::_OpenApplication(const ValueList& args, KValueRef result)
+void PlatformBinding::_OpenApplication(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openApplication", "s");
     result->SetBool(this->OpenApplicationImpl(args.at(0)->ToString()));
 }
 
-void PlatformBinding::_OpenURL(const ValueList& args, KValueRef result)
+void PlatformBinding::_OpenURL(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openURL", "s");
     result->SetBool(this->OpenURLImpl(args.at(0)->ToString()));
 }
 
-void PlatformBinding::_TakeScreenshot(const ValueList& args, KValueRef result)
+void PlatformBinding::_TakeScreenshot(const ValueList& args, ValueRef result)
 {
     args.VerifyException("takeScreenshot", "s");
     this->TakeScreenshotImpl(args.at(0)->ToString());

@@ -43,17 +43,17 @@ namespace tide
     class EventListener;
     typedef std::list<EventListener*> EventListenerList;
 
-    class TIDE_API KEventObject : public KAccessorObject
+    class TIDE_API EventObject : public AccessorObject
     {
     public:
-        KEventObject(const char* name = "KEventObject");
-        virtual ~KEventObject();
+        EventObject(const char* name = "EventObject");
+        virtual ~EventObject();
 
         AutoPtr<Event> CreateEvent(const std::string& eventName);
 
-        virtual void AddEventListener(const char* event, KMethodRef listener);
-        virtual void AddEventListener(std::string& event, KMethodRef listener);
-        virtual void RemoveEventListener(std::string& event, KMethodRef listener);
+        virtual void AddEventListener(const char* event, TiMethodRef listener);
+        virtual void AddEventListener(std::string& event, TiMethodRef listener);
+        virtual void RemoveEventListener(std::string& event, TiMethodRef listener);
         virtual void RemoveAllEventListeners();
 
         void FireEvent(const char* event);
@@ -62,9 +62,9 @@ namespace tide
         virtual bool FireEvent(AutoPtr<Event>, bool synchronous=true);
         void FireErrorEvent(std::exception& e);
 
-        void _AddEventListener(const ValueList&, KValueRef result);
-        void _RemoveEventListener(const ValueList&, KValueRef result);
-        void _RemoveAllEventListeners(const ValueList&, KValueRef result);
+        void _AddEventListener(const ValueList&, ValueRef result);
+        void _RemoveEventListener(const ValueList&, ValueRef result);
+        void _RemoveAllEventListeners(const ValueList&, ValueRef result);
 
     private:
         void ReportDispatchError(std::string& reason);
@@ -76,16 +76,16 @@ namespace tide
     class EventListener
     {
     public:
-        EventListener(std::string& targetedEvent, KMethodRef callback);
-        EventListener(const char* targetedEvent, KMethodRef callback);
+        EventListener(std::string& targetedEvent, TiMethodRef callback);
+        EventListener(const char* targetedEvent, TiMethodRef callback);
 
         bool Handles(const char* event);
-        bool Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous);
-        KMethodRef Callback();
+        bool Dispatch(TiObjectRef thisObject, const ValueList& args, bool synchronous);
+        TiMethodRef Callback();
 
     private:
         std::string targetedEvent;
-        KMethodRef callback;
+        TiMethodRef callback;
     };
 }
 

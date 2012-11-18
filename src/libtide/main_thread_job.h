@@ -42,22 +42,22 @@ namespace tide
     class TIDE_API MainThreadJob
     {
     public:
-        MainThreadJob(KMethodRef method, KObjectRef thisObject,
+        MainThreadJob(TiMethodRef method, TiObjectRef thisObject,
             const ValueList& args, bool waitForCompletion);
         void Lock();
         void Wait();
         void Execute();
-        KValueRef GetResult();
+        ValueRef GetResult();
         ValueException GetException();
         bool ShouldWaitForCompletion();
         void PrintException();
 
     private:
-        KMethodRef method;
-        KObjectRef thisObject;
+        TiMethodRef method;
+        TiObjectRef thisObject;
         const ValueList args;
         bool waitForCompletion;
-        KValueRef returnValue;
+        ValueRef returnValue;
         ValueException exception;
         Poco::Semaphore semaphore;
     };

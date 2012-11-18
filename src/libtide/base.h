@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_BASE_H_
-#define _KR_BASE_H_
+#ifndef _BASE_H_
+#define _BASE_H_
 
 #ifdef __cplusplus
 #include <string>

@@ -33,15 +33,15 @@
 **/
  
 /**
- * This file is the easiest way to gain access to the full Kroll API
+ * This file is the easiest way to gain access to the full TideSDK API
  * To use it, just do the following:
  * \code
  * #include <tide/tide.h>
  * \endcode
  */
 
-#ifndef _KROLL_H_
-#define _KROLL_H_
+#ifndef _TIDE_H_
+#define _TIDE_H_
 
 #include "base.h"
 #include <Poco/SharedPtr.h>
@@ -55,7 +55,7 @@ using Poco::AutoPtr;
     // this is important which essentially marks all of
     // these classes below and the typedef/templates to be
     // visible outside of the library.  if you don't do this
-    // you won't be able to catch exceptions of KValueRef for
+    // you won't be able to catch exceptions of ValueRef for
     // example
     #pragma GCC visibility push(default)
 #endif
@@ -63,9 +63,9 @@ using Poco::AutoPtr;
 namespace tide
 {
     class Value;
-    class KObject;
-    class KMethod;
-    class KList;
+    class TiObject;
+    class TiMethod;
+    class TiList;
 
     class StaticBoundObject;
     class StaticBoundMethod;
@@ -79,10 +79,10 @@ namespace tide
     class Logger;
     class ArgList;
 
-    typedef AutoPtr<Value> KValueRef;
-    typedef AutoPtr<KObject> KObjectRef;
-    typedef AutoPtr<KMethod> KMethodRef;
-    typedef AutoPtr<KList> KListRef;
+    typedef AutoPtr<Value> ValueRef;
+    typedef AutoPtr<TiObject> TiObjectRef;
+    typedef AutoPtr<TiMethod> TiMethodRef;
+    typedef AutoPtr<TiList> TiListRef;
     typedef AutoPtr<Bytes> BytesRef;
 
     typedef SharedPtr<std::string> SharedString;

@@ -32,32 +32,40 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_FUNCTION_H_
-#define _K_PHP_FUNCTION_H_
+#ifndef _RUBY_METHOD_H_
+#define _RUBY_METHOD_H_
 
-namespace tide
+namespace tide {
+
+class KRubyMethod : public TiMethod
 {
-    class KPHPFunction : public KMethod
-    {
-        public:
-        KPHPFunction(const char *functionName);
+    public:
+    KRubyMethod(VALUE method);
+    KRubyMethod(VALUE method, const char*);
+    KRubyMethod(VALUE method, VALUE arg);
+    virtual ~KRubyMethod();
+    ValueRef Call(const ValueList& args);
+    virtual void Set(const char *name, ValueRef value);
+    virtual ValueRef Get(const char *name);
+    virtual SharedStringList GetPropertyNames();
+    virtual SharedString DisplayString(int);
+    VALUE ToRuby();
 
-        virtual ~KPHPFunction();
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual SharedStringList GetPropertyNames();
-        virtual SharedString DisplayString(int);
-        virtual bool Equals(KObjectRef);
-        bool PropertyExists(const char* property);
+    /*
+     * Determine if the given Ruby object equals this one
+     * by comparing these objects's identity e.g. equals?()
+     *  @param other the object to test
+     *  @returns true if objects have reference equality, false otherwise
+     */
+    virtual bool Equals(TiObjectRef);
 
-        inline std::string& GetMethodName() { return methodName; }
+    private:
+    VALUE method;
+    VALUE arg;
+    AutoPtr<KRubyObject> object;
+    char* name;
+};
 
-        private:
-        std::string methodName;
-        zval* zMethodName;
-        KObjectRef globalObject;
-    };
 }
 
 #endif

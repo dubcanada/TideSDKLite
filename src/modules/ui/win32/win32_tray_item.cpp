@@ -40,7 +40,7 @@ namespace ti
     UINT Win32TrayItem::trayClickedMessage =
         ::RegisterWindowMessageA(PRODUCT_NAME"TrayClicked");
 
-    Win32TrayItem::Win32TrayItem(std::string& iconURL, KMethodRef cbSingleClick) :
+    Win32TrayItem::Win32TrayItem(std::string& iconURL, TiMethodRef cbSingleClick) :
         TrayItem(iconURL),
         oldNativeMenu(0),
         trayIconData(0)

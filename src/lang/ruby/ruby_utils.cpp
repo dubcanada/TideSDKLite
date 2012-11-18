@@ -41,18 +41,18 @@
 
 namespace tide
 {
-    VALUE RubyUtils::KObjectClass = Qnil;
-    VALUE RubyUtils::KMethodClass = Qnil;
-    VALUE RubyUtils::KListClass = Qnil;
+    VALUE RubyUtils::TiObjectClass = Qnil;
+    VALUE RubyUtils::TiMethodClass = Qnil;
+    VALUE RubyUtils::TiListClass = Qnil;
 
     bool RubyUtils::KindOf(VALUE value, VALUE klass)
     {
         return rb_obj_is_kind_of(value, klass) == Qtrue;
     }
 
-    KValueRef RubyUtils::ToKrollValue(VALUE value)
+    ValueRef RubyUtils::ToTiValue(VALUE value)
     {
-        KValueRef kvalue = Value::Undefined;
+        ValueRef kvalue = Value::Undefined;
 
         int t = TYPE(value);
         if (T_NIL == t)
@@ -81,62 +81,62 @@ namespace tide
         }
         else if (T_OBJECT == t)
         {
-            KObjectRef kobj = new KRubyObject(value);
+            TiObjectRef kobj = new KRubyObject(value);
             kvalue = Value::NewObject(kobj);
         }
         else if (T_STRUCT == t)
         {
-            KObjectRef kobj = new KRubyObject(value);
+            TiObjectRef kobj = new KRubyObject(value);
             kvalue = Value::NewObject(kobj);
         }
         else if (T_HASH == t)
         {
-            KObjectRef kobj = new KRubyHash(value);
+            TiObjectRef kobj = new KRubyHash(value);
             kvalue = Value::NewObject(kobj);
         }
         else if (T_ARRAY == t)
         {
-            KListRef klist = new KRubyList(value);
-            kvalue = Value::NewList(klist);
+            TiListRef tiList = new KRubyList(value);
+            kvalue = Value::NewList(tiList);
         }
-        else if (T_DATA == t && KObjectClass != Qnil && KindOf(value, KObjectClass))
+        else if (T_DATA == t && TiObjectClass != Qnil && KindOf(value, TiObjectClass))
         {
-            KValueRef* kval = NULL;
-            Data_Get_Struct(value, KValueRef, kval);
+            ValueRef* kval = NULL;
+            Data_Get_Struct(value, ValueRef, kval);
             kvalue = Value::NewObject((*kval)->ToObject());
         }
-        else if (T_DATA == t && KMethodClass != Qnil && KindOf(value, KMethodClass))
+        else if (T_DATA == t && TiMethodClass != Qnil && KindOf(value, TiMethodClass))
         {
-            KValueRef* kval = NULL;
-            Data_Get_Struct(value, KValueRef, kval);
+            ValueRef* kval = NULL;
+            Data_Get_Struct(value, ValueRef, kval);
             kvalue = Value::NewMethod((*kval)->ToMethod());
         }
-        else if (T_DATA == t && KListClass != Qnil && KindOf(value, KListClass))
+        else if (T_DATA == t && TiListClass != Qnil && KindOf(value, TiListClass))
         {
-            KValueRef* kval = NULL;
-            Data_Get_Struct(value, KValueRef, kval);
+            ValueRef* kval = NULL;
+            Data_Get_Struct(value, ValueRef, kval);
             kvalue = Value::NewList((*kval)->ToList());
         }
         else if (T_DATA == t && KindOf(value, rb_cMethod))
         {
-            KMethodRef method = new KRubyMethod(value);
+            TiMethodRef method = new KRubyMethod(value);
             return Value::NewMethod(method);
         }
         else if (T_DATA == t && KindOf(value, rb_cProc))
         {
-            KMethodRef method = new KRubyMethod(value);
+            TiMethodRef method = new KRubyMethod(value);
             return Value::NewMethod(method);
         }
         else if (T_DATA == t)
         {
-            KObjectRef object = new KRubyObject(value);
+            TiObjectRef object = new KRubyObject(value);
             return Value::NewObject(object);
         }
 
         return kvalue;
     }
 
-    VALUE RubyUtils::ToRubyValue(KValueRef value)
+    VALUE RubyUtils::ToRubyValue(ValueRef value)
     {
         if (value->IsNull() || value->IsUndefined())
         {
@@ -164,7 +164,7 @@ namespace tide
             if (!rh.isNull())
                 return rh->ToRuby();
 
-            return RubyUtils::KObjectToRubyValue(value);
+            return RubyUtils::TiObjectToRubyValue(value);
         }
         else if (value->IsMethod())
         {
@@ -172,7 +172,7 @@ namespace tide
             if (!rm.isNull())
                 return rm->ToRuby();
             else
-                return RubyUtils::KMethodToRubyValue(value);
+                return RubyUtils::TiMethodToRubyValue(value);
         }
         else if (value->IsList())
         {
@@ -180,16 +180,16 @@ namespace tide
             if (!rl.isNull())
                 return rl->ToRuby();
             else
-                return RubyUtils::KListToRubyValue(value);
+                return RubyUtils::TiListToRubyValue(value);
         }
         return Qnil;
     }
 
-    static VALUE RubyKObjectMethods(VALUE self)
+    static VALUE RubyTiObjectMethods(VALUE self)
     {
-        KValueRef* value = NULL;
-        Data_Get_Struct(self, KValueRef, value);
-        KObjectRef object = (*value)->ToObject();
+        ValueRef* value = NULL;
+        Data_Get_Struct(self, ValueRef, value);
+        TiObjectRef object = (*value)->ToObject();
 
         VALUE* args = NULL;
         VALUE methods = rb_call_super(0, args);
@@ -203,20 +203,20 @@ namespace tide
         return methods;
     }
 
-    VALUE RubyUtils::GenericKMethodCall(KMethodRef method, VALUE args)
+    VALUE RubyUtils::GenericTiMethodCall(TiMethodRef method, VALUE args)
     {
         ValueList kargs;
         for (int i = 0; i < RARRAY_LEN(args); i++)
         {
             VALUE rarg = rb_ary_entry(args, i);
-            KValueRef arg = RubyUtils::ToKrollValue(rarg);
+            ValueRef arg = RubyUtils::ToTiValue(rarg);
             Value::Unwrap(arg);
             kargs.push_back(arg);
         }
 
         try
         {
-            KValueRef result = method->Call(kargs);
+            ValueRef result = method->Call(kargs);
             return RubyUtils::ToRubyValue(result);
         }
         catch (ValueException& e)
@@ -229,12 +229,12 @@ namespace tide
         }
     }
 
-    // A :method method for pulling methods off of KObjects in Ruby
-    static VALUE RubyKObjectMethod(int argc, VALUE *argv, VALUE self)
+    // A :method method for pulling methods off of TiObjects in Ruby
+    static VALUE RubyTiObjectMethod(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KObjectRef object = (*dval)->ToObject();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiObjectRef object = (*dval)->ToObject();
 
         // TODO: We should raise an exception instead
         if (object.isNull())
@@ -244,7 +244,7 @@ namespace tide
 
         VALUE meth_name = argv[0];
         const char* name = rb_id2name(SYM2ID(meth_name));
-        KValueRef v = object->Get(name);
+        ValueRef v = object->Get(name);
         if (v->IsMethod())
         {
             return RubyUtils::ToRubyValue(v);
@@ -255,12 +255,12 @@ namespace tide
         }
     }
 
-    // A :method_missing method for finding KObject properties in Ruby
-    static VALUE RubyKObjectMethodMissing(int argc, VALUE *argv, VALUE self)
+    // A :method_missing method for finding TiObject properties in Ruby
+    static VALUE RubyTiObjectMethodMissing(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KObjectRef object = (*dval)->ToObject();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiObjectRef object = (*dval)->ToObject();
 
         // TODO: We should raise an exception instead
         if (object.isNull())
@@ -279,12 +279,12 @@ namespace tide
         const char* name = rb_id2name(SYM2ID(r_name));
 
         // Check if this is an assignment
-        KValueRef value = object->Get(name);
+        ValueRef value = object->Get(name);
         if (name[strlen(name) - 1] == '=' && argc > 1)
         {
             char* mod_name = strdup(name);
             mod_name[strlen(mod_name) - 1] = '\0';
-            value = RubyUtils::ToKrollValue(argv[1]);
+            value = RubyUtils::ToTiValue(argv[1]);
             object->Set(mod_name, value);
             free(mod_name);
             return argv[1];
@@ -297,7 +297,7 @@ namespace tide
         }
         else if (value->IsMethod()) // actually call a method
         {
-            return RubyUtils::GenericKMethodCall(value->ToMethod(), args);
+            return RubyUtils::GenericTiMethodCall(value->ToMethod(), args);
         }
         else // Plain old access
         {
@@ -306,88 +306,88 @@ namespace tide
         return 0;
     }
 
-    // A :responds_to? method for finding KObject properties in Ruby
-    static VALUE RubyKObjectRespondTo(int argc, VALUE *argv, VALUE self)
+    // A :responds_to? method for finding TiObject properties in Ruby
+    static VALUE RubyTiObjectRespondTo(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KObjectRef object = (*dval)->ToObject();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiObjectRef object = (*dval)->ToObject();
         VALUE mid, priv; // We ignore the priv argument
 
         rb_scan_args(argc, argv, "11", &mid, &priv);
         const char* name = rb_id2name(rb_to_id(mid));
-        KValueRef value = object->Get(name);
+        ValueRef value = object->Get(name);
         return value->IsUndefined() ? Qfalse : Qtrue;
     }
 
-    static void RubyKObjectFree(void *p)
+    static void RubyTiObjectFree(void *p)
     {
-        KValueRef* kval = static_cast<KValueRef*>(p);
+        ValueRef* kval = static_cast<ValueRef*>(p);
         delete kval;
     }
 
-    static VALUE RubyKMethodCall(VALUE self, VALUE args)
+    static VALUE RubyTiMethodCall(VALUE self, VALUE args)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KMethodRef method = (*dval)->ToMethod();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiMethodRef method = (*dval)->ToMethod();
 
         // TODO: We should raise an exception instead
         if (method.isNull())
             return Qnil;
 
-        return RubyUtils::GenericKMethodCall(method, args);
+        return RubyUtils::GenericTiMethodCall(method, args);
     }
 
-    VALUE RubyUtils::KObjectToRubyValue(KValueRef obj)
+    VALUE RubyUtils::TiObjectToRubyValue(ValueRef obj)
     {
-        // Lazily initialize the KObject wrapper class
-        if (KObjectClass == Qnil)
+        // Lazily initialize the TiObject wrapper class
+        if (TiObjectClass == Qnil)
         {
-            KObjectClass = rb_define_class("RubyKObject", rb_cObject);
-            rb_define_method(KObjectClass, "method_missing",
-                RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-            rb_define_method(KObjectClass, "method",
-                RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-            rb_define_method(KObjectClass, "methods",
-                RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-            rb_define_method(KObjectClass, "respond_to?",
-                RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
+            TiObjectClass = rb_define_class("RubyTiObject", rb_cObject);
+            rb_define_method(TiObjectClass, "method_missing",
+                RUBY_METHOD_FUNC(RubyTiObjectMethodMissing), -1);
+            rb_define_method(TiObjectClass, "method",
+                RUBY_METHOD_FUNC(RubyTiObjectMethod), -1);
+            rb_define_method(TiObjectClass, "methods",
+                RUBY_METHOD_FUNC(RubyTiObjectMethods), 0);
+            rb_define_method(TiObjectClass, "respond_to?",
+                RUBY_METHOD_FUNC(RubyTiObjectRespondTo), -1);
         }
 
-        VALUE wrapper = Data_Wrap_Struct(KObjectClass, 0, RubyKObjectFree, new KValueRef(obj));
+        VALUE wrapper = Data_Wrap_Struct(TiObjectClass, 0, RubyTiObjectFree, new ValueRef(obj));
         rb_obj_call_init(wrapper, 0, 0);
         return wrapper;
     }
 
-    VALUE RubyUtils::KMethodToRubyValue(KValueRef obj)
+    VALUE RubyUtils::TiMethodToRubyValue(ValueRef obj)
     {
-        // Lazily initialize the KMethod wrapper class
-        if (KMethodClass == Qnil)
+        // Lazily initialize the TiMethod wrapper class
+        if (TiMethodClass == Qnil)
         {
-            KMethodClass = rb_define_class("RubyKMethod", rb_cObject);
-            rb_define_method(KMethodClass, "method_missing",
-                RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-            rb_define_method(KMethodClass, "method",
-                RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-            rb_define_method(KMethodClass, "methods",
-                RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-            rb_define_method(KMethodClass, "respond_to?",
-                RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
-            rb_define_method(KMethodClass, "call",
-                RUBY_METHOD_FUNC(RubyKMethodCall), -2);
+            TiMethodClass = rb_define_class("RubyTiMethod", rb_cObject);
+            rb_define_method(TiMethodClass, "method_missing",
+                RUBY_METHOD_FUNC(RubyTiObjectMethodMissing), -1);
+            rb_define_method(TiMethodClass, "method",
+                RUBY_METHOD_FUNC(RubyTiObjectMethod), -1);
+            rb_define_method(TiMethodClass, "methods",
+                RUBY_METHOD_FUNC(RubyTiObjectMethods), 0);
+            rb_define_method(TiMethodClass, "respond_to?",
+                RUBY_METHOD_FUNC(RubyTiObjectRespondTo), -1);
+            rb_define_method(TiMethodClass, "call",
+                RUBY_METHOD_FUNC(RubyTiMethodCall), -2);
         }
 
-        VALUE wrapper = Data_Wrap_Struct(KMethodClass, 0, RubyKObjectFree, new KValueRef(obj));
+        VALUE wrapper = Data_Wrap_Struct(TiMethodClass, 0, RubyTiObjectFree, new ValueRef(obj));
         rb_obj_call_init(wrapper, 0, 0);
         return wrapper;
     }
 
-    static VALUE RubyKListGetElt(int argc, VALUE *argv, VALUE self)
+    static VALUE RubyTiListGetElt(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KListRef list = (*dval)->ToList();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiListRef list = (*dval)->ToList();
 
         // TODO: We should raise an exception instead
         if (list.isNull() || argc < 1)
@@ -399,7 +399,7 @@ namespace tide
 
         if (idx >= 0 && idx < (int) list->Size())
         {
-            KValueRef v = list->At(idx);
+            ValueRef v = list->At(idx);
             return RubyUtils::ToRubyValue(v);
         }
         else
@@ -408,14 +408,14 @@ namespace tide
         }
     }
 
-    static VALUE RubyKListSetElt(int argc, VALUE *argv, VALUE self)
+    static VALUE RubyTiListSetElt(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KListRef klist = (*dval)->ToList();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiListRef tiList = (*dval)->ToList();
 
         // TODO: We should raise an exception instead
-        if (klist.isNull() || argc < 2)
+        if (tiList.isNull() || argc < 2)
             return Qnil;
         // TODO: Maybe we should raise an exception instead
         if (TYPE(argv[0]) != T_FIXNUM)
@@ -425,20 +425,20 @@ namespace tide
         if (idx < 0)
             return Qnil;
 
-        KValueRef value = RubyUtils::ToKrollValue(argv[1]);
-        klist->SetAt(idx, value);
+        ValueRef value = RubyUtils::ToTiValue(argv[1]);
+        tiList->SetAt(idx, value);
 
         return argv[1];
     }
 
-    static VALUE RubyKListLength(int argc, VALUE *argv, VALUE self)
+    static VALUE RubyTiListLength(int argc, VALUE *argv, VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KListRef klist = (*dval)->ToList();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiListRef tiList = (*dval)->ToList();
 
         // TODO: We should raise an exception instead
-        if (klist.isNull())
+        if (tiList.isNull())
             return Qnil;
 
         if (argc > 0)
@@ -448,15 +448,15 @@ namespace tide
         }
         else
         {
-            return INT2NUM(klist->Size());
+            return INT2NUM(tiList->Size());
         }
     }
 
-    static VALUE RubyKListEach(VALUE self)
+    static VALUE RubyTiListEach(VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KListRef list = (*dval)->ToList();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiListRef list = (*dval)->ToList();
 
         if (list.isNull() || !rb_block_given_p())
             return Qnil;
@@ -467,11 +467,11 @@ namespace tide
         return self;
     }
 
-    static VALUE RubyKListCollect(VALUE self)
+    static VALUE RubyTiListCollect(VALUE self)
     {
-        KValueRef* dval = NULL;
-        Data_Get_Struct(self, KValueRef, dval);
-        KListRef list = (*dval)->ToList();
+        ValueRef* dval = NULL;
+        Data_Get_Struct(self, ValueRef, dval);
+        TiListRef list = (*dval)->ToList();
 
         if (list.isNull() || !rb_block_given_p())
             return Qnil;
@@ -483,35 +483,35 @@ namespace tide
         return resultArray;
     }
 
-    VALUE RubyUtils::KListToRubyValue(KValueRef obj)
+    VALUE RubyUtils::TiListToRubyValue(ValueRef obj)
     {
-        // Lazily initialize the KMethod wrapper class
-        if (KListClass == Qnil)
+        // Lazily initialize the TiMethod wrapper class
+        if (TiListClass == Qnil)
         {
-            KListClass = rb_define_class("RubyKList", rb_cObject);
-            rb_define_method(KListClass, "method_missing",
-                RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-            rb_define_method(KListClass, "method",
-                RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-            rb_define_method(KListClass, "methods",
-                RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-            rb_define_method(KListClass, "respond_to?",
-                RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
-            rb_define_method(KListClass, "[]",
-                RUBY_METHOD_FUNC(RubyKListGetElt), -1);
-            rb_define_method(KListClass, "[]=",
-                RUBY_METHOD_FUNC(RubyKListSetElt), -1);
-            rb_define_method(KListClass, "length",
-                RUBY_METHOD_FUNC(RubyKListLength), -1);
-            rb_define_method(KListClass, "each",
-                RUBY_METHOD_FUNC(RubyKListEach), 0);
-            rb_define_method(KListClass, "collect",
-                RUBY_METHOD_FUNC(RubyKListCollect), 0);
-            rb_define_method(KListClass, "map",
-                RUBY_METHOD_FUNC(RubyKListCollect), 0);
+            TiListClass = rb_define_class("RubyTiList", rb_cObject);
+            rb_define_method(TiListClass, "method_missing",
+                RUBY_METHOD_FUNC(RubyTiObjectMethodMissing), -1);
+            rb_define_method(TiListClass, "method",
+                RUBY_METHOD_FUNC(RubyTiObjectMethod), -1);
+            rb_define_method(TiListClass, "methods",
+                RUBY_METHOD_FUNC(RubyTiObjectMethods), 0);
+            rb_define_method(TiListClass, "respond_to?",
+                RUBY_METHOD_FUNC(RubyTiObjectRespondTo), -1);
+            rb_define_method(TiListClass, "[]",
+                RUBY_METHOD_FUNC(RubyTiListGetElt), -1);
+            rb_define_method(TiListClass, "[]=",
+                RUBY_METHOD_FUNC(RubyTiListSetElt), -1);
+            rb_define_method(TiListClass, "length",
+                RUBY_METHOD_FUNC(RubyTiListLength), -1);
+            rb_define_method(TiListClass, "each",
+                RUBY_METHOD_FUNC(RubyTiListEach), 0);
+            rb_define_method(TiListClass, "collect",
+                RUBY_METHOD_FUNC(RubyTiListCollect), 0);
+            rb_define_method(TiListClass, "map",
+                RUBY_METHOD_FUNC(RubyTiListCollect), 0);
         }
 
-        VALUE wrapper = Data_Wrap_Struct(KListClass, 0, RubyKObjectFree, new KValueRef(obj));
+        VALUE wrapper = Data_Wrap_Struct(TiListClass, 0, RubyTiObjectFree, new ValueRef(obj));
         rb_obj_call_init(wrapper, 0, 0);
         return wrapper;
     }
@@ -519,7 +519,7 @@ namespace tide
     ValueException RubyUtils::GetException()
     {
         VALUE e = rb_gv_get("$!");
-        KValueRef v = RubyUtils::ToKrollValue(e);
+        ValueRef v = RubyUtils::ToTiValue(e);
         return ValueException(v);
     }
 }

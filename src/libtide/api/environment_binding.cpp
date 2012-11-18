@@ -36,7 +36,7 @@
 
 namespace tide
 {
-    KValueRef EnvironmentBinding::Get(const char *name)
+    ValueRef EnvironmentBinding::Get(const char *name)
     {
         return Value::NewString(EnvironmentUtils::Get(name));
     }
@@ -54,7 +54,7 @@ namespace tide
         return keys;
     }
     
-    void EnvironmentBinding::Set(const char *name, KValueRef value)
+    void EnvironmentBinding::Set(const char *name, ValueRef value)
     {
         if (value->IsString())
         {

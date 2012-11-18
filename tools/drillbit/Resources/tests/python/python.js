@@ -273,7 +273,7 @@ describe("Python Tests", {
       return n;
     };
     var o = get_empty_python_object();
-    // There should be no properties showing for a blank KObject
+    // There should be no properties showing for a blank TiObject
     var orig_property_count = count_properties(o);
 
     // Yet there are some hidden methods that should be there
@@ -333,7 +333,7 @@ describe("Python Tests", {
       return n;
     };
     var o = get_empty_python_dict();
-    // There should be no properties showing for a blank KObject
+    // There should be no properties showing for a blank TiObject
     var orig_property_count = count_properties(o);
 
     // Yet there are some hidden methods that should be there

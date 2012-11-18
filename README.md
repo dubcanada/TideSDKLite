@@ -5,10 +5,9 @@ Current Build Status
 [![Build Status](https://travis-ci.org/TideSDK/TideSDK.png)](https://travis-ci.org/TideSDK/TideSDK)
 *realtime build only tests linux*
 
+Create multi-platform desktop apps with HTML5, CSS3 and JavaScript. TideSDK is the best way to create beautiful, unique desktop apps using your web development skills. TideSDK is open source and driven by a collaborative, world wide effort involving a skilled team together with variety of open source contributors.
 
-Create multi-platform desktop apps with HTML5, CSS3 and JavaScript. TideSDK is an amazing project, formally called Titanium Desktop, that we are continuing under a community based, open source initiative.
-
-TideSDK also supports the use of Python, PHP and Ruby extend its capabilities beyond the realm of any competitive framework. Our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop and beyond as we move forward.
+TideSDK supports the use of Python, PHP and Ruby. This provides capabilities beyond the realm of any competitive framework. Our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop as we move forward.
 
 TideSDK is a significant and substantial software project and became an 'Affiliate Project' of SPI ([Software in the Public Interest](http://spi-inc.org/projects)) as of September 2012. As an 'Affiliate Project' TideSDK in the company of other important open source projects such as Postgres, Debian, ArchLinux, Drupal, and Jenkins CI that are also non profit. Beyond recogition and credibility, our affiliation also allows us to raise funds through donations for the viability and long term future of the project.
 
@@ -53,20 +52,18 @@ The binding implementation for each language knows how to exchange values betwee
 Getting and Using TideSDK
 -------------------------
 
-Downloads are available for the previous Titanium Desktop 1.2.0.RC4 in the interim while we prepare for our 1.3.0-beta release.
+TideSDK is available for download at:
 
-* [https://github.com/TideSDK/TideSDK/downloads](https://github.com/TideSDK/TideSDK/downloads)
+* [http://tidesdk.org](http://tidesdk.org)
 
-APIs will remain compatible between 1.2.0.RC4 and 1.3.x however the JavaScript namespace will be shortened to 'Ti' as opposed to the former 'Titanium'.
-
-Our enhanced documentation efforts are a work in progress as we are always looking to improve. The link below with take your to the most current docs. Additional support is available though our Wiki. We are also focused on guides at our documentation site to assist users that each serve as a tutorial on a development topic. Please consider contributing a guide.
+Enhanced documentation efforts are a work in progress and we are always looking to improve. The link below with take your to the most current docs. Additional support is available though our Wiki. We are also focused on the development of guides on our documentation site. Each guide serves as a tutorial on a development topic. Please consider contributing time to enhance our documentation or to contribute guide.
 
 Building TideSDK (Developers)
 -----------------------------
 
-NOTE: If you are a user, will will only need to download and install TideSDK to use it.
+NOTE: If you want to develop applications with TideSDK, just download and install TideSDK to use it.
 
-SDK Developers: Please refer to https://github.com/TideSDK/TideSDK/wiki/Building-tidesdk
+For SDK Developers, please refer to https://github.com/TideSDK/TideSDK/wiki/Building-tidesdk
 for up-to-date build instructions.
 
 Support
@@ -74,7 +71,7 @@ Support
 - Documentation: [http://tidesdk.multipart.net/docs/user-dev/generated](http://tidesdk.multipart.net/docs/user-dev/generated)
 - Source Code: [https://github.com/TideSDK/TideSDK](https://github.com/TideSDK/TideSDK)
 - Tutorials: Get started easily [http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide](http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide)
-- Q &amp; A on Stack Overflow: Get help [http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide](http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide)
+- Q &amp; A on Stack Overflow: Get help [http://stackoverflow.com/questions/tagged/tidesdk](http://stackoverflow.com/questions/tagged/tidesdk)
 - Report a Bug: Help us improve [https://github.com/TideSDK/TideSDK/issues](https://github.com/TideSDK/TideSDK/issues).
 - IRC: Chat with us on #tidesdk on freenode.net
 - Twitter: Follow TideSDK [@tidesdk](http://twitter.com/tidesdk).

@@ -58,7 +58,7 @@ namespace tide
     }
 
     KRubyHash::KRubyHash(VALUE hash) :
-        KObject("Ruby.KRubyHash"),
+        TiObject("Ruby.KRubyHash"),
         hash(hash),
         object(new KRubyObject(hash))
     {
@@ -70,24 +70,24 @@ namespace tide
         rb_gc_unregister_address(&hash);
     }
 
-    KValueRef KRubyHash::Get(const char *name)
+    ValueRef KRubyHash::Get(const char *name)
     {
         VALUE keyAsSymbol = ID2SYM(rb_intern(name));
         if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsSymbol))
-            return RubyUtils::ToKrollValue(rb_hash_aref(hash, keyAsSymbol));
+            return RubyUtils::ToTiValue(rb_hash_aref(hash, keyAsSymbol));
 
         VALUE keyAsString = rb_str_new2(name);
         if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsString))
-            return RubyUtils::ToKrollValue(rb_hash_aref(hash, keyAsString));
+            return RubyUtils::ToTiValue(rb_hash_aref(hash, keyAsString));
 
         return this->object->Get(name);
     }
 
-    void KRubyHash::Set(const char* name, KValueRef value)
+    void KRubyHash::Set(const char* name, ValueRef value)
     {
         // If this hash already has a key that's a symbol of
         // this name, then just use the symbol version. This
-        // allows Kroll to work with hashes of symbols (pretty
+        // allows Tide to work with hashes of symbols (pretty
         // common in Ruby) without really *knowing* about symbols.
         VALUE keyAsSymbol = ID2SYM(rb_intern(name));
         if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsSymbol)
@@ -131,7 +131,7 @@ namespace tide
         return this->object->ToRuby();
     }
 
-    bool KRubyHash::Equals(KObjectRef other)
+    bool KRubyHash::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyHash> hashOther = other.cast<KRubyHash>();
         if (hashOther.isNull())

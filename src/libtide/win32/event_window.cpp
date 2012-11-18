@@ -37,7 +37,7 @@
 namespace tide
 {
 
-static const wchar_t* windowClassName = L"Kroll Event Window";
+static const wchar_t* windowClassName = L"Tide Event Window";
 
 LRESULT CALLBACK WindowProcedure(HWND hwnd, unsigned int message, WPARAM wParam,
      LPARAM lParam)
@@ -84,7 +84,7 @@ EventWindow::EventWindow() :
 
     this->handle = ::CreateWindowW(
         windowClassName,
-        L"Kroll Event Window Instance",
+        L"Tide Event Window Instance",
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,

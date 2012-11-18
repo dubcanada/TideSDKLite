@@ -56,7 +56,7 @@ namespace ti
         TIDE_MODULE_CLASS(FilesystemModule)
         
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
     };
 
 }

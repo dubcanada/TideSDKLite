@@ -46,29 +46,29 @@ namespace ti
 {
     class WorkerContext;
 
-    class Worker : public KEventObject
+    class Worker : public EventObject
     {
     public:
         Worker(std::string& code);
         ~Worker();
-        void Error(KValueRef value);
-        void SendMessageToMainThread(KValueRef message);
-        virtual void Set(const char* name, KValueRef value);
+        void Error(ValueRef value);
+        void SendMessageToMainThread(ValueRef message);
+        virtual void Set(const char* name, ValueRef value);
 
     private:
         std::string code;
         AutoPtr<WorkerContext> workerContext;
         Poco::Thread thread;
         Poco::RunnableAdapter<Worker>* adapter;
-        std::queue<KValueRef> inbox;
+        std::queue<ValueRef> inbox;
         Poco::Mutex inboxLock;
 
         void Run();
         void HandleInbox();
-        void DeliverMessage(KValueRef message);
-        void _Start(const ValueList& args, KValueRef result);
-        void _Terminate(const ValueList& args, KValueRef result);
-        void _PostMessage(const ValueList& args, KValueRef result);
+        void DeliverMessage(ValueRef message);
+        void _Start(const ValueList& args, ValueRef result);
+        void _Terminate(const ValueList& args, ValueRef result);
+        void _PostMessage(const ValueList& args, ValueRef result);
     };
 }
 

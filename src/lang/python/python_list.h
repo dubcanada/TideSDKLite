@@ -32,36 +32,37 @@
 * limitations under the License.
 **/
 
-#ifndef _K_RUBY_HASH_H_
-#define _K_RUBY_HASH_H_
+#ifndef _PYTHON_LIST_H_
+#define _PYTHON_LIST_H_
 
-namespace tide {
+#include "python_module.h"
 
-class KRubyHash : public KObject {
-public:
-    KRubyHash(VALUE object);
-    virtual ~KRubyHash();
+namespace tide
+{
+	class KPythonList : public TiList
+	{
+	public:
+		KPythonList(PyObject *obj);
+		virtual ~KPythonList();
 
-    virtual void Set(const char *name, KValueRef value);
-    virtual KValueRef Get(const char *name);
-    virtual SharedStringList GetPropertyNames();
-    virtual SharedString DisplayString(int);
-    VALUE ToRuby();
+		ValueRef Get(const char* name);
+		void Set(const char* name, ValueRef value);
+		virtual bool Equals(TiObjectRef);
+		SharedStringList GetPropertyNames();
 
-    /*
-     * Determine if the given Ruby object equals this one
-     * by comparing these objects's identity e.g. equals?()
-     *  @param other the object to test
-     *  @returns true if objects have reference equality, false otherwise
-     */
-    virtual bool Equals(KObjectRef);
+		unsigned int Size();
+		void Append(ValueRef value);
+		virtual void SetAt(unsigned int index, ValueRef value);
+		bool Remove(unsigned int index);
+		ValueRef At(unsigned int index);
 
-private:
-    VALUE hash;
-    AutoPtr<KRubyObject> object;
+		PyObject* ToPython();
 
-};
-
+	protected:
+		PyObject *list;
+		AutoPtr<KPythonObject> object;
+		DISALLOW_EVIL_CONSTRUCTORS(KPythonList);
+	};
 }
 
-#endif /* RUBY_BOUND_OBJECT_H_ */
+#endif

@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KROLL_OSX_NSLOG_CHANNEL_
-#define _KROLL_OSX_NSLOG_CHANNEL_
+#ifndef _OSX_NSLOG_CHANNEL_
+#define _OSX_NSLOG_CHANNEL_
 
 #include <Poco/Channel.h>
 #include <Poco/PatternFormatter.h>

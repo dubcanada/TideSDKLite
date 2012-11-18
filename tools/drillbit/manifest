@@ -23,4 +23,5 @@ database:
 worker:
 codec:
 socket:
+update:
 drillbit:0.1.0

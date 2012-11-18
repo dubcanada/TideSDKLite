@@ -39,6 +39,7 @@ Import('build build_module_from_directory')
 for dir in [
     'app', 
     'ui',
+    'update',
     'network',
     'filesystem',
     'media',

@@ -49,35 +49,35 @@ namespace tide {
      * namespace dots (such as ti.foo.bar) and if so, delegate to a
      * differently supplied scope object for delegation.
      */
-    class TIDE_API ScopeMethodDelegate : public KMethod
+    class TIDE_API ScopeMethodDelegate : public TiMethod
     {
     
     public:
-        ScopeMethodDelegate(MethodDelegateType type, KObjectRef global,
-                            KObjectRef scope, KMethodRef delegate);
+        ScopeMethodDelegate(MethodDelegateType type, TiObjectRef global,
+                            TiObjectRef scope, TiMethodRef delegate);
         virtual ~ScopeMethodDelegate();
 
 
-        void Set(const char *name, KValueRef value);
-        KValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        ValueRef Get(const char *name);
         SharedStringList GetPropertyNames();
 
 
         bool IsGlobalKey(std::string& key);
-        KValueRef Call(const ValueList& args);
+        ValueRef Call(const ValueList& args);
 
         /**
-         * create a delegate from a KObject to a wrapped
+         * create a delegate from a TiObject to a wrapped
          * StaticBoundObject and delegate set/get to the new
          * static bound object
          */
-        static AutoPtr<StaticBoundObject> CreateDelegate(KObjectRef global, KObjectRef bo);
+        static AutoPtr<StaticBoundObject> CreateDelegate(TiObjectRef global, TiObjectRef bo);
 
     private:
         MethodDelegateType type;
-        KObjectRef global;
-        KObjectRef scope;
-        KMethodRef delegate;
+        TiObjectRef global;
+        TiObjectRef scope;
+        TiMethodRef delegate;
 
     private:
         DISALLOW_EVIL_CONSTRUCTORS(ScopeMethodDelegate);

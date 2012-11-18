@@ -45,18 +45,18 @@ namespace ti
     class Pipe;
     typedef AutoPtr<Pipe> AutoPipe;
 
-    class Pipe : public KEventObject
+    class Pipe : public EventObject
     {
         public:
         Pipe(const char *type = "Process.Pipe");
         virtual ~Pipe();
         virtual int Write(BytesRef data);
-        virtual void CallWrite(KObjectRef target, BytesRef data);
+        virtual void CallWrite(TiObjectRef target, BytesRef data);
         virtual void Close();
-        virtual void CallClose(KObjectRef target);
+        virtual void CallClose(TiObjectRef target);
         virtual void Flush();
-        void Attach(KObjectRef object);
-        void Detach(KObjectRef object);
+        void Attach(TiObjectRef object);
+        void Detach(TiObjectRef object);
         bool IsAttached();
         AutoPipe Clone();
         std::vector<BytesRef> readData;
@@ -64,15 +64,15 @@ namespace ti
 
         protected:
         int FindFirstLineFeed(char *data, int length, int *charsToErase);
-        void _Close(const ValueList& args, KValueRef result);
-        void _SetOnClose(const ValueList& args, KValueRef result);
-        void _Attach(const ValueList& args, KValueRef result);
-        void _Detach(const ValueList& args, KValueRef result);
-        void _IsAttached(const ValueList& args, KValueRef result);
-        void _Write(const ValueList& args, KValueRef result);
-        void _Flush(const ValueList& args, KValueRef result);
+        void _Close(const ValueList& args, ValueRef result);
+        void _SetOnClose(const ValueList& args, ValueRef result);
+        void _Attach(const ValueList& args, ValueRef result);
+        void _Detach(const ValueList& args, ValueRef result);
+        void _IsAttached(const ValueList& args, ValueRef result);
+        void _Write(const ValueList& args, ValueRef result);
+        void _Flush(const ValueList& args, ValueRef result);
         Poco::Mutex attachedMutex;
-        std::vector<KObjectRef> attachedObjects;
+        std::vector<TiObjectRef> attachedObjects;
         Logger *logger;
     };
 }

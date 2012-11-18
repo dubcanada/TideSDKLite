@@ -750,11 +750,11 @@ namespace ti
         }
     }
 
-    void OSXUserWindow::OpenChooserDialog(bool files, KMethodRef callback,
+    void OSXUserWindow::OpenChooserDialog(bool files, TiMethodRef callback,
         bool multiple, std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription)
     {
-        KListRef results = new StaticBoundList();
+        TiListRef results = new StaticBoundList();
         NSOpenPanel* openDlg = [NSOpenPanel openPanel];
         [openDlg setTitle:[NSString stringWithUTF8String:title.c_str()]];
         [openDlg setCanChooseFiles:files];
@@ -809,7 +809,7 @@ namespace ti
     }
 
     void OSXUserWindow::OpenFileChooserDialog(
-        KMethodRef callback,
+        TiMethodRef callback,
         bool multiple,
         std::string& title,
         std::string& path,
@@ -822,7 +822,7 @@ namespace ti
             title, path, defaultName, types, typesDescription);
     }
 
-    void OSXUserWindow::OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+    void OSXUserWindow::OpenFolderChooserDialog(TiMethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName)
     {
         std::vector<std::string> types;
@@ -832,7 +832,7 @@ namespace ti
             title, path, defaultName, types, typesDescription);
     }
 
-    void OSXUserWindow::OpenSaveAsDialog(KMethodRef callback, std::string& title,
+    void OSXUserWindow::OpenSaveAsDialog(TiMethodRef callback, std::string& title,
         std::string& path, std::string& defaultName, std::vector<std::string>& types,
         std::string& typesDescription)
     {
@@ -862,7 +862,7 @@ namespace ti
 
         ValueList args;
 
-        KListRef results = new StaticBoundList();
+        TiListRef results = new StaticBoundList();
         if (runResult == NSFileHandlingPanelOKButton)
         {
             NSURL *fileURL = [sp URL];

@@ -103,8 +103,8 @@ namespace ti
     {
         Logger* logger = Logger::Get("UI.URL");
 
-        KObjectRef scope = new StaticBoundObject();
-        KObjectRef kheaders = new StaticBoundObject();
+        TiObjectRef scope = new StaticBoundObject();
+        TiObjectRef kheaders = new StaticBoundObject();
         while (headers->key)
         {
             kheaders->SetString(headers->key, headers->value);

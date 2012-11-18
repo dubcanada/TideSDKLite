@@ -38,45 +38,45 @@
 
 namespace tide
 {
-    typedef Callback2<const ValueList&, KValueRef>::Type MethodCallback;
+    typedef Callback2<const ValueList&, ValueRef>::Type MethodCallback;
 
     /**
      * An abstract representation of a method
      */
-    class TIDE_API KMethod : public KObject
+    class TIDE_API TiMethod : public TiObject
     {
 
     public:
 
-        KMethod(const char *type = "KMethod") : KObject(type) {}
-        virtual ~KMethod() {}
+        TiMethod(const char *type = "TiMethod") : TiObject(type) {}
+        virtual ~TiMethod() {}
 
         /**
          * Call this method with the given arguments.
          * Errors will result in a thrown ValueException
          * @return the return value of this method
          */
-        virtual KValueRef Call(const ValueList& args) = 0;
+        virtual ValueRef Call(const ValueList& args) = 0;
 
         /**
          * Call this method with the given 'this' object and arguments.
          * Errors will result in a thrown ValueException
          * @return the return value of this method
          */
-        virtual KValueRef Call(KObjectRef thisObject, const ValueList& args);
+        virtual ValueRef Call(TiObjectRef thisObject, const ValueList& args);
 
         /**
          * Set a property on this object to the given value
          * Errors will result in a thrown ValueException
          */
-        virtual void Set(const char* name, KValueRef value) = 0;
+        virtual void Set(const char* name, ValueRef value) = 0;
 
         /**
          * @return the property with the given name or Value::Undefined
          * if the property is not found.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef Get(const char* name) = 0;
+        virtual ValueRef Get(const char* name) = 0;
 
         /**
          * @return a list of this object's property names.
@@ -91,21 +91,21 @@ namespace tide
         /**
          * Return the unwrapped version of this object
          */
-        static KMethodRef Unwrap(KMethodRef);
+        static TiMethodRef Unwrap(TiMethodRef);
 
         /* Convenience methods below */
-        KValueRef Call(KValueRef one);
-        KValueRef Call(KValueRef one, KValueRef two);
-        KValueRef Call(KValueRef one, KValueRef two, KValueRef three);
-        KValueRef Call();
-        KValueRef Call(const char* one);
-        KValueRef Call(const char* one, KValueRef two);
-        KValueRef Call(const char* one, KValueRef two, KValueRef three);
-        KValueRef Call(const char* one, KValueRef two, KValueRef three,
-            KValueRef four);
+        ValueRef Call(ValueRef one);
+        ValueRef Call(ValueRef one, ValueRef two);
+        ValueRef Call(ValueRef one, ValueRef two, ValueRef three);
+        ValueRef Call();
+        ValueRef Call(const char* one);
+        ValueRef Call(const char* one, ValueRef two);
+        ValueRef Call(const char* one, ValueRef two, ValueRef three);
+        ValueRef Call(const char* one, ValueRef two, ValueRef three,
+            ValueRef four);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KMethod);
+        DISALLOW_EVIL_CONSTRUCTORS(TiMethod);
     };
 }
 

@@ -35,14 +35,14 @@
 #include "../tide.h"
 namespace tide
 {
-    ReadEvent::ReadEvent(AutoPtr<KEventObject> target, BytesRef data) :
+    ReadEvent::ReadEvent(AutoPtr<EventObject> target, BytesRef data) :
         Event(target, Event::READ),
         data(data)
     {
         this->SetMethod("getData", &ReadEvent::_GetData);
     }
 
-    void ReadEvent::_GetData(const ValueList&, KValueRef result)
+    void ReadEvent::_GetData(const ValueList&, ValueRef result)
     {
         result->SetObject(this->data);
     }

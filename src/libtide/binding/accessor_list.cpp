@@ -38,23 +38,23 @@
 
 namespace tide
 {
-    KAccessorList::KAccessorList(const char* type)
+    AccessorList::AccessorList(const char* type)
         : StaticBoundList(type)
     {
     }
 
-    bool KAccessorList::HasProperty(const char* name)
+    bool AccessorList::HasProperty(const char* name)
     {
         return StaticBoundList::HasProperty(name) || this->HasGetterFor(name);
     }
 
-    void KAccessorList::Set(const char* name, KValueRef value)
+    void AccessorList::Set(const char* name, ValueRef value)
     {
         if (!this->UseSetter(name, value, StaticBoundList::Get(name)))
             StaticBoundList::Set(name, value);
     }
 
-    KValueRef KAccessorList::Get(const char* name)
+    ValueRef AccessorList::Get(const char* name)
     {
         return this->UseGetter(name, StaticBoundList::Get(name));
     }

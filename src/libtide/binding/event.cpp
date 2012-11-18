@@ -70,8 +70,8 @@ namespace tide
     std::string Event::HTTP_DATA_SENT = "http.datasent";
     std::string Event::HTTP_DATA_RECEIVED = "http.datareceived";
 
-    Event::Event(AutoPtr<KEventObject> target, const std::string& eventName) :
-        KAccessorObject("Event"),
+    Event::Event(AutoPtr<EventObject> target, const std::string& eventName) :
+        AccessorObject("Event"),
         target(target),
         eventName(eventName),
         stopped(false),
@@ -85,33 +85,33 @@ namespace tide
         this->SetMethod("preventDefault", &Event::_PreventDefault);
     }
 
-    void Event::_GetTarget(const ValueList&, KValueRef result)
+    void Event::_GetTarget(const ValueList&, ValueRef result)
     {
         result->SetObject(this->target);
     }
 
-    void Event::_GetType(const ValueList&, KValueRef result)
+    void Event::_GetType(const ValueList&, ValueRef result)
     {
         result->SetString(this->eventName);
     }
 
-    void Event::_GetTimestamp(const ValueList&, KValueRef result)
+    void Event::_GetTimestamp(const ValueList&, ValueRef result)
     {
         result->SetDouble((int) timestamp.epochMicroseconds() / 1000);
     }
 
-    void Event::_StopPropagation(const ValueList&, KValueRef result)
+    void Event::_StopPropagation(const ValueList&, ValueRef result)
     {
         this->stopped = true;
         this->preventedDefault = true;
     }
 
-    void Event::_PreventDefault(const ValueList&, KValueRef result)
+    void Event::_PreventDefault(const ValueList&, ValueRef result)
     {
         this->preventedDefault = true;
     }
 
-    void Event::SetEventConstants(KObject* target)
+    void Event::SetEventConstants(TiObject* target)
     {
         // @tiproperty[String, ALL, since=0.6] The ALL event constant
         // @tiproperty[String, FOCUSED, since=0.6] The FOCUSED event constant

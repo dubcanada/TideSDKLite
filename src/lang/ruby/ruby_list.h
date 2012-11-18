@@ -32,26 +32,26 @@
 * limitations under the License.
 **/
 
-#ifndef _K_RUBY_LIST_H_
-#define _K_RUBY_LIST_H_
+#ifndef _RUBY_LIST_H_
+#define _RUBY_LIST_H_
 
 #include "ruby_module.h"
 
 namespace tide
 {
-    class KRubyList : public KList
+    class KRubyList : public TiList
     {
     public:
         KRubyList(VALUE);
         virtual ~KRubyList();
 
-        void Append(KValueRef value);
+        void Append(ValueRef value);
         unsigned int Size();
-        KValueRef At(unsigned int index);
-        void SetAt(unsigned int index, KValueRef value);
+        ValueRef At(unsigned int index);
+        void SetAt(unsigned int index, ValueRef value);
         bool Remove(unsigned int index);
-        void Set(const char* name, KValueRef value);
-        KValueRef Get(const char* name);
+        void Set(const char* name, ValueRef value);
+        ValueRef Get(const char* name);
         SharedStringList GetPropertyNames();
         SharedString DisplayString(int);
         VALUE ToRuby();
@@ -62,7 +62,7 @@ namespace tide
      *  @param other the object to test
      *  @returns true if objects have reference equality, false otherwise
      */
-    virtual bool Equals(KObjectRef);
+    virtual bool Equals(TiObjectRef);
 
     protected:
         VALUE list;

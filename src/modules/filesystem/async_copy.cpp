@@ -47,7 +47,7 @@
 namespace ti
 {
     AsyncCopy::AsyncCopy(FilesystemBinding* parent, Host *host,
-        std::vector<std::string> files, std::string destination, KMethodRef callback) :
+        std::vector<std::string> files, std::string destination, TiMethodRef callback) :
             StaticBoundObject("Filesystem.AsyncCopy"),
             parent(parent),
             host(host),
@@ -132,7 +132,7 @@ namespace ti
 
     void AsyncCopy::Run(void* data)
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         Logger* logger = Logger::Get("Filesystem.AsyncCopy");
 
@@ -168,7 +168,7 @@ namespace ti
                 }
                 logger->Debug("File copied");
 
-                KValueRef value = Value::NewString(file);
+                ValueRef value = Value::NewString(file);
                 ValueList args;
                 args.push_back(value);
                 args.push_back(Value::NewInt(c));
@@ -200,15 +200,15 @@ namespace ti
 
         logger->Debug(std::string("Job finished"));
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 
-    void AsyncCopy::ToString(const ValueList& args, KValueRef result)
+    void AsyncCopy::ToString(const ValueList& args, ValueRef result)
     {
         result->SetString("[Async Copy]");
     }
 
-    void AsyncCopy::Cancel(const ValueList& args, KValueRef result)
+    void AsyncCopy::Cancel(const ValueList& args, ValueRef result)
     {
         TIDE_DUMP_LOCATION
         if (thread!=NULL && thread->isRunning())

@@ -37,7 +37,7 @@
 namespace tide {
 
     KPHPMethod::KPHPMethod(zval* object, const char* methodName) :
-        KMethod("PHP.KPHPMethod"),
+        TiMethod("PHP.KPHPMethod"),
         object(object),
         methodName(strdup(methodName)),
         globalObject(PHPUtils::GetCurrentGlobalObject())
@@ -55,7 +55,7 @@ namespace tide {
         free(methodName);
     }
 
-    KValueRef KPHPMethod::Call(const ValueList& args)
+    ValueRef KPHPMethod::Call(const ValueList& args)
     {
         TSRMLS_FETCH();
 
@@ -71,7 +71,7 @@ namespace tide {
         zval** zargsStore = new zval*[args.size()];
         for (int i = 0; i < args.size(); i++)
         {
-            KValueRef value = args.at(i);
+            ValueRef value = args.at(i);
 
             zval* zargument;
             ALLOC_INIT_ZVAL(zargsStore[i]);
@@ -93,7 +93,7 @@ namespace tide {
         callInfo.symbol_table = NULL;
         callInfo.function_table = &classEntry->function_table;
 
-        KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+        TiObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
         PHPUtils::SwapGlobalObject(this->globalObject, &EG(symbol_table) TSRMLS_CC);
 
         int result = zend_call_function(&callInfo, NULL TSRMLS_CC);
@@ -115,7 +115,7 @@ namespace tide {
         }
         else if (zReturnValue)
         {
-            KValueRef returnValue(PHPUtils::ToKrollValue(zReturnValue TSRMLS_CC));
+            ValueRef returnValue(PHPUtils::ToTiValue(zReturnValue TSRMLS_CC));
             zval_ptr_dtor(&zReturnValue);
             return returnValue;
         }
@@ -125,20 +125,20 @@ namespace tide {
         }
     }
 
-    void KPHPMethod::Set(const char *name, KValueRef value)
+    void KPHPMethod::Set(const char *name, ValueRef value)
     {
         // TODO: PHP methods do not have properties. Should we should set
         // them on a StaticBoundObject here?
     }
 
-    KValueRef KPHPMethod::Get(const char *name)
+    ValueRef KPHPMethod::Get(const char *name)
     {
         // TODO: PHP methods do not have properties. Should we should get
         // them from a StaticBoundObject here?
         return Value::Undefined;
     }
 
-    bool KPHPMethod::Equals(KObjectRef other)
+    bool KPHPMethod::Equals(TiObjectRef other)
     {
         AutoPtr<KPHPMethod> phpOther = other.cast<KPHPMethod>();
         if (phpOther.isNull())

@@ -37,7 +37,7 @@
 namespace tide {
 
     KPHPFunction::KPHPFunction(const char* functionName) :
-        KMethod("PHP.KPHPFunction"),
+        TiMethod("PHP.KPHPFunction"),
         methodName(functionName),
         zMethodName(0),
         globalObject(PHPUtils::GetCurrentGlobalObject())
@@ -53,7 +53,7 @@ namespace tide {
             zval_ptr_dtor(&zMethodName);
     }
 
-    KValueRef KPHPFunction::Call(const ValueList& args)
+    ValueRef KPHPFunction::Call(const ValueList& args)
     {
         TSRMLS_FETCH();
 
@@ -74,7 +74,7 @@ namespace tide {
         zval* zReturnValue;
         MAKE_STD_ZVAL(zReturnValue);
 
-        KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+        TiObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
         PHPUtils::SwapGlobalObject(this->globalObject, &EG(symbol_table) TSRMLS_CC);
 
         zend_try 
@@ -111,7 +111,7 @@ namespace tide {
         }
         else if (zReturnValue)
         {
-            KValueRef returnValue(PHPUtils::ToKrollValue(zReturnValue TSRMLS_CC));
+            ValueRef returnValue(PHPUtils::ToTiValue(zReturnValue TSRMLS_CC));
             zval_ptr_dtor(&zReturnValue);
             return returnValue;
         }
@@ -121,20 +121,20 @@ namespace tide {
         }
     }
 
-    void KPHPFunction::Set(const char *name, KValueRef value)
+    void KPHPFunction::Set(const char *name, ValueRef value)
     {
         // TODO: PHP methods do not have properties. Should we should set
         // them on a StaticBoundObject here?
     }
 
-    KValueRef KPHPFunction::Get(const char *name)
+    ValueRef KPHPFunction::Get(const char *name)
     {
         // TODO: PHP methods do not have properties. Should we should get
         // them from a StaticBoundObject here?
         return Value::Undefined;
     }
 
-    bool KPHPFunction::Equals(KObjectRef other)
+    bool KPHPFunction::Equals(TiObjectRef other)
     {
         AutoPtr<KPHPFunction> phpOther = other.cast<KPHPFunction>();
         if (phpOther.isNull())

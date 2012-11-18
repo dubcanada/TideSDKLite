@@ -45,35 +45,35 @@ namespace ti
     class FilesystemBinding : public StaticBoundObject
     {
     public:
-        FilesystemBinding(Host*, KObjectRef);
+        FilesystemBinding(Host*, TiObjectRef);
         virtual ~FilesystemBinding();
 
     private:
         Host *host;
-        KObjectRef global;
-        std::vector<KObjectRef> asyncOperations;
+        TiObjectRef global;
+        std::vector<TiObjectRef> asyncOperations;
         Poco::Timer *timer;
 
-        void CreateTempFile(const ValueList& args, KValueRef result);
-        void CreateTempDirectory(const ValueList& args, KValueRef result);
-        void GetFile(const ValueList& args, KValueRef result);
-        void GetFileStream(const ValueList& args, KValueRef result);
-        void GetApplicationDirectory(const ValueList& args, KValueRef result);
-        void GetApplicationDataDirectory(const ValueList& args, KValueRef result);
-        void GetRuntimeHomeDirectory(const ValueList& args, KValueRef result);
-        void GetResourcesDirectory(const ValueList& args, KValueRef result);
-        void GetProgramsDirectory(const ValueList &args, KValueRef result);
-        void GetDesktopDirectory(const ValueList& args, KValueRef result);
-        void GetDocumentsDirectory(const ValueList& args, KValueRef result);
-        void GetUserDirectory(const ValueList& args, KValueRef result);
-        void GetLineEnding(const ValueList& args, KValueRef result);
-        void GetSeparator(const ValueList& args, KValueRef result);
-        void GetRootDirectories(const ValueList& args, KValueRef result);
-        void ExecuteAsyncCopy(const ValueList& args, KValueRef result);
+        void CreateTempFile(const ValueList& args, ValueRef result);
+        void CreateTempDirectory(const ValueList& args, ValueRef result);
+        void GetFile(const ValueList& args, ValueRef result);
+        void GetFileStream(const ValueList& args, ValueRef result);
+        void GetApplicationDirectory(const ValueList& args, ValueRef result);
+        void GetApplicationDataDirectory(const ValueList& args, ValueRef result);
+        void GetRuntimeHomeDirectory(const ValueList& args, ValueRef result);
+        void GetResourcesDirectory(const ValueList& args, ValueRef result);
+        void GetProgramsDirectory(const ValueList &args, ValueRef result);
+        void GetDesktopDirectory(const ValueList& args, ValueRef result);
+        void GetDocumentsDirectory(const ValueList& args, ValueRef result);
+        void GetUserDirectory(const ValueList& args, ValueRef result);
+        void GetLineEnding(const ValueList& args, ValueRef result);
+        void GetSeparator(const ValueList& args, ValueRef result);
+        void GetRootDirectories(const ValueList& args, ValueRef result);
+        void ExecuteAsyncCopy(const ValueList& args, ValueRef result);
 
         //INTERNAL ONLY
         void OnAsyncOperationTimer(Poco::Timer &timer);
-        void DeletePendingOperations(const ValueList& args, KValueRef result);
+        void DeletePendingOperations(const ValueList& args, ValueRef result);
     };
 }
 

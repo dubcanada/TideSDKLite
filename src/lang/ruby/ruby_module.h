@@ -37,12 +37,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define KROLL_RUBY_API EXPORT
+#define TIDESDK_RUBY_API EXPORT
 #elif defined(OS_WIN32)
-# ifdef KROLL_RUBY_API_EXPORT
-#  define KROLL_RUBY_API __declspec(dllexport)
+# ifdef TIDESDK_RUBY_API_EXPORT
+#  define TIDESDK_RUBY_API __declspec(dllexport)
 # else
-#  define KROLL_RUBY_API __declspec(dllimport)
+#  define TIDESDK_RUBY_API __declspec(dllimport)
 # endif
 #endif
 
@@ -73,17 +73,17 @@
 #undef shutdown
 
 #include <tide/tide.h>
-#include "k_ruby_object.h"
-#include "k_ruby_hash.h"
-#include "k_ruby_method.h"
-#include "k_ruby_list.h"
+#include "ruby_object.h"
+#include "ruby_hash.h"
+#include "ruby_method.h"
+#include "ruby_list.h"
 #include "ruby_utils.h"
 #include "ruby_evaluator.h"
 #include "ruby_module_instance.h"
 
 namespace tide
 {
-    class KROLL_RUBY_API RubyModule : public Module, public ModuleProvider
+    class TIDESDK_RUBY_API RubyModule : public Module, public ModuleProvider
     {
     public:
         RubyModule(Host* host, const char* path) :
@@ -111,7 +111,7 @@ namespace tide
         }
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
         static RubyModule *instance_;
         DISALLOW_EVIL_CONSTRUCTORS(RubyModule);
     };

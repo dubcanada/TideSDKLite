@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KJS_KMETHOD_H_
-#define _KJS_KMETHOD_H_
+#ifndef _JS_METHOD_H_
+#define _JS_METHOD_H_
 
 #include "javascript_module.h"
 
@@ -43,20 +43,20 @@
 
 namespace tide
 {
-    class TIDE_API KKJSMethod : public KMethod
+    class TIDE_API KKJSMethod : public TiMethod
     {
         public:
         KKJSMethod(JSContextRef, JSObjectRef, JSObjectRef);
         ~KKJSMethod();
 
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        KValueRef Call(JSObjectRef thisObject, const ValueList& args);
-        virtual KValueRef Call(const ValueList& args);
-        virtual KValueRef Call(KObjectRef thisObject, const ValueList& args);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
+        ValueRef Call(JSObjectRef thisObject, const ValueList& args);
+        virtual ValueRef Call(const ValueList& args);
+        virtual ValueRef Call(TiObjectRef thisObject, const ValueList& args);
         virtual SharedStringList GetPropertyNames();
         virtual bool HasProperty(const char* name);
-        virtual bool Equals(KObjectRef);
+        virtual bool Equals(TiObjectRef);
 
         virtual bool SameContextGroup(JSContextRef c);
         JSObjectRef GetJSObject();
@@ -65,7 +65,7 @@ namespace tide
         JSGlobalContextRef context;
         JSObjectRef jsobject;
         JSObjectRef thisObject;
-        AutoPtr<KKJSObject> kobject;
+        AutoPtr<KKJSObject> tiObject;
 
         private:
         DISALLOW_EVIL_CONSTRUCTORS(KKJSMethod);

@@ -36,7 +36,7 @@
 
 namespace ti
 {
-    OSXMediaBinding::OSXMediaBinding(KObjectRef global) : MediaBinding(global)
+    OSXMediaBinding::OSXMediaBinding(TiObjectRef global) : MediaBinding(global)
     {
     }
     OSXMediaBinding::~OSXMediaBinding()
@@ -46,7 +46,7 @@ namespace ti
     {
         NSBeep();
     }
-    KObjectRef OSXMediaBinding::CreateSound(std::string& url)
+    TiObjectRef OSXMediaBinding::CreateSound(std::string& url)
     {
         return new OSXSound(url);
     }

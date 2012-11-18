@@ -45,15 +45,15 @@ namespace ti
             OSXUserWindow(AutoPtr<WindowConfig> config, AutoUserWindow& parent);
             ~OSXUserWindow();
 
-            void OpenChooserDialog(bool files, KMethodRef callback, bool multiple,
+            void OpenChooserDialog(bool files, TiMethodRef callback, bool multiple,
                 std::string& title, std::string& path, std::string& defaultName,
                 std::vector<std::string>& types, std::string& typesDescription);
-            void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+            void OpenFileChooserDialog(TiMethodRef callback, bool multiple,
                 std::string& title, std::string& path, std::string& defaultName,
                 std::vector<std::string>& types, std::string& typesDescription);
-            void OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+            void OpenFolderChooserDialog(TiMethodRef callback, bool multiple,
                 std::string& title, std::string& path, std::string& defaultName);
-            void OpenSaveAsDialog(KMethodRef callback, std::string& title,
+            void OpenSaveAsDialog(TiMethodRef callback, std::string& title,
                 std::string& path, std::string& defaultName, std::vector<std::string>& types,
                 std::string& typesDescription);
             void Hide();

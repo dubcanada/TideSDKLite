@@ -58,8 +58,8 @@ namespace ti
         virtual BytesRef MonitorSync();
         virtual int Wait();
         virtual void RecreateNativePipes();
-        virtual void SetArguments(KListRef args);
-        void ReadCallback(const ValueList& args, KValueRef result);
+        virtual void SetArguments(TiListRef args);
+        void ReadCallback(const ValueList& args, ValueRef result);
         inline virtual AutoPtr<NativePipe> GetNativeStdin() { return nativeIn; }
         inline virtual AutoPtr<NativePipe> GetNativeStdout() { return nativeOut; }
         inline virtual AutoPtr<NativePipe> GetNativeStderr() { return nativeErr; }

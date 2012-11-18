@@ -36,36 +36,36 @@
 
 namespace tide
 {
-    static void PyKObject_dealloc(PyObject* );
-    static PyObject* PyKObject_getattr(PyObject*, char*);
-    static int PyKObject_setattr(PyObject*, char*, PyObject *);
-    static PyObject* PyKObject_str(PyObject*);
-    static Py_ssize_t PyKListLength(PyObject*);
-    static PyObject* PyKListConcat(PyObject*, PyObject*);
-    static PyObject* PyKListRepeat(PyObject*, Py_ssize_t);
-    static PyObject* PyKListGetItem(PyObject*, Py_ssize_t);
-    static int PyKListSetItem(PyObject*, Py_ssize_t, PyObject*);
-    static int PyKListContains(PyObject*, PyObject*);
-    static PyObject* PyKListInPlaceConcat(PyObject*, PyObject*);
-    static PyObject* PyKListInPlaceRepeat(PyObject*, Py_ssize_t);
-    static PyObject* PyKMethod_call(PyObject*, PyObject *, PyObject*);
+    static void PyTiObject_dealloc(PyObject* );
+    static PyObject* PyTiObject_getattr(PyObject*, char*);
+    static int PyTiObject_setattr(PyObject*, char*, PyObject *);
+    static PyObject* PyTiObject_str(PyObject*);
+    static Py_ssize_t PyTiListLength(PyObject*);
+    static PyObject* PyTiListConcat(PyObject*, PyObject*);
+    static PyObject* PyTiListRepeat(PyObject*, Py_ssize_t);
+    static PyObject* PyTiListGetItem(PyObject*, Py_ssize_t);
+    static int PyTiListSetItem(PyObject*, Py_ssize_t, PyObject*);
+    static int PyTiListContains(PyObject*, PyObject*);
+    static PyObject* PyTiListInPlaceConcat(PyObject*, PyObject*);
+    static PyObject* PyTiListInPlaceRepeat(PyObject*, Py_ssize_t);
+    static PyObject* PyTiMethod_call(PyObject*, PyObject *, PyObject*);
 
     typedef struct {
         PyObject_HEAD
-        KValueRef* value;
-    } PyKObject;
+        ValueRef* value;
+    } PyTiObject;
 
-    static PyTypeObject PyKObjectType =
+    static PyTypeObject PyTiObjectType =
     {
         PyObject_HEAD_INIT(NULL)
         0,
-        "KObject",
-        sizeof(PyKObject),
+        "TiObject",
+        sizeof(PyTiObject),
         0,
-        PyKObject_dealloc,          /*tp_dealloc*/
+        PyTiObject_dealloc,          /*tp_dealloc*/
         0,                          /*tp_print*/
-        PyKObject_getattr,          /*tp_getattr*/
-        PyKObject_setattr,          /*tp_setattr*/
+        PyTiObject_getattr,          /*tp_getattr*/
+        PyTiObject_setattr,          /*tp_setattr*/
         0,                          /*tp_compare*/
         0,                          /*tp_repr*/
         0,                          /*tp_as_number*/
@@ -73,7 +73,7 @@ namespace tide
         0,                          /*tp_as_mapping*/
         0,                          /*tp_hash */
         0,                          /*tp_call */
-        PyKObject_str,              /*tp_str */
+        PyTiObject_str,              /*tp_str */
         0,                          /*tp_getattro*/
         0,                          /*tp_setattro*/
         0,                          /*tp_as_buffer*/
@@ -91,25 +91,25 @@ namespace tide
         0                           /* tp_base */
     };
 
-    static PyTypeObject PyKMethodType =
+    static PyTypeObject PyTiMethodType =
     {
         PyObject_HEAD_INIT(NULL)
         0,
-        "KMethod",
-        sizeof(PyKObject),
+        "TiMethod",
+        sizeof(PyTiObject),
         0,
-        PyKObject_dealloc,          /*tp_dealloc*/
+        PyTiObject_dealloc,          /*tp_dealloc*/
         0,                          /*tp_print*/
-        PyKObject_getattr,          /*tp_getattr*/
-        PyKObject_setattr,          /*tp_setattr*/
+        PyTiObject_getattr,          /*tp_getattr*/
+        PyTiObject_setattr,          /*tp_setattr*/
         0,                          /*tp_compare*/
         0,                          /*tp_repr*/
         0,                          /*tp_as_number*/
         0,                          /*tp_as_sequence*/
         0,                          /*tp_as_mapping*/
         0,                          /*tp_hash */
-        PyKMethod_call,             /*tp_call */
-        PyKObject_str,              /*tp_str */
+        PyTiMethod_call,             /*tp_call */
+        PyTiObject_str,              /*tp_str */
         0,                          /*tp_getattro*/
         0,                          /*tp_setattro*/
         0,                          /*tp_as_buffer*/
@@ -127,17 +127,17 @@ namespace tide
         0                           /* tp_base */
     };
 
-    static PyTypeObject PyKListType =
+    static PyTypeObject PyTiListType =
     {
         PyObject_HEAD_INIT(NULL)
         0,
-        "KList",
-        sizeof(PyKObject),
+        "TiList",
+        sizeof(PyTiObject),
         0,
-        PyKObject_dealloc,          /*tp_dealloc*/
+        PyTiObject_dealloc,          /*tp_dealloc*/
         0,                          /*tp_print*/
-        PyKObject_getattr,          /*tp_getattr*/
-        PyKObject_setattr,          /*tp_setattr*/
+        PyTiObject_getattr,          /*tp_getattr*/
+        PyTiObject_setattr,          /*tp_setattr*/
         0,                          /*tp_compare*/
         0,                          /*tp_repr*/
         0,                          /*tp_as_number*/
@@ -145,7 +145,7 @@ namespace tide
         0,                          /*tp_as_mapping*/
         0,                          /*tp_hash */
         0,                          /*tp_call */
-        PyKObject_str,              /*tp_str */
+        PyTiObject_str,              /*tp_str */
         0,                          /*tp_getattro*/
         0,                          /*tp_setattro*/
         0,                          /*tp_as_buffer*/
@@ -168,30 +168,30 @@ namespace tide
     {
         PyLockGIL lock;
 
-        KPySequenceMethods.sq_length = &PyKListLength;
-        KPySequenceMethods.sq_concat = &PyKListConcat;
-        KPySequenceMethods.sq_repeat = &PyKListRepeat;
-        KPySequenceMethods.sq_item = &PyKListGetItem;
-        KPySequenceMethods.sq_ass_item = &PyKListSetItem;
-        KPySequenceMethods.sq_contains = &PyKListContains;
-        KPySequenceMethods.sq_inplace_concat = &PyKListInPlaceConcat;
-        KPySequenceMethods.sq_inplace_repeat = &PyKListInPlaceRepeat;
+        KPySequenceMethods.sq_length = &PyTiListLength;
+        KPySequenceMethods.sq_concat = &PyTiListConcat;
+        KPySequenceMethods.sq_repeat = &PyTiListRepeat;
+        KPySequenceMethods.sq_item = &PyTiListGetItem;
+        KPySequenceMethods.sq_ass_item = &PyTiListSetItem;
+        KPySequenceMethods.sq_contains = &PyTiListContains;
+        KPySequenceMethods.sq_inplace_concat = &PyTiListInPlaceConcat;
+        KPySequenceMethods.sq_inplace_repeat = &PyTiListInPlaceRepeat;
 
-        PyKListType.tp_as_sequence = &KPySequenceMethods;
-        PyKListType.tp_flags = Py_TPFLAGS_HAVE_INPLACEOPS | Py_TPFLAGS_HAVE_SEQUENCE_IN;
+        PyTiListType.tp_as_sequence = &KPySequenceMethods;
+        PyTiListType.tp_flags = Py_TPFLAGS_HAVE_INPLACEOPS | Py_TPFLAGS_HAVE_SEQUENCE_IN;
 
-        if (PyType_Ready(&PyKObjectType) < 0)
-            throw ValueException::FromString("Could not initialize PyKObjectType!");
+        if (PyType_Ready(&PyTiObjectType) < 0)
+            throw ValueException::FromString("Could not initialize PyTiObjectType!");
 
-        if (PyType_Ready(&PyKListType) < 0)
-            throw ValueException::FromString("Could not initialize PyKListType!");
+        if (PyType_Ready(&PyTiListType) < 0)
+            throw ValueException::FromString("Could not initialize PyTiListType!");
 
-        if (PyType_Ready(&PyKMethodType) < 0)
-            throw ValueException::FromString("Could not initialize PyKMethodType!");
+        if (PyType_Ready(&PyTiMethodType) < 0)
+            throw ValueException::FromString("Could not initialize PyTiMethodType!");
 
     }
 
-    PyObject* PythonUtils::ToPyObject(KValueRef value)
+    PyObject* PythonUtils::ToPyObject(ValueRef value)
     {
         PyLockGIL lock;
         PyObject* pythonValue = 0;
@@ -226,7 +226,7 @@ namespace tide
             }
             else
             {
-                pythonValue = PythonUtils::KMethodToPyObject(value);
+                pythonValue = PythonUtils::TiMethodToPyObject(value);
                 needsReferenceIncrement = false;
             }
         }
@@ -244,13 +244,13 @@ namespace tide
             }
             else
             {
-                pythonValue = PythonUtils::KListToPyObject(value);
+                pythonValue = PythonUtils::TiListToPyObject(value);
                 needsReferenceIncrement = false;
             }
         }
         else if (value->IsObject())
         {
-            KObjectRef obj = value->ToObject();
+            TiObjectRef obj = value->ToObject();
             AutoPtr<KPythonObject> pyobj = obj.cast<KPythonObject>();
             AutoPtr<KPythonDict> pydict = obj.cast<KPythonDict>();
 
@@ -264,7 +264,7 @@ namespace tide
             }
             else
             {
-                pythonValue = PythonUtils::KObjectToPyObject(value);
+                pythonValue = PythonUtils::TiObjectToPyObject(value);
                 needsReferenceIncrement = false;
             }
         }
@@ -298,7 +298,7 @@ namespace tide
         }
     }
 
-    KValueRef PythonUtils::ToKrollValue(PyObject* value)
+    ValueRef PythonUtils::ToTiValue(PyObject* value)
     {
         PyLockGIL lock;
 
@@ -308,7 +308,7 @@ namespace tide
         // trick. Therefore we should avoid using PyString_Check and friends for now
         // unless it does the right thing on Snow Leopard.
 
-        KValueRef kvalue(0);
+        ValueRef kvalue(0);
         if (Py_None == value)
         {
             kvalue = Value::Null;
@@ -357,20 +357,20 @@ namespace tide
         }
 
         // These are objects that originated in the binding layer.
-        // We need to unwrap them when we pass them back to Kroll.
-        else if (PyObject_TypeCheck(value, &PyKObjectType))
+        // We need to unwrap them when we pass them back to Tide.
+        else if (PyObject_TypeCheck(value, &PyTiObjectType))
         {
-            PyKObject *o = reinterpret_cast<PyKObject*>(value);
+            PyTiObject *o = reinterpret_cast<PyTiObject*>(value);
             kvalue = *(o->value);
         }
-        else if (PyObject_TypeCheck(value, &PyKMethodType))
+        else if (PyObject_TypeCheck(value, &PyTiMethodType))
         {
-            PyKObject *o = reinterpret_cast<PyKObject*>(value);
+            PyTiObject *o = reinterpret_cast<PyTiObject*>(value);
             kvalue = *(o->value);
         }
-        else if (PyObject_TypeCheck(value, &PyKListType))
+        else if (PyObject_TypeCheck(value, &PyTiListType))
         {
-            PyKObject *o = reinterpret_cast<PyKObject*>(value);
+            PyTiObject *o = reinterpret_cast<PyTiObject*>(value);
             kvalue = *(o->value);
         }
         else if (PyObject_TypeCheck(value, &PyModule_Type))
@@ -410,7 +410,7 @@ namespace tide
         {
             std::string valueStr(PythonUtils::ToString(value));
             Logger::Get("Python.PythonUtils")->Error(
-                "Failed to convert Python value to Kroll value: %s",
+                "Failed to convert Python value to Tide value: %s",
                 valueStr.c_str());
             kvalue = Value::Undefined;
         }
@@ -418,9 +418,9 @@ namespace tide
         return kvalue;
     }
 
-    static void PyKObject_dealloc(PyObject* self)
+    static void PyTiObject_dealloc(PyObject* self)
     {
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
 
         {
             PyAllowThreads allow;
@@ -430,13 +430,13 @@ namespace tide
         PyObject_Del(self);
     }
 
-    static PyObject* PyKObject_getattr(PyObject *self, char *name)
+    static PyObject* PyTiObject_getattr(PyObject *self, char *name)
     {
         PyLockGIL lock;
         Py_INCREF(self);
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
 
-        KValueRef result = 0;
+        ValueRef result = 0;
         {
             PyAllowThreads allow;
             result = pyko->value->get()->ToObject()->Get(name);
@@ -446,12 +446,12 @@ namespace tide
         return PythonUtils::ToPyObject(result);
     }
 
-    static int PyKObject_setattr(PyObject *self, char *name, PyObject *value)
+    static int PyTiObject_setattr(PyObject *self, char *name, PyObject *value)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
         Py_INCREF(self);
-        KValueRef tiValue = PythonUtils::ToKrollValue(value);
+        ValueRef tiValue = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
@@ -462,12 +462,12 @@ namespace tide
         return 0;
     }
 
-    static PyObject* PyKObject_str(PyObject *self)
+    static PyObject* PyTiObject_str(PyObject *self)
     {
         PyLockGIL lock;
         Py_INCREF(self);
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
-        KObjectRef kobj = pyko->value->get()->ToObject();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(self);
+        TiObjectRef kobj = pyko->value->get()->ToObject();
         Py_DECREF(self);
 
         SharedString ss = 0;
@@ -479,30 +479,30 @@ namespace tide
         return PyString_FromString(ss->c_str());
     }
 
-    PyObject* PythonUtils::KObjectToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiObjectToPyObject(ValueRef v)
     {
         PyLockGIL lock;
-        PyKObject* obj = PyObject_New(PyKObject, &PyKObjectType);
-        obj->value = new KValueRef(v);
+        PyTiObject* obj = PyObject_New(PyTiObject, &PyTiObjectType);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 
-    static Py_ssize_t PyKListLength(PyObject* o)
+    static Py_ssize_t PyTiListLength(PyObject* o)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KListRef klist = pyko->value->get()->ToList();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiListRef tiList = pyko->value->get()->ToList();
 
         unsigned int size = 0;
         {
             PyAllowThreads allow;
-            size = klist->Size();
+            size = tiList->Size();
         }
 
         return (Py_ssize_t) size;
     }
 
-    static PyObject* PyKListConcat(PyObject* a, PyObject* b)
+    static PyObject* PyTiListConcat(PyObject* a, PyObject* b)
     {
         PyLockGIL lock;
         PyObject* new_list = PyList_New(0);
@@ -511,7 +511,7 @@ namespace tide
         return new_list;
     }
 
-    static PyObject* PyKListRepeat(PyObject *o, Py_ssize_t count)
+    static PyObject* PyTiListRepeat(PyObject *o, Py_ssize_t count)
     {
         PyLockGIL lock;
         PyObject* new_list = PyList_New(0);
@@ -523,18 +523,18 @@ namespace tide
         return new_list;
     }
 
-    static PyObject* PyKListGetItem(PyObject *o, Py_ssize_t i)
+    static PyObject* PyTiListGetItem(PyObject *o, Py_ssize_t i)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KListRef klist = pyko->value->get()->ToList();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiListRef tiList = pyko->value->get()->ToList();
 
-        KValueRef listVal = 0;
+        ValueRef listVal = 0;
         {
             PyAllowThreads allow;
-            if (i < (int) klist->Size())
+            if (i < (int) tiList->Size())
             {
-                listVal = klist->At(i);
+                listVal = tiList->At(i);
             }
         }
 
@@ -544,33 +544,33 @@ namespace tide
             return NULL;
     }
 
-    static int PyKListSetItem(PyObject *o, Py_ssize_t i, PyObject *v)
+    static int PyTiListSetItem(PyObject *o, Py_ssize_t i, PyObject *v)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KListRef klist = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToKrollValue(v);
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiListRef tiList = pyko->value->get()->ToList();
+        ValueRef kv = PythonUtils::ToTiValue(v);
 
         {
             PyAllowThreads allow;
-            klist->SetAt((unsigned int) i, kv);
+            tiList->SetAt((unsigned int) i, kv);
         }
 
         return 1;
     }
 
-    static int PyKListContains(PyObject *o, PyObject *value)
+    static int PyTiListContains(PyObject *o, PyObject *value)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KListRef klist = pyko->value->get()->ToList();
-        KValueRef kv = PythonUtils::ToKrollValue(value);
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiListRef tiList = pyko->value->get()->ToList();
+        ValueRef kv = PythonUtils::ToTiValue(value);
 
         {
             PyAllowThreads allow;
-            for (unsigned int i = 0; i < klist->Size(); i++)
+            for (unsigned int i = 0; i < tiList->Size(); i++)
             {
-                if (kv == klist->At(i))
+                if (kv == tiList->At(i))
                     return 1;
             }
         }
@@ -578,40 +578,40 @@ namespace tide
         return 0;
     }
 
-    static PyObject* PyKListInPlaceConcat(PyObject *o1, PyObject *o2)
+    static PyObject* PyTiListInPlaceConcat(PyObject *o1, PyObject *o2)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o1);
-        KListRef klist = pyko->value->get()->ToList();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o1);
+        TiListRef tiList = pyko->value->get()->ToList();
         int size = PySequence_Size(o2);
         for (int i = 0; i < size; i++)
         {
             PyObject* v = PySequence_GetItem(o2, i);
-            KValueRef kv = PythonUtils::ToKrollValue(v);
+            ValueRef kv = PythonUtils::ToTiValue(v);
 
             {
                 PyAllowThreads allow;
-                klist->Append(kv);
+                tiList->Append(kv);
             }
 
         }
         return o1;
     }
 
-    static PyObject* PyKListInPlaceRepeat(PyObject *o, Py_ssize_t count)
+    static PyObject* PyTiListInPlaceRepeat(PyObject *o, Py_ssize_t count)
     {
         PyLockGIL lock;
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KListRef klist = pyko->value->get()->ToList();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiListRef tiList = pyko->value->get()->ToList();
 
         {
             PyAllowThreads allow;
-            unsigned int size = klist->Size();
+            unsigned int size = tiList->Size();
             while (count > 0)
             {
                 for (unsigned int i = 0; i < size; i++)
                 {
-                    klist->Append(klist->At(i));
+                    tiList->Append(tiList->At(i));
                 }
                 count--;
             }
@@ -620,29 +620,29 @@ namespace tide
         return o;
     }
 
-    PyObject* PythonUtils::KListToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiListToPyObject(ValueRef v)
     {
         PyLockGIL lock;
-        PyKObject* obj = PyObject_New(PyKObject, &PyKListType);
-        obj->value = new KValueRef(v);
+        PyTiObject* obj = PyObject_New(PyTiObject, &PyTiListType);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 
-    static PyObject* PyKMethod_call(PyObject *o, PyObject *args, PyObject *kw)
+    static PyObject* PyTiMethod_call(PyObject *o, PyObject *args, PyObject *kw)
     {
         PyLockGIL lock;
         Py_INCREF(o);
-        PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-        KMethodRef kmeth = pyko->value->get()->ToMethod();
+        PyTiObject *pyko = reinterpret_cast<PyTiObject*>(o);
+        TiMethodRef kmeth = pyko->value->get()->ToMethod();
 
         ValueList a;
-        KValueRef result = Value::Undefined;
+        ValueRef result = Value::Undefined;
         try
         {
             for (int c = 0; c < PyTuple_Size(args); c++)
             {
                 PyObject* arg = PyTuple_GetItem(args, c);
-                KValueRef kValue = PythonUtils::ToKrollValue(arg);
+                ValueRef kValue = PythonUtils::ToTiValue(arg);
                 Value::Unwrap(kValue);
                 a.push_back(kValue);
             }
@@ -668,11 +668,11 @@ namespace tide
         return PythonUtils::ToPyObject(result);
     }
 
-    PyObject* PythonUtils::KMethodToPyObject(KValueRef v)
+    PyObject* PythonUtils::TiMethodToPyObject(ValueRef v)
     {
         PyLockGIL lock;
-        PyKObject* obj = PyObject_New(PyKObject, &PyKMethodType);
-        obj->value = new KValueRef(v);
+        PyTiObject* obj = PyObject_New(PyTiObject, &PyTiMethodType);
+        obj->value = new ValueRef(v);
         return (PyObject*) obj;
     }
 

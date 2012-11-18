@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_URL_UTILS_H_
-#define _KR_URL_UTILS_H_
+#ifndef _URL_UTILS_H_
+#define _URL_UTILS_H_
 #include <string>
 namespace UTILS_NS
 {
@@ -59,8 +59,8 @@ namespace UTILS_NS
          */
         TIDE_API std::string PathToFileURL(std::string path);
 
-// These functions are not available outside a Kroll application
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+// These functions are not available outside a TideSDK application
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
         /**
          * Normalize a URL. If this url is an app:// URL, ensure that it
          * has the app id as the hostname

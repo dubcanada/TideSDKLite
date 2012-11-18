@@ -53,18 +53,18 @@ namespace ti
     class MonkeyBinding : public tide::StaticBoundObject
     {
         public:
-        MonkeyBinding(Host*, KObjectRef);
+        MonkeyBinding(Host*, TiObjectRef);
 
         protected:
         virtual ~MonkeyBinding();
         void ParseFile(string filePath);
-        void Callback(const ValueList &args, KValueRef result);
+        void Callback(const ValueList &args, ValueRef result);
         void EvaluateUserScript(
-            KObjectRef, std::string&,KObjectRef, std::string&);
+            TiObjectRef, std::string&,TiObjectRef, std::string&);
 
-        KObjectRef global;
+        TiObjectRef global;
         Logger* logger;
-        KMethodRef callback;
+        TiMethodRef callback;
         std::vector<Script*> scripts;
     };
 }

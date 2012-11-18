@@ -32,32 +32,39 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PHP_METHOD_H_
-#define _K_PHP_METHOD_H_
+#ifndef _PHP_ARRAY_OBJECT_H_
+#define _PHP_ARRAY_OBJECT_H_
+
+#include "php_module.h"
 
 namespace tide
 {
-    class KPHPMethod : public KMethod
+    class KPHPArrayObject : public TiList
     {
         public:
-        KPHPMethod(zval* object, const char* methodName);
-        KPHPMethod(const char *functionName);
+        KPHPArrayObject(zval *list);
+        virtual ~KPHPArrayObject();
 
-        virtual ~KPHPMethod();
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual SharedStringList GetPropertyNames();
-        virtual SharedString DisplayString(int);
-        virtual bool Equals(KObjectRef);
-        bool PropertyExists(const char* property);
+        ValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        virtual bool Equals(TiObjectRef);
+        SharedStringList GetPropertyNames();
+
+        unsigned int Size();
+        void Append(ValueRef value);
+        virtual void SetAt(unsigned int index, ValueRef value);
+        bool Remove(unsigned int index);
+        ValueRef At(unsigned int index);
+
         zval* ToPHP();
 
-        private:
-        zval* object;
-        char* methodName;
-        zval* zMethodName;
-        KObjectRef globalObject;
+        protected:
+        zval *list;
+
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray, const char *key);
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray, unsigned int index);
+        static void AddTideValueToPHPArray(ValueRef value, zval *phpArray);
+        DISALLOW_EVIL_CONSTRUCTORS(KPHPArrayObject);
     };
 }
 

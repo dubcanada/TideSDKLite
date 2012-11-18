@@ -43,17 +43,17 @@ namespace tide
     /**
      * A binding that represents a list§
      */
-    class TIDE_API KList : public KObject
+    class TIDE_API TiList : public TiObject
     {
     public:
-        KList(const char *type = "KList") : KObject(type) {}
-        virtual ~KList() {}
+        TiList(const char *type = "TiList") : TiObject(type) {}
+        virtual ~TiList() {}
 
         /**
          * Append a value to this list
          *  Errors will result in a thrown ValueException
          */
-        virtual void Append(KValueRef value) = 0;
+        virtual void Append(ValueRef value) = 0;
 
         /**
          * Get the length of this list.
@@ -64,7 +64,7 @@ namespace tide
          * @return the value at the given index.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef At(unsigned int index) = 0;
+        virtual ValueRef At(unsigned int index) = 0;
 
         /**
          * Set the value at the given index. If the index is greater
@@ -72,7 +72,7 @@ namespace tide
          * by appending Value::Undefined;
          * Errors will result in a thrown ValueException
          */
-        virtual void SetAt(unsigned int index, KValueRef value) = 0;
+        virtual void SetAt(unsigned int index, ValueRef value) = 0;
 
         /**
          * Remove the list entry at the given index. Return true
@@ -85,14 +85,14 @@ namespace tide
          * Set a property on this object to the given value
          * Errors will result in a thrown ValueException
          */
-        virtual void Set(const char *name, KValueRef value) = 0;
+        virtual void Set(const char *name, ValueRef value) = 0;
 
         /**
          * @return the property with the given name or Value::Undefined
          * if the property is not found.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef Get(const char *name) = 0;
+        virtual ValueRef Get(const char *name) = 0;
 
         /**
          * @return a list of this object's property names.
@@ -124,17 +124,17 @@ namespace tide
         static std::string IntToChars(unsigned int value);
 
         /**
-         * Convert the given string into a KList index.
+         * Convert the given string into a TiList index.
          */
         static unsigned int ToIndex(const std::string& str);
 
         /**
          * Return the unwrapped version of this object
          */
-        static KListRef Unwrap(KListRef);
+        static TiListRef Unwrap(TiListRef);
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KList);
+        DISALLOW_EVIL_CONSTRUCTORS(TiList);
     };
 }
 

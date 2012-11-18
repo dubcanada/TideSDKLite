@@ -46,7 +46,7 @@ namespace ti
     }
 
     WorkerContext::WorkerContext(Worker* worker) :
-        KEventObject("Worker.WorkerContext"),
+        EventObject("Worker.WorkerContext"),
         worker(worker),
         jsContext(0),
         running(false)
@@ -59,10 +59,10 @@ namespace ti
 
     static JSGlobalContextRef CreateGlobalContext(WorkerContext* context)
     {
-        JSGlobalContextRef jsContext = KJSUtil::CreateGlobalContext();
+        JSGlobalContextRef jsContext = JSUtil::CreateGlobalContext();
         JSGlobalContextRetain(jsContext);
 
-        KObjectRef global(new KKJSObject(jsContext,
+        TiObjectRef global(new KKJSObject(jsContext,
             JSContextGetGlobalObject(jsContext)));
 
         global->SetMethod("postMessage", StaticBoundMethod::FromMethod<WorkerContext>(
@@ -79,7 +79,7 @@ namespace ti
 
     static void DestroyGlobalContext(JSGlobalContextRef jsContext)
     {
-        KJSUtil::UnregisterGlobalContext(jsContext);
+        JSUtil::UnregisterGlobalContext(jsContext);
         JSGlobalContextRelease(jsContext);
     }
 
@@ -92,7 +92,7 @@ namespace ti
 
         try
         {
-            KJSUtil::Evaluate(jsContext, code.c_str());
+            JSUtil::Evaluate(jsContext, code.c_str());
         }
         catch (ValueException& e)
         {
@@ -115,7 +115,7 @@ namespace ti
         {
             while (!inbox.empty())
             {
-                KValueRef message(0);
+                ValueRef message(0);
                 {
                     Poco::Mutex::ScopedLock lock(inboxLock);
                     message = inbox.front();
@@ -131,12 +131,12 @@ namespace ti
         }
     }
 
-    void WorkerContext::DeliverMessage(KValueRef message)
+    void WorkerContext::DeliverMessage(ValueRef message)
     {
         AutoPtr<Event> event(this->CreateEvent("worker.message"));
         event->Set("message", message);
 
-        KValueRef callback = this->Get("onmessage");
+        ValueRef callback = this->Get("onmessage");
         if (callback->IsMethod())
             callback->ToMethod()->Call(Value::NewObject(event));
     }
@@ -149,7 +149,7 @@ namespace ti
         terminateEvent.set();
     }
 
-    void WorkerContext::SendMessageToWorker(KValueRef message)
+    void WorkerContext::SendMessageToWorker(ValueRef message)
     {
         {
             Poco::Mutex::ScopedLock lock(inboxLock);
@@ -160,12 +160,12 @@ namespace ti
         messageEvent.set();
     }
 
-    void WorkerContext::_PostMessage(const ValueList &args, KValueRef result)
+    void WorkerContext::_PostMessage(const ValueList &args, ValueRef result)
     {
         worker->SendMessageToMainThread(args.GetValue(0));
     }
 
-    void WorkerContext::_Sleep(const ValueList &args, KValueRef result)
+    void WorkerContext::_Sleep(const ValueList &args, ValueRef result)
     {
         args.VerifyException("sleep", "i");
 
@@ -181,32 +181,32 @@ namespace ti
         }
     }
 
-    void WorkerContext::_ImportScripts(const ValueList &args, KValueRef result)
+    void WorkerContext::_ImportScripts(const ValueList &args, ValueRef result)
     {
         for (size_t c = 0; c < args.size(); c++)
         {
             std::string path(URLUtils::URLToPath(args.GetString(c)));
             GetLogger()->Debug("Attempting to import worker script = %s", path.c_str());
-            KJSUtil::EvaluateFile(this->jsContext, path.c_str());
+            JSUtil::EvaluateFile(this->jsContext, path.c_str());
         }
     }
 
-    KValueRef WorkerContext::Get(const char* name)
+    ValueRef WorkerContext::Get(const char* name)
     {
         if (!jsContext)
             return Value::Undefined;
 
-        KObjectRef global(new KKJSObject(jsContext,
+        TiObjectRef global(new KKJSObject(jsContext,
             JSContextGetGlobalObject(jsContext)));
         return global->Get(name);
     }
 
-    void WorkerContext::Set(const char* name, KValueRef value)
+    void WorkerContext::Set(const char* name, ValueRef value)
     {
         if (!jsContext)
             return;
 
-        KObjectRef global(new KKJSObject(jsContext,
+        TiObjectRef global(new KKJSObject(jsContext,
             JSContextGetGlobalObject(jsContext)));
         global->Set(name, value);
     }

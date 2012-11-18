@@ -10,7 +10,7 @@
 namespace ti
 {
 
-void AppBinding::Restart(const ValueList& args, KValueRef result)
+void AppBinding::Restart(const ValueList& args, ValueRef result)
 {
 	Host* host = Host::GetInstance();
 	std::string cmdline(host->GetApplication()->arguments.at(0));

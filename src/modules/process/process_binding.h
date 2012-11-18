@@ -42,7 +42,7 @@
 
 namespace ti
 {
-    class ProcessBinding : public KAccessorObject
+    class ProcessBinding : public AccessorObject
     {
     public:
         ProcessBinding();
@@ -50,10 +50,10 @@ namespace ti
         static std::map<std::string,int> signals;
 
     private:
-        void CreateProcess(const ValueList& args, KValueRef result);
-        void CreatePipe(const ValueList& args, KValueRef result);
-        void GetCurrentProcess(const ValueList& args, KValueRef result);
-        void ExtendArgs(KListRef dest, KListRef args);
+        void CreateProcess(const ValueList& args, ValueRef result);
+        void CreatePipe(const ValueList& args, ValueRef result);
+        void GetCurrentProcess(const ValueList& args, ValueRef result);
+        void ExtendArgs(TiListRef dest, TiListRef args);
     };
 }
 

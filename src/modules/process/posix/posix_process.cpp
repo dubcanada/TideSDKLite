@@ -69,7 +69,7 @@ namespace ti
         stdinPipe->Attach(this->GetNativeStdin());
     }
 
-    void PosixProcess::SetArguments(KListRef args)
+    void PosixProcess::SetArguments(TiListRef args)
     {
 #if defined(OS_OSX)
         std::string cmd = args->At(0)->ToString();
@@ -154,7 +154,7 @@ namespace ti
 
     BytesRef PosixProcess::MonitorSync()
     {
-        KMethodRef readCallback =
+        TiMethodRef readCallback =
             StaticBoundMethod::FromMethod<PosixProcess>(
                 this, &PosixProcess::ReadCallback);
 
@@ -198,7 +198,7 @@ namespace ti
         return exitCode;
     }
 
-    void PosixProcess::ReadCallback(const ValueList& args, KValueRef result)
+    void PosixProcess::ReadCallback(const ValueList& args, ValueRef result)
     {
         if (args.at(0)->IsObject())
         {

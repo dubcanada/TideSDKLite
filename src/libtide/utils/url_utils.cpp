@@ -33,7 +33,7 @@
 **/
 
 #include "utils.h"
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
 #include <Poco/URI.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/FileStream.h>
@@ -221,7 +221,7 @@ namespace URLUtils
         return url;
     }
 
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
     static std::string NormalizeAppURL(const std::string& url)
     {
         size_t appLength = 6; // app://

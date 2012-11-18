@@ -32,37 +32,33 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_LIST_H_
-#define _K_PYTHON_LIST_H_
-
-#include "python_module.h"
+#ifndef _PHP_METHOD_H_
+#define _PHP_METHOD_H_
 
 namespace tide
 {
-	class KPythonList : public KList
-	{
-	public:
-		KPythonList(PyObject *obj);
-		virtual ~KPythonList();
+    class KPHPMethod : public TiMethod
+    {
+        public:
+        KPHPMethod(zval* object, const char* methodName);
+        KPHPMethod(const char *functionName);
 
-		KValueRef Get(const char* name);
-		void Set(const char* name, KValueRef value);
-		virtual bool Equals(KObjectRef);
-		SharedStringList GetPropertyNames();
+        virtual ~KPHPMethod();
+        ValueRef Call(const ValueList& args);
+        virtual void Set(const char *name, ValueRef value);
+        virtual ValueRef Get(const char *name);
+        virtual SharedStringList GetPropertyNames();
+        virtual SharedString DisplayString(int);
+        virtual bool Equals(TiObjectRef);
+        bool PropertyExists(const char* property);
+        zval* ToPHP();
 
-		unsigned int Size();
-		void Append(KValueRef value);
-		virtual void SetAt(unsigned int index, KValueRef value);
-		bool Remove(unsigned int index);
-		KValueRef At(unsigned int index);
-
-		PyObject* ToPython();
-
-	protected:
-		PyObject *list;
-		AutoPtr<KPythonObject> object;
-		DISALLOW_EVIL_CONSTRUCTORS(KPythonList);
-	};
+        private:
+        zval* object;
+        char* methodName;
+        zval* zMethodName;
+        TiObjectRef globalObject;
+    };
 }
 
 #endif

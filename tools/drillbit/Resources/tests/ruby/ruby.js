@@ -421,7 +421,7 @@ describe("Ruby Tests", {
       return n;
     };
     var o = get_empty_ruby_object();
-    // There should be no properties showing for a blank KObject
+    // There should be no properties showing for a blank TiObject
     var orig_property_count = count_properties(o);
 
     // Yet there are some hidden methods that should be there
@@ -483,7 +483,7 @@ describe("Ruby Tests", {
     var o = get_empty_ruby_hash();
     value_of(true)
       .should_be(true);
-    // There should be no properties showing for a blank KObject
+    // There should be no properties showing for a blank TiObject
     var orig_property_count = count_properties(o);
 
     // Yet there are some hidden methods that should be there

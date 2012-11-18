@@ -42,7 +42,7 @@
 
 namespace tide
 {
-    class DependencyBinding : public KAccessorObject
+    class DependencyBinding : public AccessorObject
     {
         public:
         DependencyBinding(SharedDependency dependency);
@@ -51,10 +51,10 @@ namespace tide
         private:
         SharedDependency dependency;
 
-        void _GetType(const ValueList& args, KValueRef value);
-        void _GetName(const ValueList& args, KValueRef value);;
-        void _GetVersion(const ValueList& args, KValueRef value);
-        void _GetRequirement(const ValueList& args, KValueRef value);
+        void _GetType(const ValueList& args, ValueRef value);
+        void _GetName(const ValueList& args, ValueRef value);;
+        void _GetVersion(const ValueList& args, ValueRef value);
+        void _GetRequirement(const ValueList& args, ValueRef value);
     };
 }
 #endif

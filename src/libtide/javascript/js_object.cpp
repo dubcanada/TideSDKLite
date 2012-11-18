@@ -37,7 +37,7 @@
 namespace tide
 {
     KKJSObject::KKJSObject(JSContextRef context, JSObjectRef jsobject) :
-        KObject("JavaScript.KKJSObject"),
+        TiObject("JavaScript.KKJSObject"),
         context(NULL),
         jsobject(jsobject)
     {
@@ -46,10 +46,10 @@ namespace tide
         * contexts later. Global contexts need to be registered by all modules
         * that use a KJS context. */
         JSObjectRef globalObject = JSContextGetGlobalObject(context);
-        JSGlobalContextRef globalContext = KJSUtil::GetGlobalContext(globalObject);
+        JSGlobalContextRef globalContext = JSUtil::GetGlobalContext(globalObject);
 
         // This context hasn't been registered. Something has gone pretty
-        // terribly wrong and Kroll will likely crash soon. Nonetheless, keep
+        // terribly wrong and TideSDK will likely crash soon. Nonetheless, keep
         // the user up-to-date to keep their hopes up.
         if (globalContext == NULL)
             std::cerr << "Could not locate global context for a KJS method."  <<
@@ -57,14 +57,14 @@ namespace tide
 
         this->context = globalContext;
 
-        KJSUtil::ProtectGlobalContext(this->context);
+        JSUtil::ProtectGlobalContext(this->context);
         JSValueProtect(this->context, this->jsobject);
     }
 
     KKJSObject::~KKJSObject()
     {
         JSValueUnprotect(this->context, this->jsobject);
-        KJSUtil::UnprotectGlobalContext(this->context);
+        JSUtil::UnprotectGlobalContext(this->context);
     }
 
     JSObjectRef KKJSObject::GetJSObject()
@@ -72,7 +72,7 @@ namespace tide
         return this->jsobject;
     }
 
-    KValueRef KKJSObject::Get(const char *name)
+    ValueRef KKJSObject::Get(const char *name)
     {
         JSStringRef jsName = JSStringCreateWithUTF8CString(name);
         JSValueRef exception = NULL;
@@ -81,17 +81,17 @@ namespace tide
 
         if (exception != NULL) //exception thrown
         {
-            KValueRef tv_exp = KJSUtil::ToKrollValue(exception, this->context, NULL);
+            ValueRef tv_exp = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(tv_exp);
         }
 
-        KValueRef kvalue = KJSUtil::ToKrollValue(jsValue, this->context, this->jsobject);
+        ValueRef kvalue = JSUtil::ToTiValue(jsValue, this->context, this->jsobject);
         return kvalue;
     }
 
-    void KKJSObject::Set(const char *name, KValueRef value)
+    void KKJSObject::Set(const char *name, ValueRef value)
     {
-        JSValueRef jsValue = KJSUtil::ToJSValue(value, this->context);
+        JSValueRef jsValue = JSUtil::ToJSValue(value, this->context);
         JSStringRef jsName = JSStringCreateWithUTF8CString(name);
 
         JSValueRef exception = NULL;
@@ -101,12 +101,12 @@ namespace tide
 
         if (exception != NULL) // An exception was thrown.
         {
-            KValueRef exceptionValue = KJSUtil::ToKrollValue(exception, this->context, NULL);
+            ValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(exceptionValue);
         }
     }
 
-    bool KKJSObject::Equals(KObjectRef other)
+    bool KKJSObject::Equals(TiObjectRef other)
     {
         AutoPtr<KKJSObject> kjsOther = other.cast<KKJSObject>();
         if (kjsOther.isNull())
@@ -131,7 +131,7 @@ namespace tide
         for (size_t i = 0; i < count; i++)
         {
             JSStringRef jsName = JSPropertyNameArrayGetNameAtIndex(names, i);
-            list->push_back(new std::string(KJSUtil::ToChars(jsName)));
+            list->push_back(new std::string(JSUtil::ToChars(jsName)));
         }
 
         JSPropertyNameArrayRelease(names);

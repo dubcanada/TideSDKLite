@@ -37,7 +37,7 @@
 namespace tide
 {
     KRubyMethod::KRubyMethod(VALUE method) :
-        KMethod("Ruby.KRubyMethod"),
+        TiMethod("Ruby.KRubyMethod"),
         method(method),
         arg(Qnil),
         object(new KRubyObject(method)),
@@ -84,7 +84,7 @@ namespace tide
         return rb_apply(method, rb_intern("call"), rargs);
     }
 
-    KValueRef KRubyMethod::Call(const ValueList& args)
+    ValueRef KRubyMethod::Call(const ValueList& args)
     {
         // Bloody hell, Ruby will segfault if we try to pass a number
         // of args to a method that is greater than its arity
@@ -116,15 +116,15 @@ namespace tide
             throw e;
         }
 
-        return RubyUtils::ToKrollValue(result);
+        return RubyUtils::ToTiValue(result);
     }
 
-    void KRubyMethod::Set(const char *name, KValueRef value)
+    void KRubyMethod::Set(const char *name, ValueRef value)
     {
         object->Set(name, value);
     }
 
-    KValueRef KRubyMethod::Get(const char *name)
+    ValueRef KRubyMethod::Get(const char *name)
     {
         return object->Get(name);
     }
@@ -144,7 +144,7 @@ namespace tide
         return this->object->ToRuby();
     }
 
-    bool KRubyMethod::Equals(KObjectRef other)
+    bool KRubyMethod::Equals(TiObjectRef other)
     {
         AutoPtr<KRubyMethod> methodOther = other.cast<KRubyMethod>();
         if (methodOther.isNull())

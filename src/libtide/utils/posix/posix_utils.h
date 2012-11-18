@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_POSIX_UTILS_H_
-#define _KR_POSIX_UTILS_H_
+#ifndef _POSIX_UTILS_H_
+#define _POSIX_UTILS_H_
 #include <string>
 namespace UTILS_NS
 {

@@ -32,31 +32,36 @@
 * limitations under the License.
 **/
 
-#ifndef _K_PYTHON_METHOD_H_
-#define _K_PYTHON_METHOD_H_
+#ifndef _PYTHON_TUPLE_H_
+#define _PYTHON_TUPLE_H_
 
 #include "python_module.h"
 
 namespace tide
 {
-    class KPythonObject;
-    class KPythonMethod : public KMethod
+    class KPythonTuple : public TiList
     {
     public:
-        KPythonMethod(PyObject *obj);
-        virtual ~KPythonMethod();
+        KPythonTuple(PyObject *obj);
+        virtual ~KPythonTuple();
 
-        KValueRef Call(const ValueList& args);
-        virtual void Set(const char *name, KValueRef value);
-        virtual KValueRef Get(const char *name);
-        virtual bool Equals(KObjectRef);
-        virtual SharedStringList GetPropertyNames();
+        ValueRef Get(const char *name);
+        void Set(const char *name, ValueRef value);
+        virtual bool Equals(TiObjectRef);
+        SharedStringList GetPropertyNames();
+
+        unsigned int Size();
+        void Append(ValueRef value);
+        virtual void SetAt(unsigned int index, ValueRef value);
+        bool Remove(unsigned int index);
+        ValueRef At(unsigned int index);
+
         PyObject* ToPython();
 
-    private:
-        PyObject* method;
+    protected:
+        PyObject *tuple;
         AutoPtr<KPythonObject> object;
-        DISALLOW_EVIL_CONSTRUCTORS(KPythonMethod);
+        DISALLOW_EVIL_CONSTRUCTORS(KPythonTuple);
     };
 }
 

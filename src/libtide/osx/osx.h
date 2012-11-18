@@ -155,11 +155,11 @@
 // #6    0x000025b9 tart ()    [/Users/me/./StackLog]
 //
 
-TIDE_API NSString *KrollStackTrace(void);
-TIDE_API void KrollDumpStackTrace(); 
+TIDE_API NSString *TideStackTrace(void);
+TIDE_API void TideDumpStackTrace(); 
 
-TIDE_API NSString *KrollStackTraceFromException(NSException *e);
-TIDE_API void KrollDumpStackTraceFromException(NSException* e);
+TIDE_API NSString *TideStackTraceFromException(NSException *e);
+TIDE_API void TideDumpStackTraceFromException(NSException* e);
 
 #ifdef OSX_CPP_COMPILE
 

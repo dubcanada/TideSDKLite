@@ -50,12 +50,12 @@ typedef char PlatformNotification;
 namespace ti
 {
 
-class Notification : public KAccessorObject
+class Notification : public AccessorObject
 {
 public:
     Notification();
     ~Notification();
-    void Configure(KObjectRef properties);
+    void Configure(TiObjectRef properties);
 
     static bool InitializeImpl();
     static void ShutdownImpl();
@@ -71,12 +71,12 @@ private:
     int timeout;
     PlatformNotification notification;
 
-    void _SetTitle(const ValueList& args, KValueRef result);
-    void _SetMessage(const ValueList& args, KValueRef result);
-    void _SetIcon(const ValueList& args, KValueRef result);
-    void _SetTimeout(const ValueList& args, KValueRef result);
-    void _Show(const ValueList& args, KValueRef result);
-    void _Hide(const ValueList& args, KValueRef result);
+    void _SetTitle(const ValueList& args, ValueRef result);
+    void _SetMessage(const ValueList& args, ValueRef result);
+    void _SetIcon(const ValueList& args, ValueRef result);
+    void _SetTimeout(const ValueList& args, ValueRef result);
+    void _Show(const ValueList& args, ValueRef result);
+    void _Hide(const ValueList& args, ValueRef result);
 };
 
 typedef AutoPtr<Notification> AutoNotification;

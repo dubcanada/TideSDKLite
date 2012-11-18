@@ -36,14 +36,14 @@
 #import <dlfcn.h>
 #import "boot.h"
 
-@interface KrollApplicationDelegate : NSObject
+@interface TideApplicationDelegate : NSObject
 -(BOOL)application:(NSApplication*)theApplication
     openFile:(NSString*)filename;
 -(BOOL)application:(NSApplication*)theApplication
     openFiles:(NSArray*)filenames;
 @end
 
-@implementation KrollApplicationDelegate
+@implementation TideApplicationDelegate
 -(BOOL)application:(NSApplication*)theApplication openFile:(NSString*)filename
 {
     return YES;
@@ -55,7 +55,7 @@
 }
 @end
 
-namespace KrollBoot
+namespace TideBoot
 {
     extern string applicationHome;
     extern string updateFile;
@@ -202,20 +202,20 @@ namespace KrollBoot
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    KrollBoot::argc = argc;
-    KrollBoot::argv = (const char**) argv;
+    TideBoot::argc = argc;
+    TideBoot::argv = (const char**) argv;
     int rc = 0;
 
     if (!EnvironmentUtils::Has(BOOTSTRAP_ENV))
     {
-        rc = KrollBoot::Bootstrap();
+        rc = TideBoot::Bootstrap();
     }
     else
     {
         [[NSApplication sharedApplication] setDelegate:
-            [[KrollApplicationDelegate alloc] init]];
+            [[TideApplicationDelegate alloc] init]];
             NSApplicationLoad(); EnvironmentUtils::Unset(BOOTSTRAP_ENV);
-        rc = KrollBoot::StartHost();
+        rc = TideBoot::StartHost();
     }
 
     [pool release];

@@ -56,7 +56,7 @@ namespace ti
         TIDE_MODULE_CLASS(MediaModule)
 
     private:
-        KObjectRef binding;
+        TiObjectRef binding;
     };
 
 }

@@ -105,36 +105,36 @@ namespace ti
     {
     }
 
-    void HttpServerRequest::GetMethod(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetMethod(const ValueList& args, ValueRef result)
     {
         std::string method = request.getMethod();
         result->SetString(method);
     }
 
-    void HttpServerRequest::GetVersion(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetVersion(const ValueList& args, ValueRef result)
     {
         std::string version = request.getVersion();
         result->SetString(version);
     }
 
-    void HttpServerRequest::GetURI(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetURI(const ValueList& args, ValueRef result)
     {
         std::string uri = request.getURI();
         result->SetString(uri);
     }
 
-    void HttpServerRequest::GetContentType(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetContentType(const ValueList& args, ValueRef result)
     {
         std::string ct = request.getContentType();
         result->SetString(ct);
     }
 
-    void HttpServerRequest::GetContentLength(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetContentLength(const ValueList& args, ValueRef result)
     {
         result->SetInt(request.getContentLength());
     }
 
-    void HttpServerRequest::GetHeader(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetHeader(const ValueList& args, ValueRef result)
     {
         args.VerifyException("getHeader", "s");
         std::string name = args.at(0)->ToString();
@@ -149,10 +149,10 @@ namespace ti
         }
     }
     
-    void HttpServerRequest::GetHeaders(const ValueList& args, KValueRef result)
+    void HttpServerRequest::GetHeaders(const ValueList& args, ValueRef result)
     {
         Poco::Net::HTTPServerRequest::ConstIterator iter = request.begin();
-        KObjectRef headers = new StaticBoundObject();
+        TiObjectRef headers = new StaticBoundObject();
         
         for(; iter != request.end(); iter++)
         {
@@ -163,14 +163,14 @@ namespace ti
         result->SetObject(headers);
     }
 
-    void HttpServerRequest::HasHeader(const ValueList& args, KValueRef result)
+    void HttpServerRequest::HasHeader(const ValueList& args, ValueRef result)
     {
         args.VerifyException("hasHeader", "s");
         std::string name = args.at(0)->ToString();
         result->SetBool(request.has(name));
     }
 
-    void HttpServerRequest::Read(const ValueList& args, KValueRef result)
+    void HttpServerRequest::Read(const ValueList& args, ValueRef result)
     {
         args.VerifyException("read", "?i");
 

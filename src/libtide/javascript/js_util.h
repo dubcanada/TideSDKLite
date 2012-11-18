@@ -31,19 +31,19 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
-#ifndef _KJS_UTIL_H_
-#define _KJS_UTIL_H_
+#ifndef _JS_UTIL_H_
+#define _JS_UTIL_H_
 
 namespace tide
 {
-namespace KJSUtil
+namespace JSUtil
 {
 
-TIDE_API KValueRef ToKrollValue(JSValueRef, JSContextRef, JSObjectRef);
-TIDE_API JSValueRef ToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KListToJSValue(KValueRef, JSContextRef);
+TIDE_API ValueRef ToTiValue(JSValueRef, JSContextRef, JSObjectRef);
+TIDE_API JSValueRef ToJSValue(ValueRef, JSContextRef);
+TIDE_API JSValueRef TiObjectToJSValue(ValueRef, JSContextRef);
+TIDE_API JSValueRef TiMethodToJSValue(ValueRef, JSContextRef);
+TIDE_API JSValueRef TiListToJSValue(ValueRef, JSContextRef);
 TIDE_API std::string ToChars(JSStringRef);
 TIDE_API bool IsArrayLike(JSObjectRef, JSContextRef);
 TIDE_API JSGlobalContextRef CreateGlobalContext();
@@ -52,11 +52,11 @@ TIDE_API void UnregisterGlobalContext(JSGlobalContextRef);
 TIDE_API JSGlobalContextRef GetGlobalContext(JSObjectRef);
 TIDE_API void ProtectGlobalContext(JSGlobalContextRef);
 TIDE_API void UnprotectGlobalContext(JSGlobalContextRef);
-TIDE_API KValueRef Evaluate(JSContextRef context, const char* script,
+TIDE_API ValueRef Evaluate(JSContextRef context, const char* script,
     const char* url = "string");
-TIDE_API KValueRef EvaluateFile(JSContextRef context,
+TIDE_API ValueRef EvaluateFile(JSContextRef context,
     const std::string& fullPath);
-TIDE_API KValueRef GetProperty(JSObjectRef, std::string name);
+TIDE_API ValueRef GetProperty(JSObjectRef, std::string name);
 
 };
 }

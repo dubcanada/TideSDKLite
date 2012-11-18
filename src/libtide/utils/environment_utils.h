@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_ENVIRONMENT_UTILS_H_
-#define _KR_ENVIRONMENT_UTILS_H_
+#ifndef _ENVIRONMENT_UTILS_H_
+#define _ENVIRONMENT_UTILS_H_
 #include <string>
 
 namespace UTILS_NS
@@ -61,7 +61,7 @@ namespace UTILS_NS
          */
         TIDE_API void Unset(std::string name);
 
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
         /*
          * Get the environment
          */

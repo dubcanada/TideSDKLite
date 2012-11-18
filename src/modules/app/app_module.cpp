@@ -27,8 +27,8 @@ namespace ti
 		if (config)
 			GetLogger()->Debug("Loaded config file successfully");
 
-		KObjectRef global(host->GetGlobalObject());
-		KObjectRef binding = new AppBinding(host, host->GetGlobalObject());
+		TiObjectRef global(host->GetGlobalObject());
+		TiObjectRef binding = new AppBinding(host, host->GetGlobalObject());
 		host->GetGlobalObject()->SetObject("App", binding);
 
 		// Create the data directory for the app, if it doesn't exist.

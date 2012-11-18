@@ -79,7 +79,6 @@ class BuildConfig(object):
         vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
         vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
-        vars.Add('CRASH_REPORT_URL','The URL to send crash dumps to', kwargs['CRASH_REPORT_URL'])
         vars.Add('MSVC_VERSION', '', '8.0')
 
         def add_environ_arg(key, description, default):
@@ -107,7 +106,6 @@ class BuildConfig(object):
             ['_BOOT_RUNTIME_FLAG', '${BOOT_RUNTIME_FLAG}'],
             ['_BOOT_HOME_FLAG', '${BOOT_HOME_FLAG}'],
             ['_DISTRIBUTION_URL', '${DISTRIBUTION_URL}'],
-            ['_CRASH_REPORT_URL', '${CRASH_REPORT_URL}'],
         ])
         self.version = self.env['PRODUCT_VERSION']
 

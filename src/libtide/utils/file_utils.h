@@ -32,8 +32,8 @@
 * limitations under the License.
 **/
 
-#ifndef _KR_FILE_UTILS_H_
-#define _KR_FILE_UTILS_H_
+#ifndef _FILE_UTILS_H_
+#define _FILE_UTILS_H_
 
 #ifdef OS_WIN32
 #include <windows.h>
@@ -68,7 +68,7 @@
 #endif
 
 /**
- * An API for various file utilities (mostly centered around the kroll runtime)
+ * An API for various file utilities (mostly centered around the TideSDK runtime)
  * Platform-dependent functions can be defined in <os>/<os>_utils.h instead of
  * behind an #ifdef in this file.
  */

@@ -64,7 +64,7 @@ namespace tide
     {
     }
 
-    static KObjectRef global_object;
+    static TiObjectRef global_object;
     static VALUE m_missing(int argc, VALUE* argv, VALUE self)
     {
         bool assignment = false;
@@ -85,7 +85,7 @@ namespace tide
         }
         // If we can't find this property perhaps we should return
         // the same property name except capitalized.
-        KValueRef v = global_object->Get(name);
+        ValueRef v = global_object->Get(name);
         if (v->IsUndefined())
         {
             name[0] = toupper(name[0]);
@@ -99,12 +99,12 @@ namespace tide
         if (assignment) // Assignment
         {
             rval = rb_ary_entry(args, 0);
-            KValueRef val = RubyUtils::ToKrollValue(rval);
+            ValueRef val = RubyUtils::ToTiValue(rval);
             global_object->Set(name, val);
         }
         else if (v->IsMethod()) // Method call
         {
-            rval = RubyUtils::GenericKMethodCall(v->ToMethod(), args);
+            rval = RubyUtils::GenericTiMethodCall(v->ToMethod(), args);
         }
         else // Plain old access
         {
@@ -113,11 +113,11 @@ namespace tide
         return rval;
     }
 
-    std::string RubyEvaluator::GetContextId(KObjectRef global)
+    std::string RubyEvaluator::GetContextId(TiObjectRef global)
     {
         static int nextId = 0;
         int cid = 0;
-        KValueRef idv = global->Get("__ruby_module_id__");
+        ValueRef idv = global->Get("__ruby_module_id__");
         if (idv->IsUndefined())
         {
             cid = nextId++;
@@ -127,16 +127,16 @@ namespace tide
         {
             cid = idv->ToInt();
         }
-        return std::string("$windowProc") + KList::IntToChars(cid);
+        return std::string("$windowProc") + TiList::IntToChars(cid);
     }
 
-    VALUE RubyEvaluator::GetContext(KObjectRef global)
+    VALUE RubyEvaluator::GetContext(TiObjectRef global)
     {
         std::string theid = this->GetContextId(global);
         VALUE ctx = rb_gv_get(theid.c_str());
         if (ctx == Qnil)
         {
-            VALUE ctx_class = rb_define_class("KrollRubyContext", rb_cObject);
+            VALUE ctx_class = rb_define_class("TideRubyContext", rb_cObject);
             rb_define_method(ctx_class, "method_missing", VALUEFUNC(m_missing), -1); 
             ctx = rb_obj_alloc(ctx_class);
             rb_gv_set(theid.c_str(), ctx);
@@ -154,14 +154,14 @@ namespace tide
         return rb_funcall(ctx, rb_intern("instance_eval"), 1, code);
     }
     
-    void RubyEvaluator::CanEvaluate(const ValueList& args, KValueRef result)
+    void RubyEvaluator::CanEvaluate(const ValueList& args, ValueRef result)
     {
         args.VerifyException("canEvaluate", "s");
         std::string mimeType = args.GetString(0);
         result->SetBool(mimeType == "text/ruby");
     }
 
-    void RubyEvaluator::Evaluate(const ValueList& args, KValueRef result)
+    void RubyEvaluator::Evaluate(const ValueList& args, ValueRef result)
     {
         args.VerifyException("evaluate", "s s s o");
         
@@ -188,7 +188,7 @@ namespace tide
 
             // Display a stringified version of the exception.
             VALUE exception = rb_gv_get("$!");
-            KValueRef v = RubyUtils::ToKrollValue(exception);
+            ValueRef v = RubyUtils::ToTiValue(exception);
             SharedString ss = v->DisplayString();
             error.append(ss->c_str());
 
@@ -210,10 +210,10 @@ namespace tide
             return;
         }
 
-        result->SetValue(RubyUtils::ToKrollValue(returnValue));
+        result->SetValue(RubyUtils::ToTiValue(returnValue));
     }
 
-    void RubyEvaluator::ContextToGlobal(VALUE ctx, KObjectRef o)
+    void RubyEvaluator::ContextToGlobal(VALUE ctx, TiObjectRef o)
     {
         if (global_object.isNull())
             return;
@@ -230,7 +230,7 @@ namespace tide
                 continue;
 
             volatile VALUE rmeth = rb_funcall(ctx, rb_intern("method"), 1, meth_symbol);
-            KMethodRef method = new KRubyMethod(rmeth, meth_name);
+            TiMethodRef method = new KRubyMethod(rmeth, meth_name);
             o->SetMethod(meth_name, method);
         }
     }

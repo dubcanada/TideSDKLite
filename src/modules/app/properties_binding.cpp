@@ -53,7 +53,7 @@ void PropertiesBinding::SaveConfig()
 		config->save(filePath);
 }
 
-void PropertiesBinding::Getter(const ValueList& args, KValueRef result, Type type)
+void PropertiesBinding::Getter(const ValueList& args, ValueRef result, Type type)
 {
 	std::string eprefix = "PropertiesBinding::Get: ";
 	try
@@ -128,7 +128,7 @@ void PropertiesBinding::Setter(const ValueList& args, Type type)
 				config->setString(property, args.at(1)->ToString());
 				break;
 			case List: {
-				KValueRef result;
+				ValueRef result;
 				this->SetList(args, result);
 			}
 			default: break;
@@ -142,87 +142,87 @@ void PropertiesBinding::Setter(const ValueList& args, Type type)
 	}
 }
 
-void PropertiesBinding::GetBool(const ValueList& args, KValueRef result)
+void PropertiesBinding::GetBool(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("getBool", "s");
 	Getter(args, result, Bool);
 }
 
-void PropertiesBinding::GetDouble(const ValueList& args, KValueRef result)
+void PropertiesBinding::GetDouble(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("getDouble", "s");
 	Getter(args, result, Double);
 }
 
-void PropertiesBinding::GetInt(const ValueList& args, KValueRef result)
+void PropertiesBinding::GetInt(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("getInt", "s");
 	Getter(args, result, Int);
 }
 
-void PropertiesBinding::GetString(const ValueList& args, KValueRef result)
+void PropertiesBinding::GetString(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("getString", "s");
 	Getter(args, result, String);
 }
 
-void PropertiesBinding::GetList(const ValueList& args, KValueRef result)
+void PropertiesBinding::GetList(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("getList", "s");
-	KValueRef stringValue = Value::Null;
+	ValueRef stringValue = Value::Null;
 	GetString(args, stringValue);
 
 	if (!stringValue->IsNull())
 	{
-		KListRef list = new StaticBoundList();
+		TiListRef list = new StaticBoundList();
 		std::string string = stringValue->ToString();
 		Poco::StringTokenizer t(string, ",", Poco::StringTokenizer::TOK_TRIM);
 		for (size_t i = 0; i < t.count(); i++)
 		{
-			KValueRef token = Value::NewString(t[i].c_str());
+			ValueRef token = Value::NewString(t[i].c_str());
 			list->Append(token);
 		}
 
-		KListRef list2 = list;
+		TiListRef list2 = list;
 		result->SetList(list2);
 	}
 }
 
-void PropertiesBinding::SetBool(const ValueList& args, KValueRef result)
+void PropertiesBinding::SetBool(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("setBool", "s b");
 	Setter(args, Bool);
 }
 
-void PropertiesBinding::SetDouble(const ValueList& args, KValueRef result)
+void PropertiesBinding::SetDouble(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("setDouble", "s n");
 	Setter(args, Double);
 }
 
-void PropertiesBinding::SetInt(const ValueList& args, KValueRef result)
+void PropertiesBinding::SetInt(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("setInt", "s n");
 	Setter(args, Int);
 }
 
-void PropertiesBinding::SetString(const ValueList& args, KValueRef result)
+void PropertiesBinding::SetString(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("setString", "s s");
 	Setter(args, String);
 }
 
-void PropertiesBinding::SetList(const ValueList& args, KValueRef result)
+void PropertiesBinding::SetList(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("setList", "s l");
 
 	std::string property = args.at(0)->ToString();
-	KListRef list = args.at(1)->ToList();
+	TiListRef list = args.at(1)->ToList();
 
 	std::string value = "";
 	for (unsigned int i = 0; i < list->Size(); i++)
 	{
-		KValueRef arg = list->At(i);
+		ValueRef arg = list->At(i);
 		if (arg->IsString())
 		{
 			value += list->At(i)->ToString();
@@ -241,34 +241,34 @@ void PropertiesBinding::SetList(const ValueList& args, KValueRef result)
 	
 }
 
-void PropertiesBinding::HasProperty(const ValueList& args, KValueRef result)
+void PropertiesBinding::HasProperty(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("hasProperty", "s");
 	result->SetBool(config->hasProperty(args.GetString(0)));
 }
 
-void PropertiesBinding::RemoveProperty(const ValueList& args, KValueRef result)
+void PropertiesBinding::RemoveProperty(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("removeProperty", "s");
 	result->SetBool(config->removeProperty(args.GetString(0)));
 }
 
-void PropertiesBinding::ListProperties(const ValueList& args, KValueRef result)
+void PropertiesBinding::ListProperties(const ValueList& args, ValueRef result)
 {
 	std::vector<std::string> keys;
 	config->keys(keys);
 
-	KListRef property_list = new StaticBoundList();
+	TiListRef property_list = new StaticBoundList();
 	for (size_t i = 0; i < keys.size(); i++)
 	{
 		std::string property_name = keys.at(i);
-		KValueRef name_value = Value::NewString(property_name.c_str());
+		ValueRef name_value = Value::NewString(property_name.c_str());
 		property_list->Append(name_value);
 	}
 	result->SetList(property_list);
 }
 
-void PropertiesBinding::SaveTo(const ValueList& args, KValueRef result)
+void PropertiesBinding::SaveTo(const ValueList& args, ValueRef result)
 {
 	args.VerifyException("saveTo", "s");
 

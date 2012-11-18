@@ -37,7 +37,7 @@
 namespace tide
 {
     KKJSMethod::KKJSMethod(JSContextRef context, JSObjectRef jsobject, JSObjectRef thisObject) :
-        KMethod("JavaScript.KKJSMethod"),
+        TiMethod("JavaScript.KKJSMethod"),
         context(NULL),
         jsobject(jsobject),
         thisObject(thisObject)
@@ -48,10 +48,10 @@ namespace tide
          * contexts later. Global contexts need to be registered by all modules
          * that use a KJS context. */
         JSObjectRef globalObject = JSContextGetGlobalObject(context);
-        JSGlobalContextRef globalContext = KJSUtil::GetGlobalContext(globalObject);
+        JSGlobalContextRef globalContext = JSUtil::GetGlobalContext(globalObject);
 
         // This context hasn't been registered. Something has gone pretty
-        // terribly wrong and Kroll will likely crash soon. Nonetheless, keep
+        // terribly wrong and TideSDK will likely crash soon. Nonetheless, keep
         // the user up-to-date to keep their hopes up.
         if (globalContext == NULL)
             std::cerr << "Could not locate global context for a KJS method."  <<
@@ -59,12 +59,12 @@ namespace tide
 
         this->context = globalContext;
 
-        KJSUtil::ProtectGlobalContext(this->context);
+        JSUtil::ProtectGlobalContext(this->context);
         JSValueProtect(this->context, jsobject);
         if (thisObject != NULL)
             JSValueProtect(this->context, thisObject);
 
-        this->kobject = new KKJSObject(this->context, jsobject);
+        this->tiObject = new KKJSObject(this->context, jsobject);
     }
 
     KKJSMethod::~KKJSMethod()
@@ -73,37 +73,37 @@ namespace tide
         if (this->thisObject != NULL)
             JSValueUnprotect(this->context, this->thisObject);
 
-        KJSUtil::UnprotectGlobalContext(this->context);
+        JSUtil::UnprotectGlobalContext(this->context);
     }
 
-    KValueRef KKJSMethod::Get(const char *name)
+    ValueRef KKJSMethod::Get(const char *name)
     {
-        return kobject->Get(name);
+        return tiObject->Get(name);
     }
 
-    void KKJSMethod::Set(const char *name, KValueRef value)
+    void KKJSMethod::Set(const char *name, ValueRef value)
     {
-        return kobject->Set(name, value);
+        return tiObject->Set(name, value);
     }
 
-    bool KKJSMethod::Equals(KObjectRef other)
+    bool KKJSMethod::Equals(TiObjectRef other)
     {
-        return this->kobject->Equals(other);
+        return this->tiObject->Equals(other);
     }
 
     SharedStringList KKJSMethod::GetPropertyNames()
     {
-        return kobject->GetPropertyNames();
+        return tiObject->GetPropertyNames();
     }
 
     bool KKJSMethod::HasProperty(const char* name)
     {
-        return kobject->HasProperty(name);
+        return tiObject->HasProperty(name);
     }
 
     bool KKJSMethod::SameContextGroup(JSContextRef c)
     {
-        return kobject->SameContextGroup(c);
+        return tiObject->SameContextGroup(c);
     }
 
     JSObjectRef KKJSMethod::GetJSObject()
@@ -111,13 +111,13 @@ namespace tide
         return this->jsobject;
     }
 
-    KValueRef KKJSMethod::Call(JSObjectRef thisObject, const ValueList& args)
+    ValueRef KKJSMethod::Call(JSObjectRef thisObject, const ValueList& args)
     {
         JSValueRef* jsArgs = new JSValueRef[args.size()];
         for (int i = 0; i < (int) args.size(); i++)
         {
-            KValueRef arg = args.at(i);
-            jsArgs[i] = KJSUtil::ToJSValue(arg, this->context);
+            ValueRef arg = args.at(i);
+            jsArgs[i] = JSUtil::ToJSValue(arg, this->context);
         }
 
         JSValueRef exception = NULL;
@@ -128,21 +128,21 @@ namespace tide
 
         if (jsValue == NULL && exception != NULL) //exception thrown
         {
-            KValueRef exceptionValue = KJSUtil::ToKrollValue(exception, this->context, NULL);
+            ValueRef exceptionValue = JSUtil::ToTiValue(exception, this->context, NULL);
             throw ValueException(exceptionValue);
         }
 
-        return KJSUtil::ToKrollValue(jsValue, this->context, NULL);
+        return JSUtil::ToTiValue(jsValue, this->context, NULL);
     }
 
-    KValueRef KKJSMethod::Call(const ValueList& args)
+    ValueRef KKJSMethod::Call(const ValueList& args)
     {
         return this->Call(this->jsobject, args);
     }
 
-    KValueRef KKJSMethod::Call(KObjectRef thisObject, const ValueList& args)
+    ValueRef KKJSMethod::Call(TiObjectRef thisObject, const ValueList& args)
     {
-        JSValueRef thisObjectValue = KJSUtil::ToJSValue(Value::NewObject(thisObject), this->context);
+        JSValueRef thisObjectValue = JSUtil::ToJSValue(Value::NewObject(thisObject), this->context);
         if (!JSValueIsObject(this->context, thisObjectValue))
         {
             SharedString ss(thisObject->DisplayString());

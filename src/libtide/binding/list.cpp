@@ -40,7 +40,7 @@
 namespace tide
 {
 
-    void KList::ResizeTo(unsigned int size)
+    void TiList::ResizeTo(unsigned int size)
     {
         if (size < 0 || size == this->Size())
         {
@@ -58,13 +58,13 @@ namespace tide
         }
     }
 
-    SharedString KList::DisplayString(int levels)
+    SharedString TiList::DisplayString(int levels)
     {
         std::ostringstream oss;
         oss << "(" << this->GetType() << ")" << " [";
         for (unsigned int i = 0; i < this->Size(); i++)
         {
-            KValueRef list_val = this->At(i);
+            ValueRef list_val = this->At(i);
             SharedString list_str = list_val->DisplayString(levels-1);
             oss << " " << *list_str << ",";
         }
@@ -76,7 +76,7 @@ namespace tide
     }
 
     /*static*/
-    std::string KList::IntToChars(unsigned int value)
+    std::string TiList::IntToChars(unsigned int value)
     {
         std::stringstream ss;
         ss << value;
@@ -84,7 +84,7 @@ namespace tide
     }
 
     /*static*/
-    bool KList::IsInt(const std::string& name)
+    bool TiList::IsInt(const std::string& name)
     {
         for (size_t i = 0; i < strlen(name.c_str()); i++)
         {
@@ -95,7 +95,7 @@ namespace tide
     }
 
     /*static*/
-    unsigned int KList::ToIndex(const std::string& str)
+    unsigned int TiList::ToIndex(const std::string& str)
     {
         char* endPointer = 0;
         unsigned long result = strtoul(str.c_str(), &endPointer, 10);
@@ -110,7 +110,7 @@ namespace tide
     }
 
     /*static*/
-    KListRef KList::Unwrap(KListRef o)
+    TiListRef TiList::Unwrap(TiListRef o)
     {
         AutoPtr<ProfiledBoundList> plist = o.cast<ProfiledBoundList>();
         if (plist.isNull())

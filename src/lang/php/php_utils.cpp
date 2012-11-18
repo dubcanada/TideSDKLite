@@ -39,9 +39,9 @@ namespace tide
 {
     namespace PHPUtils
     {
-        KValueRef ToKrollValue(zval *value TSRMLS_DC)
+        ValueRef ToTiValue(zval *value TSRMLS_DC)
         {
-            KValueRef returnValue = Value::NewNull();
+            ValueRef returnValue = Value::NewNull();
             int type = Z_TYPE_P(value);
 
             if (IS_NULL == type)
@@ -69,19 +69,19 @@ namespace tide
                 // PHP arrays are almost always passed by value, which means
                 // they are all just copies of each other. To emulate this
                 // behavior we might as well just make a copy of the array
-                // here and turn it into a KList.
-                returnValue = Value::NewList(PHPArrayToKList(value TSRMLS_CC));
+                // here and turn it into a TiList.
+                returnValue = Value::NewList(PHPArrayToTiList(value TSRMLS_CC));
             }
             else if (IS_OBJECT == type)
             {
                 if (HAS_CLASS_ENTRY(*value) &&
-                    Z_OBJCE_P(value) == PHPKObjectClassEntry ||
-                    Z_OBJCE_P(value) == PHPKMethodClassEntry ||
-                    Z_OBJCE_P(value) == PHPKListClassEntry)
+                    Z_OBJCE_P(value) == PHPTiObjectClassEntry ||
+                    Z_OBJCE_P(value) == PHPTiMethodClassEntry ||
+                    Z_OBJCE_P(value) == PHPTiListClassEntry)
                 {
-                    PHPKObject* phpKObject = reinterpret_cast<PHPKObject*>(
+                    PHPTiObject* phpTiObject = reinterpret_cast<PHPTiObject*>(
                         zend_object_store_get_object(value TSRMLS_CC));
-                    returnValue = phpKObject->kvalue;
+                    returnValue = phpTiObject->kvalue;
                 }
                 else if (HAS_CLASS_ENTRY(*value) && Z_OBJCE_P(value) == zend_ce_closure)
                 {
@@ -99,7 +99,7 @@ namespace tide
             return returnValue;
         }
 
-        zval* ToPHPValue(KValueRef value)
+        zval* ToPHPValue(ValueRef value)
         {
             zval* returnValue;
             ALLOC_INIT_ZVAL(returnValue);
@@ -107,7 +107,7 @@ namespace tide
             return returnValue;
         }
 
-        void ToPHPValue(KValueRef value, zval** returnValue)
+        void ToPHPValue(ValueRef value, zval** returnValue)
         {
             if (value->IsNull() || value->IsUndefined())
             {
@@ -126,7 +126,7 @@ namespace tide
             }
             else if (value->IsNumber())
             {
-                // All numbers passing between Kroll and and PHP will be implicitly
+                // All numbers passing between Tide and and PHP will be implicitly
                 // converted into floating point. This could cause some PHP to
                 // function incorrectly if it's doing strict type checking. We
                 // need to clearly document this.
@@ -139,15 +139,15 @@ namespace tide
             }
             else if (value->IsObject())
             {
-                KObjectToKPHPObject(value, returnValue);
+                TiObjectToKPHPObject(value, returnValue);
             }
             else if (value->IsMethod())
             {
-                KMethodToKPHPMethod(value, returnValue);
+                TiMethodToKPHPMethod(value, returnValue);
             }
             else if (value->IsList())
             {
-                KListToKPHPArray(value, returnValue);
+                TiListToKPHPArray(value, returnValue);
             }
             else
             {
@@ -171,15 +171,15 @@ namespace tide
             }
         }
 
-        KListRef PHPArrayToKList(zval* array TSRMLS_DC, bool ignoreGlobals)
+        TiListRef PHPArrayToTiList(zval* array TSRMLS_DC, bool ignoreGlobals)
         {
             HashTable* arrayHash = Z_ARRVAL_P(array);
-            return PHPHashTableToKList(arrayHash TSRMLS_CC);
+            return PHPHashTableToTiList(arrayHash TSRMLS_CC);
         }
 
-        KListRef PHPHashTableToKList(HashTable* hashTable TSRMLS_DC, bool ignoreGlobals)
+        TiListRef PHPHashTableToTiList(HashTable* hashTable TSRMLS_DC, bool ignoreGlobals)
         {
-            KListRef list = new StaticBoundList();
+            TiListRef list = new StaticBoundList();
 
             for (zend_hash_internal_pointer_reset(hashTable);
                 zend_hash_has_more_elements(hashTable) == SUCCESS;
@@ -203,11 +203,11 @@ namespace tide
                     if (ignoreGlobals && !strcmp(key, "GLOBALS"))
                         continue;
 
-                    list->Set(key, ToKrollValue(*value TSRMLS_CC));
+                    list->Set(key, ToTiValue(*value TSRMLS_CC));
                 }
                 else // Numeric key
                 {
-                    list->SetAt(index, ToKrollValue(*value TSRMLS_CC));
+                    list->SetAt(index, ToTiValue(*value TSRMLS_CC));
                 }
             }
 
@@ -343,14 +343,14 @@ namespace tide
             }
         }
 
-        KListRef GetClassVars(zend_class_entry *ce TSRMLS_DC)
+        TiListRef GetClassVars(zend_class_entry *ce TSRMLS_DC)
         {
             zval classVars;
             array_init(&classVars);
             zend_update_class_constants(ce TSRMLS_CC);
             add_class_vars(ce, &ce->default_properties, &classVars TSRMLS_CC);
             add_class_vars(ce, CE_STATIC_MEMBERS(ce), &classVars TSRMLS_CC);
-            return PHPArrayToKList(&classVars TSRMLS_CC);
+            return PHPArrayToTiList(&classVars TSRMLS_CC);
         }
 
         zend_function* GetGlobalFunction(const char *name TSRMLS_DC)
@@ -366,24 +366,24 @@ namespace tide
             return 0;
         }
 
-        static KObjectRef currentPHPGlobal(0);
-        KObjectRef GetCurrentGlobalObject()
+        static TiObjectRef currentPHPGlobal(0);
+        TiObjectRef GetCurrentGlobalObject()
         {
             return currentPHPGlobal;
         }
 
         void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable,
-            KObjectRef global TSRMLS_DC)
+            TiObjectRef global TSRMLS_DC)
         {
             // Push the variables from the given symbol table to the global object.
             if (!global.isNull())
             {
-                KListRef symbols(PHPHashTableToKList(symbolTable TSRMLS_CC, true));
+                TiListRef symbols(PHPHashTableToTiList(symbolTable TSRMLS_CC, true));
                 SharedStringList keys(symbols->GetPropertyNames());
                 for (size_t i = 0; i < keys->size(); i++)
                 {
                     const char* name = keys->at(i)->c_str();
-                    KValueRef newValue(symbols->Get(name));
+                    ValueRef newValue(symbols->Get(name));
                     if (!newValue->Equals(global->Get(name)))
                     {
                         global->Set(name, newValue);
@@ -393,7 +393,7 @@ namespace tide
         }
 
         void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable,
-            KObjectRef global TSRMLS_DC)
+            TiObjectRef global TSRMLS_DC)
         {
             // Move all variables from the new global object into the PHP symbol table.
             if (!global.isNull())
@@ -410,7 +410,7 @@ namespace tide
             }
         }
 
-        void SwapGlobalObject(KObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC)
+        void SwapGlobalObject(TiObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC)
         {
             PushPHPSymbolsIntoGlobalObject(symbolTable, currentPHPGlobal TSRMLS_CC);
             zend_hash_clean(symbolTable);

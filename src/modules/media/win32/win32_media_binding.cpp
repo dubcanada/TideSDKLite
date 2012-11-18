@@ -36,7 +36,7 @@
 
 namespace ti
 {
-    Win32MediaBinding::Win32MediaBinding(KObjectRef global) :
+    Win32MediaBinding::Win32MediaBinding(TiObjectRef global) :
         MediaBinding(global)
     {
     }
@@ -50,7 +50,7 @@ namespace ti
         MessageBeep(MB_OK);
     }
 
-    KObjectRef Win32MediaBinding::CreateSound(std::string& url)
+    TiObjectRef Win32MediaBinding::CreateSound(std::string& url)
     {
         return new Win32Sound(url);
     }

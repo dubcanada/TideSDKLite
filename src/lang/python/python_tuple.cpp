@@ -32,44 +32,50 @@
 * limitations under the License.
 **/
 
-#include "ruby_module.h"
-#include <cstring>
+#include "python_list.h"
 
 namespace tide
 {
-    KRubyList::KRubyList(VALUE list) :
-        KList("Ruby.KRubyList"),
-        list(list),
-        object(new KRubyObject(list))
+    KPythonTuple::KPythonTuple(PyObject *tuple) :
+        TiList("Python.KPythonTuple"),
+        tuple(tuple),
+        object(new KPythonObject(tuple, true))
     {
-        rb_gc_register_address(&list);
+        PyLockGIL lock;
+        Py_INCREF(this->tuple);
     }
 
-    KRubyList::~KRubyList()
+    KPythonTuple::~KPythonTuple()
     {
-        rb_gc_unregister_address(&list);
+        PyLockGIL lock;
+        Py_DECREF(this->tuple);
     }
 
-    void KRubyList::Append(KValueRef value)
+    void KPythonTuple::Append(ValueRef value)
     {
-        rb_ary_push(list, RubyUtils::ToRubyValue(value));
+        throw ValueException::FromString("Cannot modify the size of a Python tuple.");
     }
 
-    unsigned int KRubyList::Size()
+    unsigned int KPythonTuple::Size()
     {
-        return (unsigned int) RARRAY_LEN(list);
+        PyLockGIL lock;
+        return PyTuple_Size(this->tuple);
     }
 
-    bool KRubyList::Remove(unsigned int index)
+    bool KPythonTuple::Remove(unsigned int index)
     {
-        return (rb_ary_delete_at(list, index) != Qnil);
+        throw ValueException::FromString("Cannot modify the size of a Python tuple.");
+        return false;
     }
 
-    KValueRef KRubyList::At(unsigned int index)
+    ValueRef KPythonTuple::At(unsigned int index)
     {
+        PyLockGIL lock;
         if (index >= 0 && index < this->Size())
         {
-            return RubyUtils::ToKrollValue(rb_ary_entry(list, index));
+            PyObject *p = PyTuple_GetItem(this->tuple, index);
+            ValueRef v = PythonUtils::ToTiValue(p);
+            return v;
         }
         else
         {
@@ -77,32 +83,21 @@ namespace tide
         }
     }
 
-    void KRubyList::Set(const char* name, KValueRef value)
+    void KPythonTuple::Set(const char *name, ValueRef value)
     {
-        if (KList::IsInt(name))
-        {
-            this->SetAt(KList::ToIndex(name), value);
-        }
-        else
-        {
-            this->object->Set(name, value);
-        }
+        throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    void KRubyList::SetAt(unsigned int index, KValueRef value)
+    void KPythonTuple::SetAt(unsigned int index, ValueRef value)
     {
-        VALUE rv = RubyUtils::ToRubyValue(value);
-
-        // rb_ary_store will take care of sizing the list
-        // appropriately in the case that index > current list size
-        rb_ary_store(list, index, rv);
+        throw ValueException::FromString("Cannot modify a Python tuple.");
     }
 
-    KValueRef KRubyList::Get(const char* name)
+    ValueRef KPythonTuple::Get(const char *name)
     {
-        if (KList::IsInt(name))
+        if (TiList::IsInt(name))
         {
-            return this->At(KList::ToIndex(name));
+            return this->At(TiList::ToIndex(name));
         }
         else
         {
@@ -110,33 +105,32 @@ namespace tide
         }
     }
 
-    SharedStringList KRubyList::GetPropertyNames()
+    SharedStringList KPythonTuple::GetPropertyNames()
     {
         SharedStringList property_names = object->GetPropertyNames();
         for (size_t i = 0; i < this->Size(); i++)
         {
-            std::string name = KList::IntToChars(i);
+            std::string name = TiList::IntToChars(i);
             property_names->push_back(new std::string(name));
         }
-
         return property_names;
     }
 
-    VALUE KRubyList::ToRuby()
+    PyObject* KPythonTuple::ToPython()
     {
-        return this->object->ToRuby();
+        return this->object->ToPython();
     }
 
-    SharedString KRubyList::DisplayString(int levels)
+    bool KPythonTuple::Equals(TiObjectRef other)
     {
-        return this->object->DisplayString(levels);
-    }
-
-    bool KRubyList::Equals(KObjectRef other)
-    {
-        AutoPtr<KRubyList> listOther = other.cast<KRubyList>();
-        if (listOther.isNull())
+        AutoPtr<KPythonTuple> pyOther = other.cast<KPythonTuple>();
+        if (pyOther.isNull())
+        {
             return false;
-        return listOther->ToRuby() == this->ToRuby();
+        }
+        else
+        {
+            return pyOther->ToPython() == this->ToPython();
+        }
     }
 }

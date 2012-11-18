@@ -130,7 +130,7 @@ namespace ti
 
     void NativePipe::PollForReads()
     {
-        KObjectRef save(this, true);
+        TiObjectRef save(this, true);
 
         char buffer[MAX_BUFFER_SIZE];
         int length = MAX_BUFFER_SIZE;
@@ -149,7 +149,7 @@ namespace ti
 
     void NativePipe::PollForWrites()
     {
-        KObjectRef save(this, true);
+        TiObjectRef save(this, true);
 
         BytesRef bytes = 0;
         while (!closed || buffers.size() > 0)

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3.1-beta (released 2012-11-15)
+--------------------------------
+
+- Fixes related to linux SDK installer
+
 1.3.0-beta (released 2012-11-12)
 --------------------------------
 
@@ -40,6 +45,7 @@ Breaking Changes
 - Previous Titanium.Include() method has been removed.
 - Modules in manifext.txt are no longer prefaced with ti.
   ie. ti.Codec is now codec
+- As of Mac 10.7 /Library/ is no longer writable by anyone but root so the SDK install path is now ~/Library/
 - Titanium.Network.online removed that was deprecated in 1.2.0-RC4.
    Use native methods for determining an Internet connection instead. For example:
     ```

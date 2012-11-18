@@ -46,8 +46,8 @@ namespace tide
         path(path),
         context(0)
     {
-        this->context = KJSUtil::CreateGlobalContext();
-        KJSUtil::ProtectGlobalContext(context);
+        this->context = JSUtil::CreateGlobalContext();
+        JSUtil::ProtectGlobalContext(context);
 
         try
         {
@@ -65,8 +65,8 @@ namespace tide
 
     void JavaScriptModuleInstance::Stop()
     {
-        KJSUtil::UnregisterGlobalContext(context);
-        KJSUtil::UnprotectGlobalContext(context);
+        JSUtil::UnregisterGlobalContext(context);
+        JSUtil::UnprotectGlobalContext(context);
 
         std::vector<JSGlobalContextRef>::iterator i = instanceContexts.begin();
         while (i != instanceContexts.end())
@@ -92,12 +92,12 @@ namespace tide
         bool syntax = JSCheckScriptSyntax(context, jsCode, NULL, 0, &exception);
         if (!syntax)
         {
-            KValueRef e = KJSUtil::ToKrollValue(exception, context, NULL);
+            ValueRef e = JSUtil::ToTiValue(exception, context, NULL);
             JSStringRelease(jsCode);
             throw ValueException(e);
         }
 
-        KJSUtil::Evaluate(context, code.c_str());
+        JSUtil::Evaluate(context, code.c_str());
     }
 
     /*static*/

@@ -45,19 +45,19 @@ namespace tide
     /**
      * An abstract object.
      *
-     * In general, KObject implementations follow two patterns:
-     * - Dynamic implementation (subclassing KObject directly)
+     * In general, TiObject implementations follow two patterns:
+     * - Dynamic implementation (subclassing TiObject directly)
      *   This allows the implementation to do custom logic for specific
      *   properties, but is also more verbose
      * - Static implementation (subclassing StaticBoundObject)
      *   This implementation uses an internal map to bind property names
      *   to \link Value Values\endlink (objects, methods, etc).
      */
-    class TIDE_API KObject : public ReferenceCounted
+    class TIDE_API TiObject : public ReferenceCounted
     {
     public:
-        KObject(std::string type = "KObject") : type(type) {}
-        virtual ~KObject() {}
+        TiObject(std::string type = "TiObject") : type(type) {}
+        virtual ~TiObject() {}
 
     public:
 
@@ -67,7 +67,7 @@ namespace tide
          * @param name The property name
          * @param value The new property value
          */
-        virtual void Set(const char *name, KValueRef value) = 0;
+        virtual void Set(const char *name, ValueRef value) = 0;
 
         /**
          * @param name The property name
@@ -75,14 +75,14 @@ namespace tide
          *         if the property is not found.
          * Errors will result in a thrown ValueException
          */
-        virtual KValueRef Get(const char *name) = 0;
+        virtual ValueRef Get(const char *name) = 0;
 
         /**
          * Determine if two objects have *reference* equality
          * @param other The object to compare to
          * @return true if these two objects are equal, false otherwise.
          */
-        virtual bool Equals(KObjectRef other);
+        virtual bool Equals(TiObjectRef other);
 
         /**
          * Determine if this objects has the property with the given name.
@@ -114,14 +114,14 @@ namespace tide
          * @param value The new property value
          * Helpful overload to Set which takes a SharedString
          */
-        void Set(SharedString name, KValueRef value);
+        void Set(SharedString name, ValueRef value);
 
         /**
-         * @see KObject::Get(const char*)
+         * @see TiObject::Get(const char*)
          * @param name The property name
          * Helpful overload to Get which takes a SharedString
          */
-        KValueRef Get(SharedString name);
+        ValueRef Get(SharedString name);
 
         /**
          * Get an int property from this object.
@@ -187,7 +187,7 @@ namespace tide
          * @return Value of given property name, or the default value if
          * if it does not exist or is not an object.
          */
-        KObjectRef GetObject(const char *name, KObjectRef defaultValue=NULL);
+        TiObjectRef GetObject(const char *name, TiObjectRef defaultValue=NULL);
 
         /**
          * Get a method property from this object.
@@ -198,7 +198,7 @@ namespace tide
          * @return Value of given property name, or the default value if
          * if it does not exist or is not a method.
          */
-        KMethodRef GetMethod(const char *name, KMethodRef defaultValue=NULL);
+        TiMethodRef GetMethod(const char *name, TiMethodRef defaultValue=NULL);
 
         /**
          * Get a list property from this object.
@@ -209,7 +209,7 @@ namespace tide
          * @return Value of given property name, or the default value if
          * if it does not exist or is not a list.
          */
-        KListRef GetList(const char *name, KListRef defaultValue=NULL);
+        TiListRef GetList(const char *name, TiListRef defaultValue=NULL);
 
         /**
          * Set an undefined property on this object
@@ -257,19 +257,19 @@ namespace tide
          * Set an object property on this object
          * When an error occurs will throw an exception of type ValueException.
          */
-        void SetObject(const char *name, KObjectRef);
+        void SetObject(const char *name, TiObjectRef);
 
         /**
          * Set a method property on this object
          * When an error occurs will throw an exception of type ValueException.
          */
-        void SetMethod(const char *name, KMethodRef);
+        void SetMethod(const char *name, TiMethodRef);
 
         /**
          * Set a list property on this object
          * When an error occurs will throw an exception of type ValueException.
          */
-        void SetList(const char *name, KListRef);
+        void SetList(const char *name, TiListRef);
 
         /**
          * Get a list of strings for the given property of this object. The list
@@ -291,20 +291,20 @@ namespace tide
          *
          * This function does nothing if the object or it's parents are undefined
          */
-        void SetNS(const char *name, KValueRef value);
+        void SetNS(const char *name, ValueRef value);
 
         /**
          * Get the value of a child of this object using a simple object notation
          * For example:
          * \code
-         * KValueRef value = this->GetNS("object.property.subproperty");
+         * ValueRef value = this->GetNS("object.property.subproperty");
          * // instead of
-         * KValueRef value = this->Get("object")->ToObject()->Get("property")->ToObject()->Get("subproperty");
+         * ValueRef value = this->Get("object")->ToObject()->Get("property")->ToObject()->Get("subproperty");
          * \endcode
          *
          * @return The value of the child object, or Value::Undefined if the object, or it's parents are undefined
          */
-        KValueRef GetNS(const char *name);
+        ValueRef GetNS(const char *name);
 
         /**
          * Call a child method on this object using simple object notation
@@ -320,27 +320,27 @@ namespace tide
          * CallNS is overridden, and can accept up to 3 arguments inline, or a ValueList
          * @return The return value of the function, or Value::Undefined if the object or method in the string is undefined
          */
-        KValueRef CallNS(const char *name);
+        ValueRef CallNS(const char *name);
         
         /**
-         * @see KObject::CallNS(const char *name);
+         * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1);
+        ValueRef CallNS(const char *name, ValueRef val1);
 
         /**
-         * @see KObject::CallNS(const char *name);
+         * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2);
+        ValueRef CallNS(const char *name, ValueRef val1, ValueRef val2);
 
         /**
-         * @see KObject::CallNS(const char *name);
+         * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2, KValueRef val3);
+        ValueRef CallNS(const char *name, ValueRef val1, ValueRef val2, ValueRef val3);
 
         /**
-         * @see KObject::CallNS(const char *name);
+         * @see TiObject::CallNS(const char *name);
          */
-        KValueRef CallNS(const char *name, const ValueList& args);
+        ValueRef CallNS(const char *name, const ValueList& args);
 
         /**
          * Return the type of this object as a string.
@@ -350,15 +350,15 @@ namespace tide
         /**
          * Return the unwrapped version of this object
          */
-        static KObjectRef Unwrap(KObjectRef);
+        static TiObjectRef Unwrap(TiObjectRef);
 
         /**
          * If this object is already exposed as an AutoPtr, this method
          * returns a shared version of this object
          */
-        AutoPtr<KObject> GetAutoPtr()
+        AutoPtr<TiObject> GetAutoPtr()
         {
-            return AutoPtr<KObject>(this, true);
+            return AutoPtr<TiObject>(this, true);
         }
 
     protected:
@@ -370,7 +370,7 @@ namespace tide
         }
 
     private:
-        DISALLOW_EVIL_CONSTRUCTORS(KObject);
+        DISALLOW_EVIL_CONSTRUCTORS(TiObject);
     };
 
 }

@@ -44,38 +44,38 @@ namespace ti
 {
     class Process;
     typedef AutoPtr<Process> AutoProcess;
-    class Process : public KEventMethod
+    class Process : public EventMethod
     {
     public:
         Process();
         virtual ~Process();
         static AutoProcess CreateProcess();
-        virtual KObjectRef CloneEnvironment();
+        virtual TiObjectRef CloneEnvironment();
         virtual void LaunchAsync();
         virtual BytesRef LaunchSync();
         virtual void ExitMonitorAsync();
         virtual void ExitMonitorSync();
         std::string ArgumentsToString();
-        void SetOnRead(KMethodRef method);
-        void SetOnExit(KMethodRef onExit);
+        void SetOnRead(TiMethodRef method);
+        void SetOnExit(TiMethodRef onExit);
         void Exited(bool async);
-        void ExitCallback(const ValueList& args, KValueRef result);
-        virtual KValueRef Call(const ValueList& args);
-        static KObjectRef GetCurrentEnvironment();
+        void ExitCallback(const ValueList& args, ValueRef result);
+        virtual ValueRef Call(const ValueList& args);
+        static TiObjectRef GetCurrentEnvironment();
 
         void SetStdin(AutoPipe stdinPipe);
         void SetStdout(AutoPipe stdoutPipe);
         void SetStderr(AutoPipe stderrPipe);
         inline bool IsRunning() { return running; }
         inline void SetPID(int pid) { this->pid = pid; }
-        virtual inline void SetArguments(KListRef args) { this->args = args; }
-        inline void SetEnvironment(KObjectRef env) { this->environment = env; }
+        virtual inline void SetArguments(TiListRef args) { this->args = args; }
+        inline void SetEnvironment(TiObjectRef env) { this->environment = env; }
         inline int GetPID() { return this->pid; }
         inline AutoPipe GetStdin() { return this->stdinPipe; }
         inline AutoPipe GetStdout() { return this->stdoutPipe; }
         inline AutoPipe GetStderr() { return this->stderrPipe; }
-        inline KListRef GetArgs() { return this->args; };
-        inline KObjectRef GetEnvironment() { return this->environment; }
+        inline TiListRef GetArgs() { return this->args; };
+        inline TiObjectRef GetEnvironment() { return this->environment; }
         void SetEnvironment(const char *name, const char *value)
         {
             environment->SetString(name, value);
@@ -95,37 +95,37 @@ namespace ti
         void AttachPipes(bool async);
 
     protected:
-        void _GetPID(const ValueList& args, KValueRef result);
-        void _GetExitCode(const ValueList& args, KValueRef result);
-        void _GetArguments(const ValueList& args, KValueRef result);
-        void _GetEnvironment(const ValueList& args, KValueRef result);
-        void _SetEnvironment(const ValueList& args, KValueRef result);
-        void _CloneEnvironment(const ValueList& args, KValueRef result);
-        void _Launch(const ValueList& args, KValueRef result);
-        void _Terminate(const ValueList& args, KValueRef result);
-        void _Kill(const ValueList& args, KValueRef result);
-        void _SendSignal(const ValueList& args, KValueRef result);
-        void _GetStdin(const ValueList& args, KValueRef result);
-        void _GetStdout(const ValueList& args, KValueRef result);
-        void _GetStderr(const ValueList& args, KValueRef result);
-        void _IsRunning(const ValueList& args, KValueRef result);
-        void _SetOnRead(const ValueList& args, KValueRef result);
-        void _SetOnExit(const ValueList& args, KValueRef result);
-        void _ToString(const ValueList& args, KValueRef result);
+        void _GetPID(const ValueList& args, ValueRef result);
+        void _GetExitCode(const ValueList& args, ValueRef result);
+        void _GetArguments(const ValueList& args, ValueRef result);
+        void _GetEnvironment(const ValueList& args, ValueRef result);
+        void _SetEnvironment(const ValueList& args, ValueRef result);
+        void _CloneEnvironment(const ValueList& args, ValueRef result);
+        void _Launch(const ValueList& args, ValueRef result);
+        void _Terminate(const ValueList& args, ValueRef result);
+        void _Kill(const ValueList& args, ValueRef result);
+        void _SendSignal(const ValueList& args, ValueRef result);
+        void _GetStdin(const ValueList& args, ValueRef result);
+        void _GetStdout(const ValueList& args, ValueRef result);
+        void _GetStderr(const ValueList& args, ValueRef result);
+        void _IsRunning(const ValueList& args, ValueRef result);
+        void _SetOnRead(const ValueList& args, ValueRef result);
+        void _SetOnExit(const ValueList& args, ValueRef result);
+        void _ToString(const ValueList& args, ValueRef result);
         void DetachPipes();
 
         AutoPipe stdoutPipe;
         AutoPipe stderrPipe;
         AutoPipe stdinPipe;
-        KObjectRef environment;
-        KListRef args;
+        TiObjectRef environment;
+        TiListRef args;
         int pid;
-        KValueRef exitCode;
-        KMethodRef onRead;
-        KMethodRef onExit;
+        ValueRef exitCode;
+        TiMethodRef onRead;
+        TiMethodRef onExit;
         Poco::RunnableAdapter<Process>* exitMonitorAdapter;
         Poco::Thread exitMonitorThread;
-        KMethodRef exitCallback;
+        TiMethodRef exitCallback;
         bool running;
     };
 }

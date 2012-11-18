@@ -63,7 +63,7 @@
 
 namespace ti
 {
-    CodecBinding::CodecBinding(KObjectRef global) :
+    CodecBinding::CodecBinding(TiObjectRef global) :
         StaticBoundObject("Codec"),
         global(global)
     {
@@ -161,7 +161,7 @@ namespace ti
     {
     }
     
-    static std::string& GetStringFromValue(KValueRef value)
+    static std::string& GetStringFromValue(ValueRef value)
     {
         static std::string data;
         if (value->IsString())
@@ -183,7 +183,7 @@ namespace ti
         return data;
     }
     
-    void CodecBinding::EncodeBase64(const ValueList& args, KValueRef result)
+    void CodecBinding::EncodeBase64(const ValueList& args, ValueRef result)
     {
         args.VerifyException("encodeBase64", "s|o");
         
@@ -195,7 +195,7 @@ namespace ti
         result->SetString(encoded);
     }
 
-    void CodecBinding::DecodeBase64(const ValueList& args, KValueRef result)
+    void CodecBinding::DecodeBase64(const ValueList& args, ValueRef result)
     {
         args.VerifyException("decodeBase64", "s");
 
@@ -208,7 +208,7 @@ namespace ti
         result->SetString(decoded);
     }
 
-    void CodecBinding::DigestToHex(const ValueList& args, KValueRef result)
+    void CodecBinding::DigestToHex(const ValueList& args, ValueRef result)
     {
         args.VerifyException("digestToHex", "i s|o");
         
@@ -263,7 +263,7 @@ namespace ti
         delete engine;
     }
 
-    void CodecBinding::DigestHMACToHex(const ValueList& args, KValueRef result)
+    void CodecBinding::DigestHMACToHex(const ValueList& args, ValueRef result)
     {
         args.VerifyException("digestHMACToHex", "i s s");
         
@@ -314,7 +314,7 @@ namespace ti
         }
     }
 
-    void CodecBinding::EncodeHexBinary(const ValueList& args, KValueRef result)
+    void CodecBinding::EncodeHexBinary(const ValueList& args, ValueRef result)
     {
         args.VerifyException("encodeHexBinary", "s|o");
         
@@ -326,7 +326,7 @@ namespace ti
         result->SetString(encoded);
     }
 
-    void CodecBinding::DecodeHexBinary(const ValueList& args, KValueRef result)
+    void CodecBinding::DecodeHexBinary(const ValueList& args, ValueRef result)
     {
         args.VerifyException("decodeHexBinary", "s");
         
@@ -339,7 +339,7 @@ namespace ti
         result->SetString(decoded);
     }
 
-    void CodecBinding::Checksum(const ValueList& args, KValueRef result)
+    void CodecBinding::Checksum(const ValueList& args, ValueRef result)
     {
         args.VerifyException("checksum", "s|o ?i");
 
@@ -399,7 +399,7 @@ namespace ti
         delete checksum;
     }
     
-    static std::string GetPathFromValue(KValueRef value)
+    static std::string GetPathFromValue(ValueRef value)
     {
         if (value->IsObject())
         {
@@ -411,7 +411,7 @@ namespace ti
         }
     }
     
-    void CodecBinding::CreateZip(const ValueList& args, KValueRef result)
+    void CodecBinding::CreateZip(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createZip", "s|o s|o ?m");
         
@@ -434,7 +434,7 @@ namespace ti
             throw ValueException::FromFormat("Error: Directory %s doesn't exist in createZip", directory.c_str());
         }
         
-        KMethodRef zipAsyncMethod = new KFunctionPtrMethod(&CodecBinding::CreateZipAsync);
+        TiMethodRef zipAsyncMethod = new FunctionPtrMethod(&CodecBinding::CreateZipAsync);
         ValueList zipArgs;
         zipArgs.push_back(Value::NewString(directory));
         zipArgs.push_back(Value::NewString(zipFile));
@@ -451,7 +451,7 @@ namespace ti
         result->SetObject(zipJob);
     }
 
-    void CodecBinding::ExtractZip(const ValueList& args, KValueRef result)
+    void CodecBinding::ExtractZip(const ValueList& args, ValueRef result)
     {
         args.VerifyException("extractZip", "s|o s|o ?m");
 
@@ -467,7 +467,7 @@ namespace ti
             throw ValueException::FromString("Error: Destination directory name in extractZip is empty");
         }
 
-        KMethodRef extractAsyncMethod = new KFunctionPtrMethod(&CodecBinding::ExtractZipAsync);
+        TiMethodRef extractAsyncMethod = new FunctionPtrMethod(&CodecBinding::ExtractZipAsync);
         ValueList extractArgs;
         extractArgs.push_back(Value::NewString(zipFile));
         extractArgs.push_back(Value::NewString(directory));
@@ -485,12 +485,12 @@ namespace ti
     }
 
     /*static*/
-    KValueRef CodecBinding::CreateZipAsync(const ValueList& args)
+    ValueRef CodecBinding::CreateZipAsync(const ValueList& args)
     {
         std::string directory = args.GetString(0);
         std::string zipFile = args.GetString(1);
         AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-        KMethodRef callback = 0;
+        TiMethodRef callback = 0;
         if (args.size() > 3)
         {
             callback = args.GetMethod(3);
@@ -526,12 +526,12 @@ namespace ti
     }
 
     /*static*/
-    KValueRef CodecBinding::ExtractZipAsync(const ValueList& args)
+    ValueRef CodecBinding::ExtractZipAsync(const ValueList& args)
     {
         std::string zipFile = args.GetString(0);
         std::string directory = args.GetString(1);
         AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-        KMethodRef callback = 0;
+        TiMethodRef callback = 0;
         if (args.size() > 3)
         {
             callback = args.GetMethod(3);

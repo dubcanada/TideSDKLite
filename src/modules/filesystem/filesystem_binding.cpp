@@ -59,7 +59,7 @@
 
 namespace ti
 {
-    FilesystemBinding::FilesystemBinding(Host *host, KObjectRef global) :
+    FilesystemBinding::FilesystemBinding(Host *host, TiObjectRef global) :
         StaticBoundObject("Filesystem"),
         host(host),
         global(global),
@@ -101,7 +101,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::CreateTempFile(const ValueList& args, KValueRef result)
+    void FilesystemBinding::CreateTempFile(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -118,7 +118,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::CreateTempDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::CreateTempDirectory(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -136,41 +136,41 @@ namespace ti
     }
 
 
-    void FilesystemBinding::GetFile(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetFile(const ValueList& args, ValueRef result)
     {
         result->SetObject(new ti::File(FilesystemUtils::FilenameFromArguments(args)));
     }
 
-    void FilesystemBinding::GetFileStream(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetFileStream(const ValueList& args, ValueRef result)
     {
         result->SetObject(new ti::FileStream(FilesystemUtils::FilenameFromArguments(args)));
     }
 
-    void FilesystemBinding::GetApplicationDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetApplicationDirectory(const ValueList& args, ValueRef result)
     {
         result->SetObject(new ti::File(host->GetApplication()->path));
     }
 
-    void FilesystemBinding::GetApplicationDataDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetApplicationDataDirectory(const ValueList& args, ValueRef result)
     {
         result->SetObject(new ti::File(
             Host::GetInstance()->GetApplication()->GetDataPath()));
     }
 
-    void FilesystemBinding::GetRuntimeHomeDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetRuntimeHomeDirectory(const ValueList& args, ValueRef result)
     {
         std::string dir = FileUtils::GetSystemRuntimeHomeDirectory();
         ti::File* file = new ti::File(dir);
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetResourcesDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetResourcesDirectory(const ValueList& args, ValueRef result)
     {
         ti::File* file = new ti::File(host->GetApplication()->GetResourcesPath());
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetProgramsDirectory(const ValueList &args, KValueRef result)
+    void FilesystemBinding::GetProgramsDirectory(const ValueList &args, ValueRef result)
     {
 #ifdef OS_WIN32
         wchar_t path[MAX_PATH];
@@ -191,7 +191,7 @@ namespace ti
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetDesktopDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetDesktopDirectory(const ValueList& args, ValueRef result)
     {
 #ifdef OS_WIN32
         wchar_t path[MAX_PATH];
@@ -217,7 +217,7 @@ namespace ti
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetDocumentsDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetDocumentsDirectory(const ValueList& args, ValueRef result)
     {
 #ifdef OS_WIN32
         wchar_t path[MAX_PATH];
@@ -243,7 +243,7 @@ namespace ti
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetUserDirectory(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetUserDirectory(const ValueList& args, ValueRef result)
     {
         std::string dir;
         try
@@ -275,7 +275,7 @@ namespace ti
         result->SetObject(file);
     }
 
-    void FilesystemBinding::GetLineEnding(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetLineEnding(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -287,7 +287,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::GetSeparator(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetSeparator(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -301,7 +301,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::GetRootDirectories(const ValueList& args, KValueRef result)
+    void FilesystemBinding::GetRootDirectories(const ValueList& args, ValueRef result)
     {
         try
         {
@@ -309,15 +309,15 @@ namespace ti
             std::vector<std::string> roots;
             path.listRoots(roots);
 
-            KListRef rootList = new StaticBoundList();
+            TiListRef rootList = new StaticBoundList();
             for(size_t i = 0; i < roots.size(); i++)
             {
                 ti::File* file = new ti::File(roots.at(i));
-                KValueRef value = Value::NewObject((KObjectRef) file);
+                ValueRef value = Value::NewObject((TiObjectRef) file);
                 rootList->Append(value);
             }
 
-            KListRef list = rootList;
+            TiListRef list = rootList;
             result->SetList(list);
         }
         catch (Poco::Exception& exc)
@@ -326,7 +326,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::ExecuteAsyncCopy(const ValueList& args, KValueRef result)
+    void FilesystemBinding::ExecuteAsyncCopy(const ValueList& args, ValueRef result)
     {
         if (args.size()!=3)
         {
@@ -339,7 +339,7 @@ namespace ti
         }
         else if (args.at(0)->IsList())
         {
-            KListRef list = args.at(0)->ToList();
+            TiListRef list = args.at(0)->ToList();
             for (unsigned int c = 0; c < list->Size(); c++)
             {
                 files.push_back(FilesystemUtils::FilenameFromValue(list->At(c)));
@@ -349,10 +349,10 @@ namespace ti
         {
             files.push_back(FilesystemUtils::FilenameFromValue(args.at(0)));
         }
-        KValueRef v = args.at(1);
+        ValueRef v = args.at(1);
         std::string destination(FilesystemUtils::FilenameFromValue(v));
-        KMethodRef method = args.at(2)->ToMethod();
-        KObjectRef copier = new ti::AsyncCopy(this,host,files,destination,method);
+        TiMethodRef method = args.at(2)->ToMethod();
+        TiObjectRef copier = new ti::AsyncCopy(this,host,files,destination,method);
         result->SetObject(copier);
         asyncOperations.push_back(copier);
         // we need to create a timer thread that can cleanup operations
@@ -369,7 +369,7 @@ namespace ti
         }
     }
 
-    void FilesystemBinding::DeletePendingOperations(const ValueList& args, KValueRef result)
+    void FilesystemBinding::DeletePendingOperations(const ValueList& args, ValueRef result)
     {
         TIDE_DUMP_LOCATION
         if (asyncOperations.size()==0)
@@ -377,12 +377,12 @@ namespace ti
             result->SetBool(true);
             return;
         }
-        std::vector<KObjectRef>::iterator iter = asyncOperations.begin();
+        std::vector<TiObjectRef>::iterator iter = asyncOperations.begin();
 
         while (iter!=asyncOperations.end())
         {
-            KObjectRef c = (*iter);
-            KValueRef v = c->Get("running");
+            TiObjectRef c = (*iter);
+            ValueRef v = c->Get("running");
             bool running = v->ToBool();
             if (!running)
             {
@@ -398,16 +398,16 @@ namespace ti
 
     void FilesystemBinding::OnAsyncOperationTimer(Poco::Timer &timer)
     {
-        START_KROLL_THREAD;
+        START_TIDE_THREAD;
 
         ValueList args = ValueList();
-        KMethodRef m = this->Get("_invoke")->ToMethod();
-        KValueRef result = RunOnMainThread(m, args);
+        TiMethodRef m = this->Get("_invoke")->ToMethod();
+        ValueRef result = RunOnMainThread(m, args);
         if (result->ToBool())
         {
             timer.restart(0);
         }
 
-        END_KROLL_THREAD;
+        END_TIDE_THREAD;
     }
 }

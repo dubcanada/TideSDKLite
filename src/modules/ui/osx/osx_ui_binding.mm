@@ -304,7 +304,7 @@ namespace ti
         return this->contextMenu;
     }
 
-    AutoTrayItem OSXUIBinding::AddTray(std::string& iconPath, KMethodRef eventListener)
+    AutoTrayItem OSXUIBinding::AddTray(std::string& iconPath, TiMethodRef eventListener)
     {
         return new OSXTrayItem(iconPath, eventListener);
     }

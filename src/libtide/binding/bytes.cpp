@@ -132,7 +132,7 @@ namespace tide
         this->Set("length", Value::NewInt(this->size));
     }
 
-    void Bytes::_Write(const ValueList& args, KValueRef result)
+    void Bytes::_Write(const ValueList& args, ValueRef result)
     {
         args.VerifyException("write", "s|o ?n");
         int offset = args.GetInt(1, 0);
@@ -157,13 +157,13 @@ namespace tide
         result->SetInt(bytesWritten);
     }
 
-    void Bytes::_ToString(const ValueList& args, KValueRef result)
+    void Bytes::_ToString(const ValueList& args, ValueRef result)
     {
         std::string str(this->AsString());
         result->SetString(str);
     }
 
-    void Bytes::_IndexOf(const ValueList& args, KValueRef result)
+    void Bytes::_IndexOf(const ValueList& args, ValueRef result)
     {
         // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/indexOf
         args.VerifyException("Bytes.indexOf", "s,?i");
@@ -184,7 +184,7 @@ namespace tide
         }
     }
 
-    void Bytes::_LastIndexOf(const ValueList& args, KValueRef result)
+    void Bytes::_LastIndexOf(const ValueList& args, ValueRef result)
     {
         // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/lastIndexOf
         args.VerifyException("Bytes.lastIndexOf", "s,?i");
@@ -205,7 +205,7 @@ namespace tide
         }
     }
 
-    void Bytes::_CharAt(const ValueList& args, KValueRef result)
+    void Bytes::_CharAt(const ValueList& args, ValueRef result)
     {
         // https://developer.mozilla.org/en/core_javascript_1.5_reference/global_objects/string/charat
         args.VerifyException("Bytes.charAt", "n");
@@ -219,7 +219,7 @@ namespace tide
         result->SetString(buf);
     }
     
-    void Bytes::_ByteAt(const ValueList& args, KValueRef result)
+    void Bytes::_ByteAt(const ValueList& args, ValueRef result)
     {
         args.VerifyException("Bytes.byteAt", "n");
         size_t position = args.GetInt(0);
@@ -230,14 +230,14 @@ namespace tide
         }
     }
 
-    void Bytes::_Split(const ValueList& args, KValueRef result)
+    void Bytes::_Split(const ValueList& args, ValueRef result)
     {
         // This method now follows the spec located at:
         // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/split
         // Except support for regular expressions
         args.VerifyException("Bytes.split", "?s,i");
 
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         result->SetList(list);
 
         std::string target = "";
@@ -291,7 +291,7 @@ namespace tide
             list->Append(Value::NewString(target));
     }
 
-    void Bytes::_Substr(const ValueList& args, KValueRef result)
+    void Bytes::_Substr(const ValueList& args, ValueRef result)
     {
         // This method now follows the spec located at:
         // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/substr
@@ -330,7 +330,7 @@ namespace tide
         result->SetString(r);
     }
 
-    void Bytes::_Substring(const ValueList& args, KValueRef result)
+    void Bytes::_Substring(const ValueList& args, ValueRef result)
     {
         // This method now follows the spec located at:
         // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/substring
@@ -376,7 +376,7 @@ namespace tide
         }
     }
 
-    void Bytes::_ToLowerCase(const ValueList& args, KValueRef result)
+    void Bytes::_ToLowerCase(const ValueList& args, ValueRef result)
     {
         if (this->size > 0)
         {
@@ -390,7 +390,7 @@ namespace tide
         }
     }
 
-    void Bytes::_ToUpperCase(const ValueList& args, KValueRef result)
+    void Bytes::_ToUpperCase(const ValueList& args, ValueRef result)
     {
         if (this->size > 0)
         {
@@ -427,7 +427,7 @@ namespace tide
         return newBytes;
     }
 
-    void Bytes::_Concat(const ValueList& args, KValueRef result)
+    void Bytes::_Concat(const ValueList& args, ValueRef result)
     {
         std::vector<BytesRef> bytes;
         bytes.push_back(BytesRef(this, true));
@@ -453,7 +453,7 @@ namespace tide
         result->SetObject(newBytes);
     }
 
-    void Bytes::_Slice(const ValueList& args, KValueRef result)
+    void Bytes::_Slice(const ValueList& args, ValueRef result)
     {
         args.VerifyException("splice", "i,i");
 

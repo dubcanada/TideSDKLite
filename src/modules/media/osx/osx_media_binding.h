@@ -48,12 +48,12 @@ namespace ti
     class OSXMediaBinding : public MediaBinding
     {
         public:
-        OSXMediaBinding(KObjectRef);
+        OSXMediaBinding(TiObjectRef);
         ~OSXMediaBinding();
 
         protected:
         void Beep();
-        KObjectRef CreateSound(std::string&);
+        TiObjectRef CreateSound(std::string&);
     };
 }
 

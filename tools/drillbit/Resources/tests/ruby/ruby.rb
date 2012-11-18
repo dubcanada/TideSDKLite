@@ -179,7 +179,7 @@ def test_js_type_list(t)
 end
 
 def test_js_type_klist(t)
-	return t.class.name == 'RubyKList'
+	return t.class.name == 'RubyTiList'
 end
 
 def test_js_klist_elements(t)
@@ -187,10 +187,10 @@ def test_js_klist_elements(t)
 end
 
 def test_js_type_kobject(t)
-	return t.class.name == 'RubyKObject'
+	return t.class.name == 'RubyTiObject'
 end
 def test_js_type_kmethod(t)
-	return t.class.name == 'RubyKMethod'
+	return t.class.name == 'RubyTiMethod'
 end
 
 def test_js_type_dict(t)

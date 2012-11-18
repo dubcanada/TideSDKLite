@@ -56,7 +56,7 @@ namespace ti
         TIDE_MODULE_CLASS(CodecModule)
         
     private:
-        tide::KObjectRef binding;
+        tide::TiObjectRef binding;
     };
 
 }

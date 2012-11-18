@@ -87,7 +87,7 @@ namespace ti
         See
         http://msdn.microsoft.com/library/en-us/vccelng/htm/progs_12.asp
     */
-    std::string Win32Process::ArgListToString(KListRef argList)
+    std::string Win32Process::ArgListToString(TiListRef argList)
     {
         
         std::string result = "";
@@ -214,7 +214,7 @@ namespace ti
 
     BytesRef Win32Process::MonitorSync()
     {
-        KMethodRef readCallback =
+        TiMethodRef readCallback =
             StaticBoundMethod::FromMethod<Win32Process>(
                 this, &Win32Process::ReadCallback);
 
@@ -271,7 +271,7 @@ namespace ti
         return pid;
     }
     
-    void Win32Process::ReadCallback(const ValueList& args, KValueRef result)
+    void Win32Process::ReadCallback(const ValueList& args, ValueRef result)
     {
         if (args.at(0)->IsObject())
         {

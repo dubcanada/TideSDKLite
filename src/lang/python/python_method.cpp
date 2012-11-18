@@ -32,12 +32,12 @@
 * limitations under the License.
 **/
 
-#include "k_python_method.h"
+#include "python_method.h"
 
 namespace tide
 {
     KPythonMethod::KPythonMethod(PyObject *method) :
-        KMethod("Python.KMethod"),
+        TiMethod("Python.TiMethod"),
         method(method),
         object(new KPythonObject(method))
     {
@@ -51,7 +51,7 @@ namespace tide
         Py_DECREF(this->method);
     }
 
-    KValueRef KPythonMethod::Call(const ValueList& args)
+    ValueRef KPythonMethod::Call(const ValueList& args)
     {
         PyLockGIL lock;
         PyObject *arglist = NULL;
@@ -69,26 +69,26 @@ namespace tide
         PyObject *response = PyObject_CallObject(this->method, arglist);
         Py_XDECREF(arglist);
 
-        KValueRef value = Value::Undefined;
+        ValueRef value = Value::Undefined;
         if (response == NULL && PyErr_Occurred() != NULL)
         {
             THROW_PYTHON_EXCEPTION
         }
         else if (response != NULL)
         {
-            value = PythonUtils::ToKrollValue(response);
+            value = PythonUtils::ToTiValue(response);
             Py_DECREF(response);
         }
 
         return value;
     }
 
-    void KPythonMethod::Set(const char *name, KValueRef value)
+    void KPythonMethod::Set(const char *name, ValueRef value)
     {
         this->object->Set(name, value);
     }
 
-    KValueRef KPythonMethod::Get(const char *name)
+    ValueRef KPythonMethod::Get(const char *name)
     {
         return this->object->Get(name);
     }
@@ -103,7 +103,7 @@ namespace tide
         return this->object->ToPython();
     }
 
-    bool KPythonMethod::Equals(KObjectRef other)
+    bool KPythonMethod::Equals(TiObjectRef other)
     {
         AutoPtr<KPythonMethod> pyOther = other.cast<KPythonMethod>();
 

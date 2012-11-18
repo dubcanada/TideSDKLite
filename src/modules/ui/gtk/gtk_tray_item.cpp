@@ -40,7 +40,7 @@ namespace ti
     void TrayClickedCallback(GtkStatusIcon*, gpointer);
     void TrayMenuCallback(GtkStatusIcon*, guint, guint, gpointer);
 
-    GtkTrayItem::GtkTrayItem(std::string& iconURL, KMethodRef cb) :
+    GtkTrayItem::GtkTrayItem(std::string& iconURL, TiMethodRef cb) :
         TrayItem(iconURL),
         item(gtk_status_icon_new()),
         menu(0),
@@ -110,7 +110,7 @@ namespace ti
         return this->menu;
     }
 
-    KMethodRef GtkTrayItem::GetCallback()
+    TiMethodRef GtkTrayItem::GetCallback()
     {
         return this->callback;
     }
@@ -118,7 +118,7 @@ namespace ti
     void TrayClickedCallback(GtkStatusIcon *status_icon, gpointer data)
     {
         GtkTrayItem* item = static_cast<GtkTrayItem*>(data);
-        KMethodRef cb = item->GetCallback();
+        TiMethodRef cb = item->GetCallback();
 
         if (cb.isNull())
             return;

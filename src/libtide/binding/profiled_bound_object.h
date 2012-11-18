@@ -40,34 +40,34 @@
 namespace tide
 {
     /**
-     * The ProfiledBoundObject is a wrapped KObject that does profiling on a 
-     * wrapped KObject
+     * The ProfiledBoundObject is a wrapped TiObject that does profiling on a 
+     * wrapped TiObject
      */
-    class TIDE_API ProfiledBoundObject : public KObject
+    class TIDE_API ProfiledBoundObject : public TiObject
     {
         public:
-        ProfiledBoundObject(KObjectRef delegate);
+        ProfiledBoundObject(TiObjectRef delegate);
         virtual ~ProfiledBoundObject();
         static void SetStream(Poco::FileOutputStream*);
 
         public:
-        // @see KObject::Set
-        virtual void Set(const char *name, KValueRef value);
-        // @see KObject::Get
-        virtual KValueRef Get(const char *name);
-        // @see KObject::GetPropertyNames
+        // @see TiObject::Set
+        virtual void Set(const char *name, ValueRef value);
+        // @see TiObject::Get
+        virtual ValueRef Get(const char *name);
+        // @see TiObject::GetPropertyNames
         virtual SharedStringList GetPropertyNames();
-        // @see KObject::DisplayString
+        // @see TiObject::DisplayString
         virtual SharedString DisplayString(int levels=3);
-        // @see KObject::Equals
-        virtual bool Equals(KObjectRef other);
+        // @see TiObject::Equals
+        virtual bool Equals(TiObjectRef other);
 
         bool HasProperty(const char* name);
 
         /**
          * @return the delegate of this profiled bound object
          */
-        KObjectRef GetDelegate() { return delegate; }
+        TiObjectRef GetDelegate() { return delegate; }
         virtual void duplicate()
         {
             ++count;
@@ -87,11 +87,11 @@ namespace tide
         }
 
     protected:
-        KObjectRef delegate;
-        KValueRef Wrap(KValueRef value, std::string type);
+        TiObjectRef delegate;
+        ValueRef Wrap(ValueRef value, std::string type);
         std::string GetSubType(std::string name);
         void Log(const char* eventType, std::string& name, Poco::Timestamp::TimeDiff);
-        static bool AlreadyWrapped(KValueRef);
+        static bool AlreadyWrapped(ValueRef);
         static Poco::FileOutputStream *stream;
         static Poco::Mutex logMutex;
         Poco::AtomicCounter count;

@@ -40,7 +40,7 @@ namespace ti
     UIBinding* UIBinding::instance = NULL;
 
     UIBinding::UIBinding(Host* host) :
-        KAccessorObject("UI"),
+        AccessorObject("UI"),
         host(host)
     {
         instance = this;
@@ -87,7 +87,7 @@ namespace ti
         return this->mainWindow;
     }
 
-    void UIBinding::_CreateWindow(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateWindow(const ValueList& args, ValueRef result)
     {
         AutoPtr<WindowConfig> config(0);
         if (args.size() > 0 && args.at(0)->IsObject())
@@ -159,9 +159,9 @@ namespace ti
         logger->Warn("Tried to remove a non-existant window: %lx", (long int) window.get());
     }
 
-    void UIBinding::_GetOpenWindows(const ValueList& args, KValueRef result)
+    void UIBinding::_GetOpenWindows(const ValueList& args, ValueRef result)
     {
-        KListRef list = new StaticBoundList();
+        TiListRef list = new StaticBoundList();
         std::vector<AutoUserWindow>::iterator w = openWindows.begin();
         while (w != openWindows.end()) {
             list->Append(Value::NewObject(*w++));
@@ -169,12 +169,12 @@ namespace ti
         result->SetList(list);
     }
 
-    void UIBinding::_GetMainWindow(const ValueList& args, KValueRef result)
+    void UIBinding::_GetMainWindow(const ValueList& args, ValueRef result)
     {
         result->SetObject(this->mainWindow);
     }
 
-    void UIBinding::_CreateNotification(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateNotification(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createNotification", "?o");
         AutoNotification n(new Notification());
@@ -185,7 +185,7 @@ namespace ti
         result->SetObject(n);
     }
 
-    void UIBinding::_CreateMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateMenu(const ValueList& args, ValueRef result)
     {
         result->SetObject(__CreateMenu(args));
     }
@@ -196,7 +196,7 @@ namespace ti
         return this->CreateMenu();
     }
 
-    void UIBinding::_CreateMenuItem(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateMenuItem(const ValueList& args, ValueRef result)
     {
         result->SetObject(__CreateMenuItem(args));
     }
@@ -205,7 +205,7 @@ namespace ti
     {
         args.VerifyException("createMenuItem", "?s m|0 s|0");
         std::string label = args.GetString(0, "");
-        KMethodRef eventListener = args.GetMethod(1, NULL);
+        TiMethodRef eventListener = args.GetMethod(1, NULL);
         std::string iconURL = args.GetString(2, "");
 
         AutoMenuItem item = this->CreateMenuItem();
@@ -220,7 +220,7 @@ namespace ti
     }
 
 
-    void UIBinding::_CreateCheckMenuItem(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateCheckMenuItem(const ValueList& args, ValueRef result)
     {
         result->SetObject(__CreateCheckMenuItem(args));
     }
@@ -229,7 +229,7 @@ namespace ti
     {
         args.VerifyException("createCheckMenuItem", "?s m|0");
         std::string label = args.GetString(0, "");
-        KMethodRef eventListener = args.GetMethod(1, NULL);
+        TiMethodRef eventListener = args.GetMethod(1, NULL);
 
         AutoMenuItem item = this->CreateCheckMenuItem();
         if (!label.empty())
@@ -240,7 +240,7 @@ namespace ti
         return item;
     }
 
-    void UIBinding::_CreateSeparatorMenuItem(const ValueList& args, KValueRef result)
+    void UIBinding::_CreateSeparatorMenuItem(const ValueList& args, ValueRef result)
     {
         result->SetObject(__CreateSeparatorMenuItem(args));
     }
@@ -250,7 +250,7 @@ namespace ti
         return this->CreateSeparatorMenuItem();
     }
 
-    void UIBinding::_SetMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_SetMenu(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setMenu", "o|0");
         AutoMenu menu(args.GetObject(0, 0).cast<Menu>());
@@ -264,7 +264,7 @@ namespace ti
         }
     }
 
-    void UIBinding::_GetMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_GetMenu(const ValueList& args, ValueRef result)
     {
         AutoMenu menu = this->GetMenu();
         if (menu.isNull())
@@ -277,20 +277,20 @@ namespace ti
         }
     }
 
-    void UIBinding::_SetContextMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_SetContextMenu(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setContextMenu", "o|0");
         AutoMenu menu(args.GetObject(0, 0).cast<Menu>());
         this->SetContextMenu(menu);
     }
 
-    void UIBinding::_GetContextMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_GetContextMenu(const ValueList& args, ValueRef result)
     {
         AutoMenu menu = this->GetContextMenu();
         result->SetObject(menu);
     }
 
-    void UIBinding::_SetIcon(const ValueList& args, KValueRef result)
+    void UIBinding::_SetIcon(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setIcon", "s|0");
 
@@ -316,18 +316,18 @@ namespace ti
         }
     }
 
-    void UIBinding::_AddTray(const ValueList& args, KValueRef result)
+    void UIBinding::_AddTray(const ValueList& args, ValueRef result)
     {
         args.VerifyException("createTrayIcon", "s,?m");
         std::string iconURL = args.GetString(0);
 
-        KMethodRef cbSingleClick = args.GetMethod(1, NULL);
+        TiMethodRef cbSingleClick = args.GetMethod(1, NULL);
         AutoTrayItem item = this->AddTray(iconURL, cbSingleClick);
         this->trayItems.push_back(item);
         result->SetObject(item);
     }
 
-    void UIBinding::_ClearTray(const ValueList& args, KValueRef result)
+    void UIBinding::_ClearTray(const ValueList& args, ValueRef result)
     {
         this->ClearTray();
     }
@@ -359,7 +359,7 @@ namespace ti
         }
     }
 
-    void UIBinding::_SetDockIcon(const ValueList& args, KValueRef result)
+    void UIBinding::_SetDockIcon(const ValueList& args, ValueRef result)
     {
         std::string iconPath;
         if (args.size() > 0) {
@@ -369,13 +369,13 @@ namespace ti
         this->SetDockIcon(iconPath);
     }
 
-    void UIBinding::_SetDockMenu(const ValueList& args, KValueRef result)
+    void UIBinding::_SetDockMenu(const ValueList& args, ValueRef result)
     {
         AutoMenu menu(args.GetObject(0, 0).cast<Menu>());
         this->SetDockMenu(menu);
     }
 
-    void UIBinding::_SetBadge(const ValueList& args, KValueRef result)
+    void UIBinding::_SetBadge(const ValueList& args, ValueRef result)
     {
         std::string badgeText;
         if (args.size() > 0) {
@@ -385,7 +385,7 @@ namespace ti
         this->SetBadge(badgeText);
     }
 
-    void UIBinding::_SetBadgeImage(const ValueList& args, KValueRef result)
+    void UIBinding::_SetBadgeImage(const ValueList& args, ValueRef result)
     {
         std::string iconPath;
         if (args.size() > 0) {
@@ -398,7 +398,7 @@ namespace ti
 
     void UIBinding::_GetIdleTime(
         const ValueList& args,
-        KValueRef result)
+        ValueRef result)
     {
         result->SetDouble(this->GetIdleTime());
     }
@@ -418,15 +418,15 @@ namespace ti
         std::vector<AutoUserWindow>& openWindows = UIBinding::GetInstance()->GetOpenWindows();
         for (size_t i = 0; i < openWindows.size(); i++)
         {
-            KObjectRef domWindow = openWindows[i]->GetDOMWindow();
+            TiObjectRef domWindow = openWindows[i]->GetDOMWindow();
             if (domWindow.isNull())
                 continue;
 
-            KObjectRef console = domWindow->GetObject("console", 0);
+            TiObjectRef console = domWindow->GetObject("console", 0);
             if (console.isNull())
                 continue;
 
-            KMethodRef method = console->GetMethod(origMethodName.c_str(), 0);
+            TiMethodRef method = console->GetMethod(origMethodName.c_str(), 0);
             if (method.isNull())
                 method = console->GetMethod(methodName.c_str(), 0);
 
