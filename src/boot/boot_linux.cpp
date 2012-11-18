@@ -34,14 +34,12 @@
 
 #include <dlfcn.h>
 #include <libgen.h>
-#include <limits.h>
 #include <errno.h>
 #include <gtk/gtk.h>
 #include "boot.h"
 
 namespace TideBoot
 {
-    extern string applicationHome;
     extern string updateFile;
     extern SharedApplication app;
     extern int argc;

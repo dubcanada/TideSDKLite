@@ -56,11 +56,11 @@ namespace ti
 		}
 
 	private:
-		KMethodRef onHandshake;
+		TiMethodRef onHandshake;
 
-		void SetOnHandshake(const ValueList& args, KValueRef result);
+		void SetOnHandshake(const ValueList& args, ValueRef result);
 
-		void async_handshake(const ValueList& args, KValueRef result);
+		void async_handshake(const ValueList& args, ValueRef result);
 		void registerAsyncHandshake();
 		void handleAsyncHandshake(const boost::system::error_code& error);
 		void on_handshake();

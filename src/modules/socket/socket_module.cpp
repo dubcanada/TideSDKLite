@@ -36,7 +36,7 @@ using namespace tide;
 
 namespace ti
 {
-	KROLL_MODULE(SocketModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+	TIDE_MODULE(SocketModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
 	void SocketModule::Initialize()
 	{

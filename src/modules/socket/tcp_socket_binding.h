@@ -41,14 +41,14 @@ namespace ti
 		tcp::socket * resetSocket();
 
 	private:
-		KMethodRef onConnect;
+		TiMethodRef onConnect;
 
-		void SetOnConnect(const ValueList& args, KValueRef result);
+		void SetOnConnect(const ValueList& args, ValueRef result);
 
-		void Connect(const ValueList& args, KValueRef result);
-		void ConnectNB(const ValueList& args, KValueRef result);
-		void SetKeepAlives(const ValueList& args, KValueRef result);
-		void SetKeepAliveTimes(const ValueList& args, KValueRef result);
+		void Connect(const ValueList& args, ValueRef result);
+		void ConnectNB(const ValueList& args, ValueRef result);
+		void SetKeepAlives(const ValueList& args, ValueRef result);
+		void SetKeepAliveTimes(const ValueList& args, ValueRef result);
 
 
 		const std::string hostname;

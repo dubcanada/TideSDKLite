@@ -81,28 +81,28 @@ namespace ti
 
 	private:
 
-		KMethodRef onRead;
-		KMethodRef onError;
-		KMethodRef onClose;
+		TiMethodRef onRead;
+		TiMethodRef onError;
+		TiMethodRef onClose;
 
-		void SetOnRead(const ValueList& args, KValueRef result)
+		void SetOnRead(const ValueList& args, ValueRef result)
 		{
 			this->onRead = args.at(0)->ToMethod();
 		}
 
-		void SetOnError(const ValueList& args, KValueRef result)
+		void SetOnError(const ValueList& args, ValueRef result)
 		{
 			this->onError = args.at(0)->ToMethod();
 		}
 
-		void SetOnClose(const ValueList& args, KValueRef result)
+		void SetOnClose(const ValueList& args, ValueRef result)
 		{
 			this->onClose = args.at(0)->ToMethod();
 		}
-		void Write(const ValueList& args, KValueRef result);
-		void Read(const ValueList& args, KValueRef result);
-		void Close(const ValueList& args, KValueRef result);
-		void IsClosed(const ValueList& args, KValueRef result);
+		void Write(const ValueList& args, ValueRef result);
+		void Read(const ValueList& args, ValueRef result);
+		void Close(const ValueList& args, ValueRef result);
+		void IsClosed(const ValueList& args, ValueRef result);
 
 		void registerHandleWrite();
 		void handleWrite(const boost::system::error_code& error, std::size_t bytes_transferred);
@@ -180,7 +180,7 @@ namespace ti
 	}
 
 	template <class T>
-	void Socket<T>::Write(const ValueList& args, KValueRef result)
+	void Socket<T>::Write(const ValueList& args, ValueRef result)
 	{
 		try
 		{
@@ -194,7 +194,7 @@ namespace ti
 	}
 
 	template <class T>
-	void Socket<T>::Read(const ValueList& args, KValueRef result)
+	void Socket<T>::Read(const ValueList& args, ValueRef result)
 	{
 		try
 		{
@@ -209,13 +209,13 @@ namespace ti
 	}
 
 	template <class T>
-	void Socket<T>::Close(const ValueList& args, KValueRef result)
+	void Socket<T>::Close(const ValueList& args, ValueRef result)
 	{
 		result->SetBool(this->CompleteClose());
 	}
 
 	template <class T>
-	void Socket<T>::IsClosed(const ValueList& args, KValueRef result)
+	void Socket<T>::IsClosed(const ValueList& args, ValueRef result)
 	{
 		return result->SetBool(this->sock_state == SOCK_CLOSED);
 	}

@@ -58,19 +58,19 @@ namespace ti
 	}
 
 
-	void TCPSocketBinding::SetOnConnect(const ValueList& args, KValueRef result)
+	void TCPSocketBinding::SetOnConnect(const ValueList& args, ValueRef result)
 	{
 		this->onConnect = args.at(0)->ToMethod();
 	}
 
 
-	void TCPSocketBinding::SetKeepAlives(const ValueList& args, KValueRef result)
+	void TCPSocketBinding::SetKeepAlives(const ValueList& args, ValueRef result)
 	{
 		// TODO: verify args
 		this->setKeepAlive(args.at(0)->ToBool());
 	}
 
-	void TCPSocketBinding::SetKeepAliveTimes(const ValueList& args, KValueRef result) 
+	void TCPSocketBinding::SetKeepAliveTimes(const ValueList& args, ValueRef result) 
 	{
 		// TODO:
 		//if(this->sock_state != SOCK_CLOSED)
@@ -88,7 +88,7 @@ namespace ti
 		}
 	}
 
-	void TCPSocketBinding::Connect(const ValueList& args, KValueRef result)
+	void TCPSocketBinding::Connect(const ValueList& args, ValueRef result)
 	{
 		try
 		{
@@ -103,7 +103,7 @@ namespace ti
 	}
 
 
-	void TCPSocketBinding::ConnectNB(const ValueList& args, KValueRef result)
+	void TCPSocketBinding::ConnectNB(const ValueList& args, ValueRef result)
 	{
 		try
 		{

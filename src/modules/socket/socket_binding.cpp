@@ -28,7 +28,7 @@
 namespace ti
 {
 	SocketBinding::SocketBinding(Host* host) :
-		KAccessorObject("Socket"),
+		AccessorObject("Socket"),
 		host(host),
 		global(host->GetGlobalObject())
 	{
@@ -40,13 +40,13 @@ namespace ti
 	{
 	}
 
-	void SocketBinding::_CreateTCPSocket(const ValueList& args, KValueRef result)
+	void SocketBinding::_CreateTCPSocket(const ValueList& args, ValueRef result)
 	{
 		args.VerifyException("createTCPSocket", "ss");
 		result->SetObject(new TCPSocketBinding(host, args.GetString(0), args.GetString(1)));
 	}
 
-	void SocketBinding::_getSSLTCPSocket(const ValueList& args, KValueRef result)
+	void SocketBinding::_getSSLTCPSocket(const ValueList& args, ValueRef result)
 	{
 		TCPSocketBinding * socket = args.GetObject(0).cast<TCPSocketBinding>();
 		result->SetObject(new SecureTCPSocket(host, socket));

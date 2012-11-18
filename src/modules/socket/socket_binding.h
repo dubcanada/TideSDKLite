@@ -27,7 +27,7 @@
 
 namespace ti
 {
-	class SocketBinding : public KAccessorObject
+	class SocketBinding : public AccessorObject
 	{
 	public:
 		SocketBinding(Host*);
@@ -37,10 +37,10 @@ namespace ti
 
 	private:
 		Host* host;
-		KObjectRef global;
+		TiObjectRef global;
 
-		void _CreateTCPSocket(const ValueList& args, KValueRef result);
-		void _getSSLTCPSocket(const ValueList& args, KValueRef result);
+		void _CreateTCPSocket(const ValueList& args, ValueRef result);
+		void _getSSLTCPSocket(const ValueList& args, ValueRef result);
 	};
 }
 

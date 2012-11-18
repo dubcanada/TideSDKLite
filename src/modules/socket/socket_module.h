@@ -41,7 +41,7 @@ namespace ti
 {
 	class TITANIUM_SOCKET_API SocketModule : public tide::Module
 	{
-		KROLL_MODULE_CLASS(SocketModule)
+		TIDE_MODULE_CLASS(SocketModule)
 
 	public:
 		static std::string GetRootCertPath();

@@ -65,12 +65,12 @@ namespace ti
 		}
 	}
 
-	void SecureTCPSocket::SetOnHandshake(const ValueList& args, KValueRef result)
+	void SecureTCPSocket::SetOnHandshake(const ValueList& args, ValueRef result)
 	{
 		this->onHandshake = args.at(0)->ToMethod();
 	}
 
-	void SecureTCPSocket::async_handshake(const ValueList& args, KValueRef result)
+	void SecureTCPSocket::async_handshake(const ValueList& args, ValueRef result)
 	{
 		this->registerAsyncHandshake();
 	}
