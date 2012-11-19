@@ -93,6 +93,10 @@ if build.is_linux():
 elif build.is_win32():
     effess.copy_tree(path.join(build.third_party, 'poco', 'bin'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'webkit', 'bin'), rtdir)
+    if build.tidelite:
+        effess.copy_tree(path.join(build.third_party, 'webkit-lite', 'bin'), rtdir)
+    else:
+	    effess.copy_tree(path.join(build.third_party, 'webkit-patch', 'bin'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'libproxy', 'bin'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
 

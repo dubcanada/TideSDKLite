@@ -239,6 +239,12 @@ class BuildConfig(object):
                 cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
 
             if self.is_win32():
+                if self.tidelite:
+					cpppath.append(self.tp('webkit-lite', 'include'))
+					libpath.append(self.tp('webkit-lite', 'lib'))
+                else:
+					cpppath.append(self.tp('webkit-patch', 'include'))
+					libpath.append(self.tp('webkit-patch', 'lib'))
                 suffix = ''
                 if ARGUMENTS.get('webkit_debug', None):
                     suffix = '_debug'

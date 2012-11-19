@@ -66,6 +66,11 @@ env = libtide_env
 env.Append(CPPDEFINES=[('TIDE_API_EXPORT', 1)])
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
+if build.tidelite:
+	build.add_thirdparty(env, 'webkit-lite')
+else:
+	build.add_thirdparty(env, 'webkit-patch')
+	
 if build.is_osx():
     sources +=  Glob('osx/*.mm') + \
         Glob('utils/%s/*.mm' % build.os) + \

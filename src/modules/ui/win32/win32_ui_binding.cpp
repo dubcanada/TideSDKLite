@@ -70,7 +70,6 @@ namespace ti
         std::wstring var = L"CURL_CA_BUNDLE_PATH=" + pemPath;
         _wputenv(var.c_str());
 
-#ifndef TIDE_LITE
         // Hook app:// and ti:// URL support to WebKit
         setNormalizeURLCallback(NormalizeURLCallback);
         setURLToFileURLCallback(URLToFileURLCallback);
@@ -78,6 +77,7 @@ namespace ti
         setPreprocessCallback(PreprocessURLCallback);
         setProxyCallback(ProxyForURLCallback);
 
+#ifndef TIDE_LITE
         std::string cookieJarFilename(FileUtils::Join(
             Host::GetInstance()->GetApplication()->GetDataPath().c_str(),
             "cookies.dat", 0));

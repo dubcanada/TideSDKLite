@@ -16,6 +16,10 @@ if build.is_win32():
 		build.tp('libxml', 'include'),
 		build.tp('icu','include')])
 	env.Append(LIBPATH = [build.tp('webkit', 'lib')])
+	if build.tidelite:
+		env.Append(LIBPATH = [build.tp('webkit-lite', 'lib')])
+	else:
+		env.Append(LIBPATH = [build.tp('webkit-patch', 'lib')])
 	env.Append(LIBS=['libxml2', 'pthreadVC2'])
 else:
 	env.Append(ENV = {'PATH' : os.environ['PATH']})

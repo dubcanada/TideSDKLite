@@ -21,6 +21,11 @@ env.Append(CPPDEFINES = ('TIDESDK_WORKER_API_EXPORT', 1))
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
 
+if build.tidelite:
+	build.add_thirdparty(env, 'webkit-lite')
+else:
+	build.add_thirdparty(env, 'webkit-patch')
+	
 if build.is_win32():
     env.Append(CCFLAGS=['/MD', '/DUNICODE', '/D_UNICODE'])
     env.Append(LINKFLAGS=['/NODEFAULTLIB:LIBCMT.lib', '/LTCG', '/INCREMENTAL:NO'])
