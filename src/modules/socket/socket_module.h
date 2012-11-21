@@ -26,12 +26,12 @@
 
 #if defined(OS_OSX) || defined(OS_LINUX)
 #define EXPORT __attribute__((visibility("default")))
-#define TITANIUM_SOCKET_API EXPORT
+#define TIDE_SOCKET_API EXPORT
 #elif defined(OS_WIN32)
-# ifdef TITANIUM_SOCKET_API_EXPORT
-#  define TITANIUM_SOCKET_API __declspec(dllexport)
+# ifdef TIDE_SOCKET_API_EXPORT
+#  define TIDE_SOCKET_API __declspec(dllexport)
 # else
-#  define TITANIUM_SOCKET_API __declspec(dllimport)
+#  define TIDE_SOCKET_API __declspec(dllimport)
 # endif
 # define EXPORT __declspec(dllexport)
 #endif
@@ -39,7 +39,7 @@
 
 namespace ti 
 {
-	class TITANIUM_SOCKET_API SocketModule : public tide::Module
+	class TIDE_SOCKET_API SocketModule : public tide::Module
 	{
 		TIDE_MODULE_CLASS(SocketModule)
 

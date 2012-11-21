@@ -5,7 +5,7 @@ Import('build env module')
 
 sources = Glob('*.cpp')
 
-env.Append(CPPDEFINES = ('TITANIUM_SOCKET_API_EXPORT', 1))
+env.Append(CPPDEFINES = ('TIDE_SOCKET_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'boost')
@@ -21,7 +21,7 @@ if build.is_linux():
 	env.ParseConfig('pkg-config --libs --cflags gdk-2.0 dbus-glib-1')
 
 if build.is_win32():
-	env.Append(CCFLAGS=['/MD', '/DUNICODE', '/D_UNICODE'])
+#	env.Append(CCFLAGS=['/MD', '/DUNICODE', '/D_UNICODE'])
 	env.Append(LIBS=['wsock32','ws2_32', 'ole32', 'comsuppw', 'wbemuuid'])
 	env.Append(CPPDEFINES = ('WIN32_LEAN_AND_MEAN',1))
 	env.Append(CPPDEFINES = ('ASIO_DISABLE_IOCP'))
