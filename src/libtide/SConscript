@@ -67,6 +67,7 @@ env.Append(CPPDEFINES=[('TIDE_API_EXPORT', 1)])
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
 if build.is_osx():
+    build.add_thirdparty(env, 'openssl')
     sources +=  Glob('osx/*.mm') + \
         Glob('utils/%s/*.mm' % build.os) + \
         Glob('utils/posix/*.cpp') + \
