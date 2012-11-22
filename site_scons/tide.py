@@ -236,9 +236,9 @@ class BuildConfig(object):
                 libs = ['boost_system-mt', 'boost_thread-mt']
 
         elif name is 'openssl':
+            cpppath = [self.tp('openssl', 'include')]
+            libpath = [self.tp('openssl', 'lib')]
             if self.is_win32():
-                cpppath = [self.tp('openssl', 'include')]
-                libpath = [self.tp('openssl', 'lib')]
                 libs = ['libeay32', 'ssleay32']
             if self.is_osx():
                 libs = ['ssl', 'crypto']
