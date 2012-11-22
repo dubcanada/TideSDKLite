@@ -232,7 +232,7 @@ class BuildConfig(object):
             cpppath = [self.tp('boost', 'include')]
             libpath = [self.tp('boost', 'lib')]
             # add mac libs as it doesn't pick them up automatically
-            if self.is_osx():
+            if self.is_osx() or self.is_linux():
                 libs = ['boost_system-mt', 'boost_thread-mt']
 
         elif name is 'openssl':
