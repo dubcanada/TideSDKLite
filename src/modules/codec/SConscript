@@ -37,6 +37,7 @@ Import('build env module')
 env.Append(CPPDEFINES = ('TIDESDK_CODEC_API_EXPORT', 1))
 
 build.add_thirdparty(env, 'poco')
+build.add_thirdparty(env, 'boost')
 
 if build.is_win32():
     env.Append(CCFLAGS=['/MD', '/DUNICODE', '/D_UNICODE'])
