@@ -505,14 +505,11 @@
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	[openPanel setAllowsMultipleSelection:NO];
 	[openPanel setCanChooseDirectories:NO];
-	[openPanel beginSheetForDirectory:nil
-		file:nil 
-		modalForWindow:window
-		modalDelegate:self
-		didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) 
-		contextInfo:resultListener];
-	[openPanel retain];
-	[resultListener retain];
+    if ([openPanel runModal] == NSOKButton)
+    {
+        NSArray* files = [[openPanel URLs]valueForKey:@"relativePath"];
+        [resultListener chooseFilenames:files];
+    }
 }
 
 - (void)webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id<WebOpenPanelResultListener>)resultListener allowMultipleFiles:(BOOL)allowMultipleFiles 
@@ -520,25 +517,11 @@
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	[openPanel setAllowsMultipleSelection:allowMultipleFiles];
 	[openPanel setCanChooseDirectories:NO];
-	[openPanel beginSheetForDirectory:nil
-		file:nil 
-		modalForWindow:window
-		modalDelegate:self
-		didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) 
-		contextInfo:resultListener];
-	[openPanel retain];
-	[resultListener retain];
-}
-
-- (void)openPanelDidEnd:(NSOpenPanel *)openPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo 
-{
-	id <WebOpenPanelResultListener>resultListener = (id <WebOpenPanelResultListener>)contextInfo;
-
-	if (NSOKButton == returnCode) {
-		[resultListener chooseFilenames:[openPanel filenames]];
-		[resultListener autorelease];
-		[openPanel autorelease];
-	}
+	if ([openPanel runModal] == NSOKButton)
+    {
+        NSArray* files = [[openPanel URLs]valueForKey:@"relativePath"];
+        [resultListener chooseFilenames:files];
+    }
 }
 
 
@@ -559,8 +542,7 @@
 	return YES;
 }
 
-//TODO: in 10.5, this becomes an NSUInteger
-- (unsigned int)webView:(WebView *)wv dragDestinationActionMaskForDraggingInfo:(id <NSDraggingInfo>)draggingInfo 
+- (NSUInteger)webView:(WebView *)wv dragDestinationActionMaskForDraggingInfo:(id <NSDraggingInfo>)draggingInfo
 {
 	return WebDragDestinationActionAny;
 }
@@ -573,8 +555,7 @@
 }
 
 
-//TODO: in 10.5, this becomes an NSUInteger
-- (unsigned int)webView:(WebView *)wv dragSourceActionMaskForPoint:(NSPoint)point
+- (NSUInteger)webView:(WebView *)wv dragSourceActionMaskForPoint:(NSPoint)point
 {
 	return WebDragSourceActionAny;
 }

@@ -57,6 +57,7 @@ namespace tide
     std::string Event::ACTIVATE = "activate";
     std::string Event::CLICKED = "clicked";
     std::string Event::DOUBLE_CLICKED = "double.clicked";
+    std::string Event::DOCK_ICON_CLICKED = "dock.icon.clicked";
     std::string Event::EXIT = "exit";
     std::string Event::APP_EXIT = "app.exit";
     std::string Event::READ = "read";
@@ -132,6 +133,10 @@ namespace tide
         // @tiproperty[String, PAGE_LOADED, since=0.6] The PAGE_LOADED event constant
         // @tiproperty[String, CREATE, since=0.6] The CREATE event constant
         // @tiproperty[String, EXIT, since=0.6] The EXIT event constant
+        // @tiproperty[String, ACTIVATE, since=1.3.1-beta] The ACTIVATE
+        // @tiproperty[String, CLICKED, since=1.3.1-beta] The Tray Icon Clicked.
+        // @tiproperty[String, DOUBLE_CLICKED, since=1.3.1-beta] The Tray Icon Double Clicked.
+        // @tiproperty[String, DOCK_ICON_CLICKED, since=1.3.1-beta] The Dock-icon clicked event constant.
         // @tiproperty[String, APP_EXIT, since=0.7] The APP_EXIT event constant, fired during host application exit.
         // @tiproperty[String, READ, since=0.6] The READ event constant
         // @tiproperty[String, OPEN_REQUEST, since=0.7] The OPEN request event constant.
@@ -157,6 +162,10 @@ namespace tide
         target->Set("PAGE_LOADED", Value::NewString(Event::PAGE_LOADED));
         target->Set("CREATED", Value::NewString(Event::CREATED));
         target->Set("EXIT", Value::NewString(Event::EXIT));
+        target->Set("ACTIVATE", Value::NewString(Event::ACTIVATE));
+        target->Set("CLICKED", Value::NewString(Event::CLICKED));
+        target->Set("DOUBLE_CLICKED", Value::NewString(Event::DOUBLE_CLICKED));
+        target->Set("DOCK_ICON_CLICKED", Value::NewString(Event::DOCK_ICON_CLICKED));
         target->Set("APP_EXIT", Value::NewString(Event::APP_EXIT));
         target->Set("READ", Value::NewString(Event::READ));
         target->Set("OPEN_REQUEST", Value::NewString(Event::OPEN_REQUEST));
