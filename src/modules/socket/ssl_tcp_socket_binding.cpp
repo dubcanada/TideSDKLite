@@ -19,6 +19,9 @@
  *
  */
 
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
+
 #include "ssl_tcp_socket_binding.h"
 
 namespace ti

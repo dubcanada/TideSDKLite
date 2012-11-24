@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include "utils.h"
+#include <tideutils/file_utils.h>
 
 #ifdef OS_OSX
 #include <Cocoa/Cocoa.h>
@@ -62,7 +62,7 @@
 #include <locale>
 #include <cwctype>
 
-namespace UTILS_NS
+namespace TideUtils
 {
 namespace FileUtils
 {
@@ -91,7 +91,7 @@ namespace FileUtils
             return true;
         }
         
-        string parent(Dirname(dir));
+        std::string parent(Dirname(dir));
         if (recursive && parent.size() > 0 && !IsDirectory(parent))
         {
             if (!CreateDirectory(parent, true))

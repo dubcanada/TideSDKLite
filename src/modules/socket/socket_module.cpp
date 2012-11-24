@@ -19,6 +19,9 @@
  *
  */
 
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
+
 #include "socket_module.h"
 
 #ifdef OS_WIN32

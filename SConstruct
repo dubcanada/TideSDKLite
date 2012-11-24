@@ -80,8 +80,9 @@ if build.is_win32():
     build.env.Append(LINKFLAGS=['/DEBUG', '/PDB:${TARGET}.pdb'])
 
 LIBTIDE_NAME = 'tide'
+LIBUTILS_NAME = 'tideutils'
 
-Export('build', 'debug', 'LIBTIDE_NAME')
+Export('build', 'debug', 'LIBTIDE_NAME', 'LIBUTILS_NAME')
 targets = COMMAND_LINE_TARGETS
 clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
@@ -98,6 +99,13 @@ if ARGUMENTS.get('test_crash', 0):
 
 ## Kroll *must not be required* for installation
 SConscript('SConscript.thirdparty')
+
+SConscript('src/lib/utils/SConscript', variant_dir=path.join(build.dir,'objs','lib/utils'), duplicate=0)
+
+build.env.Append(CPPPATH=[build.tide_include_dir])
+build.env.Append(LIBS=[LIBUTILS_NAME])
+build.env.Append(LIBPATH=[build.runtime_build_dir])
+
 SConscript('src/installer/SConscript')
 
 # After libtide builds, the environment will  link 

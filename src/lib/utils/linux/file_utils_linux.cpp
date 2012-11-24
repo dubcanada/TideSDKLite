@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include "../utils.h"
+#include <tideutils/file_utils.h>
 #include <cstdarg>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -49,7 +49,7 @@
 
 using std::string;
 
-namespace UTILS_NS
+namespace TideUtils
 {
 namespace FileUtils
 {

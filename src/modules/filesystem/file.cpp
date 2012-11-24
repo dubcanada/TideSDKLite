@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,6 +32,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
+
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
 
 #include "file.h"
 #include "filesystem_utils.h"
@@ -460,7 +464,7 @@ namespace ti
                 {
                     std::string entry = files.at(i);
                     // store it as the fullpath
-                    std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
+                    std::string filename = FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                     ti::File* file = new ti::File(filename);
                     ValueRef value = Value::NewObject((TiObjectRef) file);
                     fileList->Append(value);
@@ -782,7 +786,7 @@ namespace ti
             {
                 throw ValueException::FromString("destination must be a directory");
             }
-            tide::FileUtils::Unzip(from_s,to_s);
+            FileUtils::Unzip(from_s,to_s);
             result->SetBool(true);
         }
         catch (Poco::FileNotFoundException&)

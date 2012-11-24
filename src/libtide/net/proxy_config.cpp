@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,6 +32,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
+
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
 
 #include "../tide.h"
 #include "proxy_config.h"

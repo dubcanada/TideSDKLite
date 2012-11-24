@@ -32,7 +32,7 @@
 * limitations under the License.
 **/
 
-#include "../utils.h"
+#include <tideutils/file_utils.h>
 
 #ifdef OS_OSX
 #include <Cocoa/Cocoa.h>
@@ -57,7 +57,7 @@
 #include <sstream>
 #include <cstring>
 
-namespace UTILS_NS
+namespace TideUtils
 {
     std::string FileUtils::GetExecutableDirectory()
     {

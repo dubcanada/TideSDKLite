@@ -35,6 +35,8 @@
 #ifndef _FILE_UTILS_H_
 #define _FILE_UTILS_H_
 
+
+#include <tideutils/base.h>
 #ifdef OS_WIN32
 #include <windows.h>
 #undef CreateDirectory
@@ -72,42 +74,42 @@
  * Platform-dependent functions can be defined in <os>/<os>_utils.h instead of
  * behind an #ifdef in this file.
  */
-namespace UTILS_NS
+namespace TideUtils
 {
     namespace FileUtils
     {
         /**
          * Tokenize a string into parts given a string of delimeters characters.
          */
-        TIDE_API void Tokenize(const std::string& haystack,
+        TIDE_UTILS_API void Tokenize(const std::string& haystack,
             std::vector<std::string>& tokens, const std::string& delimeters,
             bool skipDuplicates=false);
-        TIDE_API void TokenizeWide(const std::wstring& haystack,
+        TIDE_UTILS_API void TokenizeWide(const std::wstring& haystack,
             std::vector<std::wstring>& tokens, const std::wstring& delimeters,
             bool skipDuplicates=false);
 
-        TIDE_API std::string Trim(std::string str);
-        TIDE_API std::wstring Trim(std::wstring str);
+        TIDE_UTILS_API std::string Trim(std::string str);
+        TIDE_UTILS_API std::wstring Trim(std::wstring str);
 
-        TIDE_API void ListDir(const std::string& path, std::vector<std::string>& files);
-        TIDE_API bool IsDirectory(const std::string& dir);
-        TIDE_API bool IsFile(const std::string& file);
-        TIDE_API void WriteFile(const std::string& path, const std::string& content);
-        TIDE_API std::string ReadFile(const std::string& path);
-        TIDE_API std::string Dirname(const std::string& path);
-        TIDE_API std::string Basename(const std::string& path);
-        TIDE_API bool CreateDirectory(const std::string& dir, bool recursive=false);
-        TIDE_API bool CreateDirectoryImpl(const std::string& dir);
+        TIDE_UTILS_API void ListDir(const std::string& path, std::vector<std::string>& files);
+        TIDE_UTILS_API bool IsDirectory(const std::string& dir);
+        TIDE_UTILS_API bool IsFile(const std::string& file);
+        TIDE_UTILS_API void WriteFile(const std::string& path, const std::string& content);
+        TIDE_UTILS_API std::string ReadFile(const std::string& path);
+        TIDE_UTILS_API std::string Dirname(const std::string& path);
+        TIDE_UTILS_API std::string Basename(const std::string& path);
+        TIDE_UTILS_API bool CreateDirectory(const std::string& dir, bool recursive=false);
+        TIDE_UTILS_API bool CreateDirectoryImpl(const std::string& dir);
 
         /**
          * Recursively delete the directory at the given path
          */
-        TIDE_API bool DeleteDirectory(const std::string& dir);
+        TIDE_UTILS_API bool DeleteDirectory(const std::string& dir);
 
         /**
          * Delete a file at the given path
          */
-        TIDE_API bool DeleteFile(const std::string& file);
+        TIDE_UTILS_API bool DeleteFile(const std::string& file);
 
         /**
          * This function joins paths together in an OS specific way. Empty elements --
@@ -115,73 +117,73 @@ namespace UTILS_NS
          * Join('', '/blah', '', 'whatever') => /blah/whatever
          * Join('', 'blah', 'whatever') => blah/whatever
          */
-        TIDE_API std::string Join(const char*, ...);
-        TIDE_API std::wstring Join(const wchar_t*, ...);
+        TIDE_UTILS_API std::string Join(const char*, ...);
+        TIDE_UTILS_API std::wstring Join(const wchar_t*, ...);
 
         /**
          * This function returns the Operating system version
          */
-        TIDE_API std::string GetOSVersion();
+        TIDE_UTILS_API std::string GetOSVersion();
 
         /**
          * This function returns the Operating system architecture
          */
-        TIDE_API std::string GetOSArchitecture();
+        TIDE_UTILS_API std::string GetOSArchitecture();
 
         /**
          * This function returns temporary directory for application
          */
-        TIDE_API std::string GetTempDirectory();
+        TIDE_UTILS_API std::string GetTempDirectory();
 
         /**
          * This function returns the path of the currently running executable.
          * @return the path for the currently running executable
         */
-        TIDE_API std::string GetExecutableDirectory();
+        TIDE_UTILS_API std::string GetExecutableDirectory();
 
         /**
          * @return the applications data directory
          */
-        TIDE_API std::string GetApplicationDataDirectory(std::string appname);
+        TIDE_UTILS_API std::string GetApplicationDataDirectory(std::string appname);
 
         /**
          * This function indirectly uses the KR_HOME environment variable
          * set by the boot process
          * @return the directory for the application's resource files
         */
-        TIDE_API std::string GetResourcesDirectory();
+        TIDE_UTILS_API std::string GetResourcesDirectory();
 
         /**
          * @return the directory for a given file path
          */
-        TIDE_API std::string GetDirectory(const std::string &file);
+        TIDE_UTILS_API std::string GetDirectory(const std::string &file);
 
         /**
          * @return true if the given file or directory is hidden.  Otherwise, false is returned.
          */
-        TIDE_API bool IsHidden(const std::string &file);
+        TIDE_UTILS_API bool IsHidden(const std::string &file);
 
         /**
          * Get the system-wide runtime home directory. This is just a
          * default location --  to get the  current runtime home directory
          * read the value of the runtime path from the host's current application.
          */
-        TIDE_API std::string GetSystemRuntimeHomeDirectory();
+        TIDE_UTILS_API std::string GetSystemRuntimeHomeDirectory();
 
         /**
          * Get the user-specific runtime home directory. This is just a
          * default location --  to get the  current runtime home directory
          * read the value of the runtime path from the host's current application.
          */
-        TIDE_API std::string GetUserRuntimeHomeDirectory();
-        TIDE_API bool IsRuntimeInstalled();
-        TIDE_API int RunAndWait(const std::string& path, std::vector<std::string>& args);
-        TIDE_API std::string GetUsername();
+        TIDE_UTILS_API std::string GetUserRuntimeHomeDirectory();
+        TIDE_UTILS_API bool IsRuntimeInstalled();
+        TIDE_UTILS_API int RunAndWait(const std::string& path, std::vector<std::string>& args);
+        TIDE_UTILS_API std::string GetUsername();
 
 #ifndef NO_UNZIP
         typedef bool (*UnzipCallback)(char* message, int current,
             int total, void* data);
-        TIDE_API bool Unzip(const std::string& source, const std::string& destination, 
+        TIDE_UTILS_API bool Unzip(const std::string& source, const std::string& destination, 
             UnzipCallback callback=0, void* data=0);
 #endif
     }

@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,6 +37,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 namespace UTILS_NS
 {
 namespace PlatformUtils
@@ -55,7 +57,7 @@ namespace PlatformUtils
         }
 
         char result[18];
-        std::sprintf(result, "%02x:%02x:%02x:%02x:%02x:%02x",
+        sprintf(result, "%02x:%02x:%02x:%02x:%02x:%02x",
             address[0], address[1], address[2], address[3],
             address[4], address[5]);
         return std::string(result);
