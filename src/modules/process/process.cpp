@@ -32,6 +32,8 @@
 * limitations under the License.
 **/
 
+#include <tideutils/environment_utils.h>
+
 #include <vector>
 #include "process.h"
 #include "pipe.h"

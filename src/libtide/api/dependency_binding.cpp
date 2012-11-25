@@ -33,6 +33,7 @@
 **/
 
 #include "dependency_binding.h"
+#include <tideutils/boot_utils.h>
 
 namespace tide
 {

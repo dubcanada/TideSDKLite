@@ -28,7 +28,8 @@ libutils_env = build.env.Clone()
 libutils_name = LIBUTILS_NAME
 
 sources = libutils_sources + \
-    Glob('*.cpp')
+    Glob('*.cpp') + \
+    Glob('poco/*.cpp')
 
 if build.is_linux():
     sources += Glob('linux/*.cpp')
@@ -52,7 +53,7 @@ if build.is_osx():
     env.Append(LINKFLAGS='-install_name lib' + libutils_name + '.dylib')
     env.Append(FRAMEWORKS=['Cocoa', 'SystemConfiguration', 'CoreServices'])
 
-build.mark_build_target(env.SharedLibrary(path.join(build.dir, 'runtime', libutils_name), source=sources))
+build.mark_build_target(env.Library(path.join(build.dir, 'runtime', libutils_name), source=sources))
 
 # copy the includes for building the SDK
 tide_utils_include = path.join(build.tide_include_dir, libutils_name)

@@ -38,8 +38,9 @@
 #include <vector>
 #include <gtk/gtk.h>
 #include <glib.h>
-#include <utils.h>
 #include <tideutils/file_utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/application.h>
 
 using namespace TideUtils;
 using TideUtils::Application;

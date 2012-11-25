@@ -147,4 +147,23 @@
 #define PRINTD(x)
 #endif
 
+#ifndef USE_POCO_LIB
+#include <tideutils/poco/KSharedPtr.h>
+using KPoco::SharedPtr;
+#else
+#include <Poco/SharedPtr.h>
+using Poco::SharedPtr;
+#endif
+
+namespace TideUtils
+{
+  class KComponent;
+  class Application;
+  class Dependency;
+  typedef SharedPtr<TideUtils::KComponent> SharedComponent;
+  typedef SharedPtr<TideUtils::Application> SharedApplication;
+  typedef SharedPtr<TideUtils::Dependency> SharedDependency;
+}
+
+
 #endif

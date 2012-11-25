@@ -34,6 +34,7 @@
 **/
 
 #include <tideutils/file_utils.h>
+#include <tideutils/boot_utils.h>
 using namespace TideUtils;
 
 #include "network_module.h"

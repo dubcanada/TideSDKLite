@@ -92,20 +92,12 @@ namespace tide
     typedef ArgList ValueList;
 
     class Module;
-    class Application;
-    class KComponent;
-    class Dependency;
-
-    typedef SharedPtr<KComponent> SharedComponent;
-    typedef SharedPtr<Application> SharedApplication;
-    typedef SharedPtr<Dependency> SharedDependency;
 }
 
 #ifndef OS_WIN32
     #pragma GCC visibility pop
 #endif
 
-#include "utils/utils.h"
 #include "reference_counted.h"
 #include "logger.h"
 

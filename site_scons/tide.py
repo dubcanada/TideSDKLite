@@ -139,7 +139,7 @@ class BuildConfig(object):
     def set_tide_source_dir(self, dir):
         self.tide_source_dir = path.abspath(dir)
         self.tide_include_dir = path.join(self.dir, 'sdk', 'include')
-        self.tide_utils_dir = path.join(self.tide_source_dir, 'libtide', 'utils');
+        self.tide_utils_dir = path.join(self.tide_source_dir, 'lib', 'utils');
 
     # Get a separate copy of the Kroll Utils for a particular build piece
     # Give: A unique directory for that build piece where the utils should be copied

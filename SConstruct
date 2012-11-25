@@ -103,8 +103,6 @@ SConscript('SConscript.thirdparty')
 SConscript('src/lib/utils/SConscript', variant_dir=path.join(build.dir,'objs','lib/utils'), duplicate=0)
 
 build.env.Append(CPPPATH=[build.tide_include_dir])
-build.env.Append(LIBS=[LIBUTILS_NAME])
-build.env.Append(LIBPATH=[build.runtime_build_dir])
 
 SConscript('src/installer/SConscript')
 
@@ -113,6 +111,7 @@ SConscript('src/installer/SConscript')
 # linked against libtide should be above this point.
 
 SConscript('src/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
+build.env.Append(CPPDEFINES=[('USE_POCO_LIB', 1)])
 SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
 
 # Now that libtide is built add it as a default for

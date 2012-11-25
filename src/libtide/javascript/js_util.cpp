@@ -34,6 +34,7 @@
 **/
 
 #include <tideutils/file_utils.h>
+#include <tideutils/url_utils.h>
 using namespace TideUtils;
 
 #include "javascript_module.h"

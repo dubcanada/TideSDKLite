@@ -32,6 +32,10 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tideutils/data_utils.h>
+#include <tideutils/platform_utils.h>
+
 #include <tide/thread_manager.h>
 #include <Poco/Environment.h>
 #include <Poco/Timezone.h>

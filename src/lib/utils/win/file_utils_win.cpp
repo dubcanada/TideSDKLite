@@ -44,7 +44,7 @@
 #include "../unzip/unzip.h"
 #endif
 
-namespace UTILS_NS
+namespace TideUtils
 {
 namespace FileUtils
 {
@@ -70,7 +70,7 @@ namespace FileUtils
 
     static bool FileHasAttributes(const std::string& path, DWORD attributes)
     {
-        std::wstring widePath(UTILS_NS::UTF8ToWide(path));
+        std::wstring widePath(TideUtils::UTF8ToWide(path));
         return FileHasAttributes(widePath, attributes);
     }
 
@@ -79,7 +79,7 @@ namespace FileUtils
         wchar_t path[MAX_PATH];
         path[MAX_PATH-1] = '\0';
         GetModuleFileNameW(NULL, path, MAX_PATH - 1);
-        std::string fullPath(UTILS_NS::WideToUTF8(path));
+        std::string fullPath(TideUtils::WideToUTF8(path));
         return Dirname(fullPath);
     }
 
@@ -93,7 +93,7 @@ namespace FileUtils
         // let's convert it to a full path name.
         std::wstring dir(tempDirectory);
         GetLongPathNameW(dir.c_str(), tempDirectory, MAX_PATH - 1);
-        std::string out(UTILS_NS::WideToUTF8(tempDirectory));
+        std::string out(TideUtils::WideToUTF8(tempDirectory));
         srand(GetTickCount()); // initialize seed
         std::ostringstream s;
         s << "k" << (double) rand();
@@ -168,7 +168,7 @@ namespace FileUtils
             if (!result && GetLastError() != ERROR_HANDLE_EOF)
             {
                 fprintf(stderr, "Could not read from file(%s). Error: %s\n",
-                    UTILS_NS::WideToUTF8(widePath).c_str(),
+                    TideUtils::WideToUTF8(widePath).c_str(),
                     Win32Utils::QuickFormatMessage(GetLastError()).c_str());
                 CloseHandle(file);
                 return std::string();
@@ -189,7 +189,7 @@ namespace FileUtils
         wchar_t fname[_MAX_FNAME];
         wchar_t ext[_MAX_EXT];
 
-        std::wstring widePath(UTILS_NS::UTF8ToWide(path));
+        std::wstring widePath(TideUtils::UTF8ToWide(path));
         wcsncpy(pathBuffer, widePath.c_str(), MAX_PATH - 1);
         pathBuffer[MAX_PATH - 1] = '\0';
 
@@ -199,12 +199,12 @@ namespace FileUtils
 
         std::wstring dirname(drive);
         dirname.append(dir);
-        return UTILS_NS::WideToUTF8(dirname);
+        return TideUtils::WideToUTF8(dirname);
     }
     
     bool CreateDirectoryImpl(const std::string& dir)
     {
-        std::wstring wideDir(UTILS_NS::UTF8ToWide(dir));
+        std::wstring wideDir(TideUtils::UTF8ToWide(dir));
         return (::CreateDirectoryW(wideDir.c_str(), NULL) == TRUE);
     }
 
@@ -215,14 +215,14 @@ namespace FileUtils
         // because that is the best way to ensure that the file does not
         // end up in the Recycle Bin and DeleteFile has saner handling
         // of paths with spaces.
-        std::wstring widePath(UTILS_NS::UTF8ToWide(path));
+        std::wstring widePath(TideUtils::UTF8ToWide(path));
         return ::DeleteFileW(widePath.c_str());
         //return DeleteDirectory(path);
     }
     
     bool DeleteDirectory(const std::string& dir)
     {
-        std::wstring wideDir(UTILS_NS::UTF8ToWide(dir));
+        std::wstring wideDir(TideUtils::UTF8ToWide(dir));
 
         // SHFileOperation does not handle paths with spaces well, so
         // convert to a Windows stubby path here. Ugh.
@@ -249,7 +249,7 @@ namespace FileUtils
         wchar_t widePath[MAX_PATH];
         if (SHGetSpecialFolderPath(NULL, widePath, CSIDL_APPDATA, FALSE))
         {
-            std::string path(UTILS_NS::WideToUTF8(widePath));
+            std::string path(TideUtils::WideToUTF8(widePath));
             return Join(path.c_str(), PRODUCT_NAME, NULL);
         }
         else
@@ -265,7 +265,7 @@ namespace FileUtils
         wchar_t widePath[MAX_PATH];
         if (SHGetSpecialFolderPath(NULL, widePath, CSIDL_COMMON_APPDATA, FALSE))
         {
-            std::string path(UTILS_NS::WideToUTF8(widePath));
+            std::string path(TideUtils::WideToUTF8(widePath));
             return Join(path.c_str(), PRODUCT_NAME, NULL);
         }
         else
@@ -289,7 +289,7 @@ namespace FileUtils
         WIN32_FIND_DATA findFileData;
         ZeroMemory(&findFileData, sizeof(WIN32_FIND_DATA));
 
-        std::wstring widePath(UTILS_NS::UTF8ToWide(path));
+        std::wstring widePath(TideUtils::UTF8ToWide(path));
         std::wstring searchString(widePath + L"\\*");
 
         HANDLE hFind = FindFirstFile(searchString.c_str(), &findFileData);
@@ -300,7 +300,7 @@ namespace FileUtils
                 std::wstring wideFilename(findFileData.cFileName);
                 if (wideFilename != L"." && wideFilename != L"..")
                 {
-                    std::string filename(UTILS_NS::WideToUTF8(wideFilename));
+                    std::string filename(TideUtils::WideToUTF8(wideFilename));
                     files.push_back(filename);
                 }
 
@@ -330,7 +330,7 @@ namespace FileUtils
         // Get the current working directory
         wchar_t cwd[MAX_PATH];
         DWORD size = GetCurrentDirectoryW(MAX_PATH, (wchar_t*) cwd);
-        std::wstring wideCmdLine(UTILS_NS::UTF8ToWide(cmdLine));
+        std::wstring wideCmdLine(TideUtils::UTF8ToWide(cmdLine));
 
         DWORD rc = -1;
         if (CreateProcessW(
@@ -363,8 +363,8 @@ namespace FileUtils
         UnzipCallback callback, void *data)
     {
         bool success = true;
-        std::wstring wideSource(UTILS_NS::UTF8ToWide(source));
-        std::wstring wideDestination(UTILS_NS::UTF8ToWide(destination));
+        std::wstring wideSource(TideUtils::UTF8ToWide(source));
+        std::wstring wideDestination(TideUtils::UTF8ToWide(destination));
         
         HZIP handle = OpenZip(wideSource.c_str(), 0);
         SetUnzipBaseDir(handle, wideDestination.c_str());
@@ -440,8 +440,8 @@ std::cout << "\n>Recursive copy " << dir << " to " << dest << std::endl;
             }
             else
             {
-                std::wstring wideSrcName(UTILS_NS::UTF8ToWide(srcName));
-                std::wstring wideDestName(UTILS_NS::UTF8ToWide(destName));
+                std::wstring wideSrcName(TideUtils::UTF8ToWide(srcName));
+                std::wstring wideDestName(TideUtils::UTF8ToWide(destName));
                 CopyFileW(wideSrcName.c_str(), wideDestName.c_str(), FALSE);
             }
         }

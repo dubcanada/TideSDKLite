@@ -41,7 +41,7 @@
 #include <sys/utsname.h>
 #include <libgen.h>
 
-namespace UTILS_NS
+namespace TideUtils
 {
     std::string FileUtils::GetUserRuntimeHomeDirectory()
     {

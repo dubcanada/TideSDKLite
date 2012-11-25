@@ -32,6 +32,8 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tideutils/platform_utils.h>
 #include <tide/tide.h>
 #include <sstream>
 

@@ -38,6 +38,9 @@
 #include <Poco/Timestamp.h>
 #include <Poco/Mutex.h>
 
+#include <tideutils/application.h>
+using namespace TideUtils;
+
 namespace tide
 {
     class Module;

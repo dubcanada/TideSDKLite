@@ -33,6 +33,8 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tideutils/boot_utils.h>
 #include <tideutils/file_utils.h>
 using namespace TideUtils;
 

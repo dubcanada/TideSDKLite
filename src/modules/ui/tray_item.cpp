@@ -32,6 +32,7 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
 #include <tide/tide.h>
 #include "ui_module.h"
 

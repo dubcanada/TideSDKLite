@@ -32,6 +32,8 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+
 #include "gst_media_binding.h"
 
 namespace ti

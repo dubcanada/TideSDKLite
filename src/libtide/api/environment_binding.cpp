@@ -33,6 +33,7 @@
 **/
 
 #include "environment_binding.h"
+#include <tideutils/environment_utils.h>
 
 namespace tide
 {

@@ -32,6 +32,11 @@
 * limitations under the License.
 **/
 
+#ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
 #include <tide/tide.h>
 #include "codec_binding.h"
 
