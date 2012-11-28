@@ -55,7 +55,6 @@ env.Append(LIBS=[
 
 build.add_thirdparty(env, 'boost_include')
 # Common sources for both the MSI DLL and the update installer.
-env.Append(CPPPATH=[build.tide_utils_dir])
 sources = ["common.cpp"]
 
 build.mark_build_target(env.Program(

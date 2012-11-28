@@ -4,6 +4,7 @@
 #
 # Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 # Copyright (c) 2012 David Pratt
+# Copyright (c) 2012 Mital Vora
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,9 +45,6 @@ Env.Append(LIBPATH=[path.join(build.dir, 'objs')])
 # We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
 Env.Append(CPPPATH=[path.join(build.tide_source_dir, libtide_name)])
-
-# Add the utils
-Env.Append(CPPPATH=[build.tide_utils_dir])
 
 sources = ['boot.cpp']
 

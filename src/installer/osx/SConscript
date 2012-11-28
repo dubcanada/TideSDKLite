@@ -33,9 +33,12 @@
 
 import os, os.path as p, distutils.dir_util as dir_util
 
-Import('build')
+Import('build','LIBUTILS_NAME')
 
 Env = build.env.Clone()
+
+Env.Append(LIBS=[LIBUTILS_NAME])
+Env.Append(LIBPATH=[path.join(build.dir, 'objs')])
 Env.Append(FRAMEWORKS=['Cocoa'])
 sources = Glob('*.m') + Glob('*.mm')
 
@@ -43,9 +46,6 @@ sources = Glob('*.m') + Glob('*.mm')
 ccflags = list(Env['CCFLAGS'])
 ccflags.append('-Oz')
 Env['CCFLAGS'] = ccflags
-
-Env.Append(CPPPATH=[build.tide_utils_dir])
-sources.extend(build.get_tide_utils(p.join(build.dir, 'objs', 'netinstaller')))
 
 # We want to build this directly into the runtime dist directory to avoid copying
 # In the end we want something that looks like this inside of build.runtime_build_dir

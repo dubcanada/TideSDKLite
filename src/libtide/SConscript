@@ -41,7 +41,6 @@ libtide_env = build.env.Clone()
 
 libtide_name = LIBTIDE_NAME
 
-#sources = build.get_tide_utils(path.join(build.dir, 'objs', 'libtide'), unzip=False)
 sources = Glob('*.cpp') + \
     Glob('config/*.cpp') + \
     Glob('binding/*.cpp') + \

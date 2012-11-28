@@ -23,6 +23,23 @@ import effess
 Import('build')
 Import('LIBUTILS_NAME')
 
+# Get a separate copy of the Kroll Utils for a particular build piece
+# Give: A unique directory for that build piece where the utils should be copied
+def get_tide_utils(dir):
+    effess.copy_to_dir(build.tide_utils_dir, dir)
+    sources = Glob('%s/utils/*.cpp' % dir) + \
+        Glob('%s/utils/poco/*.cpp' % dir) + \
+        Glob('%s/utils/%s/*.cpp' % (dir, build.os))
+    if build.is_win32():
+        sources.extend(Glob('%s/utils/unzip/*.cpp' % dir))
+        sources.extend(Glob('%s/utils/win/*.cpp' % dir))
+    if build.is_osx():
+       sources.extend(Glob('%s/utils/%s/*.mm' % (dir, build.os)))
+    if build.is_osx() or build.is_linux():
+       sources.extend(Glob('%s/utils/posix/*.cpp' % dir))
+    return sources
+
+
 libutils_sources = []
 libutils_env = build.env.Clone()
 libutils_name = LIBUTILS_NAME
@@ -67,7 +84,7 @@ if build.is_win32():
         'shell32', 'shlwapi', 'user32',
         'winhttp'])
 
-sources1 = build.get_tide_utils(path.join(build.dir, 'objs', 'libtideutils'))
+sources1 = get_tide_utils(path.join(build.dir, 'objs', 'libtideutils'))
 build.mark_build_target(env1.SharedLibrary(path.join(build.dir, 'runtime', libutils_name), source=sources1))
 
 # copy the includes for building the SDK
