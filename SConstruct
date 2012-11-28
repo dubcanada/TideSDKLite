@@ -114,7 +114,7 @@ SConscript('src/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot
 build.env.Append(CPPDEFINES=[('USE_POCO_LIB', 1)])
 build.env.Append(LIBS=[LIBUTILS_NAME])
 build.env.Append(LIBPATH=[build.runtime_build_dir])
-SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
+SConscript('src/lib/tide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
 
 # Now that libtide is built add it as a default for
 # all the following build steps.

@@ -64,7 +64,7 @@ if build.is_osx():
     sources +=  Glob('osx/*.mm') + \
         Glob('net/*_%s.mm' % build.os)
 
-env.Append(CPPPATH=[path.join(build.tide_source_dir, 'libtide')])
+env.Append(CPPPATH=[path.join(build.tide_source_dir, 'lib', 'tide')])
 if build.is_linux():
     if os.environ.has_key('PKG_CONFIG_PATH'):
         env.AppendENVPath('PKG_CONFIG_PATH', os.environ['PKG_CONFIG_PATH'])
