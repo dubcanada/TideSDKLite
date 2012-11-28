@@ -62,12 +62,10 @@ namespace TideUtils
          */
         TIDE_UTILS_API void Unset(std::string name);
 
-#if defined(USE_POCO_LIB)
         /*
          * Get the environment
          */
         TIDE_UTILS_API std::map<std::string, std::string> GetEnvironment();
-#endif
     };
 }
 

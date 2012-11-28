@@ -136,7 +136,6 @@ namespace EnvironmentUtils
 #endif
     }
 
-#if defined(USE_POCO_LIB)
     std::map<std::string, std::string> GetEnvironment()
     {
         std::map<std::string, std::string> environment;
@@ -164,6 +163,5 @@ namespace EnvironmentUtils
 #endif
         return environment;
     }
-#endif
 }
 }
