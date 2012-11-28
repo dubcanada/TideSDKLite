@@ -32,7 +32,8 @@
 * limitations under the License.
 **/
 
-#include "../utils.h"
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
 #include <windows.h>
 #include <shlobj.h>
 #include <Iphlpapi.h>

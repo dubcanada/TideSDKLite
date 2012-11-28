@@ -36,17 +36,13 @@ import os.path as path
 import effess
 Import('build')
 Import('LIBTIDE_NAME')
-#Import('libtide_sources')
-#Import('libtide_env')
-#Import('libtide_name')
 
-libtide_sources = []
 libtide_env = build.env.Clone()
 
 libtide_name = LIBTIDE_NAME
 
-sources = libtide_sources + \
-    Glob('*.cpp') + \
+#sources = build.get_tide_utils(path.join(build.dir, 'objs', 'libtide'), unzip=False)
+sources = Glob('*.cpp') + \
     Glob('config/*.cpp') + \
     Glob('binding/*.cpp') + \
     Glob('net/proxy_config.cpp') + \
@@ -63,6 +59,7 @@ env = libtide_env
 env.Append(CPPDEFINES=[('TIDE_API_EXPORT', 1)])
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
+build.add_thirdparty(env, 'boost')
 if build.is_osx():
     build.add_thirdparty(env, 'openssl')
     sources +=  Glob('osx/*.mm') + \
@@ -92,8 +89,6 @@ elif build.is_osx():
     env.Append(LINKFLAGS='-install_name lib' + libtide_name + '.dylib')
     env.Append(LIBS=['ssl', 'crypto'])
     env.Append(FRAMEWORKS=['Cocoa', 'SystemConfiguration', 'CoreServices'])
-
-sources += build.get_tide_utils(path.join(build.dir, 'objs', 'libtide'), unzip=False)
 
 build.mark_build_target(
     env.SharedLibrary(path.join(build.dir, 'runtime', libtide_name), source=sources))

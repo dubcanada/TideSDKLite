@@ -40,7 +40,7 @@ libtide_name = 'lib' + LIBTIDE_NAME
 Env = build.env.Clone()
 Env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'NO_UNZIP=1'])
 Env.Append(LIBS=[LIBUTILS_NAME])
-Env.Append(LIBPATH=[build.runtime_build_dir])
+Env.Append(LIBPATH=[path.join(build.dir, 'objs')])
 # We add libtide to the CPPPATH, so that we can use things
 # like "base.h" in this build.
 Env.Append(CPPPATH=[path.join(build.tide_source_dir, libtide_name)])
@@ -79,6 +79,8 @@ if build.is_win32():
         linkflags.append('/SUBSYSTEM:CONSOLE'),
         Env.Append(CPPDEFINES=['WIN32_CONSOLE=1', 'UNICODE=1'])
     Env.Append(LINKFLAGS=linkflags)
+
+build.add_thirdparty(Env, 'boost_include')
 
 tiboot_out = path.join(build.dir, 'sdk', 'tiboot')
 p = Env.Program(tiboot_out, sources)

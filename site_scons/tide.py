@@ -150,6 +150,8 @@ class BuildConfig(object):
             Glob('%s/utils/%s/*.cpp' % (dir, self.os))
         if self.is_win32() and unzip:
             sources.extend(Glob('%s/utils/unzip/*.cpp' % dir))
+        if self.is_win32():
+            sources.extend(Glob('%s/utils/win/*.cpp' % dir))
         if self.is_osx():
             sources.extend(Glob('%s/utils/%s/*.mm' % (dir, self.os)))
         if self.is_osx() or self.is_linux():
@@ -234,6 +236,9 @@ class BuildConfig(object):
             # add mac libs as it doesn't pick them up automatically
             if self.is_osx() or self.is_linux():
                 libs = ['boost_system-mt', 'boost_thread-mt']
+
+        elif name is 'boost_include':
+            cpppath = [self.tp('boost', 'include')]
 
         elif name is 'openssl':
             cpppath = [self.tp('openssl', 'include')]

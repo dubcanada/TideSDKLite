@@ -32,23 +32,35 @@
 * limitations under the License.
 **/
 
-#include <tideutils/data_utils.h>
-#include <tideutils/kashmir/uuid.h>
-#include <tideutils/kashmir/winrandom.h>
-#include <sstream>
+#ifndef _TIDE_URL_UTILS_H_
+#define _TIDE_URL_UTILS_H_
+
+#include <tide/base.h>
 
 namespace TideUtils
 {
-namespace DataUtils
-{
-    std::string GenerateUUID()
+    namespace URLUtils
     {
-        kashmir::uuid_t uuid;
-        kashmir::system::WinRandom devrandom;
-        std::ostringstream outStream;
-        devrandom >> uuid;
-        outStream << uuid;
-        return outStream.str();
-    }
+        /**
+         * Normalize a URL. If this url is an app:// URL, ensure that it
+         * has the app id as the hostname
+         */
+        TIDE_API std::string NormalizeURL(const std::string& url);
+
+        /**
+         * Convert a URL to a path if it is an app://, ti:// or file://
+         * URL. If this URL cannot be converted to a path, return the original URL
+         */
+        TIDE_API std::string URLToPath(const std::string& url);
+
+        /**
+         * Path portion of URL which is guauranteed to be a local and * blank file.
+         */
+        TIDE_API std::string& BlankPageURL();
+
+        TIDE_API std::string TiURLToPath(const std::string& url);
+        TIDE_API std::string AppURLToPath(const std::string& url);
+    };
 }
-}
+
+#endif

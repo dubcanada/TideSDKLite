@@ -32,37 +32,36 @@
 * limitations under the License.
 **/
 
-#include <tide/utils/utils.h>
 #include <windows.h>
 #include <Wininet.h>
 #include <cmath>
-#include <sstream>
 #include <string>
+#include <sstream>
+using namespace std;
 
+#include <tideutils/application.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/win/win32_utils.h>
 using namespace TideUtils;
-using TideUtils::Application;
-using TideUtils::SharedApplication;
-using TideUtils::KComponentType;
-using std::wstring;
-using std::string;
 
 // These functions must be defined in the installer implementation.
 extern HWND GetInstallerHWND();
 extern bool Progress(SharedDependency dependency, int percent);
 
-void ShowError(const wstring& wmsg)
+void ShowError(const std::wstring& wmsg)
 {
     MessageBoxW(GetDesktopWindow(), wmsg.c_str(), L"Installation Failed", 
         MB_OK | MB_SYSTEMMODAL | MB_ICONEXCLAMATION);
 }
 
-void ShowError(const string& msg)
+void ShowError(const std::string& msg)
 {
-    wstring wmsg(UTF8ToWide(msg));
+    std::wstring wmsg(UTF8ToWide(msg));
     ShowError(wmsg);
 }
 
-static wstring GetTempFilePathForDependency(SharedDependency dependency)
+static std::wstring GetTempFilePathForDependency(SharedDependency dependency)
 {
     string filename;
     switch (dependency->type)
@@ -161,13 +160,13 @@ bool DownloadDependency(SharedApplication app, SharedDependency dependency)
     // is packaged with the application ala the SDK Installer. In that case
     // just pretend that we downloaded successfully. InstallDependency will
     // take care of unpacking it properly.
-    wstring url(UTF8ToWide(app->GetURLForDependency(dependency)));
+    std::wstring url(UTF8ToWide(app->GetURLForDependency(dependency)));
     if (FileUtils::IsFile(url))
     {
         return true;
     }
 
-    wstring outFilename(GetTempFilePathForDependency(dependency));
+    std::wstring outFilename(GetTempFilePathForDependency(dependency));
     WCHAR szDecodedUrl[INTERNET_MAX_URL_LENGTH];
     DWORD cchDecodedUrl = INTERNET_MAX_URL_LENGTH;
     WCHAR szDomainName[INTERNET_MAX_URL_LENGTH];
@@ -206,8 +205,8 @@ bool DownloadDependency(SharedApplication app, SharedDependency dependency)
         return false;
     }
 
-    wstring wurl(szDecodedUrl);
-    wstring path = wurl.substr(wurl.find(szDomainName)+wcslen(szDomainName));
+    std::wstring wurl(szDecodedUrl);
+    std::wstring path = wurl.substr(wurl.find(szDomainName)+wcslen(szDomainName));
     HINTERNET hRequest = HttpOpenRequestW(hConnection, L"GET", path.c_str(),
         0, 0, 0,
         INTERNET_FLAG_IGNORE_CERT_CN_INVALID | // Disregard TLS certificate errors.

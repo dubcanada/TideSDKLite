@@ -33,6 +33,7 @@
 **/
 
 #include <tide/tide.h>
+#include <tideutils/win/win32_utils.h>
 #include <Poco/Environment.h>
 #include <windows.h>
 #include <commdlg.h>

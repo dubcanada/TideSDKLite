@@ -36,6 +36,13 @@
 #include "php_module.h"
 #include <Poco/Path.h>
 
+#ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
+#include <tideutils/file_utils.h>
+
 extern "C"
 {
     int php_load_extension(char *filename, int type, int start_now TSRMLS_DC);

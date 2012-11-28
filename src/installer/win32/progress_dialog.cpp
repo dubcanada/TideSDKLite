@@ -32,7 +32,6 @@
 * limitations under the License.
 **/
 
-#include <tide/utils/utils.h>
 #include "progress_dialog.h"
 
 using std::string;

@@ -33,6 +33,7 @@
 **/
 
 #include "../tide.h"
+#include <tideutils/win/win32_utils.h>
 
 namespace tide
 {

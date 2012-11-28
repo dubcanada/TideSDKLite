@@ -33,6 +33,7 @@
 **/
 
 #include <tideutils/url_utils.h>
+#include <tide/url_utils.h>
 #ifdef OS_WIN32
 #include <tideutils/win/win32_utils.h>
 #else

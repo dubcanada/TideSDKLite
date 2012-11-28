@@ -57,7 +57,8 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "../utils.h"
+#include <tideutils/platform_utils.h>
+#include <tideutils/win/win32_utils.h>
 #include "../poco/KUnWindows.h"
 #include <Iphlpapi.h>
 

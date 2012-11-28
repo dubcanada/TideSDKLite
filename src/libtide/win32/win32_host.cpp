@@ -33,6 +33,8 @@
 **/
 
 #include "../tide.h"
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
 
 #include <windows.h>
 #include <commctrl.h>
@@ -129,7 +131,7 @@ namespace tide
 
     Module* Host::CreateModule(std::string& path)
     {
-        std::wstring widePath(UTF8ToWide(path));
+        std::wstring widePath(TideUtils::UTF8ToWide(path));
         HMODULE module = LoadLibraryExW(widePath.c_str(),
             NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 

@@ -60,29 +60,6 @@ namespace TideUtils
          * Convert an path to a file URL
          */
         TIDE_UTILS_API std::string PathToFileURL(std::string path);
-
-// These functions are not available outside a TideSDK application
-#if defined(USE_POCO_LIB)
-        /**
-         * Normalize a URL. If this url is an app:// URL, ensure that it
-         * has the app id as the hostname
-         */
-        TIDE_UTILS_API std::string NormalizeURL(const std::string& url);
-
-        /**
-         * Convert a URL to a path if it is an app://, ti:// or file://
-         * URL. If this URL cannot be converted to a path, return the original URL
-         */
-        TIDE_UTILS_API std::string URLToPath(const std::string& url);
-
-        /**
-         * Path portion of URL which is guauranteed to be a local and * blank file.
-         */
-        TIDE_UTILS_API std::string& BlankPageURL();
-
-        TIDE_UTILS_API std::string TiURLToPath(const std::string& url);
-        TIDE_UTILS_API std::string AppURLToPath(const std::string& url);
-#endif
     };
 }
 

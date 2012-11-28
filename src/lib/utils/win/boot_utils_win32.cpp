@@ -32,8 +32,19 @@
 * limitations under the License.
 **/
 
-#include "../utils.h"
 #include <sstream>
+#include <windows.h>
+#include <shlobj.h>
+#include <Iphlpapi.h>
+#include <process.h>
+#include <shellapi.h>
+
+#include <tideutils/base.h>
+#include <tideutils/application.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
+#include <tideutils/environment_utils.h>
 
 using std::wstring;
 

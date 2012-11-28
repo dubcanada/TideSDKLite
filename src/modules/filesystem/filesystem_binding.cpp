@@ -34,6 +34,7 @@
 **/
 
 #include <tideutils/file_utils.h>
+#include <tideutils/environment_utils.h>
 using namespace TideUtils;
 
 #include <tide/tide.h>

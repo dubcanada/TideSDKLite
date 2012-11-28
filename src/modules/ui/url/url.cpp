@@ -33,6 +33,7 @@
 **/
 
 #include <tideutils/url_utils.h>
+#include <tide/url_utils.h>
 #include "../ui_module.h"
 #include <tide/net/proxy_config.h>
 #include <Poco/Environment.h>

@@ -32,6 +32,9 @@
 * limitations under the License.
 **/
 
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
+
 #include "boot.h"
 #include "popup_dialog_win32.h"
 #include <process.h>

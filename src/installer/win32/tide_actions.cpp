@@ -32,36 +32,38 @@
 * limitations under the License.
 **/
 
-#include <tide/utils/utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/application.h>
+#include <tideutils/win/win32_utils.h>
 using namespace TideUtils;
-using TideUtils::Application;
-using TideUtils::SharedApplication;
-using TideUtils::KComponentType;
-using std::wstring;
-using std::string;
 
 #include <msi.h>
 #include <msiquery.h>
 #include <Wininet.h>
 #include <cmath>
 #include <sstream>
+#include <string>
+
 #include "common.h"
+
+using namespace std;
 
 #pragma comment(linker, "/EXPORT:NetInstall=_NetInstall@4")
 #pragma comment(linker, "/EXPORT:Clean=_Clean@4")
 
-wstring MsiProperty(MSIHANDLE hInstall, const wchar_t* property)
+std::wstring MsiProperty(MSIHANDLE hInstall, const wchar_t* property)
 {
     wchar_t buffer[4096];
     DWORD bufferLength = 4096;
     MsiGetProperty(hInstall, property, buffer, &bufferLength);
-    return wstring(buffer, bufferLength);
+    return std::wstring(buffer, bufferLength);
 }
 
-vector<wstring>& Split(const wstring& s, wchar_t delim, vector<wstring>& elems)
+std::vector<std::wstring>& Split(const std::wstring& s, wchar_t delim, std::vector<std::wstring>& elems)
 {
     std::wstringstream ss(s);
-    wstring item;
+    std::wstring item;
     while (getline(ss, item, delim))
     {
         elems.push_back(item);
@@ -81,22 +83,22 @@ HWND GetInstallerHWND()
 
 SharedApplication CreateApplication(MSIHANDLE hInstall)
 {
-    wstring manifestString(MsiProperty(hInstall, L"CustomActionData"));
+    std::wstring manifestString(MsiProperty(hInstall, L"CustomActionData"));
 
     // An empty manifest here means a bundled installation. Don't
     // ever attempt to resolve dependencies in this case.
     if (manifestString.empty())
         return 0;
 
-    vector<wstring> tokens;
-    wstring dependencies(tokens[0]);
-    vector<pair<string, string> > manifest;
+    std::vector<std::wstring> tokens;
+    std::wstring dependencies(tokens[0]);
+    std::vector<pair<std::string, std::string> > manifest;
     Split(manifestString, L';', tokens);
     for (size_t i = 0; i < tokens.size(); i++)
     {
-        const wstring& token = tokens[i];
-        wstring key = token.substr(0, token.find(L":"));
-        wstring value = token.substr(token.find(L":")+1);
+        const std::wstring& token = tokens[i];
+        std::wstring key = token.substr(0, token.find(L":"));
+        std::wstring value = token.substr(token.find(L":")+1);
 
         manifest.push_back(pair<string,string>(
             WideToUTF8(key), WideToUTF8(value)));
@@ -188,7 +190,9 @@ bool ProcessDependency(MSIHANDLE hInstall, SharedApplication app, SharedDependen
     MsiRecordSetString(record, 3, plate.c_str()); // Template for action data messages.
     UINT result = MsiProcessMessage(hInstall, INSTALLMESSAGE_ACTIONSTART, record);
     if (result == IDCANCEL)
+    {
         return ERROR_INSTALL_USEREXIT;
+    }
 
     // Excplicitly set the progress bar back to zero.
     MsiRecordSetInteger(record, 1, 0); // Type of message: Reset progress bar.

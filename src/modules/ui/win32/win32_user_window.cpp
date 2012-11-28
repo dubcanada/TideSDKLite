@@ -36,6 +36,10 @@
 #include <sstream>
 #include <cmath>
 
+#include <tideutils/win/win32_utils.h>
+#include <tideutils/file_utils.h>
+#include <tide/url_utils.h>
+
 #define SetFlag(x,flag,b) ((b) ? x |= flag : x &= ~flag)
 #define UnsetFlag(x,flag) (x &= ~flag)=
 #define USERWINDOW_WINDOW_CLASS L"Win32UserWindow"

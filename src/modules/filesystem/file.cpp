@@ -54,6 +54,7 @@ using namespace TideUtils;
 #endif
 
 #ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
 #define MIN_PATH_LENGTH 3
 #else
 #define MIN_PATH_LENGTH 1

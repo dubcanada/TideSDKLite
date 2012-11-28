@@ -4,8 +4,10 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include <tideutils/url_utils.h>
 #include <tide/tide.h>
+#include <tide/url_utils.h>
+
+
 
 #include <Poco/Environment.h>
 #include "app_binding.h"

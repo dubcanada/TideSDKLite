@@ -36,6 +36,13 @@
 #include <cstdlib>
 
 #ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
+
+
+#ifdef OS_WIN32
 // See http://msdn.microsoft.com/en-us/library/ms686206(VS.85).aspx
 #define MAX_ENV_VALUE_SIZE 32767 
 #define REASONABLE_MAX_ENV_VALUE_SIZE 1024

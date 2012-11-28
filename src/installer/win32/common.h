@@ -32,8 +32,15 @@
 * limitations under the License.
 **/
 
+#ifndef _TIDE_INSTALLER_COMMON_H_
+#define _TIDE_INSTALLER_COMMON_H_
+
+#include <tideutils/base.h>
+
 void ShowError(const std::string& msg);
 void ShowError(const std::wstring& wmsg);
 void ShutdownNetConnection();
 bool DownloadDependency(SharedApplication app, SharedDependency dependency);
 bool InstallDependency(SharedApplication app, SharedDependency dependency);
+
+#endif

@@ -35,6 +35,8 @@
 #include "../notification.h"
 #include "SnarlInterface.h"
 
+#include <tide/url_utils.h>
+
 namespace ti
 {
 

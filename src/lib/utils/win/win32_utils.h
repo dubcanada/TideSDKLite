@@ -36,6 +36,7 @@
 #define _WIN32_UTILS_H_
 
 #include <tideutils/base.h>
+#include <windows.h>
 
 namespace TideUtils
 {

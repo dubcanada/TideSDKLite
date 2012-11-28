@@ -44,16 +44,31 @@ if build.is_osx():
 
 env = libutils_env
 env.Append(CPPDEFINES=[('TIDE_UTILS_API_EXPORT', 1)])
+build.add_thirdparty(env, 'boost')
 
-#if build.is_win32():
-#    env.Append(CCFLAGS=['/DUNICODE', '/D_UNICODE'])
-#    env.Append(LINKFLAGS=['/LTCG', '/INCREMENTAL:NO'])
+if build.is_win32():
+    env.Append(CCFLAGS=['/DUNICODE', '/D_UNICODE'])
+    env.Append(LINKFLAGS=['/LTCG', '/INCREMENTAL:NO'])
 
 if build.is_osx():
     env.Append(LINKFLAGS='-install_name lib' + libutils_name + '.dylib')
     env.Append(FRAMEWORKS=['Cocoa', 'SystemConfiguration', 'CoreServices'])
 
-build.mark_build_target(env.Library(path.join(build.dir, 'runtime', libutils_name), source=sources))
+build.mark_build_target(env.Library(path.join(build.dir, 'objs', libutils_name), source=sources))
+
+env1 = env.Clone()
+env1.Append(CPPDEFINES=[('USE_POCO_LIB', 1)])
+build.add_thirdparty(env1, 'poco')
+
+if build.is_win32():
+    env1.Append(LIBS=[
+        'Advapi32', 'comctl32', 'kernel32',
+        'ole32', 'oleaut32', 'iphlpapi',
+        'shell32', 'shlwapi', 'user32',
+        'winhttp'])
+
+sources1 = build.get_tide_utils(path.join(build.dir, 'objs', 'libtideutils'))
+build.mark_build_target(env1.SharedLibrary(path.join(build.dir, 'runtime', libutils_name), source=sources1))
 
 # copy the includes for building the SDK
 tide_utils_include = path.join(build.tide_include_dir, libutils_name)
