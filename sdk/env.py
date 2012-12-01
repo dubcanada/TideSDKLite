@@ -79,11 +79,14 @@ class PackagingEnvironment(object):
                 '/Library/Application Support/TideSDK'
             ]
         elif (self.target_os == 'win32'):
+            appdata = os.environ['APPDATA']
+            drive = appdata[0]
             self.install_dirs = [
-                p.join(os.environ['APPDATA'], 'TideSDK'),
-                # TODO: Is there a better way to determine this directory?
+                p.join(appdata, 'TideSDK'),
+                drive + ':\\ProgramData\\TideSDK',
+                drive + ':\\Documents and Settings\\All Users\\Application Data\\TideSDK',
                 'C:\\ProgramData\\TideSDK',
-                'C:\\Documents and Settings\All Users\Application Data\TideSDK'
+                'C:\\Documents and Settings\\All Users\\Application Data\\TideSDK'
             ]
         else:
             raise Exception("Unknown environment!")
