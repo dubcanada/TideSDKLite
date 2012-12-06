@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,6 +35,8 @@
 
 #import "osx_sound.h"
 #import "sound_delegate.h"
+#include <tideutils/url_utils.h>
+#include <tide/url_utils.h>
 
 @interface NSSound (MakeTheErrorsGoAway)
 //These all are in 10.5, but building for 10.4 produces warnings unless I mention them here.

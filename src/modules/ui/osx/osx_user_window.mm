@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,6 +34,7 @@
 **/
 
 #import "../ui_module.h"
+#import <tide/url_utils.h>
 
 namespace ti
 {
@@ -587,7 +589,7 @@ namespace ti
     {
         if (nativeWindow != nil)
         {
-            std::string nurl = tide::URLUtils::NormalizeURL(url);
+            std::string nurl = TideUtils::URLUtils::NormalizeURL(url);
             NSURL* nsurl = [NSURL URLWithString: [NSString stringWithUTF8String:nurl.c_str()]];
             [[[nativeWindow webView] mainFrame] loadRequest:[NSURLRequest requestWithURL:nsurl]];
         }

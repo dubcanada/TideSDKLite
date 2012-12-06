@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -44,6 +45,8 @@
 
 #include "../tide.h"
 #include "proxy_config.h"
+#include <tideutils/osx/osx_utils.h>
+using namespace TideUtils;
 
 #include <Poco/Thread.h>
 #include <Poco/StringTokenizer.h>
@@ -126,7 +129,7 @@ SharedProxy GetProxyServerFromDictionary(string scheme,
     }
 
     // This should work equally well for hostnames without a port.
-    string host(tide::CFStringToUTF8(hostRef));
+    string host(TideUtils::CFStringToUTF8(hostRef));
     SharedProxy proxy(ParseProxyEntry(host, scheme, scheme));
 
     CFNumberRef portRef = (CFNumberRef) GetValueFromDictionary(
@@ -161,7 +164,7 @@ static void InitializeOSXProxyConfig()
 
         if (pacURLRef)
         {
-            autoConfigURL = tide::CFStringToUTF8(pacURLRef);
+            autoConfigURL = TideUtils::CFStringToUTF8(pacURLRef);
             GetLogger()->Debug("Using PAC URL: %s", autoConfigURL.c_str());
         }
     }
@@ -224,7 +227,7 @@ static void InitializeOSXProxyConfig()
             }
             else
             {
-                string entry(tide::CFStringToUTF8(bypassItemRef));
+                string entry(TideUtils::CFStringToUTF8(bypassItemRef));
                 GetLogger()->Debug("Proxy bypass entry: %s", entry.c_str());
                 bypassList.push_back(ParseBypassEntry(entry));
             }

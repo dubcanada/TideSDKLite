@@ -38,7 +38,7 @@ Import('build','LIBUTILS_NAME')
 Env = build.env.Clone()
 
 Env.Append(LIBS=[LIBUTILS_NAME])
-Env.Append(LIBPATH=[path.join(build.dir, 'objs')])
+Env.Append(LIBPATH=[os.path.join(build.dir, 'objs')])
 Env.Append(FRAMEWORKS=['Cocoa'])
 sources = Glob('*.m') + Glob('*.mm')
 

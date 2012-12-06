@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -39,7 +40,6 @@
 #define RUNTIME_UUID_FRAGMENT @"uuid="RUNTIME_UUID
 #define MODULE_UUID_FRAGMENT @"uuid="MODULE_UUID
 #define SDK_UUID_FRAGMENT @"uuid="SDK_UUID
-#define MOBILESDK_UUID_FRAGMENT @"uuid="MOBILESDK_UUID
 
 @implementation Job
 static int totalDownloads = 0;
@@ -201,13 +201,7 @@ static int totalJobs = 0;
 
     NSString* path = [job path];
     NSURL* url = [job url];
-    if ([job isUpdate])
-    {
-        type = TideUtils::APP_UPDATE;
-        name = @"update";
-        version = [NSString stringWithUTF8String:app->version.c_str()];
-    }
-    else if (url == nil)
+    if (url == nil)
     {
         // The file is either in the format of module-modname-version.zip for a
         // module or runtime-version.zip for the runtime, so we need to split
@@ -237,12 +231,6 @@ static int totalJobs = 0;
             name = [parts objectAtIndex:0];
             version = [parts objectAtIndex:1];
         }
-        else if ([typeString isEqualToString:@"mobilesdk"])
-        {
-            type = TideUtils::MOBILESDK;;
-            name = [parts objectAtIndex:0];
-            version = [parts objectAtIndex:1];
-        }
         else
         {
             // Unknown file!
@@ -269,10 +257,6 @@ static int totalJobs = 0;
             {
                 type = TideUtils::SDK;
             }
-            else if ([thisPart isEqualToString:MOBILESDK_UUID_FRAGMENT])
-            {
-                type = TideUtils::MOBILESDK;
-            }
             else if ([thisPart hasPrefix:@"name="])
             {
                 name = [thisPart substringFromIndex:5];
@@ -293,13 +277,9 @@ static int totalJobs = 0;
     {
         destDir = [NSString stringWithFormat:@"%@/runtime/osx/%@", installDirectory, version];
     }
-    else if (type == TideUtils::SDK || type == TideUtils::MOBILESDK)
+    else if (type == TideUtils::SDK)
     {
         destDir = installDirectory;
-    }
-    else if (type == TideUtils::APP_UPDATE)
-    {
-        destDir = [NSString stringWithUTF8String:app->path.c_str()];
     }
     else
     {

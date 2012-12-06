@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -40,6 +41,9 @@
 #include <sys/resource.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+#include <tideutils/file_utils.h>
+
 #if defined(OS_OSX)
 # include <crt_externs.h>
 # include <Poco/Path.h>
@@ -80,7 +84,7 @@ namespace ti
             std::string fn = p.getFileName();
             found = fn.find(".app");
             fn = fn.substr(0,found);
-            fn = tide::FileUtils::Join(cmd.c_str(),"Contents","MacOS",fn.c_str(),NULL);
+            fn = FileUtils::Join(cmd.c_str(),"Contents","MacOS",fn.c_str(),NULL);
             if (FileUtils::IsFile(fn))
             {
                 cmd = fn;
