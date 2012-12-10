@@ -87,31 +87,31 @@ def fetch():
 if not exists(): fetch()
 
 if build.is_linux():
-    effess.copy_tree(path.join(build.third_party, 'webkit', 'lib'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'poco', 'lib'), rtdir)
+    libs = [ 'poco', 'webkit']
+    for libdir in libs:
+        effess.copy_tree(path.join(build.third_party, libdir, 'lib'), rtdir)
 
 elif build.is_win32():
-    effess.copy_tree(path.join(build.third_party, 'poco', 'bin'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'webkit', 'bin'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'libproxy', 'bin'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'boost', 'bin'), rtdir)
+    libs = ['boost', 'libproxy', 'poco', 'webkit']
+    for libdir in libs:
+        effess.copy_tree(path.join(build.third_party, libdir, 'lib'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
 
 elif build.is_osx():
-    excludes = ['.a', '.h', '.defs', 'JavaScriptGlue.framework']
-    if build.tidelite:
-        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])
+    libs = ['boost', 'openssl', 'poco']
+    excludes = ['.a', '.h', '.defs', 'JavaScriptGlue.framework', '.DS_Store']
     targets = []
+    
+    if build.tidelite:
+        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])    
     for framework in Glob(path.join(build.third_party, '*/*.framework')):
         t = build.utils.CopyToDir(framework, rtdir, exclude=excludes)
         targets.append(t)
+    for libdir in libs:
+        p = path.join(build.third_party, libdir, 'lib')
+        targets.append(build.utils.CopyTree(p, rtdir, exclude=excludes))
+        build.mark_build_target(targets)
+    
     # PHP dependencies don't aren't distributed with the runtime, only Poco's.
     # for libdir in Glob(path.join(build.third_party, '*/lib')):
-    
-    boostlib = path.join(build.third_party, "boost", "lib");
-    targets.append(build.utils.CopyTree(boostlib, rtdir, exclude=excludes))
-    build.mark_build_target(targets)
-    
-    pocolib = path.join(build.third_party, "poco", "lib");
-    targets.append(build.utils.CopyTree(pocolib, rtdir, exclude=excludes))
-    build.mark_build_target(targets)
+
