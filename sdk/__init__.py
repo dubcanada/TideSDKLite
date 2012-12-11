@@ -30,4 +30,4 @@
 # limitations under the License.
 
 def get_version():
-    return '1.3.1-beta'
+    return '1.3.2-beta'

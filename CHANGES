@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.3.2-beta (released 2012-12-xx)
+--------------------------------
+
+- OSX 10.6 curl lib fix
+- encode/decode issue  (codec module) fixed
+
 1.3.1-beta (released 2012-11-15)
 --------------------------------
 

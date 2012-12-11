@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.tidesdk.org" xmlns:appc="http://www.tidesdk.org">
  	<id>com.tidesdk.sdk.installer</id>
  	<name>TideSDK Installer</name>
- 	<version>1.3.1-beta</version>
+ 	<version>1.3.2-beta</version>
  	<window>
  		<id>initial</id>
  		<title>TideSDK Installer</title>
