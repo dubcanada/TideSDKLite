@@ -1304,7 +1304,7 @@ void UserWindow::ReadChooserDialogObject(
             std::cout << "Found " << listTypes->At(i)->ToString() << std::endl;
         }
     }
-    typesDescription = o->GetString("typesDescription", defaultName);
+    typesDescription = o->GetString("typesDescription", "Selected Files");
 
 }
 
