@@ -1,5 +1,0 @@
----
-namespace: Ti.UI.MenuItem
-type: object
-description: An object representing a menu item.
-since: 0.6.0

@@ -1,7 +1,0 @@
----
-namespace: Ti.API.Application
-type: object
-description: |
-    An object representing a Tide application, either the currently running
-    application or one on disk.
-since: 0.4.0

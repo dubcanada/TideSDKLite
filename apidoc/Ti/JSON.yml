@@ -1,5 +1,0 @@
----
-namespace: Ti.JSON
-type: module
-description: A module for serializing and deserializing JSON.
-since: 0.4.0
