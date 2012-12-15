@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{title}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="fragment" content="!">
+
+  {mobile_redirect}
+
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+  <!-- BEGIN CSS -->
+  <link rel="stylesheet" href="resources/css/app.css" type="text/css" />
+  <!-- END CSS -->
+  <link rel="stylesheet" href="resources/prettify/prettify.css" type="text/css" />
+  <script type="text/javascript">
+  (function(){
+    var protocol = (document.location.protocol === "https:") ? "https:" : "http:";
+    document.write("<link href='"+protocol+"//fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css' />");
+  })();
+  </script>
+
+  <script type="text/javascript" src="{extjs_path}"></script>
+  <script type="text/javascript" src="data.js"></script>
+
+  <!-- BEGIN JS -->
+  <script type="text/javascript" src="resources/codemirror/codemirror.js"></script>
+  <script type="text/javascript" src="resources/codemirror/javascript.js"></script>
+  <script type="text/javascript" src="resources/codemirror/xml.js"></script>
+  <script type="text/javascript" src="resources/codemirror/markdown.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <!-- END JS -->
+  <script type="text/javascript" src="resources/prettify/prettify.js"></script>
+
+  {head_html}
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34456520-2']);
+  _gaq.push(['_trackPageview', location.pathname + location.search + location.hash]);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+    //Hack to track Hash changes as pageviews.
+    var oldhash = location.hash;
+    setInterval(function(){
+        if(oldhash != location.hash){
+          oldhash = location.hash;
+          _gaq.push(['_trackPageview'], location.pathname + location.search + location.hash);
+        }
+    }, 500);
+  })();
+
+</script>
+
+</head>
+<body id="ext-body">
+
+  <div id="loading"><span class="title"></span><span class="logo"></span></div>
+
+  <div id="header-content">TideSDK docs</div>
+  {welcome}
+  {categories}
+  {guides}
+  <div id='footer-content' style='display: none'>
+    <a class="ft-main" href="http://tidesdk.org" target="_blank">The TideSDK Website</a>
+    <a class="ft-github" href="http://github.com/tidesdk" target="_blank">TideSDK on Github</a>
+    <a class="ft-stackoverflow" href="http://stackoverflow.com/questions/tagged/tidesdk" target="_blank">Get Help on Stack Overflow</a>
+    <a class="ft-twitter" href="http://twitter.com/tidesdk" target="_blank">Follow @tidesdk on Twitter</a>
+    <span style="padding-right: 16px">-</span> Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> 4.4.0.
+  </div>
+
+  {body_html}
+
+</body>
+</html>
