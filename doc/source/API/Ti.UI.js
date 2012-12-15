@@ -229,7 +229,7 @@ setMenu: function(menu){},
 
 /**
 * create a UI dialog
-* @param {Object} params Options defining the dialog window. These params are passed directly into Ti.UI.createWindow
+* @param {Object} params Options defining the dialog window. These params are passed directly into Ti.UI.createWindow.
 * @return {Ti.UI.Dialog}
 * @member Ti.UI
 */
