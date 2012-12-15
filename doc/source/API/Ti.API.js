@@ -10,7 +10,7 @@ Ti.API = {
 * function will receive <em>all</em> events from Ti.
 * @param {String} eventName The event name to listen for.
 * @param {Function} callback The callback to invoke when this message occurs.
-* @return {Number}
+* @return {void}
 * @member Ti.API
 */
 addEventListener: function(eventName, callback){},
@@ -427,7 +427,8 @@ NOTICE: null,
 /**
 * Remove a root event listener. If no listener with the given id or
 * funtion is registered for this object, the call will do nothing.
-* @param {Number|Function} id The id or the Function of the event listener to remove.
+* @param {String} eventName The event name to remove.
+* @param {Function} callback The callback to invoke when upon removing the listener.
 * @return {void}
 * @member Ti.API
 */
