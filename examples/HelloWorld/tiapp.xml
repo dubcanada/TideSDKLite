@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
-<id>com.tidesdk.helloworld</id>
+<ti:app xmlns:ti='http://ti.tidesdk.org'>
+<id>org.tidesdk.helloworld</id>
 <name>HelloWorld</name>
-<version>0.2.0</version>
+<version>0.3.0</version>
 <publisher>Software in the Public Interest (SPI) Inc</publisher>
 <url>http//tidesdk.org</url>
 <icon>default_app_logo.png</icon>
-<copyright>2012 by David Pratt</copyright>
+<copyright>Copyright (c) 2012 by Software in the Public Interest (SPI) Inc. Copyright (c) 2012 by David Pratt </copyright>
+<analytics>false</analytics>
 <!-- Window Definition - these values can be edited -->
 <window>
 <id>initial</id>
