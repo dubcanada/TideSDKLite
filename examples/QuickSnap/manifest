@@ -1,0 +1,21 @@
+#appname:quicksnap
+#appid:com.arcaner.quicksnap
+#publisher:marshall
+#image:default_app_logo.png
+#url:www.arcaner.com
+#guid:b9c41c31-40a9-4e90-81a6-192184b271dd
+#desc:No description provided
+#type:desktop
+runtime:1.2.0.RC4
+tiapp:1.2.0.RC4
+tifilesystem:1.2.0.RC4
+tiplatform:1.2.0.RC4
+tiui:1.2.0.RC4
+php:1.2.0.RC4
+ruby:1.2.0.RC4
+tidatabase:1.2.0.RC4
+timedia:1.2.0.RC4
+timonkey:1.2.0.RC4
+tinetwork:1.2.0.RC4
+tiprocess:1.2.0.RC4
+tiworker:1.2.0.RC4

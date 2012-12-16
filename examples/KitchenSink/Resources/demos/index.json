@@ -1,0 +1,10 @@
+{
+        "main": "Main",
+        "ui": {
+            "label": "User Interface",
+            "children": {
+                "window_menu": "Window Menu",
+                "tray_icon": "Tray Icon"
+            }
+        }
+}

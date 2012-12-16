@@ -1,0 +1,20 @@
+#appname:HelloWorld
+#appid:com.tidesdk.helloworld
+#publisher:Software in the Public Interest (SPI) Inc
+#image:default_app_logo.png
+#url:http//tidesdk.org
+#guid:845e9c3c-c9ff-4ad4-afdf-9638092f044f
+#desc:Sample Hello World application
+#type:desktop
+runtime:1.3.1-beta
+app:1.3.1-beta
+codec:1.3.1-beta
+database:1.3.1-beta
+filesystem:1.3.1-beta
+media:1.3.1-beta
+monkey:1.3.1-beta
+network:1.3.1-beta
+platform:1.3.1-beta
+process:1.3.1-beta
+ui:1.3.1-beta
+worker:1.3.1-beta

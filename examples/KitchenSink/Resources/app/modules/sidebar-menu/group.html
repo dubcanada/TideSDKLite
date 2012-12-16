@@ -1,0 +1,17 @@
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-id="<%= id %>" data-toggle="collapse" data-parent="<%= menu_id %>"
+           href="#collapseOne">
+            <%= label %>
+        </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+        <div class="accordion-inner">
+            <ul class="nav nav-pills nav-stacked">
+                <% for(var key in children){ %>
+                <li><a href="#" data-id="<%= id %>.<%= key %>"><%= children[key] %></a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

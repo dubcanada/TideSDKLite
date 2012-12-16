@@ -1,0 +1,20 @@
+#appname:HTML5AudioDemo
+#appid:com.joshroesslein.html5audio
+#publisher:joshuaroesslein
+#image:default_app_logo.png
+#url:http://
+#guid:98A739D1-87B3-4209-9937-E0050F85C5B1
+#desc:A HTML5 Audio example.
+#type:desktop
+runtime:
+tiapp:
+tifilesystem:
+tiplatform:
+tiui:
+ticodec:
+tidatabase:
+timedia:
+timonkey:
+tinetwork:
+tiprocess:
+tiworker:

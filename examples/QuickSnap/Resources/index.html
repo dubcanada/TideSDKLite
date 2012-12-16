@@ -1,0 +1,24 @@
+<html>
+<head>
+	<link href="style.css" type="text/css" rel="stylesheet"/>
+	<script type="text/ruby" src="quicksnap.rb"/>
+</head>
+
+<body>
+	<div id="titlebar">
+		Quicksnap
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="quicksnap" onclick="take_snapshot()">TAKE SNAPSHOT</button>
+		<div id="close-container" align="right">
+			<img id="close" src="images/close.png" onclick="Titanium.App.exit()"/>
+		</div>
+	</div>
+	
+	<div id="editarea">
+		<div id="editarea-content">
+			Snapshot can be cropped here
+		</div>
+	</div>
+
+</body>
+</html>

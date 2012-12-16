@@ -1,0 +1,53 @@
+<p>
+    TideSDK supports native window menus for every OS.
+    You can easily create and attach them to a window like this:
+</p>
+
+<pre>
+    //Create the menu object.
+    var menu = Ti.UI.createMenu();
+
+    //Add a toplevel item
+    var item1 = Ti.UI.createMenuItem('Menu1', function () {
+        //Adding a event-listener function here.
+        alert('You clicked me!');
+    });
+
+    //Another toplevel item, but we will add children.
+    var item2 = Ti.UI.createMenuItem('Menu2');
+    //We want to add some child options
+    item2.addItem('Option 1');
+    //Add a icon (should be 16x16px) to the item.
+    //Note: the URL base is Resources/
+    var smiley = item2.addItem('Option 2', null, 'demos/ui/window_menu/assets/emoticon_smile.png');
+
+    //Smiley gets some childs, too!
+    smiley.addItem('A childs child');
+
+    item2.addSeparatorItem(); //Draw a line here!
+    item2.addItem('Option 3', function () {
+        //And another event-listener.
+        alert('you chose option 3');
+    });
+
+    var item3 = Ti.UI.createMenuItem('Menu3');
+    var checker = item3.addCheckItem('I am a checker!', function(e){
+        alert(checker.getState());
+    });
+
+    //Add the main items to the menu
+    menu.appendItem(item1);
+    menu.appendItem(item2);
+    menu.appendItem(item3);
+
+    //Attach the menu to the current window.
+    Ti.UI.getCurrentWindow().setMenu(menu);
+</pre>
+
+<p>
+    You can unset a window menu by passing <code>null</code> to the <code>setMenu()</code> method:
+</p>
+
+<pre>
+    Ti.UI.getCurrentWindow().setMenu(null);
+</pre>

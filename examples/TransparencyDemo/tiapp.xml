@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ti:app xmlns:ti='http://ti.appcelerator.org'>
+<!-- These values are edited/maintained by Titanium Developer -->
+<id>com.appcelerator.transparencydemo</id>
+<name>transparency_demo</name>
+<version>1.0</version>
+<publisher>marshall</publisher>
+<url>www.appcelerator.com</url>
+<icon>default_app_logo.png</icon>
+<copyright>2010 by marshall</copyright>
+<!-- Window Definition - these values can be edited -->
+<window>
+<id>initial</id>
+<title>transparency_demo</title>
+<url>app://index.html</url>
+<width>600</width>
+<max-width>3000</max-width>
+<min-width>0</min-width>
+<height>400</height>
+<max-height>3000</max-height>
+<min-height>0</min-height>
+<fullscreen>false</fullscreen>
+<resizable>false</resizable>
+<chrome scrollbars="false">false</chrome>
+<maximizable>false</maximizable>
+<minimizable>false</minimizable>
+<closeable>false</closeable>
+<transparency>1.0</transparency>
+<transparent-background>true</transparent-background>
+</window>
+</ti:app>

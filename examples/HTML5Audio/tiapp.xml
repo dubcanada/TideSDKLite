@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ti:app xmlns:ti='http://ti.appcelerator.org'>
+<!-- These values are edited/maintained by Titanium Developer -->
+<id>com.joshuaroesslein.html5audio</id>
+<name>HTML5AudioDemo</name>
+<version>1.0</version>
+<publisher>joshuaroesslein</publisher>
+<url>http://</url>
+<icon>default_app_logo.png</icon>
+<copyright>2011 Joshua Roesslein</copyright>
+<!-- Window Definition - these values can be edited -->
+<window>
+<id>initial</id>
+<title>HTML5 Audio Demo</title>
+<url>app://index.html</url>
+<width>400</width>
+<height>200</height>
+<fullscreen>false</fullscreen>
+<resizable>false</resizable>
+<chrome scrollbars="true">true</chrome>
+<minimizable>true</minimizable>
+<closeable>true</closeable>
+</window>
+</ti:app>

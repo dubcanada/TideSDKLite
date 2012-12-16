@@ -1,0 +1,51 @@
+<html>
+	<body>
+
+		iterations: <input id="iterations" type="text" value="5000"/><br/>
+		<button onclick="benchmark()">Benchmark Native JSON</button>
+		<script src="json2.js"></script>
+		
+		<div id="results"></div>
+		
+		<script>
+			function time(fn) {
+				var start = new Date();
+				fn();
+				return (new Date()).getTime() - start.getTime();
+			}
+			function $(id) { return document.getElementById(id); }
+			
+			function benchmark() {
+				var fs = Titanium.Filesystem;
+				var app = Titanium.App;
+				
+				var json = fs.getFile(app.appURLToPath("app://test.json")).read().toString();
+				var iterations = parseInt($("iterations").value);
+			
+				$("results").innerHTML += "Loaded test.json ("+String(json.length/1024).substr(0,4)+"KB)<br/> ";
+				$("results").innerHTML += "Running json2.js ("+iterations+" iterations)... ";
+				
+				// use set timeout so we get a UI update
+				setTimeout(function() {
+					var json2Time = time(function() {
+						for (var i = 0; i < iterations; i++) {
+							JSON2.parse(json);
+						}
+					});
+					$("results").innerHTML += String(json2Time/1000) + " seconds<br/>";
+					$("results").innerHTML += "Running native JSON ("+iterations+" iterations)... ";
+					setTimeout(function() {
+						var nativeTime = time(function() {
+							for (var i = 0; i < iterations; i++) {
+								Titanium.JSON.parse(json);
+							}
+						});
+						$("results").innerHTML += String(nativeTime/1000) + " seconds<br/>"
+					}, 100);
+					
+				}, 100);
+			}
+			
+		</script>
+	</body>
+</html>

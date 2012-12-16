@@ -1,0 +1,31 @@
+<p>
+    TideSDK supports native window menus for every OS.
+    You can easily create and attach them to a window like this:
+</p>
+
+<pre>
+    //Create the menu object.
+    var menu = Ti.UI.createMenu();
+
+    //Add some items
+    //These will become top-level items.
+    var item1 = Ti.UI.createMenuItem('Menu1');
+    var item2 = Ti.UI.createMenuItem('Menu2');
+    var item3 = Ti.UI.createMenuItem('Menu3');
+
+    //Add the items to the menu
+    menu.appendItem(item1);
+    menu.appendItem(item2);
+    menu.appendItem(item3);
+
+    //Attach the menu to the current window.
+    Ti.UI.getCurrentWindow().setMenu(menu);
+</pre>
+
+<p>
+    You can unset a window menu by passing <code>null</code> to the <code>setMenu()</code> method:
+</p>
+
+<pre>
+    Ti.UI.getCurrentWindow().setMenu(null);
+</pre>
