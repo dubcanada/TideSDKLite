@@ -1,0 +1,21 @@
+#user_profile
+{
+	padding:20px;
+	padding-left:40px;
+	padding-right:40px;
+
+}
+
+#user_profile a
+{
+	color:white;
+	font-size:11px;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+#user_profile_name
+{
+	text-shadow: 3px 3px 3px black;
+	font-size:21px;
+}

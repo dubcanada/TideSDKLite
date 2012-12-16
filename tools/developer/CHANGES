@@ -1,0 +1,69 @@
+1.4.2 (2012-11-17)
+
+	- Properly packaged for Windows, fixing https://github.com/TideSDK/TideSDK/issues/69
+	- Bugfix: Proper view reset after deleting all projects
+
+1.4.1 (2012-11-15)
+
+	- Upgraded app for TideSDK 1.3.1-beta
+	- Inactivated code editor since it is not stable
+	- Disabled app analytics in tiapp.xml to prevent requests to non-existing analytics service
+	- Internal: Namespace change Titanium->Ti
+
+1.4.0 (2012-11-11) - First version of TideSDK Developer
+
+	- Launching and packaging with TideSDK 1.3.0-beta (latest available TideSDK version at time of release)
+	- Upgraded app itself to run on TideSDK 1.3.0-beta
+	- Removed access to views/features that are dependent on non-existing Cloud services
+	- Added ability to package app locally with and without runtime directly from the Console view
+	
+1.3.03 (2011-08-20) - (Not closed Yet) - Last version of Adriano's TiDev Community
+
+	- Fix mobileSDK download to 1.7.2
+	- Fix File List selector 
+	- Add options to select Font size and Theme for Code Editor
+	- Code Editor now Save files correctly (using CRTL+S or COMMAND+S)
+	- Change few options on Code Editor
+	- Ignore ".DS_Store" and ".gitignore" files os File List of Code Editor
+	- Few changes in theme to make lower use of memory in windows
+	- Use of "~/Library/Application Support" folder (User folder) to save SDKs to full compatibility with Mac OSX Lion
+	- Change background of images preview
+	- Add a custom toolbar in Code Editor for future buttons (New Folder, New File, Copy Image, Save)
+
+	Planned but not included in 1.3.03:
+	-Tabs in code-editor to edit multiple files
+	-alert of changed files to save
+
+1.3.02 (2011-07-10)
+	
+	-Providing installation packages in page "http://api.appcelerator.net/p/pages/app_page?token=m4rZLSv6"
+	-Add Keyboard shortcut for "Fullscreen" function
+	-Adding files will be needed to the list files of project
+	-Change the theme
+	-New detection of iOS SDK for iPad
+	-A lot of old and unused stuff was removed to clean the project
+	-Changes to run on Mac OS Lion
+	-Change Keyboard shortcuts to Save and Kill a running app.
+	-Add File list of project "Resource" folder in Code Editor.
+	-Preview many type of files in code editor, such: mp3, mov, m4v, png, jpg
+
+1.3.01 (2011-06-22) - Now, from this version the updates made by the community:
+
+	-New toolbar layout
+	-Projects selector is moved to toolbar
+	-Removed "Community Perspective"
+	-Removed Ads
+	-Changes to work with Universal project type
+	-Device selector
+	-New option to launch simulator with force full compile (iOS only)
+	-New option to re-launch simulator (iOS only)
+	-First stage of code editor
+	-Re-layout "Run Emulator" window
+	-Switch positions of project name and project path in old "Edit" window
+	-Rename "Edit" window to "Project Properties"
+	-Minor corrections to work with all mobileSDK (including 1.8.0)
+	-Add support for Keyboard Shotcuts
+	-Add support to Full screen
+	-Removed a lot of files unused
+
+1.2.2 (2011-06-18) - Get last version of "discontinued" Titanium Developer from appcelerator
