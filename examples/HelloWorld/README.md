@@ -4,7 +4,7 @@ The Helloworld Example app is the simplest possible TideSDK app demonstrating me
 
 To get TideSDK-Developer, visit [tidesdk.org]
 
-Use the same 'Download 1.3.1' button. Below the SDK downloads, you will find buttons to download the Developer App for each platform. Select your plaform and follow the instructions for installation
+Click the 'Download 1.3.1' button. Below the SDK downloads, you will find buttons to download the Developer App for each platform. Select your plaform and follow the instructions for installation.
 
 [tidesdk.org]: http://tidesdk.org#download
 
