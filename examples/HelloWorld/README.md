@@ -12,15 +12,9 @@ Use the same 'Download 1.3.1' button. Below the SDK downloads, you will find but
 
 To import the Hello World example app into TideSDK-Developer, click on the 'Import' button at the top left, navigate to the folder containing the app and select it.
 
-{@img developer_import.jpg Click the "Import Project" button}
-
 ## Running the App
 
 To run the Hello World app, click on 'Test & Package' button in the TideSDK-Developer menu, then click on the 'Launch App' button in the lower left. The Hello World app will start and will log to the screen. Debugging statements you include in your code will appear.
-
-{@img developer_launch.jpg Launch the Example App from the Test&Package section.}
-
-{@img developer_running.jpg The running Hello World app}
 
 ## Bundling the Example App for Distribution
 
