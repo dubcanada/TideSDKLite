@@ -48,14 +48,24 @@ if 'CPPFLAGS' in env:
         env['CPPFLAGS'].remove('-Wall')
     env['CPPFLAGS'].append('-w')
 
-env.Append(CPPPATH=[
-    build.tp('php', 'include', 'php'),
-    build.tp('php', 'include', 'php', 'TSRM'),
-    build.tp('php', 'include', 'php', 'Zend'),
-    build.tp('php', 'include', 'php', 'ext'),
-    build.tp('php', 'include', 'php', 'main'),
-    build.tp('php', 'include', 'php', 'sapi'),
-])
+if build.is_linux():
+    env.Append(CPPPATH=[
+        build.tp('php', 'include', 'php'),
+        build.tp('php', 'include', 'php', 'TSRM'),
+        build.tp('php', 'include', 'php', 'Zend'),
+        build.tp('php', 'include', 'php', 'ext'),
+        build.tp('php', 'include', 'php', 'main'),
+        build.tp('php', 'include', 'php', 'sapi'),
+    ])
+else:
+    env.Append(CPPPATH=[
+        build.tp('php', 'include'),
+        build.tp('php', 'include', 'TSRM'),
+        build.tp('php', 'include', 'Zend'),
+        build.tp('php', 'include', 'ext'),
+        build.tp('php', 'include', 'main'),
+        build.tp('php', 'include', 'sapi'),
+    ])
 env.Append(LIBPATH=[build.tp('php', 'lib')])
 env.Append(CPPDEFINES=('ZTS', 1))
 
