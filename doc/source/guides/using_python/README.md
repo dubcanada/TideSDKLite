@@ -4,7 +4,7 @@ __Author:__ David Pratt
 
 ## Preface
 
-This documentation applies to TideSDK 1.3.1. If you have not yet upgraded to TideSDK 1.3.1, please review the [CHANGES](https://github.com/TideSDK/TideSDK/blob/1.3.1-beta/CHANGES)
+This documentation applies to TideSDK 1.3.2. If you have not yet upgraded to TideSDK 1.3.2, please review the [CHANGES](https://github.com/TideSDK/TideSDK/blob/1.3.2-beta/CHANGES)
 
 ## Overview
 
@@ -55,18 +55,18 @@ The manifest contains information about the runtime modules used by the project.
   #guid:845e9c3c-c9ff-4ad4-afdf-9638092f044f
   #desc:No description provided
   #type:desktop
-  runtime:1.3.1
-  app:1.3.1
-  filesystem:1.3.1
-  platform:1.3.1
-  ui:1.3.1
-  codec:1.3.1
-  database:1.3.1
-  media:1.3.1
-  monkey:1.3.1
-  network:1.3.1
-  process:1.3.1
-  worker:1.3.1
+  runtime:1.3.2
+  app:1.3.2
+  filesystem:1.3.2
+  platform:1.3.2
+  ui:1.3.2
+  codec:1.3.2
+  database:1.3.2
+  media:1.3.2
+  monkey:1.3.2
+  network:1.3.2
+  process:1.3.2
+  worker:1.3.2
 
 
 Once the module is added as illustrated below, python can be used now in the application with the addition of the language module:
@@ -80,19 +80,19 @@ Once the module is added as illustrated below, python can be used now in the app
   #guid:845e9c3c-c9ff-4ad4-afdf-9638092f044f
   #desc:No description provided
   #type:desktop
-  runtime:1.3.1
-  app:1.3.1
-  filesystem:1.3.1
-  platform:1.3.1
-  ui:1.3.1
-  codec:1.3.1
-  database:1.3.1
-  media:1.3.1
-  monkey:1.3.1
-  network:1.3.1
-  process:1.3.1
-  worker:1.3.1
-  python:1.3.1
+  runtime:1.3.2
+  app:1.3.2
+  filesystem:1.3.2
+  platform:1.3.2
+  ui:1.3.2
+  codec:1.3.2
+  database:1.3.2
+  media:1.3.2
+  monkey:1.3.2
+  network:1.3.2
+  process:1.3.2
+  worker:1.3.2
+  python:1.3.2
 
 ## A quick demonstration
 

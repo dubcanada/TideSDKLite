@@ -12,19 +12,19 @@ As a project, we have a core team of talented programmers, developers, and UI & 
 
 TideSDK has recently become an 'Affiliate Project' of software in the Public Interest. As an 'Affiliate Project' we are in the company of other important open source projects such as PostgreSQL, Debian, ArchLinux, Drupal, and Jenkins CI and we are also non-profit. Beyond recogition and credibility, our affiliation also allows us to raise funds through donations for the viability and long term future of the project. If you like or use TideSDK in your development or your business, please assist with your financial support. Donations are tax deductible in the USA.
 
-This Getting Started Guide will demonstrate simple steps to get started with the the 1.3.1-beta. Please [follow @tidesdk on twitter] for updates and announcements as continue toward the 1.4.0 stable release.
+This Getting Started Guide will demonstrate simple steps to get started with the the 1.3.2-beta. Please [follow @tidesdk on twitter] for updates and announcements as continue toward the 1.4.0 stable release.
 
 [follow @tidesdk on twitter]: http://twitter.com/tidesdk
 
-## TideSDK 1.3.1
+## TideSDK 1.3.2
 
-TideSDK 1.3.1 contains improvements, bug fixes and a few important and breaking changes with legacy code that you need to know about. Please consult the following document:
+TideSDK 1.3.2 contains improvements, bug fixes and a few important and breaking changes with legacy code that you need to know about. Please consult the following document:
 
 [https://github.com/TideSDK/TideSDK/blob/master/CHANGES](https://github.com/TideSDK/TideSDK/blob/master/CHANGES)
 
 ## How Do I Develop a TideSDK App?
 
-TideSDK can be used with no more than a basic text editor. You do not need any special tools or an IDE (although many developers prefer richer tools). For the legacy 1.3.1 you can develop using the SDK in one of three ways:
+TideSDK can be used with no more than a basic text editor. You do not need any special tools or an IDE (although many developers prefer richer tools). For the legacy 1.3.2 you can develop using the SDK in one of three ways:
 
 1. Using the SDK with a editor and the TideSDK Developer app
 2. Using the SDK with a editor and the tidebuilder CLI
@@ -52,7 +52,7 @@ To get the SDK, visit [tidesdk.org] and download the right SDK version for your 
 
 [tidesdk.org]: http://tidesdk.org#download
 
-The 1.3.1 SDK must be extracted into a specific folder for your operating system:
+The 1.3.2 SDK must be extracted into a specific folder for your operating system:
 
 For Mac OSX:
 
@@ -81,7 +81,7 @@ On windows, you also need this for packaging your apps:
 [Imagemagick]: http://www.imagemagick.org
 [Wix 3.0]: http://wix.codeplex.com/releases/view/44406
 
-The zip file will expand the contents and create/overlay some new directories for 1.3.1-beta
+The zip file will expand the contents and create/overlay some new directories for 1.3.2-beta
 
 #### STEP 2: Download the TideSDK Developer App
 
@@ -91,7 +91,7 @@ The TideSDK Developer app is suitable for this purpose. TiDev Community has been
 
 To get TideSDK Developer, visit [tidesdk.org]
 
-Use the same 'Download 1.3.1' button. Below the SDK downloads, you will find buttons to download the Developer App for each platform
+Use the same 'Download 1.3.2' button. Below the SDK downloads, you will find buttons to download the Developer App for each platform
 
 [tidesdk.org]: http://tidesdk.org#download
 
@@ -240,18 +240,18 @@ The manifest contains information about the runtime modules used by the project.
 	#guid:845e9c3c-c9ff-4ad4-afdf-9638092f044f
 	#desc:Sample Hello World application
 	#type:desktop
-	runtime:1.3.1-beta
-	app:1.3.1-beta
-	codec:1.3.1-beta
-	database:1.3.1-beta
-	filesystem:1.3.1-beta
-	media:1.3.1-beta
-	monkey:1.3.1-beta
-	network:1.3.1-beta
-	platform:1.3.1-beta
-	process:1.3.1-beta
-	ui:1.3.1-beta
-	worker:1.3.1-beta
+	runtime:1.3.2-beta
+	app:1.3.2-beta
+	codec:1.3.2-beta
+	database:1.3.2-beta
+	filesystem:1.3.2-beta
+	media:1.3.2-beta
+	monkey:1.3.2-beta
+	network:1.3.2-beta
+	platform:1.3.2-beta
+	process:1.3.2-beta
+	ui:1.3.2-beta
+	worker:1.3.2-beta
 
 
 If you plan on use python, php or ruby support, you need to add the corresponding module. For example, Python can be used now in the application with the addition of the language module as illustrated below:
@@ -265,19 +265,19 @@ If you plan on use python, php or ruby support, you need to add the correspondin
 	#guid:845e9c3c-c9ff-4ad4-afdf-9638092f044f
 	#desc:Sample Hello World application
 	#type:desktop
-	runtime:1.3.1-beta
-	app:1.3.1-beta
-	codec:1.3.1-beta
-	database:1.3.1-beta
-	filesystem:1.3.1-beta
-	media:1.3.1-beta
-	monkey:1.3.1-beta
-	network:1.3.1-beta
-	platform:1.3.1-beta
-	process:1.3.1-beta
-	ui:1.3.1-beta
-	worker:1.3.1-beta
-	python:1.3.1-beta
+	runtime:1.3.2-beta
+	app:1.3.2-beta
+	codec:1.3.2-beta
+	database:1.3.2-beta
+	filesystem:1.3.2-beta
+	media:1.3.2-beta
+	monkey:1.3.2-beta
+	network:1.3.2-beta
+	platform:1.3.2-beta
+	process:1.3.2-beta
+	ui:1.3.2-beta
+	worker:1.3.2-beta
+	python:1.3.2-beta
 
 
 Activating a language module will cause that language to be available for use in script tags. Be aware that adding a language module may add overhead to the runtime and distribution of your application.
