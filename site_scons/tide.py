@@ -214,14 +214,16 @@ class BuildConfig(object):
             libs = ['libproxy']
 
         elif name is 'boost':
-            cpppath = [self.tp('boost', 'include')]
-            libpath = [self.tp('boost', 'lib')]
+            if not self.is_linux():
+                cpppath = [self.tp('boost', 'include')]
+                libpath = [self.tp('boost', 'lib')]
             # add mac libs as it doesn't pick them up automatically
             if self.is_osx() or self.is_linux():
                 libs = ['boost_system-mt', 'boost_thread-mt']
 
         elif name is 'boost_include':
-            cpppath = [self.tp('boost', 'include')]
+            if not self.is_linux():
+                cpppath = [self.tp('boost', 'include')]
 
         elif name is 'openssl':
             cpppath = [self.tp('openssl', 'include')]
