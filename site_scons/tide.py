@@ -87,8 +87,8 @@ class BuildConfig(object):
                 default_value = os.environ[key]
             vars.Add(key, description, default_value)
 
-        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
-        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
+        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
+        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
         add_environ_arg('MSVS', 'Path of Microsoft Visual Studio', 'C:\\Program Files\\Microsoft Visual Studio 8')
         add_environ_arg('PKG_CONFIG_PATH', 'The path for pkg-config', '/usr/lib/pkgconfig')
         add_environ_arg('PYTHON_VERSION', 'The version of Python to build against', '2.7')
