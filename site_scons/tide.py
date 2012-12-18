@@ -208,10 +208,15 @@ class BuildConfig(object):
             libpath = [self.tp('webkit', 'lib')]
             libs = ['cairo']
 
-        elif name is 'libproxy' and self.is_win32():
+        elif name is 'libproxy' and (self.is_win32() or self.is_linux()):
             cpppath = [self.tp('libproxy', 'include')]
             libpath = [self.tp('libproxy', 'lib')]
             libs = ['libproxy']
+
+        elif name is 'libsoup' and self.is_linux():
+            cpppath = [self.tp('libsoup', 'include')]
+            libpath = [self.tp('libsoup', 'lib')]
+            libs = ['libsoup-2.4', 'libsoup-gnome-2.4']
 
         elif name is 'boost':
             if not self.is_linux():
@@ -239,9 +244,12 @@ class BuildConfig(object):
                 libpath = [self.tp('webkit', 'lib')]
 
             if self.is_linux():
-                cpppath = [self.tp('webkit', 'include')]
-                libpath = [self.tp('webkit', 'lib')]
-                cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
+                if self.tidelite is False:
+                    cpppath = [self.tp('webkit', 'include')]
+                    libpath = [self.tp('webkit', 'lib')]
+                    cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
+                else:
+                    cpppath = ['/usr/include/webkitgtk-1.0/']
 
             if self.is_win32():
                 suffix = ''
@@ -251,7 +259,10 @@ class BuildConfig(object):
                 libs = [x + suffix for x in libs]
 
             if self.is_linux():
-                libs = ['webkittitanium-1.0']
+                if self.tidelite is False:
+                    libs = ['webkittitanium-1.0']
+                else:
+                    libs = ['webkitgtk-1.0']
 
             if self.is_osx():
                 if self.tidelite is False:

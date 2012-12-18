@@ -12,9 +12,9 @@ app:
 filesystem:
 platform:
 ui:
-python:
-ruby:
 php:
+ruby:
+python:
 media:
 monkey:
 network:

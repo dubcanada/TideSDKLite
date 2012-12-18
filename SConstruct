@@ -64,6 +64,7 @@ build.env.Append(CPPPATH=[
 
 # debug build flags
 debug = ARGUMENTS.get('debug', 0)
+lite  = ARGUMENTS.get('lite', 0)
 if debug:
     build.env.Append(CPPDEFINES = ('DEBUG', 1))
     if build.is_win32():

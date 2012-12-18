@@ -87,7 +87,7 @@ def fetch():
 if not exists(): fetch()
 
 if build.is_linux():
-    libs = [ 'poco', 'webkit']
+    libs = [ 'poco', 'webkit', 'libproxy', 'libsoup']
     for libdir in libs:
         effess.copy_tree(path.join(build.third_party, libdir, 'lib'), rtdir)
 

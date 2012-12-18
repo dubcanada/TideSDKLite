@@ -48,7 +48,10 @@ using tide::StaticBoundList;
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <webkit/webkit.h>
+
+#ifndef TIDE_LITE
 #include <webkit/webkittitanium.h>
+#endif
 
 // X11 defines this again for some reason
 #undef DisplayString

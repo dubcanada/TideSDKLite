@@ -57,19 +57,22 @@ namespace ti
         contextMenu(0),
         iconPath("")
     {
+#ifndef TIDE_LITE
         // Prepare the custom URL handlers
         webkit_titanium_set_normalize_url_cb(NormalizeURLCallback);
         webkit_titanium_set_url_to_file_url_cb(URLToFileURLCallback);
         webkit_titanium_set_can_preprocess_cb(CanPreprocessURLCallback);
         webkit_titanium_set_preprocess_cb(PreprocessURLCallback);
-
+#endif
         // Setup libsoup proxy support
         SoupSession* session = webkit_get_default_session();
         soup_session_add_feature_by_type(session, SOUP_TYPE_PROXY_RESOLVER_GNOME);
 
+#ifndef TIDE_LITE
         std::string webInspectorPath(host->GetApplication()->runtime->path);
         webInspectorPath = FileUtils::Join(webInspectorPath.c_str(), "webinspector", NULL);
         webkit_titanium_set_inspector_url(webInspectorPath.c_str());
+#endif
 
         //webkit_set_cache_model(WEBKIT_CACHE_MODEL_DOCUMENT_VIEWER);
     }
