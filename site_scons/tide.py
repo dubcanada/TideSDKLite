@@ -193,19 +193,17 @@ class BuildConfig(object):
             libs = ['PocoFoundation', 'PocoNet', 'PocoUtil', 'PocoXML',
                 'PocoZip', 'PocoData', 'PocoSQLite']
 
-        if name is 'curl' and self.is_win32(): # Don't judge us!
-            cpppath = [self.tp('webkit', 'include')]
-            libpath = [self.tp('webkit', 'lib')]
-            libs = ['libcurl_imp']
-
-        elif name is 'curl':
+        if name is 'curl':
             cpppath = [self.tp('curl', 'include')]
             libpath = [self.tp('curl', 'lib')]
-            libs = ['curl']
+	    if self.is_win32():
+	        libs = ['libcurl_imp']
+            else:
+                libs = ['curl']
 
         elif name is 'cairo' and self.is_win32():
-            cpppath = [self.tp('webkit', 'include')]
-            libpath = [self.tp('webkit', 'lib')]
+            cpppath = [self.tp('cairo', 'include')]
+            libpath = [self.tp('cairo', 'lib')]
             libs = ['cairo']
 
         elif name is 'libproxy' and (self.is_win32() or self.is_linux()):
