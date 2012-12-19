@@ -77,12 +77,10 @@ namespace ti
         setPreprocessCallback(PreprocessURLCallback);
         setProxyCallback(ProxyForURLCallback);
 
-#ifndef TIDE_LITE
         std::string cookieJarFilename(FileUtils::Join(
             Host::GetInstance()->GetApplication()->GetDataPath().c_str(),
             "cookies.dat", 0));
         setCookieJarFilename(cookieJarFilename.c_str());
-#endif
     }
     
     Win32UIBinding::~Win32UIBinding()
