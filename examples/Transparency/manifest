@@ -1,8 +1,8 @@
 #appname:transparency_demo
-#appid:com.appcelerator.transparencydemo
+#appid:org.tidesdk.transparencydemo
 #publisher:marshall
 #image:default_app_logo.png
-#url:www.appcelerator.com
+#url:www.tidesdk.org
 #guid:4cc89bb9-f6fe-4ed2-bedb-dbfecb95018c
 #desc:No description provided
 #type:desktop

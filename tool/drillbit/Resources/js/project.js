@@ -591,6 +591,6 @@ Ti.Project = {
 // 	}
 // })();
 
-Ti.Project.XML_PROLOG = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<ti:app xmlns:ti='http://ti.appcelerator.org'>\n";
+Ti.Project.XML_PROLOG = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<ti:app xmlns:ti='http://ns.tidesdk.org'>\n";
 
 Ti.Project.XML_EPILOG = "</ti:app>";

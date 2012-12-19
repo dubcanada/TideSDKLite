@@ -1,8 +1,8 @@
 #appname:sqlite_demo
-#appid:com.appcelerator.sqlite
+#appid:org.tidesdk.sqlite
 #publisher:marshall
 #image:default_app_logo.png
-#url:www.appcelerator.com
+#url:www.tidesdk.org
 #guid:146bd4f7-7b15-44a9-b637-d2004e24cee9
 #desc:No description provided
 #type:desktop

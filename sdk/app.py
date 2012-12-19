@@ -151,8 +151,8 @@ class App(object):
         f.close()
 
     def write_tiapp(self, path):
-        xml.etree.ElementTree._namespace_map['http://ti.appcelerator.org'] = 'ti'
-        xml.etree.ElementTree._namespace_map['http://www.appcelerator.org'] = 'appc'
+        xml.etree.ElementTree._namespace_map['http://ns.tidesdk.org'] = 'ti'
+        xml.etree.ElementTree._namespace_map['http://www.tidesdk.org'] = 'tidesdk'
         self.tiapp.write(p.join(path, 'tiapp.xml'), "utf-8")
 
     def get_contents_dir(self):

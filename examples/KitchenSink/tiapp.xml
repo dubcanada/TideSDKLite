@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
+<ti:app xmlns:ti='http://ns.tidesdk.org'>
 <!-- These values are edited/maintained by TiDev Community -->
 <id>org.tidesdk.kitchensink</id>
 <name>TideSDK KitchenSink</name>
 <version>0.1a</version>
-<publisher>Christian</publisher>
+<publisher>Software In Public Interest (SPI)</publisher>
 <url>http://tidesdk.org</url>
 <icon>tidesdk-tide-shape.png</icon>
-<copyright>2012 by Christian</copyright>
+<copyright>2012 by SPI</copyright>
 <analytics>false</analytics>
 <!-- Window Definition - these values can be edited -->
 <window>

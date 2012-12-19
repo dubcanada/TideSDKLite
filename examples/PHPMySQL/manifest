@@ -1,8 +1,8 @@
 #appname:php_mysql_demo
-#appid:com.appcelerator.phpmysqldemo
+#appid:org.tidesdk.phpmysqldemo
 #publisher:marshall
 #image:default_app_logo.png
-#url:www.appcelerator.com
+#url:www.tidesdk.org
 #guid:9883179c-5742-46c3-bec9-d741043495cb
 #desc:No description provided
 #type:desktop

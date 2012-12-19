@@ -41,7 +41,7 @@ build = BuildConfig(
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
     THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
-    DISTRIBUTION_URL = 'api.appcelerator.net',
+    DISTRIBUTION_URL = 'api.tidesdk.org',
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)

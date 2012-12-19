@@ -1,8 +1,8 @@
 #appname:titanium_json_benchmark
-#appid:com.appcelerator.jsonbenchmark
+#appid:org.tidesdk.jsonbenchmark
 #publisher:marshall
 #image:default_app_logo.png
-#url:http://www.appcelerator.com
+#url:http://www.tidesdk.org
 #guid:34a377f1-7e54-4e89-ab95-c97cee22eacf
 #desc:No description provided
 #type:desktop

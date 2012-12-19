@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ti:app xmlns:ti='http://ti.appcelerator.org'>
+<ti:app xmlns:ti='http://ns.tidesdk.org'>
 <id>org.tidesdk.unittest</id>
 <name>foobar</name>
 <version>1.2</version>
