@@ -1,0 +1,22 @@
+#appname:TideSDK Developer
+#appid:org.tidesdk.tidesdkdeveloper
+#publisher:TideSDK Community
+#image:default_app_logo.png
+#url:https://tidesdk.org/
+#guid:89bdfb92-72de-478f-9413-b2e6bcd682d2
+#desc:TideSDK Developer is official TideSDK Offline Development Environment
+#type:desktop
+runtime:1.3.2-beta
+sdk:1.3.2-beta
+app:1.3.2-beta
+codec:1.3.2-beta
+database:1.3.2-beta
+filesystem:1.3.2-beta
+media:1.3.2-beta
+monkey:1.3.2-beta
+network:1.3.2-beta
+platform:1.3.2-beta
+process:1.3.2-beta
+python:1.3.2-beta
+ui:1.3.2-beta
+worker:1.3.2-beta

@@ -1,7 +1,0 @@
----
-namespace: Ti.API.Component
-type: object
-description: |
-    An object representing a Tide component, which may be either a module,
-    runtime, SDK, Mobile SDK or application update.
-since: 0.4.0

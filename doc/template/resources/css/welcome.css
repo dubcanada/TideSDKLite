@@ -1,0 +1,183 @@
+a{
+  color: #f25425;
+}
+a:hover{
+  color: #222;
+}
+
+.toc a{
+  color: #083772;
+}
+
+.wpage{
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 80px;
+  line-height: 1.5em;
+}
+
+.header{
+  position: relative;
+  margin-top: 120px;
+}
+
+.header p{
+  width: 450px;
+  height: 65px;
+}
+
+.wpage .teaser{
+  position: absolute;
+  right: 0;
+  top: -120px;
+}
+
+.wpage h1{
+    font-family: "Exo", Helvetica, Arial, sans-serif;
+    /*font-weight: bold;
+    color: #222 !important;*/
+    margin-bottom: 5px;
+}
+
+.wpage h2{
+  font-family: "Exo", Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.wpage .intro{
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.3em;
+}
+
+.wpage hr{
+  clear: both;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.wpage .column{
+  display: inline-block;
+  width: 380px;
+  margin-right: 20px;
+  vertical-align: top;
+  margin-bottom: 50px;
+}
+
+.wpage .btn {
+  display: inline-block;
+  *display: inline;
+  font-family: "Exo", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #618497;
+  text-decoration: none;
+  background: #bed7e2;
+  padding: 10px;
+  background: #bdd6e1;
+  color: #60869a;
+  border-bottom: #a2b7c2 solid 1px;
+  border-right: #a2b7c2 solid 1px;
+  -webkit-box-shadow: 1px 1px 2px #618497;
+  -moz-box-shadow: 1px 1px 2px #618497;
+  box-shadow: 1px 1px 2px #618497;
+  margin-top: 10px;
+
+  -webkit-box-shadow: 1px 1px 0 #e3e3e3;
+  -moz-box-shadow: 1px 1px 0 #e3e3e3;
+  box-shadow: 1px 1px 0 #e3e3e3;
+}
+
+.wpage .btn:hover{
+  color: #658898;
+  background: #C4DAE4;
+  -webkit-box-shadow: 2px 2px 2px #618497;
+  -moz-box-shadow: 2px 2px 2px #618497;
+  box-shadow: 2px 2px 2px #618497;
+
+  -webkit-box-shadow: 2px 2px 2px #e3e3e3;
+  -moz-box-shadow: 2px 2px 2px #e3e3e3;
+  box-shadow: 2px 2px 2px #e3e3e3;
+}
+
+.wpage .btn-large {
+  padding: 9px 14px;
+  font-size: 18px;
+  line-height: normal;
+}
+
+.wpage .updates p{
+  margin-bottom: 10px;
+}
+
+.wpage .updates i{
+  font-size: 11px;
+}
+
+.wpage hr{
+  border: none;
+  height: 1px;
+  background: #3c515d;
+}
+
+
+.wpage .download{
+  display: inline-block;
+  font-family: "Exo", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  background: #f25623;
+  border-top: #f27549 solid 1px;
+  border-left: #f27549 solid 1px;
+  border-bottom: #d94f20 solid 1px;
+  border-right: #d94f20 solid 1px;
+  line-height: 45px;
+  height: 45px;
+  padding-left: 22px;
+
+  margin-bottom: 10px;
+  margin-right: 10px;
+  
+  
+  text-shadow: 0 1px 0 #e4280b;
+  -webkit-box-shadow: 1px 1px 0 #e3e3e3;
+  -moz-box-shadow: 1px 1px 0 #e3e3e3;
+  box-shadow: 1px 1px 0 #e3e3e3;
+}
+
+.wpage .download:hover{
+  -webkit-box-shadow: 2px 2px 2px #e3e3e3;
+  -moz-box-shadow: 2px 2px 2px #e3e3e3;
+  box-shadow: 2px 2px 2px #e3e3e3;
+}
+
+.wpage .download:after{
+  content: "▼";
+  text-align: center;
+  vertical-align: top;
+  display: inline-block;
+  background: #f47950;
+  border-left: #f3a285 solid 1px;
+  width: 43px;
+  line-height: 43px;
+  margin-left: 22px;
+}
+
+#footer{
+  text-align: center;
+}
+
+.ft-main, .ft-github, .ft-stackoverflow, .ft-twitter{
+  padding-left: 14px;
+  padding-right: 16px;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+.ft-main{background-image: url(../images/footer-home.png);}
+.ft-github{background-image: url(../images/footer-github.png);}
+.ft-stackoverflow{background-image: url(../images/footer-stackoverflow.png);}
+.ft-twitter{background-image: url(../images/footer-twitter.png);}

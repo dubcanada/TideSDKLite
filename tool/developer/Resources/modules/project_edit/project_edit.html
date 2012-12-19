@@ -1,0 +1,153 @@
+<div id="project_edit">
+	<div style="margin:0 auto;width:540px;">
+	<table>
+		<tr>
+			<td width="68" valign="middle	">
+				<span id="edit_project_open">
+					<img src="images/desktop.png" id ="desktop_icon"/>
+					<img src="images/mobile.png" id="mobile_icon"/>
+					<img src="images/ipad.png" id="ipad_icon" id="ipad_icon"/>
+					<img src="images/iOS.png" id="ios_icon"/>
+				</span>
+			</td>
+			<td valign="middle">
+				<div id="edit_project_div">
+					<p id="edit_project_name" style="position:relative;top:2px;color:#fff;"></p>
+					<!-- <img src="modules/project_edit/images/folder_explore.png" id="edit_project_open"/> -->
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<div class="frame" style="height:380px">
+		
+		<!-- PROJECT NAME -->
+		<div class="label" style="position:relative;top:-1px">Path:</div>
+		<div class="input">
+			<div style="color:#fff;font-size:12px" id="edit_project_dir"></div>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT APPID -->
+		<div class="label">Application ID:</div>
+		<div class="input">
+			<input type="text" id="edit_project_appid" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT VERSION -->
+		<div class="label">Version:</div>
+		<div class="input">
+			<input type="text" id="edit_project_version" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT DESCRIPTION -->
+		<div class="label">Description:</div>
+		<div class="input">
+			<input type="text" id="edit_project_desc" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT PUBLISHER -->
+		<div class="label">Publisher:</div>
+		<div class="input">
+			<input type="text" id="edit_project_publisher" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT PUBLISHER URL -->
+		<div class="label">Publisher URL:</div>
+		<div class="input">
+			<input type="text" id="edit_project_url" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT APPLICATION ICON -->
+		<div class="label">Application Icon:</div>
+		<div class="input">
+			<input type="text" id="edit_project_icon" style="float:left" class="edit_project required"/>
+			<div style="float:left;margin-left:5px;position:relative;top:5px;cursor:pointer" 
+				id="edit_project_icon_button">
+				<img src="images/folder_go.png"/>
+			</div>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT RUNTIME -->
+		<div class="label">Titanium SDK:</div>
+		<div class="input">
+			<select id="edit_project_runtime">
+			</select>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT COPYRIGHT -->
+		<div class="label">Copyright:</div>
+		<div class="input">
+			<input type="text" id="edit_project_copyright" class="edit_project required"/>
+		</div>
+
+		<div style="clear:both;height:10px"></div>
+
+		<!-- PROJECT LANGUAGE MODULES -->
+		<div id="project_edit_lang_modules">
+			<div class="label">Language Modules:</div>
+			<div class="input">
+				<!-- RUBY -->
+				<div class="checkbox" id="language_ruby">
+					<img src="images/switch_on.png" id="language_ruby_checked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+					<img src="images/switch_off.png" id="language_ruby_unchecked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+				</div>
+				<div class="label" style="margin-left:5px;margin-right:10px;width:50px">Ruby</div>
+
+				<!-- PYTHON -->
+				<div class="checkbox" id="language_python">
+					<img src="images/switch_on.png" id="language_python_checked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+					<img src="images/switch_off.png" id="language_python_unchecked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+
+				</div>
+				<div class="label" style="margin-left:5px;margin-right:15px;width:50px">Python</div>
+
+				<!-- PHP -->
+				<div class="checkbox" id="language_php">
+					<img src="images/switch_on.png" id="language_php_checked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+					<img src="images/switch_off.png" id="language_php_unchecked" 
+						style="position:relative;top:3px;left:3px;display:none"/>
+
+				</div>
+
+				<div class="label" style="width:50px;margin-left:5px">PHP</div>
+				
+				<div style="clear:both;height:10px"></div>
+				
+				<div style="margin-left:5px;font-size:11px;color:#ddd;position:relative;top:5px;width:350px;text-align:center;">
+					(switch on to include)
+				</div>
+			</div>
+			<div style="clear:both;height:20px"></div>
+		</div>
+		
+
+		<!-- SAVE BUTTON -->
+		<div align="center" id="project_edit_save_button" style="width:120px;margin-top:10px;margin-left:20px;float:right">
+			<img src="images/greencheck.png" style="position:relative;top:-1px;left:-5px" valign="middle"/> Save Changes</div> 
+		<div align="center" id="project_edit_delete_button" style="width:120px;margin-top:10px;margin-left:10px;float:right">
+			<img src="images/redcheck.png" style="position:relative;top:-1px;left:-5px" valign="middle"/> Delete Project</div> 
+
+	</div>
+
+</div>

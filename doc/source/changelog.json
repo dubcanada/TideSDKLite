@@ -1,0 +1,46 @@
+[
+    {
+        "date":"Aug 19, 2012",
+        "message":"Added new API docs for the <a href=\"#!/api/Ti.Notification\">notification module</a>"
+    },
+    {
+        "date":"Aug 19, 2012",
+        "message":"Added new API docs for the <a href=\"#!/api/Ti.Database\">database module</a>"
+    },
+    {
+        "date": "Aug 20, 2012",
+        "message": "Updated the documentation theme"
+    },
+    {
+        "date": "Aug 22, 2012",
+        "message": "Added new API docs for the <a href=\"#!/api/Ti.Network.HTTPServer\">HTTPServer</a> and <a href=\"#!/api/Ti.Network.HTTPClient\">HTTPClient</a> module"
+    },
+    {
+        "date": "Aug 24, 2012",
+        "message": "Documentation for <a href=\"#!/api/Ti.Network.TCPSocket\">TCPSocket</a>"
+    },
+    {
+        "date": "Aug 25, 2012",
+        "message": "Fixed layout issue in option list of <a href=\"#!/api/Ti.UI.UserWindow-method-openSaveAsDialog\">Ti.UI.UserWindow-method-openSaveAsDialog</a>"
+    },
+    {
+        "date": "Aug 26, 2012",
+        "message": "Documentation for <a href=\"#!/api/Ti.Process\">Process</a> and <a href=\"#!/api/Ti.Process.Pipe\">Pipe</a>"
+    },
+    {
+        "date": "Aug 27 2012",
+        "message": "Documentation for <a href=\"#!/api/Ti.UI.Menu\">Menu</a> and <a href=\"#!/api/Ti.UI.Clipboard\">Clipboard</a>.<br>New guide: <a href=\"#!/guide/ide_autocompletion\">Setting up code completion</a>"
+    },
+    {
+        "date": "Sep 2 2012",
+        "message": "Added missing properties, methods and events to <a href=\"#!/api/Ti.UI.UserWindow\">Ti.UI.UserWindow</a>"
+    },
+    {
+        "date": "Sep 5 2012",
+        "message": "Fixed formatting and added code examples to <a href=\"#!/api/Ti.Filesystem\">Ti.Filesystem</a>"
+    },
+    {
+        "date": "Nov 16 2012",
+        "message": "Added guides section 'Beginner Guides' with 4 new guides.<br>Updated to recent JSDuck version."
+    }
+]

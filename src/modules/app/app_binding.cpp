@@ -3,7 +3,12 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
+
 #include <tide/tide.h>
+#include <tide/url_utils.h>
+
+
+
 #include <Poco/Environment.h>
 #include "app_binding.h"
 #include "app_config.h"

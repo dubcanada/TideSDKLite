@@ -43,10 +43,10 @@ from progressbar import ProgressBar
 Import('build')
 
 revisions = {
-    "linux-x86": 1,
-    "linux-x86_64": 1,
-    "osx-x86": 1,
-    "win32-x86": 1
+    "linux-x86": 2,
+    "linux-x86_64": 2,
+    "osx-x86": 2,
+    "win32-x86": 2
 }
 
 arch_name = '%s-%s-v%s' % (build.os, build.arch, revisions[build.os+'-'+build.arch])
@@ -87,30 +87,35 @@ def fetch():
 if not exists(): fetch()
 
 if build.is_linux():
-    effess.copy_tree(path.join(build.third_party, 'webkit', 'lib'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'poco', 'lib'), rtdir)
+    libs = [ 'poco', 'webkit', 'libproxy', 'libsoup']
+    for libdir in libs:
+        effess.copy_tree(path.join(build.third_party, libdir, 'lib'), rtdir)
 
 elif build.is_win32():
-    effess.copy_tree(path.join(build.third_party, 'poco', 'bin'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'webkit', 'bin'), rtdir)
     if build.tidelite:
         effess.copy_tree(path.join(build.third_party, 'webkit-lite', 'bin'), rtdir)
     else:
 	    effess.copy_tree(path.join(build.third_party, 'webkit-patch', 'bin'), rtdir)
-    effess.copy_tree(path.join(build.third_party, 'libproxy', 'bin'), rtdir)
+    libs = ['boost', 'libproxy', 'poco', 'curl', 'cairo']
+    for libdir in libs:
+        effess.copy_tree(path.join(build.third_party, libdir, 'bin'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
 
 elif build.is_osx():
-    excludes = ['.h', '.defs', 'JavaScriptGlue.framework']
-    if build.tidelite:
-        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])
+    libs = ['boost', 'curl', 'openssl', 'poco']
+    excludes = ['.a', '.h', '.defs', 'JavaScriptGlue.framework', '.DS_Store']
     targets = []
+    
+    if build.tidelite:
+        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])    
     for framework in Glob(path.join(build.third_party, '*/*.framework')):
         t = build.utils.CopyToDir(framework, rtdir, exclude=excludes)
         targets.append(t)
-
+    for libdir in libs:
+        p = path.join(build.third_party, libdir, 'lib')
+        targets.append(build.utils.CopyTree(p, rtdir, exclude=excludes))
+        build.mark_build_target(targets)
+    
     # PHP dependencies don't aren't distributed with the runtime, only Poco's.
     # for libdir in Glob(path.join(build.third_party, '*/lib')):
-    libdir = path.join(build.third_party, "poco", "lib");
-    targets.append(build.utils.CopyTree(libdir, rtdir, exclude=excludes))
-    build.mark_build_target(targets)
+

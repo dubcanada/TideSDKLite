@@ -1,0 +1,23 @@
+#appname:TLMT
+#appid:TLMT
+#publisher:cauld
+#image:default_app_logo.png
+#url:Appcelerator
+#guid:b18c8b7e-8c4e-4e7b-8384-41a01053aa5a
+#desc:Titanium Language Module Tester
+#type:desktop
+runtime:1.2.0.RC2
+tiapp:1.2.0.RC2
+tifilesystem:1.2.0.RC2
+tiplatform:1.2.0.RC2
+tiui:1.2.0.RC2
+php:1.2.0.RC2
+python:1.2.0.RC2
+ruby:1.2.0.RC2
+ticodec:1.2.0.RC2
+tidatabase:1.2.0.RC2
+timedia:1.2.0.RC2
+timonkey:1.2.0.RC2
+tinetwork:1.2.0.RC2
+tiprocess:1.2.0.RC2
+tiworker:1.2.0.RC2

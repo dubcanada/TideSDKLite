@@ -32,10 +32,13 @@
 # limitations under the License.
 
 import os, os.path as path
-Import('build')
+Import('build','LIBUTILS_NAME')
 
 env = build.env.Clone()
 env.Append(CPPDEFINES=['USE_NO_EXPORT=1', 'UNICODE=1', '_UNICODE=1'])
+
+env.Append(LIBS=[LIBUTILS_NAME])
+env.Append(LIBPATH=[path.join(build.dir, 'objs')])
 
 env.Append(LIBS=[
     'msi',
@@ -49,23 +52,22 @@ env.Append(LIBS=[
     'gdi32'
 ])
 
+
+build.add_thirdparty(env, 'boost_include')
 # Common sources for both the MSI DLL and the update installer.
-env.Append(CPPPATH=[build.tide_utils_dir])
-sources = ["common.cpp"] + build.get_tide_utils(
-    path.join(build.dir, 'objs', 'netinstaller'))
+sources = ["common.cpp"]
 
 build.mark_build_target(env.Program(
     path.join(build.dir, 'sdk', 'installer', 'installer.exe'),
     sources + ['progress_dialog.cpp', 'update_installer.cpp']))
 
 # Statically-link the MSI DLL.
-ccf = env['CCFLAGS'][:]
-if '/MD' in ccf:
-    ccf.remove('/MD')
-ccf.append('/MT')
-env['CCFLAGS'] = ccf
+#ccf = env['CCFLAGS'][:]
+#if '/MD' in ccf:
+#    ccf.remove('/MD')
+#ccf.append('/MT')
+#env['CCFLAGS'] = ccf
 
 env.Append(LIBS=['msi']); # Add the MSI lib.
-build.mark_build_target(env.SharedLibrary(
-    path.join(build.dir, 'sdk', 'installer', 'tide_installer'),
+build.mark_build_target(env.SharedLibrary(path.join(build.dir, 'sdk', 'installer', 'tide_installer'),
     sources + ['tide_actions.cpp']))

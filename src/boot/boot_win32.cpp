@@ -32,6 +32,9 @@
 * limitations under the License.
 **/
 
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
+
 #include "boot.h"
 #include "popup_dialog_win32.h"
 #include <process.h>
@@ -182,23 +185,6 @@ int main(int __argc, const char* __argv[])
 {
     TideBoot::argc = __argc;
     TideBoot::argv = (const char**) __argv;
-
-#ifdef USE_BREAKPAD
-    // Don't install a handler if we are just handling an error.
-    if (__argc > 2 && !strcmp(CRASH_REPORT_OPT, __argv[1]))
-    {
-        return TideBoot::SendCrashReport();
-    }
-
-    wchar_t tempPath[MAX_PATH];
-    GetTempPathW(MAX_PATH, tempPath);
-    TideBoot::breakpad = new google_breakpad::ExceptionHandler(
-        tempPath,
-        0,
-        TideBoot::HandleCrash,
-        0,
-        google_breakpad::ExceptionHandler::HANDLER_ALL);
-#endif
 
     return TideBoot::Bootstrap();
 }

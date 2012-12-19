@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,6 +32,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
+
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
 
 #include "filesystem_utils.h"
 
@@ -71,8 +75,7 @@ namespace FilesystemUtils
             TiListRef list(args.GetList(0));
             for (size_t c = 0; c < list->Size(); c++)
             {
-                filename = tide::FileUtils::Join(
-                    filename.c_str(), list->At(c)->ToString(), NULL);
+                filename = FileUtils::Join(filename.c_str(), list->At(c)->ToString(), NULL);
             }
         }
         else
@@ -80,8 +83,7 @@ namespace FilesystemUtils
             // you can pass in vararg of strings which acts like  a join
             for (size_t c = 0; c < args.size(); c++)
             {
-                filename = tide::FileUtils::Join(filename.c_str(),
-                    FilenameFromValue(args.at(c)).c_str(), 0);
+                filename = FileUtils::Join(filename.c_str(), FilenameFromValue(args.at(c)).c_str(), 0);
             }
         }
 

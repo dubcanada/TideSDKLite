@@ -42,18 +42,17 @@
 #endif
 
 #define BOOTSTRAP_ENV "KR_BOOTSTRAPPED"
-#define CRASH_REPORT_OPT "--crash_report"
-
-#define CRASH_REPORT_URL  STRING(_CRASH_REPORT_URL)
 
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
-#include <utils.h>
-
+#include <tideutils/boot_utils.h>
+#include <tideutils/application.h>
+#include <tideutils/environment_utils.h>
 using namespace TideUtils;
+
 using TideUtils::Application;
 using TideUtils::Dependency;
 using TideUtils::KComponent;

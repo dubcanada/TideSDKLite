@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -32,6 +33,10 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
+
 #include "file.h"
 #include "filesystem_utils.h"
 
@@ -49,6 +54,7 @@
 #endif
 
 #ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
 #define MIN_PATH_LENGTH 3
 #else
 #define MIN_PATH_LENGTH 1
@@ -460,7 +466,7 @@ namespace ti
                 {
                     std::string entry = files.at(i);
                     // store it as the fullpath
-                    std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
+                    std::string filename = FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                     ti::File* file = new ti::File(filename);
                     ValueRef value = Value::NewObject((TiObjectRef) file);
                     fileList->Append(value);
@@ -599,7 +605,8 @@ namespace ti
 
 #ifdef OS_OSX
         NSString *p = [NSString stringWithCString:this->filename.c_str() encoding:NSUTF8StringEncoding];
-        unsigned long avail = [[[[NSFileManager defaultManager] fileSystemAttributesAtPath:p] objectForKey:NSFileSystemFreeSize] longValue];
+        // TODO: Add error stuff
+        unsigned long avail = [[[[NSFileManager defaultManager] attributesOfFileSystemForPath:p error:nil] objectForKey:NSFileSystemFreeSize] longValue];
         diskSize = (double)avail;
 #elif defined(OS_WIN32)
         unsigned __int64 i64FreeBytesToCaller;
@@ -781,7 +788,7 @@ namespace ti
             {
                 throw ValueException::FromString("destination must be a directory");
             }
-            tide::FileUtils::Unzip(from_s,to_s);
+            FileUtils::Unzip(from_s,to_s);
             result->SetBool(true);
         }
         catch (Poco::FileNotFoundException&)

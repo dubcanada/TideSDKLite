@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,7 +35,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Downloader.h"
-#import <utils.h>
+#import <tideutils/file_utils.h>
+#import <tideutils/boot_utils.h>
+#import <tideutils/application.h>
 using namespace TideUtils;
 using TideUtils::Application;
 using TideUtils::SharedApplication;

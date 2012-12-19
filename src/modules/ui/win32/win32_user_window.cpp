@@ -36,6 +36,10 @@
 #include <sstream>
 #include <cmath>
 
+#include <tideutils/win/win32_utils.h>
+#include <tideutils/file_utils.h>
+#include <tide/url_utils.h>
+
 #define SetFlag(x,flag,b) ((b) ? x |= flag : x &= ~flag)
 #define UnsetFlag(x,flag) (x &= ~flag)=
 #define USERWINDOW_WINDOW_CLASS L"Win32UserWindow"
@@ -1256,22 +1260,34 @@ TiListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::strin
             // Reasonable default?
             typesDescriptionW = L"Selected Files";
         }
-        filter.append(typesDescriptionW);
-        filter.push_back(L'\0');
-        
+       
+        std::wstring types_text;
+        std::wstring types_val;
         for (int i = 0; i < types.size(); i++)
         {
-            std::string type = types.at(i);
+            std::string type = types[i];
             std::wstring typeW = ::UTF8ToWide(type);
             //multiple filters: "*.TXT;*.DOC;*.BAK"
             size_t found = type.find("*.");
             if (found != 0)
             {
-                filter.append(L"*.");
+                types_text.append(L"*.");
+                types_val.append(L"*.");
             }
-            filter.append(typeW);
-            filter.append(L";");
+            types_text.append(typeW);
+            types_val.append(typeW);
+            types_text.append(L",");
+            types_val.append(L";");
         }
+	types_text.erase(types_text.size() - 1);
+	types_val.erase(types_val.size() - 1);
+
+        filter = typesDescriptionW;
+	filter.append(L" (");
+	filter.append(types_text);
+	filter.append(L")");
+        filter.push_back(L'\0');
+	filter.append(types_val);
         filter.push_back(L'\0');
     }
 
@@ -1289,7 +1305,7 @@ TiListRef Win32UserWindow::SelectFile(bool saveDialog, bool multiple, std::strin
     ofn.lpstrFile = filenameW;
 
     ofn.nMaxFile = MAX_FILE_DIALOG_STRING;
-    ofn.lpstrFilter = (LPWSTR) (filter.size() == 0 ? 0 : filter.c_str());
+    ofn.lpstrFilter = (LPCWSTR) (filter.size() == 0 ? 0 : filter.c_str());
     ofn.nFilterIndex = 1;
     ofn.lpstrFileTitle = 0;
     ofn.nMaxFileTitle = 0;

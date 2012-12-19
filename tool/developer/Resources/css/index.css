@@ -1,0 +1,81 @@
+
+.frame
+{
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	padding:20px;
+	background-color:#5a5a5a;
+	height:315px;
+	margin-top:10px;
+	width:500px;
+}
+
+.label
+{
+	font-size:12px;
+	float:left;
+	width:120px;
+	font-weight:normal;
+	color:#fff;
+	position:relative;
+	top:5px;
+}
+.input
+{
+	float:left;
+}
+input, select, textarea
+{
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	width:350px;
+	border:none;
+	background-color:#fff;
+	color:#000;
+	font-size:12px;
+	height:22px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 5px inset, rgba(0, 0, 0, 0.496094) 0px 1px 1px inset, rgba(255, 255, 255, 0.496094) 0px -1px 1px inset;
+}
+select[multiple=true],input[type=search]
+{
+	height:auto !important;
+}
+
+select
+{
+	-webkit-appearance:textfield;
+	padding-bottom:1px;
+	padding-top:0px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 5px inset, rgba(0, 0, 0, 0.496094) 0px 1px 1px inset, rgba(255, 255, 255, 0.496094) 0px -1px 1px inset;
+}
+
+.checkbox
+{
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	background-color:#1c1c1c;
+	float:left;
+	height:26px;
+	width:61px;
+	cursor:pointer;
+}
+.hinttext
+{
+	font-style:italic;
+	font-size:11px;
+	color:#777;
+}
+
+/* Hiding cloud-related ui elements */
+#desktop_package, #desktop_links {
+	display: none;
+}
+#tiui_statusbar {
+	display: none;
+}

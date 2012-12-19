@@ -34,6 +34,8 @@
 
 #include "../ui_module.h"
 
+#include <tideutils/win/win32_utils.h>
+
 using std::vector;
 using std::map;
 namespace ti

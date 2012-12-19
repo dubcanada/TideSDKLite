@@ -1,0 +1,211 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	
+<!-- JS -->
+<script type="text/javascript" src="js/entourage-jquery-3.0.js"></script>
+<script type="text/javascript" src="tiui/js/tiui-jquery.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/project.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/fbconnect.js"></script>
+
+
+<!-- Editor -->
+<script src="ceditor/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-css.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-html.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-json.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-php.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-ruby.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/mode-xml.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-clouds_midnight.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-clouds.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-eclipse.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-idle_fingers.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-kr_theme.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-merbivore_soft.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-merbivore.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-mono_industrial.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-pastel_on_dark.js" type="text/javascript" charset="utf-8"></script>
+<script src="ceditor/theme-vibrant_ink.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="ceditor/jsTree.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		document.addEventListener('keydown', function (event) {
+			//event.shiftKey
+			//event.ctrlKey
+			//event.altKey
+			//event.metaKey (aka command)
+
+			// F - fullscreen
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 70) {
+				$('#fullscreen_button').trigger('click');
+			}
+			// N - new
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 78) {
+				$('#new_project_button').trigger('click');
+			}
+			// I - import
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 73) {
+				$('.import_project_button').trigger('click');
+			}
+			// L - launch
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 76) {
+				if($('#desktop_packaging').is(":visible"))
+				{
+					if($('#desktop_package_detail').is(":visible"))
+					{
+						$('#launch_app_button').trigger('click');
+					}
+				}
+				if($('#mobile_packaging').is(":visible"))
+				{
+					if($('#mobile_emulator_container').is(":visible"))
+					{
+						if($('#mobile_iphone_emulator_container').is(":visible"))
+						{
+							$('#iphone_launch_button').trigger('click');
+						}
+						if($('#mobile_android_emulator_container').is(":visible"))
+						{
+							$('#android_launch_button').trigger('click');
+						}
+					}
+				}
+			}
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 83) {
+				if($('#code_editor').is(":visible"))
+				{
+					saveSelectedFile();
+				}
+			}
+			// K - Kill
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 75) {
+				if($('#desktop_packaging').is(":visible"))
+				{
+					if($('#desktop_package_detail').is(":visible"))
+					{
+						$('#launch_kill_button').trigger('click');
+					}
+				}
+				if($('#mobile_packaging').is(":visible"))
+				{
+					if($('#mobile_emulator_container').is(":visible"))
+					{
+						if($('#mobile_iphone_emulator_container').is(":visible"))
+						{
+							$('#iphone_kill_button').trigger('click');
+						}
+						if($('#mobile_android_emulator_container').is(":visible"))
+						{
+							$('#android_kill_button').trigger('click');
+						}
+					}
+				}
+			}
+			// D - dashboard
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 68) {
+				TiDev.subtabChange(0);
+			}
+			// P - project properties
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 80) {
+				TiDev.subtabChange(1);
+			}
+			// E - code editor
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 69) {
+				TiDev.subtabChange(2);
+			}
+			// T - test and package
+			if ((event.ctrlKey || event.metaKey) && event.keyCode == 84) {
+				TiDev.subtabChange(3);
+			}
+		});
+	});
+	/*
+	var notification = Ti.Notification.createNotification(window);
+	notification.setTitle('Plain JavaScript');
+	notification.setMessage('You pressed cmd+s');
+	notification.show();
+	*/
+</script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="tiui/css/tiui.css" type="text/css" />
+<link rel="stylesheet" href="css/index.css" type="text/css" />
+
+</head>
+<body>
+	<!-- HEADER -->
+	<div id="tiui_header">
+		<div id="tiui_perspective_bar" style="display:none;"></div>
+		
+		<div id="tiui_action_button_bar">
+			<div class="action_button" id="new_project_button">
+				<div><img src="images/new_project.png"/></div>
+				<span class="tiui-button-tab-title"><u>N</u>ew Project</span>
+			</div>
+			<div class="action_button" id="import_project_button">
+				<div><!--<img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" style="-webkit-mask-image: url(images/import_project.png); background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, from(#57A3FF), color-stop(0.5, #2488FF), color-stop(0.51, #0A7AFF), to(#006DF0)); height:30px; width:30px;"/>-->
+					<img src="images/import_project.png"/></div>
+				<span class="tiui-button-tab-title"><u>I</u>mport Project</span>
+			</div>
+			<div class="action_separator"></div>
+		</div>
+		
+		<div id="tiui_projects_selector">
+			<span class="tiui-button-tab-title">Projects:</span>
+			<select id="projects_selector">
+				<option>Loading...</option>
+			</select>
+		</div>
+		
+		<div id="tiui_message_area"></div>
+	</div>
+	
+	<!-- SECONDARY TAB BAR -->
+	<div id="tiui_tabbar"></div>
+	
+	
+	
+
+	<!-- BLACK CONTENT SUB MENU -->
+	<div id="tiui_content_submenu" style="display:none"></div>
+	
+	<!-- BODY -->
+	<div id="tiui_content_body">
+		<div id="tiui_content_left">
+			<div id="tiui_content_left_body"></div>
+		</div>
+		<div id="tiui_content_right"></div>
+	</div> 
+
+	<!-- FOOTER -->
+	<div id="tiui_footer">
+		<div id="tiui_drawer_button_hide"></div>
+		<div id="tiui_drawer_button_show"></div>
+		<div id="tiui_message_bar" style="display:none"></div>
+		<div id="tiui_statusbar">
+			<img id="tiui_cloud_on" src="images/cloud_on.png" title="our cloud is available"/>
+			<img id="tiui_cloud_off"  src="images/cloud_off.png" 
+				style="display:none" title="our cloud is down"/>
+			<img id="tiui_signal_on"  src="images/signal_on.png" title="you are connected to a network"/>
+			<img id="tiui_signal_off" src="images/signal_off.png" style="display:none"
+				title="you are not connected to a network"/>
+			<img id="tiui_shield_on"  src="images/shield_on.png" style="display:none;cursor:pointer"
+				title="you are authenticated.  click this icon to logout."/>			
+			<img id="tiui_shield_off"  src="images/shield_off.png"
+				title="you are not authenticated.  make sure you are on-line."/>			
+		</div>
+	</div>
+</body>
+</html>

@@ -32,6 +32,9 @@
 * limitations under the License.
 **/
 
+#include <tideutils/data_utils.h>
+#include <tideutils/platform_utils.h>
+
 #include <tide/tide.h>
 #include <Poco/Environment.h>
 #include <Poco/UUIDGenerator.h>

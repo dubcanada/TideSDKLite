@@ -1,5 +1,0 @@
----
-namespace: Ti.Database.DB
-type: object
-description: An object representing a Tide Database.
-since: 0.4.0

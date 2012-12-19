@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<style>
+		body {
+			background-image: url(app://background.png);
+			background-repeat: no-repeat;
+		}
+		
+		#close {
+			position: absolute;
+			top: 65px;
+			left: 82%;
+			cursor: pointer;
+			background-image: url(app://close.png);
+			background-repeat: no-repeat;
+			width: 32px;
+		}
+		
+		#content {
+			top: 78px;
+			left: 78px;
+			width: 423px;
+			
+			font-size: 80px;
+			font-family: "Trebuchet MS";
+			color: white;
+			vertical-align: middle;
+			
+			position: absolute;
+			overflow: hide;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="close" onclick="Titanium.App.exit();">&nbsp;</div>
+		
+		<div id="content">
+			<center>Hello world</center>
+		</div>
+		
+		<script type="text/javascript">
+		var dragging = false;
+		
+		function isDragElement(element) { return element==document.body; }
+		var diffX = 0, diffY = 0;
+		
+		document.addEventListener("mousedown", function(event)
+		{
+			diffX = event.pageX;
+			diffY = event.pageY;
+			if (isDragElement(document.elementFromPoint(event.pageX, event.pageY)))
+			{
+				dragging = true;
+				event.preventDefault();
+			}
+			return true;
+		});
+		
+		document.addEventListener("mouseup", function(event)
+		{
+			if (isDragElement(document.elementFromPoint(event.pageX, event.pageY)))
+			{
+				dragging = false;
+				event.preventDefault();
+			}
+			return true;
+		});
+		
+		document.addEventListener("mousemove", function(event)
+		{
+			if (dragging) {
+				window.moveTo(event.screenX - window.diffX, event.screenY - window.diffY);
+			}
+				
+			return true;
+		});
+		</script>
+	</body>
+</html>

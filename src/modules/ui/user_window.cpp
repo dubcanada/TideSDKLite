@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,6 +32,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
+
+#include <tide/url_utils.h>
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
 
 #include "ui_module.h"
 #include <tide/javascript/javascript_module_instance.h>
@@ -1299,7 +1304,7 @@ void UserWindow::ReadChooserDialogObject(
             std::cout << "Found " << listTypes->At(i)->ToString() << std::endl;
         }
     }
-    typesDescription = o->GetString("typesDescription", defaultName);
+    typesDescription = o->GetString("typesDescription", "Selected Files");
 
 }
 

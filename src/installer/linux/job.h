@@ -33,6 +33,7 @@
 **/
 
 #include <curl/curl.h>
+#include <tideutils/boot_utils.h>
 #define COMPONENT_JOB 0
 #define APPLICATION_JOB 1
 

@@ -1,0 +1,20 @@
+#appname:screengrabber
+#appid:com.arcaner.screengrabber
+#publisher:marshall
+#image:default_app_logo.png
+#url:http://www.arcaner.com
+#guid:5e2e6f90-ed6a-4439-8b1c-16a755f00b83
+#desc:No description provided
+#type:desktop
+runtime:1.2.0.RC4
+tiapp:1.2.0.RC4
+tifilesystem:1.2.0.RC4
+tiplatform:1.2.0.RC4
+tiui:1.2.0.RC4
+php:1.2.0.RC4
+tidatabase:1.2.0.RC4
+timedia:1.2.0.RC4
+timonkey:1.2.0.RC4
+tinetwork:1.2.0.RC4
+tiprocess:1.2.0.RC4
+tiworker:1.2.0.RC4

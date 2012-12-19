@@ -32,6 +32,11 @@
 * limitations under the License.
 **/
 
+#ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
 #include <tide/tide.h>
 #include "codec_binding.h"
 
@@ -53,6 +58,19 @@
 #include <Poco/Checksum.h>
 #include <Poco/File.h>
 #include <Poco/Path.h>
+
+#include <boost/archive/iterators/base64_from_binary.hpp>
+#include <boost/archive/iterators/binary_from_base64.hpp>
+#include <boost/archive/iterators/transform_width.hpp>
+#include <boost/archive/iterators/insert_linebreaks.hpp>
+#include <boost/archive/iterators/remove_whitespace.hpp>
+
+using namespace boost::archive::iterators;
+using namespace std;
+
+typedef transform_width< binary_from_base64<remove_whitespace<string::const_iterator> >, 8, 6 > it_binary_t;
+typedef insert_linebreaks<base64_from_binary<transform_width<string::const_iterator,6,8> >, 72 > it_base64_t;
+
 
 #define CODEC_MD2       1
 #define CODEC_MD4       2
@@ -187,24 +205,26 @@ namespace ti
     {
         args.VerifyException("encodeBase64", "s|o");
         
-        std::ostringstream str;
-        Poco::Base64Encoder encoder(str);
-        encoder << GetStringFromValue(args.at(0));
-        encoder.close();
-        std::string encoded = str.str();
-        result->SetString(encoded);
+        std::string s = GetStringFromValue(args.at(0));
+
+        // Encode
+        unsigned int writePaddChars = (3-s.length()%3)%3;
+        string base64(it_base64_t(s.begin()),it_base64_t(s.end()));
+        base64.append(writePaddChars,'=');
+	result->SetString(base64);
     }
 
     void CodecBinding::DecodeBase64(const ValueList& args, ValueRef result)
     {
         args.VerifyException("decodeBase64", "s");
 
-        std::string encoded = args.at(0)->ToString();
-        std::stringstream str;
-        str << encoded;
-        Poco::Base64Decoder decoder(str);
-        std::string decoded;
-        decoder >> decoded;
+        std::string base64 = args.at(0)->ToString();
+
+        // Decode
+        unsigned int paddChars = std::count(base64.begin(), base64.end(), '=');
+        std::replace(base64.begin(),base64.end(),'=','A'); // replace '=' by base64 encoding of '\0'
+        std::string decoded(it_binary_t(base64.begin()), it_binary_t(base64.end())); // decode
+        decoded.erase(decoded.end()-paddChars, decoded.end());  // erase padding '\0' characters
         result->SetString(decoded);
     }
 

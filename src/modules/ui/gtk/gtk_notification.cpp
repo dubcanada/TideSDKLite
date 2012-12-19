@@ -32,6 +32,7 @@
 * limitations under the License.
 **/
 
+#include <tide/url_utils.h>
 #include "../notification.h"
 #include <libnotify/notify.h>
 

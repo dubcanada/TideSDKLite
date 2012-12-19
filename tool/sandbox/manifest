@@ -1,0 +1,24 @@
+#appname:Sandbox
+#version:1.0
+#appid:org.tidesdk.sandbox
+#publisher:Software In Public Interest (SPI)
+#image:default_app_logo.png
+#url:http://tidesdk.org
+#guid:C33218F4-A11B-4909-9FEE-116EDB34750B
+#desc:TideSDK Sandbox
+sdk:
+runtime:
+app:
+filesystem:
+platform:
+ui:
+python:
+ruby:
+php:
+media:
+monkey:
+network:
+process:
+database:
+worker:
+codec:

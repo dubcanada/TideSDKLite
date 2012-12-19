@@ -41,8 +41,7 @@ build = BuildConfig(
     CONFIG_FILENAME = 'tiapp.xml',
     BUILD_DIR = path.abspath('build'),
     THIRD_PARTY_DIR = path.join(path.abspath('src'), 'thirdparty'),
-    DISTRIBUTION_URL = 'api.appcelerator.net',
-    CRASH_REPORT_URL = 'api.appcelerator.net/p/v1/app-crash-report'
+    DISTRIBUTION_URL = 'api.tidesdk.org',
 )
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
@@ -65,6 +64,7 @@ build.env.Append(CPPPATH=[
 
 # debug build flags
 debug = ARGUMENTS.get('debug', 0)
+lite  = ARGUMENTS.get('lite', 0)
 if debug:
     build.env.Append(CPPDEFINES = ('DEBUG', 1))
     if build.is_win32():
@@ -81,8 +81,9 @@ if build.is_win32():
     build.env.Append(LINKFLAGS=['/DEBUG', '/PDB:${TARGET}.pdb'])
 
 LIBTIDE_NAME = 'tide'
+LIBUTILS_NAME = 'tideutils'
 
-Export('build', 'debug', 'LIBTIDE_NAME')
+Export('build', 'debug', 'LIBTIDE_NAME', 'LIBUTILS_NAME')
 targets = COMMAND_LINE_TARGETS
 clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
@@ -99,6 +100,11 @@ if ARGUMENTS.get('test_crash', 0):
 
 ## Kroll *must not be required* for installation
 SConscript('SConscript.thirdparty')
+
+SConscript('src/lib/utils/SConscript', variant_dir=path.join(build.dir,'objs','lib/utils'), duplicate=0)
+
+build.env.Append(CPPPATH=[build.tide_include_dir])
+
 SConscript('src/installer/SConscript')
 
 # After libtide builds, the environment will  link 
@@ -106,12 +112,14 @@ SConscript('src/installer/SConscript')
 # linked against libtide should be above this point.
 
 SConscript('src/boot/SConscript', variant_dir=path.join(build.dir, 'objs', 'boot'), duplicate=0)
-SConscript('src/libtide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
+build.env.Append(CPPDEFINES=[('USE_POCO_LIB', 1)])
+build.env.Append(LIBS=[LIBUTILS_NAME])
+build.env.Append(LIBPATH=[build.runtime_build_dir])
+SConscript('src/lib/tide/SConscript', variant_dir=path.join(build.dir,'objs','libtide'), duplicate=0)
 
 # Now that libtide is built add it as a default for
 # all the following build steps.
 build.env.Append(LIBS=[LIBTIDE_NAME])
-build.env.Append(LIBPATH=[build.runtime_build_dir])
 
 SConscript('src/lang/SConscript')
 
@@ -124,4 +132,4 @@ run = ARGUMENTS.get('run', 0)
 run_with = ARGUMENTS.get('run_with', 0)
 
 Export('run','run_with')
-SConscript('tools/SConscript')
+SConscript('tool/SConscript')

@@ -4,6 +4,9 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
+
 #include "app_module.h"
 #include "app_config.h"
 #include "app_binding.h"

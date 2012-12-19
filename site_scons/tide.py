@@ -79,7 +79,6 @@ class BuildConfig(object):
         vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
         vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
-        vars.Add('CRASH_REPORT_URL','The URL to send crash dumps to', kwargs['CRASH_REPORT_URL'])
         vars.Add('MSVC_VERSION', '', '8.0')
 
         def add_environ_arg(key, description, default):
@@ -88,8 +87,8 @@ class BuildConfig(object):
                 default_value = os.environ[key]
             vars.Add(key, description, default_value)
 
-        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
-        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
+        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
+        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
         add_environ_arg('MSVS', 'Path of Microsoft Visual Studio', 'C:\\Program Files\\Microsoft Visual Studio 8')
         add_environ_arg('PKG_CONFIG_PATH', 'The path for pkg-config', '/usr/lib/pkgconfig')
         add_environ_arg('PYTHON_VERSION', 'The version of Python to build against', '2.7')
@@ -107,7 +106,6 @@ class BuildConfig(object):
             ['_BOOT_RUNTIME_FLAG', '${BOOT_RUNTIME_FLAG}'],
             ['_BOOT_HOME_FLAG', '${BOOT_HOME_FLAG}'],
             ['_DISTRIBUTION_URL', '${DISTRIBUTION_URL}'],
-            ['_CRASH_REPORT_URL', '${CRASH_REPORT_URL}'],
         ])
         self.version = self.env['PRODUCT_VERSION']
 
@@ -141,22 +139,7 @@ class BuildConfig(object):
     def set_tide_source_dir(self, dir):
         self.tide_source_dir = path.abspath(dir)
         self.tide_include_dir = path.join(self.dir, 'sdk', 'include')
-        self.tide_utils_dir = path.join(self.tide_source_dir, 'libtide', 'utils');
-
-    # Get a separate copy of the Kroll Utils for a particular build piece
-    # Give: A unique directory for that build piece where the utils should be copied
-    def get_tide_utils(self, dir, unzip=True):
-        effess.copy_to_dir(self.tide_utils_dir, dir)
-        sources = Glob('%s/utils/*.cpp' % dir) + \
-            Glob('%s/utils/poco/*.cpp' % dir) + \
-            Glob('%s/utils/%s/*.cpp' % (dir, self.os))
-        if self.is_win32() and unzip:
-            sources.extend(Glob('%s/utils/unzip/*.cpp' % dir))
-        if self.is_osx():
-            sources.extend(Glob('%s/utils/%s/*.mm' % (dir, self.os)))
-        if self.is_osx() or self.is_linux():
-            sources.extend(Glob('%s/utils/posix/*.cpp' % dir))
-        return sources
+        self.tide_utils_dir = path.join(self.tide_source_dir, 'lib', 'utils');
 
     def init_os_arch(self):
         if self.is_linux() and self.is_64():
@@ -210,33 +193,61 @@ class BuildConfig(object):
             libs = ['PocoFoundation', 'PocoNet', 'PocoUtil', 'PocoXML',
                 'PocoZip', 'PocoData', 'PocoSQLite']
 
-        if name is 'curl' and self.is_win32(): # Don't judge us!
-            cpppath = [self.tp('webkit', 'include')]
-            libpath = [self.tp('webkit', 'lib')]
-            libs = ['libcurl_imp']
-
-        elif name is 'curl':
+        if name is 'curl':
             cpppath = [self.tp('curl', 'include')]
             libpath = [self.tp('curl', 'lib')]
-            libs = ['curl']
+	    if self.is_win32():
+	        libs = ['libcurl_imp']
+            else:
+                libs = ['curl']
 
         elif name is 'cairo' and self.is_win32():
-            cpppath = [self.tp('webkit', 'include')]
-            libpath = [self.tp('webkit', 'lib')]
+            cpppath = [self.tp('cairo', 'include')]
+            libpath = [self.tp('cairo', 'lib')]
             libs = ['cairo']
 
-        elif name is 'libproxy' and self.is_win32():
+        elif name is 'libproxy' and (self.is_win32() or self.is_linux()):
             cpppath = [self.tp('libproxy', 'include')]
             libpath = [self.tp('libproxy', 'lib')]
             libs = ['libproxy']
 
+        elif name is 'libsoup' and self.is_linux():
+            cpppath = [self.tp('libsoup', 'include')]
+            libpath = [self.tp('libsoup', 'lib')]
+            libs = ['libsoup-2.4', 'libsoup-gnome-2.4']
+
+        elif name is 'boost':
+            if not self.is_linux():
+                cpppath = [self.tp('boost', 'include')]
+                libpath = [self.tp('boost', 'lib')]
+            # add mac libs as it doesn't pick them up automatically
+            if self.is_osx() or self.is_linux():
+                libs = ['boost_system-mt', 'boost_thread-mt']
+
+        elif name is 'boost_include':
+            if not self.is_linux():
+                cpppath = [self.tp('boost', 'include')]
+
+        elif name is 'openssl':
+            cpppath = [self.tp('openssl', 'include')]
+            libpath = [self.tp('openssl', 'lib')]
+            if self.is_win32():
+                libs = ['libeay32', 'ssleay32']
+            if self.is_osx():
+                libs = ['ssl', 'crypto']
+
         if name is 'webkit':
-            if self.is_win32() or self.is_linux():
+            if self.is_win32():
                 cpppath = [self.tp('webkit', 'include')]
                 libpath = [self.tp('webkit', 'lib')]
 
             if self.is_linux():
-                cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
+                if self.tidelite is False:
+                    cpppath = [self.tp('webkit', 'include')]
+                    libpath = [self.tp('webkit', 'lib')]
+                    cpppath.append(self.tp('webkit', 'include', 'glib-2.0'))
+                else:
+                    cpppath = ['/usr/include/webkitgtk-1.0/']
 
             if self.is_win32():
                 if self.tidelite:
@@ -252,7 +263,10 @@ class BuildConfig(object):
                 libs = [x + suffix for x in libs]
 
             if self.is_linux():
-                libs = ['webkittitanium-1.0']
+                if self.tidelite is False:
+                    libs = ['webkittitanium-1.0']
+                else:
+                    libs = ['webkitgtk-1.0']
 
             if self.is_osx():
                 if self.tidelite is False:

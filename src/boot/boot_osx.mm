@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -35,6 +36,7 @@
 #import <Cocoa/Cocoa.h>
 #import <dlfcn.h>
 #import "boot.h"
+#import <tideutils/file_utils.h>
 
 @interface TideApplicationDelegate : NSObject
 -(BOOL)application:(NSApplication*)theApplication

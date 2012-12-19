@@ -32,11 +32,11 @@
 * limitations under the License.
 **/
 
-#include <tide/utils/utils.h>
+#include <tideutils/application.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/win/win32_utils.h>
 using namespace TideUtils;
-using TideUtils::Application;
-using TideUtils::SharedApplication;
-using TideUtils::KComponentType;
 using std::wstring;
 using std::string;
 

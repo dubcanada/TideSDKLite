@@ -32,6 +32,14 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tide/url_utils.h>
+#ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
+
 #include "php_module.h"
 #include <sstream>
 #include <map>

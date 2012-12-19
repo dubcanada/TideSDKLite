@@ -61,7 +61,9 @@ namespace ti
         static void ErrorDialog(std::string);
 
         protected:
+#ifndef TIDE_LITE
         SharedPtr<ScriptEvaluator> evaluator;
+#endif
         AutoPtr<GtkMenu> menu;
         AutoPtr<GtkMenu> contextMenu;
         std::string iconPath;

@@ -1,0 +1,31 @@
+#project_edit
+{
+	padding:20px;
+	padding-left:40px;
+	padding-right:40px;
+}
+#project_edit p
+{
+	margin-top:0px;
+	font-weight:normal;
+	font-size:21px;
+	margin-bottom:10px;
+	color:#999;
+	cursor:pointer;
+	/*margin-left:-15px;*/
+}
+
+#project_edit #edit_project_name
+{
+	text-shadow: 3px 3px 3px black;
+}
+
+#project_edit .frame
+{
+	margin: 0 auto;
+	border-radius: 5px;
+	/*-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 5px inset, rgba(0, 0, 0, 0.496094) 0px 1px 1px inset, rgba(255, 255, 255, 0.496094) 0px -1px 1px inset;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0.496094)), to(rgba(0, 0, 0, 0.246094)));*/
+	background-color:#222;
+}
+

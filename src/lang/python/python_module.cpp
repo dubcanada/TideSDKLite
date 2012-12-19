@@ -33,6 +33,12 @@
 **/
 
 #include "python_module.h"
+#include <tideutils/file_utils.h>
+#ifdef OS_WIN32
+#include <tideutils/win/win32_utils.h>
+#else
+#include <tideutils/posix/posix_utils.h>
+#endif
 #include <signal.h>
 #include <Poco/Path.h>
 

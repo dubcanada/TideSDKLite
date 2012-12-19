@@ -1,5 +1,0 @@
----
-namespace: Ti.Database.ResultSet
-type: object
-description: An object representing a set of result from a Database.DB query.
-since: 0.4.0

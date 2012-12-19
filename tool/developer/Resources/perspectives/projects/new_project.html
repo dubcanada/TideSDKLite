@@ -1,0 +1,165 @@
+
+<div id="projects" >
+	<div style="margin:0 auto;width:540px;">
+	<table width="100%">
+		<tr>
+			<td valign="top" width="100%"> <!-- 60% -->
+	<p>
+		<img src="images/new_project.png"/>
+		<span style="position:relative;top:-5px;color:#fff;text-shadow: 3px 3px 3px black;">
+		New Project
+		</span>
+	</p>
+	<div class="frame" style="height:340px;width:540px;margin:0 auto;">
+		<div id="project_type">
+			<div class="label">Project type:</div>
+			<select id="new_project_type">
+				<option>Loading...</option>
+			</select>
+		</div>
+			<div style="clear:both;height:10px"></div>
+
+			<div class="label">Name:</div>
+			<input type="text" class="new_project required" id="new_project_name" />
+
+			<div style="clear:both;height:10px"></div>
+
+			<div class="label">App Id:</div>
+			<input type="text" class="new_project appid hinttext" id="new_project_appid" 
+				value="com.companyname.appname" />
+
+			<div style="clear:both;height:10px"></div>
+
+			<div class="label">Directory:</div>
+			<div>
+				<input type="text" id="new_project_location" style="float:left" class="new_project required" />
+				<div style="float:left;margin-left:5px;position:relative;top:5px;cursor:pointer" 
+					id="new_project_location_icon">
+					<img src="images/folder_go.png"/>
+				</div>
+			</div>
+
+			<div style="clear:both;height:10px"></div>
+
+			<div class="label">Company/Personal URL:</div>
+			<input type="text" class="new_project required" id="new_project_url" />
+
+
+			<div style="clear:both;height:10px"></div>
+
+			<div  class="label">Titanium SDK version:</div>
+			<select id="new_project_runtime">
+			</select>
+
+			<!-- <div style="clear:both;height:10px"></div>
+
+			<div  class="label">JS Libraries (optional):</div>
+			<select multiple="true" id="new_project_js" style="width:350px">
+			</select> -->
+
+			<div style="clear:both;height:10px"></div>
+
+			<!-- MOBILE PLATFORMS -->
+			<div id="mobile_platforms" style="display:none">
+				<div class="label">Installed Mobile Platforms:</div>
+				<div class="input">
+
+					<!-- IPHONE -->
+					<div class="checkbox" id="platform_iphone" style="width:170px">
+						<div id="iphone_sdk_true" style="display:none">
+							<img src="images/switch_on.png" id="platform_iphone_checked" 
+								style="position:relative;top:3px;left:3px;"/>
+							<span  style="color:#fff;font-size:12px;margin-left:10px;position:relative;top:-2px">
+								iOS SDK
+							</span>
+						</div>
+						<div id="iphone_sdk_false" style="display:block">
+							<img src="images/switch_off.png" id="platform_iphone_unchecked" 
+								style="position:relative;top:3px;left:3px;"/>
+							<span  style="color:#fff;font-size:12px;margin-left:10px;position:relative;top:-2px">
+								iOS SDK
+							</span>
+						</div>
+					</div>
+
+					<!-- ANDROID -->
+					<div class="checkbox" id="platform_android" style="width:170px;margin-left:10px">
+						<div id="android_sdk_true" style="display:none">
+							<img src="images/switch_on.png" id="platform_android_checked" 
+								style="position:relative;top:3px;left:3px;"/>
+							<span  style="color:#fff;font-size:12px;margin-left:10px;position:relative;top:-3px">
+								Android SDK
+							</span>
+						</div>
+						<div id="android_sdk_false" style="display:block">
+							<img src="images/switch_off.png" id="platform_android_unchecked" 
+								style="position:relative;top:3px;left:3px;"/>
+							<span style="color:#fff;font-size:12px;margin-left:10px;position:relative;top:-3px">
+								Android SDK
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- PROJECT LANGUAGE MODULES -->
+			<div id="desktop_language_modules">
+				<div class="label">Language Modules:</div>
+				<div class="input">
+					<!-- RUBY -->
+					<div class="checkbox" id="language_ruby">
+						<img src="images/switch_on.png" id="language_ruby_checked" 
+							style="position:relative;top:3px;left:3px;display:none"/>
+						<img src="images/switch_off.png" id="language_ruby_unchecked" 
+							style="position:relative;top:3px;left:3px;display:inline"/>
+					</div>
+					<div class="label" style="margin-left:5px;margin-right:10px;width:50px">Ruby</div>
+					
+					<!-- PYTHON -->
+					<div class="checkbox" id="language_python">
+						<img src="images/switch_on.png" id="language_python_checked" 
+							style="position:relative;top:3px;left:3px;display:none"/>
+						<img src="images/switch_off.png" id="language_python_unchecked" 
+							style="position:relative;top:3px;left:3px;display:inline"/>
+
+					</div>
+					<div class="label" style="width:50px;margin-left:5px;margin-right:15px">Python</div>
+					
+					<!-- PHP -->
+					<div class="checkbox" id="language_php">
+						<img src="images/switch_on.png" id="language_php_checked" 
+							style="position:relative;top:3px;left:3px;display:none"/>
+						<img src="images/switch_off.png" id="language_php_unchecked" 
+							style="position:relative;top:3px;left:3px;display:inline"/>
+
+					</div>
+
+					<div class="label" style="width:50px;margin-left:5px">PHP</div>
+					
+					<div style="clear:both;height:4px"></div>
+					
+					<div style="margin-left:5px;font-size:11px;color:#ddd;position:relative;top:5px;width:350px;text-align:center;">
+						(switch on to include)
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;height:20px"></div>
+
+			<div id="cancel_project_button"  
+				style="width:70px;margin-top:10px;float:right">Cancel</div>
+				
+			<div id="create_project_button" class="disabled"  
+				style="width:120px;margin-top:10px;margin-right:10px;margin-left:20px;float:right">Create Project</div>
+			
+			</td>
+			<!-- ADS REMOVED 
+			<td valign="top" width="40%" align="left">
+				<div style="background-color:#1e1e1e">
+					<div id="new_project_ads" style="height:450px;width:200px;margin-left:15px"></div>
+				</div>
+			</td>
+			-->
+		</tr>
+	</table>
+	</div>
+</div>

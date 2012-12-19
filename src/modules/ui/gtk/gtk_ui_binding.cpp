@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -32,6 +33,11 @@
 * limitations under the License.
 **/
 
+#include <tideutils/url_utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/file_utils.h>
+using namespace TideUtils;
+
 #include "../ui_module.h"
 #include "../url/url.h"
 #include <unistd.h>
@@ -51,19 +57,22 @@ namespace ti
         contextMenu(0),
         iconPath("")
     {
+#ifndef TIDE_LITE
         // Prepare the custom URL handlers
         webkit_titanium_set_normalize_url_cb(NormalizeURLCallback);
         webkit_titanium_set_url_to_file_url_cb(URLToFileURLCallback);
         webkit_titanium_set_can_preprocess_cb(CanPreprocessURLCallback);
         webkit_titanium_set_preprocess_cb(PreprocessURLCallback);
-
+#endif
         // Setup libsoup proxy support
         SoupSession* session = webkit_get_default_session();
         soup_session_add_feature_by_type(session, SOUP_TYPE_PROXY_RESOLVER_GNOME);
 
+#ifndef TIDE_LITE
         std::string webInspectorPath(host->GetApplication()->runtime->path);
         webInspectorPath = FileUtils::Join(webInspectorPath.c_str(), "webinspector", NULL);
         webkit_titanium_set_inspector_url(webInspectorPath.c_str());
+#endif
 
         //webkit_set_cache_model(WEBKIT_CACHE_MODEL_DOCUMENT_VIEWER);
     }

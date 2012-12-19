@@ -32,6 +32,9 @@
 * limitations under the License.
 **/
 
+#include <tide/url_utils.h>
+#include <tideutils/url_utils.h>
+
 #include "gst_media_binding.h"
 #include <gdk/gdk.h>
 

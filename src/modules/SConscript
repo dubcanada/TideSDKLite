@@ -39,7 +39,6 @@ Import('build build_module_from_directory')
 for dir in [
     'app', 
     'ui',
-    'update',
     'network',
     'filesystem',
     'media',
@@ -48,6 +47,6 @@ for dir in [
     'monkey',
     'database',
     'worker',
-    'codec'
+    'codec',
 ]:
     build_module_from_directory(dir)

@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37,7 +38,9 @@
 #include <vector>
 #include <gtk/gtk.h>
 #include <glib.h>
-#include <utils.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/application.h>
 
 using namespace TideUtils;
 using TideUtils::Application;

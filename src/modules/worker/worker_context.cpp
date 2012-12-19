@@ -32,6 +32,8 @@
 * limitations under the License.
 **/
 
+#include <tide/url_utils.h>
+
 #include "worker_context.h"
 #include "worker.h"
 #include <tide/javascript/javascript_module.h>

@@ -59,7 +59,13 @@
 #  endif
 #endif
 
-#include <tide/base.h>
+#include <tide/tide.h>
+
+#ifdef OS_WIN32
+#include <windows.h>
+#include <Winsock2.h>
+#endif
+
 #include <string>
 #include <vector>
 #include <ruby.h>
@@ -72,7 +78,6 @@
 #undef close
 #undef shutdown
 
-#include <tide/tide.h>
 #include "ruby_object.h"
 #include "ruby_hash.h"
 #include "ruby_method.h"

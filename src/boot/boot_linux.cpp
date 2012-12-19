@@ -3,6 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
+* Copyright (c) 2012 Mital Vora
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,14 +35,13 @@
 
 #include <dlfcn.h>
 #include <libgen.h>
-#include <limits.h>
 #include <errno.h>
 #include <gtk/gtk.h>
 #include "boot.h"
+#include <tideutils/file_utils.h>
 
 namespace TideBoot
 {
-    extern string applicationHome;
     extern string updateFile;
     extern SharedApplication app;
     extern int argc;

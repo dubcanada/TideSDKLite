@@ -1,0 +1,61 @@
+* {
+	font-family: "Trebuchet MS";
+}
+
+body {
+	background-color: #333;
+}
+
+#titlebar {
+	background-color: #666;
+	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-top-left-radius: 15px;
+	color: white;
+	font-weight: bold;
+	font-size: 20pt;
+	padding: 5px;
+}
+
+#close {
+	width: 25px;
+	height: 20px;
+	cursor: pointer;
+}
+
+#close-container {
+	float: right;
+	padding: 5px;
+}
+
+#quicksnap {
+	-webkit-border-radius: 5px;
+	-webkit-appearance: push-button;
+	background-color: #444;
+	color: white;
+	width: 125px;
+	padding: 3px;
+	font-size: 12pt;
+	margin-top: 5px;
+}
+
+#editarea {
+	margin-top: 5px;
+	height: 85%;
+	-webkit-border-radius: 5px;
+	border: 2px #ccc solid;
+	background-color: #444;
+	overflow: auto;
+	position: relative;
+	font-weight: bold;
+	font-size: 20pt;
+	text-transform: uppercase;
+	color: #666;
+}
+
+#dragarea {
+	opacity: 0.5;
+	border: 1px solid white;
+	-webkit-border-radius: 10px;
+	background-color: #111;
+	position: absolute;
+}

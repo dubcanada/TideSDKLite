@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>HTML5 Audio tag demo</h1>
+    <audio id="player" controls="controls"/>
+    <script>
+      window.onload = function () {
+        // Set audio file to be played. We need to use Ti.File
+        // to convert an app:// URL to a file:// URL so the audio tag
+        // can load the media file.
+        var audioFile = Titanium.Filesystem.getFile("app://Resources/science.mp3");
+        document.getElementById("player").src = audioFile.toURL();
+      }
+    </script>
+  </body>
+</html>

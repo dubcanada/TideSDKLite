@@ -39,7 +39,11 @@
 #include <windows.h>
 #include <tide/net/proxy_config.h>
 
-#include <tide/net/proxy_config.h>
+#include <tideutils/file_utils.h>
+#include <tideutils/boot_utils.h>
+#include <tideutils/win/win32_utils.h>
+
+
 
 using std::vector;
 namespace ti
