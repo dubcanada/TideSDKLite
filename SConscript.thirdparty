@@ -93,6 +93,10 @@ if build.is_linux():
 
 elif build.is_win32():
     libs = ['boost', 'libproxy', 'poco', 'webkit', 'curl', 'cairo']
+    if build.tidelite is False:
+        libs.append('webkit-patch')
+    else:
+        libs.append('webkit-lite')
     for libdir in libs:
         effess.copy_tree(path.join(build.third_party, libdir, 'bin'), rtdir)
     effess.copy_tree(path.join(build.third_party, 'sdk'), path.join(build.dir, 'sdk'))
