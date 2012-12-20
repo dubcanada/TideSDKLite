@@ -238,8 +238,12 @@ class BuildConfig(object):
 
         if name is 'webkit':
             if self.is_win32():
-                cpppath = [self.tp('webkit', 'include')]
-                libpath = [self.tp('webkit', 'lib')]
+	        if self.tidelite is False:
+                    cpppath = [self.tp('webkit', 'include')]
+                    libpath = [self.tp('webkit', 'lib')]
+	        else: 
+                    cpppath = [self.tp('webkit-lite', 'include')]
+                    libpath = [self.tp('webkit-lite', 'lib')]
 
             if self.is_linux():
                 if self.tidelite is False:
