@@ -10,8 +10,6 @@ build.add_thirdparty(env, 'libxml')
 
 if build.is_win32():
 	env.Append(CCFLAGS=['/MD', '/DUNICODE', '/D_UNICODE'])
-	env.Append(CPPPATH=[build.tp('icu','include')])
-	env.Append(LIBS=['pthreadVC2'])
 	build.add_thirdparty(env, 'webkit')
 else:
 	env.Append(ENV = {'PATH' : os.environ['PATH']})

@@ -206,7 +206,7 @@ class BuildConfig(object):
                 cpppath = ['/usr/include/libxml2']
                 libs = ['xml2']
             elif self.is_win32():
-                cpppath = [self.tp('libxml', 'include')]
+                cpppath = [self.tp('libxml', 'include'), self.tp('icu', 'include')]
                 libs = ['libxml2']
 
         elif name is 'cairo' and self.is_win32():
