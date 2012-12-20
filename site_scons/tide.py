@@ -201,6 +201,14 @@ class BuildConfig(object):
             else:
                 libs = ['curl']
 
+        elif name is 'libxml':
+            if self.is_osx():
+                cpppath = ['/usr/include/libxml2']
+                libs = ['xml2']
+            elif self.is_win32():
+                cpppath = [self.tp('libxml', 'include')]
+                libs = ['libxml2']
+
         elif name is 'cairo' and self.is_win32():
             cpppath = [self.tp('cairo', 'include')]
             libpath = [self.tp('cairo', 'lib')]
