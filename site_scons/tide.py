@@ -79,7 +79,7 @@ class BuildConfig(object):
         vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
         vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
-        vars.Add('MSVC_VERSION', '', '8.0')
+        vars.Add('MSVC_VERSION', '', '8.0Exp')
 
         def add_environ_arg(key, description, default):
             default_value = default
