@@ -79,7 +79,7 @@ class BuildConfig(object):
         vars.Add('GLOBAL_NAMESPACE','The name of the Tide global variable', kwargs['GLOBAL_NAMESPACE'])
         vars.Add('CONFIG_FILENAME','The name of the Tide config file', kwargs['CONFIG_FILENAME'])
         vars.Add('DISTRIBUTION_URL','The base URL of all streams', kwargs['DISTRIBUTION_URL'])
-        vars.Add('MSVC_VERSION', '', '8.0')
+        vars.Add('MSVC_VERSION', '', '8.0Exp')
 
         def add_environ_arg(key, description, default):
             default_value = default
@@ -87,8 +87,8 @@ class BuildConfig(object):
                 default_value = os.environ[key]
             vars.Add(key, description, default_value)
 
-        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
-        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
+        #add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK for Windows Server 2003 R2')
+        add_environ_arg('MSPSDK', 'Path of the Microsoft Platform SDK', 'C:\\Program Files\\Microsoft Platform SDK')
         add_environ_arg('MSVS', 'Path of Microsoft Visual Studio', 'C:\\Program Files\\Microsoft Visual Studio 8')
         add_environ_arg('PKG_CONFIG_PATH', 'The path for pkg-config', '/usr/lib/pkgconfig')
         add_environ_arg('PYTHON_VERSION', 'The version of Python to build against', '2.7')
@@ -201,6 +201,14 @@ class BuildConfig(object):
             else:
                 libs = ['curl']
 
+        elif name is 'libxml':
+            if self.is_osx():
+                cpppath = ['/usr/include/libxml2']
+                libs = ['xml2']
+            elif self.is_win32():
+                cpppath = [self.tp('libxml', 'include'), self.tp('icu', 'include')]
+                libs = ['libxml2']
+
         elif name is 'cairo' and self.is_win32():
             cpppath = [self.tp('cairo', 'include')]
             libpath = [self.tp('cairo', 'lib')]
@@ -240,6 +248,12 @@ class BuildConfig(object):
             if self.is_win32():
                 cpppath = [self.tp('webkit', 'include')]
                 libpath = [self.tp('webkit', 'lib')]
+	        if self.tidelite is False:
+                    cpppath = [self.tp('webkit-patch', 'include')]
+                    libpath = [self.tp('webkit-patch', 'lib')]
+	        else: 
+                    cpppath = [self.tp('webkit-lite', 'include')]
+                    libpath = [self.tp('webkit-lite', 'lib')]
 
             if self.is_linux():
                 if self.tidelite is False:

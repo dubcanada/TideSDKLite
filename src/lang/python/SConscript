@@ -53,7 +53,7 @@ elif build.is_linux():
 elif build.is_win32():
     env.Append(CPPPATH=[build.tp('python', 'include')])
     env.Append(LIBPATH=[build.tp('python', 'libs')])
-    env.Append(LIBS=['python25'])
+    env.Append(LIBS=['python27'])
     env.Append(CCFLAGS = ['/MD'])
 
 build.mark_build_target(env.SharedLibrary(
