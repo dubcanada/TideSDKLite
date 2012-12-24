@@ -39,10 +39,6 @@ env.Append(CPPPATH = ['%s/src/modules/app' % build.tide_source_dir])
 
 build.add_thirdparty(env, 'poco')
 build.add_thirdparty(env, 'webkit')
-if build.tidelite:
-	build.add_thirdparty(env, 'webkit-lite')
-else:
-	build.add_thirdparty(env, 'webkit-patch')
 	
 env.Append(LIBS=['tideapp'])
 
