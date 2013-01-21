@@ -109,6 +109,18 @@ namespace tide
         return loggers[name];
     }
 
+    /*static*/
+    void Logger::updateLogLevelForAllLoggers(Level& level)
+    {
+        for(std::map<std::string, Logger*>::iterator
+            iter = loggers.begin();
+        iter != loggers.end();
+        ++iter)
+        {
+             iter->second->SetLevel(level);
+        }
+    }
+
     Logger::Level Logger::GetLevel(std::string& levelString)
     {
         if (levelString == "TRACE")

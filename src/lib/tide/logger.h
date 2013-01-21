@@ -117,6 +117,7 @@ namespace tide
         void Fatal(std::string);
         void Fatal(const char*, ...);
 
+        static void updateLogLevelForAllLoggers(Level& level);
         protected:
         std::string name;
         Level level;

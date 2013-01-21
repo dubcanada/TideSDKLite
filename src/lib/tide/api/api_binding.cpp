@@ -517,7 +517,9 @@ namespace tide
     void APIBinding::_SetLogLevel(const ValueList& args, ValueRef result)
     {
         args.VerifyException("setLogLevel", "s|n");
-        Logger::GetRootLogger()->SetLevel(ValueToLevel(args.at(0)));
+        Logger::Level level(ValueToLevel(args.at(0)));
+        Logger::GetRootLogger()->SetLevel(level);
+	Logger::updateLogLevelForAllLoggers(level);
     }
 
     void APIBinding::_GetLogLevel(const ValueList& args, ValueRef result)
