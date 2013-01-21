@@ -51,6 +51,6 @@ Open the file /source/guides.json and add your created guide to some section whe
 If you are not sure, or would need to create a new section, talk to us on IRC, first.
 
 
-[our documentation project]: https://github.com/TideSDK/TideSDK-User-Docs
+[our documentation project]: https://github.com/TideSDK/TideSDK/tree/master/doc
 [#tidesdk @ freenode.net]: irc://chat.freenode.net#tidesdk
 [JSduck documentation]: https://github.com/senchalabs/jsduck/wiki
