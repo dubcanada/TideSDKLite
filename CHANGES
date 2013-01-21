@@ -24,6 +24,7 @@ Changelog
 - Remove legacy update manager.
 - Remove legacy apidoc folder.
 - Fold in TideSDK-User-Docs into doc folder.
+- Fixed Logger Issue (Ti.API.setLogLevel not working)
 
 1.3.1-beta (released 2012-11-15)
 --------------------------------
