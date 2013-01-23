@@ -54,6 +54,12 @@ namespace TideUtils
 {
 namespace FileUtils
 {
+    std::string GetAppDataDirectory()
+    {
+        passwd *user = getpwuid(getuid());
+        return std::string(user->pw_dir);
+    }
+
     std::string GetUserRuntimeHomeDirectory()
     {
         string pname = PRODUCT_NAME;

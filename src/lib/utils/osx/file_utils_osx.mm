@@ -44,6 +44,15 @@
 
 namespace TideUtils
 {
+    std::string FileUtils::GetAppDataDirectory()
+    {
+        // As of Mac 10.7 /Library/ is no longer writable by anyone but root
+        // We are going to install it into ~/Library/
+        NSString* nsPath = [NSSearchPathForDirectoriesInDomains(
+            NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+        return [[nsPath stringByExpandingTildeInPath] UTF8String];
+    }
+
     std::string FileUtils::GetUserRuntimeHomeDirectory()
     {
         // As of Mac 10.7 /Library/ is no longer writable by anyone but root

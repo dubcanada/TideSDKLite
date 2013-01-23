@@ -217,7 +217,7 @@ namespace tide
         }
         else if (this->logFilePath.empty())
         {
-            string dataDir = FileUtils::GetApplicationDataDirectory(this->application->name);
+            string dataDir = this->application->GetDataPath();
             this->logFilePath = FileUtils::Join(dataDir.c_str(), "tiapp.log", 0);
         }
 

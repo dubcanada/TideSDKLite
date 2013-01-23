@@ -67,10 +67,15 @@ namespace TideUtils
 {
 namespace FileUtils
 {
-    std::string GetApplicationDataDirectory(std::string appname)
+    std::string GetApplicationDataDirectory(const std::string& appname)
     {
-        std::string dir(GetUserRuntimeHomeDirectory());
+        std::string dir(GetAppDataDirectory());
+#ifndef OS_LINUX
         dir = FileUtils::Join(dir.c_str(), appname.c_str(), NULL);
+#else
+	std::string appname_ = "." + appname;
+        dir = FileUtils::Join(dir.c_str(), appname_.c_str(), NULL);
+#endif
         CreateDirectory(dir, true);
 
         return dir;

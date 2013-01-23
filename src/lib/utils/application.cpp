@@ -228,7 +228,7 @@ namespace TideUtils
 
     string Application::GetDataPath()
     {
-        return FileUtils::GetApplicationDataDirectory(this->name);
+        return FileUtils::GetApplicationDataDirectory(this->id);
     }
 
     string Application::GetResourcesPath()

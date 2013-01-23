@@ -145,7 +145,7 @@ namespace TideUtils
         /**
          * @return the applications data directory
          */
-        TIDE_UTILS_API std::string GetApplicationDataDirectory(std::string appname);
+        TIDE_UTILS_API std::string GetApplicationDataDirectory(const std::string& appname);
 
         /**
          * This function indirectly uses the KR_HOME environment variable
@@ -177,6 +177,10 @@ namespace TideUtils
          * read the value of the runtime path from the host's current application.
          */
         TIDE_UTILS_API std::string GetUserRuntimeHomeDirectory();
+	/**
+	 * This method returns the absolute path of Operating System's AppData directory
+	 */
+        TIDE_UTILS_API std::string GetAppDataDirectory();
         TIDE_UTILS_API bool IsRuntimeInstalled();
         TIDE_UTILS_API int RunAndWait(const std::string& path, std::vector<std::string>& args);
         TIDE_UTILS_API std::string GetUsername();

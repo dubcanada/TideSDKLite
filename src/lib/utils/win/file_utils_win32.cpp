@@ -246,20 +246,25 @@ namespace FileUtils
         return FileHasAttributes(path, FILE_ATTRIBUTE_DIRECTORY);
     }
 
-    std::string GetUserRuntimeHomeDirectory()
+    std::string GetAppDataDirectory()
     {
         wchar_t widePath[MAX_PATH];
         if (SHGetSpecialFolderPath(NULL, widePath, CSIDL_APPDATA, FALSE))
         {
             std::string path(TideUtils::WideToUTF8(widePath));
-            return Join(path.c_str(), PRODUCT_NAME, NULL);
+            return Join(path.c_str(), NULL);
         }
         else
         {
             // Not good! What do we do in this case? I guess just use  a reasonable 
             // default for Windows. Ideally this should *never* happen.
-            return Join("C:", PRODUCT_NAME, NULL);
+            return Join("C:", NULL);
         }
+    }
+
+    std::string GetUserRuntimeHomeDirectory()
+    {
+        return Join(GetAppDataDirectory().c_str(), PRODUCT_NAME, NULL);
     }
     
     std::string GetSystemRuntimeHomeDirectory()
