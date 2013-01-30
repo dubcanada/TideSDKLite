@@ -106,7 +106,7 @@ namespace tide
         if (contextId.empty())
         {
             static int nextId = 0;
-            contextId.append("__kroll__namespace__");
+            contextId.append("__tide__namespace__");
             contextId.append(TiList::IntToChars(++nextId));
             global->SetString("__php_module_id__", contextId);
         }
@@ -139,7 +139,7 @@ namespace tide
         codeString << "  if (array_key_exists(\"user\", $__fns)) {\n";
         codeString << "   foreach($__fns[\"user\"] as $fname) {\n";
         codeString << "    if (!$window->$fname) {";
-        codeString << "      krollAddFunction($window, $fname);\n";
+        codeString << "      tideAddFunction($window, $fname);\n";
         codeString << "    }\n";
         codeString << "   }\n";
         codeString << "  }\n";

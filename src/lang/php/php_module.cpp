@@ -79,7 +79,7 @@ namespace tide
     {
         PHPModule::instance_ = this;
         int argc = 1;
-        char *argv[2] = { "php_kroll", NULL };
+        char *argv[2] = { "php_tide", NULL };
 
         php_embed_module.ub_write = UnbufferedWrite;
         php_embed_module.log_message = LogMessage;
@@ -109,7 +109,7 @@ namespace tide
         php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
         modPath = FileUtils::Join(phpPath.c_str(), "php_curl.dll", 0);
         php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
-        modPath = FileUtils::Join(phpPath.c_str(), "php_xls.dll", 0);
+        modPath = FileUtils::Join(phpPath.c_str(), "php_xsl.dll", 0);
         php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
 #endif
     }

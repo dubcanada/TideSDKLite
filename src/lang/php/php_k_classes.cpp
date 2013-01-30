@@ -84,15 +84,15 @@ namespace tide
     PHP_METHOD(PHPTiList, getArrayCopy);
     PHP_METHOD(PHPTiList, exchangeArray);
 
-    static ZEND_FUNCTION(krollAddFunction);
+    static ZEND_FUNCTION(tideAddFunction);
 
-    ZEND_BEGIN_ARG_INFO_EX(KrollAddFunctionArgInfo, 0, 0, 2)
+    ZEND_BEGIN_ARG_INFO_EX(TideAddFunctionArgInfo, 0, 0, 2)
         ZEND_ARG_INFO(0, object)
         ZEND_ARG_INFO(0, fname)
     ZEND_END_ARG_INFO()
     
     static const zend_function_entry PHPFunctions[] = {
-        ZEND_FE(krollAddFunction, KrollAddFunctionArgInfo)
+        ZEND_FE(tideAddFunction, TideAddFunctionArgInfo)
         { NULL, NULL, NULL, NULL }
     };
 
@@ -609,7 +609,7 @@ namespace tide
         // TODO: Implement
     }
 
-    ZEND_FUNCTION(krollAddFunction)
+    ZEND_FUNCTION(tideAddFunction)
     {
         zval *phpWindowContext;
         char *fname;
