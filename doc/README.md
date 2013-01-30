@@ -31,7 +31,7 @@ This will create the file `generated/resources/Ti.js`, which only exists if you 
 The exposed API is documented in the folder source/API/.    
 The old YML docs have been converted into Javascript skeletons with doctags.
 
-Every module and object of titanium is exposed in its own JS file.
+Every module and object of tide is exposed in its own JS file.
 
 
 

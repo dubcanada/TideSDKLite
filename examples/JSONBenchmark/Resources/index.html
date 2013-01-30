@@ -16,8 +16,8 @@
 			function $(id) { return document.getElementById(id); }
 			
 			function benchmark() {
-				var fs = Titanium.Filesystem;
-				var app = Titanium.App;
+				var fs = Ti.Filesystem;
+				var app = Ti.App;
 				
 				var json = fs.getFile(app.appURLToPath("app://test.json")).read().toString();
 				var iterations = parseInt($("iterations").value);
@@ -37,7 +37,7 @@
 					setTimeout(function() {
 						var nativeTime = time(function() {
 							for (var i = 0; i < iterations; i++) {
-								Titanium.JSON.parse(json);
+								Ti.JSON.parse(json);
 							}
 						});
 						$("results").innerHTML += String(nativeTime/1000) + " seconds<br/>"

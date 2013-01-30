@@ -98,7 +98,6 @@ if clean:
 if ARGUMENTS.get('test_crash', 0):
     build.env.Append(CPPDEFINES = ('TEST_CRASH_DETECTION', 1))
 
-## Kroll *must not be required* for installation
 SConscript('SConscript.thirdparty')
 
 SConscript('src/lib/utils/SConscript', variant_dir=path.join(build.dir,'objs','lib/utils'), duplicate=0)

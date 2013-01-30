@@ -8,7 +8,7 @@
         // Set audio file to be played. We need to use Ti.File
         // to convert an app:// URL to a file:// URL so the audio tag
         // can load the media file.
-        var audioFile = Titanium.Filesystem.getFile("app://Resources/science.mp3");
+        var audioFile = Ti.Filesystem.getFile("app://Resources/science.mp3");
         document.getElementById("player").src = audioFile.toURL();
       }
     </script>

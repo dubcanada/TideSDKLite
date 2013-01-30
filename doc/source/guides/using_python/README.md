@@ -119,7 +119,7 @@ Calling out to python:
       function use_my_python_data(val) {
          window.alert(val)
       }
-      Titanium.include("test.py");
+      Ti.include("test.py");
       </script>
       </div>
   </body>
@@ -138,7 +138,7 @@ test.py for the above example:
     file_mask = window.prompt("Please enter the file mask to search on", "*.js");
      
     source_dir = "/Users/aland/apps/tweetanium-appstore/Resources"
-    sdk_dir = "~/Library/Application\ Support/Titanium/sdk/osx/1.1.0/"
+    sdk_dir = "~/Library/Application\ Support/TideSDK/sdk/osx/1.3.1-beta/"
     filepaths = [] 
     contents = "/tmp/Contents"
      
@@ -168,7 +168,7 @@ The Python module currently uses the following version of Python depending on yo
 * Linux (all distributions): Python 2.7
 
 ## Including Python in your application
-There are a few ways to include Python scripts on your Titanium pages. As demonstrated above, you can include a script tag with type="text/python." If you have a Python source file that you want to include you can also do this:
+There are a few ways to include Python scripts on your Tide pages. As demonstrated above, you can include a script tag with type="text/python." If you have a Python source file that you want to include you can also do this:
 
 
   <script type="text/python" src="myfile.py"/>
@@ -270,7 +270,7 @@ JavaScript arrays in are wrapped in a list-like object in Python. Be aware that 
   </script>
   <script type="text/python">
   for item in globalArray:
-      Titanium.API.debug(item)
+      Ti.API.debug(item)
   </script>
 
 Passing Python lists to JavaScript will result in a true JavaScript array. That means that the JavaScript object wraps the Python object will have an Array prototype and the full complement of JavaScript array methods.
@@ -327,7 +327,7 @@ And as you can expect, we get something like...
 
 
 ####jQuery in Python
-Javascript frameworks (such as jQuery) make JavasScript coding a great deal easier. We can use jQuery (and potentially any other Javascript framework) in our Python code. As you can probably guess we can't use jQuery's <em>$</em> alias. It errors out. Instead you need to use the full <em>jQuery</em> function. Everything works out of the box - animations (which are very smooth on Titanium) and method chaining.
+Javascript frameworks (such as jQuery) make JavasScript coding a great deal easier. We can use jQuery (and potentially any other Javascript framework) in our Python code. As you can probably guess we can't use jQuery's <em>$</em> alias. It errors out. Instead you need to use the full <em>jQuery</em> function. Everything works out of the box - animations (which are very smooth on Tide) and method chaining.
 
     <script type="text/javascript" src="jquery-1.8.2.js"></script>
     <link type="text/css" rel="stylesheet" href="style.css"/>

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <ti:app xmlns:ti='http://ns.tidesdk.org'>
-<!-- These values are edited/maintained by Titanium Developer -->
+<!-- These values are edited/maintained by TideSDK Developer -->
 <id>org.tidesdk.jsonbenchmark</id>
-<name>titanium_json_benchmark</name>
+<name>tidesdk_json_benchmark</name>
 <version>1.0</version>
 <publisher>Software In Public Interest (SPI)</publisher>
 <url>http://www.tidesdk.org</url>
@@ -11,7 +11,7 @@
 <!-- Window Definition - these values can be edited -->
 <window>
 <id>initial</id>
-<title>titanium_json_benchmark</title>
+<title>tidesdk_json_benchmark</title>
 <url>app://index.html</url>
 <width>400</width>
 <max-width>3000</max-width>

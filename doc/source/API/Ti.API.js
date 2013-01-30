@@ -23,7 +23,7 @@ addEventListener: function(eventName, callback){},
 APP_UPDATE: null,
 
 /**
-* Create a Kroll Bytes object given a String. A Bytes object is a generic
+* Create a Tide Bytes object given a String. A Bytes object is a generic
 * way of holding a String of bytes.
 * @return {Bytes}
 * @member Ti.API
@@ -41,7 +41,7 @@ createBytes: function(){},
 createDependency: function(type, name, version){},
 
 /**
-* Create a Kroll list given an optional JavaScript array. This method is mainly used for testing.
+* Create a Tide list given an optional JavaScript array. This method is mainly used for testing.
 * @param {Array} toWrap (optional) An Array to wrap in a new KList.
 * @return {Array}
 * @member Ti.API
@@ -49,7 +49,7 @@ createDependency: function(type, name, version){},
 createKList: function(toWrap){},
 
 /**
-* Create a Kroll method given an existing JavaScript Funtion. This method is mainly used for testing.
+* Create a Tide method given an existing JavaScript Funtion. This method is mainly used for testing.
 * @param {Function} toWrap (optional) A Function to wrap in a new KMethod.
 * @return {Function}
 * @member Ti.API
@@ -57,7 +57,7 @@ createKList: function(toWrap){},
 createKMethod: function(toWrap){},
 
 /**
-* Create a Kroll object given an existing JavaScript Object. This method is mainly used for testing.
+* Create a Tide object given an existing JavaScript Object. This method is mainly used for testing.
 * @param {Object} toWrap (optional) An Object to wrap in a new KObject.
 * @return {Object}
 * @member Ti.API

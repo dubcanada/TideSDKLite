@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <ti:app xmlns:ti='http://ns.tidesdk.org'>
-<!-- These values are edited/maintained by Titanium Developer -->
+<!-- These values are edited/maintained by TideSDK Developer -->
 <id>com.arcaner.quicksnap</id>
 <name>quicksnap</name>
 <version>1.0</version>

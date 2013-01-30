@@ -3,14 +3,14 @@
 * TideSDK API objects generally follow the setProperty()/getProperty()
 * pattern, but you may also use accessors for most operations For example:
 * 
-* 	var window = Titanium.UI.currentWindow;
+* 	var window = Ti.UI.currentWindow;
 * 	window.setHeight(300); // Set the window height to 300 pixels.
 * 	window.height = 300; // The same.
 * 
 * @class Ti
 * @singleton
 */
-Titanium = {
+Ti = {
 /**
 * The ALL event constant. This can be used for listening for all events.
 * @property {String}
@@ -231,17 +231,17 @@ OPEN: null}
 
 /**
 * The TideSDK Analytics module used for recording analytics events.
-* @class Titanium.Analytics
+* @class Ti.Analytics
 * @singleton
 * @member Ti
 */
-Titanium.Analytics = {
+Ti.Analytics = {
 /**
 * Send an analytics event associated with application feature functionality.
 * @param {String} name Feature name.
 * @param {Object} data Extra event data to pass along. This will be converted to JSON.
 * @return {void}
-* @member Titanium.Analytics
+* @member Ti.Analytics
 */
 featureEvent: function(name, data){},
 
@@ -252,7 +252,7 @@ featureEvent: function(name, data){},
 * @param {String} name Event name.
 * @param {Object} data Extra event data to pass along. This will be converted to JSON.
 * @return {void}
-* @member Titanium.Analytics
+* @member Ti.Analytics
 */
 navEvent: function(from, to, name, data){},
 
@@ -264,7 +264,7 @@ navEvent: function(from, to, name, data){},
 * @param {Number} duration Duration in seconds (optional if both start and stop are specified)
 * @param {Object} data Extra event data to pass along. This will be converted to JSON.
 * @return {String}
-* @member Titanium.Analytics
+* @member Ti.Analytics
 */
 timedEvent: function(event, start, stop, duration, data){},
 
@@ -273,7 +273,7 @@ timedEvent: function(event, start, stop, duration, data){},
 * @param {String} name Setting name.
 * @param {Object} data Extra event data to pass along. This will be converted to JSON.
 * @return {String}
-* @member Titanium.Analytics
+* @member Ti.Analytics
 */
 settingsEvent: function(name, data){},
 
@@ -282,7 +282,7 @@ settingsEvent: function(name, data){},
 * @param {String} name Event name.
 * @param {Object} data Extra event data to pass along. This will be converted to JSON.
 * @return {String}
-* @member Titanium.Analytics
+* @member Ti.Analytics
 */
 userEvent: function(name, data){}}
 
@@ -294,24 +294,24 @@ userEvent: function(name, data){}}
 * Example
 * ------------
 * You can retrieve information about the currently running TideSDK application
-* using the Titanium.API.getApplication module.
+* using the Ti.API.getApplication module.
 *
-*		var app = Titanium.API.application;
+*		var app = Ti.API.application;
 *		alert(app.getPID()); //Alert the process identifier for this application.
 *		alert(app.getDataPath()); //Alert the path to the application's user data directory.
 *
 *
-* @class Titanium.API.Application
-* @member Titanium.API
+* @class Ti.API.Application
+* @member Ti.API
 */
-Titanium.API.Application = {
+Ti.API.Application = {
 /**
 * Find the value for a given argument. You may either pass
 * 'param' or '--param' and this method will find the command-line
 * value for '--param=<value>'.
 * @param {String} argument The name of the argument to find the value for.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getArgumentValue: function(argument){},
 
@@ -321,8 +321,8 @@ getArgumentValue: function(argument){},
 * API.getInstalledComponents() plus any components bundled with the
 * application. Note that bundled components do not have a version
 * currently.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getAvailableComponents: function(){},
 
@@ -332,8 +332,8 @@ getAvailableComponents: function(){},
 * API.getInstalledModules() plus any components bundled with the
 * application. Note that bundled components do not have a version
 * currently.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getAvailableRuntimes: function(){},
 
@@ -343,8 +343,8 @@ getAvailableRuntimes: function(){},
 * API.getInstalledModules() plus any components bundled with the
 * application. Note that bundled components do not have a version
 * currently.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getAvailableModules: function(){},
 
@@ -358,8 +358,8 @@ getAvailableModules: function(){},
 * <li>My App.app/Contents/sdk</li>
 * <li>My App.app/Contents/mobilesdk</li>
 * </ul>
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getBundledComponents: function(){},
 
@@ -367,8 +367,8 @@ getBundledComponents: function(){},
 * Return a list of all bundled modules for this for this application.
 * Bundled modules currently live inside the application contents directory
 * in the "My App.app/Contents/modules" directory.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getBundledModules: function(){},
 
@@ -376,8 +376,8 @@ getBundledModules: function(){},
 * Return a list of all bundled runtimes for this for this application.
 * A bundled runtime currently live inside the application contents directory
 * in the "My App.app/Contents/runtime" directory.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getBundledRuntimes: function(){},
 
@@ -386,8 +386,8 @@ getBundledRuntimes: function(){},
 * Resolved components may either be installed or bundled components.
 * Note that currently bundled components returned in this list do not have
 * a version.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getComponents: function(){},
 
@@ -395,7 +395,7 @@ getComponents: function(){},
 * Retrieve a list of command-line arguments passed to this application. This
 * list will include the first argument, which is the path to the executable.
 * @return {Array<String>}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getArguments: function(){},
 
@@ -405,29 +405,29 @@ getArguments: function(){},
 * which should not be written to) and is suitable for storing any
 * application files.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getDataPath: function(){},
 
 /**
 * Get a list of this application's dependencies. Dependencies
 * are defined in the application manifest file.
-* @return {Titanium.Array<API.Dependency>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Dependency>}
+* @member Ti.API.Application
 */
 getDependencies: function(){},
 
 /**
 * Get the path to this application's executable.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getExecutablePath: function(){},
 
 /**
 * "Get the path to this application's manifest"
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getManifestPath: function(){},
 
@@ -436,7 +436,7 @@ getManifestPath: function(){},
 * of string pairs (array of size 2). Each entry in the manifest
 * is a simple key-value pair. Comments are ignored.
 * @return {Array<Array<String>>}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getManifest: function(){},
 
@@ -444,7 +444,7 @@ getManifest: function(){},
 * Get this human readable id currently defined in both the
 * application manifest and the application's tiapp.xml file.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getID: function(){},
 
@@ -453,15 +453,15 @@ getID: function(){},
 * Resolved components may either be installed or bundled components.
 * Note that currently bundled components returned in this list do not have
 * a version.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Component>}
+* @member Ti.API.Application
 */
 getModules: function(){},
 
 /**
 * "Get this application's name."
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getName: function(){},
 
@@ -469,7 +469,7 @@ getName: function(){},
 * Get this application globally unique identifier. This is
 * currently defined in the application manifest.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getGUID: function(){},
 
@@ -478,7 +478,7 @@ getGUID: function(){},
 * application, not the path to the application contents directory. On
 * OS X currently, the application contents directory is "[app path]/Contents"
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getPath: function(){},
 
@@ -487,7 +487,7 @@ getPath: function(){},
 * is not the currently running application, this method will returned
 * <tt>undefined</tt>.
 * @return {Number}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getPID: function(){},
 
@@ -495,7 +495,7 @@ getPID: function(){},
 * Return the path to this application's resources directory. This directory
 * is the 'Resources' subdirectory of the application contents directory.
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getResourcesPath: function(){},
 
@@ -504,15 +504,15 @@ getResourcesPath: function(){},
 * Resolved components may either be installed or bundled components.
 * Note that currently bundled components returned from this method
 * do not have a version.
-* @return {Titanium.API.Component}
-* @member Titanium.API.Application
+* @return {Ti.API.Component}
+* @member Ti.API.Application
 */
 getRuntime: function(){},
 
 /**
 * "Get this application's version."
 * @return {String}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 getVersion: function(){},
 
@@ -522,14 +522,14 @@ getVersion: function(){},
 * find the command-line argument.
 * @param {String} argument The name of the argument to search for.
 * @return {Boolean}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 hasArgument: function(argument){},
 
 /**
 * Returns whether or not this is the currently running application.
 * @return {Boolean}
-* @member Titanium.API.Application
+* @member Ti.API.Application
 */
 isCurrent: function(){},
 
@@ -537,8 +537,8 @@ isCurrent: function(){},
 * Attempt to resolve all the dependencies for this application. Resolved components
 * should be accessible through API.Application.getComponents afterward. Note that
 * the currently running applicaiton should already have all of its dependencies resolved.
-* @return {Titanium.Array<API.Dependency>}
-* @member Titanium.API.Application
+* @return {Ti.Array<API.Dependency>}
+* @member Ti.API.Application
 */
 resolveDependencies: function(){}}
 
@@ -546,117 +546,117 @@ resolveDependencies: function(){}}
 /**
 * An object representing a TideSDK component, which may be either a module,
 * runtime, SDK, Mobile SDK or application update.
-* @class Titanium.API.Component
-* @member Titanium.API
+* @class Ti.API.Component
+* @member Ti.API
 */
-Titanium.API.Component = {
+Ti.API.Component = {
 /**
 * Get the name of this component.
 * @return {String}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 getName: function(){},
 
 /**
 * Get the path to this component.
 * @return {String}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 getPath: function(){},
 
 /**
 * Get the type of this component. Component types are defined as constants on the API module.
 * @return {Number}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 getType: function(){},
 
 /**
 * Get the version of this component. Note that bundled components do not currently have a version.
 * @return {String}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 getVersion: function(){},
 
 /**
 * Whether or not this component is currently loaded.
 * @return {Boolean}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 isLoaded: function(){},
 
 /**
 * Whether or not this component is bundled with an application.
 * @return {Boolean}
-* @member Titanium.API.Component
+* @member Ti.API.Component
 */
 isBundled: function(){}}
 
 
 /**
 * An object representing a TideSDK application dependency.
-* @class Titanium.API.Dependency
-* @member Titanium.API
+* @class Ti.API.Dependency
+* @member Ti.API
 */
-Titanium.API.Dependency = {
+Ti.API.Dependency = {
 /**
 * Get the name of this dependency.
 * @return {String}
-* @member Titanium.API.Dependency
+* @member Ti.API.Dependency
 */
 getName: function(){},
 
 /**
 * Get the requirement for this dependency. Dependency requirement types are defined as constants on the API module. Currently the installer only support API.EQ dependency types.
 * @return {String}
-* @member Titanium.API.Dependency
+* @member Ti.API.Dependency
 */
 getRequirement: function(){},
 
 /**
 * Get the type of this dependency. Dependency types are defined as constants on the API module (e.g. API.SDK).
 * @return {Number}
-* @member Titanium.API.Dependency
+* @member Ti.API.Dependency
 */
 getType: function(){},
 
 /**
 * Get the version part of this dependency.
 * @return {String}
-* @member Titanium.API.Dependency
+* @member Ti.API.Dependency
 */
 getVersion: function(){}}
 
 
 /**
 * A module for holding core TideSDK functionality.
-* @class Titanium.API
+* @class Ti.API
 * @singleton
 * @member Ti
 */
-Titanium.API = {
+Ti.API = {
 /**
 * Register a root event listener. Event listeners registered using this
-* function will receive <em>all</em> events from Titanium.
+* function will receive <em>all</em> events from Ti.
 * @param {String} eventName The event name to listen for.
 * @param {Function} callback The callback to invoke when this message occurs.
 * @return {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 addEventListener: function(eventName, callback){},
 
 /**
 * A constant representing an application update component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 APP_UPDATE: null,
 
 /**
-* Create a Kroll Bytes object given a String. A Bytes object is a generic
+* Create a Tide Bytes object given a String. A Bytes object is a generic
 * way of holding a String of bytes.
 * @return {Bytes}
-* @member Titanium.API
+* @member Ti.API
 */
 createBytes: function(){},
 
@@ -665,32 +665,32 @@ createBytes: function(){},
 * @param {Number} type The type of this dependency. This is usually one of the component type constants (e.g. API.MODULE).
 * @param {String} name The name of this dependency.
 * @param {String} version The version requirement for this dependency.
-* @return {Titanium.API.Dependency}
-* @member Titanium.API
+* @return {Ti.API.Dependency}
+* @member Ti.API
 */
 createDependency: function(type, name, version){},
 
 /**
-* Create a Kroll list given an optional JavaScript array. This method is mainly used for testing.
+* Create a Tide list given an optional JavaScript array. This method is mainly used for testing.
 * @param {Array} toWrap (optional) An Array to wrap in a new KList.
 * @return {Array}
-* @member Titanium.API
+* @member Ti.API
 */
 createKList: function(toWrap){},
 
 /**
-* Create a Kroll method given an existing JavaScript Funtion. This method is mainly used for testing.
+* Create a Tide method given an existing JavaScript Funtion. This method is mainly used for testing.
 * @param {Function} toWrap (optional) A Function to wrap in a new KMethod.
 * @return {Function}
-* @member Titanium.API
+* @member Ti.API
 */
 createKMethod: function(toWrap){},
 
 /**
-* Create a Kroll object given an existing JavaScript Object. This method is mainly used for testing.
+* Create a Tide object given an existing JavaScript Object. This method is mainly used for testing.
 * @param {Object} toWrap (optional) An Object to wrap in a new KObject.
 * @return {Object}
-* @member Titanium.API
+* @member Ti.API
 */
 createKObject: function(toWrap){},
 
@@ -708,7 +708,7 @@ createKObject: function(toWrap){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 CRITICAL: null,
 
@@ -727,7 +727,7 @@ CRITICAL: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 critical: function(statement){},
 
@@ -745,7 +745,7 @@ critical: function(statement){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 DEBUG: null,
 
@@ -764,7 +764,7 @@ DEBUG: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 debug: function(statement){},
 
@@ -772,7 +772,7 @@ debug: function(statement){},
 * A constant representing an equality dependency.
 * This is used to specify resolutions to Ti application dependencies.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 EQ: null,
 
@@ -790,7 +790,7 @@ EQ: null,
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 ERROR: null,
 
@@ -809,7 +809,7 @@ ERROR: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 error: function(statement){},
 
@@ -827,7 +827,7 @@ error: function(statement){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 FATAL: null,
 
@@ -846,7 +846,7 @@ FATAL: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 fatal: function(statement){},
 
@@ -854,7 +854,7 @@ fatal: function(statement){},
 * Fire an event to the top-level event listener.
 * @param {String|Object} event The name of the event to fire or the event object itself
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 fireEvent: function(event){},
 
@@ -862,80 +862,80 @@ fireEvent: function(event){},
 * Get an attribute in the global object
 * @param {String} key Key of the attribute to get
 * @return {Any}
-* @member Titanium.API
+* @member Ti.API
 */
 get: function(key){},
 
 /**
 * Get the currently running application. This application will
 * should have all of its dependencies resolved.
-* @return {Titanium.API.Application}
-* @member Titanium.API
+* @return {Ti.API.Application}
+* @member Ti.API
 */
 getApplication: function(){},
 
 /**
 * Get the system environment object, which can be queried and updated
 * just by accessing or setting its properties.
-* @return {Titanium.API.Environment}
-* @member Titanium.API
+* @return {Ti.API.Environment}
+* @member Ti.API
 */
 getEnvironment: function(){},
 
 /**
 * Get a list of the currently installed Ti components.
 * An installed component is one that has been found on the list of paths
-* returned by Titanium.API.getComponentSearchPaths. This list does not
+* returned by Ti.API.getComponentSearchPaths. This list does not
 * include bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getInstalledComponents: function(){},
 
 /**
 * Get a list of the paths on which Ti searches for installed components. This does not include paths of bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getComponentSearchPaths: function(){},
 
 /**
 * Get a list of the currently installed Ti Mobile SDK components.
 * An installed component is one that has been found on the list of paths
-* returned by Titanium.API.getComponentSearchPaths. This list does not
+* returned by Ti.API.getComponentSearchPaths. This list does not
 * include bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getInstalledMobileSDKs: function(){},
 
 /**
 * Get a list of the currently installed Ti module components.
 * An installed component is one that has been found on the list of paths
-* returned by Titanium.API.getComponentSearchPaths. This list does not
+* returned by Ti.API.getComponentSearchPaths. This list does not
 * include bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getInstalledModules: function(){},
 
 /**
 * Get a list of the currently installed Ti runtime components.
 * An installed component is one that has been found on the list of paths
-* returned by Titanium.API.getComponentSearchPaths. This list does not
+* returned by Ti.API.getComponentSearchPaths. This list does not
 * include bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getInstalledRuntimes: function(){},
 
 /**
 * Get a list of the currently installed Ti SDK components.
 * An installed component is one that has been found on the list of paths
-* returned by Titanium.API.getComponentSearchPaths. This list does not
+* returned by Ti.API.getComponentSearchPaths. This list does not
 * include bundled components.
-* @return {Titanium.Array<API.Component>}
-* @member Titanium.API
+* @return {Ti.Array<API.Component>}
+* @member Ti.API
 */
 getInstalledSDKs: function(){},
 
@@ -954,7 +954,7 @@ getInstalledSDKs: function(){},
 * <li>FATAL</li>
 * </ol>
 * @return {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 getLogLevel: function(){},
 
@@ -962,7 +962,7 @@ getLogLevel: function(){},
 * A constant representing an greater-than dependency.
 * This is used to specify resolutions to Ti application dependencies.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 GT: null,
 
@@ -970,7 +970,7 @@ GT: null,
 * A constant representing an greater-than-or-equal-to dependency.
 * This is used to specify resolutions to Ti application dependencies.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 GTE: null,
 
@@ -989,7 +989,7 @@ GTE: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 info: function(statement){},
 
@@ -1009,7 +1009,7 @@ info: function(statement){},
 * @param {Number} type The severity of this log statement.
 * @param {String} statement The String to pass to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 log: function(type, statement){},
 
@@ -1017,14 +1017,14 @@ log: function(type, statement){},
 * A constant representing an less-than dependency.
 * This is used to specify resolutions to Ti application dependencies.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 LT: null,
 
 /**
 * a constant representing a Mobile SDK component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 MOBILESDK: null,
 
@@ -1032,7 +1032,7 @@ MOBILESDK: null,
 * Print a String to stdout without a trailing newline
 * @param {Any} data The data to print. If not a String, it will be converted using the equivalent of <tt>String(data);</tt>
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 print: function(data){},
 
@@ -1050,7 +1050,7 @@ print: function(data){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 NOTICE: null,
 
@@ -1059,7 +1059,7 @@ NOTICE: null,
 * funtion is registered for this object, the call will do nothing.
 * @param {Number|Function} id The id or the Function of the event listener to remove.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 removeEventListener: function(id){},
 
@@ -1071,7 +1071,7 @@ removeEventListener: function(id){},
 * @param {Function} method The method to execute.
 * @param {Any} multiple A variable-length list of arguments to pass to the method.
 * @return {Any}
-* @member Titanium.API
+* @member Ti.API
 */
 runOnMainThread: function(method, multiple){},
 
@@ -1082,28 +1082,28 @@ runOnMainThread: function(method, multiple){},
 * @param {Function} method The method to execute.
 * @param {Any} multiple A variable-length list of arguments to pass to the method.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 runOnMainThreadAsync: function(method, multiple){},
 
 /**
 * A constant representing a runtime component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 RUNTIME: null,
 
 /**
 * A constant representing a module component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 MODULE: null,
 
 /**
 * a constant representing an SDK component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 SDK: null,
 
@@ -1121,7 +1121,7 @@ SDK: null,
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 INFO: null,
 
@@ -1130,7 +1130,7 @@ INFO: null,
 * @param {String} key Key of the attribute to set
 * @param {String} value New value of the attribute
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 set: function(key, value){},
 
@@ -1150,7 +1150,7 @@ set: function(key, value){},
 * </ol>
 * @param {Number} level The threshold of severity to log.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 setLogLevel: function(level){},
 
@@ -1168,7 +1168,7 @@ setLogLevel: function(level){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 TRACE: null,
 
@@ -1187,17 +1187,17 @@ TRACE: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 trace: function(statement){},
 
 /**
 * Read an application manifest at a given path and return an
-* Titanium.API.Application object representing the application.
+* Ti.API.Application object representing the application.
 * @param {String} manifestPath The path to the manifest to read.
 * @param {String} applicationPath (optional) An optional application path override, which can be used if the manifest and the application are in different paths.
-* @return {Titanium.API.Application}
-* @member Titanium.API
+* @return {Ti.API.Application}
+* @member Ti.API
 */
 readApplicationManifest: function(manifestPath, applicationPath){},
 
@@ -1215,7 +1215,7 @@ readApplicationManifest: function(manifestPath, applicationPath){},
 * <li>FATAL</li>
 * </ol>
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 WARN: null,
 
@@ -1234,14 +1234,14 @@ WARN: null,
 * </ol>
 * @param {String} statement the statement to log
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 notice: function(statement){},
 
 /**
 * a constant representing an UNKNOWN component type.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 UNKNOWN: null,
 
@@ -1249,7 +1249,7 @@ UNKNOWN: null,
 * A constant representing an less-than-or-equal-to dependency.
 * This is used to specify resolutions to Ti application dependencies.
 * @property {Number}
-* @member Titanium.API
+* @member Ti.API
 */
 LTE: null,
 
@@ -1268,7 +1268,7 @@ LTE: null,
 * </ol>
 * @param {String} statement The String to send to the logger.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 warn: function(statement){},
 
@@ -1277,22 +1277,22 @@ warn: function(statement){},
 * the installer is finished running, it will call the given callback.
 * The only way to determine whether or not the installation was successful
 * at this point is to try to resolve the dependencies that were passed
-* to the installer. <em>Currently the installer only supports Titanium.API.EQ
+* to the installer. <em>Currently the installer only supports Ti.API.EQ
 * dependencies.</em>
 * @param {Array<API.Dependency>} dependencies A list of API.Dependency to find and install.
 * @param {Function} callback A callback to invoke when the installer is finished.
 * @return {void}
-* @member Titanium.API
+* @member Ti.API
 */
 installDependencies: function(dependencies, callback){}}
 
 
 /**
 * Script object.
-* @class Titanium.API.Script
-* @member Titanium.API
+* @class Ti.API.Script
+* @member Ti.API
 */
-Titanium.API.Script = {
+Ti.API.Script = {
 /**
 * <p>
 * Adds a script evalutor Script evaluators are responsible for matching and evaluating
@@ -1317,7 +1317,7 @@ Titanium.API.Script = {
 * </li></ol>
 * @param {Object} evaluator The evaluator to add.
 * @return {String}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 addScriptEvaluator: function(evaluator){},
 
@@ -1325,7 +1325,7 @@ addScriptEvaluator: function(evaluator){},
 * 
 * @param {Object} evaluator The mimeType to check
 * @return {bool}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 canEvaluate: function(evaluator){},
 
@@ -1333,7 +1333,7 @@ canEvaluate: function(evaluator){},
 * 
 * @param {String} url The URL to check
 * @return {bool}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 canPreprocess: function(url){},
 
@@ -1344,7 +1344,7 @@ canPreprocess: function(url){},
 * @param {String} code The actual code
 * @param {Object} scope "global variable scope (i.e. \"window\")"
 * @return {Any}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 evaluate: function(mimeType, name, code, scope){},
 
@@ -1353,7 +1353,7 @@ evaluate: function(mimeType, name, code, scope){},
 * @param {String} URL the URL for this resource (app, ti, and file URLs are accepted)
 * @param {Object} scope global variable scope to expose into the preprocessed file
 * @return {String}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 preprocess: function(URL, scope){},
 
@@ -1361,48 +1361,48 @@ preprocess: function(URL, scope){},
 * Removes a script evalutor
 * @param {Object} evaluator The evaluator to remove
 * @return {String}
-* @member Titanium.API.Script
+* @member Ti.API.Script
 */
 removeScriptEvaluator: function(evaluator){}}
 
 
 /**
 * A module for holding currently running application specific functionality.
-* @class Titanium.App
+* @class Ti.App
 * @singleton
 * @member Ti
 */
-Titanium.App = {
+Ti.App = {
 /**
 * Convert the given app URL to a filesystem path. App URLs generally have
 * the form 'app://subdir/resource.html' and resolve to a fileystem path
 * rooted in the application resources directory.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 appURLToPath: function(){},
 
 /**
-* Cause the application to exit after firing the Titanium.EXIT
+* Cause the application to exit after firing the Ti.EXIT
 * event. The application isn't gauaranteed to exit when this
 * method is called, because an event handler may cancel the
 * EXIT event by calling preventDefault or stopPropagation on it.
 * @return {void}
-* @member Titanium.App
+* @member Ti.App
 */
 exit: function(){},
 
 /**
 * Return the application's copyright information, defined in the tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getCopyright: function(){},
 
 /**
 * Return the application's description, defined in the tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getDescription: function(){},
 
@@ -1413,7 +1413,7 @@ getDescription: function(){},
 * this is the directory "My App.app/Contents" and on Windows and Linux it is
 * simply the path to the application.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getHome: function(){},
 
@@ -1422,21 +1422,21 @@ getHome: function(){},
 * is specified in the application manifest and tiapp.xml relative to the
 * application Resources directory.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getIcon: function(){},
 
 /**
 * Return the application name.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getName: function(){},
 
 /**
 * Return the application publisher information specifiedi in the tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getPublisher: function(){},
 
@@ -1444,7 +1444,7 @@ getPublisher: function(){},
 * "Return the stream URL for the application's updates."
 * @param {String} multiple Any number of String arguments which will be appended as path components of the stream URL.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getStreamURL: function(multiple){},
 
@@ -1452,14 +1452,14 @@ getStreamURL: function(multiple){},
 * Get this human readable id defined in both the
 * application manifest and the application's tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getID: function(){},
 
 /**
 * Return the application's GUID, defined in the application manifest.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getGUID: function(){},
 
@@ -1467,58 +1467,58 @@ getGUID: function(){},
 * Return the command-line arguments passed to this application,
 * excluding the first which is the path to the application executable.
 * @return {Array<String>}
-* @member Titanium.App
+* @member Ti.App
 */
 getArguments: function(){},
 
 /**
 * Get the system properties defined in tiapp.xml (see App.Properties).
-* @return {Titanium.App.Properties}
-* @member Titanium.App
+* @return {Ti.App.Properties}
+* @member Ti.App
 */
 getSystemProperties: function(){},
 
 /**
 * Return the application URL definedin the tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getURL: function(){},
 
 /**
 * Create a new App.Properties object.
 * @param {Object} properties (optional) Initial properties for the new App.Properties object.
-* @return {Titanium.App.Properties}
-* @member Titanium.App
+* @return {Ti.App.Properties}
+* @member Ti.App
 */
 createProperties: function(properties){},
 
 /**
 * Return the full path to the application executable.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getPath: function(){},
 
 /**
 * Return the application version defined in the tiapp.xml file.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 getVersion: function(){},
 
 /**
 * Loads a properties list from a file path.
 * @param {String} path Path to a properties file.
-* @return {Titanium.Array<App.Properties>}
-* @member Titanium.App
+* @return {Ti.Array<App.Properties>}
+* @member Ti.App
 */
 loadProperties: function(path){},
 
 /**
 * Exit the application and restart it.
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 restart: function(){},
 
@@ -1526,7 +1526,7 @@ restart: function(){},
 * Print a raw string to stderr without a trailing newline.
 * @param {Any} data The data to print. If not a String, it will be converted using the equivalent of <tt>String(data);</tt>
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 stderr: function(data){},
 
@@ -1535,7 +1535,7 @@ stderr: function(data){},
 * @param {String} prompt "(optional) Text prompt for input. If not specified, no prompt will appear."
 * @param {String} delimiter "(optional) Will continue reading stdin until the delimiter character is reached. If no argument is specified, this method will continue reading until a newline."
 * @return {String}
-* @member Titanium.App
+* @member Ti.App
 */
 stdin: function(prompt, delimiter){},
 
@@ -1543,7 +1543,7 @@ stdin: function(prompt, delimiter){},
 * Print a String to stdout including a trailing newline.
 * @param {Any} data The data to print. If not a String, it will be converted using the equivalent of <tt>String(data);</tt>
 * @return {void}
-* @member Titanium.App
+* @member Ti.App
 */
 stdout: function(data){}}
 
@@ -1568,7 +1568,7 @@ stdout: function(data){}}
 *
 * You can now access the above properties as shown below:
 *
-*		var appProperties = Titanium.App.getSystemProperties();
+*		var appProperties = Ti.App.getSystemProperties();
 *		alert(appProperties.getString('customString'));
 *		alert(appProperties.getInt('customInt'));
 *		
@@ -1580,21 +1580,21 @@ stdout: function(data){}}
 * ---------------
 * User properties are obtained using the same interface as System properties. 
 * Its recommended that you store these in the application data directory.   
-* On Windows, this is __%appdata%/Titanium/appdata.__  
-* On Linux, this is __~/.titanium/appdata/.__  
-* On OSX, this is __~/Library/Application Support/Titanium/appdata.__  
+* On Windows, this is __%appdata%/TideSDK/appdata.__  
+* On Linux, this is __~/.tidesdk/appdata/.__  
+* On OSX, this is __~/Library/Application Support/TideSDK/appdata.__  
 *
 * Let's take a look at the example below:
 * 
-*		var file = Titanium.Filesystem.getFile(Titanium.API.application.dataPath, "user.properties");
+*		var file = Ti.Filesystem.getFile(Ti.API.application.dataPath, "user.properties");
 *		var userProperties;
 
 *		//if file exists, then load properties.
 *		if(file.exists()) {
-*			userProperties = Titanium.App.loadProperties(file);
+*			userProperties = Ti.App.loadProperties(file);
 *		} else {
 *		//create new set of properties if file doesn't exist
-*			userProperties = Titanium.App.createProperties({
+*			userProperties = Ti.App.createProperties({
 *			  	customText : "This is a string",
 *			  	customDouble : 2.45,
 *			  	customBool : true,
@@ -1613,10 +1613,10 @@ stdout: function(data){}}
 *		file = null;
 *
 *
-* @class Titanium.App.Properties
-* @member Titanium.App
+* @class Ti.App.Properties
+* @member Ti.App
 */
-Titanium.App.Properties = {
+Ti.App.Properties = {
 /**
 * Returns a property value as an integer.
 * Throws an exception if this value can not be found and no default is
@@ -1625,7 +1625,7 @@ Titanium.App.Properties = {
 * @param {String} name The name of the property to return.
 * @param {Number} defaults The value to return if this property is not set.
 * @return {Number}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 getInt: function(name, defaults){},
 
@@ -1637,7 +1637,7 @@ getInt: function(name, defaults){},
 * @param {list} name The name of the property to return.
 * @param {list} defaults The value to return if this property is not set.
 * @return {list}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 getList: function(name, defaults){},
 
@@ -1649,7 +1649,7 @@ getList: function(name, defaults){},
 * @param {String} name The name of the property to return.
 * @param {String} defaults The value to return if this property is not set.
 * @return {String}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 getString: function(name, defaults){},
 
@@ -1661,7 +1661,7 @@ getString: function(name, defaults){},
 * @param {String} name The name of the property to return.
 * @param {Number} defaults The value to return if this property is not set.
 * @return {Number}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 getDouble: function(name, defaults){},
 
@@ -1669,14 +1669,14 @@ getDouble: function(name, defaults){},
 * Query whether or not a given property exists in this Property object.
 * @param {String} name The name of the property to query.
 * @return {Boolean}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 hasProperty: function(name){},
 
 /**
 * Returns an Array of all property names in this App.Properties object.
 * @return {Array<String>}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 listProperties: function(){},
 
@@ -1684,7 +1684,7 @@ listProperties: function(){},
 * Save this App.Properties object to file at the given path.
 * @param {String} path The path to the file to save this App.Properties object to.
 * @return {void}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 saveTo: function(path){},
 
@@ -1693,7 +1693,7 @@ saveTo: function(path){},
 * @param {String} name The name of the property to set.
 * @param {Number} value The value to set the given property to.
 * @return {void}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 setDouble: function(name, value){},
 
@@ -1702,7 +1702,7 @@ setDouble: function(name, value){},
 * @param {String} name The name of the property to set.
 * @param {Number} value The value to set the given property to.
 * @return {void}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 setInt: function(name, value){},
 
@@ -1711,7 +1711,7 @@ setInt: function(name, value){},
 * @param {String} name The name of the property to set.
 * @param {Array<String>} value The value to set the given property to.
 * @return {void}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 setList: function(name, value){},
 
@@ -1720,22 +1720,22 @@ setList: function(name, value){},
 * @param {String} name The name of the property to set.
 * @param {String} value The value to set the given property to.
 * @return {void}
-* @member Titanium.App.Properties
+* @member Ti.App.Properties
 */
 setString: function(name, value){}}
 
 
 /**
 * An object for holding arrays of bytes.
-* @class Titanium.Bytes
+* @class Ti.Bytes
 * @member Ti
 */
-Titanium.Bytes = {
+Ti.Bytes = {
 /**
 * Return the character code (or byte value) at the given index in a Bytes.
 * @param {Number} index The index to look for a character code at.
 * @return {Number}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 byteAt: function(index){},
 
@@ -1743,7 +1743,7 @@ byteAt: function(index){},
 * Return a character representing a byte at the given index in a Bytes.
 * @param {Number} index The index to look for a character at.
 * @return {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 charAt: function(index){},
 
@@ -1751,7 +1751,7 @@ charAt: function(index){},
 * Concatenate multiple Bytes and Strings into one Bytes.
 * @param {Byte|String} multiple A variable-length list of Bytes or Strings to concatenate to this Bytes object.
 * @return {Bytes}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 concat: function(multiple){},
 
@@ -1760,7 +1760,7 @@ concat: function(multiple){},
 * be converted to UTF-8 before this method searches the Bytes object.
 * @param {String} needle The String to search for.
 * @return {Number}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 indexOf: function(needle){},
 
@@ -1769,7 +1769,7 @@ indexOf: function(needle){},
 * be converted to UTF-8 before this method searches the Bytes object.
 * @param {String} needle The String to search for
 * @return {Number}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 lastIndexOf: function(needle){},
 
@@ -1780,7 +1780,7 @@ lastIndexOf: function(needle){},
 * @param {String} delimiter The index to look for a character at
 * @param {Number} limit (optional) The maximum number of matches to return
 * @return {Array<String>}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 split: function(delimiter, limit){},
 
@@ -1793,14 +1793,14 @@ split: function(delimiter, limit){},
 * @param {Number} startIndex The starting index
 * @param {Number} length (optional) The length of the substring
 * @return {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 substr: function(startIndex, length){},
 
 /**
 * The number of bytes in this Bytes object.
 * @property {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 length: null,
 
@@ -1813,7 +1813,7 @@ length: null,
 * @param {Number} startIndex The starting index
 * @param {Number} endIndex (optional) The ending index
 * @return {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 substring: function(startIndex, endIndex){},
 
@@ -1822,7 +1822,7 @@ substring: function(startIndex, endIndex){},
 * This method assumes that Bytes contains a UTF-8 string. This means that the first
 * NUL character in the Bytes object will signify the end of the string.
 * @return {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 toLowerCase: function(){},
 
@@ -1831,29 +1831,29 @@ toLowerCase: function(){},
 * This method assumes that Bytes contains a UTF-8 string. This means that the first
 * NUL character in the Bytes object will signify the end of the string.
 * @return {String}
-* @member Titanium.Bytes
+* @member Ti.Bytes
 */
 toUpperCase: function(){}}
 
 
 /**
 * A module for dealing with encoding and decoding.
-* @class Titanium.Codec
+* @class Ti.Codec
 * @singleton
 * @member Ti
 */
-Titanium.Codec = {
+Ti.Codec = {
 /**
 * Constant specifying the Adler-32 checksum algorithm.
 * @property {Number}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 ADLER32: null,
 
 /**
 * Constant specifying the CRC32 checksum algorithm.
 * @property {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 CRC32: null,
 
@@ -1863,7 +1863,7 @@ CRC32: null,
 * @param {Filesystem.File|String} zipFile The path or File object of the destination zip file.
 * @param {Function} onComplete A function callback that receives the zip file when writing is finished
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 createZip: function(root, zipFile, onComplete){},
 
@@ -1872,7 +1872,7 @@ createZip: function(root, zipFile, onComplete){},
 * @param {String} data The string to compute the checksum on. The checksum will be computed on the UTF-8 version of this String.
 * @param {int} checksumType (optional) The checksum algorithm to use. Either Codec.CRC32 (default) or Codec.ADLER32
 * @return {Number}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 checksum: function(data, checksumType){},
 
@@ -1882,7 +1882,7 @@ checksum: function(data, checksumType){},
 * @param {int} hashType The hash type of the digest, which should be one Codec.MD2, Codec.MD4, Codec.MD5, or Codec.SHA1.
 * @param {String|Bytes} data The data to encode.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 digestToHex: function(hashType, data){},
 
@@ -1890,7 +1890,7 @@ digestToHex: function(hashType, data){},
 * Decode a Base64-encoded String.
 * @param {String} data String to decode.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 decodeBase64: function(data){},
 
@@ -1901,7 +1901,7 @@ decodeBase64: function(data){},
 * @param {String} data The data to encode.
 * @param {String} data The key to us for the HMAC.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 digestHMACToHex: function(hashType, data, data){},
 
@@ -1909,7 +1909,7 @@ digestHMACToHex: function(hashType, data, data){},
 * Decode a hex binary-encoded String.
 * @param {String} data String to decode.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 decodeHexBinary: function(data){},
 
@@ -1918,7 +1918,7 @@ decodeHexBinary: function(data){},
 * String data will first be converted to UTF-8 data.
 * @param {String|Bytes} data The data to encode.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 encodeBase64: function(data){},
 
@@ -1927,7 +1927,7 @@ encodeBase64: function(data){},
 * String data will first be converted to UTF-8 data.
 * @param {String|Bytes} data data to encode
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 encodeHexBinary: function(data){},
 
@@ -1937,42 +1937,42 @@ encodeHexBinary: function(data){},
 * @param {Filesystem.File|String} dest A directory into which the files will be extracted.
 * @param {Function} onComplete A function callback that receives destination directory when completed.
 * @return {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 extractZip: function(zipFile, dest, onComplete){},
 
 /**
 * Constant specifying the MD2 hash algorithm.
 * @property {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 MD2: null,
 
 /**
 * Constant specifying the SHA1 hash algorithm.
 * @property {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 SHA1: null,
 
 /**
 * Constant specifying the MD4 hash algorithm.
 * @property {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 MD4: null,
 
 /**
 * Constant specifying the MD5 hash algorithm.
 * @property {String}
-* @member Titanium.Codec
+* @member Ti.Codec
 */
 MD5: null}
 
 
 /**
 * An object representing a TideSDK Database.
-* After opening a database (Titanium.Database), you can use the properties of this object to interact with it.
+* After opening a database (Ti.Database), you can use the properties of this object to interact with it.
 *
 * Querying Databases
 * ------------------
@@ -1980,8 +1980,8 @@ MD5: null}
 * Please refer to the code examples below:
 *
 *		//Open the database first
-*		var db = Titanium.Database.openFile(Titanium.Filesystem.getFile(
-*									  Titanium.Filesystem.getApplicationDataDirectory(), 'customdatabase.db'));	
+*		var db = Ti.Database.openFile(Ti.Filesystem.getFile(
+*									  Ti.Filesystem.getApplicationDataDirectory(), 'customdatabase.db'));	
 *		
 *		//Create a table and insert values into it
 *		db.execute("CREATE TABLE IF NOT EXISTS Users(id INTEGER, firstName TEXT)");
@@ -2001,14 +2001,14 @@ MD5: null}
 *		
 *
 *
-* @class Titanium.Database.DB
-* @member Titanium.Database
+* @class Ti.Database.DB
+* @member Ti.Database
 */
-Titanium.Database.DB = {
+Ti.Database.DB = {
 /**
 * Close an open Database.DB. If the database is not open, this method will do nothing.
 * @return {void}
-* @member Titanium.Database.DB
+* @member Ti.Database.DB
 */
 close: function(){},
 
@@ -2018,7 +2018,7 @@ close: function(){},
 * used, otherwise it will be the path to a WebKit database in the
 * application data directory.
 * @return {String}
-* @member Titanium.Database.DB
+* @member Ti.Database.DB
 */
 getPath: function(){},
 
@@ -2027,15 +2027,15 @@ getPath: function(){},
 * be valid SQLite-style SQL.
 * @param {String} query The SQL query to execute on this Database.DB.
 * @param {Any} multiple (optional) A variable-length argument list of values to use with the given query
-* @return {Titanium.Database.ResultSet}
-* @member Titanium.Database.DB
+* @return {Ti.Database.ResultSet}
+* @member Ti.Database.DB
 */
 execute: function(query, multiple){},
 
 /**
 * The row id of the last insert operation.
 * @property {Number}
-* @member Titanium.Database.DB
+* @member Ti.Database.DB
 */
 lastInsertRowId: null,
 
@@ -2043,14 +2043,14 @@ lastInsertRowId: null,
 * Remove a Database.DB. This method will close the database
 * if it is open and remove the file from the filesystem.
 * @return {void}
-* @member Titanium.Database.DB
+* @member Ti.Database.DB
 */
 remove: function(){},
 
 /**
 * The number of rows affected by the last execute call.
 * @property {Number}
-* @member Titanium.Database.DB
+* @member Ti.Database.DB
 */
 rowsAffected: null}
 
@@ -2062,62 +2062,62 @@ rowsAffected: null}
 *
 *Opening a Database
 *------------------
-*You can open databases in TideSDK using the Titanium.Database.open and Titanium.Database.openFile methods.
-*Using Titanium.Database.open will create a database which is WebKit compatible in the same directory.
+*You can open databases in TideSDK using the Ti.Database.open and Ti.Database.openFile methods.
+*Using Ti.Database.open will create a database which is WebKit compatible in the same directory.
 *(Only if the database file doesn't exist.)
 *	
 *		//Create a database which is WebKit compatible.
-*		var db = Titanium.Database.open('customdatabase');
+*		var db = Ti.Database.open('customdatabase');
 *
-*Alternatively, you can create a database and open it using the Titanium.Database.openFile method. This method
-*accepts a file path or a Titanium.Filesystem.File object.
+*Alternatively, you can create a database and open it using the Ti.Database.openFile method. This method
+*accepts a file path or a Ti.Filesystem.File object.
 *
 *		//Create a database
-*		var db = Titanium.Database.openFile(Titanium.Filesystem.getFile(
-*									  Titanium.Filesystem.getApplicationDataDirectory(), 'customdatabase.db'));	
+*		var db = Ti.Database.openFile(Ti.Filesystem.getFile(
+*									  Ti.Filesystem.getApplicationDataDirectory(), 'customdatabase.db'));	
 *
 *Querying Databases
 *------------------
-*Please refer to the Titanium.Database.DB documentation.
+*Please refer to the Ti.Database.DB documentation.
 *
 *Note - It is recommended that you store all data in the application data directory and not the application resources
 *or contents directory as those may not be writeable.
 *
-* @class Titanium.Database
+* @class Ti.Database
 * @singleton
 * @member Ti
 */
-Titanium.Database = {
+Ti.Database = {
 /**
 * Open a WebKit HTML5 compatible-database, given the name of the database
 * to open. WebKit HTML5 databases are stored per-security origin and are
 * not available between security origins. A security origin is composed
 * of a URL scheme and hostname pair.
 * @param {String} name Name of the database. The call will create the database if it does not exist.
-* @return {Titanium.Database.DB}
-* @member Titanium.Database
+* @return {Ti.Database.DB}
+* @member Ti.Database
 */
 open: function(name){},
 
 /**
 * Open a database, given a path to an sqlite file.
 * @param {String} path Path to an SQLite file to store the database in. If the file does not exist, it will be created.
-* @return {Titanium.Database.DB}
-* @member Titanium.Database
+* @return {Ti.Database.DB}
+* @member Ti.Database
 */
 openFile: function(path){}}
 
 
 /**
 * An object representing a set of result from a Database.DB query.
-* @class Titanium.Database.ResultSet
-* @member Titanium.Database
+* @class Ti.Database.ResultSet
+* @member Ti.Database
 */
-Titanium.Database.ResultSet = {
+Ti.Database.ResultSet = {
 /**
 * Releases the memory associated with this Database.ResultSet.
 * @return {void}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 close: function(){},
 
@@ -2126,7 +2126,7 @@ close: function(){},
 * its index in the original SQL query.
 * @param {Number} fieldIndex The zero-based index of the field to query.
 * @return {Boolean|String|Number|Bytes}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 field: function(fieldIndex){},
 
@@ -2134,14 +2134,14 @@ field: function(fieldIndex){},
 * Return the value of the specified field in the current row.
 * @param {String} name The name of the field to query.
 * @return {Boolean|String|Number|Bytes}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 fieldByName: function(name){},
 
 /**
 * Return the number of fields in this Database.ResultSet.
 * @return {Number}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 fieldCount: function(){},
 
@@ -2151,7 +2151,7 @@ fieldCount: function(){},
 * Database.ResultSet.
 * @param {Number} fieldIndex The zero-based index of the field to query.
 * @return {String}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 fieldName: function(fieldIndex){},
 
@@ -2161,7 +2161,7 @@ fieldName: function(fieldIndex){},
 * statement, a query that returned no results or iterating to the end of
 * the Database.ResultSet.
 * @return {Boolean}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 isValidRow: function(){},
 
@@ -2171,45 +2171,45 @@ isValidRow: function(){},
 * the Database.ResultSet, the <tt>isValidRow</tt> method will return
 * false.
 * @return {void}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 next: function(){},
 
 /**
 * Return the number of rows in this Database.ResultSet.
 * @return {Number}
-* @member Titanium.Database.ResultSet
+* @member Ti.Database.ResultSet
 */
 rowCount: function(){}}
 
 
 /**
 * A representation of an asynchronous copy operation created via calling Filesystem.asyncCopy.
-* @class Titanium.Filesystem.AsyncCopy
-* @member Titanium.Filesystem
+* @class Ti.Filesystem.AsyncCopy
+* @member Ti.Filesystem
 */
-Titanium.Filesystem.AsyncCopy = {
+Ti.Filesystem.AsyncCopy = {
 /**
 * True if this asynchronous copy operation is active, false otherwise.
 * @property {Boolean}
-* @member Titanium.Filesystem.AsyncCopy
+* @member Ti.Filesystem.AsyncCopy
 */
 running: null}
 
 
 /**
 * An object which represents a path to a file or directory. A Filesystem.File is not guaranteed to be a valid path.
-* @class Titanium.Filesystem.File
-* @member Titanium.Filesystem
+* @class Ti.Filesystem.File
+* @member Ti.Filesystem
 */
-Titanium.Filesystem.File = {
+Ti.Filesystem.File = {
 /**
 * Copies a file to the specified location. If the target is a directory
 * the file will be written to that directory. If the target is a file,
 * the file will be written to that file.
 * @param {String|Filesystem.File} target The target of this move operation.
 * @return {void}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 copy: function(target){},
 
@@ -2219,7 +2219,7 @@ copy: function(target){},
 * method will return true if the directory was created or false
 * if it was not.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 createDirectory: function(){},
 
@@ -2228,7 +2228,7 @@ createDirectory: function(){},
 * The return value of this function will be microseconds since the
 * epoch at the time this file was created.
 * @return {Number}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 createTimestamp: function(){},
 
@@ -2237,7 +2237,7 @@ createTimestamp: function(){},
 * Return true if removal succeeded and false otherwise.
 * @param {Boolean} recursive If this Filesystem.File is a directory, remove it recursively.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 deleteDirectory: function(recursive){},
 
@@ -2246,7 +2246,7 @@ deleteDirectory: function(recursive){},
 * this method never removes directories recursively.
 * Return true if removal succeeded and false otherwise.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 deleteFile: function(){},
 
@@ -2254,14 +2254,14 @@ deleteFile: function(){},
 * Return true if a file or directory exists at the path
 * specified by this Filesystem.File.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 exists: function(){},
 
 /**
 * Return the extension of this Filesystem.File.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 extension: function(){},
 
@@ -2269,8 +2269,8 @@ extension: function(){},
 * If this Filesystem.File specifies the path to a directory,
 * return an Array of items inside this directory. If this path
 * does not exist or is not a directory, return null.
-* @return {Titanium.Array<Filesystem.File>}
-* @member Titanium.Filesystem.File
+* @return {Ti.Array<Filesystem.File>}
+* @member Ti.Filesystem.File
 */
 getDirectoryListing: function(){},
 
@@ -2281,7 +2281,7 @@ getDirectoryListing: function(){},
 * this method will return true and false otherwise.
 * @param {String|Filesystem.File} target The target of this shortcut.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 createShortcut: function(target){},
 
@@ -2289,7 +2289,7 @@ createShortcut: function(target){},
 * Return true if the path specified by this Filesystem.File refers
 * to a directory or false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isDirectory: function(){},
 
@@ -2298,7 +2298,7 @@ isDirectory: function(){},
 * this Filesystem.File object has the executable bit set. If the
 * file does not exists, this method will return false.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isExecutable: function(){},
 
@@ -2306,7 +2306,7 @@ isExecutable: function(){},
 * Return true if the path specified by this Filesystem.File refers
 * to a file or false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isFile: function(){},
 
@@ -2316,7 +2316,7 @@ isFile: function(){},
 * attribute and on Linux and OS X this means that the basename of
 * this path begins with a period.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isHidden: function(){},
 
@@ -2324,7 +2324,7 @@ isHidden: function(){},
 * Return true if the path specified by this Filesystem.File refers
 * to a read-only file.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isReadonly: function(){},
 
@@ -2332,7 +2332,7 @@ isReadonly: function(){},
 * Return true if the path specified by this Filesystem.File refers
 * to a symbolic link.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isSymbolicLink: function(){},
 
@@ -2340,7 +2340,7 @@ isSymbolicLink: function(){},
 * Return true if the path specified by this Filesystem.File refers
 * to a writable file and false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 isWritable: function(){},
 
@@ -2349,7 +2349,7 @@ isWritable: function(){},
 * The return value of this function will be microseconds since the
 * epoch at the last time this file was modified.
 * @return {Number}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 modificationTimestamp: function(){},
 
@@ -2359,14 +2359,14 @@ modificationTimestamp: function(){},
 * the file will be written to that file.
 * @param {String|Filesystem.File} target The target of this move operation.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 move: function(target){},
 
 /**
 * Return the full path of this File.Filesystem object.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 nativePath: function(){},
 
@@ -2374,15 +2374,15 @@ nativePath: function(){},
 * Create and open a Filestream for this File object.
 * @param {Boolean} binary (optional) Whether or not to open this stream in binary mode. If not supplied this will be false.
 * @param {Boolean} append (optional) Whether or not to open this stream in append mode. If not supplied this will be false.
-* @return {Titanium.Filesystem.Filestream}
-* @member Titanium.Filesystem.File
+* @return {Ti.Filesystem.Filestream}
+* @member Ti.Filesystem.File
 */
 open: function(binary, append){},
 
 /**
 * Return the parent directory of this File.Filesystem object.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem.File
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem.File
 */
 parent: function(){},
 
@@ -2392,7 +2392,7 @@ parent: function(){},
 * reason: The method has been superseded by Filestream.read()
 * version: 1.1.0
 * @return {Bytes}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 read: function(){},
 
@@ -2407,7 +2407,7 @@ read: function(){},
 * reason: The method has been superseded by Filestream.readLine()
 * version: 1.1.0
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 readLine: function(){},
 
@@ -2415,7 +2415,7 @@ readLine: function(){},
 * Renames a file to the given path.
 * @param {String} newPath The new path of the file
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 rename: function(newPath){},
 
@@ -2424,7 +2424,7 @@ rename: function(newPath){},
 * by this Filesystem.File object. Return true if the file or directory
 * at this path is executable after the operation completes.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 setExecutable: function(){},
 
@@ -2433,8 +2433,8 @@ setExecutable: function(){},
 * Filesystem.File object. If the given path is absolute, the absolute
 * path is returned.
 * @param {String} subPath The subPath to resolve against this Filesystem.File object.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem.File
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem.File
 */
 resolve: function(subPath){},
 
@@ -2444,14 +2444,14 @@ resolve: function(subPath){},
 * true if the file or directory at this path is read-only after the operation
 * completes.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 setReadonly: function(){},
 
 /**
 * Return the size of the file in number of bytes.
 * @return {Number}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 size: function(){},
 
@@ -2460,7 +2460,7 @@ size: function(){},
 * by this Filesystem.File object. Return true if the file or directory
 * at this path is writable after the operation completes.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 setWritable: function(){},
 
@@ -2469,7 +2469,7 @@ setWritable: function(){},
 * path specified by this Filesystem.File object in number of
 * bytes..
 * @return {Number}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 spaceAvailable: function(){},
 
@@ -2477,7 +2477,7 @@ spaceAvailable: function(){},
 * Creates a new, empty file in an atomic operation.
 * Returns true if the file was created or false if it already exists.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 touch: function(){},
 
@@ -2490,7 +2490,7 @@ touch: function(){},
 * version: 1.1.0
 * @param {Filesystem.File|String} destination Directory to unzip the file to.
 * @return {Boolean}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 unzip: function(destination){},
 
@@ -2503,21 +2503,21 @@ unzip: function(destination){},
 * version: 1.1.0
 * @param {String|Bytes|Number} data The data to write to this Filesystem.File.
 * @return {String}
-* @member Titanium.Filesystem.File
+* @member Ti.Filesystem.File
 */
 write: function(data){}}
 
 
 /**
 * A object for reading and writing data to files.
-* @class Titanium.Filesystem.Filestream
-* @member Titanium.Filesystem
+* @class Ti.Filesystem.Filestream
+* @member Ti.Filesystem
 */
-Titanium.Filesystem.Filestream = {
+Ti.Filesystem.Filestream = {
 /**
 * Return true if this Fileystem.Filestream is open and false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 isOpen: function(){},
 
@@ -2525,28 +2525,28 @@ isOpen: function(){},
 * Close this Filsystem.Filstream. Return true if the stream closed
 * without any problems and false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 close: function(){},
 
 /**
 * A constant representing append mode for file access.
 * @property {Number}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 MODE_APPEND: null,
 
 /**
 * A constant representing read mode for file access.
 * @property {Number}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 MODE_READ: null,
 
 /**
 * A constant representing write mode for file access.
 * @property {String}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 MODE_WRITE: null,
 
@@ -2556,7 +2556,7 @@ MODE_WRITE: null,
 * @param {Boolean} binary (optional) Whether or not to open this stream in binary mode. If not supplied this will be false.
 * @param {Boolean} append (optional) Whether or not to open this stream in append mode. If not supplied this will be false.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 open: function(binary, append){},
 
@@ -2566,7 +2566,7 @@ open: function(binary, append){},
 * operation fails.
 * @param {Integer} size Number of bytes to read from the file.
 * @return {Bytes}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 read: function(size){},
 
@@ -2576,21 +2576,21 @@ read: function(size){},
 * Each call will return a Bytes object until the end of the stream,
 * when null will be returned.
 * @return {Bytes|null}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 readLine: function(){},
 
 /**
 * Return true if this Filesystem.Filestream is ready for IO operations or false otherwise.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 ready: function(){},
 
 /**
 * Returns current position in file relative to the beginning
 * @return {Integer}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 tell: function(){},
 
@@ -2599,7 +2599,7 @@ tell: function(){},
 * operation succeeds and false otherwise.
 * @param {String|Bytes|Number} data The data to write to this Filesystem.Filestream.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 write: function(data){},
 
@@ -2608,7 +2608,7 @@ write: function(data){},
 * @param {Integer} offset new position relative to the absolute position specifed by the dir parameter
 * @param {Integer} dir specifies an absolute position in the file where offset will be applied
 * @return {void}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 seek: function(offset, dir){},
 
@@ -2618,24 +2618,24 @@ seek: function(offset, dir){},
 * operation succeeds and false otherwise.
 * @param {String|Bytes|Number} data The data to write to this Filesystem.Filestream.
 * @return {Boolean}
-* @member Titanium.Filesystem.Filestream
+* @member Ti.Filesystem.Filestream
 */
 writeLine: function(data){}}
 
 
 /**
 * A module for accessing the Filesystem.
-* @class Titanium.Filesystem
+* @class Ti.Filesystem
 * @singleton
 * @member Ti
 */
-Titanium.Filesystem = {
+Ti.Filesystem = {
 /**
 * Executes an asynchronous copy operation and returns an AsyncCopy object.
 * @param {Array<String|Filesystem.File>|String|Filesystem.File} paths The source paths to include in the copy operation.
 * @param {Filesystem.File|String} destination A path or a File object representing the destination directory of the asynchronous copy.
-* @return {Titanium.Filesystem.AsyncCopy}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.AsyncCopy}
+* @member Ti.Filesystem
 */
 asyncCopy: function(paths, destination){},
 
@@ -2643,8 +2643,8 @@ asyncCopy: function(paths, destination){},
 * Create an temporary file. This file is guaranteed to be
 * writable. If it still exists when the application exits, it
 * will be deleted.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 createTempFile: function(){},
 
@@ -2652,8 +2652,8 @@ createTempFile: function(){},
 * Create a temporary directory. This directory is guaranteed to be
 * writable. If it still exists when the application exits, it
 * will be deleted.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 createTempDirectory: function(){},
 
@@ -2661,8 +2661,8 @@ createTempDirectory: function(){},
 * Return the data directory of the application. The data directory is per-user
 * directory for storing application data. It is guaranteed to be writable and
 * stable between releases.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getApplicationDataDirectory: function(){},
 
@@ -2670,8 +2670,8 @@ getApplicationDataDirectory: function(){},
 * Return the Desktop directory for the current user. OS X and Windows will
 * always have a valid Desktop directory. Some Linux systems may not have one,
 * in which case the home directory will be returned.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getDesktopDirectory: function(){},
 
@@ -2679,8 +2679,8 @@ getDesktopDirectory: function(){},
 * Return the documents directory for the current user. OS X and Windows will
 * always have a valid Documents directory. Some Linux systems may not have one,
 * in which case the home directory will be returned.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getDocumentsDirectory: function(){},
 
@@ -2689,8 +2689,8 @@ getDocumentsDirectory: function(){},
 * may contain the application contents directory (OS X) or be the application
 * contents directory (Windows and Linux). The application directory may not
 * be writable and applications should not attempt to write to it.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getApplicationDirectory: function(){},
 
@@ -2698,8 +2698,8 @@ getApplicationDirectory: function(){},
 * Create a Filesystem.Filestream object given a Filesystem.File or a path.
 * Filesystem.Filestream is the preferred way of writing to files.
 * @param {Filesystem.File|String} file A file or path used for the construction of this Filesystem.Filestream.
-* @return {Titanium.Filesystem.Filestream}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.Filestream}
+* @member Ti.Filesystem
 */
 getFileStream: function(file){},
 
@@ -2708,7 +2708,7 @@ getFileStream: function(file){},
 * This is useful for writing files with the platform compatibility in mind.
 * File.Filestream.writeLine will use this value when completing lines.
 * @return {String}
-* @member Titanium.Filesystem
+* @member Ti.Filesystem
 */
 getLineEnding: function(){},
 
@@ -2718,8 +2718,8 @@ getLineEnding: function(){},
 * to form one long path string.
 * @param {Filesystem.File|String} base The base to this file. This may be a file or directory.
 * @param {Filesystem.File|String} multiple (optional) A variable length argument list of Files or paths that are joined to the base in an platform-specific way.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getFile: function(base, multiple){},
 
@@ -2727,8 +2727,8 @@ getFile: function(base, multiple){},
 * Return the directory commonly used for storing applications on this
 * platform. On Linux systems, there can be many places for storing
 * executables, so it is not recommended using this value to locate them.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getProgramsDirectory: function(){},
 
@@ -2737,8 +2737,8 @@ getProgramsDirectory: function(){},
 * is the 'Resources' subdirectory of the application contents directory.
 * The application directory may not be writable and applications should
 * not attempt to write to it.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getResourcesDirectory: function(){},
 
@@ -2746,66 +2746,66 @@ getResourcesDirectory: function(){},
 * Return the system root directories. On Unix systems there is at
 * most one root directory '/' while on Windows active drive letters
 * are considered system root directories.
-* @return {Titanium.Array<Filesystem.File>}
-* @member Titanium.Filesystem
+* @return {Ti.Array<Filesystem.File>}
+* @member Ti.Filesystem
 */
 getRootDirectories: function(){},
 
 /**
 * Return the directory of the current Ti runtime files.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getRuntimeHomeDirectory: function(){},
 
 /**
 * A constant representing write mode for file access.
 * @property {Number}
-* @member Titanium.Filesystem
+* @member Ti.Filesystem
 */
 MODE_WRITE: null,
 
 /**
 * A constant representing read mode for file access.
 * @property {Number}
-* @member Titanium.Filesystem
+* @member Ti.Filesystem
 */
 MODE_READ: null,
 
 /**
 * Return the path separator used by the operating system.
 * @return {String}
-* @member Titanium.Filesystem
+* @member Ti.Filesystem
 */
 getSeparator: function(){},
 
 /**
 * A constant representing append mode for file access.
 * @property {Number}
-* @member Titanium.Filesystem
+* @member Ti.Filesystem
 */
 MODE_APPEND: null,
 
 /**
 * Return the home directory of the current user.
-* @return {Titanium.Filesystem.File}
-* @member Titanium.Filesystem
+* @return {Ti.Filesystem.File}
+* @member Ti.Filesystem
 */
 getUserDirectory: function(){}}
 
 
 /**
 * A module for serializing and deserializing JSON.
-* @class Titanium.JSON
+* @class Ti.JSON
 * @singleton
 * @member Ti
 */
-Titanium.JSON = {
+Ti.JSON = {
 /**
 * Deserialize a JSON string into a JavaScript value.
 * @param {String} jsonString JSON string to deserialize into a JavaScript object.
 * @return {any}
-* @member Titanium.JSON
+* @member Ti.JSON
 */
 parse: function(jsonString){},
 
@@ -2813,75 +2813,75 @@ parse: function(jsonString){},
 * Serialize a JavaScript value into a JSON string.
 * @param {any} value The JavaScript value to serialize into a JSON string.
 * @return {String}
-* @member Titanium.JSON
+* @member Ti.JSON
 */
 stringify: function(value){}}
 
 
 /**
 * A module for dealing with media.
-* @class Titanium.Media
+* @class Ti.Media
 * @singleton
 * @member Ti
 */
-Titanium.Media = {
+Ti.Media = {
 /**
 * Factory method for Sound objects, created given a path or a URL to a sound file.
 * The types of sound files that can be played depend on the codecs installed on the
 * user's system.
 * @param {String} path The path or url to the sound file to play.
-* @return {Titanium.Media.Sound}
-* @member Titanium.Media
+* @return {Ti.Media.Sound}
+* @member Ti.Media
 */
 createSound: function(path){},
 
 /**
 * Activate the system bell. Some systems may have disabled the system bell.
 * @return {String}
-* @member Titanium.Media
+* @member Ti.Media
 */
 beep: function(){}}
 
 
 /**
 * An object allowing for loading simple sounds and simple types of playback.
-* @class Titanium.Media.Sound
-* @member Titanium.Media
+* @class Ti.Media.Sound
+* @member Ti.Media
 */
-Titanium.Media.Sound = {
+Ti.Media.Sound = {
 /**
 * Return the current volume of this Media.Sound object. Volume
 * values will be between 0.0 and 1.0.
 * @return {Number}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 getVolume: function(){},
 
 /**
 * Return true if this Media.Sound is set to loop and false otherwise.
 * @return {Boolean}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 isLooping: function(){},
 
 /**
 * Return true if this Media.Sound is paused and false otherwise.
 * @return {Boolean}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 isPaused: function(){},
 
 /**
 * Return true if this Media.Sound is playing and false otherwise.
 * @return {Boolean}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 isPlaying: function(){},
 
 /**
 * Pause a currently playing sound.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 pause: function(){},
 
@@ -2892,21 +2892,21 @@ pause: function(){},
 * will unset the onComplete callback.
 * @param {Function|null} callback The new callback function or null to unset it.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 onComplete: function(callback){},
 
 /**
 * Play a sound object. If the sound is paused, it will resume from the current location.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 play: function(){},
 
 /**
 * Reload this sound from the original URL or path.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 reload: function(){},
 
@@ -2914,7 +2914,7 @@ reload: function(){},
 * Set whether or not this sound should loop.
 * @param {Boolean} looping True if the sound should loop, false otherwise.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 setLooping: function(looping){},
 
@@ -2924,14 +2924,14 @@ setLooping: function(looping){},
 * 0.0 or 1.0.
 * @param {Number} volume The new volume value of the sound between 0.0 to 1.0
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 setVolume: function(volume){},
 
 /**
 * Stop a currently playing sound.
 * @return {void}
-* @member Titanium.Media.Sound
+* @member Ti.Media.Sound
 */
 stop: function(){}}
 
@@ -2939,43 +2939,43 @@ stop: function(){}}
 /**
 * An object representing a host on the network.
 * 
-* The following code shows some uses of the Titanium.Network.Host object.    
+* The following code shows some uses of the Ti.Network.Host object.    
 *
-*		var localhost = Titanium.Network.getHostByAddress('127.0.0.1');
+*		var localhost = Ti.Network.getHostByAddress('127.0.0.1');
 *		
 *		localhost.isInvalid(); //returns true if the host is valid and on the network. 
 *		localhost.getAliases(); //returns an array of all aliases for the host defined by the address above. 
 *		
 *
-* @class Titanium.Network.Host
-* @member Titanium.Network
+* @class Ti.Network.Host
+* @member Ti.Network
 */
-Titanium.Network.Host = {
+Ti.Network.Host = {
 /**
 * Returns the list of address for a Host object
-* @return {Titanium.Array<Network.IPAddress>}
-* @member Titanium.Network.Host
+* @return {Ti.Array<Network.IPAddress>}
+* @member Ti.Network.Host
 */
 getAddresses: function(){},
 
 /**
 * Returns the list of aliases for a Host object
 * @return {Array<String>}
-* @member Titanium.Network.Host
+* @member Ti.Network.Host
 */
 getAliases: function(){},
 
 /**
 * Return the hostname of a Host object
 * @return {String}
-* @member Titanium.Network.Host
+* @member Ti.Network.Host
 */
 getName: function(){},
 
 /**
 * Checks whether the Host object is invalid
 * @return {Boolean}
-* @member Titanium.Network.Host
+* @member Ti.Network.Host
 */
 isInvalid: function(){}}
 
@@ -2988,11 +2988,11 @@ isInvalid: function(){}}
 *		//Request URL
 *		var url = 'http://mywebsite.com/api/users/';
 *		//Create the HTTP Client
-*		var client = Titanium.Network.createHTTPClient({
+*		var client = Ti.Network.createHTTPClient({
 *			onload: function(e) {
 *				//request complete do something with data
 *				//assuming that we are not working with XML
-*				Titanium.API.INFO('Response received '+this.responseText);
+*				Ti.API.INFO('Response received '+this.responseText);
 *			},
 *			onerror: function(e) {
 *				//error received, do something
@@ -3004,57 +3004,57 @@ isInvalid: function(){}}
 *		//Send request
 *		client.send();
 *
-* @class Titanium.Network.HTTPClient
-* @member Titanium.Network
+* @class Ti.Network.HTTPClient
+* @member Ti.Network
 */
-Titanium.Network.HTTPClient = {
+Ti.Network.HTTPClient = {
 /**
 * Aborts an in progress connection
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 abort: function(){},
 
 /**
 * Clear any cookies set on the request
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 clearCookies: function(){},
 
 /**
 * Whether an HTTPClient object is connected or not
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 connected: null,
 
 /**
 * Amount of data received from server so far. Updated on HTTP_DATA_RECEIVED event.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 dataReceived: null,
 
 /**
 * Amount of data sent to server so far. Updated on HTTP_DATA_SENT event.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 dataSent: null,
 
 /**
 * The DONE readyState property
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 DONE: null,
 
 /**
 * Get a HTTP cookie from the response.
 * @param {String} name name of the cookie to get
-* @return {Titanium.Network.HTTPCookie}
-* @member Titanium.Network.HTTPClient
+* @return {Ti.Network.HTTPCookie}
+* @member Ti.Network.HTTPClient
 */
 getCookie: function(name){},
 
@@ -3062,21 +3062,21 @@ getCookie: function(name){},
 * "Return the value of a response header, given it's name. If the given name occurs multiple times, this method will only return one occurence."
 * @param {String} name The response header name.
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 getResponseHeader: function(name){},
 
 /**
 * Get the maximum number of redirects to follow. The default is -1, which means that there is no maximum limit to the number of redirects to follow.
 * @return {Number}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 getMaxRedirects: function(){},
 
 /**
 * Return all response headers as an array of two element arrays.
 * @return {Array<Array<String, String>>}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 getResponseHeaders: function(){},
 
@@ -3085,49 +3085,49 @@ getResponseHeaders: function(){},
 * object in milliseconds. Thie value may be -1 to indicate no
 * timeout. The default timeout value is five minutes.
 * @return {Number}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 getTimeout: function(){},
 
 /**
 * The HEADERS_RECEIVED readyState property
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 HEADERS_RECEIVED: null,
 
 /**
 * The LOADING readyState property
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 LOADING: null,
 
 /**
 * The handler function that will be fired as stream data is received from an HTTP request
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 ondatastream: null,
 
 /**
 * The handler function that will be fired when request is completed
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 onload: null,
 
 /**
 * The handler function that will be fired when the readyState code of an HTTPClient object changes.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 onreadystatechange: null,
 
 /**
 * The handler function that will be fired as the stream data is sent.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 onsendstream: null,
 
@@ -3139,51 +3139,51 @@ onsendstream: null,
 * @param {String} username (optional) The HTTP username to use
 * @param {String} password (optional) The HTTP password to use
 * @return {Boolean}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 open: function(method, url, asynchronous, username, password){},
 
 /**
 * The OPENED readyState property
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 OPENED: null,
 
 /**
 * The ready-state status for the connection
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 readyState: null,
 
 /**
 * Sends a request to the server and receive data with the provided handler.
-* @param {Object|Function} handler A handler to receive the response data. handler can either be Titanium.Filesystem.File or a Function.
+* @param {Object|Function} handler A handler to receive the response data. handler can either be Ti.Filesystem.File or a Function.
 * @param {Object|String|null} data (optional) Data to send to the server.
 * @return {Boolean}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 receive: function(handler, data){},
 
 /**
 * The response of an HTTP request as a Bytes. Currently this property is only valid after the request has been completed.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 responseData: null,
 
 /**
 * The response of an HTTP request as text
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 responseText: null,
 
 /**
 * The response of an HTTP request as parsable XML
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 responseXML: null,
 
@@ -3191,15 +3191,15 @@ responseXML: null,
 * Sends data through the HTTP connection
 * @param {Object|String|null} data (optional) Data to send to the server.
 * @return {Boolean}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 send: function(data){},
 
 /**
 * Sends the contents of a file as body content
-* @param {Titanium.Filesystem.File} file the File object to send
+* @param {Ti.Filesystem.File} file the File object to send
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 sendFile: function(file){},
 
@@ -3208,7 +3208,7 @@ sendFile: function(file){},
 * @param {String} username The username to use or an empty String to use none.
 * @param {String} password The password to use or an empty String to use none.
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setBasicCredentials: function(username, password){},
 
@@ -3217,7 +3217,7 @@ setBasicCredentials: function(username, password){},
 * @param {String} name the cookie name
 * @param {String} value the cookie value
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setCookie: function(name, value){},
 
@@ -3226,7 +3226,7 @@ setCookie: function(name, value){},
 * @param {String} username The username to use or an empty String to use none.
 * @param {String} password The password to use or an empty String to use none.
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setCredentials: function(username, password){},
 
@@ -3234,7 +3234,7 @@ setCredentials: function(username, password){},
 * Set the maximum number of redirects to follow. The default is -1, which means that there is no maximum limit to the number of redirects to follow.
 * @param {Number} amount the number of redirects to follow.
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setMaxRedirects: function(amount){},
 
@@ -3243,7 +3243,7 @@ setMaxRedirects: function(amount){},
 * @param {String} header request header name
 * @param {String} value request header value
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setRequestHeader: function(header, value){},
 
@@ -3253,119 +3253,119 @@ setRequestHeader: function(header, value){},
 * timeout value is five minutes.
 * @param {Number} timeout The new timeout value in milliseconds.
 * @return {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 setTimeout: function(timeout){},
 
 /**
 * The response status code of an HTTP request
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 status: null,
 
 /**
 * The response status text of an HTTP Request
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 statusText: null,
 
 /**
 * True if HTTP request timed out
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 timedOut: null,
 
 /**
 * The UNSENT readyState property.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 UNSENT: null,
 
 /**
 * The request URL. This value will be updated on redirect events.
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 url: null,
 
 /**
-* "User agent string to use for requests. (Default: Titanium.userAgent)"
+* "User agent string to use for requests. (Default: Ti.userAgent)"
 * @property {String}
-* @member Titanium.Network.HTTPClient
+* @member Ti.Network.HTTPClient
 */
 userAgent: null}
 
 
 /**
 * An object representing an HTTP cookie.
-* @class Titanium.Network.HTTPCookie
-* @member Titanium.Network
+* @class Ti.Network.HTTPCookie
+* @member Ti.Network
 */
-Titanium.Network.HTTPCookie = {
+Ti.Network.HTTPCookie = {
 /**
 * Get the cookie comment text
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getComment: function(){},
 
 /**
 * Get the domain for which the cookie is valid
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getDomain: function(){},
 
 /**
 * Get the lifetime of the cookie, in seconds.
 * @return {Integer}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getMaxAge: function(){},
 
 /**
 * Get the cookie name
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getName: function(){},
 
 /**
 * Get the subset of URLs to which this cookie applies
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getPath: function(){},
 
 /**
 * Get the cookie value
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getValue: function(){},
 
 /**
 * Identifies to which version of the state management specification the cookie conforms. 0 = netscape 1 = RFC2109
 * @return {Integer}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 getVersion: function(){},
 
 /**
 * Check if the http only flag is set on the cookie
 * @return {Boolean}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 isHTTPOnly: function(){},
 
 /**
 * Check if the secure flag is set on the cookie
 * @return {Boolean}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 isSecure: function(){},
 
@@ -3373,7 +3373,7 @@ isSecure: function(){},
 * Set the cookie comment text
 * @param {String} comment text to set as comment
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setComment: function(comment){},
 
@@ -3381,7 +3381,7 @@ setComment: function(comment){},
 * Set the domain for which the cookie is valid
 * @param {String} domain the domain to set
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setDomain: function(domain){},
 
@@ -3389,7 +3389,7 @@ setDomain: function(domain){},
 * Set the http only flag on the cookie
 * @param {Boolean} enableHTTPOnly if True sets the http only flag
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setHTTPOnly: function(enableHTTPOnly){},
 
@@ -3397,7 +3397,7 @@ setHTTPOnly: function(enableHTTPOnly){},
 * Set the lifetime of the cookie, in seconds.
 * @param {Integer} lifetime the lifetime in seconds. 0 = discard, -1 = never expire
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setMaxAge: function(lifetime){},
 
@@ -3405,7 +3405,7 @@ setMaxAge: function(lifetime){},
 * Set the cookie name
 * @param {String} name name of the cookie
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setName: function(name){},
 
@@ -3413,7 +3413,7 @@ setName: function(name){},
 * Set the subset of URLs to which this cookie applies
 * @param {String} path the path to set
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setPath: function(path){},
 
@@ -3421,7 +3421,7 @@ setPath: function(path){},
 * Set the secure flag on the cookie
 * @param {Boolean} enableSecure if True makes the cookie secure
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setSecure: function(enableSecure){},
 
@@ -3429,7 +3429,7 @@ setSecure: function(enableSecure){},
 * "Set the state management specifiction version the cookie conforms. (Default: 0)"
 * @param {Integer} version cookie version (0 or 1)
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setVersion: function(version){},
 
@@ -3437,7 +3437,7 @@ setVersion: function(version){},
 * Set the cookie value
 * @param {String} value value to set cookie
 * @return {String}
-* @member Titanium.Network.HTTPCookie
+* @member Ti.Network.HTTPCookie
 */
 setValue: function(value){}}
 
@@ -3449,7 +3449,7 @@ setValue: function(value){}}
 * Refer to the code example below:     
 *		
 *		//Create the HTTPServer object
-*		var server = Titanium.Network.createHTTPServer();
+*		var server = Ti.Network.createHTTPServer();
 *
 *		//Specify port number and callback function
 *		//This example can be tested by pointing your
@@ -3474,45 +3474,45 @@ setValue: function(value){}}
 *                  
 *
 *
-* @class Titanium.Network.HTTPServer
-* @member Titanium.Network
+* @class Ti.Network.HTTPServer
+* @member Ti.Network
 */
-Titanium.Network.HTTPServer = {
+Ti.Network.HTTPServer = {
 /**
 * bind this server to a port on a specific interface
 * @param {Number} port port to bind on
 * @param {String} address (optional) address to bind to
 * @param {Method} callback callback for server logic (in seperate thread)
 * @return {String}
-* @member Titanium.Network.HTTPServer
+* @member Ti.Network.HTTPServer
 */
 bind: function(port, address, callback){},
 
 /**
 * close this server
 * @return {String}
-* @member Titanium.Network.HTTPServer
+* @member Ti.Network.HTTPServer
 */
 close: function(){},
 
 /**
 * check to see if this server socket is closed
 * @return {Boolean}
-* @member Titanium.Network.HTTPServer
+* @member Ti.Network.HTTPServer
 */
 isClosed: function(){}}
 
 
 /**
 * An object representing a single HTTP server request.
-* @class Titanium.Network.HTTPServerRequest
-* @member Titanium.Network
+* @class Ti.Network.HTTPServerRequest
+* @member Ti.Network
 */
-Titanium.Network.HTTPServerRequest = {
+Ti.Network.HTTPServerRequest = {
 /**
 * the content length of this request
 * @return {Number}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getContentLength: function(){},
 
@@ -3521,35 +3521,35 @@ getContentLength: function(){},
 * @param {String} header the header of the request
 * @param {String} header the header of the request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getHeader: function(header, header){},
 
 /**
 * get the content type of this request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getContentType: function(){},
 
 /**
 * get the HTTP method of this request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getMethod: function(){},
 
 /**
 * get an HTTP header value from this request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getHeaders: function(){},
 
 /**
 * get the HTTP version of this request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getVersion: function(){},
 
@@ -3557,7 +3557,7 @@ getVersion: function(){},
 * read content from this request
 * @param {Number} length (optional) the number of bytes to read (default 8096)
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 read: function(length){},
 
@@ -3565,24 +3565,24 @@ read: function(length){},
 * check to see if this request has an HTTP header
 * @param {String} header the header of the request to check
 * @return {Boolean}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 hasHeader: function(header){},
 
 /**
 * get the URI of this request
 * @return {String}
-* @member Titanium.Network.HTTPServerRequest
+* @member Ti.Network.HTTPServerRequest
 */
 getURI: function(){}}
 
 
 /**
 * An object representing a single HTTP server response.
-* @class Titanium.Network.HTTPServerResponse
-* @member Titanium.Network
+* @class Ti.Network.HTTPServerResponse
+* @member Ti.Network
 */
-Titanium.Network.HTTPServerResponse = {
+Ti.Network.HTTPServerResponse = {
 /**
 * add a cookie to this response
 * @param {String} name the cookie name
@@ -3591,7 +3591,7 @@ Titanium.Network.HTTPServerResponse = {
 * @param {String} domain "(optional) the cookie's domain"
 * @param {String} path "(optional) the cookie's path"
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 addCookie: function(name, value, maxAge, domain, path){},
 
@@ -3599,7 +3599,7 @@ addCookie: function(name, value, maxAge, domain, path){},
 * set the content length of this response
 * @param {Number} length the content length, i.e 100
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setContentLength: function(length){},
 
@@ -3607,7 +3607,7 @@ setContentLength: function(length){},
 * set the content type of this response
 * @param {String} type "the content type, i.e \"text/plain\""
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setContentType: function(type){},
 
@@ -3616,7 +3616,7 @@ setContentType: function(type){},
 * @param {String} name the header name
 * @param {String} value the header value
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setHeader: function(name, value){},
 
@@ -3624,7 +3624,7 @@ setHeader: function(name, value){},
 * set the reason of this response
 * @param {String} reason "the reason, i.e \"OK\""
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setReason: function(reason){},
 
@@ -3632,7 +3632,7 @@ setReason: function(reason){},
 * set the status of this response
 * @param {String} status "the status, i.e \"200\""
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setStatus: function(status){},
 
@@ -3641,7 +3641,7 @@ setStatus: function(status){},
 * @param {String} status "the status, i.e \"200\""
 * @param {String} reason "the reason, i.e \"OK\""
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 setStatusAndReason: function(status, reason){},
 
@@ -3649,185 +3649,185 @@ setStatusAndReason: function(status, reason){},
 * write content into this response
 * @param {String} data content to write (can be string or bytes content)
 * @return {String}
-* @member Titanium.Network.HTTPServerResponse
+* @member Ti.Network.HTTPServerResponse
 */
 write: function(data){}}
 
 
 /**
 * No description provided.
-* @class Titanium.Network.Interface
-* @member Titanium.Network
+* @class Ti.Network.Interface
+* @member Ti.Network
 */
-Titanium.Network.Interface = {
+Ti.Network.Interface = {
 /**
 * Return the display name of this interface.
 * @return {String}
-* @member Titanium.Network.Interface
+* @member Ti.Network.Interface
 */
 getDisplayName: function(){},
 
 /**
 * Return the IP addresso of this interface.
-* @return {Titanium.Network.IPAddress}
-* @member Titanium.Network.Interface
+* @return {Ti.Network.IPAddress}
+* @member Ti.Network.Interface
 */
 getIPAddress: function(){},
 
 /**
 * Get the name of this interface.
 * @return {String}
-* @member Titanium.Network.Interface
+* @member Ti.Network.Interface
 */
 getName: function(){},
 
 /**
 * Return the subnet mask of this interface as a Network.IPAddress object.
-* @return {Titanium.Network.IPAddress}
-* @member Titanium.Network.Interface
+* @return {Ti.Network.IPAddress}
+* @member Ti.Network.Interface
 */
 getSubnetMask: function(){},
 
 /**
 * Return true if this interface supports IPv4 and false otherwise.
 * @return {Boolean}
-* @member Titanium.Network.Interface
+* @member Ti.Network.Interface
 */
 supportsIPv4: function(){},
 
 /**
 * Return true if this interface supports IPv6 and false otherwise.
 * @return {Boolean}
-* @member Titanium.Network.Interface
+* @member Ti.Network.Interface
 */
 supportsIPv6: function(){}}
 
 
 /**
 * An object representing an IP address.
-* @class Titanium.Network.IPAddress
-* @member Titanium.Network
+* @class Ti.Network.IPAddress
+* @member Ti.Network
 */
-Titanium.Network.IPAddress = {
+Ti.Network.IPAddress = {
 /**
 * Check whether an IPAddress object is a broadcast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isBroadcast: function(){},
 
 /**
 * Check whether an IPAddress object is a global multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isGlobalMC: function(){},
 
 /**
 * Check whether an IPAddress object is invalid.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isInvalid: function(){},
 
 /**
 * Check whether an IPAddress object is an IPv6 address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isIPV6: function(){},
 
 /**
 * Check whether an IPAddress object is an IPv4 address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isIPV4: function(){},
 
 /**
 * Check whether an IPAddress object is a link-local address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isLinkLocal: function(){},
 
 /**
 * Check whether an IPAddress object is a link-local multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isLinkLocalMC: function(){},
 
 /**
 * Check whether an IPAddress object is a loopback address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isLoopback: function(){},
 
 /**
 * Check whether an IPAddress object is a multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isMulticast: function(){},
 
 /**
 * Check whether an IPAddress object is a node-local multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isNodeLocalMC: function(){},
 
 /**
 * Check whether an IPAddress object is an organization local multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isOrgLocalMC: function(){},
 
 /**
 * Check whether an IPAddrss object is a site-local address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isSiteLocal: function(){},
 
 /**
 * Check whether an IPAddress object is a site-local multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isSiteLocalMC: function(){},
 
 /**
 * Check whether an IPAddress object is a well-known multicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isWellKnownMC: function(){},
 
 /**
 * Check whether an IPAddress object is a wildcard address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isWildcard: function(){},
 
 /**
 * Check whether an IPAddress object is a unicast address.
 * @return {Boolean}
-* @member Titanium.Network.IPAddress
+* @member Ti.Network.IPAddress
 */
 isUnicast: function(){}}
 
 
 /**
 * An object representing an IRC client connection. [DEPRECATED]
-* @class Titanium.Network.IRCClient
-* @member Titanium.Network
+* @class Ti.Network.IRCClient
+* @member Ti.Network
 */
-Titanium.Network.IRCClient = {
+Ti.Network.IRCClient = {
 /**
 * Connects an IRC to the host specified during creation of the IRCClient object
 * @param {String} hostname the hostname
@@ -3838,42 +3838,42 @@ Titanium.Network.IRCClient = {
 * @param {String} pass the users password
 * @param {Function} callback a callback function to recieve IRC events.
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 connect: function(hostname, port, nick, name, user, pass, callback){},
 
 /**
 * Disconnects an IRC connection
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 disconnect: function(){},
 
 /**
 * Returns the nick name for the connection
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 getNick: function(){},
 
 /**
 * Returns a list of users for the channel
 * @return {Array<String>}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 getUsers: function(){},
 
 /**
 * Checks whether a user has OP status
 * @return {Boolean}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 isOp: function(){},
 
 /**
 * Checks whether a user has VOICE status
 * @return {Boolean}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 isVoice: function(){},
 
@@ -3881,7 +3881,7 @@ isVoice: function(){},
 * Joins a channel
 * @param {String} channel channel to join to
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 join: function(channel){},
 
@@ -3890,7 +3890,7 @@ join: function(channel){},
 * @param {String} channel the channel to send the data to
 * @param {String} message message to send
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 send: function(channel, message){},
 
@@ -3898,14 +3898,14 @@ send: function(channel, message){},
 * Sets the nick name for the connection
 * @param {String} nick nickname to use
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 setNick: function(nick){},
 
 /**
 * The connected property of an IRCClient object
 * @property {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 connected: null,
 
@@ -3913,58 +3913,58 @@ connected: null,
 * Leaves a channel
 * @param {String} channel channel to leave
 * @return {String}
-* @member Titanium.Network.IRCClient
+* @member Ti.Network.IRCClient
 */
 unjoin: function(channel){}}
 
 
 /**
 * A module for network functionality.
-* @class Titanium.Network
+* @class Ti.Network
 * @singleton
 * @member Ti
 */
-Titanium.Network = {
+Ti.Network = {
 /**
 * Adds a connectivity change listener that fires when the system connects or disconnects from the internet
 * @return {Number}
-* @member Titanium.Network
+* @member Ti.Network
 */
 addConnectivityListener: function(){},
 
 /**
 * Creates an HTTPClient object
-* @return {Titanium.Network.HTTPClient}
-* @member Titanium.Network
+* @return {Ti.Network.HTTPClient}
+* @member Ti.Network
 */
 createHTTPClient: function(){},
 
 /**
 * Creates a new HTTPCookie object
-* @return {Titanium.Network.HTTPCookie}
-* @member Titanium.Network
+* @return {Ti.Network.HTTPCookie}
+* @member Ti.Network
 */
 createHTTPCookie: function(){},
 
 /**
 * Creates an HTTPServer object
-* @return {Titanium.Network.HTTPServer}
-* @member Titanium.Network
+* @return {Ti.Network.HTTPServer}
+* @member Ti.Network
 */
 createHTTPServer: function(){},
 
 /**
 * Creates an IPAddress object
 * @param {String} address the IP address
-* @return {Titanium.Network.IPAddress}
-* @member Titanium.Network
+* @return {Ti.Network.IPAddress}
+* @member Ti.Network
 */
 createIPAddress: function(address){},
 
 /**
 * Creates an IRCClient object [DEPRECATED]
-* @return {Titanium.Network.IRCClient}
-* @member Titanium.Network
+* @return {Ti.Network.IRCClient}
+* @member Ti.Network
 */
 createIRCClient: function(){},
 
@@ -3972,8 +3972,8 @@ createIRCClient: function(){},
 * Creates a TCPSocket object
 * @param {String} host the hostname to connect to
 * @param {Number} port the port to use
-* @return {Titanium.Network.TCPSocket}
-* @member Titanium.Network
+* @return {Ti.Network.TCPSocket}
+* @member Ti.Network
 */
 createTCPSocket: function(host, port){},
 
@@ -3981,7 +3981,7 @@ createTCPSocket: function(host, port){},
 * Encodes a URI Component
 * @param {String} value value to encode
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 encodeURIComponent: function(value){},
 
@@ -3989,14 +3989,14 @@ encodeURIComponent: function(value){},
 * Decodes a URI component
 * @param {String} value value to decode
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 decodeURIComponent: function(value){},
 
 /**
 * Return the first IPv4 address in this system's list of interfaces.
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 getFirstIPAddress: function(){},
 
@@ -4004,51 +4004,51 @@ getFirstIPAddress: function(){},
 * Return the first MAC address in this system's list of interfaces.
 * @return {String
 paramters: }
-* @member Titanium.Network
+* @member Ti.Network
 */
 getFirstMACAddress: function(){},
 
 /**
 * Returns a Host object using an address
 * @param {String} address the address
-* @return {Titanium.Network.Host}
-* @member Titanium.Network
+* @return {Ti.Network.Host}
+* @member Ti.Network
 */
 getHostByAddress: function(address){},
 
 /**
 * Returns a Host object using a hostname
 * @param {String} name the hostname
-* @return {Titanium.Network.Host}
-* @member Titanium.Network
+* @return {Ti.Network.Host}
+* @member Ti.Network
 */
 getHostByName: function(name){},
 
 /**
 * Return the proxy override, if one is set.
 * @return {String|null}
-* @member Titanium.Network
+* @member Ti.Network
 */
 getHTTPSProxy: function(){},
 
 /**
 * Return a list of network interfaces on this system.
-* @return {Titanium.Array<Network.Interface>}
-* @member Titanium.Network
+* @return {Ti.Array<Network.Interface>}
+* @member Ti.Network
 */
 getInterfaces: function(){},
 
 /**
 * Return the proxy override, if one is set.
 * @return {String|null}
-* @member Titanium.Network
+* @member Ti.Network
 */
 getHTTPProxy: function(){},
 
 /**
 * Note: this is deprecated and only returns true starting in 1.2.
 * @property {Boolean}
-* @member Titanium.Network
+* @member Ti.Network
 */
 online: null,
 
@@ -4056,7 +4056,7 @@ online: null,
 * Removes a connectivity change listener
 * @param {Number} id the callback id of the method
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 removeConnectivityListener: function(id){},
 
@@ -4064,7 +4064,7 @@ removeConnectivityListener: function(id){},
 * Override application proxy autodetection with a proxy URL.
 * @param {String} hostname The full proxy hostname.
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 setHTTPProxy: function(hostname){},
 
@@ -4072,7 +4072,7 @@ setHTTPProxy: function(hostname){},
 * Override application proxy autodetection with a proxy URL.
 * @param {String} hostname The full proxy hostname.
 * @return {String}
-* @member Titanium.Network
+* @member Ti.Network
 */
 setHTTPSProxy: function(hostname){}}
 
@@ -4081,7 +4081,7 @@ setHTTPSProxy: function(hostname){}}
 * An object representing a TCP client socket connection.
 * A simple implementation of connecting to a host has been shown below. 
 *		//Create the connection.
-*		var socket = Titanium.Network.createTCPSocket("127.0.0.1", 8080);
+*		var socket = Ti.Network.createTCPSocket("127.0.0.1", 8080);
 *		socket.connect();
 *
 *		//The onReadComplete function below ensures that the
@@ -4091,30 +4091,30 @@ setHTTPSProxy: function(hostname){}}
 *            alert(data);
 *        });    
 *
-* @class Titanium.Network.TCPSocket
-* @member Titanium.Network
+* @class Ti.Network.TCPSocket
+* @member Ti.Network
 */
-Titanium.Network.TCPSocket = {
+Ti.Network.TCPSocket = {
 /**
 * Close this Network.TCPSocket connection. If there is no open
 * connection then do nothing. Return true if the connection was
 * closed and false otherwise.
 * @return {Boolean}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 close: function(){},
 
 /**
 * Connect the Socket object to the host specified during creation. The connection will be made asynchronously. Use onError to detect failures.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 connect: function(){},
 
 /**
 * Check whether the Socket is closed.
 * @return {Boolean}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 isClosed: function(){},
 
@@ -4122,7 +4122,7 @@ isClosed: function(){},
 * Set the callback that will be fired when the Socket encounters an error.
 * @param {Function} onError Function to be called when an error happens.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 onError: function(onError){},
 
@@ -4130,7 +4130,7 @@ onError: function(onError){},
 * Set a callback that will be fired when data is received on the Socket.
 * @param {Function} onRead Function to be called when data is received.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 onRead: function(onRead){},
 
@@ -4138,7 +4138,7 @@ onRead: function(onRead){},
 * Set the callback function that will be fired when a read finishes. A read is considered finished if some bytes have been read and a subsequent call to read returns zero bytes.
 * @param {Function} onReadComplete Function be called when a read completes.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 onReadComplete: function(onReadComplete){},
 
@@ -4146,7 +4146,7 @@ onReadComplete: function(onReadComplete){},
 * Set the callback that will be fired when an operation times out on the Socket.
 * @param {Function} onTimeout Function to be called when an operation times out.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 onTimeout: function(onTimeout){},
 
@@ -4154,7 +4154,7 @@ onTimeout: function(onTimeout){},
 * Set a callback that will be fired when data is written on the Socket.
 * @param {Function} onWrite Function to be called when data is written.
 * @return {String}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 onWrite: function(onWrite){},
 
@@ -4162,7 +4162,7 @@ onWrite: function(onWrite){},
 * "Write data to the Socket's connection, if open."
 * @param {String} data The data to write to the connection.
 * @return {Boolean}
-* @member Titanium.Network.TCPSocket
+* @member Ti.Network.TCPSocket
 */
 write: function(data){}}
 
@@ -4181,7 +4181,7 @@ write: function(data){}}
 *		}
 *		
 *		//Creating a notification and displaying it.
-*		var notification = Titanium.Notification.createNotification({
+*		var notification = Ti.Notification.createNotification({
 *			'title' : 'Notification from App',
 *			'message' : 'Click here for updates!',
 *			'timeout' : 10,
@@ -4195,29 +4195,29 @@ write: function(data){}}
 *The notification icon should be always be referenced by an absolute app://, ti:// or file:// URL.
 *
 *
-* @class Titanium.Notification
+* @class Ti.Notification
 * @singleton
 * @member Ti
 */
-Titanium.Notification = {
+Ti.Notification = {
 /**
 * Create a new Notification object.
-* @return {Titanium.UI.Notification}
-* @member Titanium.Notification
+* @return {Ti.UI.Notification}
+* @member Ti.Notification
 */
 createNotification: function(){}}
 
 
 /**
 * An object representing a Desktop notification.
-* @class Titanium.Notification.Notification
-* @member Titanium.Notification
+* @class Ti.Notification.Notification
+* @member Ti.Notification
 */
-Titanium.Notification.Notification = {
+Ti.Notification.Notification = {
 /**
 * Hide this Notification.
 * @return {Boolean}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 hide: function(){},
 
@@ -4225,7 +4225,7 @@ hide: function(){},
 * Set a callback function fired when notification is clicked.
 * @param {Function} callback function to execute when notification is clicked
 * @return {String}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 setCallback: function(callback){},
 
@@ -4233,7 +4233,7 @@ setCallback: function(callback){},
 * Set the notification icon image.
 * @param {String} icon path to the icon image
 * @return {String}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 setIcon: function(icon){},
 
@@ -4241,7 +4241,7 @@ setIcon: function(icon){},
 * Set the notification message
 * @param {String} message notification message text
 * @return {String}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 setMessage: function(message){},
 
@@ -4249,7 +4249,7 @@ setMessage: function(message){},
 * Set the timeout before the notification expires.
 * @param {Integer} timeout Timeout in seconds. (-1 = use system default, 0 = never expire)
 * @return {String}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 setTimeout: function(timeout){},
 
@@ -4257,29 +4257,29 @@ setTimeout: function(timeout){},
 * Set the notification title
 * @param {String} title notification title text
 * @return {String}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 setTitle: function(title){},
 
 /**
 * Display the notification
 * @return {Boolean}
-* @member Titanium.Notification.Notification
+* @member Ti.Notification.Notification
 */
 show: function(){}}
 
 
 /**
 * A module for exposing platform-specific functionality.
-* @class Titanium.Platform
+* @class Ti.Platform
 * @singleton
 * @member Ti
 */
-Titanium.Platform = {
+Ti.Platform = {
 /**
 * Get the per-user machine identifier of this session.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getMachineId: function(){},
 
@@ -4287,49 +4287,49 @@ getMachineId: function(){},
 * Return the operating system architecture type of this system. This
 * value will be either '32bit' or '64bit.'
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getOSType: function(){},
 
 /**
 * Create a universally unique identifier.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 createUUID: function(){},
 
 /**
 * Get a String representation of the current system's architecture.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getArchitecture: function(){},
 
 /**
 * Return the number of processors on this system.
 * @return {Number}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getProcessorCount: function(){},
 
 /**
 * Get the name of this platform.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getName: function(){},
 
 /**
 * Return the version of this system's operating system.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getVersion: function(){},
 
 /**
 * Return the username of the current user.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 getUsername: function(){},
 
@@ -4337,7 +4337,7 @@ getUsername: function(){},
 * Open the given application or file in the system's default program.
 * @param {String} name The name or path to the application or file to open.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 openApplication: function(name){},
 
@@ -4345,7 +4345,7 @@ openApplication: function(name){},
 * Take a PNG screenshot of the root window and save it to the given filename.
 * @param {String} filename The filename to write the image to.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 takeScreenshot: function(filename){},
 
@@ -4353,7 +4353,7 @@ takeScreenshot: function(filename){},
 * Open the given URL in the system's default browser.
 * @param {String} url the URL to open.
 * @return {String}
-* @member Titanium.Platform
+* @member Ti.Platform
 */
 openURL: function(url){}}
 
@@ -4365,23 +4365,23 @@ openURL: function(url){}}
 *		//Following code executes a python script located in
 *		//the resources folder.
 *
-*		var myScript = Titanium.Process.createProcess({
-*                args:['python',Titanium.API.application.resourcesPath + "/myScript.py"]
+*		var myScript = Ti.Process.createProcess({
+*                args:['python',Ti.API.application.resourcesPath + "/myScript.py"]
 *        });
 *		
 *		//Launches the process	
 *       myScript.launch();
 *
 * 		
-* @class Titanium.Process
+* @class Ti.Process
 * @singleton
 * @member Ti
 */
-Titanium.Process = {
+Ti.Process = {
 /**
 * Create a Process object. There are two main ways to use this function:
 * <pre><code>
-* Titanium.Process.createProcess({
+* Ti.Process.createProcess({
 * args: ['mycmd', 'arg1', 'arg2'],
 * env: {'PATH': '/something'},
 * stdin: pipeIn,
@@ -4390,22 +4390,22 @@ Titanium.Process = {
 * });
 * </code></pre>
 * <pre><code>
-* Titanium.Process.createProcess(args, environment, stdin, stdout, stderr);
+* Ti.Process.createProcess(args, environment, stdin, stdout, stderr);
 * </code></pre>
 * @param {Array|Object} args Either a list of command-line arguments to use for this process invocation (including the executable path) or an object describing all parameters of this Process object (see above).
 * @param {Object} envionment (optional) An object representing the environment to pass to this process.
 * @param {Process.Pipe} pipeIn (optional) A Process.Pipe object which the new process should use for receiving input.
 * @param {Process.Pipe} pipeOut (optional) A Process.Pipe object which the new process should use for sending output.
 * @param {Process.Pipe} pipeErr (optional) A Process.Pipe object which the new process should use for sending error output.
-* @return {Titanium.Process.Process}
-* @member Titanium.Process
+* @return {Ti.Process.Process}
+* @member Ti.Process
 */
 createProcess: function(args, envionment, pipeIn, pipeOut, pipeErr){},
 
 /**
 * Create a pipe for attaching to/from any number of processes.
-* @return {Titanium.Process.Pipe}
-* @member Titanium.Process
+* @return {Ti.Process.Pipe}
+* @member Ti.Process
 */
 createPipe: function(){},
 
@@ -4414,217 +4414,217 @@ createPipe: function(){},
 * @param {String} command The command to launch
 * @param {Array<String>} arguments A list of arguments to the command
 * @return {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 launch: function(command, arguments){},
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGCHLD: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGEMT: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGFPE: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGHUP: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGILL: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGINFO: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGINT: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGIO: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGKILL: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGPIPE: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGPROF: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGQUIT: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGSEGV: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGSTOP: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGSYS: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGTERM: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGTRAP: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGTSTP: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGTTOU: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGURG: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGUSR1: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGTTIN: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGUSR2: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGVTALRM: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGXCPU: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGXFSZ: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGALRM: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGABRT: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGBUS: null,
 
 /**
 * 
 * @property {String}
-* @member Titanium.Process
+* @member Ti.Process
 */
 SIGWINCH: null}
 
@@ -4636,15 +4636,15 @@ SIGWINCH: null}
 *      
 * This can be demonstrated with the example below.     
 *		
-* 		var echoCmd = Titanium.platform === "win32" ? ["C:\\Windows\\System32\\cmd.exe", "/C", "echo"] : ["/bin/echo"];
+* 		var echoCmd = Ti.platform === "win32" ? ["C:\\Windows\\System32\\cmd.exe", "/C", "echo"] : ["/bin/echo"];
 *	
 * 		echoCmd.push("Data.from.echo!");
 *
-* 		var moreCmd = Titanium.platform === "win32" ? ["C:\\Windows\\System32\\more.com"] : ["cat"];
+* 		var moreCmd = Ti.platform === "win32" ? ["C:\\Windows\\System32\\more.com"] : ["cat"];
 *
 * 		// Create the processes.
-* 		var echo = Titanium.Process.createProcess(echoCmd);
-* 		var more = Titanium.Process.createProcess(moreCmd);
+* 		var echo = Ti.Process.createProcess(echoCmd);
+* 		var more = Ti.Process.createProcess(moreCmd);
 *		
 *			//Code for displaying the data received by the 'more' process.
 * 		more.setOnReadLine(function(data) {
@@ -4658,35 +4658,35 @@ SIGWINCH: null}
 * 		more.launch();     
 *
 *
-* @class Titanium.Process.Pipe
-* @member Titanium.Process
+* @class Ti.Process.Pipe
+* @member Ti.Process
 */
-Titanium.Process.Pipe = {
+Ti.Process.Pipe = {
 /**
 * "Attach an IO object to this pipe. An IO object is an object that implements a public \"write(Bytes)\". In Ti, this include FileStreams, and Pipes. You may also use your own custom IO implementation here."
 * @return {String}
-* @member Titanium.Process.Pipe
+* @member Ti.Process.Pipe
 */
 attach: function(){},
 
 /**
 * Close this pipe to further reading/writing.
 * @return {String}
-* @member Titanium.Process.Pipe
+* @member Ti.Process.Pipe
 */
 close: function(){},
 
 /**
 * Detach an IO object from this pipe. see Process.Pipe.attach.
 * @return {String}
-* @member Titanium.Process.Pipe
+* @member Ti.Process.Pipe
 */
 detach: function(){},
 
 /**
 * 
 * @return {bool}
-* @member Titanium.Process.Pipe
+* @member Ti.Process.Pipe
 */
 isAttached: function(){},
 
@@ -4694,28 +4694,28 @@ isAttached: function(){},
 * Write data to this pipe
 * @param {Bytes|String} data a Bytes object or String to write to this pipe
 * @return {Number}
-* @member Titanium.Process.Pipe
+* @member Ti.Process.Pipe
 */
 write: function(data){}}
 
 
 /**
 * An object representing a process instance.
-* @class Titanium.Process.Process
-* @member Titanium.Process
+* @class Ti.Process.Process
+* @member Ti.Process
 */
-Titanium.Process.Process = {
+Ti.Process.Process = {
 /**
 * Return the list of arguments associated with this Process.
 * @return {Array<String>}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 getArguments: function(){},
 
 /**
 * Return a clone of this process' environment.
 * @return {Object, environment}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 cloneEnvironment: function(){},
 
@@ -4723,63 +4723,63 @@ cloneEnvironment: function(){},
 * Return the environment associated with this process.
 * @param {String} key an environment key
 * @return {String|Object}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 getEnvironment: function(key){},
 
 /**
 * Return the exit code for this process. Before the process exits, this value will be null.
 * @return {Number}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 getExitCode: function(){},
 
 /**
 * Return the process identifier for this process. Before the process launches, this value will be -1.
 * @return {Number}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 getPID: function(){},
 
 /**
 * Return the stderr pipe for this process.
-* @return {Titanium.Process.Pipe}
-* @member Titanium.Process.Process
+* @return {Ti.Process.Pipe}
+* @member Ti.Process.Process
 */
 getStderr: function(){},
 
 /**
 * Return the stdin pipe for this process.
-* @return {Titanium.Process.Pipe}
-* @member Titanium.Process.Process
+* @return {Ti.Process.Pipe}
+* @member Ti.Process.Process
 */
 getStdin: function(){},
 
 /**
 * Return the stdout pipe for this process.
-* @return {Titanium.Process.Pipe}
-* @member Titanium.Process.Process
+* @return {Ti.Process.Pipe}
+* @member Ti.Process.Process
 */
 getStdout: function(){},
 
 /**
 * Return true if this process is running and false otherwise.
 * @return {Boolean}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 isRunning: function(){},
 
 /**
 * Kill this process (SIGINT in Unix, TerminateProcess in Windows)
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 kill: function(){},
 
 /**
 * "Launch this process asynchronously (not waiting for it's exit)"
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 launch: function(){},
 
@@ -4787,7 +4787,7 @@ launch: function(){},
 * "Send a signal (e.g. Process.SIGHUP) to this Process NOTE: this method does nothing in Windows"
 * @param {Number|String} signal The name of the signal to send.
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 sendSignal: function(signal){},
 
@@ -4796,7 +4796,7 @@ sendSignal: function(signal){},
 * @param {String} key an environment key
 * @param {String} value the value
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 setEnvironment: function(key, value){},
 
@@ -4804,7 +4804,7 @@ setEnvironment: function(key, value){},
 * Set an onRead event handler for this process stdout and stderr. This handler will take one argument which is the event for this output. To retrieve event data, simply access <tt>event.data</tt>.
 * @param {Function} onRead "a handler that is passed an event, with a \"data\" Bytes full of data read from the pipe"
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 setOnRead: function(onRead){},
 
@@ -4812,7 +4812,7 @@ setOnRead: function(onRead){},
 * Set an onExit event handler for this process
 * @param {Function} onExit a function
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 setOnExit: function(onExit){},
 
@@ -4820,14 +4820,14 @@ setOnExit: function(onExit){},
 * Set the callback to invoke every time a line of input is received from the process. This callback will take one argument, which will be the line of output.
 * @param {Function} fn a callback that is called with every line of output received from this process
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 setOnReadLine: function(fn){},
 
 /**
 * Terminate this process (SIGTERM in Unix, TerminateProcess in Windows)
 * @return {String}
-* @member Titanium.Process.Process
+* @member Ti.Process.Process
 */
 terminate: function(){}}
 
@@ -4836,35 +4836,35 @@ terminate: function(){}}
 * A module used for accessing clipboard data.    
 * Please refer to the code examples below:    
 * 	//Code below stores text into the clipboard.    
-* 	Titanium.UI.Clipboard.setData('text/plain', 'This is my custom text');       
+* 	Ti.UI.Clipboard.setData('text/plain', 'This is my custom text');       
 *
 *		//Retrieving the stored data.
-*	  	Titanium.UI.Clipboard.getData('text/plain'); //should return 'This is my custom text'
+*	  	Ti.UI.Clipboard.getData('text/plain'); //should return 'This is my custom text'
 * 
 * Working with text only
 * ----------------------
 * For setting text/plain data, rather than using the above methods, you may
 * use the setText/getText methods.
 *
-*		Titanium.UI.Clipboard.setText('This is my custom text');
-*		Titanium.UI.Clipboard.getText(); //should return 'This is my custom text'
+*		Ti.UI.Clipboard.setText('This is my custom text');
+*		Ti.UI.Clipboard.getText(); //should return 'This is my custom text'
 *
-* @class Titanium.UI.Clipboard
-* @member Titanium.UI
+* @class Ti.UI.Clipboard
+* @member Ti.UI
 */
-Titanium.UI.Clipboard = {
+Ti.UI.Clipboard = {
 /**
 * Clear data of the given mime-type from the clipboard. If no mime-type is given, clear all data from the clipboard.
 * @param {String} type (optional) The mime-type of the data to clear.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 clearData: function(type){},
 
 /**
 * Clear the text portion of the clipboard.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 clearText: function(){},
 
@@ -4872,14 +4872,14 @@ clearText: function(){},
 * Get the data on the clipboard from the portion which contains data of the given mime-type.
 * @param {String} type The mime-type of the data to get.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 getData: function(type){},
 
 /**
 * Get the current text on the clipboard.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 getText: function(){},
 
@@ -4887,14 +4887,14 @@ getText: function(){},
 * Return true if there is any content of the given mime-type on the clipboard.
 * @param {String} type (optional) The mime-type of the data to check.
 * @return {Boolean}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 hasData: function(type){},
 
 /**
 * Return true if there is any content in the text portion of the clipboard.
 * @return {Boolean}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 hasText: function(){},
 
@@ -4903,7 +4903,7 @@ hasText: function(){},
 * @param {String} type The mime-type of the data to set.
 * @param {String} data The new clipboard text.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 setData: function(type, data){},
 
@@ -4911,52 +4911,52 @@ setData: function(type, data){},
 * Set the text on the clipboard. This will overwrite the current contents of the clipboard.
 * @param {String} newText The new clipboard text. If the text is an empty string, the text portion of the clipboard will be cleared.
 * @return {String}
-* @member Titanium.UI.Clipboard
+* @member Ti.UI.Clipboard
 */
 setText: function(newText){}}
 
 
 /**
 * An object representing a Dialog window.
-* @class Titanium.UI.Dialog
-* @member Titanium.UI
+* @class Ti.UI.Dialog
+* @member Ti.UI
 */
-Titanium.UI.Dialog = {
+Ti.UI.Dialog = {
 /**
 * Get an incoming UI dialog parameter
 * @param {String} name Name of the parameter
 * @param {Any} defaultValue Default value of the parameter
 * @return {any}
-* @member Titanium.UI.Dialog
+* @member Ti.UI.Dialog
 */
 getDialogParameter: function(name, defaultValue){},
 
 /**
 * get results from UI dialog
 * @return {String}
-* @member Titanium.UI.Dialog
+* @member Ti.UI.Dialog
 */
 getDialogResult: function(){}}
 
 
 /**
 * A module for controlling the user interface.
-* @class Titanium.UI
+* @class Ti.UI
 * @singleton
 * @member Ti
 */
-Titanium.UI = {
+Ti.UI = {
 /**
 * The CENTERED event constant
 * @property {Number}
-* @member Titanium.UI
+* @member Ti.UI
 */
 CENTERED: null,
 
 /**
 * "Empty the tray of all this application's tray items"
 * @return {void}
-* @member Titanium.UI
+* @member Ti.UI
 */
 clearTray: function(){},
 
@@ -4964,8 +4964,8 @@ clearTray: function(){},
 * Create a new CheckMenuItem object.
 * @param {String} label The label for this menu item
 * @param {Function} eventListener (optional) An event listener for this menu item
-* @return {Titanium.UI.CheckMenuItem}
-* @member Titanium.UI
+* @return {Ti.UI.CheckMenuItem}
+* @member Ti.UI
 */
 createCheckMenuItem: function(label, eventListener){},
 
@@ -4973,8 +4973,8 @@ createCheckMenuItem: function(label, eventListener){},
 * Create and add a tray icon
 * @param {String} iconURL Local URL on system which app is running on to the icon location
 * @param {Function} eventListener (optional) Event listener to add for this item
-* @return {Titanium.UI.Tray|null}
-* @member Titanium.UI
+* @return {Ti.UI.Tray|null}
+* @member Ti.UI
 */
 addTray: function(iconURL, eventListener){},
 
@@ -4983,22 +4983,22 @@ addTray: function(iconURL, eventListener){},
 * @param {String} label The label for this menu item
 * @param {Function} eventListener (optional) An event listener for this menu item
 * @param {String} iconURL (optional) A URL to an icon to use for this menu item
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI
 */
 createMenuItem: function(label, eventListener, iconURL){},
 
 /**
 * Create a new separator menu item.
-* @return {Titanium.UI.SeparatorMenuItem}
-* @member Titanium.UI
+* @return {Ti.UI.SeparatorMenuItem}
+* @member Ti.UI
 */
 createSeperatorMenuItem: function(){},
 
 /**
 * Create a new menu
-* @return {Titanium.UI.Menu}
-* @member Titanium.UI
+* @return {Ti.UI.Menu}
+* @member Ti.UI
 */
 createMenu: function(){},
 
@@ -5014,7 +5014,7 @@ createMenu: function(){},
 * in which case the new window will have the same configuration as the
 * originating window. You may also simply pass a new absolute URL:
 * <pre><code>
-* Titanium.UI.createWindow("app://second_page.html");
+* Ti.UI.createWindow("app://second_page.html");
 * </code></pre>
 * If the URL matches the url or url-regex field of a tiapp.xml window
 * configuration, then the window will use that configuration. For more
@@ -5025,7 +5025,7 @@ createMenu: function(){},
 * field in a tiapp.xml window configuration has a corresponding field
 * in the options object. Below is a call which uses every field:
 * <pre><code>
-* Titanium.UI.createWindow({
+* Ti.UI.createWindow({
 * id: "propertyWindow",
 * url: "app://second_page.html",
 * title: "My New Window",
@@ -5057,58 +5057,58 @@ createMenu: function(){},
 * <a href="http://developer.appcelerator.com/doc/desktop/tiapp.xml">tiapp.xml guide</a>.
 * </p>
 * @param {String|Object} options (optional) A string containing a url of the new window or an object containing properties for the new window
-* @return {Titanium.UI.UserWindow}
-* @member Titanium.UI
+* @return {Ti.UI.UserWindow}
+* @member Ti.UI
 */
 createWindow: function(options){},
 
 /**
 * Return this application's context menu or null if none is set.
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI
 */
 getContextMenu: function(){},
 
 /**
 * Return the current window. This function does not exist outside of the context
 * of a window.
-* @return {Titanium.UI.UserWindow}
-* @member Titanium.UI
+* @return {Ti.UI.UserWindow}
+* @member Ti.UI
 */
 getCurrentWindow: function(){},
 
 /**
 * "Return the user's idle time (for the desktop, not just the application)"
 * @return {Number}
-* @member Titanium.UI
+* @member Ti.UI
 */
 getIdleTime: function(){},
 
 /**
 * "Return the application's main window"
-* @return {Titanium.UI.UserWindow}
-* @member Titanium.UI
+* @return {Ti.UI.UserWindow}
+* @member Ti.UI
 */
 getMainWindow: function(){},
 
 /**
 * "Return the application's main MenuItem or null if none is set."
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI
 */
 getMenu: function(){},
 
 /**
 * Return a list of currently open windows.
-* @return {Titanium.Array<UI.UserWindow>}
-* @member Titanium.UI
+* @return {Ti.Array<UI.UserWindow>}
+* @member Ti.UI
 */
 getOpenWindows: function(){},
 
 /**
 * Return a list of currently open windows.
-* @return {Titanium.Array<UI.UserWindow>}
-* @member Titanium.UI
+* @return {Ti.Array<UI.UserWindow>}
+* @member Ti.UI
 */
 getWindows: function(){},
 
@@ -5116,7 +5116,7 @@ getWindows: function(){},
 * "Set the application icon's badge text."
 * @param {String} text The new badge text.
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setBadge: function(text){},
 
@@ -5124,7 +5124,7 @@ setBadge: function(text){},
 * "Set the application icon's badge image."
 * @param {String} imageURL URL to the new badge image.
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setBadgeImage: function(imageURL){},
 
@@ -5132,7 +5132,7 @@ setBadgeImage: function(imageURL){},
 * "Set the application's context menu"
 * @param {UI.Menu|null} menu a MenuItem object or null to unset the menu.
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setContextMenu: function(menu){},
 
@@ -5140,7 +5140,7 @@ setContextMenu: function(menu){},
 * Set the dock icon
 * @param {String} icon path to the icon
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setDockIcon: function(icon){},
 
@@ -5148,7 +5148,7 @@ setDockIcon: function(icon){},
 * Set the dock menu
 * @param {UI.Menu} menu The new menu for the dock or null to unset the menu.
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setDockMenu: function(menu){},
 
@@ -5156,7 +5156,7 @@ setDockMenu: function(menu){},
 * "Set the application's icon"
 * @param {String} menu path to the icon
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setIcon: function(menu){},
 
@@ -5164,15 +5164,15 @@ setIcon: function(menu){},
 * Set a menu for the application
 * @param {UI.Menu|null} menu A Menu object to use as the menu or null to unset the menu.
 * @return {String}
-* @member Titanium.UI
+* @member Ti.UI
 */
 setMenu: function(menu){},
 
 /**
 * create a UI dialog
 * @param {Object} params options to pass in to create window
-* @return {Titanium.UI.Dialog}
-* @member Titanium.UI
+* @return {Ti.UI.Dialog}
+* @member Ti.UI
 */
 showDialog: function(params){}}
 
@@ -5181,18 +5181,18 @@ showDialog: function(params){}}
 * An object representing a menu.
 *
 * A Menu object can be added to the current window of a TideSDK application. Menu objects can 
-* be made up of a number of MenuItems(see Titanium.UI.MenuItem). These menu items can be added to the 
+* be made up of a number of MenuItems(see Ti.UI.MenuItem). These menu items can be added to the 
 * menu object at anytime and TideSDK will ensure that all menu instances update immediately.     
 * 
 * Please take a look at the code example below:     
 * 
 *			//Create the menu object      
-* 		var menu = Titanium.UI.createMenu;
+* 		var menu = Ti.UI.createMenu;
 *			
 *			//Create menu items
-*			var subMenu1 = Titanium.UI.createMenuItem('Menu1');
-*			var subMenu2 = Titanium.UI.createMenuItem('Menu2');	
-*			var subMenu3 = Titanium.UI.createMenuItem('Menu3');		
+*			var subMenu1 = Ti.UI.createMenuItem('Menu1');
+*			var subMenu2 = Ti.UI.createMenuItem('Menu2');	
+*			var subMenu3 = Ti.UI.createMenuItem('Menu3');		
 *			
 *			//Add the menu items to menu
 *			menu.appendItem(subMenu1);
@@ -5200,18 +5200,18 @@ showDialog: function(params){}}
 *			menu.appendItem(subMenu3);	
 *
 *			//Add menu to the current window
-*			Titanium.UI.currentWindow.menu = menu;
+*			Ti.UI.currentWindow.menu = menu;
 *
-* @class Titanium.UI.Menu
-* @member Titanium.UI
+* @class Ti.UI.Menu
+* @member Ti.UI
 */
-Titanium.UI.Menu = {
+Ti.UI.Menu = {
 /**
 * Add a check item to this menu with the given attributes.
 * @param {String} label The label for the new item
 * @param {Function} listener (optional) An event listener callback for the item
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.Menu
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.Menu
 */
 addCheckItem: function(label, listener){},
 
@@ -5220,8 +5220,8 @@ addCheckItem: function(label, listener){},
 * @param {String} label The label for the new item
 * @param {Function} listener (optional) An event listener callback for the item
 * @param {String} iconURL "The URL for this item's icon"
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.Menu
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.Menu
 */
 addItem: function(label, listener, iconURL){},
 
@@ -5229,28 +5229,28 @@ addItem: function(label, listener, iconURL){},
 * Append a MenuItem object to a menu.
 * @param {UI.MenuItem} item Append an item to this menu
 * @return {String}
-* @member Titanium.UI.Menu
+* @member Ti.UI.Menu
 */
 appendItem: function(item){},
 
 /**
 * Add a separator item to this menu.
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.Menu
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.Menu
 */
 addSeparatorItem: function(){},
 
 /**
 * Remove all items from this menu.
 * @return {String}
-* @member Titanium.UI.Menu
+* @member Ti.UI.Menu
 */
 clear: function(){},
 
 /**
 * Get the length of this menu.
 * @return {Number}
-* @member Titanium.UI.Menu
+* @member Ti.UI.Menu
 */
 getLength: function(){},
 
@@ -5259,15 +5259,15 @@ getLength: function(){},
 * @param {UI.MenuItem} item The menu item to insert
 * @param {Number} index The index for this menu item
 * @return {String}
-* @member Titanium.UI.Menu
+* @member Ti.UI.Menu
 */
 insertItemAt: function(item, index){},
 
 /**
 * Get an item from this menu at the given index. This method will throw an exception if the index is out of range.
 * @param {Number} index The index of the item to get
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.Menu
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.Menu
 */
 getItemAt: function(index){},
 
@@ -5275,51 +5275,51 @@ getItemAt: function(index){},
 * Remove the item in this menu at the given index. This method will throw an exception if the index is out of range.
 * @param {Number} index The index of the item to remove
 * @return {String}
-* @member Titanium.UI.Menu
+* @member Ti.UI.Menu
 */
 removeItemAt: function(index){}}
 
 
 /**
 * An object representing a menu item.
-* @class Titanium.UI.MenuItem
-* @member Titanium.UI
+* @class Ti.UI.MenuItem
+* @member Ti.UI
 */
-Titanium.UI.MenuItem = {
+Ti.UI.MenuItem = {
 /**
 * "Add a check item to this menu item's submenu with the given attributes. If this menu item does not have a submenu, it will be created. This method is not available for separator items."
 * @param {String} label The label for the new item
 * @param {Function} listener (optional) An event listener callback for the item
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.MenuItem
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.MenuItem
 */
 addCheckItem: function(label, listener){},
 
 /**
 * "Add a separator item to this menu item's submenu. If this menu item does not have a submenu, it will be created. This method is not available for separator items."
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.MenuItem
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.MenuItem
 */
 addSeparatorItem: function(){},
 
 /**
 * Disable this item i.e. make it non-clickable. This method is not available for separator items.
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 disable: function(){},
 
 /**
 * Enable this item i.e. make it clickable. This method is not available for separator items.
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 enable: function(){},
 
 /**
 * "Get this item's icon URL This method is not available for separator or check items."
 * @return {String|null}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 getIcon: function(){},
 
@@ -5327,49 +5327,49 @@ getIcon: function(){},
 * This method is only available for check items.
 * @param {Boolean} autocheck Whether or not this item should is an autocheck
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 getAutoCheck: function(autocheck){},
 
 /**
 * "Get this item's label. This method is not available for separator items."
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 getLabel: function(){},
 
 /**
 * Gets the state of this check item This method is only available for check items.
 * @return {Boolean}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 getState: function(){},
 
 /**
 * "Get this item's submenu. This method is not available for separator items."
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI.MenuItem
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI.MenuItem
 */
 getSubmenu: function(){},
 
 /**
 * Return true if this UI.MenuItem is a check menu item or false otherwise.
 * @return {Boolean}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 isCheck: function(){},
 
 /**
 * This method is not available for separator items.
 * @return {Boolean}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 isEnabled: function(){},
 
 /**
 * Return true if this UI.MenuItem is seperator menu item or false otherwise.
 * @return {Boolean}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 isSeparator: function(){},
 
@@ -5377,7 +5377,7 @@ isSeparator: function(){},
 * Set whether or not this check item is an autocheck item. An autocheck item (the default) will automatically flip the state of the check on a a click event. Turning off this behavior makes the check item more useful as a radio button. This method is only available for check items.
 * @param {Boolean} autocheck Whether or not this item should be an autocheck
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 setAutoCheck: function(autocheck){},
 
@@ -5385,7 +5385,7 @@ setAutoCheck: function(autocheck){},
 * Set the icon URL for this item This method is not available for separator or check items.
 * @param {String|null} iconURL The new icon URL for this item or null to unset it
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 setIcon: function(iconURL){},
 
@@ -5393,7 +5393,7 @@ setIcon: function(iconURL){},
 * Set the label for this item. This method is not available for separator items.
 * @param {String} label The new label for this item
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 setLabel: function(label){},
 
@@ -5401,7 +5401,7 @@ setLabel: function(label){},
 * Sets the state of this check item This method is only available for check items.
 * @param {Boolean} state A True state is checked, while a False state in unchecked
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 setState: function(state){},
 
@@ -5409,7 +5409,7 @@ setState: function(state){},
 * "Set this item's submenu. This method is not available for separator items."
 * @param {UI.Menu|null} menu The submenu to use for this item or null to unset it
 * @return {String}
-* @member Titanium.UI.MenuItem
+* @member Ti.UI.MenuItem
 */
 setSubmenu: function(menu){},
 
@@ -5418,43 +5418,43 @@ setSubmenu: function(menu){},
 * @param {String} label The label for the new item
 * @param {Function} listener (optional) An event listener callback for the item
 * @param {String} iconURL "The URL for this item's icon"
-* @return {Titanium.UI.MenuItem}
-* @member Titanium.UI.MenuItem
+* @return {Ti.UI.MenuItem}
+* @member Ti.UI.MenuItem
 */
 addItem: function(label, listener, iconURL){}}
 
 
 /**
 * An object representing a TrayItem in TideSDK.
-* @class Titanium.UI.Tray
-* @member Titanium.UI
+* @class Ti.UI.Tray
+* @member Ti.UI
 */
-Titanium.UI.Tray = {
+Ti.UI.Tray = {
 /**
 * Get the hint for this TrayItem
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 getHint: function(){},
 
 /**
 * Get the icon URL for this TrayItem
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 getIcon: function(){},
 
 /**
 * Get the menu for this TrayItem
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI.Tray
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI.Tray
 */
 getMenu: function(){},
 
 /**
 * Removes a TrayItem
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 remove: function(){},
 
@@ -5462,7 +5462,7 @@ remove: function(){},
 * "Sets a TrayItem's icon"
 * @param {String} icon (optional) path to the icon or null to unset
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 setIcon: function(icon){},
 
@@ -5470,7 +5470,7 @@ setIcon: function(icon){},
 * "Sets a TrayItem's tooltip"
 * @param {String} hint (optional) tooltip value or null to unset
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 setHint: function(hint){},
 
@@ -5478,36 +5478,36 @@ setHint: function(hint){},
 * Set the menu for this TrayItem
 * @param {UI.Menu|null} menu The Menu to use for this TrayItem or null to unset
 * @return {String}
-* @member Titanium.UI.Tray
+* @member Ti.UI.Tray
 */
 setMenu: function(menu){}}
 
 
 /**
 * An object representing a top-level TideSDK window.
-* @class Titanium.UI.UserWindow
-* @member Titanium.UI
+* @class Ti.UI.UserWindow
+* @member Ti.UI
 */
-Titanium.UI.UserWindow = {
+Ti.UI.UserWindow = {
 /**
 * Closes a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 close: function(){},
 
 /**
 * Creates a new window as a child of the current window
 * @param {String|Object} options (optional) A string containing a url of the new window or an object containing properties for the new window
-* @return {Titanium.UI.UserWindow}
-* @member Titanium.UI.UserWindow
+* @return {Ti.UI.UserWindow}
+* @member Ti.UI.UserWindow
 */
 createWindow: function(options){},
 
 /**
 * Focuses a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 focus: function(){},
 
@@ -5516,7 +5516,7 @@ focus: function(){},
 * containing four properties <tt>x</tt>, <tt>y</tt>, <tt>width<tt>, and <tt>height</tt>
 * which correspond to the window geometry on the screen in pixels.
 * @return {object}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getBounds: function(){},
 
@@ -5525,15 +5525,15 @@ getBounds: function(){},
 * from the context of this window are considered children.
 * When a window is closed all of its children will also
 * be closed automatically.
-* @return {Titanium.Array<UI.UserWindow>}
-* @member Titanium.UI.UserWindow
+* @return {Ti.Array<UI.UserWindow>}
+* @member Ti.UI.UserWindow
 */
 getChildren: function(){},
 
 /**
 * Return the context menu set on this UI.Userwindow or null if none is set.
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI.UserWindow
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI.UserWindow
 */
 getContextMenu: function(){},
 
@@ -5543,98 +5543,98 @@ getContextMenu: function(){},
 * be available until a UI.UserWindow's PAGE_INITIALIZED event has
 * fired.
 * @return {DOMWindow|null}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getDOMWindow: function(){},
 
 /**
 * "Return this window's height in pixels."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getHeight: function(){},
 
 /**
 * "Return this window's icon, if one is set or null"
 * @return {String|Null}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getIcon: function(){},
 
 /**
 * Return this window's configuration id.
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getID: function(){},
 
 /**
 * "Return this window's maximum height."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getMaxHeight: function(){},
 
 /**
 * "Return this window's maximum height in pixels."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getMaxWidth: function(){},
 
 /**
 * Return the window menu set on this UI.UserWindow if one is set, otherwise return null.
-* @return {Titanium.UI.Menu|null}
-* @member Titanium.UI.UserWindow
+* @return {Ti.UI.Menu|null}
+* @member Ti.UI.UserWindow
 */
 getMenu: function(){},
 
 /**
 * "Return this window's minimum height."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getMinHeight: function(){},
 
 /**
 * "Return this window's minimum width."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getMinWidth: function(){},
 
 /**
 * Return this window's parent window or null if it is a top-level window.
-* @return {Titanium.UI.UserWindow|null}
-* @member Titanium.UI.UserWindow
+* @return {Ti.UI.UserWindow|null}
+* @member Ti.UI.UserWindow
 */
 getParent: function(){},
 
 /**
 * Return the title of this window.
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getTitle: function(){},
 
 /**
 * "Return this window's opacity."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getTransparency: function(){},
 
 /**
 * Return this window's current URL."
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getURL: function(){},
 
 /**
 * "Return this window's width in pixels."
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getWidth: function(){},
 
@@ -5642,7 +5642,7 @@ getWidth: function(){},
 * Return a UI.UserWindow's horizontal (X-axis) position on the screen. The
 * origin of the screen is considered to be the top-left on all platforms.
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getX: function(){},
 
@@ -5650,14 +5650,14 @@ getX: function(){},
 * Return a UI.UserWindow's vertical (Y-axis) position on the screen. The
 * origin of the screen is considered to be the top-left on all platforms.
 * @return {Number}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 getY: function(){},
 
 /**
 * Checks whether a window has a transparent background or not. If a window has a transparent background, transparent colors on the page will show through to windows underneath.
 * @return {bool}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 hasTransparentBackground: function(){},
 
@@ -5665,35 +5665,35 @@ hasTransparentBackground: function(){},
 * Return true if this window is active. An active window is one
 * that has finished opening, but has not yet been closed.
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isActive: function(){},
 
 /**
 * Hides a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 hide: function(){},
 
 /**
 * Checks whether a window could be closed or not
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isCloseable: function(){},
 
 /**
 * true if this window is a UI Dialog
 * @property {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isDialog: null,
 
 /**
 * Checks whether a window is in an edited state
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isDocumentEdited: function(){},
 
@@ -5701,84 +5701,84 @@ isDocumentEdited: function(){},
 * Checks whether a window is in fullscreen
 * @param {Boolean} chrome true if the window is in fullscreen, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isFullscreen: function(chrome){},
 
 /**
 * Checks whether a window could be maximized or not
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isMaximizable: function(){},
 
 /**
 * Checks whether a window is maximized
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isMaximized: function(){},
 
 /**
 * Checks whether a window could be minimized or not
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isMinimizable: function(){},
 
 /**
 * Checks whether a window is minimized
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isMinimized: function(){},
 
 /**
 * Checks whether a window is resizable
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isResizable: function(){},
 
 /**
 * Checks whether a window is top most
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isTopMost: function(){},
 
 /**
 * Checks whether a window uses system chrome
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isUsingChrome: function(){},
 
 /**
 * Checks whether a window is visible
 * @return {Boolean}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 isVisible: function(){},
 
 /**
 * Minimizes a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 minimize: function(){},
 
 /**
 * Maximizes a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 maximize: function(){},
 
 /**
 * Opens a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 open: function(){},
 
@@ -5799,7 +5799,7 @@ open: function(){},
 * @param {method} callback a callback function to fire after the user closes the dialog
 * @param {object} options (optional) additional options for the dialog
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 openFileChooserDialog: function(callback, options){},
 
@@ -5808,7 +5808,7 @@ openFileChooserDialog: function(callback, options){},
 * @param {method} callback a callback function to fire after the user closes the dialog
 * @param {object} options (optional) additional options for the dialog
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 openFolderChooserDialog: function(callback, options){},
 
@@ -5825,7 +5825,7 @@ openFolderChooserDialog: function(callback, options){},
 * @param {method} callback a callback function to fire after the user closes the dialog
 * @param {object} options (optional) additional options for the dialog
 * @return {null}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 openSaveAsDialog: function(callback, options){},
 
@@ -5835,7 +5835,7 @@ openSaveAsDialog: function(callback, options){},
 * which correspond to the window geometry on the screen in pixels.
 * @param {object} bounds an object containing the value for the window bounds
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setBounds: function(bounds){},
 
@@ -5843,7 +5843,7 @@ setBounds: function(bounds){},
 * Sets whether a window could be closed or not
 * @param {Boolean} closeable true if the window could be closed, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setCloseable: function(closeable){},
 
@@ -5854,7 +5854,7 @@ setCloseable: function(closeable){},
 * @param {String} contents The HTML string to inject into the UserWindow.
 * @param {String} baseURL (optional) The base URL of the URL string. If omitted URLs will be resolved relative to the root of the app resources directory.
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setContents: function(contents, baseURL){},
 
@@ -5862,7 +5862,7 @@ setContents: function(contents, baseURL){},
 * "Set this window's context menu"
 * @param {UI.Menu|null} menu The Menu object to use as the context menu or null to unset the menu.
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setContextMenu: function(menu){},
 
@@ -5870,7 +5870,7 @@ setContextMenu: function(menu){},
 * Set a window to the edited (a dot in the close button) or unedited state. OS X only.
 * @param {Boolean} edited true if the window is edited, false if not
 * @return {null}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setDocumentEdited: function(edited){},
 
@@ -5878,7 +5878,7 @@ setDocumentEdited: function(edited){},
 * Makes a window fullscreen
 * @param {Boolean} fullscreen set to true for fullscreen, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setFullscreen: function(fullscreen){},
 
@@ -5886,7 +5886,7 @@ setFullscreen: function(fullscreen){},
 * "Sets a window's icon"
 * @param {String} icon path to the icon file
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setIcon: function(icon){},
 
@@ -5894,7 +5894,7 @@ setIcon: function(icon){},
 * "Sets a window's height"
 * @param {Number} height the height value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setHeight: function(height){},
 
@@ -5902,7 +5902,7 @@ setHeight: function(height){},
 * "Sets a window's max-height"
 * @param {Number} height the max-height value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMaxHeight: function(height){},
 
@@ -5910,7 +5910,7 @@ setMaxHeight: function(height){},
 * Sets whether a window could be maximized or not
 * @param {Boolean} maximizable true if the window could be maximized, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMaximizable: function(maximizable){},
 
@@ -5918,7 +5918,7 @@ setMaximizable: function(maximizable){},
 * "Sets a window's max-width"
 * @param {Number} width the max-width value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMaxWidth: function(width){},
 
@@ -5926,7 +5926,7 @@ setMaxWidth: function(width){},
 * "Set this window's menu"
 * @param {UI.Menu|null} menu The Menu object to use as the menu or null to unset the menu.
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMenu: function(menu){},
 
@@ -5934,7 +5934,7 @@ setMenu: function(menu){},
 * "Sets a window's min height"
 * @param {Number} height the min-height value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMinHeight: function(height){},
 
@@ -5942,7 +5942,7 @@ setMinHeight: function(height){},
 * Sets whether a window could be maximized or not
 * @param {Boolean} minimizable true if the window could be minimized, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMinimizable: function(minimizable){},
 
@@ -5950,7 +5950,7 @@ setMinimizable: function(minimizable){},
 * "Sets a window's min-width"
 * @param {Number} width the min-width value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setMinWidth: function(width){},
 
@@ -5958,7 +5958,7 @@ setMinWidth: function(width){},
 * Set if plugins are enabled
 * @param {bool} enabled true if plugins should be enabled
 * @return {undefined}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setPluginsEnabled: function(enabled){},
 
@@ -5966,7 +5966,7 @@ setPluginsEnabled: function(enabled){},
 * Sets whether a window could be resized or not
 * @param {Boolean} resizable true if the window could be resized, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setResizable: function(resizable){},
 
@@ -5975,7 +5975,7 @@ setResizable: function(resizable){},
 * @param {Number} width the width of the window
 * @param {Number} height the height of the window
 * @return {undefined}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setSize: function(width, height){},
 
@@ -5983,7 +5983,7 @@ setSize: function(width, height){},
 * Sets the title of a window
 * @param {object} title the title of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setTitle: function(title){},
 
@@ -5991,7 +5991,7 @@ setTitle: function(title){},
 * Sets whether a window is top most (above other windows)
 * @param {Boolean} topmost true if top most, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setTopMost: function(topmost){},
 
@@ -5999,7 +5999,7 @@ setTopMost: function(topmost){},
 * "Sets a window's transparency value"
 * @param {Number} url the transparency value of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setTransparency: function(url){},
 
@@ -6007,7 +6007,7 @@ setTransparency: function(url){},
 * Sets the url for a window
 * @param {String} url the url for the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setURL: function(url){},
 
@@ -6015,7 +6015,7 @@ setURL: function(url){},
 * Sets whether a window should use system chrome
 * @param {Boolean} chrome set to true to use system chrome, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setUsingChrome: function(chrome){},
 
@@ -6023,7 +6023,7 @@ setUsingChrome: function(chrome){},
 * "Sets a window's width"
 * @param {Number} width the width of the window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setWidth: function(width){},
 
@@ -6031,7 +6031,7 @@ setWidth: function(width){},
 * Sets the visibility of the window
 * @param {Boolean} visible true if the window should be visible, false if otherwise
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setVisible: function(visible){},
 
@@ -6040,7 +6040,7 @@ setVisible: function(visible){},
 * origin of the screen is considered to be the top-left on all platforms.
 * @param {Number} x the horizontal position
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setX: function(x){},
 
@@ -6049,28 +6049,28 @@ setX: function(x){},
 * origin of the screen is considered to be the top-left on all platforms.
 * @param {Number} y the vertical position
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 setY: function(y){},
 
 /**
 * Unfocuses a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 unfocus: function(){},
 
 /**
 * Unmaximizes a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 unmaximize: function(){},
 
 /**
 * Unminimizes a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 unminimize: function(){},
 
@@ -6078,37 +6078,37 @@ unminimize: function(){},
 * Show a UI.UserWindow's web inspector.
 * @param {Boolean} console (optional) Open the console along with the inspector (defaults to false).
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 showInspector: function(console){},
 
 /**
 * Shows a window
 * @return {String}
-* @member Titanium.UI.UserWindow
+* @member Ti.UI.UserWindow
 */
 show: function(){}}
 
 
 /**
 * A module for dealing with application and component updates in TideSDK.
-* @class Titanium.UpdateManager
+* @class Ti.UpdateManager
 * @singleton
 * @member Ti
 */
-Titanium.UpdateManager = {
+Ti.UpdateManager = {
 /**
 * Check the update service for a new version
 * @param {Number} id The monitor id returned from startMonitor
 * @return {String}
-* @member Titanium.UpdateManager
+* @member Ti.UpdateManager
 */
 cancelMonitor: function(id){},
 
 /**
 * Set the update handler implementation function that will be invoked when an update is detected
 * @property {String}
-* @member Titanium.UpdateManager
+* @member Ti.UpdateManager
 */
 onupdate: null,
 
@@ -6116,7 +6116,7 @@ onupdate: null,
 * Install an application update received from update monitor. This method will cause the process to first be restarted for the update to begin.
 * @param {Object} updateSpec Update spec object received from update service.
 * @return {String}
-* @member Titanium.UpdateManager
+* @member Ti.UpdateManager
 */
 installAppUpdate: function(updateSpec){},
 
@@ -6126,52 +6126,52 @@ installAppUpdate: function(updateSpec){},
 * @param {Function} callback Function callback to call when completed
 * @param {Number} interval Interval in milliseconds for how often to check for an update
 * @return {Number}
-* @member Titanium.UpdateManager
+* @member Ti.UpdateManager
 */
 startMonitor: function(component, callback, interval){}}
 
 
 /**
 * A module for creating Worker threads in TideSDK.
-* @class Titanium.Worker
+* @class Ti.Worker
 * @singleton
 * @member Ti
 */
-Titanium.Worker = {
+Ti.Worker = {
 /**
 * Create a worker thread instance.
 * @param {String|Function} source Either a JavaScript function (does not support closures), the URL of a JavaScript file, or a string containing JavaScript source.
-* @return {Titanium.Worker.Worker}
-* @member Titanium.Worker
+* @return {Ti.Worker.Worker}
+* @member Ti.Worker
 */
 createWorker: function(source){}}
 
 
 /**
 * An object representing a TideSDK Worker.
-* @class Titanium.Worker.Worker
-* @member Titanium.Worker
+* @class Ti.Worker.Worker
+* @member Ti.Worker
 */
-Titanium.Worker.Worker = {
+Ti.Worker.Worker = {
 /**
 * "Post a message (async) into the worker thread's queue to be handled by onmessage"
 * @param {any} data Any JSON serializable type to pass to the child.
 * @return {String}
-* @member Titanium.Worker.Worker
+* @member Ti.Worker.Worker
 */
 postMessage: function(data){},
 
 /**
 * Start the worker thread
 * @return {String}
-* @member Titanium.Worker.Worker
+* @member Ti.Worker.Worker
 */
 start: function(){},
 
 /**
 * Terminate the worker thread. The thread can be restarted with Worker.start()
 * @return {String}
-* @member Titanium.Worker.Worker
+* @member Ti.Worker.Worker
 */
 terminate: function(){}}
 

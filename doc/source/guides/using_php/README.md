@@ -237,7 +237,7 @@ Since all JavaScript Numeric variables are floating-point, when they are passed 
     changeNumber($globalNumber)
   </script>
 
-One important result of all Kroll numbers being floating point is that if you send a number into JavaScript and then back into PHP, that number will always be a PHP double.
+One important result of all Tide numbers being floating point is that if you send a number into JavaScript and then back into PHP, that number will always be a PHP double.
 
 ###Booleans
 

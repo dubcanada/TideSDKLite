@@ -2,7 +2,7 @@ require 'fileutils'
 #require 'RMagick'
 #include Magick
 
-SNAPSHOTS_DIR = Titanium.App.appURLToPath("app://snapshots")
+SNAPSHOTS_DIR = Ti.App.appURLToPath("app://snapshots")
 FileUtils.mkdir_p(SNAPSHOTS_DIR)
 
 $zoom_step_w = 75
@@ -10,7 +10,7 @@ $zoom_step_h = 75
 $snapshot_filename = nil
 def take_snapshot
   $snapshot_filename = File.join(SNAPSHOTS_DIR, "snapshot_"+rand(10000).to_s+".png")
-  Titanium.Desktop.takeScreenshot($snapshot_filename)
+  Ti.Desktop.takeScreenshot($snapshot_filename)
   
   document.getElementById('editarea-content').innerHTML = <<IMG
   <img id="snapshot" src="file:///#{$snapshot_filename}"/>

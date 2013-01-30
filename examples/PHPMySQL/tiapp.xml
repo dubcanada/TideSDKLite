@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <ti:app xmlns:ti='http://ns.tidesdk.org'>
-<!-- These values are edited/maintained by Titanium Developer -->
+<!-- These values are edited/maintained by TideSDK Developer -->
 <id>org.tidesdk.phpmysqldemo</id>
 <name>php_mysql_demo</name>
 <version>1.0</version>
