@@ -102,6 +102,7 @@ namespace tide
         // Manually load some PHP extensions for Windows.
         TSRMLS_FETCH();
         std::string phpPath(UTF8ToSystem(this->GetPath()));
+        phpPath = FileUtils::Join(phpPath.c_str(), "ext", 0);
 
         std::string modPath(FileUtils::Join(phpPath.c_str(), "php_gd2.dll", 0));
         php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
