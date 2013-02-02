@@ -5820,7 +5820,7 @@ openFolderChooserDialog: function(callback, options){},
 * * path: path to where the dialog should be opened at
 * * types: array of file extensions that are allowed to be selected
 * * multiple: if true, allow user to select more than one file [default: true]
-* * defaultFile: default name to be used for saving
+* * defaultName: default name to be used for saving
 
 * @param {method} callback a callback function to fire after the user closes the dialog
 * @param {object} options (optional) additional options for the dialog
