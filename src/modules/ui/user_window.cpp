@@ -1285,7 +1285,7 @@ void UserWindow::ReadChooserDialogObject(
     // {
     //    multiple:true,
     //    title: "Select file to delete...",
-    //    defaultFile: "autoexec.bat",
+    //    defaultName: "autoexec.bat",
     //    path: "C:\"
     //    types:['js','html']
     // });
