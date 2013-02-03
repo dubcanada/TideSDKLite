@@ -128,6 +128,12 @@ namespace tide
         TiObjectRef windowGlobal(args.GetObject(3));
         ValueRef kv(Value::Undefined);
 
+        if (code == "") {
+            Logger::Get("PHP")->Error("Empyt script code passed");
+            result->SetValue(kv);
+            return;
+        }
+
         // Contexts must be the same for runs with the same global object.
         string contextId(GetContextId(windowGlobal));
         PHPUtils::GenerateCaseMap(code TSRMLS_CC);
@@ -202,6 +208,7 @@ namespace tide
     
     void PHPEvaluator::Preprocess(const ValueList& args, ValueRef result)
     {
+        volatile int exit_status = SUCCESS;
         args.VerifyException("preprocess", "s o");
 
         string url(args.GetString(0));
@@ -209,6 +216,7 @@ namespace tide
 
         Poco::URI uri(url);
         string path(URLUtils::URLToPath(url));
+        Logger::Get("PHP")->Debug("converted path => %s", path.c_str());
 
         TiObjectRef scope = args.GetObject(1);
         TSRMLS_FETCH();
@@ -223,34 +231,48 @@ namespace tide
         SG(request_info).argv0 = NULL;
         SG(request_info).argc= 0;
         SG(request_info).argv= (char **) NULL;
-        php_request_startup(TSRMLS_C);
-        FillGet(uri TSRMLS_CC);
+        if (php_request_startup(TSRMLS_C) == SUCCESS) {
 
-        // This seems to be needed to make PHP actually give  us errors
-        // at parse/compile time -- see: main/main.c line 969
-        PG(during_request_startup) = 0;
+            FillGet(uri TSRMLS_CC);
 
-        // Convert the path to the system codepage.
-        path = UTF8ToSystem(path);
+            // This seems to be needed to make PHP actually give  us errors
+            // at parse/compile time -- see: main/main.c line 969
+            PG(during_request_startup) = 0;
 
-        zend_file_handle script;
-        script.type = ZEND_HANDLE_FP;
-        script.filename = (char*) path.c_str();
-        script.opened_path = NULL;
-        script.free_filename = 0;
-        script.handle.fp = fopen(script.filename, "rb");
+            // Convert the path to the system codepage.
+            path = UTF8ToSystem(path);
 
-        zend_first_try
-        {
-            php_execute_script(&script TSRMLS_CC);
+            zend_file_handle script;
+            script.type = ZEND_HANDLE_FILENAME;
+            script.filename = (char*) path.c_str();
+            script.opened_path = NULL;
+            script.free_filename = 0;
+            script.handle.fp = 0;
+
+            zend_first_try
+            {
+               php_execute_script(&script TSRMLS_CC);
+               exit_status = EG(exit_status);
+            }
+            zend_catch
+            {
+               Logger::Get("PHP")->Error("preprocessing of script failed: " + path);
+               //throw ValueException::FromString("preprocessing of script failed: " + path);
+            }
+            zend_end_try();
         }
-        zend_catch
-        {
-
+        else {
+            Logger::Get("PHP")->Error("request startup failed while preprocessing of script: " + path);
+            //throw ValueException::FromString("request startup failed while preprocessing of script: " + path);
         }
-        zend_end_try();
 
         string output(PHPModule::GetBuffer().str());
+
+        if (exit_status != SUCCESS) {
+            Logger::Get("PHP")->Error("php_execute_script failed: " + path + " error:" + output);
+           // throw ValueException::FromString("php_execute_script failed: " + path + " error:" + output);
+        }
+
         TiObjectRef o = new StaticBoundObject();
         o->SetObject("data", new Bytes(output));
         o->SetString("mimeType", PHPModule::GetMimeType().c_str());

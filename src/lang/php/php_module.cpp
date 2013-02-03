@@ -94,9 +94,13 @@ namespace tide
         host->AddModuleProvider(this);
 
         std::string resourcesPath(host->GetApplication()->GetResourcesPath());
-        zend_alter_ini_entry("include_path", sizeof("include_path"),
+        logger->Debug("PHPModule::Initialize called: " + resourcesPath);
+        if(zend_alter_ini_entry("include_path", sizeof("include_path"),
             (char*) resourcesPath.c_str(), resourcesPath.size(),
-            ZEND_INI_USER, ZEND_INI_STAGE_RUNTIME);
+            ZEND_INI_USER, ZEND_INI_STAGE_RUNTIME) == FAILURE)
+        {
+            logger->Error("PHPUtils::Initialize failed modifying include_path for php");
+        }
 
 #ifdef OS_WIN32
         // Manually load some PHP extensions for Windows.
@@ -104,14 +108,54 @@ namespace tide
         std::string phpPath(UTF8ToSystem(this->GetPath()));
         phpPath = FileUtils::Join(phpPath.c_str(), "ext", 0);
 
-        std::string modPath(FileUtils::Join(phpPath.c_str(), "php_gd2.dll", 0));
-        php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
-        modPath = FileUtils::Join(phpPath.c_str(), "php_openssl.dll", 0);
-        php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
-        modPath = FileUtils::Join(phpPath.c_str(), "php_curl.dll", 0);
-        php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
-        modPath = FileUtils::Join(phpPath.c_str(), "php_xsl.dll", 0);
-        php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
+        std::vector<std::string> extensions;
+        extensions.push_back("php_bz2");
+        extensions.push_back("php_com_dotnet");
+        extensions.push_back("php_curl");
+        extensions.push_back("php_enchant");
+        extensions.push_back("php_mbstring");
+        extensions.push_back("php_exif");
+        extensions.push_back("php_fileinfo");
+        extensions.push_back("php_gd2");
+        extensions.push_back("php_gettext");
+        extensions.push_back("php_gmp");
+        extensions.push_back("php_imap");
+        //extensions.push_back("php_interbase");
+        extensions.push_back("php_intl");
+        extensions.push_back("php_ldap");
+        extensions.push_back("php_mysql");
+        extensions.push_back("php_mysqli");
+        //extensions.push_back("php_oci8");
+        //extensions.push_back("php_oci8_11g");
+        extensions.push_back("php_openssl");
+        //extensions.push_back("php_pdo_firebird");
+        extensions.push_back("php_pdo_mysql");
+        //extensions.push_back("php_pdo_oci");
+        extensions.push_back("php_pdo_odbc");
+        extensions.push_back("php_pdo_pgsql");
+        extensions.push_back("php_pdo_sqlite");
+        extensions.push_back("php_pgsql");
+        extensions.push_back("php_shmop");
+        extensions.push_back("php_snmp");
+        extensions.push_back("php_soap");
+        extensions.push_back("php_sockets");
+        extensions.push_back("php_sqlite");
+        extensions.push_back("php_sqlite3");
+        //extensions.push_back("php_sybase_ct");
+        extensions.push_back("php_tidy");
+        extensions.push_back("php_xmlrpc");
+        extensions.push_back("php_xsl");
+
+        for(std::vector<std::string>::const_iterator
+            iter = extensions.begin();
+            iter != extensions.end();
+            ++iter)
+        {
+	    //logger->Debug("Loading php module: " + *iter);
+	    std::string modDllName = *iter + ".dll";
+            std::string modPath(FileUtils::Join(phpPath.c_str(), modDllName.c_str(), 0));
+            php_load_extension((char*) modPath.c_str(), 1, 1 TSRMLS_CC);
+        }
 #endif
     }
 
