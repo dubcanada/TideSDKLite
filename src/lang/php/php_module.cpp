@@ -136,7 +136,7 @@ namespace tide
         extensions.push_back("php_pdo_sqlite");
         extensions.push_back("php_pgsql");
         extensions.push_back("php_shmop");
-        extensions.push_back("php_snmp");
+        //extensions.push_back("php_snmp");
         extensions.push_back("php_soap");
         extensions.push_back("php_sockets");
         extensions.push_back("php_sqlite");
