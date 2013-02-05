@@ -15,7 +15,7 @@ Changelog
   - Ubuntu 12.04
 - Update library to curl-7.27.0.
 - Update library to openssl-1.0.1c.
-- Ubuntu (32bit / 64bit): Update library to php-5.3.19
+- Ubuntu (32bit / 64bit): Update library to php-5.3.21
 - Windows: Update library to php-5.3.21
 - Refactored libutils.
 - Encode base64 fixes (github #67).
