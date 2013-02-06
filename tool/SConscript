@@ -88,6 +88,7 @@ def make_app_target(name, path):
 
 make_app_target('drillbit', path.join(build.cwd(), 'drillbit'))
 make_app_target('sandbox', path.join(build.cwd(), 'sandbox'))
+make_app_target('developer', path.join(build.cwd(), 'developer'))
 
 t = build.env.PackageSDKInstaller('#tidesdk-app-sdk-installer', [],
     PATH=path.join(build.cwd(), 'sdkinstaller'))
