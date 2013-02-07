@@ -27,10 +27,13 @@ Changelog
 - Fold in TideSDK-User-Docs into doc folder.
 - Fixed Logger Issue (Ti.API.setLogLevel not working) (github #107).
 - Fixed Window focus issue when not transparent background (github #15).
-- Remove TideSDK from AppData path (github #61, 62). New paths are as follows:
-  - Windows: %APPDATA%/APP_ID
-  - Linux: %APPDATA%/.APP_ID
-  - OSX: ~/Library/Application Support/APP_ID
+- Remove TideSDK from appdata path (github #61, 62).
+  * New paths are as follows:
+    - Windows: %APPDATA%/appid
+    - Linux: ~/.appid
+    - OSX: ~/Library/Application Support/appid
+  * appid is the unique name your gave your app such as:
+    - com.tidesdk.helloworld
 
 1.3.1-beta (released 2012-11-15)
 --------------------------------

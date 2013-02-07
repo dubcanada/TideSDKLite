@@ -1,6 +1,6 @@
 1.4.2 (2013-02-06)
 
-	- Remove Ti.UpdateManager code which is being replaced.
+	- Remove Ti.UpdateManager code which is deprecated.
 	- Add missing image.
 	- Updated manifest for TideSDK 1.3.2-beta.
 
