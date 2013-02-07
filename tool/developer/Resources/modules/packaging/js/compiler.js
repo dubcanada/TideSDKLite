@@ -13,7 +13,7 @@ onmessage = function(event)
 	else
 	{
 		
-		var result = JSLINT(contents,{browser:true,evil:true,eqeqeq:false,maxerr:100,predef:["Titanium","window"]});
+		var result = JSLINT(contents,{browser:true,evil:true,eqeqeq:false,maxerr:100,predef:["Ti","window"]});
 		var report = JSLINT.report(true);
 		postMessage({path:event.message.path,id:event.message.id,result:result,errors:JSLINT.errors,report:report,data:JSLINT.data()});
 	}

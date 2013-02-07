@@ -1,3 +1,9 @@
+1.4.2 (2013-02-06)
+
+	- Remove Ti.UpdateManager code which is being replaced.
+	- Add missing image.
+	- Updated manifest for TideSDK 1.3.2-beta.
+
 1.4.2 (2012-11-17)
 
 	- Properly packaged for Windows, fixing https://github.com/TideSDK/TideSDK/issues/69
