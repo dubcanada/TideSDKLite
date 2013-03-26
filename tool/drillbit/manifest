@@ -12,14 +12,9 @@ app:
 filesystem:
 platform:
 ui:
-php:
-ruby:
-python:
-media:
 monkey:
 network:
 process:
 database:
-worker:
 codec:
 drillbit:0.1.0

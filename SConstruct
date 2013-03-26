@@ -2,7 +2,7 @@
 #
 # (c) 2012 Software in the Public Interest Inc (SPI)
 # (c) 2012 David Pratt
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 # limitations under the License.
 
 # (c) 2008-2012 Appcelerator Inc.
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -106,7 +106,7 @@ build.env.Append(CPPPATH=[build.tide_include_dir])
 
 SConscript('src/installer/SConscript')
 
-# After libtide builds, the environment will  link 
+# After libtide builds, the environment will  link
 # against libtide, so anything that should be
 # linked against libtide should be above this point.
 
@@ -119,8 +119,6 @@ SConscript('src/lib/tide/SConscript', variant_dir=path.join(build.dir,'objs','li
 # Now that libtide is built add it as a default for
 # all the following build steps.
 build.env.Append(LIBS=[LIBTIDE_NAME])
-
-SConscript('src/lang/SConscript')
 
 SConscript('src/modules/SConscript')
 SConscript('SConscript.dist')

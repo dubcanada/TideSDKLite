@@ -11,13 +11,8 @@ app:
 filesystem:
 platform:
 ui:
-python:
-ruby:
-php:
-media:
 monkey:
 network:
 process:
 database:
-worker:
 codec:

@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 # Copyright (c) 2012 David Pratt
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Copyright (c) 2008-2012 Appcelerator Inc.
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -32,22 +32,36 @@
 # limitations under the License.
 
 from os import path
-Import('build build_module_from_directory')
+from tide import Module
+Import('build')
+
+def build_module_from_directory(dir):
+    name = dir.lower().replace('.', '')
+    module = Module(name, build.version, path.join(build.dir, 'modules', name))
+    build.modules.append(module)
+
+    env = build.env.Clone()
+    env.Append(CPPDEFINES=[('MODULE_NAME', name), ('MODULE_VERSION', build.version)])
+
+    SConscript(
+        path.join(dir, 'SConscript'),
+        variant_dir=path.join(build.dir, 'objs', 'modules', name),
+        exports='build module env',
+        duplicate=0)
 
 # These each have their own line because we can comment
 # them out easily if we need temporarily disable one.
 for dir in [
-    'app', 
+    'app',
     'ui',
     'network',
     'filesystem',
-    'media',
     'platform',
     'process',
     'monkey',
     'database',
-    'worker',
-    'codec',
-    'socket',
+    'codec'
 ]:
     build_module_from_directory(dir)
+
+Export('build_module_from_directory')
